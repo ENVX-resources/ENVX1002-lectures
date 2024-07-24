@@ -40,3 +40,5 @@ vignettes/*.pdf
 *.knit.md
 
 /.quarto/
+
+.luarc.json
