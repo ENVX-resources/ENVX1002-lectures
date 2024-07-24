@@ -1,0 +1,36 @@
+---
+title: "Lecture 01 -- Introduction"
+---
+
+Welcome to ENVX1002. This is the first lecture of the unit and we will be going through some housekeeping before we dive into some introductory material.
+
+[Full Screen](lecture-01.qmd) | [PDF]() 
+
+```{=html}
+<iframe class="slide-deck" src="lecture-01.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+```
+
+<!-- #### Outline -->
+
+<!-- 1. About the Workshop -->
+<!-- 2. What can you do with Quarto? -->
+<!-- 3. Quarto and R Markdown: A History -->
+<!-- 4. Rendering in Quarto -->
+<!-- 5. The Structure of a Document -->
+<!--    i. Inline Elements -->
+<!--    ii. Block Elements -->
+<!--    iii. Metadata -->
+<!-- 6. The Elements of Markdown -->
+<!--    i. Text Formatting -->
+<!--    ii. Math -->
+<!--    iii. Links and Images -->
+<!--    iv. Footnotes -->
+<!--    v. Paragraph -->
+<!--    vi. Headers -->
+<!--    vii. Lists -->
+<!--    viii. Display Math -->
+<!--    ix. YAML -->
+
+<!-- #### Exercises -->
+
+
