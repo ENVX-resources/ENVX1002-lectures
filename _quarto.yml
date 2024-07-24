@@ -1,19 +1,63 @@
 project:
   type: website
+editor:
+  render-on-save: true
+execute:
+  freeze: auto # re-render only when source changes
 
 website:
-  title: "ENVX1002-lectures"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+  page-navigation: true
+  # title: SOLES-TEMLPATE-001
+  # site-url: https://sydney-informatics-hub.github.io/AgReFed-Workshop
+  # repo-url: https://github.com/Sydney-Informatics-Hub/AgReFed-Workshop
+  # repo-actions: [issue]
 
+  page-footer:
+    # center: "Site built with [Quarto](https://quarto.org/)."
+    right: The University of Sydney
+    left: "Built using the SOLES Quarto handbook template"
+
+  navbar:
+    title: SOLES-TEMLPATE-001
+    # background: "#F1F1F1" # "#ff3333" "#424242"
+    # logo: "images/logo_white.png"
+    pinned: false
+    left:
+      - text: "{{< fa house-chimney >}}"
+        file: index.qmd
+    # right:
+    #   - text: "{{< fa brands python >}} Python Workshop"
+    #     file: pydocs/py00-workshop.qmd
+    #   - text: "{{< fa brands r-project >}} Workshop"
+    #     file: rdocs/r00-workshop.qmd
+
+  sidebar:
+    logo: "assets/images/usydlogo.png"
+    pinned: true
+    align: center
+    # tools:
+    #   - icon: globe
+    #     href: https://www.sydney.edu.au/research/facilities/sydney-informatics-hub.html
+    #     text: "SIH Website"
+    # - icon: github
+    #   href: https://github.com/sydney-informatics-hub/agrefed-workshop
+    #   text: "GitHub Repository"
+    style: "floating" # "floating" "docked"
+    search: false
+    collapse-level: 2
+    contents:
+    - section: Module 1
+      contents:
+        - text: "Lecture 01 -- Intro"
+          href: lectures/L01
+        - text: "Code of Conduct"
+          href: conduct.qmd
 format:
   html:
-    theme: cosmo
-    css: styles.css
-    toc: true
-
-
-
+    theme:
+      light: [cosmo, theme.scss] # from https://github.com/sta210-s22/website/blob/main/_quarto.yml
+      # dark: [cosmo, theme-dark.scss]
+    fontsize: 12pt
+    code-copy: true
+    code-overflow: wrap
+    toc: false
