@@ -1,0 +1,196 @@
+/*-- scss:defaults --*/
+
+// Custom colours and variables
+// University of Sydney brand
+$ochre: #e64626;        // primary
+$charcoal: #424242;     // secondary
+$sandstone: #fcede2;    // secondary
+$jacaranda: #8f9ec9;    // tertiary
+$jaca-lite: #dde2ef;    // tertiary
+$heri-rose: #daa8a2;    // tertiary
+$eucalypt: #71a499;     // tertiary
+$right-arrow: "\279F"; // Unicode character for right arrow
+
+// fonts
+
+// Use Roboto and JetBrains Mono from Google Fonts
+@import url(https://fonts.googleapis.com/css?family=Roboto:200,200i,300,300i,350,350i,400,400i);
+@import url(https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900);
+@import url(https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800);
+$font-family-sans-serif: "Roboto", sans-serif !default;
+$presentation-heading-font: "Roboto", sans-serif !default;
+$font-family-monospace: "JetBrains Mono", monospace !default;
+
+
+
+$presentation-heading-color: $charcoal !default;
+$presentation-heading-font-weight: lighter;
+$presentation-heading-line-height: 2;
+// $presentation-block-margin: 28px;
+$presentation-font-size-root: 22px;
+$presentation-h1-font-size: 2em;
+$presentation-h2-font-size: 1.6em;
+$presentation-h3-font-size: 1.2em;
+
+// colors
+//$body-bg: #f0f1eb !default;
+$body-color: $charcoal !default;
+$link-color: blue !default;
+$selection-bg: #26351c !default;
+$code-bg: $sandstone; // colour for inline code background
+$code-color: $charcoal; // colour for inline code text
+$code-block-bg: $jaca-lite;
+$code-block-border-color: white;
+$code-block-font-size: 0.7em;
+
+/*-- scss:rules --*/
+
+.reveal a {
+  line-height: 1.5em;
+}
+
+.reveal p {
+  font-weight: lighter;
+  margin-top: 1em;
+}
+
+
+// title and headings
+
+#title-slide {
+  text-align: left;
+
+  .title {
+    color: $ochre;
+    font-size: 2em;
+    font-weight: normal;
+  }
+
+  .subtitle {
+    color: $charcoal;
+    margin-top: 0em;
+    font-weight: lighter;
+  }
+
+  .institute,
+  .quarto-title-affiliation,
+  .quarto-title-author-email {
+    font-style: italic;
+    // font-size: 80%;
+    // color: #7F7F7F;
+  }
+
+  .author,
+  .quarto-title-author-name {
+    color: $body-color;
+  }
+
+  .quarto-title-authors {
+    display: flex;
+    justify-content: left;
+
+    .quarto-title-author {
+      padding-left: 0em;
+      padding-right: 0em;
+      width: 100%;
+    }
+  }
+
+}
+
+.reveal h1 {
+  color: $ochre;
+  font-weight: normal;
+}
+
+.reveal h2 {
+  color: $ochre;
+  font-weight: normal;
+}
+
+.reveal h3 {
+  color: $charcoal;
+  // font-style: italic;
+  font-weight: 900;
+  margin-top: 1.25em;
+}
+
+.reveal h4 {
+  color: $ochre;
+  font-weight: normal;
+  margin-top: 1.25em;
+}
+
+// resize callout blocks
+div {
+  &.callout {
+    font-size: 1.7rem !important;
+  }
+}
+
+.callout.callout-style-default div.callout-content {
+  font-size: 1.6rem !important;
+}
+
+// adjust code output
+.reveal pre code {
+  background-color: $sandstone;
+  color: #424242;
+}
+
+// custom classes
+
+.col {
+  color: var(--col, $charcoal);
+}
+
+.hlight {
+  background-color: var(--col, #fff);
+  padding: 0.1em;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+// lists
+// unordered lists
+
+.reveal .slide ul, .reveal .slide ol {
+  margin-bottom: 0.5em;
+  margin-top: auto;
+}
+
+.reveal ul {
+  font-weight: lighter;
+  padding-left: 16px;
+
+  li::marker {
+    color: mix($eucalypt, white, 70%);
+  }
+}
+
+
+
+// style list items with arrows
+.reveal ul ul {
+  list-style: none;
+
+  li:before {
+    content: $right-arrow;
+    color: mix($eucalypt, white, 60%);
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+    margin-right: 0.5em;
+  }
+}
+
+// Ordered lists
+
+.reveal ol {
+  font-weight: lighter;
+  padding-left: 16px;
+
+  li::marker {
+    color: $eucalypt;
+  }
+}
