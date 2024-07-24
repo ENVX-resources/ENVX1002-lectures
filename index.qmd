@@ -1,7 +1,26 @@
 ---
-title: "ENVX1002-lectures"
+anchor-sections: false
+section-divs: false
 ---
 
-This is a Quarto website.
+# Lecture slides
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+This is a collection of slides for ENVX1002, condensed into a single repository for easier access and management. The source files can be found on GitHub.
+
+### Module 1 -- describing data
+- [Lecture 01](lectures/L01/index.qmd) -- Introduction & the scientific method
+- [Lecture 02](lectures/L02/index.qmd) -- Exploring data
+- [Lecture 03](lectures/L03/index.qmd) -- Probability distributions
+- [Lecture 04](lectures/L04/index.qmd) -- Sampling distributions
+
+### Module 2 -- inference
+- [Lecture 05](lectures/L05/index.qmd) -- Hypothesis testing & one-sample *t*-tests
+- [Lecture 06](lectures/L06/index.qmd) -- Two-sample *t*-tests
+- [Lecture 07](lectures/L07/index.qmd) -- Non-parametric tests
+- [Lecture 08](lectures/L08/index.qmd) -- Bootstrapping | Revision
+
+### Module 3 -- modelling
+- [Lecture 09](lectures/L09/index.qmd) -- Describing relationships
+- [Lecture 10](lectures/L10/index.qmd) -- Linear functions
+- [Lecture 11](lectures/L11/index.qmd) -- Linear functions - multiple predictors
+- [Lecture 12](lectures/L12/index.qmd) -- Non-linear functions
