@@ -5,10 +5,7 @@ author: Dr. Floris van Ogtrop
 institute: The University of Sydney
 date: last-modified # today | last-modified
 date-format: "MMM YYYY" # see https://momentjs.com/docs/#/displaying/format/
-execute: 
-  eval: true
-  echo: true
-self-contained: false # set to true once draft is complete
+format: soles-revealjs
 ---
 
 # Topic 2 - Exploratory Data Analysis
