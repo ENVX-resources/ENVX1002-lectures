@@ -18,7 +18,7 @@ website:
     left: "Built using the SOLES Quarto handbook template"
 
   navbar:
-    title: SOLES-TEMLPATE-001
+    title: ENVX1002 Lectures
     # background: "#F1F1F1" # "#ff3333" "#424242"
     # logo: "images/logo_white.png"
     pinned: false
@@ -46,12 +46,38 @@ website:
     search: false
     collapse-level: 2
     contents:
-    - section: Module 1
+    - text: "**Home**"
+      href: index.qmd
+    - section: "**Module 1 describing data**"
       contents:
-        - text: "Lecture 01 -- Intro"
-          href: lectures/L01
-        - text: "Code of Conduct"
-          href: conduct.qmd
+        - text: "L01 -- Introduction"
+          href: lectures/L01/index.qmd
+        - text: "L02 -- Exlploring data"
+          href: lectures/L02/index.qmd
+        - text: "L03 -- Probability distributions"
+          href: lectures/L03/index.qmd
+        - text: "L04 -- Sampling distributions"
+          href: lectures/L04/index.qmd
+    - section: "**Module 2 inference**"
+      contents:
+        - text: "L05 -- Hypothesis testing"
+          href: lectures/L05/index.qmd
+        - text: "L06 -- Two-sample *t*-tests"
+          href: lectures/L06/index.qmd
+        - text: "L07 -- Non-parametric tests"
+          href: lectures/L07/index.qmd
+        - text: "L08 -- Bootstrapping"
+          href: lectures/L08/index.qmd
+    - section: "**Module 3 modelling**"
+      contents:
+        - text: "L09 -- Describing relationships"
+          href: lectures/L09/index.qmd
+        - text: "L10 -- Linear functions"
+          href: lectures/L10/index.qmd
+        - text: "L11 -- Multiple predictors"
+          href: lectures/L11/index.qmd
+        - text: "L12 -- Non-linear functions"
+          href: lectures/L12/index.qmd
 format:
   html:
     theme:
