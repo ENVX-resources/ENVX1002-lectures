@@ -1,11 +1,15 @@
 ---
+title: ENVX1002 -- Introduction to statistical methods
+author: 
+  - Januar Harianto
+  - Liana Pozza
+  - Si Yang Han
+  - Floris Van Ogtrop (coordinator)
 anchor-sections: false
 section-divs: false
 ---
 
-# Lecture slides
-
-This is a collection of slides for ENVX1002, condensed into a single repository for easier access and management. The source files can be found on GitHub.
+To contribute, visit the [GitHub repository]() and read the cotribution guidelines.
 
 ### Module 1 -- describing data
 - [Lecture 01](lectures/L01/index.qmd) -- Introduction & the scientific method
@@ -24,3 +28,4 @@ This is a collection of slides for ENVX1002, condensed into a single repository 
 - [Lecture 10](lectures/L10/index.qmd) -- Linear functions
 - [Lecture 11](lectures/L11/index.qmd) -- Linear functions - multiple predictors
 - [Lecture 12](lectures/L12/index.qmd) -- Non-linear functions
+
