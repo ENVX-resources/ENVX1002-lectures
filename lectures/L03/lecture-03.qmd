@@ -1,0 +1,566 @@
+---
+title: Topic 3 -- Discrete Distributions
+subtitle: ENVX1002 Introduction to Statistical Methods
+author: Dr. Floris van Ogtrop
+institute: The University of Sydney
+date: last-modified # today | last-modified
+date-format: "MMM YYYY" # see https://momentjs.com/docs/#/displaying/format/
+format: soles-revealjs
+---
+
+# Outline – Discrete distributions
+
+- Example
+- What is a distribution
+- Binomial distribution
+- Poisson distribution
+
+
+
+
+
+# Learning outcomes
+
+At the end of this topic students should able to:
+
+- Have a good understanding of what a distribution is
+  - Definitions
+  - Functions
+  - Binomial and Poisson distributions
+- Apply the correct model to describe data
+- Demonstrate proficiency in the use of R and Excel for calculating probabilities
+
+
+
+
+
+
+# Types of data
+
+**Remember the types of data**
+
+**Numerical**
+
+- Continuous:  yield, weight
+- Discrete:  weeds per $m^2$
+
+**Categorical**
+
+- Binary:  2 mutually exclusive categories 
+- Ordinal:  categories ranked in order 
+- Nominal:  qualitative data
+
+
+
+
+# Example
+
+:::: {.columns}
+::: {.column width="50%"}
+- We have 5 insects which we spray with an insecticide, each insect has a 60% chance of being killed;
+- $P(K) = 0.6$
+- Possible questions:
+  - What is the probability that all 5 insects will be killed?
+  - What is the probability that at least 3 insects will be killed?
+- The data is ‘binary’ and the events are mutually exclusive (either dead or alive unless it is zombie fly);
+  - we can say the data is categorical or numeric discrete 
+  - we can use a binomial (discrete) distribution to "model" the data.
+
+:::
+::: {.column width="50%"}
+
+![Generated using DALL.E3](images/L3_zombie_fly.png){width=80%}
+
+:::
+
+::::
+
+
+
+
+# What is a distribution?
+
+- In our case we are generally referring to a distribution function
+  - This is a function (or model) that describes the probability that a system will take on value or set of values {x}
+
+- For any variable X, we describe probabilities by
+  - Discrete variables: probability distribution function $P(X=x)$
+  - Continuous variables: probability density function $f(x)$
+  - Discrete and Continuous variables: cumulative density function 
+$F(x) = P(X\le{x})$ 
+
+
+
+
+
+# Back to our example
+
+- We spray 5 flies with insecticide which has 60% chance of killing each insect. If $X$ is the number of flies that die, what is the distribution of $X$?
+- The set of possible values is $x=0,1,2,3,4,5$
+- The likelihood of each value is 
+- $P(X=0)=P(\text{no insects die})=0.4× 0.4× 0.4× 0.4× 0.4=0.4^5=0.01024$ 
+- $P(X=1)=P(\text{one insects die})=0.6× 0.4× 0.4× 0.4× 0.4 + 0.4× 0.6× 0.4× 0.4× 0.4 + 0.4× 0.4× 0.6× 0.4× 0.4 + 0.4× 0.4× 0.4× 0.6× 0.4 + 0.4× 0.4× 0.4× 0.4× 0.6 = 0.0768$
+- $P(X=2)=P(\text{two insects die})=… \text{10 different combinations} = 0.2304$
+- $P(X=3)=P(\text{three insects die})=… \text{10 different combinations} = 0.3456$
+- $P(X=4)=P(\text{four insects die})=… \text{5 combinations} = 0.2592$
+- $P(X=0)=P(\text{all insects die})=0.6× 0.6× 0.6× 0.6× 0.6=0.65=0.07776$
+
+
+
+
+# Example plot
+
+```{r}
+x <- c(0, 1, 2, 3, 4, 5)
+p <- c(0.01024, 0.0768, 0.2304, 0.3456, 0.2592, 0.07776)
+plot(x, p, type = "h")
+
+```
+
+
+
+
+
+
+# Example – properties of the distribution
+
+- Remember we have a binomial (dead or alive) distribution here
+- A key property of all (discrete) distributions is that all probabilities add to 
+
+$\Sigma_{i=0}^5P(X=i)=0.01024+0.0768+0.2304+0.3456+0.2592+0.07776=1$
+
+- Note that all probabilities lie between 0 and 1
+
+
+
+
+
+
+# Binomial Distribution
+
+- Why does a binomial distribution fit our insect data??
+  - Basic element is a Bernoulli trial – each insect;
+  - The outcome of each trial can be classified in precisely one of two mutually exclusive ways termed “success” (dead) and “failure” (alive);
+    - We usually assign **$p$** to success and $q$ to failure.
+  - Binomial experiments consists of n Bernouilli (independent binary) trials (i.e. 5 insects);
+  - The probability of a success, denoted by p, remains constant from trial to trial. The probability of a failure, $q =1 – p$;
+    - $p = 0.6$ and $q = 0.4$
+  - The trials are independent; that is, the outcome of any particular trial is not affected by the outcome of any other trial;
+  - The number of successes, x, is a binomial variable.
+  
+  
+  
+  
+  
+  
+# Example
+:::: {.columns}
+::: {.column width="50%"}
+
+- How many combinations are there for exactly 2 flies to die out of 5 flies?
+
+${5\choose{2}}=\frac{5!}{2!(5−2)!}= \frac{(5×4×3×2×1)}{(2×1×3×2×1)}=10$
+
+- What is the probability that exactly 2 flies will die?
+
+$P(X=x)={n\choose{x}}p^x(1-p)^{n-x}={5\choose{2}}0.6^2(1-0.6)^{5-2}$
+
+$=10×0.36×0.064=0.2304$
+
+:::
+
+::: {.column width="50%"}
+
+![](images/R_logo.jpg) - `dbinom(2,5,0.6)`
+
+```{r}
+dbinom(2,5,0.6)
+```
+
+![](images/Excel_logo.jpg) - `=BINOM.DIST(2,5,0.6,FALSE)`
+
+:::
+::::
+
+
+
+
+# Point, cumulative or interval probabilities
+
+:::: {.columns}
+::: {.column width="50%"}
+- We have already calculated a point probability i.e. the probability of exactly 2 flies dying.
+- But what about if we wanted to know the probability of 2 or more flies dying $P(X\ge{2})$ or between 2 and 4 flies $P(2\le{X}\le{4})$ dying??
+- So how can we calculate these?
+  - One way is to calculate all the point probabilities from 0-5 and add the probabilities cumulatively or in the interval
+
+:::
+
+::: {.column width="50%"}
+![](images/L3_CumulativeP.png){width="50%"} 
+
+:::
+
+::::
+
+
+# Point, cumulative or interval probabilities
+
+:::: {.columns}
+::: {.column width="50%"}
+
+$P(X\ge{2})=(X=2)+(X=3)+(X=4)+(X=5)=0.2304+0.3456+0.2592+0.07776=0.91296$
+ 
+- You guys try to calculate the following
+
+$P(2\le{X}\le{4})=??$
+
+
+:::
+
+::: {.column width="50%"}
+![](images/L3_CumulativeP.png){width="50%"} 
+
+:::
+
+::::
+
+
+
+
+
+# Cumulative
+
+$P(X\ge{2})$
+
+![](images/R_logo.jpg)
+
+```{r}
+1 - pbinom(1,5,0.6)
+
+## OR
+
+pbinom(1,5,0.6, lower.tail = FALSE)
+```
+
+![](images/Excel_logo.jpg) - `=1-BINOM.DIST(1,5,0.6,TRUE)`
+
+
+
+
+
+# Interval
+
+$P(2 \le X \le 4)$
+
+![](images/R_logo.jpg)
+
+```{r}
+pbinom(4,5,0.6)-pbinom(1,5,0.6)
+```
+
+![](images/Excel_logo.jpg) - `=BINOM.DIST(4,5,0.6,TRUE)-BINOM.DIST(1,5,0.6,TRUE)`
+
+
+
+
+
+
+
+# Mean and variance of the binomial distribution
+
+- Mean binomial distribution 
+
+$\mu_x=np$
+
+$=5\times{0.6} = 3$ On average 3 flies die in 5 trials
+
+- Variance binomial distribution
+
+$\sigma_x^2=np(1-p)$
+
+$=5\times{0.6}(1-0.6)=1.2$ with a variance of 1.2 flies
+
+
+
+
+
+
+# Count Data
+
+:::: {.columns}
+::: {.column width="50%"}
+- Often we are interested in count data such as the number of events occurring in an interval;
+- We generally model this data using the Poisson distribution (Described by Simeon-Denis Poisson) where we use $\lambda$ denotes the average number of events occurring in an interval
+
+![Source: https://sharemylesson.com/teaching-resource/sesame-street-song-count-253315](images/L3_Count.png) 
+
+:::
+
+::: {.column width="50%"}
+
+- We often write this as 
+
+$X\sim{Po(\lambda)}$
+
+- Where $X$ is the number of discrete and independent events in the interval
+  - e.g. number of plants of a certain species along transect
+  - e.g. occurrence of disease in a period of time
+
+
+
+:::
+
+::::
+
+
+
+
+
+
+# Horse kick deaths in the Prussian Army
+
+```{r}
+library(knitr)
+kick <- read.csv("data/Kick_deaths.csv")
+kable(kick[1:12,])
+```
+
+
+
+
+
+
+
+# Horse kick deaths in the Prussian Army
+
+https://en.wikipedia.org/wiki/Ladislaus_Bortkiewicz 
+
+:::: {.columns}
+::: {.column width="50%"}
+
+```{r}
+library(tidyverse)
+
+frequency_kick <- kick %>%
+  select(-Year) %>%
+  pivot_longer(cols = everything(), names_to = "Column", values_to = "Deaths") %>%
+  count(Deaths) %>%
+  arrange(Deaths) %>%
+  mutate(Total_Deaths = Deaths*n) %>%
+  mutate(Probability = "?")
+
+kable(frequency_kick)
+```
+:::
+
+::: {.column width="50%"}
+
+- What is the Probability in any month of 
+  - 0 injuries by horse kick 
+  - 1 injuries by horse kick
+  - 2 injuries by horse kick 
+  - 3 injuries by horse kick 
+  - 4 injuries by horse kick
+- $\lambda$ “Lambda” is the mean
+
+:::
+
+::::
+
+
+
+
+
+# Horse kick deaths in the Prussian Army
+
+```{r}
+total_kick <- frequency_kick %>% 
+  summarize(n = sum(n), sum_Total_Deaths = sum(Total_Deaths))
+
+kable(total_kick)
+```
+
+
+
+
+
+
+
+# Poisson Distribution
+
+$X\sim{Po(\lambda)}$
+
+$P(X=x)=\frac{\lambda^x e^{-\lambda}}{x!}$ $x=0,1,2,...$ $\lambda>0$
+
+- Note that $e$ denotes the exponential function such that
+  - $e^0=1$
+  - $e^-2=0.135 \text{(3 d.p.)}$
+  - $e^-10=4.540\times 10^{−5} \text{(3 d.p.)}$
+  
+  
+
+
+
+
+# Example with kick deaths
+
+- We first identify the model
+  - $X$ = the number of soldiers injured by horse kick $\sim{Po(\lambda)}$ where $\lambda$ = the average number of deaths = $196/280 = 0.7$. We can now calculate the probability of having exactly 0, 1, 2, 3, 4, 5 deaths
+
+- $P(X=0)=\frac{0.7^0 e^{-0.7}}{0!}=\frac{1e^{-0.7}}{1}=0.497 \text{(3 d.p.)}$
+- $P(X=1)=\frac{0.7^1 e^{-0.7}}{1!}=\frac{0.7e^{-0.7}}{1}=0.348 \text{(3 d.p.)}$
+- $P(X=2)=\frac{0.7^2 e^{-0.7}}{2!}=\frac{0.49e^{-0.7}}{2\times1}=0.122 \text{(3 d.p.)}$
+- $P(X=3)=\frac{0.7^3 e^{-0.7}}{3!}=\frac{0.343e^{-0.7}}{3\times2\times1}=0.028 \text{(3 d.p.)}$
+- $P(X=4)=\frac{0.7^4 e^{-0.7}}{4!}=\frac{0.2401e^{-0.7}}{4\times3\times2\times1}=0.005 \text{(3 d.p.)}$
+
+
+
+
+# Example with kick deaths
+
+```{r}
+x <- c(0, 1, 2, 3, 4) 
+p <- c(0.497, 0.348, 0.122, 0.028, 0.005) 
+plot(x, p, type = "h")
+```
+
+
+
+
+# Example with kick deaths
+
+```{r}
+
+frequency_kick1 <- kick %>%
+  select(-Year) %>%
+  pivot_longer(cols = everything(), names_to = "Column", values_to = "Deaths") %>%
+  count(Deaths) %>%
+  arrange(Deaths) %>%
+  mutate(Total_Deaths = Deaths*n) %>%
+  mutate(Probability = c(0.497, 0.348, 0.122, 0.028, 0.005)) %>%
+  mutate(Observed_Probability = n/280)
+
+kable(frequency_kick1)
+```
+
+- note that observed probability is n divided by the total number of observations (280). For example, for 0 deaths there were 144 observed out of a total of 280 observations i.e. the observed probability of 0 deaths in a cavalry corps over 20 years of observations was 0.51 or 51%
+
+
+
+
+
+# Example with kick deaths
+
+- So now you all can calculate what the probability is, as an example, the of having less than 2 deaths across all cavalry corps for the period of 1875-1894 $P(X<2)$.
+
+
+![](images/R_logo.jpg)
+
+```{r}
+ppois(1,0.7)
+```
+
+![](images/Excel_logo.jpg) - `=POISSON(1,0.7,TRUE)`
+
+
+
+
+
+
+
+
+# Example with kick deaths
+
+- Another example, is having exactly 2 deaths across all cavalry corps for the period of 1875-1894 $P(X=2)$.
+
+
+![](images/R_logo.jpg)
+
+```{r}
+dpois(2,0.7)
+```
+
+![](images/Excel_logo.jpg) - `=POISSON(2,0.7,FALSE)`
+
+
+
+
+
+
+# Interesting results with the binomial and Poisson distributions
+
+- For large $n$ and small p the Binomial distribution $X\sim{Bin(n,p)}$ can be approximated by the Poisson distribution $Y\sim{Po(\lambda{=np})}$
+  - The general rule is if $n>20$ and $np<5$
+- We often say that the Poisson Distribution models rare events
+
+
+
+
+
+# Interesting results with the binomial and Poisson distributions
+
+:::: {.columns}
+::: {.column width="50%"}
+
+```{r}
+# Parameters for the binomial distribution
+n <- 100
+p <- 0.05
+
+# Calculating lambda for the Poisson approximation
+lambda <- n * p
+
+# Generate the range of values
+x <- 0:n
+
+# Data frames for plotting
+data_binom <- data.frame(x = x, probability = dbinom(x, n, p), Distribution = "Binomial")
+data_pois <- data.frame(x = x, probability = dpois(x, lambda), Distribution = "Poisson")
+
+# Combine data
+data_combined <- rbind(data_binom, data_pois)
+
+# Create the plot
+p <- ggplot(data_combined, aes(x = factor(x), y = probability, fill = Distribution)) +
+    geom_bar(stat = "identity", position = position_dodge()) +
+    ggtitle("Binomial vs Poisson Distribution") +
+    xlab("Number of successes") +
+    ylab("Probability") +
+    scale_fill_manual(values = c("blue", "red")) +
+    theme_minimal() +
+    scale_x_discrete(breaks = seq(0, n, by = 10))  # Display every 10th label
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+print(p)
+```
+
+:::
+::::
+
+# Further reading
+
+- Quinn & Keough (2002) 
+  - Chapter 1. Sections 1.5, p. 9-13
+- Mead et al. (2002)
+  - Chapter14. Sections 14.4-14.5, p. 339-377 
+
+
+
+
+
+
+
+
+
+# Thanks!
+
+This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
+
+
+<!-- Links -->
+[cc-by]: http://creativecommons.org/licenses/by/4.0/

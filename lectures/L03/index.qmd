@@ -1,0 +1,14 @@
+---
+title: "Lecture 03"
+---
+
+Welcome to Week 3 of ENVX1002. This week we will be discussing probability distributions.
+
+[Full Screen](lecture-03.qmd) | [PDF]() 
+
+```{=html}
+<iframe class="slide-deck" src="lecture-03.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+```
+
+
+
