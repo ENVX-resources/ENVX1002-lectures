@@ -9,7 +9,7 @@ anchor-sections: false
 section-divs: false
 ---
 
-To contribute, visit the [GitHub repository]() and read the cotribution guidelines.
+To contribute, visit the [GitHub repository]() and read the contribution guidelines.
 
 ### Module 1 -- describing data
 - [Lecture 01](lectures/L01/index.qmd) -- Introduction & the scientific method
