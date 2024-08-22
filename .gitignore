@@ -34,6 +34,7 @@ vignettes/*.pdf
 # Output files created by quarto
 *_files/
 *_site/
+*_freeze/
 
 # Temporary files created by R markdown
 *.utf8.md
