@@ -1,8 +1,8 @@
 ---
-title: "Lecture 01 -- Introduction"
+title: "Lecture 02"
 ---
 
-Welcome to ENVX1002. This is the first lecture of the unit and we will be going through some housekeeping before we dive into some introductory material.
+This is Week 2 of ENVX1002. 
 
 [Full Screen](lecture-02.qmd) | [PDF]() 
 
