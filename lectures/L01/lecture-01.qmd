@@ -5,10 +5,6 @@ author: Dr. Floris van Ogtrop
 institute: The University of Sydney
 date: last-modified # today | last-modified
 date-format: "MMM YYYY" # see https://momentjs.com/docs/#/displaying/format/
-execute: 
-  eval: true
-  echo: true
-self-contained: false # set to true once draft is complete
 format: soles-revealjs
 # post-render: _postrender.R # render PDF; comment out before pushing to GitHub
 ---
