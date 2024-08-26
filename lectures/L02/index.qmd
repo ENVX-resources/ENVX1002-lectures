@@ -2,8 +2,6 @@
 title: "Lecture 02"
 ---
 
-This is Week 2 of ENVX1002. 
-
 [Full Screen](lecture-02.qmd) | [PDF]() 
 
 ```{=html}

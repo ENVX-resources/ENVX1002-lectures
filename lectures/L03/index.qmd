@@ -2,8 +2,6 @@
 title: "Lecture 03"
 ---
 
-Welcome to Week 3 of ENVX1002. This week we will be discussing probability distributions.
-
 [Full Screen](lecture-03.qmd) | [PDF]() 
 
 ```{=html}

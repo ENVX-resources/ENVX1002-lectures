@@ -2,8 +2,6 @@
 title: "Lecture 01 -- Introduction"
 ---
 
-Welcome to ENVX1002. This is Week 1, so we will be covering the basics to get you started!
-
 [Full Screen](lecture-01.qmd) | [PDF]() 
 
 ```{=html}
