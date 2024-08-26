@@ -1,0 +1,13 @@
+---
+title: "Lecture 06"
+---
+
+
+[Full Screen](lecture-06.qmd) | [PDF]() 
+
+```{=html}
+<iframe class="slide-deck" src="lecture-06.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+```
+
+
+
