@@ -1,5 +1,5 @@
 ---
-title: "Topic 6 -- Two-sample $t$-tests -- Part II"
+title: "Topic 6 -- Two-sample *t*-tests -- Part II"
 subtitle: School of Life and Environmental Sciences (SOLES)
 author:
   - name: Januar Harianto
@@ -9,9 +9,9 @@ self-contained: true
 format: soles-revealjs
 ---
 
-# When assumptions of the $t$-test are violated
+# When assumptions of the *t*-test are violated
 
-## Recap: Assumptions of the two-sample $t$-test
+## Recap: Assumptions of the two-sample *t*-test
 
 ### With independent samples:
 
@@ -25,7 +25,7 @@ format: soles-revealjs
 
 ## If we analyse the data anyway...
 
-The $t$-test:
+The *t*-test:
 
 - may provide incorrect results as **mean and variance calculations depend on normally distributed data**.
 - may be **less powerful** (i.e., less likely to detect a true difference).
@@ -35,13 +35,13 @@ The $t$-test:
 
 ## What can we do?
 
-The $t$-test is quite robust to violations of normality, especially when the sample size is large. However, the assumption of equal variances is more critical – we cannot simply depend on large sample sizes to "fix" the problem.
+The *t*-test is quite robust to violations of normality, especially when the sample size is large. However, the assumption of equal variances is more critical – we cannot simply depend on large sample sizes to "fix" the problem.
 
 Options include:
 
 - **Transform** the data to normalise the data and/or scale the variance
-- Use a **Welch's $t$-test** or a **Welch's ANOVA** (limited cases)
-- Use a **non-parametric test**, such as the **Mann-Whitney U test** or **Wilcoxon signed-rank test** (paired samples) -- however, these tests have *less power* than the $t$-test i.e. less likely to detect a true difference.
+- Use a **Welch's *t*-test** or a **Welch's ANOVA** (limited cases)
+- Use a **non-parametric test**, such as the **Mann-Whitney U test** or **Wilcoxon signed-rank test** (paired samples) -- however, these tests have *less power* than the *t*-test i.e. less likely to detect a true difference.
 
 
 # Ants - a foraging biomass study
@@ -77,7 +77,7 @@ p_ants <-
 p_ants
 ```
 
-Does this data meet the assumptions of the two-sample $t$-test?
+Does this data meet the assumptions of the two-sample *t*-test?
 
 ## Checking assumptions
 
@@ -223,7 +223,7 @@ From the results we can see that both sites have a **positive skewness**. Site `
 ::: incremental
 1. Check the data for normality and homogeneity of variance (i.e. **test assumptions**). 
 2. If the assumptions are violated, consider **transforming the data**.
-3. **Repeat** checks on assumptions. If assumptions are **met**, proceed with the $t$-test on the transformed scale. *Otherwise, use a different transformation or consider using a non-parametric test.*
+3. **Repeat** checks on assumptions. If assumptions are **met**, proceed with the *t*-test on the transformed scale. *Otherwise, use a different transformation or consider using a non-parametric test.*
 4. Interpret the statistical results and **back-transform the results** to the original scale (optional but recommended) to aid interpretation.
 :::
 
@@ -288,7 +288,7 @@ ants %>%
   summarise(skewness = skewness(Food_log), kurtosis = kurtosis(Food_log))
 ```
 
-## Performing the $t$-test
+## Performing the *t*-test
 
 ```{r}
 fit <- t.test(Food_log ~ Tree, data = ants, var.equal = TRUE)

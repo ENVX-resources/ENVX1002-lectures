@@ -1,5 +1,5 @@
 ---
-title: Topic 6 -- Two-sample $t$-tests -- Part I
+title: Topic 6 -- Two-sample *t*-tests -- Part I
 subtitle: School of Life and Environmental Sciences (SOLES)
 author:
   - name: Januar Harianto
@@ -12,7 +12,7 @@ format: soles-revealjs
 ## Recap: we have one sample {auto-animate="true"}
 
 ::: fragment
-**One-sample** $t$-test: compare the sample of data to a *fixed* value of interest (e.g. a hypothesised value, or a population mean).
+**One-sample** *t*-test: compare the sample of data to a *fixed* value of interest (e.g. a hypothesised value, or a population mean).
 :::
 
 ::: fragment
@@ -109,7 +109,7 @@ p3 + p4
 
 
 
-# Two-sample $t$-test
+# Two-sample *t*-test
 ## Comparing two samples: visualisation
 
 ```{r}
@@ -198,13 +198,13 @@ Hypothesis \| Assumptions \| Test \| P-value \| Conclusion
 
 ## Hypothesis
 
-For a two-sample $t$-test, the null hypothesis is that the means of the two groups are equal, and the alternative hypothesis is that the means are different.
+For a two-sample *t*-test, the null hypothesis is that the means of the two groups are equal, and the alternative hypothesis is that the means are different.
 
 $$H_0: \mu_{\text{redbull}} = \mu_{\text{control}}$$
 $$H_1: \mu_{\text{redbull}} \neq \mu_{\text{control}}$$
 
 ::: fragment
-*Compare this to the one-sample $t$-test, where the null hypothesis is that the sample mean is equal to a fixed value:*
+*Compare this to the one-sample *t*-test, where the null hypothesis is that the sample mean is equal to a fixed value:*
 $$H_0: \mu = \mu_0$$
 $$H_1: \mu \neq \mu_0$$
 :::
@@ -212,7 +212,7 @@ $$H_1: \mu \neq \mu_0$$
 
 
 ## Assumptions
-The assumptions of the two-sample $t$-test include:
+The assumptions of the two-sample *t*-test include:
 
 1.  **Normality**: the data are normally distributed.
 2.  **Homogeneity of variance**: the variances of the two groups are equal.
@@ -222,7 +222,7 @@ The assumptions of the two-sample $t$-test include:
 
 ::: incremental
 
-- Since the $t$-test compares the means of two groups, normality ensures that the means are the *best estimate* of the population means.
+- Since the *t*-test compares the means of two groups, normality ensures that the means are the *best estimate* of the population means.
 - Equal variances indicates that the two groups have similar "noise" influencing their means, except for the "treatment" effect.
   - In the Red Bull example, this means that the range of heart rate values in students for both groups is similar, except for the effect of consuming Red Bull.
 :::
@@ -370,7 +370,7 @@ Conclusion: *p*-values are greater than 0.05, so we do not reject the null hypot
 
 ## What if the normality assumption is violated?
 
-- The $t$-test is robust to deviations from normality, especially for large sample sizes due to the Central Limit Theorem.
+- The *t*-test is robust to deviations from normality, especially for large sample sizes due to the Central Limit Theorem.
 - If the sample size is small, consider using a non-parametric test (e.g. the Wilcoxon rank-sum test): **next week**
 - Alternatively, transform the data: **tomorrow**
 
@@ -467,22 +467,22 @@ Conclusion: *p*-values are greater than 0.05, so we do not reject the null hypot
 
 Some debate exists on what to do, but choices include:
 
-- Use the **Welch's $t$-test**, which is robust to unequal variances: *coming up next*
+- Use the **Welch's *t*-test**, which is robust to unequal variances: *coming up next*
 - **Transform** the data to stabilise the variances: **tomorrow**
 - Perform a non-parametric test: **next week**
 
 
 
-## The Welch's $t$-test
+## The Welch's *t*-test
 
-- The Welch's $t$-test is a modification of the two-sample $t$-test that **does not assume equal variances**.
+- The Welch's *t*-test is a modification of the two-sample *t*-test that **does not assume equal variances**.
 - Also applicable when the **sample sizes are unequal**.
 
-### Why not use the Welch's $t$-test all the time?
+### Why not use the Welch's *t*-test all the time?
 
-- Ongoing debate on whether to use the Welch's $t$-test or the Student's $t$-test when the variances are equal. 
-- The Welch's $t$-test is generally considered more robust, and **is the default in R's `t.test()` function**.
-- You can still use the Student's $t$-test by setting `var.equal = TRUE` in the `t.test()` function.
+- Ongoing debate on whether to use the Welch's *t*-test or the Student's *t*-test when the variances are equal. 
+- The Welch's *t*-test is generally considered more robust, and **is the default in R's `t.test()` function**.
+- You can still use the Student's *t*-test by setting `var.equal = TRUE` in the `t.test()` function.
 
 
 
@@ -498,13 +498,13 @@ When reporting in journals, it is common to simply state that the assumptions we
 ::: fragment
 ### Example 1
 
-> *The assumptions of normality and homogeneity of variance were met for the data (Shapiro-Wilk test, $p > 0.05$; Levene's test, $p > 0.05$). Thus, we performed a two-sample $t$-test...*
+> *The assumptions of normality and homogeneity of variance were met for the data (Shapiro-Wilk test, $p > 0.05$; Levene's test, $p > 0.05$). Thus, we performed a two-sample *t*-test...*
 :::
 
 ::: fragment
 ### Example 2
 
-> *Visual inspection of the histograms, QQ-plots, and boxplots showed that the data met the assumptions of both normality and homogeneity of variance. Thus, we performed a two-sample $t$-test..*
+> *Visual inspection of the histograms, QQ-plots, and boxplots showed that the data met the assumptions of both normality and homogeneity of variance. Thus, we performed a two-sample *t*-test..*
 :::
 
 ::: fragment
@@ -514,7 +514,7 @@ When reporting in journals, it is common to simply state that the assumptions we
 
 
 # P-value and Conclusion
-## Performing the $t$-test
+## Performing the *t*-test
 
 ```{r}
 #| code-fold: false
@@ -525,7 +525,7 @@ t.test(heart_rate ~ group, data = redbull, var.equal = TRUE)
 Results indicate that the means of the two groups are **not** significantly different (p = 0.27).
 
 ::: fragment
-### Compare with the Welch's $t$-test
+### Compare with the Welch's *t*-test
 ```{r}
 #| code-fold: false
 
@@ -541,7 +541,7 @@ Differences in heart rate we not statistically significant between the Red Bull 
 
 
 
-# The paired $t$-test
+# The paired *t*-test
 ## Are the two sample independent?
 When testing if two samples are different from each other, we need to consider two possible scenarios:
 
@@ -551,12 +551,12 @@ When testing if two samples are different from each other, we need to consider t
 :::
 
 ::: fragment
-If the samples are related, a **paired $t$-test** is more appropriate than a two-sample $t$-test as it accounts for the relationship between the samples that could confound the results.
+If the samples are related, a **paired *t*-test** is more appropriate than a two-sample *t*-test as it accounts for the relationship between the samples that could confound the results.
 :::
 
 
 
-## Paired $t$-test
+## Paired *t*-test
 ### Experimental design (what if?)
 #### Before
 
@@ -578,13 +578,13 @@ If the samples are related, a **paired $t$-test** is more appropriate than a two
 
 
 ## Hypothesis
-For a paired $t$-test, the null hypothesis is that the mean difference between the two groups is zero, and the alternative hypothesis is that the mean difference is different from zero.
+For a paired *t*-test, the null hypothesis is that the mean difference between the two groups is zero, and the alternative hypothesis is that the mean difference is different from zero.
 
 $$H_0: \mu_{\text{diff}} = 0$$
 $$H_1: \mu_{\text{diff}} \neq 0$$
 
 ::: fragment
-*Compare this to the two-sample $t$-test, where the null hypothesis is that the means of the two groups are equal:*
+*Compare this to the two-sample *t*-test, where the null hypothesis is that the means of the two groups are equal:*
 $$H_0: \mu_{\text{redbull}} = \mu_{\text{control}}$$
 $$H_1: \mu_{\text{redbull}} \neq \mu_{\text{control}}$$
 
@@ -592,21 +592,21 @@ $$H_1: \mu_{\text{redbull}} \neq \mu_{\text{control}}$$
 
 
 
-## Assumptions of the paired $t$-test
+## Assumptions of the paired *t*-test
 
-- The assumption of the paired $t$-test is that the differences between the two groups are normally distributed.
-- There is no assumption of equal variances, as the paired $t$-test is a one-sample $t$-test on the differences.
+- The assumption of the paired *t*-test is that the differences between the two groups are normally distributed.
+- There is no assumption of equal variances, as the paired *t*-test is a one-sample *t*-test on the differences.
   - Another way to think about it is that since the data are paired, the variance of the differences is the same for both groups.
 
 
-## Performing the paired $t$-test
+## Performing the paired *t*-test
 
 There are two ways.
 
 :::: columns
 ::: column
 ::: fragment
-### Method 1: Calculate the differences, then perform a one-sample $t$-test using `t.test()`
+### Method 1: Calculate the differences, then perform a one-sample *t*-test using `t.test()`
 
 ```{r}
 #| code-fold: false
