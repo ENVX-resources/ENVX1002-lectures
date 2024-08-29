@@ -1,0 +1,661 @@
+---
+title: Topic 6 -- Two-sample $t$-tests -- Part I
+subtitle: School of Life and Environmental Sciences (SOLES)
+author:
+  - name: Januar Harianto
+    affiliations: The University of Sydney
+date: last-modified
+format: soles-revealjs
+---
+
+# Testing differences in means
+## Recap: we have one sample {auto-animate="true"}
+
+::: fragment
+**One-sample** $t$-test: compare the sample of data to a *fixed* value of interest (e.g. a hypothesised value, or a population mean).
+:::
+
+::: fragment
+### Examples
+
+-   *Is the mean height of students in this class different from the population mean of 170 cm?*
+-   *Is the food weight in a can of tuna different from its advertised weight of 250 g?*
+
+```{r}
+#| code-fold: true
+#| fig-height: 3.5
+
+library(patchwork)
+library(ggplot2)
+
+set.seed(108)
+heights <- rnorm(100, mean = 170, sd = 10)
+tuna <- rnorm(100, mean = 200, sd = 5)
+
+# heights
+p1 <- ggplot(data.frame(heights), aes(x = heights)) +
+  geom_histogram(aes(y = ..density..), 
+    binwidth = 5, fill = "lightblue", color = "black") +
+  geom_vline(aes(xintercept = mean(heights)), 
+    color = "red", linetype = "dashed") +
+  ggtitle("Height of students") +
+  theme_classic()
+
+# tuna
+p2 <- ggplot(data.frame(tuna), aes(x = tuna)) +
+  geom_histogram(aes(y = ..density..), 
+    binwidth = 5, fill = "lightblue", color = "black") +
+  geom_vline(aes(xintercept = 250), 
+    color = "red", linetype = "dashed") +
+  ggtitle("Tuna weight") +
+  theme_classic()
+
+p1 + p2
+
+
+```
+
+:::
+
+
+
+
+## What if we want to compare a sample of data to *another* sample?
+
+::: fragment
+### Examples
+
+-   *Is the mean height of students in this class different from the other class?*
+-   *Is the mean food weight in this batch of tuna different from the other batch?*
+
+```{r}
+#| code-fold: true
+#| fig-height: 3.5
+
+set.seed(129)
+## Generate data for 2 groups
+heights_all <- data.frame(
+  group = rep(c("Class A", "Class B"), each = 100),
+  heights = c(rnorm(100, mean = 165, sd = 7), 
+    rnorm(100, mean = 185, sd = 9)))
+tuna_all <- data.frame(
+  group = rep(c("Batch 1", "Batch 2"), each = 100),
+  weight = c(rnorm(100, mean = 200, sd = 5), 
+    rnorm(100, mean = 235, sd = 5)))
+
+## Plot
+p3 <- ggplot(heights_all, aes(x = heights, fill = group)) +
+  geom_histogram(aes(y = ..density..), 
+    binwidth = 5, color = "black", alpha = .2) +
+  geom_vline(aes(xintercept = 170), 
+    color = "red", linetype = "dashed") +
+  geom_vline(aes(xintercept = 185),
+    color = "blue", linetype = "dashed") +
+  ggtitle("Height of students") +
+  theme_classic()
+p4 <- ggplot(tuna_all, aes(x = weight, fill = group)) +
+  geom_histogram(aes(y = ..density..), 
+    binwidth = 5, color = "black", alpha = .2) +
+  geom_vline(aes(xintercept = 200), 
+    color = "red", linetype = "dashed") +
+  geom_vline(aes(xintercept = 235), 
+    color = "blue", linetype = "dashed") +
+  ggtitle("Canned tuna weight") +
+  theme_classic()
+
+p3 + p4
+```
+:::
+
+
+
+# Two-sample $t$-test
+## Comparing two samples: visualisation
+
+```{r}
+#| echo: false
+#| fig-height: 3
+
+p3 + p4
+```
+
+::: fragment
+```{r}
+#| code-fold: true
+#| fig-height: 3
+p5 <- ggplot(heights_all, aes(x = group, y = heights, fill = group)) +
+  geom_boxplot(alpha = .2) +
+  ggtitle("Height of students") +
+  theme_classic()
+p6 <- ggplot(tuna_all, aes(x = group, y = weight, fill = group)) +
+  geom_boxplot(alpha = .2) +
+  ggtitle("Canned tuna weight") +
+  theme_classic()
+
+p5 + p6
+```
+:::
+
+
+
+## Some considerations: the boxplot
+
+::: fragment
+```{r}
+#| echo: false
+#| fig-height: 3.5
+p5 + p6
+```
+:::
+
+::: fragment
+- Trade-off between being able to see the distribution of the data and being able to compare between groups.
+- The *recommended* approach when comparing two or more groups of data in most cases.
+:::
+
+
+## 
+
+![][1]
+
+  [1]: images/redbull.png
+
+
+
+# Does Red Bull increase the heart rate of students?
+## Data
+
+*A simulated example* (data is not real):
+
+```{r}
+redbull <- data.frame(
+  group = c(rep("redbull", 12), rep("control", 12)), 
+  heart_rate = c(72, 88, 72, 88, 76, 75, 84, 80, 60, 96, 80,  84, 84, 76, 68, 80, 64, 62, 74, 84, 68, 96, 80, 64))
+```
+
+::: fragment
+**Experimental design**: two groups of students selected at random, *without* replacement, from the ENVX1002 cohort.
+
+-   `redbull` group: students who consumed 250 ml of Red Bull.
+-   `control` group: students who consumed 250 ml of water (control group).
+
+Heart rate in beats per minute (bpm) was measured *20 minutes after consumption*.
+:::
+
+::: fragment
+### Structure of data
+```{r}
+str(redbull)
+```
+
+:::
+
+
+
+# HATPC
+
+Hypothesis \| Assumptions \| Test \| P-value \| Conclusion
+
+## Hypothesis
+
+For a two-sample $t$-test, the null hypothesis is that the means of the two groups are equal, and the alternative hypothesis is that the means are different.
+
+$$H_0: \mu_{\text{redbull}} = \mu_{\text{control}}$$
+$$H_1: \mu_{\text{redbull}} \neq \mu_{\text{control}}$$
+
+::: fragment
+*Compare this to the one-sample $t$-test, where the null hypothesis is that the sample mean is equal to a fixed value:*
+$$H_0: \mu = \mu_0$$
+$$H_1: \mu \neq \mu_0$$
+:::
+
+
+
+## Assumptions
+The assumptions of the two-sample $t$-test include:
+
+1.  **Normality**: the data are normally distributed.
+2.  **Homogeneity of variance**: the variances of the two groups are equal.
+
+::: fragment
+### Why are these assumptions important?
+
+::: incremental
+
+- Since the $t$-test compares the means of two groups, normality ensures that the means are the *best estimate* of the population means.
+- Equal variances indicates that the two groups have similar "noise" influencing their means, except for the "treatment" effect.
+  - In the Red Bull example, this means that the range of heart rate values in students for both groups is similar, except for the effect of consuming Red Bull.
+:::
+:::
+
+
+# Assumption: normality
+Histogram | QQ-plot | Shapiro-Wilk test
+
+
+
+## Normality: histogram
+
+- We visually inspect the distribution of the data using histograms, generally for **each group**.
+- Look out for: symmetry, skewness, and multimodality.
+
+
+::: panel-tabset
+
+## R base graphics
+
+```{r}
+#| code-fold: true
+#| fig-height: 3.5
+
+par(mfrow = c(1, 2))
+hist(redbull$heart_rate[redbull$group == "redbull"], 
+  main = "Red Bull group", xlab = "Heart rate (bpm)", 
+  col = "lightblue", border = "black")
+hist(redbull$heart_rate[redbull$group == "control"],
+  main = "Control group", xlab = "Heart rate (bpm)", 
+  col = "lightblue", border = "black")
+```
+
+## ggplot2
+```{r}
+#| code-fold: true
+#| fig-height: 3.5
+
+library(ggplot2)
+ggplot(redbull, aes(x = heart_rate, fill = group)) +
+    geom_histogram(aes(y = ..density..),
+        binwidth = 12, color = "black", alpha = .5
+    ) +
+    facet_wrap(~group) +
+    theme_classic()
+```
+
+## ggpubr
+```{r}
+#| code-fold: true
+#| fig-height: 3.5
+
+library(ggpubr)
+gghistogram(redbull, x = "heart_rate", fill = "group", binwidth = 6) +
+    facet_wrap(~group) +
+    theme_classic()
+```
+
+:::
+
+::: fragment
+Conclusion: *The data appear to be normally distributed, but it is better to confirm this with a QQ-plot.* 
+:::
+
+
+
+## Normality: QQ-plot
+
+- The qq-plot is a graphical method to *specifically* assess the normality of the data. Again, we look at the data for **each group**.
+- Look out for: deviations from the straight line.
+
+::: panel-tabset
+
+## R base graphics
+```{r}
+#| code-fold: true
+#| fig-height: 3.5
+
+par(mfrow = c(1, 2))
+qqnorm(redbull$heart_rate[redbull$group == "redbull"],
+    main = "Red Bull group", xlab = "Theoretical quantiles",
+    ylab = "Sample quantiles", col = "blue"
+)
+qqline(redbull$heart_rate[redbull$group == "redbull"], col = "red")
+
+qqnorm(redbull$heart_rate[redbull$group == "control"],
+    main = "Control group", xlab = "Theoretical quantiles",
+    ylab = "Sample quantiles", col = "blue"
+)
+qqline(redbull$heart_rate[redbull$group == "control"], col = "red")
+```
+
+## ggplot2
+```{r}
+#| code-fold: true
+#| fig-height: 3.5
+
+library(ggplot2)
+ggplot(redbull, aes(sample = heart_rate)) +
+    stat_qq() +
+    stat_qq_line() +
+    facet_wrap(~group) +
+    theme_classic()
+
+```
+
+## ggpubr
+```{r}
+#| code-fold: true
+#| fig-height: 3.5
+
+library(ggpubr)
+ggqqplot(redbull$heart_rate) +
+    facet_wrap(~ redbull$group) +
+    theme_classic()
+```
+
+:::
+
+::: fragment
+Conclusion: *The data appear to be normally distributed.*
+:::
+
+
+
+## Normality: formal test
+
+- Use the Shapiro-Wilk test which tests the null hypothesis that the data are normally distributed.
+- This test is sensitive to deviations from normality in the tails of the distribution, and is suitable for small sample sizes (about 5 to 50 observations).
+
+```{r}
+#| code-fold: true
+#| fig-height: 3.5
+
+shapiro.test(redbull$heart_rate[redbull$group == "redbull"])
+shapiro.test(redbull$heart_rate[redbull$group == "control"])
+```
+
+::: fragment
+Conclusion: *p*-values are greater than 0.05, so we do not reject the null hypothesis of normality. The data are normally distributed.
+:::
+
+
+
+## What if the normality assumption is violated?
+
+- The $t$-test is robust to deviations from normality, especially for large sample sizes due to the Central Limit Theorem.
+- If the sample size is small, consider using a non-parametric test (e.g. the Wilcoxon rank-sum test): **next week**
+- Alternatively, transform the data: **tomorrow**
+
+
+
+# Assumption: homogeneity of variance
+Boxplots | Formal tests 
+
+
+
+## Equal variances: boxplot
+
+- We visually inspect the spread of the data using boxplots, generally for **each group**.
+- Look out for: differences in spread, outliers, and symmetry.
+
+::: panel-tabset
+
+## R base graphics
+```{r}
+#| code-fold: true
+#| fig-height: 3.5
+
+par(mfrow = c(1, 2))
+boxplot(heart_rate ~ group,
+    data = redbull,
+    main = "Heart rate", xlab = "Group", ylab = "Heart rate (bpm)"
+)
+```
+
+## ggplot2
+```{r}
+#| code-fold: true
+#| fig-height: 3.5
+
+library(ggplot2)
+ggplot(redbull, aes(x = group, y = heart_rate, fill = group)) +
+    geom_boxplot(alpha = .2) +
+    labs(x = "Group", y = "Heart rate (bpm)") +
+    theme_classic()
+```
+
+## ggpubr
+```{r}
+#| code-fold: true
+#| fig-height: 3.5
+
+library(ggpubr)
+ggboxplot(redbull,
+    x = "group", y = "heart_rate",
+    fill = "group", alpha = .2
+) +
+  labs(x = "Group", y = "Heart rate (bpm)") +
+  theme_classic()
+```
+
+:::
+
+::: fragment
+Conclusion: *The spread of the data appears to be similar between the two groups.*
+:::
+
+
+
+## Equal variances: formal tests
+
+- Bartlett's and Levene's tests may be used to test the null hypothesis that the variances of the groups are equal.
+- These tests are sensitive to deviations from normality (Levene's test is less so compared to Bartlett's), and are suitable for small sample sizes.
+
+::: panel-tabset
+
+## Levene's test
+```{r}
+library(car)
+leveneTest(heart_rate ~ group, data = redbull)
+```
+
+## Bartlett's test
+```{r}
+bartlett.test(heart_rate ~ group, data = redbull)
+```
+
+:::
+
+::: fragment
+Conclusion: *p*-values are greater than 0.05, so we do not reject the null hypothesis of equal variances. The variances of the two groups are equal.
+:::
+
+
+
+
+
+
+## What if the equal variance assumption is violated?
+
+Some debate exists on what to do, but choices include:
+
+- Use the **Welch's $t$-test**, which is robust to unequal variances: *coming up next*
+- **Transform** the data to stabilise the variances: **tomorrow**
+- Perform a non-parametric test: **next week**
+
+
+
+## The Welch's $t$-test
+
+- The Welch's $t$-test is a modification of the two-sample $t$-test that **does not assume equal variances**.
+- Also applicable when the **sample sizes are unequal**.
+
+### Why not use the Welch's $t$-test all the time?
+
+- Ongoing debate on whether to use the Welch's $t$-test or the Student's $t$-test when the variances are equal. 
+- The Welch's $t$-test is generally considered more robust, and **is the default in R's `t.test()` function**.
+- You can still use the Student's $t$-test by setting `var.equal = TRUE` in the `t.test()` function.
+
+
+
+
+
+
+
+
+
+## Are the assumptions of normality and homogeneity of variance met?
+When reporting in journals, it is common to simply state that the assumptions were met and what tests were used to confirm them, without showing the exact results of the tests!
+
+::: fragment
+### Example 1
+
+> *The assumptions of normality and homogeneity of variance were met for the data (Shapiro-Wilk test, $p > 0.05$; Levene's test, $p > 0.05$). Thus, we performed a two-sample $t$-test...*
+:::
+
+::: fragment
+### Example 2
+
+> *Visual inspection of the histograms, QQ-plots, and boxplots showed that the data met the assumptions of both normality and homogeneity of variance. Thus, we performed a two-sample $t$-test..*
+:::
+
+::: fragment
+**For your lab reports, you should show the results of the tests (because we want to check your work!)**
+:::
+
+
+
+# P-value and Conclusion
+## Performing the $t$-test
+
+```{r}
+#| code-fold: false
+
+t.test(heart_rate ~ group, data = redbull, var.equal = TRUE)
+```
+
+Results indicate that the means of the two groups are **not** significantly different (p = 0.27).
+
+::: fragment
+### Compare with the Welch's $t$-test
+```{r}
+#| code-fold: false
+
+t.test(heart_rate ~ group, data = redbull)
+```
+:::
+
+
+
+## Conclusion
+Differences in heart rate we not statistically significant between the Red Bull and control groups (t~22~ = -1.1, p = 0.27) indicating that Red Bull did not significantly increase the heart rate of students sampled from ENVX1002.
+
+
+
+
+# The paired $t$-test
+## Are the two sample independent?
+When testing if two samples are different from each other, we need to consider two possible scenarios:
+
+::: fragment
+-   **Independent samples**: The samples are drawn from two different populations, **or** the samples are not related to each other -- **independent groups**.
+-   **Related samples**: The samples are drawn from the same population, **and/or** the samples are related to each other -- **repeated measures** or **matched pairs**.
+:::
+
+::: fragment
+If the samples are related, a **paired $t$-test** is more appropriate than a two-sample $t$-test as it accounts for the relationship between the samples that could confound the results.
+:::
+
+
+
+## Paired $t$-test
+### Experimental design (what if?)
+#### Before
+
+> Two groups of students selected at random, *without* replacement, from the ENVX1002 cohort.
+
+::: fragment
+
+#### Paired design
+**The same student** was used in a before/after experiment, where the heart rate was measured before and after consuming 250ml of Red Bull. Twelve (12) students were selected at random from the ENVX1002 cohort.
+
+::: incremental
+- Data is no longer independent, as the same student is measured twice.
+- The student now confounds the results, as the heart rate of the same student is likely to be **correlated** even without consuming Red Bull.
+- Total number of students is now 12, not 24.
+- **Let's assume the data collected are exactly the same.**
+:::
+:::
+
+
+
+## Hypothesis
+For a paired $t$-test, the null hypothesis is that the mean difference between the two groups is zero, and the alternative hypothesis is that the mean difference is different from zero.
+
+$$H_0: \mu_{\text{diff}} = 0$$
+$$H_1: \mu_{\text{diff}} \neq 0$$
+
+::: fragment
+*Compare this to the two-sample $t$-test, where the null hypothesis is that the means of the two groups are equal:*
+$$H_0: \mu_{\text{redbull}} = \mu_{\text{control}}$$
+$$H_1: \mu_{\text{redbull}} \neq \mu_{\text{control}}$$
+
+:::
+
+
+
+## Assumptions of the paired $t$-test
+
+- The assumption of the paired $t$-test is that the differences between the two groups are normally distributed.
+- There is no assumption of equal variances, as the paired $t$-test is a one-sample $t$-test on the differences.
+  - Another way to think about it is that since the data are paired, the variance of the differences is the same for both groups.
+
+
+## Performing the paired $t$-test
+
+There are two ways.
+
+:::: columns
+::: column
+::: fragment
+### Method 1: Calculate the differences, then perform a one-sample $t$-test using `t.test()`
+
+```{r}
+#| code-fold: false
+
+diff <- redbull$heart_rate[redbull$group == "redbull"] - 
+  redbull$heart_rate[redbull$group == "control"]
+t.test(diff)
+```
+
+:::
+:::
+
+::: column
+::: fragment
+### Method 2: Use the `t.test()` function with the `paired = TRUE` argument
+
+```{r}
+#| code-fold: false
+
+# t.test(heart_rate ~ group, data = redbull, 
+#   paired = TRUE)
+```
+
+:::
+:::
+::::
+
+::: fragment
+The results for both methods are identical; the mean difference is not significantly different from zero (p = 0.13).
+:::
+
+
+# What if the assumptions are violated?
+
+We will explore this in tomorrow's lecture!
+
+
+
+# Thanks!
+
+This presentation is based on the [SOLES Quarto reveal.js template] and is licensed under a [Creative Commons Attribution 4.0 International License].
+
+[SOLES Quarto reveal.js template]: https://github.com/usyd-soles-edu/soles-revealjs
+[Creative Commons Attribution 4.0 International License]: http://creativecommons.org/licenses/by/4.0/
+
+
+
+## References
+
+- Quinn G. P. & Keough M. J. (2002) Experimental design and data analysis for biologists. Cambridge University Press, Cambridge, UK.
+- Logan, M. (2010). Biostatistical design and analysis using R a practical guide. Hoboken, N.J., Wiley-Blackwell.
+ 
