@@ -2,16 +2,16 @@
 title: "Lecture 06"
 ---
 
-### Lecture 6a
-[Full Screen](lecture-06a.qmd) | [PDF]() 
+### Lecture 06a
+[Full Screen](lecture-06a-2s-ttest-1.qmd) | [PDF]() 
 
 ```{=html}
-<iframe class="slide-deck" src="lecture-06a.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+<iframe class="slide-deck" src="lecture-06a-2s-ttest-1.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
 ```
 
-### Lecture 6b
-[Full Screen](lecture-06b.qmd) | [PDF]() 
+### Lecture 06b
+[Full Screen](lecture-lecture-06b-2s-ttest-2.qmd) | [PDF]() 
 
 ```{=html}
-<iframe class="slide-deck" src="lecture-06b.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+<iframe class="slide-deck" src="lecture-06b-2s-ttest-2.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
 ```
