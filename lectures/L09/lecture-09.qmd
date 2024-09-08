@@ -1,0 +1,725 @@
+---
+title: Topic 9 -- Describing relationships
+subtitle: ENVX1002 Introduction to Statistical Methods
+author: Liana Pozza
+institute: The University of Sydney
+date: last-modified # today | last-modified
+date-format: "MMM YYYY" # see https://momentjs.com/docs/#/displaying/format/
+format: soles-revealjs
+---
+
+# Quick intro
+
+## About me
+
+::: {layout-ncol=2}
+- Lecturer in Agricultural Data Science
+- Spatial modelling and mapping, Soil science, Precision Agriculture
+- This year back to being a student again, GradCert (Higher Education)
+
+![Narrabri cotton field](images/Pozza_natural_habitat.jpg)
+:::
+
+
+## Learning Outcomes
+
+- LO1. Demonstrate proficiency in utilizing R and Excel to effectively explore and describe data sets in the life sciences.
+
+- LO2. Evaluate and interpret different types of data in the natural sciences by visualising probability distributions and calculating probabilities using RStudio and Excel.
+
+- LO3. Apply parametric and non-parametric statistical inference methods to experimental data using RStudio and effectively interpret and communicate the results in the context of the data.
+
+- LO4. Apply both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.
+
+- LO5. Articulate statistical and modelling results clearly and convincingly in both written reports and oral presentations, working effectively as an individual and collaboratively in a team, showcasing the ability to convey complex information to varied audiences.
+
+
+
+
+## Learning Outcomes
+
+- LO1. Demonstrate proficiency in utilizing R and Excel to effectively explore and describe data sets in the life sciences.
+
+- [LO2. Evaluate and interpret different types of data in the natural sciences by visualising probability distributions and calculating probabilities using RStudio and Excel.]{style="color: #D0D3D4;"}
+
+- [LO3. Apply parametric and non-parametric statistical inference methods to experimental data using RStudio and effectively interpret and communicate the results in the context of the data.]{style="color:#D0D3D4;"}
+
+- LO4. Apply both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.
+
+- [LO5. Articulate statistical and modelling results clearly and convincingly]{style="color:black;"} [in both written reports and oral presentations, working effectively as an individual and collaboratively in a team, showcasing the ability to convey complex information to varied audiences.]{style="color:#D0D3D4;"}
+
+<!---
+therefore, want students how to fit a regression model and be able to interpret 
+- Want to make sure we are using it for the right thing (linear relationship)
+- want to make sure we are fitting it properly
+- Want to then be able to interpret the output
+--->
+
+## Module overview
+
+- **Week 9. Describing relationships**
+    + Correlation &rarr; calculation, interpretation, things to watch out for
+    + Regression &rarr; Why do we care? model structure, model fitting
+  
+- **Week 10. Linear functions**
+    + Is the model worth fitting? &rarr; Assumptions, hypothesis testing
+    + How good is the model? &rarr; Measures of model fit
+  
+- **Week 11. Linear functions - multiple predictors** 
+    + Parsimonious models
+    + Introduction to Multiple Linear Regression (MLR) modelling
+    + Assumptions and interpretation
+
+- **Week 12. Nonlinear functions**
+    + Common nonlinear functions
+    + Transformations
+    + Performing nonlinear regression
+
+## Module overview
+
+- **Week 9. Describing relationships**
+    + Correlation &rarr; calculation, interpretation, things to watch out for
+    + Regression &rarr; Why do we care? model structure, model fitting
+
+
+
+# Brief history
+
+![Adrien-Marie Legendre](images/legendre.jpg)
+![Carl Friedrich Gauss](images/gauss.jpg)
+![Francis Galton](images/galton.jpg)
+![Karl Pearson](images/pearson.jpg)
+
+Adrien-Marie Legendre, Carl Friedrich Gauss, Francis Galton, & Karl Pearson
+
+
+
+
+## Least squares, correlation and astronomy
+
+- Method of least squares first [**published**]{style="color: firebrick"} paper by Adrien-Marie Legendre in 1805
+- Technique of least squares used by Carl Friedrich Gauss in 1809 to fit a parabola to the orbit of the asteroid Ceres
+- Model fitting first [**published**]{style="color: firebrick"} by Francis Galton in 1886 to the problem of predicting the height of a child from the height of the parents
+- **Karl Pearson developed the correlation coefficient in 1800s based on the work by Francis Galton**
+
+:::{.callout-note}
+Many other people contributed to the development of regression analysis, but these three are the "most" well-known.
+:::
+
+## Galton's data 
+
+```{r}
+library(HistData)
+dplyr::tibble(Galton)
+```
+
+- 928 children of 205 pairs of parents
+- Height of parents and children measured in inches
+- Size classes were binned (hence data looks discrete)
+
+---
+
+```{r}
+library(ggplot2)
+ggplot(Galton, aes(x = parent, y = child)) +
+    geom_point(alpha = .2, size = 3)
+```
+
+---
+
+```{r}
+library(ggplot2)
+ggplot(Galton, aes(x = parent, y = child)) +
+    geom_point(alpha = .2, size = 3) +
+    geom_smooth(method = "lm")
+```
+
+
+## Why do we care?
+
+- Correlations are useful for describing relationships between two **continuous** variables
+  - **Direction**: 
+    - positive - both variables increase together
+    - negative - one variable increases as the other decreases
+  - **Strength**: weak, moderate, strong -- *subjective*, but useful for *describing* the relationship
+
+---
+
+```{r}
+#| code-fold: true
+# Generate synthetic data
+set.seed(123)
+rainfall <- rnorm(100, mean = 50, sd = 10)
+plant_growth <- rainfall + rnorm(100, mean = 0, sd = 5)
+
+# Calculate correlation coefficient
+correlation_coef <- cor(rainfall, plant_growth)
+
+# Plot data using ggplot2
+library(ggplot2)
+p1 <- ggplot(data = data.frame(rainfall, plant_growth), aes(x = rainfall, y = plant_growth)) +
+    geom_point() +
+    geom_smooth(method = "lm", se = FALSE) +
+    labs(
+        title = "Positive correlation",
+        x = "Rainfall", y = "Plant growth",
+        subtitle = paste("Correlation coefficient: ", round(correlation_coef, 2))
+    )
+
+# Generate synthetic data
+set.seed(123)
+phosphorous <- rnorm(100, mean = 50, sd = 10)
+chlorophyll_a <- 100 - phosphorous + rnorm(100, mean = 0, sd = 5)
+
+# Calculate correlation coefficient
+correlation_coef <- cor(phosphorous, chlorophyll_a)
+
+# Plot data using ggplot2
+p2 <- ggplot(data = data.frame(phosphorous, chlorophyll_a), aes(x = phosphorous, y = chlorophyll_a)) +
+    geom_point() +
+    geom_smooth(method = "lm", se = FALSE) +
+    labs(
+        title = "Negative correlation",
+        x = "Phosphorous", y = "Chlorophyll-a",
+        subtitle = paste("Correlation coefficient: ", round(correlation_coef, 2))
+    )
+library(patchwork)
+p1 + p2
+```
+
+
+## What can correlation analysis be used for?
+
+- **Describing** the *possible* linear relationship between two variables
+- Used *extensively* in exploratory data analysis: because it is *fast* and *easy* to calculate.
+
+---
+
+### E.g. what is the correlation between all continuous variables in the `iris` dataset?
+
+::: {.fragment}
+:::: {.columns}
+::: {.column width="50%"}
+
+```{r}
+cor(iris[, -5])
+```
+:::
+
+::: {.column width="50%"}
+
+```{r}
+plot(iris[, -5])
+```
+
+:::
+::::
+
+- We can essentially use correlation analysis to *identify* variables that are useful for *predicting* another variable, or if they will present issues for *model fitting* i.e. multicollinearity.
+:::
+
+## Different types of correlation coeefficients
+
+- Parametric (normally distributed data):
+  - Pearson correlation coefficient
+    - most commonly used
+
+- Non-parametric (non-normally distributed data):
+  - Spearman rank correlation coefficient
+  - Kendall's tau
+  - more conservative i.e. values are often *smaller*, but more robust to outliers
+
+## Pearson correlation coefficient
+
+Formula:
+
+$$ r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2 \sum_{i=1}^n (y_i - \bar{y})^2}} $$
+
+. . .
+
+![](images/wtf.gif){fig-align="center" height=250}
+
+. . .
+
+> covariance divided by the product of the standard deviations
+
+## Luckily we have Excel and R
+
+- Excel: `=CORREL()` formula, or use the analysis toolpak
+- R: `cor()` function
+
+```{r}
+cor(Galton$parent, Galton$child)
+```
+
+We can also visually inspect the relationship between the two variables using a scatterplot:
+
+```{r}
+ggplot(Galton, aes(x = parent, y = child)) +
+    geom_point(alpha = .2, size = 3)
+```
+
+... but this is not a very good way to assess the strength of the relationship between the two variables.
+
+## Interpretation: strong
+
+```{r}
+#| echo: false
+p1 + p2
+```
+
+A **strong** relationship is one where the correlation coefficient is close to 1 or -1.
+
+
+## Interpretation: weak
+
+```{r}
+#| echo: false
+# Set the seed for reproducibility
+set.seed(1249)
+
+# Generate the data
+x <- rnorm(50, mean = 50, sd = 10)
+y <- rnorm(50, mean = 100, sd = 20)
+df1 <- data.frame(x, y) # combine the two variables into a dataframe
+correlation_coef <- cor(x, y) # calculate the correlation coefficient
+
+# Scatter plot
+p1 <- ggplot(df1, aes(x, y)) +
+    geom_point() +
+    geom_smooth(method = "lm", se = FALSE) +
+    labs(
+        title = "Weak/no correlation",
+        x = "x", y = "y",
+        subtitle = paste("Correlation coefficient: ", round(correlation_coef, 2))
+    )
+
+p1
+```
+
+A **weak** or **nonexistent** relationship is one where the correlation coefficient is close to 0.
+
+## Interpretation: numbers
+
+```{r}
+cor(iris[, -5])
+```
+
+- It is enough to deduce the *strength* of the relationship from the correlation coefficient value(s) alone.
+- **Not reliable** for *inference* about the relationship between variables. For this **you must visualise**.
+
+
+## Anscombe's quartet
+
+```{r}
+#| code-fold: true
+library(tidyverse)
+anscombe %>%
+    pivot_longer(everything(),
+        cols_vary = "slowest",
+        names_to = c(".value", "set"), names_pattern = "(.)(.)"
+    ) %>%
+    ggplot(aes(x = x, y = y)) +
+    geom_point(size = 3) +
+    geom_smooth(method = "lm", se = FALSE) +
+    facet_wrap(~set, ncol = 4)
+```
+
+*All of these data have a correlation coefficient of about 0.8.*
+
+## Datasaurus Dozen
+
+```{r}
+#| code-fold: true
+library(datasauRus)
+ggplot(datasaurus_dozen, aes(x = x, y = y)) +
+    geom_point(size = .5, alpha = .3) +
+    geom_smooth(method = "lm", se = TRUE) +
+    facet_wrap(~dataset, ncol = 6)
+```
+
+*All of these data have a correlation coefficient close to zero!*
+
+# Correlation $\neq$ causation
+
+[Spurious correlations](https://www.tylervigen.com/spurious-correlations): a relationship between two variables does not imply that one causes the other.
+
+![](images/cell_phones.png)
+
+## What comes after correlation?
+
+- First, a summary:
+  - Correlation analysis is a *fast* and *easy* way to *describe* the *possible* linear relationship between two variables
+  - But, we can't infer causation: **domain knowledge is required to interpret the results**
+    - Are we expecting a relationship between the two variables?
+    - Do you have a *hypothesis* about the relationship between the two variables?
+
+If we have a hypothesis about the relationship between two variables, we can use **regression analysis** to test it.
+
+# Regression modelling
+
+- Regression analysis is a *statistical* method for *predicting* an outcome based on a predictor variable
+- We can *also* use regression analysis to **test our hypothesis** about the relationship between two variables
+
+## Why regression?
+
+. . .
+
+### Describe the relationship between two variables
+
+What is the relationship between a response variable $Y$ and a predictor variable $x$?
+
+### Explain the relationship between two variables
+How much variation in $Y$ can be explained by a relationship with $x$?
+
+### Predict the value of a response variable
+What is the value of $Y$ for a given value of $x$?
+
+## A gateway to the world of modelling
+
+Many types of regression models exist:
+
+- Simple linear regression
+- Multiple linear regression
+- Non-linear regression, using functions such as polynomials, exponentials, logarithms, etc.
+
+. . .
+
+Asking ChatGPT for help with the next slide:
+
+> Using R code, can you generate some data that is useful to demonstrate simple linear regression, multiple linear regression, polynomial, exponential and logarithmic regressions in ggplot2?
+
+> Sure! Here's an example code that generates a sample dataset and visualizes it using ggplot2 library in R.
+
+## Visualising regression models
+
+```{r}
+#| code-fold: true
+library(ggplot2)
+
+# Generate sample data
+set.seed(136)
+x <- 1:100
+y <- x^2 + rnorm(100, sd = 100)
+
+# Plot the data and regression lines
+ggplot(data.frame(x = x, y = y), aes(x, y)) +
+    ggtitle("Regression Models") +
+    geom_point(alpha = .2) +
+    xlab("X") +
+    ylab("Y") +
+    ylim(-6000, 15000)
+
+```
+
+
+## Visualising regression models
+
+```{r}
+#| code-fold: true
+library(ggplot2)
+
+# Generate sample data
+set.seed(136)
+x <- 1:100
+y <- x^2 + rnorm(100, sd = 100)
+
+# Define regression functions
+slr <- function(x, y) {
+    mod <- lm(y ~ x)
+    return(list(
+        data.frame(x = x, y = predict(mod), model_type = "Simple Linear Regression"),
+        paste("y =", round(coefficients(mod)[[2]], 2), "x +", round(coefficients(mod)[[1]], 2))
+    ))
+}
+
+mlr <- function(x, y, z) {
+    mod <- lm(y ~ x + z)
+    return(list(
+        data.frame(x = x, z = z, y = predict(mod), model_type = "Multiple Linear Regression"),
+        paste("y =", round(coefficients(mod)[[3]], 2), "x +", round(coefficients(mod)[[2]], 2), "z +", round(coefficients(mod)[[1]], 2))
+    ))
+}
+
+poly_reg <- function(x, y, degree) {
+    mod <- lm(y ~ poly(x, degree, raw = TRUE))
+    x_new <- seq(min(x), max(x), length.out = 100)
+    y_new <- predict(mod, newdata = data.frame(x = x_new))
+    return(list(
+        data.frame(x = x_new, y = y_new, model_type = paste("Polynomial Regression (", degree, ")", sep = "")),
+        paste(paste("x^", degree, sep = ""), ":", paste(round(coefficients(mod), 2), collapse = " + "))
+    ))
+}
+
+exp_reg <- function(x, y) {
+    mod <- lm(log(y) ~ x)
+    x_new <- seq(min(x), max(x), length.out = 100)
+    y_new <- exp(predict(mod, newdata = data.frame(x = x_new)))
+    return(list(
+        data.frame(x = x_new, y = y_new, model_type = "Exponential Regression"),
+        paste("y =", round(exp(coefficients(mod)[[2]]), 2), "* e^(", round(coefficients(mod)[[1]], 2), "x", ")")
+    ))
+}
+
+log_reg <- function(x, y) {
+    mod <- lm(y ~ log(x))
+    x_new <- seq(min(x), max(x), length.out = 100)
+    y_new <- predict(mod, newdata = data.frame(x = x_new))
+    return(list(
+        data.frame(x = x_new, y = y_new, model_type = "Logarithmic Regression"),
+        paste("y =", round(coefficients(mod)[[2]], 2), "* log(x) +", round(coefficients(mod)[[1]], 2))
+    ))
+}
+
+# Create regression line dataframes and equations
+reg_data <- list(slr(x, y), mlr(x, y, rnorm(100, sd = 10)), poly_reg(x, y, 3), exp_reg(x, y), log_reg(x, y))
+reg_eqs <- sapply(reg_data, function(x) x[[2]])
+
+# Plot the data and regression lines
+ggplot(data.frame(x = x, y = y), aes(x, y)) +
+    lapply(seq_along(reg_data), function(i) geom_line(data = reg_data[[i]][[1]], aes(x, y, color = reg_data[[i]][[1]]$model_type), linewidth = 1.4)) +
+    ggtitle("Regression Models") +
+    geom_point(alpha = .2) +
+    xlab("X") +
+    ylab("Y") +
+    scale_color_discrete(name = "Model Type") +
+    ylim(-6000, 15000) +
+    theme(legend.position = "none")
+
+```
+
+
+## Example: climate change modelling
+
+![](images/anomalies.png)
+
+[Source: https://science2017.globalchange.gov/chapter/4/](https://science2017.globalchange.gov/chapter/4/)
+
+
+## Example: COVID-19 transmission modelling
+
+![](images/covid.jpg){width=75%}
+
+[Source: https://www.nature.com/articles/s41598-021-84893-4/figures/1](https://www.nature.com/articles/s41598-021-84893-4/figures/1)
+
+
+
+
+<!-- 
+
+## Regression modelling in R
+
+. . .
+
+```{r}
+fit <- lm(child ~ parent, data = Galton)
+summary(fit)
+```
+
+<br> 
+
+That's it... you have fitted a model! 
+
+. . .
+
+:::{.callout-caution}
+### Question
+But how do we assess the quality of the model?
+::: -->
+
+
+<!-- ```{r}
+library(report)
+report(fit)
+```  -->
+
+# Simple linear modelling
+
+## Defining a linear relationship {.nostretch}
+
+-  Pearson correlation coefficient measures the linear correlation between two variables
+- Does not distinguish different *patterns* of association, only the *strength* of the association
+
+![](images/correlation.png)
+
+- Not quite usable for *predictive* modelling, or for *inference* about the relationship between variables
+
+
+
+
+## Simple linear regression modelling {auto-animate="true"}
+
+We want to predict an outcome $Y$ based on a predictor $x$ for $i$ number of observations: 
+
+$$Y_i = \color{royalblue}{\beta_0 + \beta_1 x_i} +\color{red}{\epsilon_i}$$
+
+where
+
+$$\epsilon_i \sim N(0, \sigma^2)$$
+
+- $Y_i$, the *response*, is an observed value of the dependent variable.
+- $\beta_0$, the *constant*, is the population intercept and is **fixed**.
+- $\beta_1$ is the population *slope* parameter, and like $\beta_0$, is also **fixed**.
+- $\epsilon_i$ is the error associated with predictions of $y_i$, and unlike $\beta_0$ or $\beta_1$, it is *not fixed*.
+
+. . .
+
+:::{.callout-note}
+[We tend to associate $\epsilon_i$ with the **residual**, which is a positive or negative difference from the "predicted" response, rather than error itself which is a difference from the **true** response]{style="color: red;"}
+:::
+
+## In pictures...
+
+![](images/SLR_plot_description.png)
+
+
+## Interpreting the relationship {auto-animate="true"}
+
+$$Y_i = \color{royalblue}{\beta_0 + \beta_1 x_i} +\color{red}{\epsilon_i}$$
+
+[Basically, a *deterministic* straight line equation $y = c + mx$, with added *random* variation that is normally distributed]{style="color: seagreen;"}
+
+. . .
+
+- Response = [Prediction]{style="color: royalblue"} + [Error]{style="color: red"}
+- Response = [Signal]{style="color: royalblue"} + [Noise]{style="color: red"}
+- Response = [Model]{style="color: royalblue"} + [Unexplained]{style="color: red"}
+- Response = [Deterministic]{style="color: royalblue"} + [Random]{style="color: red"}
+- Response = [Explainable]{style="color: royalblue"} + [Everything else]{style="color: red"}
+
+. . .
+
+- Y = f(x)
+- Dependent variable = f(Independent variable)
+
+
+## The variation in the response
+
+![](images/residual.jpg)
+
+## Model fitting
+
+Two approaches; analytical and numerical: 
+
+Analytical:  equation(s) used directly to find solution, e.g. estimate parameters that minimise residual sum of squares
+
+Numerical:  computer uses “random guesses” to find set of parameters to that minimises objective function, in this case residual sum of squares
+
+In this week's practical we will use Solver in Excel to numerically fit linear models.
+
+<!-- 
+## Fitting the model {auto-animate="true"}
+
+- The *residual* is the difference between the observed value of the response and the predicted value:
+
+$$\hat\epsilon_i = y_i - \color{royalblue}{\hat{y}_i}$$
+
+. . .
+
+where $\color{royalblue}{\hat{y}_i}$ is the predicted value of $y_i$:
+
+$$\color{royalblue}{\hat{y}_i} = \beta_0 + \beta_1 x_i$$
+
+. . .
+
+therefore:
+
+$$\hat\epsilon_i = y_i - \color{royalblue}{(\beta_0 + \beta_1 x_i)}$$
+
+. . .
+
+- We use the **method of least squares** and minimise the sum of the squared residuals (SSR):
+
+$$\sum_{i=1}^n \hat\epsilon_i^2 = \sum_{i=1}^n (y_i - \color{royalblue}{(\beta_0 + \beta_1 x_i)})^2$$
+
+## {auto-animate="true"}
+
+$$\sum_{i=1}^n \hat\epsilon_i^2 = \sum_{i=1}^n (y_i - \color{royalblue}{(\beta_0 + \beta_1 x_i)})^2$$
+
+. . .
+
+Finding the minimum SSR requires solving the following problem:
+
+$$\color{firebrick}{argmin_{\beta_0, \beta_1}} \sum_{i=1}^n (y_i - \color{royalblue}{(\beta_0 + \beta_1 x_i)})^2$$
+
+## {auto-animate="true"}
+
+$$\color{firebrick}{argmin_{\beta_0, \beta_1}} \sum_{i=1}^n (y_i - \color{royalblue}{(\beta_0 + \beta_1 x_i)})^2$$
+
+
+![[source](https://github.com/Enchufa2/ls-springs)](images/leastsquares.gif){fig-align="center"} -->
+  
+# Inference: back to Galton's data
+
+What can we understand about the relationship between `child` and `parent`?
+
+## Hypothesis testing
+
+- How does our null ($H_0: \beta_1=0$) model compare to the linear ($H_0: \beta_1 \neq 0$) model?
+- Null model thinks the data can be summarised by the mean $\bar{y}$, and the linear model thinks the data can be summarised by the estimate $\hat{y}$.
+
+```{r}
+#| code-fold: true
+
+null_model <- Galton %>%
+  lm(child ~ 1, data = .) %>%
+  broom::augment(Galton)
+lin_model <- Galton %>%
+  lm(child ~ parent, data = .) %>%
+  broom::augment(Galton)
+models <- bind_rows(null_model, lin_model) %>%
+  mutate(model = rep(c("Null model", "SLR model"), each = nrow(Galton)))
+
+ggplot(data = models, aes(x = parent, y = child)) +
+  geom_smooth(
+    data = filter(models, model == "Null model"),
+    method = "lm", se = FALSE, formula = y ~ 1, size = 0.5
+  ) +
+  geom_smooth(
+    data = filter(models, model == "SLR model"),
+    method = "lm", se = FALSE, formula = y ~ x, size = 0.5
+  ) +
+  geom_segment(
+    aes(xend = parent, yend = .fitted),
+    arrow = arrow(length = unit(0.1, "cm")),
+    size = 0.3, color = "darkgray"
+  ) +
+  geom_point(alpha = .2) +
+  facet_wrap(~model) +
+  xlab("Parent height (in)") +
+  ylab("Child height (in)")
+```
+
+## Simple linear regression in one step
+
+```{r}
+fit <- lm(child ~ parent, data = Galton)
+```
+
+Done!
+
+. . .
+
+And then we can use `summary()` to get a summary of the model:
+
+```{r}
+summary(fit)
+```
+
+
+## Summary
+
+- Correlation is a measure of the strength of the linear relationship between two variables.
+- Correlation coefficient provides information on strength and direction of the linear relationship.
+- Correlation $\neq$ causation.
+- Regression models the relationship between a dependent variable and independent variable(s) - fits a line or function to the data.
+  - Using the method of least squares, we can find the line that minimises the sum of the squared residuals.
+- Both Excel and R can be used to fit regression models.
+
+# Thanks!
+
+This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
+
+
+<!-- Links -->
+[cc-by]: http://creativecommons.org/licenses/by/4.0/
