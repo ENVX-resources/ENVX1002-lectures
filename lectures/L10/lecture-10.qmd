@@ -1,0 +1,990 @@
+---
+title: Topic 10 -- Linear functions
+subtitle: School of Life and Environmental Sciences (SOLES)
+author: Liana Pozza
+institute: The University of Sydney
+date: last-modified # today | last-modified
+date-format: "MMM YYYY" # see https://momentjs.com/docs/#/displaying/format/
+format: soles-revealjs
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = FALSE
+)
+
+if (!require("pacman")) install.packages("pacman", repos = "http://cran.us.r-project.org")
+pacman::p_load(tidyverse, cowplot, HistData, patchwork, broom)
+
+ggplot2::theme_set(cowplot::theme_half_open())
+```
+
+# Recap
+
+## Last week...
+
+- Correlation $r$: a measure of the strength and direction of the linear relationship between two variables
+- Is there a causal relationship between two variables?
+  - **No**: use correlation analysis
+  - **Yes**: use *regression analysis*
+
+. . .
+
+
+### Simple linear regression modelling
+
+$$ Y_i = \beta_0 + \beta_1 x_i + \epsilon_i $$ 
+
+
+> Basically, a deterministic straight line equation $y=c+mx$, with added random variation that is normally distributed
+
+$$ Y = c + mx + \epsilon $$
+
+
+## Fitting the line 
+$$ Y_i = \beta_0 + \beta_1 x_i + \epsilon_i $$ 
+
+$$ Y = c + mx + \epsilon $$
+
+How do we fit a line to data if data are "noisy"?
+
+```{r}
+#| code-fold: true
+x <- 1:10
+y <- 2 * x + rnorm(10, 0, 2)
+# generate y with predicted values
+y_pred <- 2 * x
+df <- data.frame(x, y)
+
+p1 <- ggplot(df, aes(x, y_pred)) +
+  geom_point(size = 2) +
+  geom_smooth(method = "lm", se = FALSE, color = "firebrick") +
+  labs(x = "x", y = "y", title = "A")
+
+p2 <- ggplot(df, aes(x, y)) +
+  geom_point(size = 2) +
+  geom_smooth(method = "lm", se = FALSE, color = "royalblue") +
+  labs(x = "x", y = "y", title = "B (How do we fit this?)")
+
+library(patchwork)
+p1 + p2 + plot_layout(ncol = 2)
+```
+
+# Least squares
+
+> The method of least squares is the **automobile of modern statistical analysis**: despite its limitations, ocassional accidents and incidental pollution, it and its numerous variations, extensions, and related conveyances **carry the bulk of statistical analyses**, and are known and valued by nearly all.
+
+-- Stigler, 1981 (emphasis added)
+
+## Usage
+
+- **Student's t-test**
+- **linear regression**
+  
+. . .
+
+- ANOVA
+- logistic regression
+- nonlinear regression
+- ridge regression
+- lasso regression
+- principle component analysis
+- generalised linear model
+- etc...
+
+
+## Galton's data revisited
+
+- Galton's data on the heights of parents and their children.
+- Is there a relationship between the heights of parents and their children?
+
+```{r}
+#| code-fold: true
+library(HistData)
+data(Galton)
+fit <- lm(child ~ parent, data = Galton)
+ggplot(Galton, aes(x = parent, y = child)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "firebrick") +
+  labs(x = "Parent height (inches)", y = "Child height (inches)")
+```
+
+**How did we end up with the line in the plot above?**
+
+# Fitting the model
+
+## How do we fit a line?
+
+- *Minimise* the sum of the squared residuals:
+
+$$\color{firebrick}{argmin_{\beta_0, \beta_1}} \sum_{i=1}^n (y_i - \color{royalblue}{(\beta_0 + \beta_1 x_i)})^2$$ 
+
+
+![[Source](https://github.com/Enchufa2/ls-springs)](images/leastsquares.gif){fig-align="center"}
+
+## Residuals, $\hat \epsilon$
+
+$$ \color{firebrick}{\hat{\epsilon_i}} = \color{royalblue}{y_i} - \color{forestgreen}{\hat{y_i}} $$
+
+. . .
+
+```{r}
+#| code-fold: true
+# simulate example data
+set.seed(340)
+x <- runif(8, 0, 30)
+y <- 5 * x + rnorm(8, 0, 40)
+df <- data.frame(x, y)
+
+# fit linear model, add residual vertical lines as arrows
+mod <- lm(y ~ x, data = df)
+p1 <- ggplot(df, aes(x, y)) +
+  geom_point() +
+  geom_segment(aes(xend = x, yend = fitted(mod)),
+    arrow = arrow(length = unit(0.2, "cm")),
+    color = "royalblue"
+  ) +
+  labs(x = "x", y = "y")
+
+p1 +
+  geom_smooth(method = "lm", se = FALSE, color = "firebrick") +
+  annotate("text",
+    x = 6.3, y = -6, size = 7,
+    label = expression(hat(epsilon[i])), colour = "royalblue"
+  ) +
+  annotate("text",
+    x = 5.6, y = 25, size = 7,
+    label = expression(hat(y[i])), colour = "forestgreen"
+  ) +
+  annotate("text",
+    x = 5.6, y = -36, size = 7,
+    label = expression(y[i]), colour = "firebrick"
+  )
+```
+
+## Slope, $\beta_1$
+
+<!-- $$ Y_i = \beta_0 + \beta_1 x_i + \epsilon_i $$ -->
+
+$$ \beta_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2} =  \frac{Cov(x,y)}{Var(x)} = \frac{SS_{xy}}{SS_{xx}} $$
+
+
+
+```{r}
+#| code-fold: true
+# Calculate slope from df
+beta1 <- sum((df$x - mean(df$x)) * (df$y - mean(df$y))) /
+  sum((df$x - mean(df$x))^2)
+# beta0 <- mean(df$y) - beta1 * mean(df$x)
+
+p1 +
+  geom_smooth(method = "lm", se = FALSE, color = "firebrick", linetype = 2) +
+  # label the line
+  annotate("text",
+    x = 15, y = 65, size = 7,
+    label = expression(beta[1]), colour = "firebrick"
+  )
+
+```
+
+
+<!-- $$ \beta_0 = \bar{y} - \beta_1 \bar{x} $$ -->
+
+## Intercept
+
+$$ \beta_0 = \bar{y} - \beta_1 \bar{x} $$
+
+
+```{r}
+#| code-fold: true
+# calculate mean y from df
+ybar <- mean(df$y)
+xbar <- mean(df$x)
+beta0 <- ybar - beta1 * xbar
+
+p1 + geom_vline(xintercept = xbar, linetype = "dashed", color = "slateblue") +
+  geom_hline(yintercept = ybar, linetype = "dashed", color = "slateblue") +
+  # label the lines
+  annotate("text",
+    x = 25, y = ybar * 0.8, size = 7,
+    label = expression(bar(y)), colour = "slateblue"
+  ) +
+  annotate("text",
+    x = xbar * 1.05, y = 150, size = 7,
+    label = expression(bar(x)), colour = "slateblue"
+  ) +
+  geom_smooth(method = "lm", se = FALSE, color = "firebrick", linetype = 2) +
+  # extend the geom_smooth line to intercept x=0
+  geom_segment(aes(x = xbar, y = ybar, xend = 0, yend = beta0),
+    color = "firebrick", linetype = 2
+  ) +
+  # label the slope line
+  annotate("text",
+    x = 15, y = 65, size = 7,
+    label = expression(beta[1]), colour = "firebrick"
+  ) +
+  # add a dot at the intercept
+  geom_point(aes(x = 0, y = beta0), color = "seagreen", size = 3) +
+  # label the intercept
+  annotate("text",
+    x = 0, y = beta0 * 1.4, size = 7,
+    label = expression(beta[0]), colour = "seagreen"
+  )
+
+```
+
+
+# It's a lot easier in R...
+
+## Fitting a linear model in R
+
+Is there a relationship between the heights of parents and their children?
+
+```{r}
+fit <- lm(child ~ parent, data = Galton)
+fit
+```
+
+
+$$ \widehat{child} = 23.9 + 0.646 \cdot parent$$
+
+. . .
+
+But is the model any good?
+
+# Assessing model fit
+
+## Assumptions
+
+The data **must** meet certain criteria, which we often call *assumptions*. They can be remembered using **LINE**:
+
+- **L**inearity. The relationship between $y$ and $x$ is linear.
+- **I**ndependence. The errors $\epsilon$ are independent.
+- **N**ormal. The errors $\epsilon$ are normally distributed.
+- **E**qual Variance. At each value of $x$, the variance of $y$ is the same i.e. homoskedasticity, or constant variance.
+
+. . .
+
+:::{.callout-tip}
+All but the independence assumption can be assessed using diagnostic plots. 
+:::
+
+## Assumptions: Why do we care?
+
+- If the assumptions are met, then we can be confident that the model is a good representation of the data.
+- If they are *not* met, the results are still presented, but our interpretation of the model is likely to be flawed.
+
+. . .
+
+:::{.callout-warning}
+R will not warn you if the assumptions are not met. It is up to you to check them!
+:::
+
+## How do we check the assumptions?
+
+Recall that the linear model is a **deterministic straight line equation** $y = c + mx$ plus some **random noise** $\epsilon$:
+
+$$ Y_i = \beta_0 + \beta_1 x + \epsilon $$
+
+- **If the only source of variation in $y$ is $\epsilon$, then we can check our assumptions by just looking at the residuals $\hat{\epsilon}$.**
+
+### How do we get the residuals?
+
+- Fit the model...
+- Residuals need to be calculated from the model, not from the raw data.
+- In R, these values are stored automatically.
+
+
+## Another way to look at residuals
+
+![](images/residual.jpg){fig-align="center"}
+
+Once you have fitted the line, it does not change. The residuals are the vertical distances between the points (not shown) and the line.
+
+# Checking assumptions
+
+linearty | normality | equal variance | outliers
+
+## 1-step
+
+```{r}
+par(mfrow = c(2, 2)) # need to do this to get 4 plots on one page
+plot(fit)
+```
+
+---
+
+- **Residuals vs. Fitted**: check for linearity, equal variance.
+- **Q-Q Residuals**: check for normality.
+- **Scale-Location**: check for equal variance (standardised).
+- **Residuals vs. Leverage**: check for outliers (influential points).
+
+```{r}
+#| echo: false
+par(mfrow = c(2, 2)) # need to do this to get 4 plots on one page
+plot(fit)
+```
+
+## Assumption: Linearity
+
+- Residuals vs. fitted plot looks at the relationship between the residuals and the fitted values.
+- If the relationship is linear:
+  - Residuals should be randomly scattered around the horizontal axis.
+  - The red line should be reasonably straight.
+
+```{r}
+plot(fit, which = 1)
+```
+
+## Assumption: Normality
+
+- Q-Q plot looks at the distribution of the residuals against a normal distribution function (the dotted line).
+- Sometimes, a histogram is still useful to see the shape of the distribution.
+
+```{r}
+par(mfrow = c(1, 2))
+plot(fit, which = 2)
+hist(rstandard(fit))
+```
+
+## Assumption: Normality
+
+- If **normally distributed**, the points should follow the red line.
+- Deviation from the red line is common in the tails (i.e. the ends), but not in the middle.
+
+. . .
+
+### Tips
+
+- **Light-tailed**: small variance in residuals, resulting in a narrow distribution.
+- **Heavy-tailed**: many extreme positive and negative residuals, resulting in a wide distribution.
+- **Left-skewed** (n shape): more data falls to the left of the mean.
+- **Right-skewed** (u shape): more data falls to the right of the mean.
+
+# Practice
+
+##
+
+```{r}
+#| code-fold: true
+set.seed(915)
+x <- rnorm(100)
+y <- 2 + 5 * x + rchisq(100, df = 2)
+df <- data.frame(x, y)
+fit_eg <- lm(y ~ x, data = df)
+par(mfrow = c(1, 2))
+plot(fit_eg, which = 2)
+hist(rstandard(fit_eg))
+```
+
+---
+
+```{r}
+#| code-fold: true
+set.seed(1028)
+x <- rnorm(100)
+y <- 2 + 5 * x + rchisq(100, df = 3) * -1
+df <- data.frame(x, y)
+fit_eg <- lm(y ~ x, data = df)
+par(mfrow = c(1, 2))
+plot(fit_eg, which = 2)
+hist(rstandard(fit_eg))
+```
+
+---
+
+```{r}
+#| code-fold: true
+set.seed(1028)
+x <- rnorm(100)
+y <- 2 + 5 * x + rnbinom(100, 10, .5)
+df <- data.frame(x, y)
+fit_eg <- lm(y ~ x, data = df)
+par(mfrow = c(1, 2))
+plot(fit_eg, which = 2)
+hist(rstandard(fit_eg))
+```
+
+# Assumption: Equal variances
+
+## Equal variances
+
+- Look at the **scale-location plot**.
+- If variances are equal, the points should be randomly scattered around the horizontal axis.
+- The red line should be more or less horizontal.
+
+```{r}
+plot(fit, which = 3)
+```
+
+## Equal variances
+
+- If variances are not equal we *may* see:
+  - A funnel shape, where the points are more spread out at the ends than in the middle. Sometimes also called "fanning".
+  - Patterns in the scale-location plot, such as a curve or a wave, indicating that the variance is changing.
+- Look at the red line for a general trend, **but don't depend on it too much**.
+
+
+```{r}
+#| code-fold: true
+set.seed(915)
+x <- rnorm(100)
+y <- 2 + 5 * x^2 + rchisq(100, df = 2)
+df <- data.frame(x, y)
+fit_eg <- lm(y ~ x, data = df)
+plot(fit_eg, which = 3)
+```
+
+## Outliers
+
+- **Leverage** is a measure of how far away the predictor variable is from the mean of the predictor variable.
+- The Residuals vs Leverage plot shows the relationship between the residuals and the leverage of each point.
+- **Cook's distance** is a measure of how much the model would change if a point was removed.
+
+---
+
+In general, points with **high leverage** and **high Cook's distance** are considered outliers.
+
+```{r}
+plot(fit, which = 5)
+```
+
+--- 
+
+### Example of an influential outlier
+
+```{r}
+#| code-fold: true
+set.seed(1028)
+x <- rnorm(100)
+y <- 2 + 5 * x + rnbinom(100, 10, .5)
+y[60] <- y[60] + 30
+df <- data.frame(x, y)
+# Add an outlier
+fit_eg <- lm(y ~ x, data = df)
+plot(fit_eg, which = 5)
+```
+
+We don't want points to exceed the dashed line (which appears once they approach the Cook's distance), because that means they are likely to influence the model greatly.
+
+# What can we do if the assumptions aren't met?
+
+## It depends...
+
+- Depends which assumption is not met and the type of data i.e. circumstances.
+  - If data is **non-linear**, try a transformation of the response variable $y$, from light to extreme:
+    - root: $\sqrt{y}$ or $\sqrt{y+1}$ if $y$ contains zeros
+    - log: $\log(y)$ or $\log(y+1)$ if $y$ contains zeros
+    - inverse: $\frac{1}{y}$ or $\frac{1}{y+1}$ if $y$ contains zeros
+
+. . .
+
+  - If data is **not normally distributed**, try a transformation of the response variable $y$ first, otherwise transform the predictor variable $x$. Both can be done at the same time.
+
+. . .
+
+  - If **equal variances** assumption is not met, same as above.
+  - If **outliers** are present, try removing them, or transforming the response variable $y$.
+
+## What if that doesn't work?
+
+- If the assumptions are still not met after trying the above, you can try:
+  - Using a different model e.g. generalized linear model.
+  - Using a different type of regression e.g. logistic regression.
+  - Using a non-parametric test.
+
+## Model assumptions are met. Now what?
+
+```{r}
+summary(fit)
+```
+
+# Inference
+What can we say about the model based on our data?
+
+> What can we understand about the relationship between `child` and `parent`?
+
+## The model so far
+
+```{r}
+library(HistData)
+data(Galton)
+fit <- lm(child ~ parent, data = Galton)
+summary(fit)
+```
+
+
+## Hypothesis testing
+
+How does our null ($H_0: \beta_1=0$) model compare to the linear ($H_0: \beta_1 \neq 0$) model?
+
+```{r}
+#| code-fold: true
+
+null_model <- Galton %>%
+  lm(child ~ 1, data = .) %>%
+  augment(Galton)
+lin_model <- Galton %>%
+  lm(child ~ parent, data = .) %>%
+  augment(Galton)
+models <- bind_rows(null_model, lin_model) %>%
+  mutate(model = rep(c("Null model", "SLR model"), each = nrow(Galton)))
+
+ggplot(data = models, aes(x = parent, y = child)) +
+  geom_smooth(
+    data = filter(models, model == "Null model"),
+    method = "lm", se = FALSE, formula = y ~ 1, size = 0.5
+  ) +
+  geom_smooth(
+    data = filter(models, model == "SLR model"),
+    method = "lm", se = FALSE, formula = y ~ x, size = 0.5
+  ) +
+  geom_segment(
+    aes(xend = parent, yend = .fitted),
+    arrow = arrow(length = unit(0.1, "cm")),
+    size = 0.3, color = "darkgray"
+  ) +
+  geom_point(alpha = .2) +
+  facet_wrap(~model) +
+  xlab("Parent height (in)") +
+  ylab("Child height (in)")
+```
+
+## What are we testing?
+
+- The null model is a model with no predictors, i.e. $y = \beta_0 + \epsilon$
+- The linear model is a model with one predictor, i.e. $y = \beta_0 + \beta_1 x + \epsilon$
+- We use the t-test to compare the two models:
+
+$$ t = \frac{estimate - 0}{Standard\ error} = \frac{\hat{\beta}_1 - 0}{SE(\hat{\beta}_1)} $$ where $SE(\hat{\beta}_1)$ is the standard error of the slope estimate:
+
+$$ SE(\hat{\beta}_1) = \frac{\hat{\sigma}}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2}} $$
+
+# Assesing the model
+
+## Interpreting the output
+
+```{r}
+#| eval: false
+#| code-line-numbers: 1-2
+
+Call:
+lm(formula = child ~ parent, data = Galton)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-7.8050 -1.3661  0.0487  1.6339  5.9264 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 23.94153    2.81088   8.517   <2e-16 ***
+parent       0.64629    0.04114  15.711   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.239 on 926 degrees of freedom
+Multiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 
+F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
+```
+
+- `Call`: the model formula
+
+## Interpreting the output
+
+```{r}
+#| eval: false
+#| code-line-numbers: 4-6
+
+Call:
+lm(formula = child ~ parent, data = Galton)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-7.8050 -1.3661  0.0487  1.6339  5.9264 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 23.94153    2.81088   8.517   <2e-16 ***
+parent       0.64629    0.04114  15.711   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.239 on 926 degrees of freedom
+Multiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 
+F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
+```
+
+- `Residuals`: distribution of the residuals
+
+## Interpreting the output
+
+```{r}
+#| eval: false
+#| code-line-numbers: 8-9
+
+Call:
+lm(formula = child ~ parent, data = Galton)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-7.8050 -1.3661  0.0487  1.6339  5.9264 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 23.94153    2.81088   8.517   <2e-16 ***
+parent       0.64629    0.04114  15.711   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.239 on 926 degrees of freedom
+Multiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 
+F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
+```
+
+- `Coefficients`: a summary table of the coefficients, their standard errors, t-values, and p-values addressing the hypothesis that the coefficient is 0
+
+
+## Interpreting the output
+
+```{r}
+#| eval: false
+#| code-line-numbers: 10-12
+
+Call:
+lm(formula = child ~ parent, data = Galton)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-7.8050 -1.3661  0.0487  1.6339  5.9264 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 23.94153    2.81088   8.517   <2e-16 ***
+parent       0.64629    0.04114  15.711   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.239 on 926 degrees of freedom
+Multiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 
+F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
+```
+
+- `(Intercept)` term is the mean of the response **when all predictors are 0**, which is not meaningful in most cases. In this case, it is the mean child height when the parent height is 0.
+- `parent`: the **slope** coefficient that we are interested in, which represents the change in the **mean** of the response for a **one-unit increase in the predictor**.
+  - The *p-value* (`Pr`) tells us whether the slope is significantly different from 0.
+  - If it is, then we can conclude that there is a **significant linear relationship** between the predictor and the response.
+
+
+## Interpreting the output
+
+```{r}
+#| eval: false
+#| code-line-numbers: 10-11
+
+Call:
+lm(formula = child ~ parent, data = Galton)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-7.8050 -1.3661  0.0487  1.6339  5.9264 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 23.94153    2.81088   8.517   <2e-16 ***
+parent       0.64629    0.04114  15.711   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.239 on 926 degrees of freedom
+Multiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 
+F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
+```
+
+- We can also use the `Estimate` values to write the equation of the regression line:
+$$ \widehat{child} = 23.94153 + 0.64629 \cdot parent$$
+
+- For every one-inch increase in the parent height, the child height is predicted to increase by 0.64629 inches.
+
+
+## Interpreting the output
+
+```{r}
+#| eval: false
+#| code-line-numbers: 15-15
+
+Call:
+lm(formula = child ~ parent, data = Galton)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-7.8050 -1.3661  0.0487  1.6339  5.9264 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 23.94153    2.81088   8.517   <2e-16 ***
+parent       0.64629    0.04114  15.711   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.239 on 926 degrees of freedom
+Multiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 
+F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
+```
+
+- `Residual standard error`: the standard deviation of the residuals. 
+  -  Interpretation: the average amount that the response will *deviate* from the true regression line.
+-  `degrees of freedom`: the number of observations minus the number of parameters being estimated. Used in hypothesis testing and calculating the standard error of the regression coefficients. 
+   - Can estimate sample size from this number. 
+
+## Interpreting the output
+
+```{r}
+#| eval: false
+#| code-line-numbers: 16-16
+
+Call:
+lm(formula = child ~ parent, data = Galton)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-7.8050 -1.3661  0.0487  1.6339  5.9264 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 23.94153    2.81088   8.517   <2e-16 ***
+parent       0.64629    0.04114  15.711   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.239 on 926 degrees of freedom
+Multiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 
+F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
+```
+
+- `Multiple R-squared`: the proportion of variance explained by the model.
+- `Adjusted R-squared`: the proportion of variance explained by the model, adjusted for the number of predictors.
+- Interpretation:
+  - Ranges from 0 to 1.
+  - Since this is SLR, we can interpret this as the proportion of variance in the response that is explained by `parent`: 21.05% (from Multiple R-squared).
+
+## Interpreting the output
+
+```{r}
+#| eval: false
+#| code-line-numbers: 17-17
+
+Call:
+lm(formula = child ~ parent, data = Galton)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-7.8050 -1.3661  0.0487  1.6339  5.9264 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 23.94153    2.81088   8.517   <2e-16 ***
+parent       0.64629    0.04114  15.711   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.239 on 926 degrees of freedom
+Multiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 
+F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
+```
+
+- `F-statistic`: the ratio of the variance of the regression model to the variance of the residuals.
+  - Also known as the partial F-test between the full model and the intercept-only (null) model.
+- `p-value`: for the linear model, the p-value is the probability that the F-statistic is greater than the observed value under the null hypothesis.
+  - A significant p-value indicates that the linear model is a better fit than the intercept-only model.
+
+# Reporting
+
+## Two methods
+
+:::: {.columns}
+::: {.column width="50%"}
+### Using ANOVA
+
+### `anova(fit)`
+
+```{r}
+fit <- lm(formula = child ~ parent, data = Galton)
+anova(fit)
+```
+:::
+
+::: {.column width="50%"}
+### Using Regression
+
+### `summary(fit)`
+```{r}
+summary(fit)
+```
+:::
+::::
+
+## Two methods
+
+:::: {.columns}
+::: {.column width="50%"}
+### Using ANOVA
+
+> The ANOVA suggests that the main effect of parent is statistically significant and large (F(1, 926) = 246.84, p < .001)
+:::
+
+::: {.column width="50%"}
+### Using Regression
+> We fitted a linear model (estimated using OLS) to predict child with parent (formula: child ~ parent). The model explains a statistically significant and moderate proportion of variance (R^2^ = 0.21, F(1, 926) = 246.84, p < .001, adj. R^2^ = 0.21). Within this model, the effect of parent is statistically significant and positive ($\beta$ = 0.65, t(926) = 15.71, p < .001).
+:::
+::::
+
+. . .
+
+:::{.callout-tip}
+For **simple linear models**, `summary()` provides more information than `anova()`, but the results are the same.
+:::
+
+# Let's practice
+Can we predict the weight of an alligator from its length?
+[Download data ⬇](https://canvas.sydney.edu.au/courses/46921/pages/week-10-lectures-linear-functions?module_item_id=1752336)
+
+![](images/alligator.jpg){width=70%}
+
+Photo by <a href="https://unsplash.com/@eyedealstuff?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Shelly Collins</a>
+
+## Explore
+
+Read the data:
+
+```{r}
+library(readxl) # load the readxl package
+
+alligator <- read_excel(path = "data/ENVX1002_Lecture_wk10_data.xlsx", 
+  sheet = "Alligator") # read in the data
+```
+
+What does the data look like?
+
+```{r}
+str(alligator)
+```
+
+## Plot
+
+::: {.panel-tabset}
+## Using base R
+
+```{r}
+plot(x = alligator$Length, y = alligator$Weight, 
+  xlab = "Length (cm)", ylab = "Weight (kg)")
+```
+
+## Using `ggplot2`
+
+```{r}
+library(ggplot2) # load the ggplot2 package
+ggplot(data = alligator, aes(x = Length, y = Weight)) +
+  geom_point() +
+  labs(x = "Length (cm)", y = "Weight (kg)")
+```
+
+:::
+
+## Plot residual diagnostics
+
+To check assumptions, we need to fit the model first, then plot the model.
+
+```{r}
+fit <- lm(formula = Weight ~ Length, data = alligator)
+par(mfrow = c(2, 2)) # set up a 2 x 2 grid for plots
+plot(fit)
+```
+
+## Check assumptions
+
+### Is the relationship linear?
+
+```{r}
+plot(fit, which = 1)
+```
+
+If the linearity assumption is not met, there is no reason to validate the model since it is no longer suitable for the data.
+
+## Dealing with non-linearity: transform the data
+
+```{r}
+#| code-fold: true
+
+library(patchwork)
+
+p1 <- ggplot(data = alligator, aes(x = Length, y = Weight)) +
+  geom_point(size = 3) +
+  labs(x = "Length (cm)", y = "Weight (kg)", title = "Original") +
+  geom_smooth(se = FALSE, linetype = 2)
+
+p2 <- ggplot(data = alligator, aes(x = Length, y = sqrt(Weight))) +
+  geom_point(size = 3) +
+  labs(x = "Length (cm)", y = "sqrt[Weight (kg)]", title = "Square root") +
+  geom_smooth(se = FALSE, linetype = 2)
+
+p3 <- ggplot(data = alligator, aes(x = Length, y = log(Weight))) +
+  geom_point(size = 3) +
+  labs(x = "Length (cm)", y = "log[Weight (kg)]", title = "Natural log") +
+  geom_smooth(se = FALSE, linetype = 2)
+
+p4 <- ggplot(data = alligator, aes(x = Length, y = log10(Weight))) +
+  geom_point(size = 3) +
+  labs(x = "Length (cm)", y = "log10[Weight (kg)]", title = "Log base 10") +
+  geom_smooth(se = FALSE, linetype = 2)
+
+p1 + p2 + p3 + p4
+```
+
+## Natural log transformation
+
+```{r}
+fit <- lm(formula = log(Weight) ~ Length, data = alligator)
+plot(fit, which = 1)
+```
+
+## Natural log transformation -- Check assumptions again
+
+```{r}
+par(mfrow = c(2, 2)) # set up a 2 x 2 grid for plots
+plot(fit)
+```
+
+## Interpretation
+
+```{r}
+summary(fit)
+```
+
+- `Length` is a statistically significant predictor of `log(Weight)` (p < .001).
+- The model explains a statistically significant and large proportion (96%) of variance (R^2^ = 0.96, F(1, 23) = 553, p < .001)
+- For every 1 cm increase in `Length`, `log(Weight)` increases by 0.0354.
+  - *Or, for every 1 cm increase in `Length`, percent increase in `Weight` is 3.54% (only works when transforming using natural log).*
+
+ 
+## Summary
+### You should know the workflow by now
+
+1.  Explore
+2.  Plot
+3.  Fit model and plot residual diagnostics
+4.  Check assumptions, transform data if necessary. Go back to step 3.
+5.  Interpret
+
+
+
+# Thanks!
+
+This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
+
+
+<!-- Links -->
+[cc-by]: http://creativecommons.org/licenses/by/4.0/
