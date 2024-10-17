@@ -1,0 +1,985 @@
+---
+title: Non-linear regression
+subtitle: ENVX1002 Introduction to Statistical Methods
+author: Liana Pozza
+institute: The University of Sydney
+date: last-modified # today | last-modified
+date-format: "MMM YYYY" # see https://momentjs.com/docs/#/displaying/format/
+format: soles-revealjs
+---
+
+
+```{r setup, include=FALSE}
+if (!require("pacman")) install.packages("pacman", repos = "http://cran.us.r-project.org")
+pacman::p_load(tidyverse, cowplot, ggfortify, patchwork, broom, remotes, corrplot, psych, plotly, nlstools, caret)
+
+ggplot2::theme_set(cowplot::theme_half_open())
+```
+
+# Recap
+Last lecture...
+
+## Regressions 
+
+### Simple linear regression
+
+$$ Y_i = \beta_0 + \beta_1 x_i + \epsilon_i $$
+
+Ideal for predicting a continuous response variable from a single predictor variable: *"How does $y$ change as $x$ changes, when the relationship is linear?"*
+
+
+### Multiple linear regression 
+
+$$ Y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + ... + \beta_k x_{ki} + \epsilon_i $$
+
+*"How does $y$ change as $x_1$, $x_2$, ..., $x_k$ change?"*
+
+
+:::{.fragment}
+### Nonlinear regression
+$$ Y_i = f(x_i, \beta) + \epsilon_i $$
+:::
+
+:::{.fragment}
+where $f(x_i, \beta)$ is a nonlinear function of the parameters $\beta$: "How do we model a change in $y$ with $x$ when the relationship is nonlinear?"
+:::
+
+# Nonlinear regression
+
+![](images/gauss.jpg)
+![](images/netwon.jpg)
+
+*Carl Friedrich Gauss (1777-1855) and Isaac Newton (1642-1726).*
+
+
+## Fitting a nonlinear model
+
+Linear relationships are simple to interpret since the rate of change is constant.
+
+> "As one changes, the other changes at a constant rate."
+
+Nonlinear relationships often involve exponential, logarithmic, or power functions.
+
+> "As one changes, the other changes at a rate that is *not proportional* to the change in the other."
+
+
+## Nonlinear relationships: exponents
+
+- $x^2$ is the *square* of $x$.
+- $x^3$ is the *cube* of $x$.
+- $x^a$ is x raised to the *power* of $a$.
+
+> In a relationship where $y$ is a function of $x^a$, as $y$ increases, $x$ increases at a rate that is equal to $x$ to the power of $a$.
+
+```{r}
+#| code-fold: true
+# Plot a simulation of above in ggplot2
+set.seed(123)
+tibble(x = seq(0, 10, by = 0.2), y = x^2) %>%
+  ggplot(aes(x = x, y = y)) +
+  geom_point() +
+  labs(x = "x", y = "y") +
+  ggtitle(expression(y == x^2)) +
+  theme(plot.title = element_text(size = 40, face = "bold"))
+```
+
+## Nonlinear relationships: logarithms
+
+- $log_e(x)$ is the *natural logarithm* of $x$.
+- $log_{10}(x)$ is the *common logarithm* of $x$.
+- $log_a(x)$ is the *logarithm* of $x$ to the base $a$.
+
+**Interpretation:**
+
+- If $\log_a(y) = x$: as $x$ increases, $y$ increases at a rate of $y = a^x$.
+- If $y = \log_a(x)$: as $y$ increases, $x$ also increases, at $x = a^y$.
+
+
+## Exponents and logarithms
+
+
+|       | Exponents        | Logarithms       |
+|-------|:----------------:|:----------------:|
+| **Definition** | If $a^n = b$, $a$ is the base, $n$ is the exponent, and $b$ is the result. | If $\log_a b = n$, $a$ is the base, $b$ is the result, and $n$ is the logarithm (or the exponent in the equivalent exponential form). |
+| **Example** | $2^3 = 8$ | $\log_2 8 = 3$ |
+| **Interpretation** | $2$ raised to the power of $3$ equals $8$. | The power to which you must raise $2$ to get $8$ is $3$. |
+| **Inverse** | The logarithm is the inverse operation of exponentiation. | The exponentiation is the inverse operation of logarithm. |
+| **Properties** | $(a^n)^m = a^{n \cdot m}$, $a^n \cdot a^m = a^{n+m}$, $\frac{a^n}{a^m} = a^{n-m}$ | $\log_a(b \cdot c) = \log_a b + \log_a c$, $\log_a\left(\frac{b}{c}\right) = \log_a b - \log_a c$, $\log_a(b^n) = n \cdot \log_a b$ |
+
+
+## Dealing with nonlinearity
+
+
+### Transformations
+
+Often, a nonlinear relationship may be transformed into a linear relationship by applying a transformation to the response variable or the predictor variable(s).
+
+- **Logarithmic**: $y = \log(x)$ 
+- **Exponential**: $y = e^x$
+- **Square-root**: $y = \sqrt{x}$
+- **Inverse**: $y = \frac{1}{x}$
+
+:::{.fragment}
+- All good when $y$ changes [monotically](https://en.wikipedia.org/wiki/Monotonic_function) with $x$.
+- What if relationship is not monotonic, or is more complex?
+:::
+
+# Common nonlinear functions
+
+$f(x_i, \beta)$
+
+## Exponential decay relationship
+
+Response variable *decreases* and approaches limit as predictor variable increases.
+
+$$ y = a \cdot e^{-b_x} $$
+
+```{r}
+#| code-fold: true
+set.seed(429) # set seed
+# Simulate data:
+decay <- tibble(
+  predictor = seq(0,10, by = 0.2),
+  response = abs(exp(-0.5*predictor) + rnorm(length(predictor), mean = 1, sd = 0.1)))
+
+ggplot(data = decay, aes(x = predictor, y = response)) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response")
+```
+
+Examples: radioactive decay, population decline, chemical reactions.
+
+## Asymptotic relationship
+
+Response variable *increases* and approaches a limit as the predictor variable increases.
+
+$$ y = a + b(1 - e^{-cx}) $$
+
+```{r}
+#| code-fold: true
+set.seed(442) # set seed
+# Simulate data:
+asymptotic = tibble(
+  predictor = seq(0, 10, by = 0.2),
+  response = 100*(1-exp(-0.5*predictor)) + rnorm(length(predictor), mean = 0, sd = 10))
+
+ggplot(data = asymptotic, aes(x = predictor, y = response)) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response")
+```
+
+Examples: population growth, enzyme kinetics.
+
+## Logistic relationship
+
+An S-shaped relationship, where the response variable is at first exponential, then asymptotic.
+
+$$ y = c + \frac{d-c}{1+e^{-b(x-a)}} $$
+
+```{r}
+#| code-fold: true
+set.seed(450)
+# Simulate data:
+logistic <- tibble(predictor = seq(0, 10, by = 0.2), 
+  response = 10 + abs(300 * (1 / (1 + exp(-0.8 * (predictor - 5)))) + rnorm(length(predictor), mean = 0, sd = 10)))
+
+ggplot(data = logistic, aes(x = predictor, y = response)) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response")
+
+```
+
+Examples: growth of bacteria, disease spread, species growth.
+
+## Curvilinear relationship
+
+Response variable changes in a variety of ways as the predictor variable changes.
+
+$$ y = a + bx + cx^2 + dx^3 + ... $$
+
+```{r}
+#| code-fold: true
+# Set seed for reproducibility
+set.seed(529)
+# Simulate data:
+curvilinear <- tibble(predictor = seq(0, 30, length.out = 50), 
+  response = 50 * (1 - (predictor - 15)^2 / 225) + rnorm(length(predictor), mean = 0, sd = 5))
+
+ggplot(data = curvilinear, aes(x = predictor, y = response)) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response")
+```
+
+Examples: food intake, drug dosage, exercise.
+
+# Transformations
+> How far can we go?
+
+## Transformations: Exponential decay
+
+::::{.columns}
+:::{.column width="50%"}
+#### Before transformation
+```{r}
+ggplot(data = decay,
+       aes(x = predictor, y = response)) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response")
+```
+:::
+
+:::{.column width="50%"}
+:::{.fragment}
+#### After log~e~ transform
+```{r}
+ggplot(data = decay, 
+       aes(x = predictor, y = log(response))) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response")
+```
+:::
+:::
+::::
+
+## Transformations: Exponential decay
+
+::::{.columns}
+:::{.column width="50%"}
+#### Before transformation
+```{r}
+autoplot(lm(response ~ predictor, data = decay)) +
+  labs(x = "Predictor", y = "Response")
+```
+:::
+:::{.column width="50%"}
+#### After log~e~ transform
+```{r}
+autoplot(lm(log(response) ~ predictor, data = decay)) +
+  labs(x = "Predictor", y = "Response")
+```
+:::
+::::
+
+## Transformations: Asymptotic relationship
+
+::::{.columns}
+:::{.column width="50%"}
+#### Before transformation
+```{r}
+ggplot(data = asymptotic,
+       aes(x = predictor, y = response)) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response")
+```
+:::
+:::{.column width="50%"}
+:::{.fragment}
+#### After log~e~ transform
+```{r}
+ggplot(data = asymptotic, 
+       aes(x = log(predictor), y = response)) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response")
+```
+:::
+:::
+::::
+
+## Transformations: Asymptotic relationship
+
+::::{.columns}
+:::{.column width="50%"}
+#### Before transformation
+```{r}
+autoplot(lm(response ~ predictor, data = asymptotic)) +
+  labs(x = "Predictor", y = "Response")
+```
+:::
+:::{.column width="50%"}
+#### After log~e~ transform
+```{r}
+autoplot(lm(log(response) ~ predictor, data = asymptotic)) +
+  labs(x = "Predictor", y = "Response")
+```
+:::
+::::
+
+## Transformations: Logistic relationship
+
+::::{.columns}
+:::{.column width="50%"}
+#### Before transformation
+```{r}
+ggplot(data = logistic,
+       aes(x = predictor, y = response)) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response")
+```
+:::
+:::{.column width="50%"}
+:::{.fragment}
+#### After log~e~ transform
+```{r}
+ggplot(data = logistic, 
+       aes(x = predictor, y = log(response))) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response")
+```
+:::
+:::
+::::
+
+## Transformations: Logistic relationship
+
+::::{.columns}
+:::{.column width="50%"}
+#### Before transformation
+```{r}
+autoplot(lm(response ~ predictor, data = logistic)) +
+  labs(x = "Predictor", y = "Response")
+```
+:::
+:::{.column width="50%"}
+#### After log~e~ transform
+```{r}
+autoplot(lm(log(response) ~ predictor, data = logistic)) +
+  labs(x = "Predictor", y = "Response")
+```
+:::
+::::
+
+
+## Transformations: Curvilinear relationship
+
+::::{.columns}
+:::{.column width="50%"}
+#### Before transformation
+```{r}
+ggplot(data = curvilinear,
+       aes(x = predictor, y = response)) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response")
+```
+:::
+:::{.column width="50%"}
+:::{.fragment}
+#### After log~e~ transform
+```{r}
+ggplot(data = curvilinear, 
+       aes(x = predictor, y = log(response))) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response")
+```
+:::
+:::
+::::
+
+## Transformations: Curvilinear relationship
+
+::::{.columns}
+:::{.column width="50%"}
+#### Before transformation
+```{r}
+autoplot(lm(response ~ predictor, data = curvilinear)) +
+  labs(x = "Predictor", y = "Response")
+```
+:::
+:::{.column width="50%"}
+#### After log~e~ transform
+```{r}
+autoplot(lm(log(response) ~ predictor, data = curvilinear)) +
+  labs(x = "Predictor", y = "Response")
+```
+:::
+::::
+
+
+## Did the transformations work?
+
+- To a *certain* extent...
+- **Problems**:
+  - Relationships typically do not meet the linear assumption, but seem "ok" for other assumptions.
+  - Poor fit to the data (over or underfitting in some areas).
+  - Difficult to interpret the results.
+
+
+## Nonlinear regression
+
+- A way to model complex (nonlinear) relationships.
+  - i.e. phenomena that arise in the natural and physical sciences e.g. biology, chemistry, physics, engineering.
+- At least *one* predictor is not linearly related to the response variable.
+
+
+# Performing nonlinear regression
+> "You need to know a bit of *calculus*."
+
+. . .
+
+![](images/nope.gif)
+
+
+## Wait!
+
+. . .
+
+- It's easier than you think in R.
+- **Polynomial regression**: still linear in the parameters and a good place to start.
+- **Nonlinear regression**: use the `nls()` function to fit the following nonlinear models:
+  - Exponential growth
+  - Exponential decay
+  - Logistic
+
+
+# Polynomial regression
+> A special case of multiple linear regression used to model nonlinear relationships.
+
+## Model
+
+$$ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + ... + \beta_k x_i^k + \epsilon_i $$
+
+where $k$ is the degree of the polynomial.
+
+- The model is still linear in the parameters $\beta$ and can be fitted using least squares.
+- Instead of multiple predictors, we have multiple *terms* of the same predictor.
+- Can still be fit using `lm()`.
+
+. . .
+
+<br>
+
+### Adding polynomial terms
+- Linear: $y = \beta_0 + \beta_1 x$
+- Quadratic: $y = \beta_0 + \beta_1 x + \beta_2 x^2$
+- Cubic: $y = \beta_0 + \beta_1 x + \beta_2 x^2 + \beta_3 x^3$
+- Each level increases the power of the predictor by 1.
+
+# Polynomial fitting
+Using the `asymptotic` data
+
+## The data
+
+See Slide 11 for the relationship and mathematical expression.
+
+```{r}
+ggplot(asymptotic, aes(x = predictor, y = response)) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response")
+```
+
+## Fitting the model (linear)
+
+$$ Y_i = \beta_0 + \beta_1 x_i + \epsilon_i $$
+
+```{r}
+lin_fit <- lm(response ~ predictor, asymptotic)
+```
+
+```{r}
+#| code-fold: true
+ggplot(asymptotic, aes(x = predictor, y = response)) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response") +
+  geom_line(aes(y = predict(lin_fit)), color = "red", size = 2)
+```
+
+## Fitting the model (poly order 2)
+
+$$ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \epsilon_i $$
+
+```{r}
+poly2_fit <- lm(response ~ poly(predictor, 2), asymptotic)
+```
+
+```{r}
+#| code-fold: true
+ggplot(asymptotic, aes(x = predictor, y = response)) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response") +
+  geom_line(aes(y = predict(lin_fit)), color = "red") +
+  geom_line(aes(y = predict(poly2_fit)), color = "slateblue", size = 2)
+```
+
+## Fitting the model (poly order 3)
+
+$$ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \beta_3 x_i^3 + \epsilon_i $$
+
+```{r}
+poly3_fit <- lm(response ~ poly(predictor, 3), asymptotic)
+```
+
+```{r}
+#| code-fold: true
+ggplot(asymptotic, aes(x = predictor, y = response)) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response") +
+  geom_line(aes(y = predict(lin_fit)), color = "red") +
+  geom_line(aes(y = predict(poly2_fit)), color = "slateblue") +
+  geom_line(aes(y = predict(poly3_fit)), color = "seagreen", size = 2)
+```
+
+## Fitting the model (poly order 10)
+
+$$ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + ... + \beta_10 x_i^{10} + \epsilon_i $$
+
+```{r}
+poly10_fit <- lm(response ~ poly(predictor, 10), asymptotic)
+```
+
+```{r}
+#| code-fold: true
+ggplot(asymptotic, aes(x = predictor, y = response)) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response") +
+  geom_line(aes(y = predict(lin_fit)), color = "red") +
+  geom_line(aes(y = predict(poly2_fit)), color = "slateblue") +
+  geom_line(aes(y = predict(poly3_fit)), color = "seagreen") +
+  geom_line(aes(y = predict(poly10_fit)), color = "firebrick", size = 2)
+```
+
+
+## Limitations
+
+- Meaning of the coefficients is not always clear.
+- Extrapolation can be *dangerous*.
+- Extra terms can lead to overfitting and are difficult to interpret:
+
+```{r}
+summary(poly10_fit)
+```
+
+
+### But:
+
+- Easy to fit: just add polynomial terms to the model.
+- Simple to perform: use `lm()`.
+
+
+# Nonlinear fitting
+
+## Fitting a nonlinear model
+
+If you have some understanding of the underlying relationship (e.g. mechanistic process) between the variables, you can fit a nonlinear model.
+<br>
+
+:::{.fragment}
+
+### Mathematical expression
+
+$$ Y_i = f(x_i, \beta) + \epsilon_i $$
+
+where $f(x_i, \beta)$ is a nonlinear function of the parameters $\beta$.
+
+- $Y_i$ is the continuous response variable.
+- $x_i$ is the vector of predictor variables.
+- $\beta$ is the vector of unknown parameters.
+- $\epsilon_i$ is the random error term (residual error).
+:::
+
+## Assumptions
+
+Like the linear model, the nonlinear model assumes:
+
+- Error terms are normally distributed (**Normality**).
+- Error terms are independent (**Independence**).
+- Error terms have constant variance (**Homoscedasticity**).
+
+Basically:
+
+$$ \epsilon_i \sim N(0, \sigma^2) $$
+
+. . .
+
+Like all other models we have seen, we focus on the residuals to assess the model fit, since the residuals are the only part of the model that is random.
+
+
+## Estimating the model parameters
+
+- The parameters are estimated using the **method of least squares**.
+- For nonlinear models, a nonlinear optimization algorithm is used to find the best fit, rather than ordinary least squares, e.g.:
+  - [Gauss-Newton algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm)
+  - [Levenberg-Marquardt algorithm](https://en.wikipedia.org/wiki/Levenberg%E2%80%93Marquardt_algorithm)
+- This can only be performed iteratively and depends on a "best guess" of the parameters *as a start*.
+  - **i.e. we need to provide a starting point for a nonlinear least squares algorithm to begin**.
+
+---
+
+![](images/gauss-newton.gif)
+
+Source: [Wikipedia](https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm)
+
+## Implementation
+
+use `nls()` function in R.
+
+```{r}
+#| eval: false
+nls(formula, data, start)
+```
+
+- `formula`: a formula object, with the response variable on the left of a ~ operator, and the predictor variable(s) on the right.
+- `data`: a data frame containing the variables in the model.
+- `start`: a named list of starting values for the parameters in the model.
+
+
+# Example: Fitting an asymptotic model
+
+## Finding starting values
+
+$$ y = a + b(1 - e^{-cx}) $$
+
+- $a$ is value of $y$ when $x = 0$.
+- $b$ is the upper limit: the maximum value of $y$.
+- $c$ is the rate of change: the rate at which $y$ approaches the upper limit.
+
+. . . 
+
+```{r, out.width="50%"}
+#| code-fold: true
+ggplot(data = asymptotic, aes(x = predictor, y = response)) +
+  geom_point() + 
+  geom_hline(yintercept = 100, linetype = "dashed") +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  ## plot the rate
+  geom_segment(aes(x = 0, y = 0, xend = 2.5, yend = 100), 
+               arrow = arrow(length = unit(0.5, "cm")), 
+               color = "red") +
+  labs(x = "Predictor", y = "Response")
+```
+
+## First guess
+
+$$ y = a + b(1 - e^{-cx}) $$
+
+```{r}
+fit_asymptotic <- nls(response ~ a + b*(1-exp(-c*predictor)), data = asymptotic, 
+  start = list(a = 0, b = 100, c = 0.8))
+```
+
+```{r}
+#| code-fold: true
+ggplot(data = asymptotic, aes(x = predictor, y = response)) +
+  geom_point() + 
+  geom_hline(yintercept = 100, linetype = "dashed") +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  ## plot the rate
+  geom_segment(aes(x = 0, y = 0, xend = 0, yend = 100), 
+               arrow = arrow(length = unit(0.5, "cm")), 
+               color = "red") +
+  labs(x = "Predictor", y = "Response") +
+  geom_line(aes(y = predict(fit_asymptotic)), color = "red", size = 2)
+```
+
+## Check the fit
+
+```{r}
+library(nlstools)
+resids <- nlsResiduals(fit_asymptotic)
+plot(resids)
+```
+
+## Interpretation
+
+```{r}
+summary(fit_asymptotic)
+```
+
+- The model is significant since the p-value is less than 0.05 for all parameters.
+- The parameterised model is:
+
+$$ y = -14.5 + 113.04(1 - e^{-0.63x}) $$
+The R-square value is not reported for nonlinear models as the sum of squares is not partitioned into explained and unexplained components.
+
+
+
+# Another example: Fitting a logistic model
+
+## Recap on logistic relationship
+
+$$ y = c + \frac{d-c}{1+e^{-b(x-a)}} $$
+
+```{r}
+#| code-fold: true
+ggplot(data = logistic, aes(x = predictor, y = response)) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response")
+```
+
+## Recap on logistic relationship
+
+$$ y = c + \frac{d-c}{1+e^{-b(x-a)}} $$
+
+```{r}
+#| code-fold: true
+ggplot(data = logistic, aes(x = predictor, y = response)) +
+  geom_point() +
+  geom_smooth() +
+  labs(x = "Predictor", y = "Response")
+```
+
+
+## Finding the starting values
+
+$$ y = c + \frac{d-c}{1+e^{-b(x-a)}} $$
+
+- $c$ is the lower limit: the minimum value of $y$.
+- $d$ is the upper limit: the maximum value of $y$.
+- $a$ is the value of $x$ when $y$ is halfway between the lower and upper limits.
+- $b$ is the rate of change: the rate at which $y$ approaches the upper limit.
+
+. . .
+
+```{r, out.width="50%"}
+#| code-fold: true
+ggplot(data = logistic, aes(x = predictor, y = response)) +
+  geom_point() +
+  geom_smooth() +
+  labs(x = "Predictor", y = "Response") +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_hline(yintercept = 300, linetype = "dashed") +
+  geom_vline(xintercept = 5, linetype = "dashed") +
+  # label the lines above
+  annotate("text", x = 9, y = 0, label = "c", size = 8, vjust = -1) +
+  annotate("text", x = 0, y = 300, label = "d", size = 8, vjust = 1.5) +
+  annotate("text", x = 5, y = 100, label = "a", size = 8, hjust = -1) +
+  ## plot the rate
+  geom_segment(aes(x = 2.5, y = 60, xend = 6, yend = 250), 
+               arrow = arrow(length = unit(0.5, "cm")), 
+               color = "red") +
+  # label the rate
+  annotate("text", x = 4, y = 180, label = "b", size = 8, colour = "red", hjust = -1)
+```
+
+
+## Finding the starting values
+
+$$ y = c + \frac{d-c}{1+e^{-b(x-a)}} $$
+
+- $c$ is the lower limit: the minimum value of $y$.
+- $d$ is the upper limit: the maximum value of $y$.
+- $a$ is the value of $x$ when $y$ is halfway between the lower and upper limits.
+- $b$ is the rate of change: the rate at which $y$ approaches the upper limit.
+
+![](images/nope2.gif){fig-align="center"}
+
+<center> **NOPE** </center>
+
+# Automating the process (sort of)
+
+## Self-starting functions
+
+- The `nls()` function requires a formula and starting point(s) for the parameters.
+  - *How about starting to nope out...*
+
+:::{.fragment}
+### Wait!
+
+- Several self-starting functions are available in R that can be used to estimate the starting values.
+- These functions are named after the model they fit, e.g. `SSasymp()`, `SSlogis()`, `SSmicmen()`, `SSweibull()`, etc.
+
+:::
+
+:::{.fragment}
+:::{.callout-important}
+We still need to have some understanding of the underlying relationship between the variables to pick the right function.
+:::
+:::
+
+## Revisiting the logistic model
+
+$$ y = c + \frac{d-c}{1+e^{-b(x-a)}} $$
+
+```{r}
+#| eval: false
+SSlogis(input, Asym, xmid, scal)
+```
+
+- `input`: the predictor variable.
+- `Asym`: the upper limit.
+- `xmid`: the value of $x$ when $y$ is halfway between the lower and upper limits.
+- `scal`: the rate of change.
+
+The equation ia *different*: see `?SSlogis`:
+
+$$ y = \frac{Asym}{1+exp \frac{xmid-input}{scal}} $$
+
+. . .
+
+Other than `input`, the other parameters can be left to the function to estimate.
+
+```{r}
+fit_logistic <- nls(response ~ SSlogis(predictor, Asym, xmid, scal), data = logistic)
+```
+
+## What does the fit look like?
+
+```{r}
+#| code-fold: true
+ggplot(data = logistic, aes(x = predictor, y = response)) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response") +
+  geom_line(aes(y = predict(fit_logistic)), color = "red", size = 1)
+```
+
+## Check the fit
+
+```{r}
+resids <- nlsResiduals(fit_logistic)
+plot(resids)
+```
+
+## Interpretation
+
+```{r}
+summary(fit_logistic)
+```
+
+
+# Back to asymptotic model
+
+## Comparing manual fit to self-starting function
+
+The self-starting function for the asymptotic model is `SSasymp()`.
+
+```{r}
+fit_asymptotic_ss <- nls(response ~ SSasymp(predictor, Asym, R0, lrc), data = asymptotic)
+```
+
+Comparing outputs:
+
+```{r}
+ggplot(data = asymptotic, aes(x = predictor, y = response)) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response") +
+  geom_line(aes(y = predict(fit_asymptotic)), color = "red", size = 1) +
+  geom_line(aes(y = predict(fit_asymptotic_ss)), color = "blue", size = 1)
+```
+
+In some cases, the fits are identical, but in others, they are not.
+
+## Summary
+
+- When fitting a nonlinear model, there are three possible approaches:
+   1. **Linearize** the model by transforming the response variable or predictor variable(s): 
+      - Fit: easy/difficult
+      - Interpret: difficult
+   2. Approximate the model by adding **polynomial** terms: 
+      - Fit: easy
+      - Interpret: difficult
+   3. Fit the model using a **nonlinear** least squares algorithm:
+      - Fit: difficult
+      - Interpret: easy
+  
+. . .
+
+- Nonlinear models:
+  - Useful for modelling complex relationships.
+  - Require some understanding of the underlying relationship between the variables, especially asympotic and logistic models.
+  - Most useful when prediction is the goal, since we do not necessarily need to interpret the parameters to assess the model fit.
+
+
+# Bonus: How do we know which model is better?
+Note: this is non-examinable content but might be useful for your project.
+
+## Example: polynomial regression
+
+```{r}
+#| code-fold: true
+library(tidyr)
+
+# Create a new data frame with predictor values and model predictions
+predictions <- data.frame(
+  predictor = asymptotic$predictor,
+  Linear = predict(lin_fit),
+  Poly_2 = predict(poly2_fit),
+  Poly_3 = predict(poly3_fit),
+  Poly_10 = predict(poly10_fit)
+)
+
+# Reshape the data to long format
+predictions_long <- predictions %>%
+  pivot_longer(cols = -predictor, names_to = "Model", values_to = "response")
+
+# Plot the data
+ggplot(predictions_long, aes(x = predictor, y = response, color = Model)) +
+  geom_point(data = asymptotic, aes(x = predictor, y = response), inherit.aes = FALSE) +
+  geom_line(linewidth = 1) +
+  labs(x = "Predictor", y = "Response") +
+  scale_color_brewer(palette = "Spectral") 
+
+```
+
+## Prediction quality
+
+We can use prediction quality metrics to compare the fits.
+
+- [Akaike information criterion (AIC)](https://en.wikipedia.org/wiki/Akaike_information_criterion) and
+[Bayesian information criterion (BIC)](https://en.wikipedia.org/wiki/Bayesian_information_criterion).
+  - Useful for comparing model fits.
+- [root mean squared error (RMSE)](https://en.wikipedia.org/wiki/Root-mean-square_deviation)
+and [mean absolute error (MAE)](https://en.wikipedia.org/wiki/Mean_absolute_error).
+  - Useful for *assessing the quality* of the fit.
+
+
+
+## AIC and BIC
+
+Use the `broom` package to extract the AIC and BIC values from the model fits.
+
+```{r}
+library(broom)
+# collect all polynomial fits into a single tibble using glance
+poly_fits <- tibble(
+  model = c("linear", "poly2", "poly3", "poly10"),
+  fit = list(lin_fit, poly2_fit, poly3_fit, poly10_fit)) %>%
+  mutate(glance = map(fit, glance)) %>%
+  unnest(glance) %>%
+  select(model, AIC, BIC)
+poly_fits
+```
+
+- The smaller the AIC or BIC, the better the fit compared to other models.
+- However, for better performance, **cross-validation is recommended** as it explains how well the model will perform on **new** data, rather than just assessing the fit to the data.
+
+## Cross-validation
+
+1. Split the data into training and testing sets.
+2. Fit the model to the training set.
+3. Predict the response variable using the testing set.
+4. Calculate the RMSE or MAE between the predicted and observed values.
+5. Repeat for each fold of the data.
+6. Average the RMSE or MAE across all folds.
+7. The model with the lowest RMSE or MAE is the best model.
+
+Looks like a lot of work, but it's easy in R using the `caret` package.
+
+## Performing cross-validation on the polynomial fits
+
+```{r}
+library(caret)
+ctrl <- trainControl(method = "cv", number = 10) # Set up control for 10-fold cross-validation
+# Fit models for degrees 1, 2, 3, and 10
+lin_fit <- train(response ~ predictor, data = asymptotic, method = "lm", trControl = ctrl)
+poly2_fit <- train(response ~ poly(predictor, 2), data = asymptotic, method = "lm", trControl = ctrl)
+poly3_fit <- train(response ~ poly(predictor, 3), data = asymptotic, method = "lm", trControl = ctrl)
+poly10_fit <- train(response ~ poly(predictor, 10), data = asymptotic, method = "lm", trControl = ctrl)
+
+results <- resamples(list(linear = lin_fit, quadratic = poly2_fit, cubic = poly3_fit, poly10 = poly10_fit))
+
+# Extract mean RMSE and MAE
+MAE <- summary(results)$statistics$MAE[, 4] # select mean column only
+RMSE <- summary(results)$statistics$RMSE[, 4] # select mean column only
+knitr::kable(data.frame(MAE, RMSE))
+
+```
+
+From the results, the cubic model has the lowest RMSE and MAE, so is the best model.
+
+
+
+# Thanks!
+
+This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
+
+
+<!-- Links -->
+[cc-by]: http://creativecommons.org/licenses/by/4.0/
