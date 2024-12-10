@@ -1,10 +1,6 @@
 ---
 title: Topic 2 -- Exploratory Data Analysis (EDA)
-subtitle: ENVX1002 Introduction to Statistical Methods
 author: Dr. Floris van Ogtrop
-institute: The University of Sydney
-date: last-modified # today | last-modified
-date-format: "MMM YYYY" # see https://momentjs.com/docs/#/displaying/format/
 format: soles-revealjs
 ---
 

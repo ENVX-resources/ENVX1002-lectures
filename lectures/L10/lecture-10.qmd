@@ -1,10 +1,6 @@
 ---
 title: Topic 10 -- Linear functions
-subtitle: ENVX1002 Introduction to Statistical Methods
 author: Liana Pozza
-institute: The University of Sydney
-date: last-modified # today | last-modified
-date-format: "MMM YYYY" # see https://momentjs.com/docs/#/displaying/format/
 format: soles-revealjs
 ---
 

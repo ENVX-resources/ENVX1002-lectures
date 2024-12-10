@@ -1,10 +1,6 @@
 ---
-title: Non-linear regression
-subtitle: ENVX1002 Introduction to Statistical Methods
+title: Topic 12 -- Non-linear regression
 author: Liana Pozza
-institute: The University of Sydney
-date: last-modified # today | last-modified
-date-format: "MMM YYYY" # see https://momentjs.com/docs/#/displaying/format/
 format: soles-revealjs
 ---
 

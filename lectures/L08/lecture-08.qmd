@@ -1,10 +1,6 @@
 ---
 title: Topic 8 -- Permutation tests and bootstrap
-subtitle: ENVX1002 Introduction to Statistical Methods
-author:
-  - name: Januar Harianto
-    affiliations: The University of Sydney
-embed-resources: true # embed resources into single HTML file -- enable when ready to publish
+author: Januar Harianto 
 format: soles-revealjs
 ---
 

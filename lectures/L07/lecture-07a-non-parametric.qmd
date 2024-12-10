@@ -1,11 +1,7 @@
 ---
 title: Topic 7 -- Non-parametric tests
-subtitle: ENVX1002 Introduction to Statistical Methods
-author:
-  - name: Januar Harianto
-    affiliations: The University of Sydney
-date: last-modified
-format: soles-revealjs
+author: Januar Harianto
+
 ---
 
 ```{r setup}

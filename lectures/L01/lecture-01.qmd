@@ -1,12 +1,7 @@
 ---
 title: Topic 1 -- Introduction
-subtitle: ENVX1002 Introduction to Statistical Methods
 author: Dr. Floris van Ogtrop
-institute: The University of Sydney
-date: last-modified # today | last-modified
-date-format: "MMM YYYY" # see https://momentjs.com/docs/#/displaying/format/
 format: soles-revealjs
-# post-render: _postrender.R # render PDF; comment out before pushing to GitHub
 ---
 
 

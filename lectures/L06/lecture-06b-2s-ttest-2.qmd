@@ -1,11 +1,6 @@
 ---
 title: "Topic 6 -- Two-sample *t*-tests -- Part II"
-subtitle: ENVX1002 Introduction to Statistical Methods
-author:
-  - name: Januar Harianto
-    affiliations: The University of Sydney
-date: last-modified
-self-contained: true
+author: Januar Harianto
 format: soles-revealjs
 ---
 

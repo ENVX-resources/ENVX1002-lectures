@@ -1,10 +1,6 @@
 ---
 title: Topic 7 -- Chi-squared tests
-subtitle: ENVX1002 Introduction to Statistical Methods
-author:
-  - name: Januar Harianto
-    affiliations: The University of Sydney
-date: last-modified
+author: Januar Harianto
 format: soles-revealjs
 ---
 
