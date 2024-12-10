@@ -1,5 +1,5 @@
 ---
-title: Chi-squared tests
+title: Topic 7 -- Chi-squared tests
 subtitle: ENVX1002 Introduction to Statistical Methods
 author:
   - name: Januar Harianto

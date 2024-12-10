@@ -1,5 +1,5 @@
 ---
-title: Non-parametric tests
+title: Topic 7 -- Non-parametric tests
 subtitle: ENVX1002 Introduction to Statistical Methods
 author:
   - name: Januar Harianto

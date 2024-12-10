@@ -1,6 +1,6 @@
 ---
 title: "Topic 6 -- Two-sample *t*-tests -- Part II"
-subtitle: School of Life and Environmental Sciences (SOLES)
+subtitle: ENVX1002 Introduction to Statistical Methods
 author:
   - name: Januar Harianto
     affiliations: The University of Sydney

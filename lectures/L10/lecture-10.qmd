@@ -1,6 +1,6 @@
 ---
 title: Topic 10 -- Linear functions
-subtitle: School of Life and Environmental Sciences (SOLES)
+subtitle: ENVX1002 Introduction to Statistical Methods
 author: Liana Pozza
 institute: The University of Sydney
 date: last-modified # today | last-modified

@@ -1,6 +1,6 @@
 ---
-title: Introduction to hypothesis testing
-subtitle: School of Life and Environmental Sciences (SOLES)
+title: Topic 5 -- Introduction to hypothesis testing
+subtitle: ENVX1002 Introduction to Statistical Methods
 author: Floris van Ogtrop
 institute: The University of Sydney
 date: last-modified # today | last-modified
