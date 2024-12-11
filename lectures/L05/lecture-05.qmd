@@ -1013,7 +1013,7 @@ t.test(TN$log10_TN,
 
 [Ruxton and Neuhäuser 2010](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/j.2041-210X.2010.00014.x)
 
-![](images\one_tail.png)
+![](images/one_tail.png)
 
 
 
