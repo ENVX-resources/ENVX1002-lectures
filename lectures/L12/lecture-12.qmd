@@ -756,7 +756,7 @@ $$ y = c + \frac{d-c}{1+e^{-b(x-a)}} $$
 - $a$ is the value of $x$ when $y$ is halfway between the lower and upper limits.
 - $b$ is the rate of change: the rate at which $y$ approaches the upper limit.
 
-![](images/nope2.gif){fig-align="center"}
+<!-- ![](images/nope2.gif){fig-align="center"} -->
 
 <center> **NOPE** </center>
 
