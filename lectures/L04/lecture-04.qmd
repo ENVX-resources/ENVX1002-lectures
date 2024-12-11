@@ -474,7 +474,7 @@ pnorm(4 / 3)
 - It has an extra parameter = $n$ which is related to population size
 - The T distribution is used for the 1 and 2 sample T-tests which are really important in the next few weeks.
 
-![](images\T_dist.png)
+![](images/t_dist.png)
 
 
 
@@ -485,7 +485,7 @@ pnorm(4 / 3)
 - We say the variable $X \sim \chi_n^2$, with $n$ degrees of freedom.
 - The Chi-Squared distribution is used for the Chi-Squared Test which you will cover in the next few weeks.
 
-![](images\Chi_dist.png)
+![](images/Chi_dist.png)
 
 
 
@@ -496,7 +496,7 @@ pnorm(4 / 3)
  - 1. One measurement is taken: how likely is it that the dry weight exceeds 320 mg?
  - 2. 10 measurements are taken: how likely is it that the sample mean exceeds 320 mg?
 
-![SERHII BLIK - stock.adobe.com](images\AdobeStock_364743175.jpeg)
+![SERHII BLIK - stock.adobe.com](images/AdobeStock_364743175.jpeg)
 
 
 
