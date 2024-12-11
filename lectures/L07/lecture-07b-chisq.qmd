@@ -2,6 +2,7 @@
 title: Topic 7 -- Chi-squared tests
 author: Januar Harianto
 format: soles-revealjs
+embed-resources: true
 ---
 
 ```{r setup, include=FALSE}

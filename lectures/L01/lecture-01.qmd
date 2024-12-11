@@ -2,6 +2,7 @@
 title: Topic 1 -- Introduction
 author: Dr. Floris van Ogtrop
 format: soles-revealjs
+embed-resources: true
 ---
 
 

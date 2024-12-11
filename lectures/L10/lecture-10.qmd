@@ -2,6 +2,7 @@
 title: Topic 10 -- Linear functions
 author: Liana Pozza
 format: soles-revealjs
+embed-resources: true
 ---
 
 

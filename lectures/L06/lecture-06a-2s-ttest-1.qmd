@@ -2,6 +2,7 @@
 title: Topic 6 -- Two-sample *t*-tests -- Part I
 author: Januar Harianto
 format: soles-revealjs
+embed-resources: true
 ---
 
 # Testing differences in means

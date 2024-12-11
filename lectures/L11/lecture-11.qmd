@@ -2,6 +2,7 @@
 title: Topic 11 -- Multiple Linear Regression
 author: Liana Pozza
 format: soles-revealjs
+embed-resources: true
 ---
 
 

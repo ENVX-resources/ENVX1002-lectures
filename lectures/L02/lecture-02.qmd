@@ -2,6 +2,7 @@
 title: Topic 2 -- Exploratory Data Analysis (EDA)
 author: Dr. Floris van Ogtrop
 format: soles-revealjs
+embed-resources: true
 ---
 
 # Topic 2 - Exploratory Data Analysis

@@ -2,6 +2,7 @@
 title: Topic 8 -- Permutation tests and bootstrap
 author: Januar Harianto 
 format: soles-revealjs
+embed-resources: true
 ---
 
 # Recap

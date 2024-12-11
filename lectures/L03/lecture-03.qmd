@@ -2,6 +2,7 @@
 title: Topic 3 -- Discrete Distributions
 author: Dr. Floris van Ogtrop
 format: soles-revealjs
+embed-resources: true
 ---
 
 # Outline – Discrete distributions

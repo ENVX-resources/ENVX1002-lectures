@@ -2,6 +2,7 @@
 title: Topic 9 -- Describing relationships
 author: Liana Pozza
 format: soles-revealjs
+embed-resources: true
 ---
 
 # Quick intro

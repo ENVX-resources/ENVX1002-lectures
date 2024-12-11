@@ -2,6 +2,7 @@
 title: Topic 4 -- Normal and sampling distributions
 author: Dr. Floris van Ogtrop
 format: soles-revealjs
+embed-resources: true
 ---
 
 # Topic 4 Outline – Normal and sampling distributions
