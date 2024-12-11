@@ -22,11 +22,32 @@ convert_html_to_pdf <- function(html_dir, pdf_dir) {
     value = TRUE
   )
 
+  # Present list of files to user and get selection
+  cat("\nAvailable files:\n")
+  for (i in seq_along(html_files)) {
+    cat(i, ": ", html_files[i], "\n")
+  }
+  cat("\nSelect files (comma-sep) or Enter for all:\n")
+  selection <- readline()
+
+  # Process user selection
+  if (nchar(selection) > 0) {
+    # Check if input contains non-numeric characters (excluding commas)
+    if (grepl("[^0-9,]", selection)) {
+      stop("Invalid input. Please enter only numbers separated by commas.")
+    }
+    selected_indices <- as.numeric(strsplit(selection, ",")[[1]])
+    if (any(selected_indices > length(html_files)) || any(selected_indices < 1)) {
+      stop("Invalid selection. Please enter numbers between 1 and ", length(html_files))
+    }
+    html_files <- html_files[selected_indices]
+  }
+
   pdf_files <- sub(".html", ".pdf", html_files)
   # Initialize a vector to store failed conversions
   failed_conversions <- character(0)
 
-  # Try converting all files first
+  # Try converting selected files
   for (i in seq_along(html_files)) {
     html_file <- file.path(html_dir, html_files[i])
     pdf_file <- file.path(pdf_dir, pdf_files[i])
