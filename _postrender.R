@@ -44,8 +44,9 @@ convert_html_to_pdf <- function(html_dir, pdf_dir) {
   }
 
   pdf_files <- sub(".html", ".pdf", html_files)
-  # Initialize a vector to store failed conversions
+  # Initialize vectors to store conversion results
   failed_conversions <- character(0)
+  successful_conversions <- character(0)
 
   # Try converting selected files
   for (i in seq_along(html_files)) {
@@ -55,15 +56,14 @@ convert_html_to_pdf <- function(html_dir, pdf_dir) {
     # Create directory if it doesn't exist
     dir.create(dirname(pdf_file), showWarnings = FALSE, recursive = TRUE)
 
-    success <- tryCatch(
+    tryCatch(
       {
         to_pdf(html_file, pdf_file)
         Sys.sleep(1) # Add 1 second pause
-        TRUE
+        successful_conversions <<- c(successful_conversions, html_files[i])
       },
       error = function(e) {
         failed_conversions <<- c(failed_conversions, html_files[i])
-        FALSE
       }
     )
   }
