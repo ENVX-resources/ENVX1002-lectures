@@ -1,7 +1,7 @@
 ---
 title: Topic 10 -- Simple Linear Regression
 author: Si Yang Han
-# format: soles-revealjs
+format: soles-revealjs
 embed-resources: true
 ---
 

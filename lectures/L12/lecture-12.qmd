@@ -1,7 +1,7 @@
 ---
 title: Topic 12 -- Non-linear regression
-author: Liana Pozza
-# format: soles-revealjs
+author: Si Yang Han
+format: soles-revealjs
 embed-resources: true
 ---
 
