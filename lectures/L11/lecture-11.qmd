@@ -1,10 +1,9 @@
 ---
 title: Topic 11 -- Multiple Linear Regression
-author: Liana Pozza
+author: Si Yang Han
 format: soles-revealjs
 embed-resources: true
 ---
-
 
 ```{r setup, include=FALSE}
 if (!require("pacman")) install.packages("pacman", repos = "http://cran.us.r-project.org")
@@ -12,41 +11,27 @@ pacman::p_load(tidyverse, cowplot, HistData, datasauRus, patchwork, broom, remot
 pacman::p_load_gh("datalorax/equatiomatic")
 
 ggplot2::theme_set(cowplot::theme_half_open())
+library(dplyr)
 ```
 
-
 ## Module overview
 
-- **Week 9. Describing relationships**
-    + Correlation &rarr; calculation, interpretation, things to watch out for
-    + Regression &rarr; Why do we care? model structure, model fitting
-  
-- **Week 10. Linear functions**
-    + Is the model worth fitting? &rarr; Assumptions, hypothesis testing
-    + How good is the model? &rarr; Measures of model fit
-  
-- **Week 11. Linear functions - multiple predictors** 
-    + Parsimonious models
-    + Introduction to Multiple Linear Regression (MLR) modelling
-    + Assumptions and interpretation
+- [Week 9. Describing Relationships]{style="color: #D0D3D4;"}
+    + [Correlation (calculation, interpretation)]{style="color: #D0D3D4;"}
+    + [Regression (model structure, model fitting]{style="color: #D0D3D4;"}
+    + [What/when/why/how]{style="color: #D0D3D4;"}
 
-- **Week 12. Nonlinear functions**
-    + Common nonlinear functions
-    + Transformations
-    + Performing nonlinear regression
+- [Week 10. Simple Linear Regression]{style="color: #D0D3D4;"}
+    + [Can we use the model?(assumptions, hypothesis testing)]{style="color: #D0D3D4;"}
+    + [How good is the model?(interpretation, model fit)]{style="color: #D0D3D4;"}
+    
+- **Week 11. Multiple Linear Regression**
+    + Multiple Linear Regression (MLR) modelling
+    + Assumptions, interpretation and the principle of parsimony
 
-
-## Module overview
-  
-- **Week 11. Linear functions - multiple predictors** 
-    + Parsimonious models
-    + Introduction to Multiple Linear Regression (MLR) modelling
-    + Assumptions and interpretation
-
-
-
-
-
+- [Week 12. Nonlinear Regression]{style="color: #D0D3D4;"}
+    + [Common nonlinear functions]{style="color: #D0D3D4;"}
+    + [Transformations]{style="color: #D0D3D4;"}
 
 # Recap
 
@@ -54,7 +39,10 @@ ggplot2::theme_set(cowplot::theme_half_open())
 
 $$ Y_i = \beta_0 + \beta_1 x_i + \epsilon_i $$
 
-  Ideal for predicting a continuous response variable from a single predictor variable: *"How does $y$ change as $x$ changes?"*
+Ideal for predicting a continuous response variable from a single predictor variable: *"How does $y$ change as $x$ changes?"*
+
+* Identify/quantify relationships between variables
+* Predict future values
 
 . . .
 
@@ -62,15 +50,16 @@ $$ Y_i = \beta_0 + \beta_1 x_i + \epsilon_i $$
 
 What is the model and how do we interpret the results?
 
-
 # Multiple linear regression
 
-![Galton](images/galton.jpg)
-![Pearson](images/pearson.jpg)
-
-*Francis Galton and Karl Pearson*
+> Nearly identical to simple linear regression, just more predictors!
 
 ## History
+
+![](images/galton.jpg)
+![](images/pearson.jpg)
+
+*Francis Galton and Karl Pearson*
 
 - First raised by **Francis Galton** in 1886, after studying genetic variations in sweet peas over several generations.
 - **Karl Pearson** developed the mathematical formalism for the multiple linear regression model in the early 1900s.
@@ -79,109 +68,108 @@ What is the model and how do we interpret the results?
 
 -- Pearson (1930), on Galton's work with MLR
 
-# Air Quality in New York (1973)
+## Steps for Regression
 
+1.  Understand the variables
+2.  Explore data
+3.  Fit model
+4.  Check assumptions
+5.  Assess fit of model/s (parsimony)
+6.  Interpret output
 
-## Air quality {auto-animate="true"}
-
+## Example: Air Quality in New York (1973)
 
 ```{r}
 data(airquality)
 dplyr::glimpse(airquality)
 ```
 
-## {auto-animate="true"}
-
-```{r}
-#| echo: false
-dplyr::glimpse(airquality)
-```
-
 . . .
 
-Ozone: harmful air pollutant when present at ground level; main component of smog:
+Ozone ($O_3$) is a harmful air pollutant at ground level - the main component of smog:
 
 - `Ozone`: ozone concentration (ppb)
-- `Solar.R`: solar radiation (lang)
+- `Solar.R`: solar radiation (lang, Langleys)
 - `Wind`: wind speed (mph)
 - `Temp`: ambient temperature (degrees F)
 - `Month`: month (1-12)
 - `Day`: day of the month (1-31)
 
-## Correlations
+## Scatterplots
 
 ```{r}
 pairs(airquality)
 ```
 
-
-## `corrplot`
+## Correlations via base R
 
 ```{r}
-library(corrplot)
+cor(airquality, use = "complete.obs") |> round(2)
+```
+
+## Correlations via `corrplot`
+
+<!---
+Explain how to interpret these
+--->
+
+```{r}
 corrplot::corrplot(cor(airquality, use = "complete.obs"), method = "circle")
 ```
 
-
-## `psych`
+## Correlations via `psych`
 
 ```{r}
 psych::pairs.panels(airquality)
 ```
 
-## The simplest model {auto-animate="true"} 
+- What predictors could be useful to predict `Ozone`? 
 
-Pick the predictor that has the highest correlation coefficient with the response variable.
+. . .
 
-:::{.fragment}
-```{r}
-cor(airquality, use = "complete.obs")
-```
-:::
+`Temp` ($r$ = 0.70), `Wind` ($r$ = -0.60) and `Solar.R` ($r$ = 0.35) are the most correlated with `Ozone`.
 
-:::{.fragment}
-What can we understand about the relationship between `Ozone` and `Temp` ($r$ = 0.7)?
-:::
+What can we understand about the relationship between `Ozone` and `Temp` ($r$ = 0.70)?
 
 ## Relationship {auto-animate="true"} 
-What can we understand about the relationship between `Ozone` and `Temp` ($r$ = 0.7)?
+
+What can we understand about the relationship between `Ozone` and `Temp` ($r$ = 0.70)?
 
 . . .
 
 ```{r}
+library(ggplot2)
 ggplot(data = airquality, aes(x = Temp, y = Ozone)) +
-  geom_point() +
-  labs(x = expression("Temperature " ( degree~F)), y = "Ozone (ppb)")
+  geom_point() + 
+  labs(x = expression("Temperature " (degree~F)), y = "Ozone (ppb)") +
+  theme_classic()
 ```
 
-## Relationship
-What can we understand about the relationship between `Ozone` and `Temp` ($r$ = 0.7)?
+. . .
 
-```{r}
-ggplot(data = airquality, aes(x = Temp, y = Ozone)) +
-  geom_point() + geom_smooth(method = "lm", se = FALSE) +
-  labs(x = expression("Temperature " ( degree~F)), y = "Ozone (ppb)")
-```
+The higher the temperature, the higher the ozone concentration. The relationship is almost linear.
 
-## Fitting the model
+## Fitting a simple model
 
 ```{r}
 fit <- lm(formula = Ozone ~ Temp, data = airquality)
 ```
 
-## Assumptions
+- Simple linear regression between `Ozone` and `Temp`
+- This is our baseline or control model
+
+## Assumptions via base R
 
 ```{r}
 par(mfrow = c(2, 2)) # set up a 2 x 2 grid for plots
 plot(fit)
 ```
 
-
-## `ggfortify`
+## Assumptions via `ggfortify`
 
 ```{r}
 library(ggfortify)
-autoplot(fit)
+ggplot2::autoplot(fit) # requires ggfortify but is a ggplot2 function
 ```
 
 ## Interpretation
@@ -191,63 +179,67 @@ summary(fit)
 ```
 
 - `Temp` is a statistically significant predictor of `Ozone` (p < .001).
-- The (simple linear) model explains 49% of variance (r^2^ = 0.49).
+- The (simple linear) model explains 49% of variance (R^2^ = 0.49).
 
 . . .
 
-**Can we improve the model in other ways?**
+**Can we improve the model in other ways?** Maybe - by transforming or adding more variables.
 
-# Multiple linear regression
+## Principle of parsimony
 
-## Important concepts
+- Also known as Occam's razor;
 
-- The "best" model is the one that best describes the relationship between the response and the predictors. 
-  - **NOT** the model that includes all possible predictors ([data dredging](https://en.wikipedia.org/wiki/Data_dredging)).
+> *Entia non sunt multiplicanda praeter necessitatem.*
+> *“Entities should not be multiplied without necessity.”*
+
+- Oxford definition;
+
+> The most acceptable explanation of an occurrence, phenomenon, or event is the simplest, involving the fewest entities, assumptions, or changes.
+
+- Simple is best
+
+e.g. if a simple (one variable) model and a complex (many variables) model predict similarly well, the simple model is preferred.
 
 . . .
 
-### Principle of parsimony
-A good model:
+### A parsimonius model:
 
-- Has only *useful* predictors.
-- Has no *redundant* predictors (principle of orthogonality).
-- Is *interpretable* (principle of transparency) or *predicts well* (principle of accuracy).
+- Has only *useful* predictors
+- No *redundant* predictors
 
+## The problem with using too many predictors
 
-## The MLR model {auto-animate="true"}
+- The more predictors you add, the better the model fits the data.
+- However, the model may not be able to **generalise** to new data. The model is **overfitted**, i.e. too complex.
+
+![](images/fit.jpg)
+
+## The multiple linear regression model {auto-animate="true"}
 
 An extension of simple linear regression to include **more than one** predictor variable: *"How does $y$ change as $x_1$, $x_2$, ..., $x_k$ change?"*
 
 $$ Y_i = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_k x_k + \epsilon_i $$
 
-:::{.fragment}
+:::{.fragment} 
 Therefore, estimating the model involves *estimating the values of* $\beta_0$, $\beta_1$, $\beta_2$, ..., $\beta_k$.
 
 - $\beta_0$ is the intercept
 - $\beta_1$ to $\beta_k$ are the partial regression coefficients
-- $\epsilon$ is the error term
+- $\epsilon$ is the error (residual) term
 :::
 
-
-## Explore
-
-```{r}
-glimpse(airquality)
-```
-
-<br>
-
 :::{.fragment}
-### The "best" model
+### Fit MLR model to Air Quality data
 
 The variables `Month` and `Day` are not useful predictors, so we will exclude them from the model.
 
 ```{r}
 fit_multi <- lm(formula = Ozone ~ Solar.R + Wind + Temp, data = airquality)
+# fit_multi <- lm(formula = Ozone ~ .-Month -Day, data = airquality) # all variables excluding Month and Day
 ```
 :::
 
-## Visualisation: not easy
+## Visualisation: not easy {auto-animate="true"}
 
 Are the plots useful?
 
@@ -272,7 +264,6 @@ plot_ly(data = airquality,
   x = ~Temp, y = ~Ozone, z = ~Solar.R, color = ~Wind,
   type = "scatter3d", mode = "markers", opacity = 0.5)
 ```
-
 
 ## Partial regression coefficients {auto-animate="true"}
 
@@ -304,12 +295,15 @@ sjPlot::plot_model(fit_multi,
 
 > *With `Wind` and `Solar.R` held constant, how does `Temp` affect `Ozone`?*
 
+:::{.callout-note}
+Not necessary to do this - lecture content only.
+:::
+
 ## Interpreting the partial regression coefficients
 
 ```{r}
 fit_multi
 ```
-
 
 :::{.fragment}
 Holding **all** other variables constant:
@@ -325,18 +319,7 @@ If the model is not "valid", then the partial regression coefficients are not me
 :::
 :::
 
-# Assumptions
-
-## LINE
-
-As with Simple Linear Regression, we need to check the assumptions of the model (LINE):
-
-- **L**inearity: the relationships between the response and the predictors are all linear.
-- **I**ndependence: the observations are independent of each other.
-- **N**ormality: the residuals are normally distributed.
-- **E**qual variance: the variance of the residuals is constant.
-
-## Recall
+## Assumptions
 
 In SLR, the model is made up of the [**deterministic**]{style="color:seagreen"} component (the line) and the [***random***]{style="color:firebrick"}  component (the error term).
 
@@ -347,9 +330,26 @@ $$ Y_i = \color{seagreen}{\beta_0 + \beta_1 x_i} + \color{firebrick}\epsilon_i $
 **This is the same for MLR:**
 $$ Y_i = \color{seagreen}{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_k x_k} + \color{firebrick}{\epsilon_i} $$
 
-Since *only* the error term is random, the assumptions are *still* about the error term, $\hat\epsilon$, which is simple to assess!
+Since *only* the error term is random, the assumptions are *still* about the error term (residuals), $\hat\epsilon$, which is simple to assess!
 
-## Assumptions of MLR
+## Assumptions - CLINE
+
+As with Simple Linear Regression, we need to check the assumptions of the model (LINE):
+
+- **L**inearity: the relationships between the response and the predictors are all linear.
+- **I**ndependence: the observations are independent of each other.
+- **N**ormality: the residuals are normally distributed.
+- **E**qual variance: the variance of the residuals is constant.
+
+With one extra assumption!
+
+- *C*ollinearity: there is no perfect linearity between predictors
+
+Two predictors that have a *perfect* linear relationship (i.e. $r$ = 1 or -1) breaks the assumption of collinearity. High (but not perfect) collinearity (e.g. strong/very strong $r$) does not break the assumption but can lead to unstable estimates and large standard errors.
+
+> The largest correlation between the predictors is between Temp and Wind ($r$ = -0.5). This is not a problem.
+
+## Assumptions of MLR 
 
 ```{r}
 par(mfrow = c(2, 2)) # set up a 2 x 2 grid for plots
@@ -358,7 +358,7 @@ plot(fit_multi)
 
 ## Transformation using `log()`
 
-Some evidence of nonlinearity in the diagnostic plots. Transform and re-check assumptions.
+Some evidence of non-linearity in the diagnostic plots. Transform and re-check assumptions.
 
 . . .
 
@@ -368,21 +368,7 @@ par(mfrow = c(2, 2)) # set up a 2 x 2 grid for plots
 plot(fit_multi_log)
 ```
 
-## Results 
-:::: {.columns}
-::: {.column width="50%"}
-```{r}
-summary(fit_multi_log)
-```
-:::
-::: {.column width="50%"}
-:::
-::::
-
-- All three predictors are statistically significant (p < .001).
-- The model explains 66% of variance (r^2^ = 0.66).
-
-## Results compared to SLR
+## Results - MLR vs SLR {auto-animate="true"} 
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -390,6 +376,7 @@ summary(fit_multi_log)
 summary(fit_multi_log)
 ```
 :::
+
 ::: {.column width="50%"}
 ```{r}
 summary(fit)
@@ -398,7 +385,8 @@ summary(fit)
 ::::
 
 - All three predictors are statistically significant (p < .001).
-- The model explains 66% of variance (r^2^ = 0.66 vs. 0.48 in SLR). 
+- The MLR model explains 66% of variance (adjusted R^2^ = 0.66), whereas the SLR explains 48% of variance (multiple R^2^ = 0.48).
+- Thus the MLR is the better model.
 
 # Interpretation
 
@@ -471,11 +459,11 @@ On average, the model predicts `log(Ozone)` within 0.51 ppb of the true value. *
 . . .
 
 ```{r}
-exp(0.51)
+exp(0.51) #backtransform with e^0.51
 ```
 
-- On average, the model predicts `Ozone` within `r exp(0.51)` ppb of the true value.
-- Number of observations = degrees of freedom (107) + number of parameters in the model (4) = 111.
+- On average, the model predicts `Ozone` within `r round(exp(0.51),2)` ppb of the true value.
+- Degrees of freedom (107) = number of observations (111) - number of predictors in the model (3) - 1
 
 ## R-squared
 
@@ -506,6 +494,19 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: < 2.2e-16
 ```
 
 If there are >1 predictors, use the **Adjusted R-Squared** as it penalises the model for having more predictors that are not useful.
+- The MLR model explains 66% of variance (adjusted R^2^ = 0.66)
+
+## The R^2^ value
+
+The R-squared value is the proportion of variance explained by the model.
+
+$$ R^2 = \frac{SS_{reg}}{SS_{tot}} = 1 - \frac{SS_{res}}{SS_{tot}} $$
+
+The adjusted R-squared value is the proportion of variance explained by the model, adjusted for the number of predictors.
+
+$$ R^2_{adj} = 1 - \frac{SS_{res}}{SS_{tot}} \frac{n-1}{n-p-1} $$
+
+where $n$ is the number of observations and $p$ is the number of predictors.
 
 ## F-stat
 
@@ -536,202 +537,87 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: < 2.2e-16
 ```
 
 - The F-statistic tests the null hypothesis that all the regression coefficients are equal to zero, i.e. $H_0: \beta_1 = \beta_2 = ... = \beta_k = 0$.
-- As a ratio, it tells us how much better the model is than the null model (i.e. a model with no predictors).
+- As a ratio, it tells us how much better the model is than the null model (i.e. a model with no predictors, the mean).
 - If the p-value is less than our specified critical value (e.g. 0.05), we reject the null hypothesis and conclude that the current model is better than the null model.
 
 ## Reporting
 
-```{r}
-#| eval: false
+Would mention the following in a report (directly after figures/evidence):
 
-Call:
-lm(formula = log(Ozone) ~ Solar.R + Wind + Temp, data = airquality)
+> New York air quality data was collected in 1973 by the New York State Department of Conservation and the National Weather Service (meteorological data). There were 111 observations of 6 variables.
 
-Residuals:
-     Min       1Q   Median       3Q      Max 
--2.06193 -0.29970 -0.00231  0.30756  1.23578 
+> There were non-linear relationships between `Ozone` (the response) and `Temp`, `Wind` and `Solar.R` (the predictors), hence a natural log transoformation was applied to `Ozone`.
 
-Coefficients:
-              Estimate Std. Error t value Pr(>|t|)    
-(Intercept) -0.2621323  0.5535669  -0.474 0.636798    
-Solar.R      0.0025152  0.0005567   4.518 1.62e-05 ***
-Wind        -0.0615625  0.0157130  -3.918 0.000158 ***
-Temp         0.0491711  0.0060875   8.077 1.07e-12 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+> Multiple linear regression was conducted on these variables, and model assumptions (CLINE) were met.
 
-Residual standard error: 0.5086 on 107 degrees of freedom
-  (42 observations deleted due to missingness)
-Multiple R-squared:  0.6644,    Adjusted R-squared:  0.655 
-F-statistic: 70.62 on 3 and 107 DF,  p-value: < 2.2e-16
-```
+> Solar radiation, wind speed and temperature are **significant predictors** of Ozone concentration (**p < 0.001**) with the model accounting for **66% of the variation** in weight. The model explained more variance than a one-predictor model and was found to be significantly better than the null model.
 
-Solar radiation, wind speed and temperature are **significant predictors** of Ozone concentration (**p < 0.001**) with the model accounting for **66% of the variation** in weight.
+# Abalone Quiz
 
+![](images/abalone.jpg)
 
-# Abalone: full example
+> Pop quiz! (No marks, just check your understanding.)
 
+## Context
 
+Abalone are marine snails that are a considered a delicacy and very expensive. The older the abalone, the higher the price. Age is determined by counting the number of rings in the shell. To do this, the shell needs to be cut, stained and viewed under a microscope - which is a lot of effort. It is also not possible if the abalone is sold live (not dried).
 
-## Data
+The dataset contains 9 variables: `sex`, `length`, `diameter`, `height`, `whole`, `shucked`, `viscera`, `shell`, and `rings`.
 
-Data from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/abalone).
+Note: `whole`, `shucked`, `viscera` and `shell` are weight measurements.
+
 
 ```{r}
-abalone <- read_csv("data/abalone.csv")
-glimpse(abalone)
+abalone <- read.csv("data/abalone.csv")
+
+set.seed(1113)          # reproducible randomness
+abalone <- abalone %>% 
+  select(-sex) %>%      # remove `sex` because it is categorical
+  sample_n(100)         # sample 100 observations for cleaner curve
+  
+str(abalone)
 ```
 
-## Preview
 
-```{r}
-#| fig.width: 10
-#| fig.height: 8
-#| out.width: 100%
-#| out.height: 700px
-psych::pairs.panels(abalone)
-```
+## Model and variable selection
 
-# Live coding session
-
-Data import → EDA → Model fitting → Diagnostics → Transform/Select → Interpret
-
-*Let's fit a model to predict the whole weight of abalone from other measured variables -- I will now switch to RStudio.*
-
-# And we're back!
-
-A quick recap on sub-sampling the dataset:
-
-```{r}
-set.seed(1113)
-abalone <- 
-  abalone %>%
-  select(-sex) %>%
-  sample_n(100)
-```
-
-## What we did
-
-- Fitted a model to predict the whole weight of abalone from other measured variables.
-- Performed a transformation of the response variable to improve model fit.
-- Checked the assumptions of the model.
-- Interpreted the model coefficients.
-- Interpreted the model fit.
-
-
-# Model complexity: overfitting
-> Why can't we just use ALL the predictors?
-
-## The problem with using too many predictors
-
-- The more predictors you add, the better the model fits the data.
-- However, the model may not be able to **generalise** to new data: **overfitting**.
-
-```{r}
-#| code-fold: true
-# abalone <-
-#   abalone %>%
-#   select(-sex)
-
-library(broom)
-
-full7 <- lm(sqrt(whole) ~ ., data = abalone)
-part6 <- update(full7, . ~ . - diameter)
-part5 <- update(part6, . ~ . - viscera)
-part4 <- update(part5, . ~ . - rings)
-part3 <- update(part4, . ~ . - length)
-part2 <- update(part3, . ~ . - height)
-part1 <- update(part2, . ~ . - shell)
-
-formulas <- c(part1$call$formula, 
-              part2$call$formula, 
-              part3$call$formula, 
-              part4$call$formula, 
-              part5$call$formula, 
-              part6$call$formula, 
-              full7$call$formula)
-
-rs <- bind_rows(glance(part1),
-                glance(part2),
-                glance(part3),
-                glance(part4),
-                glance(part5),
-                glance(part6),
-                glance(full7)) %>%
-  mutate(Model = formulas) %>%
-  select(Model, r.squared, adj.r.squared) %>%
-  mutate_if(is.numeric, round, 3)
-
-knitr::kable(rs)
-```
-
-## The r^2^ value
-
-The R-squared value is the proportion of variance explained by the model.
-
-$$ r^2 = \frac{SS_{reg}}{SS_{tot}} = 1 - \frac{SS_{res}}{SS_{tot}} $$
-
-The adjusted R-squared value is the proportion of variance explained by the model, adjusted for the number of predictors.
-
-$$ r^2_{adj} = 1 - \frac{SS_{res}}{SS_{tot}} \frac{n-1}{n-p-1} $$
-
-where $n$ is the number of observations and $p$ is the number of predictors.
-
-
-
-
-## Full model vs reduced model
-
-::::{.columns}
-:::{.column width="50%"}
-```{r}
-#| height: 500px
-full <- lm(sqrt(whole) ~ ., data = abalone)
-summary(full)
-```
-
-:::
-:::{.column width="50%"}
-```{r}
-#| height: 300px
-reduced <- lm(sqrt(whole) ~ shell + height + diameter, data = abalone)
-summary(reduced)
-```
-:::
-::::
-
-<br>
-
-- Is the 0.015 improvement in the adjusted R-squared -- *an extra 1.5% of the variance explained* -- worth the extra predictors? 
-- Recall: **principle of parsimony** - the simplest model that explains the data is the best.
-- But how do we know which predictors to keep?
-
-## Model selection
-
-- Covered in **second year (ENVX2001)**.
-- Using techniques of **stepwise regression**, we can select the best model from a set of "candidate" models.
-- If we have non-significant predictors, we can consider the effect of removing them from the model (**partial F-test**).
 - Aim is to achieve the best balance between **model fit** and **model complexity**.
+- Follow the rules of parsimony: the simplest model that explains the data is the best, given similar model fit.
+  - Consider the effect of removing non-significant predictors from the model.
+  - If model fit (i.e. R^2^) reduces drastically, keep the predictor, else keep culling.
+- Covered in more detail in **second year (ENVX2001)** (stepwise regression)
 
 ## Summary
 
-- MLR is an extension of SLR to include more than one predictor.
-  - Instead of a line, we are fitting a "hyperplane" i.e. multiple dimensions.
-  - However, the principles are the same: we are still trying to minimise the sum of squared residuals.
-  - Assumptions of MLR are the same as SLR.
-  - Instead of the multiple R-squared value, we use the adjusted R-squared value to assess model fit.
+:::: {.columns}
+::: {.column width="50%"}
 
-. . .
+**Multiple Linear Regression**
 
-- Follow the rules of parsimony: the simplest model that explains the data is the best, given similar model fit.
-  - Consider the effect of removing non-significant predictors from the model.
+- More than one predictor
+- Fit multiple dimensions (hyperplane)
+- Principle: minimise sum of squared residuals
+- Assumptions: CLINE (collinearity)
+- Adjusted R-squared
 
+:::
 
+::: {.column width="50%"}
+
+**Simple Linear Regression**
+
+- One predictor, fit a straight line
+- Fit straight line between y and x
+- Principle: minimise sum of squared residuals
+- Assumptions: LINE
+- Multiple R-squared
+
+:::
+::::
 
 # Thanks!
 
 This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
-
 
 <!-- Links -->
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
