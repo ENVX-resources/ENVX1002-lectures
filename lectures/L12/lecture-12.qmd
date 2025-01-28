@@ -1,7 +1,7 @@
 ---
 title: Topic 12 -- Non-linear regression
 author: Liana Pozza
-format: soles-revealjs
+# format: soles-revealjs
 embed-resources: true
 ---
 
@@ -12,6 +12,26 @@ pacman::p_load(tidyverse, cowplot, ggfortify, patchwork, broom, remotes, corrplo
 
 ggplot2::theme_set(cowplot::theme_half_open())
 ```
+
+## Module overview
+
+- [Week 9. Describing Relationships]{style="color: #D0D3D4;"}
+    + [Correlation (calculation, interpretation)]{style="color: #D0D3D4;"}
+    + [Regression (model structure, model fitting]{style="color: #D0D3D4;"}
+    + [What/when/why/how]{style="color: #D0D3D4;"}
+
+- [Week 10. Simple Linear Regression]{style="color: #D0D3D4;"}
+    + [Can we use the model?(assumptions, hypothesis testing)]{style="color: #D0D3D4;"}
+    + [How good is the model?(interpretation, model fit)]{style="color: #D0D3D4;"}
+    
+- [Week 11. Multiple Linear Regression]{style="color: #D0D3D4;"}
+    + [Multiple Linear Regression (MLR) modelling]{style="color: #D0D3D4;"}
+    + [Assumptions, interpretation and the principle of parsimony]{style="color: #D0D3D4;"}
+
+- **Week 12. Nonlinear Regression**
+    + Common nonlinear functions]
+    + Transformations]
+
 
 # Recap
 Last lecture...
@@ -46,7 +66,8 @@ where $f(x_i, \beta)$ is a nonlinear function of the parameters $\beta$: "How do
 ![](images/gauss.jpg)
 ![](images/netwon.jpg)
 
-*Carl Friedrich Gauss (1777-1855) and Isaac Newton (1642-1726).*
+> Carl Friedrich Gauss (1777-1855) and Isaac Newton (1642-1726)
+> Gauss-Newton approach to non-linear regression is most commonly used
 
 
 ## Fitting a nonlinear model
@@ -104,8 +125,11 @@ tibble(x = seq(0, 10, by = 0.2), y = x^2) %>%
 | **Properties** | $(a^n)^m = a^{n \cdot m}$, $a^n \cdot a^m = a^{n+m}$, $\frac{a^n}{a^m} = a^{n-m}$ | $\log_a(b \cdot c) = \log_a b + \log_a c$, $\log_a\left(\frac{b}{c}\right) = \log_a b - \log_a c$, $\log_a(b^n) = n \cdot \log_a b$ |
 
 
-## Dealing with nonlinearity
+:::{.callout-note}
+For your understanding, don't need to memorise.
+:::
 
+## Dealing with nonlinearity
 
 ### Transformations
 
@@ -188,9 +212,9 @@ ggplot(data = logistic, aes(x = predictor, y = response)) +
 
 Examples: growth of bacteria, disease spread, species growth.
 
-## Curvilinear relationship
+## Polynomial relationship
 
-Response variable changes in a variety of ways as the predictor variable changes.
+Response variable changes in a variety of ways as the predictor variable changes. Also known as 'curvilinear'.
 
 $$ y = a + bx + cx^2 + dx^3 + ... $$
 
@@ -345,7 +369,6 @@ autoplot(lm(log(response) ~ predictor, data = logistic)) +
 :::
 ::::
 
-
 ## Transformations: Curvilinear relationship
 
 ::::{.columns}
@@ -398,7 +421,8 @@ autoplot(lm(log(response) ~ predictor, data = curvilinear)) +
   - Relationships typically do not meet the linear assumption, but seem "ok" for other assumptions.
   - Poor fit to the data (over or underfitting in some areas).
   - Difficult to interpret the results.
-
+  
+![]("images/fit.jpg")
 
 ## Nonlinear regression
 
@@ -407,25 +431,13 @@ autoplot(lm(log(response) ~ predictor, data = curvilinear)) +
 - At least *one* predictor is not linearly related to the response variable.
 
 
-# Performing nonlinear regression
-> "You need to know a bit of *calculus*."
+## Performing nonlinear regression
 
-. . .
-
-![](images/nope.gif)
-
-
-## Wait!
-
-. . .
-
-- It's easier than you think in R.
 - **Polynomial regression**: still linear in the parameters and a good place to start.
 - **Nonlinear regression**: use the `nls()` function to fit the following nonlinear models:
   - Exponential growth
   - Exponential decay
   - Logistic
-
 
 # Polynomial regression
 > A special case of multiple linear regression used to model nonlinear relationships.
@@ -437,8 +449,9 @@ $$ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + ... + \beta_k x_i^k + \epsilon_
 where $k$ is the degree of the polynomial.
 
 - The model is still linear in the parameters $\beta$ and can be fitted using least squares.
-- Instead of multiple predictors, we have multiple *terms* of the same predictor.
+- Instead of multiple predictors, we have multiple *terms* of the same predictor (same $x$).
 - Can still be fit using `lm()`.
+- The more complex, the less likely it follows a true biological relationship...
 
 . . .
 
@@ -457,7 +470,7 @@ Using the `asymptotic` data
 
 See Slide 11 for the relationship and mathematical expression.
 
-```{r}
+```{r, warning=FALSE}
 ggplot(asymptotic, aes(x = predictor, y = response)) +
   geom_point() +
   labs(x = "Predictor", y = "Response")
@@ -479,7 +492,7 @@ ggplot(asymptotic, aes(x = predictor, y = response)) +
   geom_line(aes(y = predict(lin_fit)), color = "red", size = 2)
 ```
 
-## Fitting the model (poly order 2)
+## Fitting the model (`poly(degree = 2)`)
 
 $$ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \epsilon_i $$
 
@@ -496,7 +509,7 @@ ggplot(asymptotic, aes(x = predictor, y = response)) +
   geom_line(aes(y = predict(poly2_fit)), color = "slateblue", size = 2)
 ```
 
-## Fitting the model (poly order 3)
+## Fitting the model (`poly(degree = 3)`)
 
 $$ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \beta_3 x_i^3 + \epsilon_i $$
 
@@ -514,7 +527,7 @@ ggplot(asymptotic, aes(x = predictor, y = response)) +
   geom_line(aes(y = predict(poly3_fit)), color = "seagreen", size = 2)
 ```
 
-## Fitting the model (poly order 10)
+## Fitting the model (`poly(degree = 10)`)
 
 $$ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + ... + \beta_10 x_i^{10} + \epsilon_i $$
 
@@ -531,21 +544,44 @@ ggplot(asymptotic, aes(x = predictor, y = response)) +
   geom_line(aes(y = predict(poly2_fit)), color = "slateblue") +
   geom_line(aes(y = predict(poly3_fit)), color = "seagreen") +
   geom_line(aes(y = predict(poly10_fit)), color = "firebrick", size = 2)
+
+# 1) Compute R^2 values
+R2_lin    <- summary(lin_fit)$r.squared
+R2_poly2  <- summary(poly2_fit)$adj.r.squared
+R2_poly3  <- summary(poly3_fit)$adj.r.squared
+R2_poly10 <- summary(poly10_fit)$adj.r.squared
+
+# 2) Create a simple table (data frame)
+model_r2_table <- data.frame(
+  Model = c("Linear", "Poly2", "Poly3", "Poly10"),
+  R2    = c(R2_lin, R2_poly2, R2_poly3, R2_poly10)
+)
+
+# Display the table
+knitr::kable(
+  model_r2_table, 
+  digits  = 3, 
+  caption = "Comparison of R^2^ of Polynomial Models"
+)
 ```
 
+:::{.callout-note}
+We use adjusted R^2^ for polynomials - extra terms, extra complexity, so extra penalty.
+:::
 
 ## Limitations
 
 - Meaning of the coefficients is not always clear.
 - Extrapolation can be *dangerous*.
 - Extra terms can lead to overfitting and are difficult to interpret:
+- Parsimony: is the most complex term (highest power) significant? If not, remove.
 
 ```{r}
 summary(poly10_fit)
 ```
 
 
-### But:
+### Still:
 
 - Easy to fit: just add polynomial terms to the model.
 - Simple to perform: use `lm()`.
@@ -574,11 +610,11 @@ where $f(x_i, \beta)$ is a nonlinear function of the parameters $\beta$.
 
 ## Assumptions
 
-Like the linear model, the nonlinear model assumes:
+Like the linear model, the nonlinear model assumes *INE*:
 
-- Error terms are normally distributed (**Normality**).
 - Error terms are independent (**Independence**).
-- Error terms have constant variance (**Homoscedasticity**).
+- Error terms are normally distributed (**Normality**).
+- Error terms have equal/constant variance (**Homoscedasticity**).
 
 Basically:
 
@@ -587,7 +623,6 @@ $$ \epsilon_i \sim N(0, \sigma^2) $$
 . . .
 
 Like all other models we have seen, we focus on the residuals to assess the model fit, since the residuals are the only part of the model that is random.
-
 
 ## Estimating the model parameters
 
@@ -600,7 +635,7 @@ Like all other models we have seen, we focus on the residuals to assess the mode
 
 ---
 
-![](images/gauss-newton.gif)
+![](images/gauss-newton-clipped.gif)
 
 Source: [Wikipedia](https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm)
 
@@ -658,10 +693,6 @@ ggplot(data = asymptotic, aes(x = predictor, y = response)) +
   geom_point() + 
   geom_hline(yintercept = 100, linetype = "dashed") +
   geom_vline(xintercept = 0, linetype = "dashed") +
-  ## plot the rate
-  geom_segment(aes(x = 0, y = 0, xend = 0, yend = 100), 
-               arrow = arrow(length = unit(0.5, "cm")), 
-               color = "red") +
   labs(x = "Predictor", y = "Response") +
   geom_line(aes(y = predict(fit_asymptotic)), color = "red", size = 2)
 ```
@@ -681,25 +712,28 @@ summary(fit_asymptotic)
 ```
 
 - The model is significant since the p-value is less than 0.05 for all parameters.
+- If this were real data (e.g. population growth), the parameters themselves e.g. rate of change, are useful
 - The parameterised model is:
 
 $$ y = -14.5 + 113.04(1 - e^{-0.63x}) $$
-The R-square value is not reported for nonlinear models as the sum of squares is not partitioned into explained and unexplained components.
+The R-squared value is not reported for nonlinear models as the sum of squares is not partitioned into explained and unexplained components. You can use the **residual standard error** and plots instead to compare between models.
 
+## A really bad guess
 
-
-# Another example: Fitting a logistic model
-
-## Recap on logistic relationship
-
-$$ y = c + \frac{d-c}{1+e^{-b(x-a)}} $$
+What if we don't estimate our parameters very well? R will either give an error or get there eventually.
 
 ```{r}
-#| code-fold: true
-ggplot(data = logistic, aes(x = predictor, y = response)) +
-  geom_point() +
-  labs(x = "Predictor", y = "Response")
+fit_asymptotic <- nls(response ~ a + b*(1-exp(-c*predictor)), data = asymptotic, 
+  start = list(a = -100, b = 200, c = 15))
+
+summary(fit_asymptotic)
 ```
+
+:::{.callout-tip}
+If an error pops up, try different starting values - the **rate of change** is most likely the problem.
+:::
+
+# Another example: Fitting a logistic model
 
 ## Recap on logistic relationship
 
@@ -713,6 +747,7 @@ ggplot(data = logistic, aes(x = predictor, y = response)) +
   labs(x = "Predictor", y = "Response")
 ```
 
+> S or sigmoid-shaped curve
 
 ## Finding the starting values
 
@@ -756,22 +791,30 @@ $$ y = c + \frac{d-c}{1+e^{-b(x-a)}} $$
 - $a$ is the value of $x$ when $y$ is halfway between the lower and upper limits.
 - $b$ is the rate of change: the rate at which $y$ approaches the upper limit.
 
-<!-- ![](images/nope2.gif){fig-align="center"} -->
+```{r}
+fit_logistic <- nls(
+  response ~ c + (d - c) / (1 + exp(-b * (predictor - a))),
+  data = logistic,
+  start = list(c = 20, d = 300, b = 5, a = 5)
+)
 
-<center> **NOPE** </center>
+```
 
-# Automating the process (sort of)
+:::{.callout-note}
+It can be done this way, it is not the easiest way to do it.
+:::
 
-## Self-starting functions
+## How about a self-starting function?
 
-- The `nls()` function requires a formula and starting point(s) for the parameters.
-  - *How about starting to nope out...*
+- The `nls()` function requires a **formula** and **starting parameters**.
+
+![](images/nope.gif)
 
 :::{.fragment}
-### Wait!
+### Self-starting functions have entered the chat
 
 - Several self-starting functions are available in R that can be used to estimate the starting values.
-- These functions are named after the model they fit, e.g. `SSasymp()`, `SSlogis()`, `SSmicmen()`, `SSweibull()`, etc.
+- These functions are named after the model they fit, e.g. `SSasymp()`, `SSlogis()`, `SSexp` etc.
 
 :::
 
@@ -795,7 +838,7 @@ SSlogis(input, Asym, xmid, scal)
 - `xmid`: the value of $x$ when $y$ is halfway between the lower and upper limits.
 - `scal`: the rate of change.
 
-The equation ia *different*: see `?SSlogis`:
+The equation is *different*. It is a logistic growth curve and assumes the lowest possible value is 0 (`c = 0` in previous equation).
 
 $$ y = \frac{Asym}{1+exp \frac{xmid-input}{scal}} $$
 
@@ -804,7 +847,7 @@ $$ y = \frac{Asym}{1+exp \frac{xmid-input}{scal}} $$
 Other than `input`, the other parameters can be left to the function to estimate.
 
 ```{r}
-fit_logistic <- nls(response ~ SSlogis(predictor, Asym, xmid, scal), data = logistic)
+fit_logistic_ss <- nls(response ~ SSlogis(predictor, Asym, xmid, scal), data = logistic)
 ```
 
 ## What does the fit look like?
@@ -814,7 +857,9 @@ fit_logistic <- nls(response ~ SSlogis(predictor, Asym, xmid, scal), data = logi
 ggplot(data = logistic, aes(x = predictor, y = response)) +
   geom_point() +
   labs(x = "Predictor", y = "Response") +
-  geom_line(aes(y = predict(fit_logistic)), color = "red", size = 1)
+  geom_line(aes(y = predict(fit_logistic)), color = "red", size = 2) +
+  geom_line(aes(y = predict(fit_logistic_ss)), color = "blue", size = 1)
+
 ```
 
 ## Check the fit
@@ -826,10 +871,11 @@ plot(resids)
 
 ## Interpretation
 
+`SSlogis()` guessed the parameters on the first try.
+
 ```{r}
 summary(fit_logistic)
 ```
-
 
 # Back to asymptotic model
 
@@ -847,7 +893,7 @@ Comparing outputs:
 ggplot(data = asymptotic, aes(x = predictor, y = response)) +
   geom_point() +
   labs(x = "Predictor", y = "Response") +
-  geom_line(aes(y = predict(fit_asymptotic)), color = "red", size = 1) +
+  geom_line(aes(y = predict(fit_asymptotic)), color = "red", size = 2) +
   geom_line(aes(y = predict(fit_asymptotic_ss)), color = "blue", size = 1)
 ```
 
@@ -855,9 +901,11 @@ In some cases, the fits are identical, but in others, they are not.
 
 ## Summary
 
+::::{.columns}
+:::{.column width="50%"}
 - When fitting a nonlinear model, there are three possible approaches:
-   1. **Linearize** the model by transforming the response variable or predictor variable(s): 
-      - Fit: easy/difficult
+   1. **Linearise** the relationship by transforming the response or predictor: 
+      - Fit: easy
       - Interpret: difficult
    2. Approximate the model by adding **polynomial** terms: 
       - Fit: easy
@@ -865,16 +913,26 @@ In some cases, the fits are identical, but in others, they are not.
    3. Fit the model using a **nonlinear** least squares algorithm:
       - Fit: difficult
       - Interpret: easy
-  
+
+:::
+
+:::{.column width="50%"}
+:::{.fragment}
+
+![](images/brain.jpg)
+
+:::
+:::
+::::
+
 . . .
 
 - Nonlinear models:
   - Useful for modelling complex relationships.
-  - Require some understanding of the underlying relationship between the variables, especially asympotic and logistic models.
+  - Require some understanding of the underlying relationship (especially asympotic and logistic models)
   - Most useful when prediction is the goal, since we do not necessarily need to interpret the parameters to assess the model fit.
 
-
-# Bonus: How do we know which model is better?
+# How do we know which model is better? (Advanced)
 Note: this is non-examinable content but might be useful for your project.
 
 ## Example: polynomial regression
@@ -912,11 +970,11 @@ We can use prediction quality metrics to compare the fits.
 - [Akaike information criterion (AIC)](https://en.wikipedia.org/wiki/Akaike_information_criterion) and
 [Bayesian information criterion (BIC)](https://en.wikipedia.org/wiki/Bayesian_information_criterion).
   - Useful for comparing model fits.
+  - Has a penalty for more predictors
 - [root mean squared error (RMSE)](https://en.wikipedia.org/wiki/Root-mean-square_deviation)
 and [mean absolute error (MAE)](https://en.wikipedia.org/wiki/Mean_absolute_error).
-  - Useful for *assessing the quality* of the fit.
-
-
+  - Essentially the difference between observed and predicted (residuals).
+  - RMSE penalises larger residuals.
 
 ## AIC and BIC
 
@@ -935,43 +993,37 @@ poly_fits
 ```
 
 - The smaller the AIC or BIC, the better the fit compared to other models.
-- However, for better performance, **cross-validation is recommended** as it explains how well the model will perform on **new** data, rather than just assessing the fit to the data.
 
-## Cross-validation
-
-1. Split the data into training and testing sets.
-2. Fit the model to the training set.
-3. Predict the response variable using the testing set.
-4. Calculate the RMSE or MAE between the predicted and observed values.
-5. Repeat for each fold of the data.
-6. Average the RMSE or MAE across all folds.
-7. The model with the lowest RMSE or MAE is the best model.
-
-Looks like a lot of work, but it's easy in R using the `caret` package.
-
-## Performing cross-validation on the polynomial fits
+## Calculate RMSE and MAE
 
 ```{r}
-library(caret)
-ctrl <- trainControl(method = "cv", number = 10) # Set up control for 10-fold cross-validation
-# Fit models for degrees 1, 2, 3, and 10
-lin_fit <- train(response ~ predictor, data = asymptotic, method = "lm", trControl = ctrl)
-poly2_fit <- train(response ~ poly(predictor, 2), data = asymptotic, method = "lm", trControl = ctrl)
-poly3_fit <- train(response ~ poly(predictor, 3), data = asymptotic, method = "lm", trControl = ctrl)
-poly10_fit <- train(response ~ poly(predictor, 10), data = asymptotic, method = "lm", trControl = ctrl)
+#| code-fold: true
+predictions <- data.frame(
+  observed = asymptotic$response,
+  Linear = predict(lin_fit),
+  Poly_2 = predict(poly2_fit),
+  Poly_3 = predict(poly3_fit),
+  Poly_10 = predict(poly10_fit)
+)
 
-results <- resamples(list(linear = lin_fit, quadratic = poly2_fit, cubic = poly3_fit, poly10 = poly10_fit))
+errors <- predictions %>%
+  pivot_longer(cols = -observed, names_to = "Model", values_to = "Predicted") %>%
+  group_by(Model) %>%
+  summarise(
+    RMSE = sqrt(mean((observed - Predicted)^2)),
+    MAE = mean(abs(observed - Predicted))
+)
 
-# Extract mean RMSE and MAE
-MAE <- summary(results)$statistics$MAE[, 4] # select mean column only
-RMSE <- summary(results)$statistics$RMSE[, 4] # select mean column only
-knitr::kable(data.frame(MAE, RMSE))
+knitr::kable(errors, digits=2, caption = "Comparison of RMSE and MAE for different models")
 
 ```
 
-From the results, the cubic model has the lowest RMSE and MAE, so is the best model.
+- From the results, the polynomial to the degree of 10 has the lowest error - but visually we know it is overfitting, and the cubic polynomial is more parsimonius.
+- We can say the model has a prediction error of 10.25 units (RMSE) and 8.83 units (MAE).
 
-
+:::{.callout-note}
+Both the RMSE and MAE measure error on the same scale as the response variable. e.g. if the response variable is in kg, the error will be in kg.
+:::
 
 # Thanks!
 

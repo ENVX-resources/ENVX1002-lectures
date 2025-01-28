@@ -1,37 +1,24 @@
 ---
 title: Topic 9 -- Describing relationships
-author: Liana Pozza
-format: soles-revealjs
+author: Si Yang Han
+# format: soles-revealjs
 embed-resources: true
 ---
 
 # Quick intro
 
-## About me
+## About Me
 
 ::: {layout-ncol=2}
-- Lecturer in Agricultural Data Science
-- Spatial modelling and mapping, Soil science, Precision Agriculture
-- This year back to being a student again, GradCert (Higher Education)
+- Research topics: spatial modelling and mapping, precision agriculture, winter grains
+- Timeline at USYD
+  - BSc (Hons) in Agricultural Science
+  - PhD in Digital Agriculture
+  - Postdoc in Spatial Modelling
+  - Associate Lecturer in Agricultural Data Science
 
-![Narrabri cotton field](images/Pozza_natural_habitat.jpg)
+![Faba beans at Trangie](images/hello_world.jpeg)
 :::
-
-
-## Learning Outcomes
-
-- LO1. Demonstrate proficiency in utilizing R and Excel to effectively explore and describe data sets in the life sciences.
-
-- LO2. Evaluate and interpret different types of data in the natural sciences by visualising probability distributions and calculating probabilities using RStudio and Excel.
-
-- LO3. Apply parametric and non-parametric statistical inference methods to experimental data using RStudio and effectively interpret and communicate the results in the context of the data.
-
-- LO4. Apply both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.
-
-- LO5. Articulate statistical and modelling results clearly and convincingly in both written reports and oral presentations, working effectively as an individual and collaboratively in a team, showcasing the ability to convey complex information to varied audiences.
-
-
-
 
 ## Learning Outcomes
 
@@ -54,95 +41,100 @@ therefore, want students how to fit a regression model and be able to interpret
 
 ## Module overview
 
-- **Week 9. Describing relationships**
-    + Correlation &rarr; calculation, interpretation, things to watch out for
-    + Regression &rarr; Why do we care? model structure, model fitting
-  
-- **Week 10. Linear functions**
-    + Is the model worth fitting? &rarr; Assumptions, hypothesis testing
-    + How good is the model? &rarr; Measures of model fit
-  
-- **Week 11. Linear functions - multiple predictors** 
-    + Parsimonious models
-    + Introduction to Multiple Linear Regression (MLR) modelling
-    + Assumptions and interpretation
+- **Week 9. Describing Relationships**
+    + Correlation (calculation, interpretation)
+    + Regression (model structure, model fitting
+    + What/when/why/how
 
-- **Week 12. Nonlinear functions**
-    + Common nonlinear functions
-    + Transformations
-    + Performing nonlinear regression
+- [Week 10. Simple Linear Regression]{style="color: #D0D3D4;"}
+    + [Can we use the model?(assumptions, hypothesis testing)]{style="color: #D0D3D4;"}
+    + [How good is the model?(interpretation, model fit)]{style="color: #D0D3D4;"}
+    
+- [Week 11. Multiple Linear Regression]{style="color: #D0D3D4;"}
+    + [Multiple Linear Regression (MLR) modelling]{style="color: #D0D3D4;"}
+    + [Assumptions, interpretation and the principle of parsimony]{style="color: #D0D3D4;"}
+
+- [Week 12. Nonlinear Regression]{style="color: #D0D3D4;"}
+    + [Common nonlinear functions]{style="color: #D0D3D4;"}
+    + [Transformations]{style="color: #D0D3D4;"}
 
 ## Module overview
 
-- **Week 9. Describing relationships**
-    + Correlation &rarr; calculation, interpretation, things to watch out for
-    + Regression &rarr; Why do we care? model structure, model fitting
+- **Week 9. Describing Relationships**
+    + Correlation (calculation, interpretation)
+    + Regression (model structure, model fitting
+    + What/when/why/how
 
+## Example - Galton's Data
 
-
-# Brief history
-
-![Adrien-Marie Legendre](images/legendre.jpg)
-![Carl Friedrich Gauss](images/gauss.jpg)
-![Francis Galton](images/galton.jpg)
-![Karl Pearson](images/pearson.jpg)
-
-Adrien-Marie Legendre, Carl Friedrich Gauss, Francis Galton, & Karl Pearson
-
-
-
-
-## Least squares, correlation and astronomy
-
-- Method of least squares first [**published**]{style="color: firebrick"} paper by Adrien-Marie Legendre in 1805
-- Technique of least squares used by Carl Friedrich Gauss in 1809 to fit a parabola to the orbit of the asteroid Ceres
-- Model fitting first [**published**]{style="color: firebrick"} by Francis Galton in 1886 to the problem of predicting the height of a child from the height of the parents
-- **Karl Pearson developed the correlation coefficient in 1800s based on the work by Francis Galton**
-
-:::{.callout-note}
-Many other people contributed to the development of regression analysis, but these three are the "most" well-known.
-:::
-
-## Galton's data 
-
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(HistData)
-dplyr::tibble(Galton)
+head(Galton)
 ```
 
 - 928 children of 205 pairs of parents
-- Height of parents and children measured in inches
+- Average height of both parents and child measured in inches
 - Size classes were binned (hence data looks discrete)
 
----
+## Example - Galton's Data
 
-```{r}
+We can visually inspect the relationship between the two variables using a scatterplot:
+
+```{r, warning=FALSE, message=FALSE}
 library(ggplot2)
 ggplot(Galton, aes(x = parent, y = child)) +
     geom_point(alpha = .2, size = 3)
 ```
 
+... but this is not a very good way to assess the strength of the relationship between the two variables.
+
+Is the relationship:
+
+  - Linear?
+  - Positive or negative?
+  - Weak, moderate or strong?
+
+# Correlation
+
+The **correlation coefficient** is a number between -1 and 1 that describes the relationship between two **continuous** variables.
+
+- **Direction**: 
+  - Positive - both variables increase together
+  - Negative - one variable increases as the other decreases
+- **Strength**: 
+  - -1 &rarr; perfect negative relationship
+  - 0 &rarr; no relationship
+  - 1 &rarr; perfect positive relationship
+  - Common terms: *weak* (~0.1-0.3), *moderate* (~0.4-0.6) or *strong* (~0.7-1.0) -- useful but subjective!
+
+# Correlation
+
+![Karl Pearson](images/pearson.jpg)
+
+Karl Pearson developed the **correlation coefficient** in 1800s (based on the work by Francis Galton)
+
+Formula:
+
+$$ r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2 \sum_{i=1}^n (y_i - \bar{y})^2}} $$
+
+> covariance divided by the product of the standard deviations
+
+Pearson's *r* is:
+
+- The most commonly used correlation coefficient
+- For normally distributed data only (parametric)
+- For linear relationships only (i.e. a straight line)
+
+## Luckily we have Excel and R
+
+- Excel: `=CORREL()` formula, or use the Analysis Toolpak
+- R: `cor()` function
+  - By default this calculates Pearson's correlation coefficient
+  - Can also calculate other types of correlation (`cor(x, y, method = "spearman")`)
+
 ---
 
-```{r}
-library(ggplot2)
-ggplot(Galton, aes(x = parent, y = child)) +
-    geom_point(alpha = .2, size = 3) +
-    geom_smooth(method = "lm")
-```
-
-
-## Why do we care?
-
-- Correlations are useful for describing relationships between two **continuous** variables
-  - **Direction**: 
-    - positive - both variables increase together
-    - negative - one variable increases as the other decreases
-  - **Strength**: weak, moderate, strong -- *subjective*, but useful for *describing* the relationship
-
----
-
-```{r}
+```{r, warning=FALSE, message=FALSE}
 #| code-fold: true
 # Generate synthetic data
 set.seed(123)
@@ -159,119 +151,29 @@ p1 <- ggplot(data = data.frame(rainfall, plant_growth), aes(x = rainfall, y = pl
     geom_smooth(method = "lm", se = FALSE) +
     labs(
         title = "Positive correlation",
-        x = "Rainfall", y = "Plant growth",
-        subtitle = paste("Correlation coefficient: ", round(correlation_coef, 2))
+        x = "Rainfall", y = "Crop Yield",
+        subtitle = paste("Pearson's r: ", round(correlation_coef, 2))
     )
 
 # Generate synthetic data
 set.seed(123)
-phosphorous <- rnorm(100, mean = 50, sd = 10)
-chlorophyll_a <- 100 - phosphorous + rnorm(100, mean = 0, sd = 5)
+insulin <- rnorm(100, mean = 50, sd = 10)
+blood_glucose <- 100 - insulin + rnorm(100, mean = 0, sd = 5)
 
 # Calculate correlation coefficient
-correlation_coef <- cor(phosphorous, chlorophyll_a)
+correlation_coef <- cor(insulin, blood_glucose)
 
 # Plot data using ggplot2
-p2 <- ggplot(data = data.frame(phosphorous, chlorophyll_a), aes(x = phosphorous, y = chlorophyll_a)) +
+p2 <- ggplot(data = data.frame(insulin, blood_glucose), aes(x = insulin, y = blood_glucose)) +
     geom_point() +
     geom_smooth(method = "lm", se = FALSE) +
     labs(
         title = "Negative correlation",
-        x = "Phosphorous", y = "Chlorophyll-a",
-        subtitle = paste("Correlation coefficient: ", round(correlation_coef, 2))
+        x = "Insulin", y = "Blood Glucose",
+        subtitle = paste("Pearson's r: ", round(correlation_coef, 2))
     )
 library(patchwork)
-p1 + p2
-```
 
-
-## What can correlation analysis be used for?
-
-- **Describing** the *possible* linear relationship between two variables
-- Used *extensively* in exploratory data analysis: because it is *fast* and *easy* to calculate.
-
----
-
-### E.g. what is the correlation between all continuous variables in the `iris` dataset?
-
-::: {.fragment}
-:::: {.columns}
-::: {.column width="50%"}
-
-```{r}
-cor(iris[, -5])
-```
-:::
-
-::: {.column width="50%"}
-
-```{r}
-plot(iris[, -5])
-```
-
-:::
-::::
-
-- We can essentially use correlation analysis to *identify* variables that are useful for *predicting* another variable, or if they will present issues for *model fitting* i.e. multicollinearity.
-:::
-
-## Different types of correlation coeefficients
-
-- Parametric (normally distributed data):
-  - Pearson correlation coefficient
-    - most commonly used
-
-- Non-parametric (non-normally distributed data):
-  - Spearman rank correlation coefficient
-  - Kendall's tau
-  - more conservative i.e. values are often *smaller*, but more robust to outliers
-
-## Pearson correlation coefficient
-
-Formula:
-
-$$ r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2 \sum_{i=1}^n (y_i - \bar{y})^2}} $$
-
-. . .
-
-![](images/wtf.gif){fig-align="center" height=250}
-
-. . .
-
-> covariance divided by the product of the standard deviations
-
-## Luckily we have Excel and R
-
-- Excel: `=CORREL()` formula, or use the analysis toolpak
-- R: `cor()` function
-
-```{r}
-cor(Galton$parent, Galton$child)
-```
-
-We can also visually inspect the relationship between the two variables using a scatterplot:
-
-```{r}
-ggplot(Galton, aes(x = parent, y = child)) +
-    geom_point(alpha = .2, size = 3)
-```
-
-... but this is not a very good way to assess the strength of the relationship between the two variables.
-
-## Interpretation: strong
-
-```{r}
-#| echo: false
-p1 + p2
-```
-
-A **strong** relationship is one where the correlation coefficient is close to 1 or -1.
-
-
-## Interpretation: weak
-
-```{r}
-#| echo: false
 # Set the seed for reproducibility
 set.seed(1249)
 
@@ -282,51 +184,95 @@ df1 <- data.frame(x, y) # combine the two variables into a dataframe
 correlation_coef <- cor(x, y) # calculate the correlation coefficient
 
 # Scatter plot
-p1 <- ggplot(df1, aes(x, y)) +
+p3 <- ggplot(df1, aes(x, y)) +
     geom_point() +
     geom_smooth(method = "lm", se = FALSE) +
     labs(
         title = "Weak/no correlation",
-        x = "x", y = "y",
-        subtitle = paste("Correlation coefficient: ", round(correlation_coef, 2))
+        x = "Shoe Size", y = "IQ",
+        subtitle = paste("Pearson's r: ", round(correlation_coef, 2))
     )
 
-p1
+p1 + p3 + p2
 ```
+
+(Note: not real data)
 
 A **weak** or **nonexistent** relationship is one where the correlation coefficient is close to 0.
 
-## Interpretation: numbers
+A **moderate** relationship falls closer to 0.5.
 
-```{r}
-cor(iris[, -5])
-```
+A **strong** relationship is one where the correlation coefficient is close to -1 or 1.
 
-- It is enough to deduce the *strength* of the relationship from the correlation coefficient value(s) alone.
-- **Not reliable** for *inference* about the relationship between variables. For this **you must visualise**.
+The exact values are subjective and vary between fields of study
 
+## Example - Galton's Data
 
-## Anscombe's quartet
+::: {.columns}
+::: {.column width="50%"}
+![Galton's Results](images/galton_corr.jpg)
+:::
+::: {.column width="50%"}
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 #| code-fold: true
-library(tidyverse)
-anscombe %>%
-    pivot_longer(everything(),
-        cols_vary = "slowest",
-        names_to = c(".value", "set"), names_pattern = "(.)(.)"
-    ) %>%
-    ggplot(aes(x = x, y = y)) +
-    geom_point(size = 3) +
-    geom_smooth(method = "lm", se = FALSE) +
-    facet_wrap(~set, ncol = 4)
+library(ggplot2)
+ggplot(Galton, aes(x = parent, y = child)) +
+    geom_point(alpha = .2, size = 3)
+
+```
+::: 
+:::
+```{r}
+cor(Galton$parent, Galton$child)
 ```
 
-*All of these data have a correlation coefficient of about 0.8.*
+Is the relationship:
+
+  - Linear? [**Seems to be**]{style="color: firebrick"}
+  - Positive or negative? [**Positive**]{style="color: firebrick"}
+  - Weak, moderate or strong? [**Moderate**]{style="color: firebrick"}
+
+In words: "There is a moderate positive linear relationship between the height of parents and the height of their children."
+
+## Anscombe's Quartet
+
+A set of four datasets that are nearly identical in simple descriptive statistics but have very different distributions.
+
+```{r, warning=FALSE, message=FALSE}
+#| code-fold: true
+
+library(tidyverse)
+
+# Compute Pearson, Spearman, and Kendall correlations for each set
+cor_values <- anscombe %>%
+  pivot_longer(everything(),
+               names_to = c(".value", "set"),
+               names_pattern = "(.)(.)") %>%
+  group_by(set) %>%
+  summarise(
+    pearson = cor(x, y, method = "pearson"))
+
+# Create the plot with the correlation values added as text annotations
+anscombe %>%
+  pivot_longer(everything(),
+               names_to = c(".value", "set"),
+               names_pattern = "(.)(.)") %>%
+  ggplot(aes(x = x, y = y)) +
+  geom_point(size = 4) +
+  facet_wrap(~set, ncol = 4) +
+  # Add text annotations for Pearson, Spearman, and Kendall correlations
+  geom_text(data = cor_values, aes(x = 8, y = 4, label = 
+    paste("Pearson: ", round(pearson, 2))),
+    inherit.aes = FALSE, size = 3.5, color = "black", hjust = 0)
+
+```
+
+Correlation coefficients are **not reliable** in inferring the 'type' of relationship between variables -- we must visualise
 
 ## Datasaurus Dozen
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 #| code-fold: true
 library(datasauRus)
 ggplot(datasaurus_dozen, aes(x = x, y = y)) +
@@ -337,34 +283,143 @@ ggplot(datasaurus_dozen, aes(x = x, y = y)) +
 
 *All of these data have a correlation coefficient close to zero!*
 
+## Monotonic vs linear relationships
+
+- **Monotonic**: a relationship that is consistently increasing or decreasing
+- **Linear**: a relationship that is increasing or decreasing at a *constant rate* i.e. a straight line
+
+Pearson's correlation is only for linear relationships.
+
+**Spearman's rank** and **Kendall's tau** are correlation coefficients for all monotonic relationships.
+
+- Works with non-parametric data
+- More 'conservative' i.e. values can be smaller in magnitude, but more robust against outliers
+
+```{r}
+#| code-fold: true
+library(tidyverse)
+
+set.seed(123)
+x <- seq(0, 10, length.out = 100)
+x_length <- length(x)
+
+# Create the data for each relationship
+y_straight <- 2 * x + 5
+y_exponential <- exp(x)
+y_log <- logb(x+1, base = 2)
+y_sigmoid <- 1 / (1 + exp(-x))
+y_quadratic <- -1 * (x - 5)^2 + 100
+y_polynomial <- x^3 - 4 * x^2 + 3 * x + 2
+
+# Function to scale y-values to a specific range [0, 100]
+scale_to_range <- function(y_values, new_min = 0, new_max = 100) {
+  old_min <- min(y_values)
+  old_max <- max(y_values)
+  scaled_values <- (y_values - old_min) / (old_max - old_min) * (new_max - new_min) + new_min
+  return(scaled_values)
+}
+
+# Apply scaling to each relationship
+y_straight_scaled <- scale_to_range(y_straight)
+y_exponential_scaled <- scale_to_range(y_exponential)
+y_log_scaled <- scale_to_range(y_log)
+y_sigmoid_scaled <- scale_to_range(y_sigmoid)
+y_quadratic_scaled <- scale_to_range(y_quadratic)
+y_polynomial_scaled <- scale_to_range(y_polynomial)
+
+# Combine the data into a tibble
+data <- tibble(
+  x = rep(x, 6),
+  y = c(y_straight_scaled, y_exponential_scaled, y_log_scaled, y_sigmoid_scaled, y_quadratic_scaled, y_polynomial_scaled),
+  type = rep(c("Straight Line", "Exponential", "Log Curve", "Sigmoid Curve", "Quadratic Line", "Polynomial"), each = x_length)
+)
+
+# Calculate the correlation coefficients for each relationship type
+cor_values <- data %>%
+  group_by(type) %>%
+  summarise(
+    pearson = cor(x, y, method = "pearson"),
+    spearman = cor(x, y, method = "spearman"),
+    kendall = cor(x, y, method = "kendall")
+  )
+
+# Plot the data and add correlation coefficients
+ggplot(data, aes(x = x, y = y)) +
+  geom_line() +
+  facet_wrap(~type, scales = 'free') +
+  geom_text(data = cor_values, aes(x = 3, y =25, label = 
+                                    paste("Pearson: ", round(pearson, 2), 
+                                          "\nSpearman: ", round(spearman, 2),
+                                          "\nKendall: ", round(kendall, 2))),
+            inherit.aes = FALSE, size = 4, color = "black", hjust = 0) +
+  theme_minimal()
+
+```
+
+## Example - `iris` Dataset
+
+![](images/iris_example.png)
+
+```{r}
+head(iris)
+```
+
+## Example - `iris` Dataset
+
+Which correlation coefficient do we use?
+
+```{r}
+plot(iris[,-5])
+```
+
+### Example - `iris` Dataset
+
+```{r}
+cor(iris[,-5]) |> round(2)
+```
+
+Correlation analysis **identifies** variables that have a strong linear relationship **quickly and easily**.
+
+- We want to *predict* the `Petal.Width` of an iris flower
+- Which variables would be *good predictors*? 
+  - Either `Petal.Length` and `Sepal Length` would be good predictors
+- Which variables are likely to present issues for *model fitting*?
+  - e.g. `Petal.Length` and `Sepal Length` are strongly correlated - including both would cause multicollinearity -- (L11 MLR)
+
 # Correlation $\neq$ causation
 
 [Spurious correlations](https://www.tylervigen.com/spurious-correlations): a relationship between two variables does not imply that one causes the other.
 
-![](images/cell_phones.png)
+![](images/correlation_causation.jpg)
 
 ## What comes after correlation?
 
-- First, a summary:
-  - Correlation analysis is a *fast* and *easy* way to *describe* the *possible* linear relationship between two variables
-  - But, we can't infer causation: **domain knowledge is required to interpret the results**
-    - Are we expecting a relationship between the two variables?
-    - Do you have a *hypothesis* about the relationship between the two variables?
+- We have data with two or more numerical variables
+- We conduct correlation analysis to describe *possible* linear relationships
+  - Fast, easy, interpretable, and widely used
+
+But, we can't infer causation:
+- Is there *reason() to expect a relationship between the two variables?
+- Do you have a *hypothesis* about the relationship between the two variables?
 
 If we have a hypothesis about the relationship between two variables, we can use **regression analysis** to test it.
 
+
 # Regression modelling
 
-- Regression analysis is a *statistical* method for *predicting* an outcome based on a predictor variable
-- We can *also* use regression analysis to **test our hypothesis** about the relationship between two variables
+- Regression is a *statistical* method to fit a model to data
+- In linear regression this is a straight line that best fits the data -- i.e. line of best fit
 
 ## Why regression?
 
 . . .
 
 ### Describe the relationship between two variables
-
 What is the relationship between a response variable $Y$ and a predictor variable $x$?
+
+Common Terms:
+$Y$ = response, independent variable, target, outcome etc.
+$x$ = predictor, dependent variable, feature, input etc.
 
 ### Explain the relationship between two variables
 How much variation in $Y$ can be explained by a relationship with $x$?
@@ -372,12 +427,14 @@ How much variation in $Y$ can be explained by a relationship with $x$?
 ### Predict the value of a response variable
 What is the value of $Y$ for a given value of $x$?
 
+Often we can easily measure/obtain $x$ but not $Y$, so we need to *predict* $Y$ from $x$.
+
 ## A gateway to the world of modelling
 
 Many types of regression models exist:
 
-- Simple linear regression
-- Multiple linear regression
+- **Simple linear regression (one predictor i.e. $x$)**
+- Multiple linear regression (more than one predictor)
 - Non-linear regression, using functions such as polynomials, exponentials, logarithms, etc.
 
 . . .
@@ -390,7 +447,7 @@ Asking ChatGPT for help with the next slide:
 
 ## Visualising regression models
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 #| code-fold: true
 library(ggplot2)
 
@@ -409,10 +466,9 @@ ggplot(data.frame(x = x, y = y), aes(x, y)) +
 
 ```
 
-
 ## Visualising regression models
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 #| code-fold: true
 library(ggplot2)
 
@@ -479,74 +535,70 @@ ggplot(data.frame(x = x, y = y), aes(x, y)) +
     geom_point(alpha = .2) +
     xlab("X") +
     ylab("Y") +
-    scale_color_discrete(name = "Model Type") +
+    scale_color_discrete(name = "Model Type") +   # This line adds the title to the legend
     ylim(-6000, 15000) +
-    theme(legend.position = "none")
+    theme(legend.position = "right")  # Modify this to display the legend (default position is 'right')
 
 ```
 
 
 ## Example: climate change modelling
 
-![](images/anomalies.png)
+![](images/anomalies.jpg)
 
 [Source: https://science2017.globalchange.gov/chapter/4/](https://science2017.globalchange.gov/chapter/4/)
 
-
 ## Example: COVID-19 transmission modelling
 
-![](images/covid.jpg){width=75%}
+![](images/covid.jpg)
 
 [Source: https://www.nature.com/articles/s41598-021-84893-4/figures/1](https://www.nature.com/articles/s41598-021-84893-4/figures/1)
 
+# How does regression work?
 
+![Adrien-Marie Legendre](images/legendre.jpg)
+![Carl Friedrich Gauss](images/gauss.jpg)
+![Francis Galton](images/galton.jpg)
+Adrien-Marie Legendre, Carl Friedrich Gauss, Francis Galton
 
+:::{.callout-note}
+Many other people contributed to the development of regression analysis, but these three are the "most" well-known.
+:::
 
-<!-- 
+- **Method of least squares** first theorised by Adrien-Marie Legendre in 1805
+- **Technique of least squares** first used by Carl Friedrich Gauss in 1809 (to fit a parabola to the orbit of the asteroid Ceres)
+- **Model fitting** first published by Francis Galton in 1886 (predicting the height of a child from the height of the parents)
 
-## Regression modelling in R
+## Least Squares
 
-. . .
+When we fit a line, there is error between the observed value and the predicted value.
 
-```{r}
-fit <- lm(child ~ parent, data = Galton)
-summary(fit)
-```
+![](images/ss_error.jpg)
 
-<br> 
+The **method of least squares** fits a line of best fit by minimising the sum of the squared errors.
 
-That's it... you have fitted a model! 
+:::{.callout-note}
+The *error is squared* to ensure that positive and negative errors do not cancel each other out.
+:::
 
-. . .
+![](images/ss_error_pair.jpg)
+Which line fits the data better?
 
-:::{.callout-caution}
-### Question
-But how do we assess the quality of the model?
-::: -->
+## How does a computer fit a line of best fit?
 
+![](images/leastsquares.gif)
 
-<!-- ```{r}
-library(report)
-report(fit)
-```  -->
+The line is fitted again and again until the squared error stabilises. A computer can do this very quickly!
 
-# Simple linear modelling
+# Simple linear regression
 
-## Defining a linear relationship {.nostretch}
+> The goal is to fit the line of best fit between two numerical variables.
 
--  Pearson correlation coefficient measures the linear correlation between two variables
-- Does not distinguish different *patterns* of association, only the *strength* of the association
+![](images/linear equation.jpg)
 
-![](images/correlation.png)
+## Simple linear regression model {auto-animate="true"}
 
-- Not quite usable for *predictive* modelling, or for *inference* about the relationship between variables
-
-
-
-
-## Simple linear regression modelling {auto-animate="true"}
-
-We want to predict an outcome $Y$ based on a predictor $x$ for $i$ number of observations: 
+We want to relate the response $Y$ to a predictor $x$ for $i$ number of observations: 
 
 $$Y_i = \color{royalblue}{\beta_0 + \beta_1 x_i} +\color{red}{\epsilon_i}$$
 
@@ -555,107 +607,179 @@ where
 $$\epsilon_i \sim N(0, \sigma^2)$$
 
 - $Y_i$, the *response*, is an observed value of the dependent variable.
-- $\beta_0$, the *constant*, is the population intercept and is **fixed**.
+- $\beta_0$, the *constant*, is the y-intercept and is **fixed**.
 - $\beta_1$ is the population *slope* parameter, and like $\beta_0$, is also **fixed**.
 - $\epsilon_i$ is the error associated with predictions of $y_i$, and unlike $\beta_0$ or $\beta_1$, it is *not fixed*.
 
-. . .
-
 :::{.callout-note}
-[We tend to associate $\epsilon_i$ with the **residual**, which is a positive or negative difference from the "predicted" response, rather than error itself which is a difference from the **true** response]{style="color: red;"}
+[We generally associate $\epsilon_i$ with the **residual**, which is a positive or negative difference between the "observed" value and the "predicted" response. *True* error is caused during data collection (e.g. faulty instruments, selection bias, etc.) and is almost impossible to calcualte.]{style="color: red;"}
 :::
 
-## In pictures...
+Different ways to think about the response:
 
-![](images/SLR_plot_description.png)
-
-
-## Interpreting the relationship {auto-animate="true"}
-
-$$Y_i = \color{royalblue}{\beta_0 + \beta_1 x_i} +\color{red}{\epsilon_i}$$
-
-[Basically, a *deterministic* straight line equation $y = c + mx$, with added *random* variation that is normally distributed]{style="color: seagreen;"}
-
-. . .
-
-- Response = [Prediction]{style="color: royalblue"} + [Error]{style="color: red"}
-- Response = [Signal]{style="color: royalblue"} + [Noise]{style="color: red"}
-- Response = [Model]{style="color: royalblue"} + [Unexplained]{style="color: red"}
-- Response = [Deterministic]{style="color: royalblue"} + [Random]{style="color: red"}
-- Response = [Explainable]{style="color: royalblue"} + [Everything else]{style="color: red"}
-
-. . .
-
-- Y = f(x)
-- Dependent variable = f(Independent variable)
-
+  - Response = [Prediction]{style="color: royalblue"} + [Error]{style="color: red"}
+  - Response = [Signal]{style="color: royalblue"} + [Noise]{style="color: red"}
+  - Response = [Model]{style="color: royalblue"} + [Unexplained]{style="color: red"}
+  - Response = [Deterministic]{style="color: royalblue"} + [Random]{style="color: red"}
+  - Response = [Explainable]{style="color: royalblue"} + [Everything else]{style="color: red"}
+  - Y = f(x)
+  - Dependent variable = f(Independent variable)
 
 ## The variation in the response
 
 ![](images/residual.jpg)
 
+> For a given 'x', there is a range of 'y' values that are possible.
+
+> e.g. For a given parent height, there is a range of child heights that are possible.
+
 ## Model fitting
 
 Two approaches; analytical and numerical: 
 
-Analytical:  equation(s) used directly to find solution, e.g. estimate parameters that minimise residual sum of squares
+- **Analytical**:  equation(s) used directly to find solution
+- **Numerical**:  computer uses “random guesses” to find set of parameters to that minimises objective function, in this case residual sum of squares
 
-Numerical:  computer uses “random guesses” to find set of parameters to that minimises objective function, in this case residual sum of squares
+## Analytical: Residuals, $\hat \epsilon$
 
-In this week's practical we will use Solver in Excel to numerically fit linear models.
-
-<!-- 
-## Fitting the model {auto-animate="true"}
-
-- The *residual* is the difference between the observed value of the response and the predicted value:
-
-$$\hat\epsilon_i = y_i - \color{royalblue}{\hat{y}_i}$$
+$$ \color{firebrick}{\hat{\epsilon_i}} = \color{royalblue}{y_i} - \color{forestgreen}{\hat{y_i}} $$
 
 . . .
 
-where $\color{royalblue}{\hat{y}_i}$ is the predicted value of $y_i$:
+```{r, warning=FALSE, message=FALSE}
+#| code-fold: true
+# simulate example data
+set.seed(340)
+x <- runif(8, 0, 30)
+y <- 5 * x + rnorm(8, 0, 40)
+df <- data.frame(x, y)
 
-$$\color{royalblue}{\hat{y}_i} = \beta_0 + \beta_1 x_i$$
+# fit linear model, add residual vertical lines as arrows
+mod <- lm(y ~ x, data = df)
+p1 <- ggplot(df, aes(x, y)) +
+  geom_point() +
+  geom_segment(aes(xend = x, yend = fitted(mod)),
+    arrow = arrow(length = unit(0.2, "cm")),
+    color = "royalblue"
+  ) +
+  labs(x = "x", y = "y")
 
-. . .
+p1 +
+  geom_smooth(method = "lm", se = FALSE, color = "firebrick") +
+  annotate("text",
+    x = 6.3, y = -6, size = 7,
+    label = expression(hat(epsilon[i])), colour = "royalblue"
+  ) +
+  annotate("text",
+    x = 5.6, y = 25, size = 7,
+    label = expression(hat(y[i])), colour = "forestgreen"
+  ) +
+  annotate("text",
+    x = 5.6, y = -36, size = 7,
+    label = expression(y[i]), colour = "firebrick"
+  ) +
+  theme_classic()
+```
 
-therefore:
+## Analytical: Slope, $\beta_1$
 
-$$\hat\epsilon_i = y_i - \color{royalblue}{(\beta_0 + \beta_1 x_i)}$$
+<!-- $$ Y_i = \beta_0 + \beta_1 x_i + \epsilon_i $$ -->
 
-. . .
+$$ \beta_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2} =  \frac{Cov(x,y)}{Var(x)} = \frac{SS_{xy}}{SS_{xx}} $$
 
-- We use the **method of least squares** and minimise the sum of the squared residuals (SSR):
+```{r, warning=FALSE, message=FALSE}
+#| code-fold: true
+# Calculate slope from df
+beta1 <- sum((df$x - mean(df$x)) * (df$y - mean(df$y))) /
+  sum((df$x - mean(df$x))^2)
+# beta0 <- mean(df$y) - beta1 * mean(df$x)
 
-$$\sum_{i=1}^n \hat\epsilon_i^2 = \sum_{i=1}^n (y_i - \color{royalblue}{(\beta_0 + \beta_1 x_i)})^2$$
+p1 +
+  geom_smooth(method = "lm", se = FALSE, color = "firebrick", linetype = 2) +
+  # label the line
+  annotate("text",
+    x = 15, y = 65, size = 7,
+    label = expression(beta[1]), colour = "firebrick"
+  ) +
+  theme_classic()
 
-## {auto-animate="true"}
-
-$$\sum_{i=1}^n \hat\epsilon_i^2 = \sum_{i=1}^n (y_i - \color{royalblue}{(\beta_0 + \beta_1 x_i)})^2$$
-
-. . .
-
-Finding the minimum SSR requires solving the following problem:
-
-$$\color{firebrick}{argmin_{\beta_0, \beta_1}} \sum_{i=1}^n (y_i - \color{royalblue}{(\beta_0 + \beta_1 x_i)})^2$$
-
-## {auto-animate="true"}
-
-$$\color{firebrick}{argmin_{\beta_0, \beta_1}} \sum_{i=1}^n (y_i - \color{royalblue}{(\beta_0 + \beta_1 x_i)})^2$$
+```
 
 
-![[source](https://github.com/Enchufa2/ls-springs)](images/leastsquares.gif){fig-align="center"} -->
-  
-# Inference: back to Galton's data
+<!-- $$ \beta_0 = \bar{y} - \beta_1 \bar{x} $$ -->
 
-What can we understand about the relationship between `child` and `parent`?
+## Analytical: Intercept
+
+$$ \beta_0 = \bar{y} - \beta_1 \bar{x} $$
+
+```{r, warning=FALSE, message=FALSE}
+#| code-fold: true
+# calculate mean y from df
+ybar <- mean(df$y)
+xbar <- mean(df$x)
+beta0 <- ybar - beta1 * xbar
+
+p1 + geom_vline(xintercept = xbar, linetype = "dashed", color = "slateblue") +
+  geom_hline(yintercept = ybar, linetype = "dashed", color = "slateblue") +
+  # label the lines
+  annotate("text",
+    x = 25, y = ybar * 0.8, size = 7,
+    label = expression(bar(y)), colour = "slateblue"
+  ) +
+  annotate("text",
+    x = xbar * 1.05, y = 150, size = 7,
+    label = expression(bar(x)), colour = "slateblue"
+  ) +
+  geom_smooth(method = "lm", se = FALSE, color = "firebrick", linetype = 2) +
+  # extend the geom_smooth line to intercept x=0
+  geom_segment(aes(x = xbar, y = ybar, xend = 0, yend = beta0),
+    color = "firebrick", linetype = 2
+  ) +
+  # label the slope line
+  annotate("text",
+    x = 15, y = 65, size = 7,
+    label = expression(beta[1]), colour = "firebrick"
+  ) +
+  # add a dot at the intercept
+  geom_point(aes(x = 0, y = beta0), color = "seagreen", size = 3) +
+  # label the intercept
+  annotate("text",
+    x = 0, y = beta0 * 1.4, size = 7,
+    label = expression(beta[0]), colour = "seagreen"
+  ) +
+  theme_classic()
+
+```
+
+
+# Example: back to Galton's data
+
+What can we understand about the relationship between `child height` and `parent height`?
+
+> Let's do this in R - much easier
+
+## Linearity check
+
+Recap - there appears to be a linear relationship between `child height` and `parent height` (plot). This is a moderately positive relationship (correlation).
+
+```{r}
+#| code-fold: true
+library(ggplot2)
+ggplot(Galton, aes(x = parent, y = child)) +
+    geom_point(alpha = .2, size = 3)
+
+cor(Galton$parent, Galton$child)
+```
 
 ## Hypothesis testing
 
-- How does our null ($H_0: \beta_1=0$) model compare to the linear ($H_0: \beta_1 \neq 0$) model?
-- Null model thinks the data can be summarised by the mean $\bar{y}$, and the linear model thinks the data can be summarised by the estimate $\hat{y}$.
+- The **null hypothesis** for a linear model: $H_0: \beta_1=0$
+  - If there is no slope ($\beta_1=0$) then $y = \beta_0$ (the mean)
+  - i.e. is the mean ($\bar{y}$) a better fit than a linear model?
+- The **alternative hypothesis** for a linear model: $H_0: \beta_1 \neq 0$
+  - i.e. the estimate from the linear model ($\hat{y}$) fits the data better than the mean ($\bar{y}$)
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 #| code-fold: true
 
 null_model <- Galton %>%
@@ -665,15 +789,15 @@ lin_model <- Galton %>%
   lm(child ~ parent, data = .) %>%
   broom::augment(Galton)
 models <- bind_rows(null_model, lin_model) %>%
-  mutate(model = rep(c("Null model", "SLR model"), each = nrow(Galton)))
+  mutate(model = rep(c("Null Model", "SLR model"), each = nrow(Galton)))
 
 ggplot(data = models, aes(x = parent, y = child)) +
   geom_smooth(
-    data = filter(models, model == "Null model"),
+    data = filter(models, model == "Null Model"),
     method = "lm", se = FALSE, formula = y ~ 1, size = 0.5
   ) +
   geom_smooth(
-    data = filter(models, model == "SLR model"),
+    data = filter(models, model == "SLR Model"),
     method = "lm", se = FALSE, formula = y ~ x, size = 0.5
   ) +
   geom_segment(
@@ -687,7 +811,9 @@ ggplot(data = models, aes(x = parent, y = child)) +
   ylab("Child height (in)")
 ```
 
-## Simple linear regression in one step
+## Simple linear regression
+
+We fit the model in one simple line of code:
 
 ```{r}
 fit <- lm(child ~ parent, data = Galton)
@@ -703,20 +829,25 @@ And then we can use `summary()` to get a summary of the model:
 summary(fit)
 ```
 
-
 ## Summary
 
-- Correlation is a measure of the strength of the linear relationship between two variables.
-- Correlation coefficient provides information on strength and direction of the linear relationship.
-- Correlation $\neq$ causation.
-- Regression models the relationship between a dependent variable and independent variable(s) - fits a line or function to the data.
-  - Using the method of least squares, we can find the line that minimises the sum of the squared residuals.
-- Both Excel and R can be used to fit regression models.
+Correlation is a measure of the relationship between two numerical variables between -1 and 1.
+
+  - A correlation coefficient measures the *strength* and *direction* of the relationship.
+  - Pearson's correlation is for linear relationships, Spearman's/Kendall's correlation is for monotonic relationships.
+  - Correlation $\neq$ causation.
+  
+  
+Regression is an analysis that models the relationship between a dependent variable and independent variable(s).
+
+  - The most common method for regression is least squares, which minimises the sum of the squared residuals.
+  - Simple linear regression fits a straight line between two variables.
+  
+> Next week: interpreting results and assumptions for simple linear regression.
 
 # Thanks!
 
 This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
-
 
 <!-- Links -->
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
