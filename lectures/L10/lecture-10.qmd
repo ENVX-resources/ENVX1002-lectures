@@ -1,6 +1,6 @@
 ---
-title: Topic 10 -- Linear functions
-author: Liana Pozza
+title: Topic 10 -- Simple Linear Regression
+author: Si Yang Han
 format: soles-revealjs
 embed-resources: true
 ---
@@ -20,17 +20,33 @@ pacman::p_load(tidyverse, cowplot, HistData, patchwork, broom)
 ggplot2::theme_set(cowplot::theme_half_open())
 ```
 
+## Module overview
+
+- [Week 9. Describing Relationships]{style="color: #D0D3D4;"}
+    + [Correlation (calculation, interpretation)]{style="color: #D0D3D4;"}
+    + [Regression (model structure, model fitting]{style="color: #D0D3D4;"}
+    + [What/when/why/how]{style="color: #D0D3D4;"}
+
+- **Week 10. Simple Linear Regression**
+    + Can we use the model?(assumptions, hypothesis testing)
+    + How good is the model?(interpretation, model fit)
+    
+- [Week 11. Multiple Linear Regression]{style="color: #D0D3D4;"}
+    + [Multiple Linear Regression (MLR) modelling]{style="color: #D0D3D4;"}
+    + [Assumptions, interpretation and the principle of parsimony]{style="color: #D0D3D4;"}
+
+- [Week 12. Nonlinear Regression]{style="color: #D0D3D4;"}
+    + [Common nonlinear functions]{style="color: #D0D3D4;"}
+    + [Transformations]{style="color: #D0D3D4;"}
+
 # Recap
 
 ## Last week...
 
 - Correlation $r$: a measure of the strength and direction of the linear relationship between two variables
-- Is there a causal relationship between two variables?
-  - **No**: use correlation analysis
-  - **Yes**: use *regression analysis*
-
+- Is there a moderate to strong *causal* relationship?
+  
 . . .
-
 
 ### Simple linear regression modelling
 
@@ -79,18 +95,16 @@ p1 + p2 + plot_layout(ncol = 2)
 
 ## Usage
 
-- **Student's t-test**
+- **Student's t-test** (indirectly)
 - **linear regression**
   
 . . .
 
-- ANOVA
-- logistic regression
-- nonlinear regression
-- ridge regression
-- lasso regression
-- principle component analysis
+- **nonlinear regression (logistic, polynomial, exponential, etc.)**
+- analysis of variance (ANOVA)
 - generalised linear model
+- principle component analysis
+- machine learning models
 - etc...
 
 
@@ -114,7 +128,7 @@ ggplot(Galton, aes(x = parent, y = child)) +
 
 # Fitting the model
 
-## How do we fit a line?
+## How do we analytically fit a line?
 
 - *Minimise* the sum of the squared residuals:
 
@@ -251,18 +265,27 @@ $$ \widehat{child} = 23.9 + 0.646 \cdot parent$$
 
 . . .
 
-But is the model any good?
+How good is the model? Do we trust our model? How can we interpret the results?
 
-# Assessing model fit
+## Steps for Regression
 
-## Assumptions
+1.  [Understand the variables]{style="color: #D0D3D4;"}
+2.  [Explore data]{style="color: #D0D3D4;"}
+3.  [Fit model]{style="color: #D0D3D4;"}
+4.  Check assumptions
+5.  Assess model fit
+6.  Interpret output
 
-The data **must** meet certain criteria, which we often call *assumptions*. They can be remembered using **LINE**:
+# Assumptions
+
+> The data **must** meet certain criteria for linear regression, which we often call *assumptions*.
+
+## Assumptions - LINE
 
 - **L**inearity. The relationship between $y$ and $x$ is linear.
 - **I**ndependence. The errors $\epsilon$ are independent.
 - **N**ormal. The errors $\epsilon$ are normally distributed.
-- **E**qual Variance. At each value of $x$, the variance of $y$ is the same i.e. homoskedasticity, or constant variance.
+- **E**qual Variance of errors $\epsilon$. At each value of $x$, the variance of $y$ is the same i.e. homoskedasticity, or constant variance.
 
 . . .
 
@@ -270,16 +293,15 @@ The data **must** meet certain criteria, which we often call *assumptions*. They
 All but the independence assumption can be assessed using diagnostic plots. 
 :::
 
-## Assumptions: Why do we care?
+. . .
+
+### Why do we care?
 
 - If the assumptions are met, then we can be confident that the model is a good representation of the data.
 - If they are *not* met, the results are still presented, but our interpretation of the model is likely to be flawed.
-
-. . .
-
-:::{.callout-warning}
-R will not warn you if the assumptions are not met. It is up to you to check them!
-:::
+  - Hypothesis test results are unreliable
+  - Standard error is unreliable
+  - Poor estimates of coefficients = poor predictions
 
 ## How do we check the assumptions?
 
@@ -289,12 +311,17 @@ $$ Y_i = \beta_0 + \beta_1 x + \epsilon $$
 
 - **If the only source of variation in $y$ is $\epsilon$, then we can check our assumptions by just looking at the residuals $\hat{\epsilon}$.**
 
+. . .
+
+:::{.callout-warning}
+R will not warn you if the assumptions are not met. It is up to you to check them!
+:::
+
 ### How do we get the residuals?
 
-- Fit the model...
+- Fit the model!
 - Residuals need to be calculated from the model, not from the raw data.
 - In R, these values are stored automatically.
-
 
 ## Another way to look at residuals
 
@@ -304,21 +331,22 @@ Once you have fitted the line, it does not change. The residuals are the vertica
 
 # Checking assumptions
 
-linearty | normality | equal variance | outliers
+linearity | normality | equal variance | outliers
 
 ## 1-step
-
-```{r}
-par(mfrow = c(2, 2)) # need to do this to get 4 plots on one page
-plot(fit)
-```
-
----
 
 - **Residuals vs. Fitted**: check for linearity, equal variance.
 - **Q-Q Residuals**: check for normality.
 - **Scale-Location**: check for equal variance (standardised).
 - **Residuals vs. Leverage**: check for outliers (influential points).
+
+```{r}
+#| eval: false
+par(mfrow = c(2, 2)) # need to do this to get 4 plots on one page
+plot(fit)
+```
+
+---
 
 ```{r}
 #| echo: false
@@ -332,10 +360,16 @@ plot(fit)
 - If the relationship is linear:
   - Residuals should be randomly scattered around the horizontal axis.
   - The red line should be reasonably straight.
+- Could also look at a scatterplot of x and y!
 
 ```{r}
 plot(fit, which = 1)
 ```
+
+## Examples
+
+![](images/residual_vs_fitted.png){fig-align="center"}
+Linear Models with R (Faraway 2005, p59)
 
 ## Assumption: Normality
 
@@ -362,9 +396,11 @@ hist(rstandard(fit))
 - **Left-skewed** (n shape): more data falls to the left of the mean.
 - **Right-skewed** (u shape): more data falls to the right of the mean.
 
-# Practice
+:::{.callout-tip}
+Left or right-skewed? Look at where the tail points. 
+:::
 
-##
+## Examples
 
 ```{r}
 #| code-fold: true
@@ -425,7 +461,6 @@ plot(fit, which = 3)
   - Patterns in the scale-location plot, such as a curve or a wave, indicating that the variance is changing.
 - Look at the red line for a general trend, **but don't depend on it too much**.
 
-
 ```{r}
 #| code-fold: true
 set.seed(915)
@@ -457,111 +492,75 @@ plot(fit, which = 5)
 ```{r}
 #| code-fold: true
 set.seed(1028)
-x <- rnorm(100)
-y <- 2 + 5 * x + rnbinom(100, 10, .5)
-y[60] <- y[60] + 30
-df <- data.frame(x, y)
-# Add an outlier
-fit_eg <- lm(y ~ x, data = df)
+x <- rnorm(30)
+y <- 2 + 2 * x
+
+y[25] <- y[25] + 40 # Add an outlier
+
+fit_eg <- lm(y ~ x)
+
+par(mfrow=c(1,2))
 plot(fit_eg, which = 5)
+
+plot(x, y)
+abline(fit_eg, col = "red")
+
+fit_eg2 <- lm(y[-25] ~ x[-25])
+abline(fit_eg2, col = "blue", lty = 3)
+
 ```
 
-We don't want points to exceed the dashed line (which appears once they approach the Cook's distance), because that means they are likely to influence the model greatly.
+Points that exceed the dashed line (which appears once they approach the Cook's distance), are likely to influence the model. These outliers should be removed. 
+
+e.g. this is of a perfect line with one extreme outlier - the line of best fit deviates because of a single point!
+
+---
 
 # What can we do if the assumptions aren't met?
 
 ## It depends...
 
-- Depends which assumption is not met and the type of data i.e. circumstances.
-  - If data is **non-linear**, try a transformation of the response variable $y$, from light to extreme:
-    - root: $\sqrt{y}$ or $\sqrt{y+1}$ if $y$ contains zeros
-    - log: $\log(y)$ or $\log(y+1)$ if $y$ contains zeros
-    - inverse: $\frac{1}{y}$ or $\frac{1}{y+1}$ if $y$ contains zeros
+...which assumption is not met and the type of data i.e. circumstances.
+
+- If data is **non-linear**, try a transformation of the response variable $y$, from light to extreme:
+  - root: $\sqrt{y}$ or $\sqrt{y+1}$ if $y$ contains zeros
+  - log: $\log(y)$ or $\log(y+1)$ if $y$ contains zeros
+  - inverse: $\frac{1}{y}$ or $\frac{1}{y+1}$ if $y$ contains zeros
 
 . . .
 
-  - If data is **not normally distributed**, try a transformation of the response variable $y$ first, otherwise transform the predictor variable $x$. Both can be done at the same time.
+- If residuals are **not normally distributed**, try a transformation of the response variable $y$ first, otherwise transform the predictor variable $x$. Both can be done at the same time.
 
 . . .
 
-  - If **equal variances** assumption is not met, same as above.
-  - If **outliers** are present, try removing them, or transforming the response variable $y$.
+- If **equal variances** assumption is not met, same as above.
+- If **outliers** are present, try removing them, or transforming the response variable $y$.
 
-## What if that doesn't work?
+## What if transformation doesn't work?
 
-- If the assumptions are still not met after trying the above, you can try:
-  - Using a different model e.g. generalized linear model.
-  - Using a different type of regression e.g. logistic regression.
-  - Using a non-parametric test.
+If the assumptions are still not met after trying the above, you can try:
 
-## Model assumptions are met. Now what?
+- Using a different type of regression e.g. logistic regression, non-linear regression
+- Using a different model e.g. machine learning.
+- Using a non-parametric test.
+
+## Back to Galton - model assumptions are met
 
 ```{r}
-summary(fit)
+#| echo: false
+par(mfrow = c(2, 2)) # need to do this to get 4 plots on one page
+plot(fit)
 ```
 
-# Inference
-What can we say about the model based on our data?
+Now what?
+
+# Model Assessment and Interpretation
+
+> Hypothesis?
+
+> How good is the model?
 
 > What can we understand about the relationship between `child` and `parent`?
-
-## The model so far
-
-```{r}
-library(HistData)
-data(Galton)
-fit <- lm(child ~ parent, data = Galton)
-summary(fit)
-```
-
-
-## Hypothesis testing
-
-How does our null ($H_0: \beta_1=0$) model compare to the linear ($H_0: \beta_1 \neq 0$) model?
-
-```{r}
-#| code-fold: true
-
-null_model <- Galton %>%
-  lm(child ~ 1, data = .) %>%
-  augment(Galton)
-lin_model <- Galton %>%
-  lm(child ~ parent, data = .) %>%
-  augment(Galton)
-models <- bind_rows(null_model, lin_model) %>%
-  mutate(model = rep(c("Null model", "SLR model"), each = nrow(Galton)))
-
-ggplot(data = models, aes(x = parent, y = child)) +
-  geom_smooth(
-    data = filter(models, model == "Null model"),
-    method = "lm", se = FALSE, formula = y ~ 1, size = 0.5
-  ) +
-  geom_smooth(
-    data = filter(models, model == "SLR model"),
-    method = "lm", se = FALSE, formula = y ~ x, size = 0.5
-  ) +
-  geom_segment(
-    aes(xend = parent, yend = .fitted),
-    arrow = arrow(length = unit(0.1, "cm")),
-    size = 0.3, color = "darkgray"
-  ) +
-  geom_point(alpha = .2) +
-  facet_wrap(~model) +
-  xlab("Parent height (in)") +
-  ylab("Child height (in)")
-```
-
-## What are we testing?
-
-- The null model is a model with no predictors, i.e. $y = \beta_0 + \epsilon$
-- The linear model is a model with one predictor, i.e. $y = \beta_0 + \beta_1 x + \epsilon$
-- We use the t-test to compare the two models:
-
-$$ t = \frac{estimate - 0}{Standard\ error} = \frac{\hat{\beta}_1 - 0}{SE(\hat{\beta}_1)} $$ where $SE(\hat{\beta}_1)$ is the standard error of the slope estimate:
-
-$$ SE(\hat{\beta}_1) = \frac{\hat{\sigma}}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2}} $$
-
-# Assesing the model
 
 ## Interpreting the output
 
@@ -621,7 +620,7 @@ F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
 
 ```{r}
 #| eval: false
-#| code-line-numbers: 8-9
+#| code-line-numbers: 8-11
 
 Call:
 lm(formula = child ~ parent, data = Galton)
@@ -642,39 +641,59 @@ Multiple R-squared:  0.2105,    Adjusted R-squared:  0.2096
 F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
 ```
 
-- `Coefficients`: a summary table of the coefficients, their standard errors, t-values, and p-values addressing the hypothesis that the coefficient is 0
+- `Coefficients`: a summary table of the coefficients, their standard errors, t-values, and p-values.
+- `(Intercept)/Estimate`: the **y-intercept**, or the mean response when all predictors are 0. Not meaningful in most cases e.g. no parent will have a height of 0 inches!
+- `parent/Estimate`: the **slope** coefficient - i.e. the change in the **mean** of the response for a **one-unit increase in the predictor**.
+  - The *p-value* (`Pr`) tells us whether the slope is significantly different from 0 (the mean).
+  - If p < 0.05, we can conclude that there is a **significant linear relationship** between the predictor and the response.
+  
+## Hypothesis testing
 
+How does our null ($H_0: \beta_1=0$) model compare to the linear ($H_0: \beta_1 \neq 0$) model?
 
-## Interpreting the output
+> In simple linear regression, the p-value for the slope coefficient is the same as the p-value for the F-statistic.
 
 ```{r}
-#| eval: false
-#| code-line-numbers: 10-12
+#| code-fold: true
 
-Call:
-lm(formula = child ~ parent, data = Galton)
+null_model <- Galton %>%
+  lm(child ~ 1, data = .) %>%
+  augment(Galton)
+lin_model <- Galton %>%
+  lm(child ~ parent, data = .) %>%
+  augment(Galton)
+models <- bind_rows(null_model, lin_model) %>%
+  mutate(model = rep(c("Null model", "SLR model"), each = nrow(Galton)))
 
-Residuals:
-    Min      1Q  Median      3Q     Max 
--7.8050 -1.3661  0.0487  1.6339  5.9264 
-
-Coefficients:
-            Estimate Std. Error t value Pr(>|t|)    
-(Intercept) 23.94153    2.81088   8.517   <2e-16 ***
-parent       0.64629    0.04114  15.711   <2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 2.239 on 926 degrees of freedom
-Multiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 
-F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
+ggplot(data = models, aes(x = parent, y = child)) +
+  geom_smooth(
+    data = filter(models, model == "Null model"),
+    method = "lm", se = FALSE, formula = y ~ 1, size = 0.5
+  ) +
+  geom_smooth(
+    data = filter(models, model == "SLR model"),
+    method = "lm", se = FALSE, formula = y ~ x, size = 0.5
+  ) +
+  geom_segment(
+    aes(xend = parent, yend = .fitted),
+    arrow = arrow(length = unit(0.1, "cm")),
+    size = 0.3, color = "darkgray"
+  ) +
+  geom_point(alpha = .2) +
+  facet_wrap(~model) +
+  xlab("Parent height (in)") +
+  ylab("Child height (in)")
 ```
 
-- `(Intercept)` term is the mean of the response **when all predictors are 0**, which is not meaningful in most cases. In this case, it is the mean child height when the parent height is 0.
-- `parent`: the **slope** coefficient that we are interested in, which represents the change in the **mean** of the response for a **one-unit increase in the predictor**.
-  - The *p-value* (`Pr`) tells us whether the slope is significantly different from 0.
-  - If it is, then we can conclude that there is a **significant linear relationship** between the predictor and the response.
+## What are we testing?
 
+- The null model is a model with no predictors, i.e. $y = \beta_0 + \epsilon$
+- The linear model is a model with one predictor, i.e. $y = \beta_0 + \beta_1 x + \epsilon$
+- We use the t-test to compare the two models:
+
+$$ t = \frac{estimate - 0}{Standard\ error} = \frac{\hat{\beta}_1 - 0}{SE(\hat{\beta}_1)} $$ where $SE(\hat{\beta}_1)$ is the standard error of the slope estimate:
+
+$$ SE(\hat{\beta}_1) = \frac{\hat{\sigma}}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2}} $$
 
 ## Interpreting the output
 
@@ -705,7 +724,11 @@ F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
 $$ \widehat{child} = 23.94153 + 0.64629 \cdot parent$$
 
 - For every one-inch increase in the parent height, the child height is predicted to increase by 0.64629 inches.
+- e.g. if a parent is 70 inches, how tall will the child be?
 
+. . .
+
+If the parent is 70 inches (177.8 cm), the child will be: $23.94153 + 0.64629 \cdot 70 = 68.5$ inches (174 cm).
 
 ## Interpreting the output
 
@@ -734,8 +757,7 @@ F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
 
 - `Residual standard error`: the standard deviation of the residuals. 
   -  Interpretation: the average amount that the response will *deviate* from the true regression line.
--  `degrees of freedom`: the number of observations minus the number of parameters being estimated. Used in hypothesis testing and calculating the standard error of the regression coefficients. 
-   - Can estimate sample size from this number. 
+-  `degrees of freedom`: the number of observations minus the number of parameters being estimated. Used in hypothesis testing and calculating the standard error of the regression coefficients.
 
 ## Interpreting the output
 
@@ -762,11 +784,10 @@ Multiple R-squared:  0.2105,    Adjusted R-squared:  0.2096
 F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
 ```
 
-- `Multiple R-squared`: the proportion of variance explained by the model.
-- `Adjusted R-squared`: the proportion of variance explained by the model, adjusted for the number of predictors.
-- Interpretation:
-  - Ranges from 0 to 1.
-  - Since this is SLR, we can interpret this as the proportion of variance in the response that is explained by `parent`: 21.05% (from Multiple R-squared).
+- `Multiple R-squared`: the proportion of variance (0-1) explained by the model (for simple linear regression).
+- `Adjusted R-squared`: the proportion of variance (0-1) explained by the model, adjusted for the number of predictors (for multiple linear regression).
+- Ranges from 0 to 1; R^2^ = 1 is a perfect fit.
+- "The proportion of variance in the response that is explained by `parent`: 21.05%."
 
 ## Interpreting the output
 
@@ -793,57 +814,25 @@ Multiple R-squared:  0.2105,    Adjusted R-squared:  0.2096
 F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
 ```
 
-- `F-statistic`: the ratio of the variance of the regression model to the variance of the residuals.
+- `F-statistic`: the ratio of the variance explained by predictors, and the residual variance (variance not explained by predictors).
   - Also known as the partial F-test between the full model and the intercept-only (null) model.
-- `p-value`: for the linear model, the p-value is the probability that the F-statistic is greater than the observed value under the null hypothesis.
+- `p-value`: the probability that the F-statistic is greater than the observed value under the null hypothesis.
   - A significant p-value indicates that the linear model is a better fit than the intercept-only model.
 
-# Reporting
+## Reporting
+> Galton collected data on the heights of parents and their children.
 
-## Two methods
+> There appeared to be a moderate, positive, linear relationship between parent and child height.
 
-:::: {.columns}
-::: {.column width="50%"}
-### Using ANOVA
+> We fitted a linear model to predict child height from parent height (formula: child ~ parent), and model assumptions were met.
 
-### `anova(fit)`
+> The model was statistically significant (R^2^ = 0.21, F(1, 926) = 246.84, p < .001), hence the null hypothesis was rejected in favour of the linear model.
 
-```{r}
-fit <- lm(formula = child ~ parent, data = Galton)
-anova(fit)
-```
-:::
+> Parent height/the model explained 21.05% of the variance in child height.
 
-::: {.column width="50%"}
-### Using Regression
+> The effect of parent height is statistically significant and positive ($\beta$ = 0.65, t(926) = 15.71, p < .001).
 
-### `summary(fit)`
-```{r}
-summary(fit)
-```
-:::
-::::
-
-## Two methods
-
-:::: {.columns}
-::: {.column width="50%"}
-### Using ANOVA
-
-> The ANOVA suggests that the main effect of parent is statistically significant and large (F(1, 926) = 246.84, p < .001)
-:::
-
-::: {.column width="50%"}
-### Using Regression
-> We fitted a linear model (estimated using OLS) to predict child with parent (formula: child ~ parent). The model explains a statistically significant and moderate proportion of variance (R^2^ = 0.21, F(1, 926) = 246.84, p < .001, adj. R^2^ = 0.21). Within this model, the effect of parent is statistically significant and positive ($\beta$ = 0.65, t(926) = 15.71, p < .001).
-:::
-::::
-
-. . .
-
-:::{.callout-tip}
-For **simple linear models**, `summary()` provides more information than `anova()`, but the results are the same.
-:::
+> For every one-inch increase in parent height, child height is predicted to increase by 0.65 inches.
 
 # Let's practice
 Can we predict the weight of an alligator from its length?
@@ -941,16 +930,10 @@ p4 <- ggplot(data = alligator, aes(x = Length, y = log10(Weight))) +
 p1 + p2 + p3 + p4
 ```
 
-## Natural log transformation
-
-```{r}
-fit <- lm(formula = log(Weight) ~ Length, data = alligator)
-plot(fit, which = 1)
-```
-
 ## Natural log transformation -- Check assumptions again
 
 ```{r}
+fit <- lm(formula = log(Weight) ~ Length, data = alligator)
 par(mfrow = c(2, 2)) # set up a 2 x 2 grid for plots
 plot(fit)
 ```
@@ -963,25 +946,37 @@ summary(fit)
 
 - `Length` is a statistically significant predictor of `log(Weight)` (p < .001).
 - The model explains a statistically significant and large proportion (96%) of variance (R^2^ = 0.96, F(1, 23) = 553, p < .001)
-- For every 1 cm increase in `Length`, `log(Weight)` increases by 0.0354.
-  - *Or, for every 1 cm increase in `Length`, percent increase in `Weight` is 3.54% (only works when transforming using natural log).*
+- For every 1 cm increase in `Length`, `log(Weight)` increases by 0.0354 and `Weight` increases by 3.54%
+  - Note: only natural log transformations can be interpreted as 'percent change in y for 1% change in x'.
 
- 
 ## Summary
-### You should know the workflow by now
+### Workflow
 
-1.  Explore
-2.  Plot
-3.  Fit model and plot residual diagnostics
-4.  Check assumptions, transform data if necessary. Go back to step 3.
-5.  Interpret
+1.  **Understand the variables**
 
+> Which is the response variable? Is there a reason to believe a causal relationship?
 
+2.  **Explore data**
+
+> How many observations? Summary statistics? Scatterplot and correlation?
+
+3.  **Fit model**
+
+4.  **Check assumptions**
+
+> Remember - it's about the residuals! If assumptions fail, try transforming and return to Step 3. If assumptions *still* fail, consider another model and return to Step 3.
+  
+5.  **Assess model fit**
+
+> Hypothesis test, significance, F-statistic, p-value. R^2^, how much model variation was explained by the model.
+  
+6.  **Interpret output**
+
+> 'For every one-unit increase in x, y increases by $\beta_1$ units...' and any additional research/insight.
 
 # Thanks!
 
 This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
-
 
 <!-- Links -->
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
