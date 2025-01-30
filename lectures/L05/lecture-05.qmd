@@ -357,7 +357,7 @@ The T-distribution has the following properties:
 
 <span style="color: blue;">**H**</span>ypothesis
 
-Say our hippie friend here has seen the light after a helping of mung beans and wishes to test whether ENVX1002 student heart rate differs from the global average of 70 bpm. 
+Say our hippie friend here has seen the light after a helping of mung beans and wishes to test whether ENVX1002 student average heart rates differ from the global average of 70 bpm (beats per minute). 
 
 **State the Null and Alternate hypothesis!**
 
@@ -492,7 +492,7 @@ summary(heart_rate)
 ```
 
 - We can see that the mean and the median are quite similar. This is a good sign that the data is symmetrical and perhaps normally distributed. 
-- We can also start to think how our hippies mean yield compares to the national average of 1.1 t/ha.
+- We can also start to think how our student heart rate compares to the national average of 70 bpm.
 
 
 
@@ -517,10 +517,44 @@ shapiro.test(heart_rate)
 
 ::: {.column width="50%"}
 
+::: panel-tabset
+
+## R base graphics
+
 ```{r}
+#| code-fold: true
+#| fig-height: 3.5
+
 qqnorm(heart_rate)
 qqline(heart_rate)
 ```
+## ggplot2
+
+```{r}
+#| code-fold: true
+#| fig-height: 3.5
+
+library(ggplot2)
+ggplot(mapping = aes(sample = heart_rate)) +
+  stat_qq() +
+  stat_qq_line(color = "red") +
+  ggtitle("Q-Q Plot using ggplot2") +
+  theme_minimal()
+```
+
+## ggpubr
+
+```{r}
+#| code-fold: true
+#| fig-height: 3.5
+
+library(ggpubr)
+ggqqplot(heart_rate, 
+         main = "Q-Q Plot using ggpubr",
+         color = "blue") 
+```
+
+:::
 
 :::
 
@@ -561,8 +595,8 @@ $t = \frac{\bar{y} - \mu}{s / \sqrt{n}}$ population variance unknown (estimate $
 Luckily for us we have a function in RStudio that does all of the above in one function!
 
 ```{r}
-t.test(yield,
-  mu = 1.1,
+t.test(heart_rate,
+  mu = 70,
   alternative = "two.sided",
   conf.level = 0.95
 )
@@ -574,11 +608,11 @@ t.test(yield,
 
 We can see the following output:
 
-- the t-statistic = 3.2238
-- the degrees of freedom = 20 (n-1)
-- the p-value = 0.004
-- the 95% confidence interval = (1.22, 1.64)
-- the sample mean = 1.43
+- the t-statistic = -1.0736
+- the degrees of freedom = 20 $(n-1)$
+- the p-value = 0.2958
+- the 95% confidence interval = (63.16242 72.19073)
+- the sample mean = 67.67657
 
 :::
 
@@ -600,13 +634,13 @@ We can see the following output:
 
 Let's revisit our hippie friend's hypothesis
 
-- $H_0=1.1 \text{ t/ha}$	(Null hypothesis)
+- $H_0=70 \text{ bpm}$	(Null hypothesis)
 
-- $H_1 \ne 1.1 \text{ t/ha}$	(Alternate hypothesis)
+- $H_1 \ne 70 \text{ bpm}$	(Alternate hypothesis)
 
-- The p-value is 0.004 which is less than 0.05. We reject the null hypothesis. 
+- The p-value is 0.2958 which is not less than 0.05. We retain null hypothesis. 
 
-- There is strong evidence that the mean yield of the mung beans is different to 1.1 t/ha. Given that the mean yield is 1.43 t/ha and we can be 95% confident that the true mean yield is between 1.22 and 1.64 t/ha. We are petty confident that the CBD oil has increased the yield such that the mean yield is significantly greater than the national average.
+- There is no strong evidence to indicate that the mean heart rate of ENVX1002 students is different to the global mean of 70 bpm. We can be 95% confident that the true mean heart rate of 63 and 72 (0 d.p.) beats per minute. Our global mean lies within this interval. Therefore we are petty confident that the class average heart rate is similar to the global average.
 
 :::
 
