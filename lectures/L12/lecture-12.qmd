@@ -5,7 +5,6 @@ format: soles-revealjs
 embed-resources: true
 ---
 
-
 ```{r setup, include=FALSE}
 if (!require("pacman")) install.packages("pacman", repos = "http://cran.us.r-project.org")
 pacman::p_load(tidyverse, cowplot, ggfortify, patchwork, broom, remotes, corrplot, psych, plotly, nlstools, caret)
@@ -31,10 +30,6 @@ ggplot2::theme_set(cowplot::theme_half_open())
 - **Week 12. Nonlinear Regression**
     + Common nonlinear functions]
     + Transformations]
-
-
-# Recap
-Last lecture...
 
 ## Regressions 
 
@@ -74,11 +69,11 @@ where $f(x_i, \beta)$ is a nonlinear function of the parameters $\beta$: "How do
 
 Linear relationships are simple to interpret since the rate of change is constant.
 
-> "As one changes, the other changes at a constant rate."
+**"As one changes, the other changes at a constant rate."**
 
 Nonlinear relationships often involve exponential, logarithmic, or power functions.
 
-> "As one changes, the other changes at a rate that is *not proportional* to the change in the other."
+**"As one changes, the other changes at a rate that is *not proportional* to the change in the other.**
 
 
 ## Nonlinear relationships: exponents
@@ -236,7 +231,7 @@ Examples: food intake, drug dosage, exercise.
 # Transformations
 > How far can we go?
 
-## Transformations: Exponential decay
+## Transformations: exponential decay
 
 ::::{.columns}
 :::{.column width="50%"}
@@ -262,7 +257,7 @@ ggplot(data = decay,
 :::
 ::::
 
-## Transformations: Exponential decay
+## Transformations: exponential decay
 
 ::::{.columns}
 :::{.column width="50%"}
@@ -281,7 +276,7 @@ autoplot(lm(log(response) ~ predictor, data = decay)) +
 :::
 ::::
 
-## Transformations: Asymptotic relationship
+## Transformations: asymptotic relationship
 
 ::::{.columns}
 :::{.column width="50%"}
@@ -306,7 +301,7 @@ ggplot(data = asymptotic,
 :::
 ::::
 
-## Transformations: Asymptotic relationship
+## Transformations: asymptotic relationship
 
 ::::{.columns}
 :::{.column width="50%"}
@@ -325,7 +320,7 @@ autoplot(lm(log(response) ~ predictor, data = asymptotic)) +
 :::
 ::::
 
-## Transformations: Logistic relationship
+## Transformations: logistic relationship
 
 ::::{.columns}
 :::{.column width="50%"}
@@ -350,7 +345,7 @@ ggplot(data = logistic,
 :::
 ::::
 
-## Transformations: Logistic relationship
+## Transformations: logistic relationship
 
 ::::{.columns}
 :::{.column width="50%"}
@@ -369,7 +364,7 @@ autoplot(lm(log(response) ~ predictor, data = logistic)) +
 :::
 ::::
 
-## Transformations: Curvilinear relationship
+## Transformations: polynomial relationship
 
 ::::{.columns}
 :::{.column width="50%"}
@@ -394,7 +389,7 @@ ggplot(data = curvilinear,
 :::
 ::::
 
-## Transformations: Curvilinear relationship
+## Transformations: polynomial relationship
 
 ::::{.columns}
 :::{.column width="50%"}
@@ -421,8 +416,10 @@ autoplot(lm(log(response) ~ predictor, data = curvilinear)) +
   - Relationships typically do not meet the linear assumption, but seem "ok" for other assumptions.
   - Poor fit to the data (over or underfitting in some areas).
   - Difficult to interpret the results.
-  
-![]("images/fit.jpg")
+
+
+![](images/fit.jpg)
+
 
 ## Nonlinear regression
 
@@ -481,6 +478,7 @@ ggplot(asymptotic, aes(x = predictor, y = response)) +
 $$ Y_i = \beta_0 + \beta_1 x_i + \epsilon_i $$
 
 ```{r}
+#| echo: true
 lin_fit <- lm(response ~ predictor, asymptotic)
 ```
 
@@ -497,6 +495,7 @@ ggplot(asymptotic, aes(x = predictor, y = response)) +
 $$ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \epsilon_i $$
 
 ```{r}
+#| echo: true
 poly2_fit <- lm(response ~ poly(predictor, 2), asymptotic)
 ```
 
@@ -514,6 +513,7 @@ ggplot(asymptotic, aes(x = predictor, y = response)) +
 $$ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \beta_3 x_i^3 + \epsilon_i $$
 
 ```{r}
+#| echo: true
 poly3_fit <- lm(response ~ poly(predictor, 3), asymptotic)
 ```
 
@@ -532,6 +532,7 @@ ggplot(asymptotic, aes(x = predictor, y = response)) +
 $$ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + ... + \beta_10 x_i^{10} + \epsilon_i $$
 
 ```{r}
+#| echo: true
 poly10_fit <- lm(response ~ poly(predictor, 10), asymptotic)
 ```
 
@@ -626,6 +627,8 @@ Like all other models we have seen, we focus on the residuals to assess the mode
 
 ## Estimating the model parameters
 
+:::{.columns}
+:::{.column width="50%"}
 - The parameters are estimated using the **method of least squares**.
 - For nonlinear models, a nonlinear optimization algorithm is used to find the best fit, rather than ordinary least squares, e.g.:
   - [Gauss-Newton algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm)
@@ -633,11 +636,15 @@ Like all other models we have seen, we focus on the residuals to assess the mode
 - This can only be performed iteratively and depends on a "best guess" of the parameters *as a start*.
   - **i.e. we need to provide a starting point for a nonlinear least squares algorithm to begin**.
 
----
+:::
+:::{.column width="50%"}
 
-![](images/gauss-newton-clipped.gif)
+![](images/gauss-newton.gif)
 
 Source: [Wikipedia](https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm)
+
+:::
+:::
 
 ## Implementation
 
@@ -645,6 +652,7 @@ use `nls()` function in R.
 
 ```{r}
 #| eval: false
+#| echo: true
 nls(formula, data, start)
 ```
 
@@ -683,6 +691,7 @@ ggplot(data = asymptotic, aes(x = predictor, y = response)) +
 $$ y = a + b(1 - e^{-cx}) $$
 
 ```{r}
+#| echo: true
 fit_asymptotic <- nls(response ~ a + b*(1-exp(-c*predictor)), data = asymptotic, 
   start = list(a = 0, b = 100, c = 0.8))
 ```
@@ -697,9 +706,10 @@ ggplot(data = asymptotic, aes(x = predictor, y = response)) +
   geom_line(aes(y = predict(fit_asymptotic)), color = "red", size = 2)
 ```
 
-## Check the fit
+## Check assumptions
 
 ```{r}
+#| echo: true
 library(nlstools)
 resids <- nlsResiduals(fit_asymptotic)
 plot(resids)
@@ -723,6 +733,7 @@ The R-squared value is not reported for nonlinear models as the sum of squares i
 What if we don't estimate our parameters very well? R will either give an error or get there eventually.
 
 ```{r}
+#| echo: true
 fit_asymptotic <- nls(response ~ a + b*(1-exp(-c*predictor)), data = asymptotic, 
   start = list(a = -100, b = 200, c = 15))
 
@@ -792,6 +803,7 @@ $$ y = c + \frac{d-c}{1+e^{-b(x-a)}} $$
 - $b$ is the rate of change: the rate at which $y$ approaches the upper limit.
 
 ```{r}
+#| echo: true
 fit_logistic <- nls(
   response ~ c + (d - c) / (1 + exp(-b * (predictor - a))),
   data = logistic,
@@ -806,47 +818,60 @@ It can be done this way, it is not the easiest way to do it.
 
 ## How about a self-starting function?
 
+:::{.columns}
+:::{.column width="60%"}
+
 - The `nls()` function requires a **formula** and **starting parameters**.
 
-![](images/nope.gif)
+<br>
 
-:::{.fragment}
-### Self-starting functions have entered the chat
+### Self-starting functions
 
 - Several self-starting functions are available in R that can be used to estimate the starting values.
 - These functions are named after the model they fit, e.g. `SSasymp()`, `SSlogis()`, `SSexp` etc.
 
 :::
 
-:::{.fragment}
+:::{.column width="40%"}
+
+![](images/nope.gif)
+
+:::
+:::
+
+. . .
+
 :::{.callout-important}
 We still need to have some understanding of the underlying relationship between the variables to pick the right function.
 :::
-:::
+
 
 ## Revisiting the logistic model
 
 $$ y = c + \frac{d-c}{1+e^{-b(x-a)}} $$
 
-```{r}
-#| eval: false
-SSlogis(input, Asym, xmid, scal)
-```
+Slightly different equation -- logistic growth curve that the lowest possible value is 0 (`c = 0`).
+
+$$ y = \frac{Asym}{1+exp \frac{xmid-input}{scal}} $$
 
 - `input`: the predictor variable.
 - `Asym`: the upper limit.
 - `xmid`: the value of $x$ when $y$ is halfway between the lower and upper limits.
 - `scal`: the rate of change.
 
-The equation is *different*. It is a logistic growth curve and assumes the lowest possible value is 0 (`c = 0` in previous equation).
-
-$$ y = \frac{Asym}{1+exp \frac{xmid-input}{scal}} $$
-
 . . .
+
+
+```{r}
+#| eval: false
+#| echo: true
+SSlogis(input, Asym, xmid, scal)
+```
 
 Other than `input`, the other parameters can be left to the function to estimate.
 
 ```{r}
+#| echo: true
 fit_logistic_ss <- nls(response ~ SSlogis(predictor, Asym, xmid, scal), data = logistic)
 ```
 
@@ -898,39 +923,6 @@ ggplot(data = asymptotic, aes(x = predictor, y = response)) +
 ```
 
 In some cases, the fits are identical, but in others, they are not.
-
-## Summary
-
-::::{.columns}
-:::{.column width="50%"}
-- When fitting a nonlinear model, there are three possible approaches:
-   1. **Linearise** the relationship by transforming the response or predictor: 
-      - Fit: easy
-      - Interpret: difficult
-   2. Approximate the model by adding **polynomial** terms: 
-      - Fit: easy
-      - Interpret: difficult
-   3. Fit the model using a **nonlinear** least squares algorithm:
-      - Fit: difficult
-      - Interpret: easy
-
-:::
-
-:::{.column width="50%"}
-:::{.fragment}
-
-![](images/brain.jpg)
-
-:::
-:::
-::::
-
-. . .
-
-- Nonlinear models:
-  - Useful for modelling complex relationships.
-  - Require some understanding of the underlying relationship (especially asympotic and logistic models)
-  - Most useful when prediction is the goal, since we do not necessarily need to interpret the parameters to assess the model fit.
 
 # How do we know which model is better? (Advanced)
 Note: this is non-examinable content but might be useful for your project.
@@ -1024,6 +1016,37 @@ knitr::kable(errors, digits=2, caption = "Comparison of RMSE and MAE for differe
 :::{.callout-note}
 Both the RMSE and MAE measure error on the same scale as the response variable. e.g. if the response variable is in kg, the error will be in kg.
 :::
+
+## Summary
+
+::::{.columns}
+:::{.column width="70%"}
+- When fitting a nonlinear model, there are three possible approaches:
+   1. **Linearise** the relationship by transforming the response or predictor: 
+      - Fit: easy
+      - Interpret: difficult
+   2. Approximate the model by adding **polynomial** terms: 
+      - Fit: easy
+      - Interpret: difficult
+   3. Fit the model using a **nonlinear** least squares algorithm:
+      - Fit: difficult
+      - Interpret: easy
+
+:::
+
+:::{.column width="30%"}
+
+![](images/brain.jpg){width=75%}
+
+:::
+::::
+
+. . .
+
+- Nonlinear models:
+  - Useful for modelling more complex relationships.
+  - Require some understanding of the underlying relationship (especially asympotic and logistic models)
+  - Mainly for prediction rather than interpreting relationships.
 
 # Thanks!
 
