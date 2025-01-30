@@ -121,7 +121,7 @@ Sometimes we use HATPC to remember these steps - HAT Prevent Cancer - come up wi
 
 - We need to check the assumptions of the test we are using.
 - For example, if we are using a one sample t-test we need to check the assumption of normality.
-- This is done by looking at the distribution of our data (EDA) and using a hypothesis test such as the Shapiro-Wilk test.
+- This is done by 1) looking at the distribution of our data (EDA) and 2) using a hypothesis test such as the Shapiro-Wilk test.
 - If the assumptions are not met, we may need to transform the data or use a non-parametric test.
 
 
@@ -357,13 +357,13 @@ The T-distribution has the following properties:
 
 <span style="color: blue;">**H**</span>ypothesis
 
-Say our hippie friend here has started feeding his mung bean crop CBD oil and claims it has significantly increased the yield compared to the national average of 1.1 t/ha. 
+Say our hippie friend here has seen the light after a helping of mung beans and wishes to test whether ENVX1002 student heart rate differs from the global average of 70 bpm. 
 
 **State the Null and Alternate hypothesis!**
 
-- $H_0=1.1 \text{ t/ha}$	(Null hypothesis)
+- $H_0=70 \text{ bpm}$	(Null hypothesis)
 
-- $H_1 \ne 1.1 \text{ t/ha}$	(Alternate hypothesis)
+- $H_1 \ne 70 \text{ bpm}$	(Alternate hypothesis)
 
 :::
 
@@ -379,7 +379,7 @@ Say our hippie friend here has started feeding his mung bean crop CBD oil and cl
 - This time we are testing a data set where the **variance is unknown**.
 - A key assumption for the one-sample t-test is that the sample is "reasonably" normally distributed.
 - Why do we need to test the assumption of normality?
-  - Think about if our distribution is right skewed, then our *mean* may not reflect the central tendency of our sample population.
+- Think about if our distribution is right skewed, then our *mean* may not reflect the central tendency of our sample population.
 
 
 
@@ -390,7 +390,7 @@ Say our hippie friend here has started feeding his mung bean crop CBD oil and cl
 
 **Small Samples:** With small samples (typically n < 30), even slight deviations from normality can significantly impact the t-test's validity because the t-test relies heavily on the assumption of normality in this scenario. However, if the data are symmetrically distributed and don't have outliers, the t-test can be robust to mild violations of normality. Note that the t-test adjusts for the sample size, so the larger the sample, the less important the normality assumption becomes.
 
-**Large Samples:** For larger samples (n > 30), the Central Limit Theorem (CLT) suggests that the distribution of the sample means tends to be normal, regardless of the population distribution. This means that for sufficiently large samples, the t-test can be robust to violations of normality. However, extreme skewness, heavy tails, or outliers can still affect the test's performance.
+**Large Samples:** For larger samples (n > 30), the Central Limit Theorem (CLT) suggests that the distribution of the sample means tends to be normal, regardless of the population distribution. This means that for sufficiently large samples, the t-test can be robust to violations of normality. *However, extreme skewness, heavy tails, or outliers can still affect the test's performance*.
 
 
 
@@ -448,10 +448,11 @@ print(p)
 
 <span style="color: blue;">**A**</span>ssumptions
 
-- Let's look at our mung bean trial data: We have data from 21 plots from a *completely randomised design* (look this up) done on our hippie friends farm. CBD treatment was used on all plots.
+- Let's help out our hippie friend: We have asked students to measure their heart rate and randomly selected heart rates from 21 students (a *completely randomised design*) in our hippie friends ENVX1002 class. Note we will do this exercise in class!!
 
 ```{r}
-yield <- c(0.6, 0.8, 0.8, 0.9, 1.0, 1.1, 1.2, 1.2, 1.3, 1.3, 1.4, 1.5, 1.6, 1.6, 1.7, 1.9, 1.9, 1.9, 2.0, 2.1, 2.2)
+set.seed(1234)
+heart_rate <- rnorm(21, mean = 70, sd = 10)
 ```
 
 - We have a small sample size so often we use a *stem plot* or *box plot* to look at the distribution. Both look quite symmetrical!
@@ -461,7 +462,7 @@ yield <- c(0.6, 0.8, 0.8, 0.9, 1.0, 1.1, 1.2, 1.2, 1.3, 1.3, 1.4, 1.5, 1.6, 1.6,
 ::: {.column width="50%"}
 
 ```{r}
-stem(yield)
+stem(heart_rate)
 ```
 
 :::
@@ -469,7 +470,7 @@ stem(yield)
 ::: {.column width="50%"}
 
 ```{r}
-boxplot(yield)
+boxplot(heart_rate)
 ```
 
 :::
@@ -487,7 +488,7 @@ boxplot(yield)
 - We can also look at the 6 number summary and the histogram. The histogram looks quite symmetrical and the 6 number summary is quite symmetrical.
 
 ```{r}
-summary(yield)
+summary(heart_rate)
 ```
 
 - We can see that the mean and the median are quite similar. This is a good sign that the data is symmetrical and perhaps normally distributed. 
@@ -509,7 +510,7 @@ summary(yield)
 ::: {.column width="50%"}
 
 ```{r}
-shapiro.test(yield)
+shapiro.test(heart_rate)
 ```
 
 :::
@@ -517,8 +518,8 @@ shapiro.test(yield)
 ::: {.column width="50%"}
 
 ```{r}
-qqnorm(yield)
-qqline(yield)
+qqnorm(heart_rate)
+qqline(heart_rate)
 ```
 
 :::
