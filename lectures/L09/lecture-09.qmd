@@ -5,9 +5,7 @@ format: soles-revealjs
 embed-resources: true
 ---
 
-# Quick intro
-
-## About Me
+## About me
 
 ::: {layout-ncol=2}
 - Research topics: spatial modelling and mapping, precision agriculture, winter grains
@@ -72,6 +70,8 @@ library(HistData)
 head(Galton)
 ```
 
+<br>
+
 - 928 children of 205 pairs of parents
 - Average height of both parents and child measured in inches
 - Size classes were binned (hence data looks discrete)
@@ -96,28 +96,37 @@ Is the relationship:
 
 # Correlation
 
+## Correlation {auto-animate="true"}
+
 The **correlation coefficient** is a number between -1 and 1 that describes the relationship between two **continuous** variables.
 
 - **Direction**: 
-  - Positive - both variables increase together
-  - Negative - one variable increases as the other decreases
+  - Positive -- both variables increase together
+  - Negative -- one variable increases as the other decreases
 - **Strength**: 
   - -1 &rarr; perfect negative relationship
   - 0 &rarr; no relationship
   - 1 &rarr; perfect positive relationship
-  - Common terms: *weak* (~0.1-0.3), *moderate* (~0.4-0.6) or *strong* (~0.7-1.0) -- useful but subjective!
+  - Common terms: *weak* (~0.1--0.3), *moderate* (~0.4--0.6) or *strong* (~0.7--1.0) -- useful but subjective!
 
-# Correlation
+## Correlation
 
-![Karl Pearson](images/pearson.jpg)
+:::{.columns}
+:::{.column width="50%"}
 
-Karl Pearson developed the **correlation coefficient** in 1800s (based on the work by Francis Galton)
-
-Formula:
+Pearson's Correlation (*r*) Formula:
 
 $$ r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2 \sum_{i=1}^n (y_i - \bar{y})^2}} $$
 
-> covariance divided by the product of the standard deviations
+Covariance divided by the product of the standard deviations.
+
+> Karl Pearson developed the **correlation coefficient** in 1800s (based on the work by Francis Galton)
+
+:::
+:::{.column width="50%"}
+![](images/pearson.jpg){out.width="50%"}
+:::
+:::
 
 Pearson's *r* is:
 
@@ -204,15 +213,15 @@ A **moderate** relationship falls closer to 0.5.
 
 A **strong** relationship is one where the correlation coefficient is close to -1 or 1.
 
-The exact values are subjective and vary between fields of study
+The exact values are subjective and vary between fields of study.
 
 ## Example - Galton's Data
 
 ::: {.columns}
-::: {.column width="50%"}
+::: {.column width="30%"}
 ![Galton's Results](images/galton_corr.jpg)
 :::
-::: {.column width="50%"}
+::: {.column width="60%"}
 
 ```{r, warning=FALSE, message=FALSE}
 #| code-fold: true
@@ -268,7 +277,7 @@ anscombe %>%
 
 ```
 
-Correlation coefficients are **not reliable** in inferring the 'type' of relationship between variables -- we must visualise
+Correlation coefficients are **not reliable** in inferring the 'type' of relationship between variables -- we must visualise.
 
 ## Datasaurus Dozen
 
@@ -372,7 +381,7 @@ Which correlation coefficient do we use?
 plot(iris[,-5])
 ```
 
-### Example - `iris` Dataset
+## Example - `iris` Dataset
 
 ```{r}
 cor(iris[,-5]) |> round(2)
@@ -386,11 +395,11 @@ Correlation analysis **identifies** variables that have a strong linear relation
 - Which variables are likely to present issues for *model fitting*?
   - e.g. `Petal.Length` and `Sepal Length` are strongly correlated - including both would cause multicollinearity -- (L11 MLR)
 
-# Correlation $\neq$ causation
+## Correlation $\neq$ causation
 
 [Spurious correlations](https://www.tylervigen.com/spurious-correlations): a relationship between two variables does not imply that one causes the other.
 
-![](images/correlation_causation.jpg)
+![](images/correlation_causation.jpg){fig-align="center"}
 
 ## What comes after correlation?
 
@@ -411,8 +420,6 @@ If we have a hypothesis about the relationship between two variables, we can use
 - In linear regression this is a straight line that best fits the data -- i.e. line of best fit
 
 ## Why regression?
-
-. . .
 
 ### Describe the relationship between two variables
 What is the relationship between a response variable $Y$ and a predictor variable $x$?
@@ -544,111 +551,51 @@ ggplot(data.frame(x = x, y = y), aes(x, y)) +
 
 ## Example: climate change modelling
 
-![](images/anomalies.jpg)
+![](images/anomalies.jpg){fig-align="center"}
 
 [Source: https://science2017.globalchange.gov/chapter/4/](https://science2017.globalchange.gov/chapter/4/)
 
 ## Example: COVID-19 transmission modelling
 
-![](images/covid.jpg)
+![](images/covid.jpg){fig-align="center"}
 
 [Source: https://www.nature.com/articles/s41598-021-84893-4/figures/1](https://www.nature.com/articles/s41598-021-84893-4/figures/1)
 
-# How does regression work?
+## How does regression work?
 
 ![Adrien-Marie Legendre](images/legendre.jpg)
 ![Carl Friedrich Gauss](images/gauss.jpg)
 ![Francis Galton](images/galton.jpg)
+
 Adrien-Marie Legendre, Carl Friedrich Gauss, Francis Galton
 
 :::{.callout-note}
-Many other people contributed to the development of regression analysis, but these three are the "most" well-known.
+Many other people contributed to the development of regression analysis, but these three are the most well-known.
 :::
+
+## How does regression work? {auto-animate="true"}
 
 - **Method of least squares** first theorised by Adrien-Marie Legendre in 1805
 - **Technique of least squares** first used by Carl Friedrich Gauss in 1809 (to fit a parabola to the orbit of the asteroid Ceres)
 - **Model fitting** first published by Francis Galton in 1886 (predicting the height of a child from the height of the parents)
 
-## Least Squares
+## Least squares
 
-When we fit a line, there is error between the observed value and the predicted value.
-
-![](images/ss_error.jpg)
-
-The **method of least squares** fits a line of best fit by minimising the sum of the squared errors.
-
-:::{.callout-note}
-The *error is squared* to ensure that positive and negative errors do not cancel each other out.
-:::
-
-![](images/ss_error_pair.jpg)
-Which line fits the data better?
-
-## How does a computer fit a line of best fit?
-
-![](images/leastsquares.gif)
-
-The line is fitted again and again until the squared error stabilises. A computer can do this very quickly!
-
-# Simple linear regression
-
-> The goal is to fit the line of best fit between two numerical variables.
-
-![](images/linear equation.jpg)
-
-## Simple linear regression model {auto-animate="true"}
-
-We want to relate the response $Y$ to a predictor $x$ for $i$ number of observations: 
-
-$$Y_i = \color{royalblue}{\beta_0 + \beta_1 x_i} +\color{red}{\epsilon_i}$$
-
-where
-
-$$\epsilon_i \sim N(0, \sigma^2)$$
-
-- $Y_i$, the *response*, is an observed value of the dependent variable.
-- $\beta_0$, the *constant*, is the y-intercept and is **fixed**.
-- $\beta_1$ is the population *slope* parameter, and like $\beta_0$, is also **fixed**.
-- $\epsilon_i$ is the error associated with predictions of $y_i$, and unlike $\beta_0$ or $\beta_1$, it is *not fixed*.
-
-:::{.callout-note}
-[We generally associate $\epsilon_i$ with the **residual**, which is a positive or negative difference between the "observed" value and the "predicted" response. *True* error is caused during data collection (e.g. faulty instruments, selection bias, etc.) and is almost impossible to calcualte.]{style="color: red;"}
-:::
-
-Different ways to think about the response:
-
-  - Response = [Prediction]{style="color: royalblue"} + [Error]{style="color: red"}
-  - Response = [Signal]{style="color: royalblue"} + [Noise]{style="color: red"}
-  - Response = [Model]{style="color: royalblue"} + [Unexplained]{style="color: red"}
-  - Response = [Deterministic]{style="color: royalblue"} + [Random]{style="color: red"}
-  - Response = [Explainable]{style="color: royalblue"} + [Everything else]{style="color: red"}
-  - Y = f(x)
-  - Dependent variable = f(Independent variable)
-
-## The variation in the response
-
-![](images/residual.jpg)
-
-> For a given 'x', there is a range of 'y' values that are possible.
-
-> e.g. For a given parent height, there is a range of child heights that are possible.
-
-## Model fitting
-
-Two approaches; analytical and numerical: 
-
-- **Analytical**:  equation(s) used directly to find solution
-- **Numerical**:  computer uses “random guesses” to find set of parameters to that minimises objective function, in this case residual sum of squares
-
-## Analytical: Residuals, $\hat \epsilon$
+:::{.columns}
+:::{.column width="40%"}
+When we fit a line, there is error between the observed and predicted values.
 
 $$ \color{firebrick}{\hat{\epsilon_i}} = \color{royalblue}{y_i} - \color{forestgreen}{\hat{y_i}} $$
+The **method of least squares** fits a line of best fit by minimising the sum of the squared errors. 
 
-. . .
+$$\color{firebrick} \sum_{i=1}^n ({\hat{\epsilon_i}})^2$$
+:::
+:::{.column width="60%"}
 
 ```{r, warning=FALSE, message=FALSE}
 #| code-fold: true
 # simulate example data
+
 set.seed(340)
 x <- runif(8, 0, 30)
 y <- 5 * x + rnorm(8, 0, 40)
@@ -680,6 +627,68 @@ p1 +
   ) +
   theme_classic()
 ```
+
+:::
+:::
+
+:::{.callout-note}
+
+The error is squared so positive and negative errors do not cancel each other out.
+
+:::
+
+## Least squares {auto-animate="true"}
+
+![](images/ss_error_pair.jpg){out.width="80%"}
+Which line fits the data better?
+
+## How does a computer fit a line of best fit?
+
+![](images/leastsquares.gif){fig-align="center"}
+
+The line is fitted again and again until the squared error stabilises. A computer can do this very quickly!
+
+# Simple linear regression
+
+> The goal is to fit the line of best fit between a numerical response and a numerical predictor.
+
+## Simple linear regression model {auto-animate="true"}
+
+We want to relate the response $Y$ to a predictor $x$ for $i$ number of observations: 
+
+$$Y_i = \color{royalblue}{\beta_0 + \beta_1 x_i} +\color{red}{\epsilon_i}$$
+
+where
+
+$$\epsilon_i \sim N(0, \sigma^2)$$
+
+- $Y_i$, the *response*, is an observed value of the dependent variable.
+- $\beta_0$, the *constant*, is the y-intercept and is **fixed**.
+- $\beta_1$ is the population *slope* parameter, and like $\beta_0$, is also **fixed**.
+- $\epsilon_i$ is the error associated with predictions of $y_i$, and unlike $\beta_0$ or $\beta_1$, it is *not fixed*.
+
+:::{.callout-note}
+$\epsilon_i$ is generally associated with the **residual** ($observed - predicted$). **True error** occurs during data collection (e.g. faulty instruments, selection bias, etc.) and often immeasurable.
+:::
+
+## Different wordings
+
+Different ways to think about the response:
+
+  - Response = [Prediction]{style="color: royalblue"} + [Error]{style="color: red"}
+  - Response = [Signal]{style="color: royalblue"} + [Noise]{style="color: red"}
+  - Response = [Model]{style="color: royalblue"} + [Unexplained]{style="color: red"}
+  - Response = [Deterministic]{style="color: royalblue"} + [Random]{style="color: red"}
+  - Response = [Explainable]{style="color: royalblue"} + [Everything else]{style="color: red"}
+  - Y = f(x)
+  - Dependent variable = f(Independent variable)
+
+## Model fitting
+
+Two approaches; analytical and numerical: 
+
+- **Analytical**:  equation(s) used directly to find solution
+- **Numerical**:  computer uses “random guesses” to find set of parameters to that minimises objective function, in this case residual sum of squares
 
 ## Analytical: Slope, $\beta_1$
 
@@ -813,13 +822,11 @@ ggplot(data = models, aes(x = parent, y = child)) +
 
 ## Simple linear regression
 
-We fit the model in one simple line of code:
+We fit the model in one simple line of code: `fit <- lm(child ~ parent, data = Galton)`
 
 ```{r}
 fit <- lm(child ~ parent, data = Galton)
 ```
-
-Done!
 
 . . .
 

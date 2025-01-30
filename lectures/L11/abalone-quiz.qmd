@@ -1,7 +1,7 @@
 ---
-title: "abalone-quiz"
+title: "L11 MLR -- Abalone Quiz"
 author: Si Yang Han
-# format: soles-revealjs
+format: soles-revealjs
 embed-resources: true
 ---
 
@@ -18,15 +18,13 @@ library(dplyr)
 
 ![](images/abalone.jpg)
 
-> Pop quiz! (No marks, just check your understanding.)
+> Pop quiz! (No marks, just check your understanding. It's...tricky.)
 
 > This dataset records abalone from the coast of Tasmania, Australia (Nash, 1995) and was accessed from the [UCI Machine Learning Repository]<https://archive.ics.uci.edu/dataset/1/abalone>.
 
 ## Introduction
 
-Abalone are marine snails that are a considered a delicacy and very expensive. The older the abalone, the higher the price. Age is determined by counting the number of rings in the shell. To do this, the shell needs to be cut, stained and viewed under a microscope - which is a lot of effort. It is also not possible if the abalone is sold live (not dried).
-
-The dataset contains 9 variables: `sex`, `length`, `diameter`, `height`, `whole`, `shucked`, `viscera`, `shell`, and `rings`.
+Abalone are marine snails that are a considered a delicacy and very expensive. The older the abalone, the higher the price. Age is determined by counting the number of rings in the shell. To do this, the shell needs to be cut, stained and viewed under a microscope - which is a lot of effort. Researchers measured 9 attributes of the abalone: `sex`, `length`, `diameter`, `height`, `whole`, `shucked`, `viscera`, `shell`, and `rings`.
 
 Note: `whole`, `shucked`, `viscera` and `shell` are weight measurements.
 
@@ -41,30 +39,24 @@ c) whole (weight)
 
 . . .
 
-:::{.callout-note}
-A reading comprehension question :)
-:::
+> Reading comprehension :)
 
 ## Research question {auto-animate="true"} 
 
-Abalone are marine snails that are a considered a delicacy and very expensive. The older the abalone, the higher the price. Age is determined by counting the number of rings in the shell. To do this, the shell needs to be cut, stained and viewed under a microscope - which is a lot of effort. It is also not possible if the abalone is sold live (not dried).
-
-The dataset contains 9 variables: `sex`, `length`, `diameter`, `height`, `whole`, `shucked`, `viscera`, `shell`, and `rings`.
+Abalone are marine snails that are a considered a delicacy and very expensive. The older the abalone, the higher the price. Age is determined by counting the number of rings in the shell. To do this, the shell needs to be cut, stained and viewed under a microscope - which is a lot of effort. Researchers measured 9 attributes of the abalone: `sex`, `length`, `diameter`, `height`, `whole`, `shucked`, `viscera`, `shell`, and `rings`.
 
 Note: `whole`, `shucked`, `viscera` and `shell` are weight measurements.
 
 **What is the best research question, based on the context above?**
 
-a) Is there a correlation between abalone age and whole weight?
+a) Is there a correlation between abalone age and weight?
 b) Can abalone weight be predicted from other measured variables?
-c) Can abalone age be predicted from more easily measured variables?
-d) Is there a relationship between abalone size and age?
+c) Is there a relationship between abalone size and age?
+d) Can age be measured by size?
 
 . . .
 
-:::{.callout-note}
-B is incorrect - we care about age/rings. A is not a complete answer - there are many more predictors. D is close, but C is the best response to the context provided!
-:::
+> A is not a complete answer, there are many more predictors. B is incorrect, we care about age/rings. D is incorrect, we are trying to *model or predict abalone age from size* -- terminology matters.
 
 ## Explore data {auto-animate="true"}
 
@@ -87,24 +79,48 @@ str(abalone)
 psych::pairs.panels(abalone)     # visualise relationships
 ```
 
+:::{.columns}
+:::{.column width="70%"}
+
 **What is the most correlated predictor with (number of) abalone rings?**
 
-a) age
-b) length
-c) whole (weight)
-d) height
+a) age  
+b) length  
+c) whole (weight)  
+d) shell (weight)
 
-. . .
+:::
 
-:::{.callout-note}
-Age is a trick - it is not a predictor (in the dataset)! Be sure you're looking in the right column, the answer is `height`.
+:::{.column width="30%"}
+
+:::{.fragment .fade-in}
+> Age is a trick - it is not a predictor! The answer is **`shell` (weight)**.
+
+:::
+
+:::
 :::
 
 ---
 
+:::{.columns}
+:::{.column width="60%"}
+
 ```{r}
-psych::pairs.panels(abalone)     # visualise relationships
+#| fig.width: 8
+#| fig.height: 6
+
+ggplot(abalone, aes(x = rings, y = shell)) +
+  geom_point(size = 3) +
+  labs(x = "Rings", y = "Shell (weight)") +
+  theme(text = element_text(size = 16))
+
+cor(abalone) |> round(2) |> print() # visualise relationships
+
 ```
+
+:::
+:::{.column width="40%"}
 
 **Which assumption/s do we need to be wary of?**
 
@@ -113,20 +129,27 @@ b) collinearity
 c) equal variances
 d) all of the above
 
-. . .
+:::{.fragment .fade-in}
+> In the `ring` plot, the relationship is not clearly linear and there is fanning (unlikely equal variances met). There is also very high correlation between some predictors (e.g. `length` and `diameter`), so the answer is D.
 
-:::{.callout-note}
-Focus first on the rings plots - the relationship is not linear, and there is fanning (as the number of rings increases, the other measurements become more variable). There is very high correlation between some of the predictors (e.g. `length` and `diameter`), so the answer is D.
+:::
+
+:::
 :::
 
 ## Fit a model {auto-animate="true"}
 
+:::{.columns}
+:::{.column width="50%"}
 We use natural log transformation on the response variable with `log()` to account for non-linear relationships.
 
 ```{r}
 fit <- lm(log(rings) ~ ., data = abalone)
 summary(fit)
 ```
+
+:::
+:::{.column width="50%"}
 
 **Which predictor is NOT significant to the model?**
 
@@ -135,16 +158,18 @@ b) whole (weight)
 c) shucked (weight)
 d) viscera (weight)
 
-. . .
+:::{.fragment .fade-in}
+> Whole (weight) has a period (.) beside the p-value -- this means the value is less than 0.10, but it needs to be <0.05 to be considered significant.
 
-:::{.callout-note}
-Whole (weight) has a period (.) beside the p-value - this means the value is less than 0.10, but it needs to be <0.05 to be considered significant.
 :::
+
+:::
+:::
+
 
 ## Fit a model
 
-```{r}
-#| eval: false
+```r
 Residual standard error: 0.1996 on 92 degrees of freedom
 Multiple R-squared:  0.6187,    Adjusted R-squared:  0.5897 
 F-statistic: 21.32 on 7 and 92 DF,  p-value: < 2.2e-16
@@ -159,9 +184,7 @@ d) Multiple R-squared and residual standard error
 
 . . .
 
-:::{.callout-note}
-We have multiple variables, so we use the Adjusted R-squared. The p-value tests the hypothesis on whether the model should be used at all, in favour of the mean. The residual error is a measure of model fit.
-:::
+> We have multiple variables, so we use the Adjusted R-squared. The p-value tests the hypothesis on whether the model should be used at all, in favour of the mean. The residual error is a measure of model fit.
 
 ## The problem with using too many predictors
 
@@ -173,11 +196,11 @@ Here, the model is fit with all predictors, then the least significant predictor
 library(broom)
 
 full7 <- lm(log(rings) ~ ., data = abalone)
-part6 <- update(full7, . ~ . - diameter)
-part5 <- update(part6, . ~ . - shell)
+part6 <- update(full7, . ~ . - whole)
+part5 <- update(part6, . ~ . - viscera)
 part4 <- update(part5, . ~ . - length)
-part3 <- update(part4, . ~ . - viscera)
-part2 <- update(part3, . ~ . - whole)
+part3 <- update(part4, . ~ . - height)
+part2 <- update(part3, . ~ . - diameter)
 part1 <- update(part2, . ~ . - shucked)
 
 formulas <- c(part1$call$formula, 
@@ -202,56 +225,99 @@ rs <- bind_rows(glance(part1),
 knitr::kable(rs)
 ```
 
+::: {.columns}
+:::{.column width="40%"}
+
 **Considering only $R^2$, which model would we choose?**
 
 a) Model with 1 predictor
-b) Model with 4 predictors
-c) Model with 6 predictors
+b) Model with 3 predictors
+c) Model with 4 predictors
 d) Model with 7 predictors
+:::
+:::{.column width="60%"}
+:::{.fragment .fade-in}
 
-. . .
+> The 1-predictor model sacrifices 14.5% of variation in the response (too much). The 7-predictor model is overfitted (worse than 4-predictor model). Between 3 and 4-predictor models - is a 0.7% improvement worth having to measure `height`? Realistically, the models with 2 or 3 predictors are justifiable.
 
-:::{.callout-note}
-The 1-predictor model sacrifices 13.5% of variation in the response variable, which is too harsh. The 7-predictor model is overfitted - it's actually worse than the 6-predictor model. Between the 4 and 6-predictor models - is a 0.015 or 1.5% improvement worth 2 extra predictors? Imagine being the one to weigh abalone shells and measure abalone length! Realistically, the models with 3 or 4 predictors could be justified.
+:::
+
+:::
 :::
 
 ## Interpretation
 
-```{r}
-fit <- lm(log(rings) ~ height + whole + shucked + viscera, data = abalone)
-summary(fit)
+```r
+#| eval: false
+Call:
+lm(formula = log(rings) ~ diameter + shucked + shell, data = abalone)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.30290 -0.15469 -0.03485  0.11454  0.64573 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   1.4122     0.1594   8.859 4.19e-14 ***
+diameter      2.0346     0.6034   3.372  0.00108 ** 
+shucked      -1.3339     0.2152  -6.200 1.42e-08 ***
+shell         2.0486     0.3672   5.579 2.23e-07 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
 ```
+
+::: {.columns}
+:::{.column width="80%"}
 
 **Which is the correct equation?**'
 
-a) `log(rings)` = 1.37 + 7.13 x `height` + 1.05 x `whole` + -1.83 x `shucked` + -1.69 x `viscera`
-b) `log(rings)` = -0.38 + 1.05 x `height` + 7.13 x `whole` + -1.69 x `shucked` + -1.83 x `viscera`
-c) `log(rings)` = 13.62 + 5.75 x `height` + 4.13 x `whole` + -4.95 x `shucked` + -2.63 x `viscera`
-d) `log(rings)` = 1.38 + 7.14 x `height` + 1.05 x `whole` + -1.83 x `shucked` + -1.69 x `viscera`
+a) `log(rings)` = 1.41 + 2.04 x `diameter` - 1.33 x `shucked` + 2.04 x `shell`
+b) `log(rings)` = 1.41 + 2.03 x `diameter` - 1.33 x `shucked` + 2.04 x `shell`
+c) `log(rings)` = 1.41 + 2.04 x `diameter` + 1.33 x `shucked` + 2.05 x `shell`
+d) `log(rings)` = 1.41 + 2.03 x `diameter` - 1.33 x `shucked` + 2.05 x `shell`
+:::
+:::{.column width="20%"}
+:::{.fragment .fade-in}
 
-. . .
+> Attention to detail :)
 
-:::{.callout-note}
-Attention to detail is all that is required here. Round decimal places correctly!
+:::
+
+:::
 :::
 
 ## Interpretation
 
 The equation of our model is:
 
-**log(rings) = 1.38 + 7.14 x height + 1.05 x whole + -1.83 x shucked + -1.69 x viscera**
+**`log(rings)` = 1.41 + 2.03 x `diameter` + -1.33 x `shucked` + 2.05 x `shell`**
 
-**Which TWO statements are correct?**
+Below are three statements. *Given all other predictors are held constant:*
 
-a) rings increases by 7.14 for every unit increase in height, given all other predictors are held constant.
-b) log(rings) increases by 7.14 for every unit increase in height, given all other predictors are held constant.
-c) rings increases by 7.14% for every unit increase in height, given all other predictors are held constant.
-d) log(rings) increases by 7.14% for every percent increase in height, given all other predictors are held constant.
+- `rings` changes by $e^{-1.33}$ for every percent increase in `shucked` (weight)
+- `log(rings)` changes by 1.33 for every unit increase in `shucked` (weight)
+- `log(rings)` changes by approximately 1.33% for every percent increase in `shucked` (weight)
 
-. . .
+::: {.columns}
+:::{.column width="40%"}
 
-:::{.callout-note}
-The answers are B and C. `rings` does not increase by 7.14 units, but `log(rings)` does. Because we used a natural log transformation, `rings` increases by the equivalent *percentage*.
+**How many statements are correct?**
+
+a) none
+b) 1 statement
+c) 2 statements
+d) all of them
+
+:::
+:::{.column width="60%"}
+:::{.fragment .fade-in}
+
+> The first two are correct, the third is not. The natural log percent change appoximation only applies to small $\beta$ values below |0.25|.
+
+:::
+
+:::
 :::
 
 ## The most important question {auto-animate="true"}
