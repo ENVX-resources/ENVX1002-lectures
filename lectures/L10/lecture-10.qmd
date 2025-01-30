@@ -5,7 +5,6 @@ format: soles-revealjs
 embed-resources: true
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   echo = TRUE,
@@ -38,8 +37,6 @@ ggplot2::theme_set(cowplot::theme_half_open())
 - [Week 12. Nonlinear Regression]{style="color: #D0D3D4;"}
     + [Common nonlinear functions]{style="color: #D0D3D4;"}
     + [Transformations]{style="color: #D0D3D4;"}
-
-# Recap
 
 ## Last week...
 
@@ -87,13 +84,7 @@ library(patchwork)
 p1 + p2 + plot_layout(ncol = 2)
 ```
 
-# Least squares
-
-> The method of least squares is the **automobile of modern statistical analysis**: despite its limitations, ocassional accidents and incidental pollution, it and its numerous variations, extensions, and related conveyances **carry the bulk of statistical analyses**, and are known and valued by nearly all.
-
--- Stigler, 1981 (emphasis added)
-
-## Usage
+## Usage of least squares
 
 - **Student's t-test** (indirectly)
 - **linear regression**
@@ -126,24 +117,95 @@ ggplot(Galton, aes(x = parent, y = child)) +
 
 **How did we end up with the line in the plot above?**
 
-# Fitting the model
-
 ## How do we analytically fit a line?
 
-- *Minimise* the sum of the squared residuals:
+We calculate slope ($\beta_1$):
 
-$$\color{firebrick}{argmin_{\beta_0, \beta_1}} \sum_{i=1}^n (y_i - \color{royalblue}{(\beta_0 + \beta_1 x_i)})^2$$ 
+$$ \beta_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2} =  \frac{Cov(x,y)}{Var(x)} = \frac{SS_{xy}}{SS_{xx}} $$
+Then substitute below to get the intercept ($\beta_0$):
 
+$$ \beta_0 = \bar{y} - \beta_1 \bar{x} $$
+Imagine a dataset with a million points - this would be computationally taxing.
+
+## How do we numerically fit a line?
+
+- *Minimise* the sum of the squared residuals via trial and error
+- Most common method used via computers (gradient-descent)
+- Can be done by hand (but not recommended)
+
+$$\color{firebrick}{argmin_{\beta_0, \beta_1}} \sum_{i=1}^n (y_i - \color{royalblue}{(\beta_0 + \beta_1 x_i)}\color{black})^2$$ 
 
 ![[Source](https://github.com/Enchufa2/ls-springs)](images/leastsquares.gif){fig-align="center"}
 
-## Residuals, $\hat \epsilon$
+## Fitting a linear model in R
 
-$$ \color{firebrick}{\hat{\epsilon_i}} = \color{royalblue}{y_i} - \color{forestgreen}{\hat{y_i}} $$
+Is there a relationship between the heights of parents and their children?
+
+```{r}
+fit <- lm(child ~ parent, data = Galton)
+fit
+```
+
+
+$$ \widehat{child} = 23.9 + 0.646 \cdot parent$$
 
 . . .
 
-```{r}
+Do we trust our model? How good is the model? How can we interpret the results?
+
+## Steps for Regression
+
+1.  [Understand the variables]{style="color: #D0D3D4;"}
+2.  [Explore data]{style="color: #D0D3D4;"}
+3.  [Fit model]{style="color: #D0D3D4;"}
+4.  Check assumptions
+5.  Assess model fit
+6.  Interpret output
+
+# Assumptions
+
+> The data **must** meet certain criteria for linear regression, which we often call *assumptions*.
+
+## Assumptions - LINE
+
+- **L**inearity. The relationship between $y$ and $x$ is linear.
+- **I**ndependence. The errors $\epsilon$ are independent.
+- **N**ormal. The errors $\epsilon$ are normally distributed.
+- **E**qual Variance of errors $\epsilon$. At each value of $x$, the variance of $y$ is the same i.e. homoskedasticity, or constant variance.
+
+. . .
+
+### Why do we care?
+
+- If the assumptions are met, then we can be confident that the model is a good representation of the data.
+- If they are *not* met, the results are still presented, but our interpretation of the model is likely to be flawed.
+  - Hypothesis test results are unreliable
+  - Standard error is unreliable
+  - Poor estimates of coefficients = poor predictions
+
+## How do we check the assumptions?
+
+Recall that the linear model is a **deterministic straight line equation** $y = c + mx$ plus some **random noise** $\epsilon$:
+
+$$ Y_i = \beta_0 + \beta_1 x + \epsilon $$
+
+- **If the only source of variation in $y$ is $\epsilon$, then we can check our assumptions by just looking at the residuals $\hat{\epsilon}$.**
+
+. . .
+
+:::{.callout-tip}
+All but the independence assumption can be assessed using diagnostic plots. R will not warn you if the assumptions are not met. It is up to you to check them!
+:::
+
+### How do we get the residuals?
+
+- Fit the model!
+- Residuals need to be calculated from the model, not from the raw data.
+- In R, these values are stored automatically.
+
+$$ \color{firebrick}{\hat{\epsilon_i}} = \color{royalblue}{y_i} - \color{forestgreen}{\hat{y_i}} $$
+
+```{r, warning=FALSE, message=FALSE}
 #| code-fold: true
 # simulate example data
 set.seed(340)
@@ -174,160 +236,16 @@ p1 +
   annotate("text",
     x = 5.6, y = -36, size = 7,
     label = expression(y[i]), colour = "firebrick"
-  )
-```
-
-## Slope, $\beta_1$
-
-<!-- $$ Y_i = \beta_0 + \beta_1 x_i + \epsilon_i $$ -->
-
-$$ \beta_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2} =  \frac{Cov(x,y)}{Var(x)} = \frac{SS_{xy}}{SS_{xx}} $$
-
-
-
-```{r}
-#| code-fold: true
-# Calculate slope from df
-beta1 <- sum((df$x - mean(df$x)) * (df$y - mean(df$y))) /
-  sum((df$x - mean(df$x))^2)
-# beta0 <- mean(df$y) - beta1 * mean(df$x)
-
-p1 +
-  geom_smooth(method = "lm", se = FALSE, color = "firebrick", linetype = 2) +
-  # label the line
-  annotate("text",
-    x = 15, y = 65, size = 7,
-    label = expression(beta[1]), colour = "firebrick"
-  )
-
-```
-
-
-<!-- $$ \beta_0 = \bar{y} - \beta_1 \bar{x} $$ -->
-
-## Intercept
-
-$$ \beta_0 = \bar{y} - \beta_1 \bar{x} $$
-
-
-```{r}
-#| code-fold: true
-# calculate mean y from df
-ybar <- mean(df$y)
-xbar <- mean(df$x)
-beta0 <- ybar - beta1 * xbar
-
-p1 + geom_vline(xintercept = xbar, linetype = "dashed", color = "slateblue") +
-  geom_hline(yintercept = ybar, linetype = "dashed", color = "slateblue") +
-  # label the lines
-  annotate("text",
-    x = 25, y = ybar * 0.8, size = 7,
-    label = expression(bar(y)), colour = "slateblue"
   ) +
-  annotate("text",
-    x = xbar * 1.05, y = 150, size = 7,
-    label = expression(bar(x)), colour = "slateblue"
-  ) +
-  geom_smooth(method = "lm", se = FALSE, color = "firebrick", linetype = 2) +
-  # extend the geom_smooth line to intercept x=0
-  geom_segment(aes(x = xbar, y = ybar, xend = 0, yend = beta0),
-    color = "firebrick", linetype = 2
-  ) +
-  # label the slope line
-  annotate("text",
-    x = 15, y = 65, size = 7,
-    label = expression(beta[1]), colour = "firebrick"
-  ) +
-  # add a dot at the intercept
-  geom_point(aes(x = 0, y = beta0), color = "seagreen", size = 3) +
-  # label the intercept
-  annotate("text",
-    x = 0, y = beta0 * 1.4, size = 7,
-    label = expression(beta[0]), colour = "seagreen"
-  )
-
+  theme_classic()
 ```
-
-
-# It's a lot easier in R...
-
-## Fitting a linear model in R
-
-Is there a relationship between the heights of parents and their children?
-
-```{r}
-fit <- lm(child ~ parent, data = Galton)
-fit
-```
-
-
-$$ \widehat{child} = 23.9 + 0.646 \cdot parent$$
-
-. . .
-
-How good is the model? Do we trust our model? How can we interpret the results?
-
-## Steps for Regression
-
-1.  [Understand the variables]{style="color: #D0D3D4;"}
-2.  [Explore data]{style="color: #D0D3D4;"}
-3.  [Fit model]{style="color: #D0D3D4;"}
-4.  Check assumptions
-5.  Assess model fit
-6.  Interpret output
-
-# Assumptions
-
-> The data **must** meet certain criteria for linear regression, which we often call *assumptions*.
-
-## Assumptions - LINE
-
-- **L**inearity. The relationship between $y$ and $x$ is linear.
-- **I**ndependence. The errors $\epsilon$ are independent.
-- **N**ormal. The errors $\epsilon$ are normally distributed.
-- **E**qual Variance of errors $\epsilon$. At each value of $x$, the variance of $y$ is the same i.e. homoskedasticity, or constant variance.
-
-. . .
-
-:::{.callout-tip}
-All but the independence assumption can be assessed using diagnostic plots. 
-:::
-
-. . .
-
-### Why do we care?
-
-- If the assumptions are met, then we can be confident that the model is a good representation of the data.
-- If they are *not* met, the results are still presented, but our interpretation of the model is likely to be flawed.
-  - Hypothesis test results are unreliable
-  - Standard error is unreliable
-  - Poor estimates of coefficients = poor predictions
-
-## How do we check the assumptions?
-
-Recall that the linear model is a **deterministic straight line equation** $y = c + mx$ plus some **random noise** $\epsilon$:
-
-$$ Y_i = \beta_0 + \beta_1 x + \epsilon $$
-
-- **If the only source of variation in $y$ is $\epsilon$, then we can check our assumptions by just looking at the residuals $\hat{\epsilon}$.**
-
-. . .
-
-:::{.callout-warning}
-R will not warn you if the assumptions are not met. It is up to you to check them!
-:::
-
-### How do we get the residuals?
-
-- Fit the model!
-- Residuals need to be calculated from the model, not from the raw data.
-- In R, these values are stored automatically.
 
 ## Another way to look at residuals
 
 ![](images/residual.jpg){fig-align="center"}
+For a given 'x', there is a range of 'y' values that are possible.
 
-Once you have fitted the line, it does not change. The residuals are the vertical distances between the points (not shown) and the line.
+- e.g. For a given parent height, there is a range of child heights that are possible.
 
 # Checking assumptions
 
@@ -369,6 +287,8 @@ plot(fit, which = 1)
 ## Examples
 
 ![](images/residual_vs_fitted.png){fig-align="center"}
+<br>
+
 Linear Models with R (Faraway 2005, p59)
 
 ## Assumption: Normality
@@ -442,7 +362,7 @@ plot(fit_eg, which = 2)
 hist(rstandard(fit_eg))
 ```
 
-# Assumption: Equal variances
+# Assumption: Equal Variances
 
 ## Equal variances
 
@@ -512,13 +432,11 @@ abline(fit_eg2, col = "blue", lty = 3)
 
 Points that exceed the dashed line (which appears once they approach the Cook's distance), are likely to influence the model. These outliers should be removed. 
 
-e.g. this is of a perfect line with one extreme outlier - the line of best fit deviates because of a single point!
+e.g. this is of a perfect line with one extreme outlier -- the line of best fit deviates because of a single point!
 
----
+## What can we do if the assumptions aren't met? {auto-animate="true"} 
 
-# What can we do if the assumptions aren't met?
-
-## It depends...
+### It depends...
 
 ...which assumption is not met and the type of data i.e. circumstances.
 
@@ -527,11 +445,7 @@ e.g. this is of a perfect line with one extreme outlier - the line of best fit d
   - log: $\log(y)$ or $\log(y+1)$ if $y$ contains zeros
   - inverse: $\frac{1}{y}$ or $\frac{1}{y+1}$ if $y$ contains zeros
 
-. . .
-
 - If residuals are **not normally distributed**, try a transformation of the response variable $y$ first, otherwise transform the predictor variable $x$. Both can be done at the same time.
-
-. . .
 
 - If **equal variances** assumption is not met, same as above.
 - If **outliers** are present, try removing them, or transforming the response variable $y$.
@@ -556,17 +470,13 @@ Now what?
 
 # Model Assessment and Interpretation
 
-> Hypothesis?
-
-> How good is the model?
-
-> What can we understand about the relationship between `child` and `parent`?
+> Hypothesis? How good is the model? What can we understand about the relationship between `child` and `parent`?
 
 ## Interpreting the output
 
 ```{r}
 #| eval: false
-#| code-line-numbers: 1-2
+#| code-line-numbers: 1-6
 
 Call:
 lm(formula = child ~ parent, data = Galton)
@@ -588,32 +498,6 @@ F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
 ```
 
 - `Call`: the model formula
-
-## Interpreting the output
-
-```{r}
-#| eval: false
-#| code-line-numbers: 4-6
-
-Call:
-lm(formula = child ~ parent, data = Galton)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--7.8050 -1.3661  0.0487  1.6339  5.9264 
-
-Coefficients:
-            Estimate Std. Error t value Pr(>|t|)    
-(Intercept) 23.94153    2.81088   8.517   <2e-16 ***
-parent       0.64629    0.04114  15.711   <2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 2.239 on 926 degrees of freedom
-Multiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 
-F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
-```
-
 - `Residuals`: distribution of the residuals
 
 ## Interpreting the output
@@ -641,60 +525,41 @@ Multiple R-squared:  0.2105,    Adjusted R-squared:  0.2096
 F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
 ```
 
+::: {.fragment .fade-out}
 - `Coefficients`: a summary table of the coefficients, their standard errors, t-values, and p-values.
-- `(Intercept)/Estimate`: the **y-intercept**, or the mean response when all predictors are 0. Not meaningful in most cases e.g. no parent will have a height of 0 inches!
+- `(Intercept)/Estimate`: the **y-intercept**, or the mean response when all predictors are 0.
 - `parent/Estimate`: the **slope** coefficient - i.e. the change in the **mean** of the response for a **one-unit increase in the predictor**.
-  - The *p-value* (`Pr`) tells us whether the slope is significantly different from 0 (the mean).
-  - If p < 0.05, we can conclude that there is a **significant linear relationship** between the predictor and the response.
-  
-## Hypothesis testing
+:::
 
-How does our null ($H_0: \beta_1=0$) model compare to the linear ($H_0: \beta_1 \neq 0$) model?
-
-> In simple linear regression, the p-value for the slope coefficient is the same as the p-value for the F-statistic.
+## Interpreting the output
 
 ```{r}
-#| code-fold: true
+#| eval: false
+#| code-line-numbers: 8-11
 
-null_model <- Galton %>%
-  lm(child ~ 1, data = .) %>%
-  augment(Galton)
-lin_model <- Galton %>%
-  lm(child ~ parent, data = .) %>%
-  augment(Galton)
-models <- bind_rows(null_model, lin_model) %>%
-  mutate(model = rep(c("Null model", "SLR model"), each = nrow(Galton)))
+Call:
+lm(formula = child ~ parent, data = Galton)
 
-ggplot(data = models, aes(x = parent, y = child)) +
-  geom_smooth(
-    data = filter(models, model == "Null model"),
-    method = "lm", se = FALSE, formula = y ~ 1, size = 0.5
-  ) +
-  geom_smooth(
-    data = filter(models, model == "SLR model"),
-    method = "lm", se = FALSE, formula = y ~ x, size = 0.5
-  ) +
-  geom_segment(
-    aes(xend = parent, yend = .fitted),
-    arrow = arrow(length = unit(0.1, "cm")),
-    size = 0.3, color = "darkgray"
-  ) +
-  geom_point(alpha = .2) +
-  facet_wrap(~model) +
-  xlab("Parent height (in)") +
-  ylab("Child height (in)")
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-7.8050 -1.3661  0.0487  1.6339  5.9264 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 23.94153    2.81088   8.517   <2e-16 ***
+parent       0.64629    0.04114  15.711   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.239 on 926 degrees of freedom
+Multiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 
+F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
 ```
 
-## What are we testing?
-
-- The null model is a model with no predictors, i.e. $y = \beta_0 + \epsilon$
-- The linear model is a model with one predictor, i.e. $y = \beta_0 + \beta_1 x + \epsilon$
-- We use the t-test to compare the two models:
-
-$$ t = \frac{estimate - 0}{Standard\ error} = \frac{\hat{\beta}_1 - 0}{SE(\hat{\beta}_1)} $$ where $SE(\hat{\beta}_1)$ is the standard error of the slope estimate:
-
-$$ SE(\hat{\beta}_1) = \frac{\hat{\sigma}}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2}} $$
-
+- `Pr`: the p-value
+  - `(Intercept)/Pr`: the p-value of the y-intercept is not meaningful.
+  - `parent/Pr`: is `parent` a significant predictor to the model?
+  
 ## Interpreting the output
 
 ```{r}
@@ -724,11 +589,8 @@ F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
 $$ \widehat{child} = 23.94153 + 0.64629 \cdot parent$$
 
 - For every one-inch increase in the parent height, the child height is predicted to increase by 0.64629 inches.
-- e.g. if a parent is 70 inches, how tall will the child be?
+- e.g. if a parent is 70 inches, how tall will the child be? $23.94153 + 0.64629 \cdot 70 = 68.5$ inches (174 cm).
 
-. . .
-
-If the parent is 70 inches (177.8 cm), the child will be: $23.94153 + 0.64629 \cdot 70 = 68.5$ inches (174 cm).
 
 ## Interpreting the output
 
@@ -817,28 +679,91 @@ F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
 - `F-statistic`: the ratio of the variance explained by predictors, and the residual variance (variance not explained by predictors).
   - Also known as the partial F-test between the full model and the intercept-only (null) model.
 - `p-value`: the probability that the F-statistic is greater than the observed value under the null hypothesis.
-  - A significant p-value indicates that the linear model is a better fit than the intercept-only model.
+  - In a simple linear regression, the p-value for the slope coefficient is the same as the p-value for the F-statistic.
+  
+## Hypothesis testing
 
-## Reporting
-> Galton collected data on the heights of parents and their children.
+How does our null ($H_0: \beta_1=0$) model compare to the linear ($H_0: \beta_1 \neq 0$) model?
 
-> There appeared to be a moderate, positive, linear relationship between parent and child height.
+> In simple linear regression, the p-value for the slope coefficient is the same as the p-value for the F-statistic.
 
-> We fitted a linear model to predict child height from parent height (formula: child ~ parent), and model assumptions were met.
+```{r}
+#| code-fold: true
 
-> The model was statistically significant (R^2^ = 0.21, F(1, 926) = 246.84, p < .001), hence the null hypothesis was rejected in favour of the linear model.
+null_model <- Galton %>%
+  lm(child ~ 1, data = .) %>%
+  augment(Galton)
+lin_model <- Galton %>%
+  lm(child ~ parent, data = .) %>%
+  augment(Galton)
+models <- bind_rows(null_model, lin_model) %>%
+  mutate(model = rep(c("Null model", "SLR model"), each = nrow(Galton)))
 
-> Parent height/the model explained 21.05% of the variance in child height.
+ggplot(data = models, aes(x = parent, y = child)) +
+  geom_smooth(
+    data = filter(models, model == "Null model"),
+    method = "lm", se = FALSE, formula = y ~ 1, size = 0.5
+  ) +
+  geom_smooth(
+    data = filter(models, model == "SLR model"),
+    method = "lm", se = FALSE, formula = y ~ x, size = 0.5
+  ) +
+  geom_segment(
+    aes(xend = parent, yend = .fitted),
+    arrow = arrow(length = unit(0.1, "cm")),
+    size = 0.3, color = "darkgray"
+  ) +
+  geom_point(alpha = .2) +
+  facet_wrap(~model) +
+  xlab("Parent height (in)") +
+  ylab("Child height (in)")
+```
 
-> The effect of parent height is statistically significant and positive ($\beta$ = 0.65, t(926) = 15.71, p < .001).
+## What are we testing?
 
-> For every one-inch increase in parent height, child height is predicted to increase by 0.65 inches.
+- The **null model** is a model with no predictors, i.e. $y = \beta_0 + \epsilon$
+- The **alternative model** is a linear model with one predictor, i.e. $y = \beta_0 + \beta_1 x + \epsilon$
+- We use the t-test to compare the two models:
+
+$$ t = \frac{estimate - 0}{Standard\ error} = \frac{\hat{\beta}_1 - 0}{SE(\hat{\beta}_1)} $$ where $SE(\hat{\beta}_1)$ is the standard error of the slope estimate:
+
+$$ SE(\hat{\beta}_1) = \frac{\hat{\sigma}}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2}} $$
+
+:::{.callout-note}
+If the model is **not significant**, then the null model (i.e. mean) is better. If the model **is significant**, then the linear model is better.
+:::
+
+## Reporting {auto-animate="true"}
+
+> Refresher on earlier steps
+
+Galton collected data on the average height of both parents and their children. There wasa moderate, positive, linear relationship ($r$ = 0.46) between parent and child height.
+
+> Can we rely on our model results? Assumptions and hypothesis?
+
+We fitted a linear model to predict child height from parent height, and model assumptions were met. The model was statistically significant (R^2^ = 0.21, F(1, 926) = 246.84, p < .001), hence the null hypothesis was rejected in favour of the linear model. The effect of parent height is statistically significant and positive ($\beta$ = 0.65, t(926) = 15.71, p < .001).
+
+> Equation? Inference?
+
+For every one-inch increase in parent height, child height is predicted to increase by 0.65 inches ($ \widehat{child} = 23.94 + 0.65 \cdot parent$). The average height of both parents explains 21.05% of the variance in child height -- there is an effect but there are clearly more factors at play.
+
+## Fun fact
+
+- Galton's key finding was that children of tall parents are not as tall, children of short parents are not as short.
+
+$$ \widehat{child} = 23.94153 + 0.64629 \cdot parent$$
+
+  - e.g. if average parent height is 60 inches (152 cm), how tall will the child be? $23.94153 + 0.64629 \cdot 60 = 62.7$ inches (159 cm).
+  - e.g. if average parent  height is 75 inches (191 cm), how tall will the child be? $23.94153 + 0.64629 \cdot 75 = 72.4$ inches (184 cm).
+
+- The height of children appeared to **regress** towards the population mean, i.e. the concept of **regression to the mean**
+- Hence the [Galton](https://sites.ualberta.ca/~dwiens/stat575/misc%20resources/regression%20to%20the%20mean.pdf) is credited with coining the term **regression** (and also correlation, percentile, median, etc.)
 
 # Let's practice
 Can we predict the weight of an alligator from its length?
 [Download data ⬇](https://canvas.sydney.edu.au/courses/46921/pages/week-10-lectures-linear-functions?module_item_id=1752336)
 
-![](images/alligator.jpg){width=70%}
+![](images/alligator.jpg){width=30%}
 
 Photo by <a href="https://unsplash.com/@eyedealstuff?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Shelly Collins</a>
 
@@ -946,33 +871,55 @@ summary(fit)
 
 - `Length` is a statistically significant predictor of `log(Weight)` (p < .001).
 - The model explains a statistically significant and large proportion (96%) of variance (R^2^ = 0.96, F(1, 23) = 553, p < .001)
-- For every 1 cm increase in `Length`, `log(Weight)` increases by 0.0354 and `Weight` increases by 3.54%
-  - Note: only natural log transformations can be interpreted as 'percent change in y for 1% change in x'.
+- For every 1 cm increase in `Length`, `log(Weight)` increases by 0.0354, `Weight` increases by $e^{0.0354}$ and `Weight` increases by *approximately* 3.54%
+
+## Percent change with $ln$ transformation
+
+Interpreting as a percent change can be more meaningful - it can be done with any log transformation (substitute $e$ below for 10 or any other base), but the **quick approximation only works with natural log transformations**. 
+
+If $y$ has been transformed with a natural log (`log(y)`), for a one-unit increase in $x$ the **percent change in $y$** (not `log(y)`) is calculated with:
+
+$$\Delta y \% = 100 \cdot (e^{\beta_1}-1)$$
+
+If $\beta_1$ is small (i.e. $-0.25 < \beta_1 < 0.25$), then: $e^{\beta_1} \approx 1 + \beta_1$. So $\Delta y \% \approx 100 \cdot \beta_1$.
+
+:::{.columns}
+:::{.column width="50%"}
+
+|   β   |   Exact $(e^{\beta} - 1)$%   |   Approximate $100 \cdot \beta$   |
+|-----:|-----------------:|------------------:|
+| -0.25 |                      -22.13  |                               -25 |
+| -0.1  |                       -9.52  |                               -10 |
+|  0.01 |                        1.01  |                                 1 |
+|  0.1  |                       10.52  |                                10 |
+|  0.25 |                       28.41  |                                25 |
+|  0.5  |                       64.87  |                                50 |
+|   2   |                      638.91  |                               200 |
+
+:::
+:::{.column width="50%"}
+
+- **$y$ transformed**: a one-unit increase in $x$ is *approximately* a $\beta_1$% change in $y$.
+- **$x$ transformed**: a 1% increase in $x$ is *approximately* a $0.01 \cdot \beta_1$ change in $y$.
+- **Both $x$ and $y$ transformed**: a 1% increase in x is *approximately* a $\beta_1$% change in y.
+
+:::
+:::
 
 ## Summary
 ### Workflow
 
-1.  **Understand the variables**
+1.  **Understand the variables**: Which is the response variable? Is there a reason to believe a causal relationship?
 
-> Which is the response variable? Is there a reason to believe a causal relationship?
-
-2.  **Explore data**
-
-> How many observations? Summary statistics? Scatterplot and correlation?
+2.  **Explore data**: How many observations? Summary statistics? Scatterplot and correlation?
 
 3.  **Fit model**
 
-4.  **Check assumptions**
-
-> Remember - it's about the residuals! If assumptions fail, try transforming and return to Step 3. If assumptions *still* fail, consider another model and return to Step 3.
+4.  **Check assumptions**: Remember - it's about the residuals! If assumptions fail, try transforming and return to Step 3. If assumptions *still* fail, consider another model and return to Step 3.
   
-5.  **Assess model fit**
-
-> Hypothesis test, significance, F-statistic, p-value. R^2^, how much model variation was explained by the model.
+5.  **Assess model fit**: Hypothesis test, significance, F-statistic, p-value. R^2^, how much model variation was explained by the model.
   
-6.  **Interpret output**
-
-> 'For every one-unit increase in x, y increases by $\beta_1$ units...' and any additional research/insight.
+6.  **Interpret output**: 'For every one-unit increase in x, y increases by $\beta_1$ units...' and any additional research/insight.
 
 # Thanks!
 
