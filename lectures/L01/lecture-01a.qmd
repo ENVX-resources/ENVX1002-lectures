@@ -1,0 +1,438 @@
+---
+title: Lecture 01a -- This is ENVX1002
+author: Januar Harianto
+format: soles-revealjs
+# format: revealjs
+# fontsize: 16pt
+embed-resources: true
+---
+
+
+# Welcome
+
+## About us...
+
+### Floris van Ogtrop - Unit Coordinator
+
+- Room 306, Level 3, Biomedical Building, Australian Technology Park, Eveleigh
+- Ph: 02 8627 1024
+- Email: floris.vanogtrop@sydney.edu.au
+
+::: fragment
+
+### Teaching schedule
+
+::: {.columns}
+
+::: {.column width="33%"}
+![](images/januar.jpeg){width="55%"}
+
+**Januar Harianto**   
+Weeks 1 -- 4, Lecturer
+:::
+
+::: {.column width="33%"}
+![](images/floris.png){width="55%"}
+
+**Floris van Ogtrop**  
+Weeks 5 -- 8, Unit Coordinator
+:::
+
+::: {.column width="33%"}
+![](images/siyang.png){width="55%"}
+
+**Si Yang Han**   
+Weeks 9 -- 12, Lecturer
+:::
+
+:::
+:::
+
+## About ENVX1002
+
+::: fragment
+### Learning outcomes
+
+::: incremental
+- **LO1.** Implement basic **reproducible research practices** -- including consistent data organisation, documented code, and version-controlled workflows so that statistical analyses and results can be readily replicated and validated by others.
+- **LO2.** Demonstrate proficiency in **utilising R and Excel** to effectively explore and describe life science datasets.
+- **LO3.** Apply parametric and non-parametric **statistical inference** methods to experimental and observational data using RStudio and effectively **interpret and communicate** the results in the context of the data.
+- **LO4.** Be able to put into practice **both linear and non-linear models** to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.
+- **LO5.** Be able to articulate statistical and modelling results clearly and convincingly in both **written reports and oral presentations**, working effectively as an individual and **collaboratively** in a team, showcasing the ability to convey complex information to varied audiences.
+:::
+:::
+
+## Delivery format
+
+All lectures and tutorials are held in [ABS Lecture Theatre 1130](https://venueweb.sydney.edu.au/H70.01.1130). Lab sessions are held in the Biomedical Building, Australian Technology Park, Eveleigh.
+
+- **Lectures (recorded)**: deliver content, provide context, and introduce new concepts
+- **Tutorials (recorded)**: practice and apply concepts from lectures, prep for labs
+- **Labs**: hands-on practice with R and data analysis, with demonstrators to help you
+
+::: fragment
+The following are optional (but highly recommended):
+
+- **Drop-in sessions**: additional help and support, mostly on Zoom
+- **Ed discussion**: online forum for questions and discussions
+:::
+
+## Timetable
+
+::: fragment
+**Lectures** *(recorded)*
+
+- Monday 12pm--1pm, ABS Lecture Theatre 1130
+- Tuesday 9am--10am, ABS Lecture Theatre 1130
+:::
+
+::: fragment
+**Tutorials** *(recorded)*
+
+- Tuesday 10am--11am, ABS Lecture Theatre 1130
+- 1-hour tutorial directly following your lecture
+:::
+
+::: fragment
+**Computer Labs**
+
+- 2-hour in-person lab session with demonstrators
+- Biomedical Building, Australian Technology Park, Eveleigh
+- See timetable for your allocated time
+:::
+
+## Schedule at a glance...
+
+
+```{mermaid}
+sequenceDiagram
+  participant M as Mon
+  participant T as Tue
+  participant W as Wed
+  participant Th as Thu
+  participant F as Fri
+  participant S as Sat
+  participant Su as Sun
+
+  Note over M,T: Lectures (recorded) - ABS LT 1130
+  Note over T: Tutorial (recorded) - ABS LT 1130
+  Note over T,Th: Lab Sessions - Biomedical Building
+  Th->>+Su: Self-revision, pick ONE day (encouraged)
+
+```
+
+## Resources
+
+- [Canvas](https://canvas.sydney.edu.au/courses/64771) (of course)
+- [ENVX-resources](https://github.com/ENVX-resources) -- GitHub repository for our open-source materials
+- [Ed Discussion](https://edstem.org/au/dashboard) -- main platform for **ANNOUNCEMENTS** and Q&A
+
+
+
+## Where are the Labs?
+
+- Lab sessions include extra time (30 minutes) for travel -- already programmed in the timetable (so clashes are avoided)
+- A free shuttle service is available between campus and the labs, but the schedule is very limited
+- Take advantage of the **new community access gates at Redfern Station**: saves 5 minutes
+
+::: {.columns}
+
+::: {.column width="70%"}
+::: {.responsive-map}
+<iframe 
+  src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d6623.816347572!2d151.18975431930576!3d-33.89201869242399!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x6b12b1d46683b08b%3A0x16d4584b9e392df3!2sCarslaw%20Building%2C%20The%20University%20of%20Sydney%2C%20Camperdown%20NSW!3m2!1d-33.8885751!2d151.1903621!4m5!1s0x6b12b1d028a9f8b3%3A0x63baccfd62f322e5!2sBiomedical%20Building%2C%201%20Central%20Ave%2C%20Eveleigh%20NSW%202015!3m2!1d-33.8961182!2d151.1963471!5e0!3m2!1sen!2sau!4v1736997049585!5m2!1sen!2sau" 
+  width="100%" 
+  height="480" 
+  style="border:0;" 
+  title="Walking directions from Carslaw Building to Biomedical Building"
+  allowfullscreen="" 
+  loading="lazy" 
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+:::
+:::
+
+::: {.column width="30%"}
+![](images/redfern_ca.png)
+:::
+
+:::
+
+# Content & assessments
+
+
+## Topic outline
+
+- Week 01 - **Data:** Reproducible science
+- Week 02 - **Data:** Introduction to statistical programming
+- Week 03 - **Data:** Exploring and visualising data
+- Week 04 - **Data:** The Central Limit Theorem
+
+::: fragment
+- Week 05 - **Inference:** 1-sample tests
+- Week 06 - **Inference:** 2-sample tests
+- Week 07 - **Inference:** Non-parametric tests 1
+- Week 08 - **Inference:** Non-parametric tests 2
+:::
+
+::: fragment
+- Week 09 - **Modelling:** Describing relationships
+- Week 10 - **Modelling:** Linear functions
+- Week 11 - **Modelling:** Linear functions -- multiple predictors
+- Week 12 - **Modelling:** Non-linear functions
+:::
+
+::: fragment
+- Week 13 - **Revision:** Past exam questions and review
+:::
+
+
+## Assessments
+
+```{r}
+# calculate this year's year number
+library(lubridate)
+year <- year(Sys.Date())
+address <- paste0(
+  "https://www.sydney.edu.au/units/ENVX1002/",
+  year,
+  "-S1C-ND-CC"
+)
+```
+
+The most up to date (and slightly more comprehensive) information for **`r year`** is [here](`r address`).
+In a nutshell:
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(tinytable)
+library(tibble)
+
+# Create assessment table with explicit column types
+assessment_df <- tibble(
+  Week = factor(c("3", "5", "8", "13", "Exam")),
+  Assessment = factor(c(
+    "Early Feedback Quiz (individual 5%)",
+    "Project 1: Exploring data (individual 10%)",
+    "Coding and data skills evaluation (individual 15%)",
+    "Project 2: Modelling (10% + Peer assessment 5%)",
+    "Final exam (individual 45%)"
+  )),
+  Description = factor(c(
+    "In-person - 15 minutes",
+    "Written report, 500 words",
+    "In-person - 50 minutes",
+    "Group presentation - 5 minutes",
+    "MCQ + SAQ Questions - 2 hours"
+  ))
+)
+
+# Create table with minimal styling
+tt(assessment_df)
+```
+
+- **Week 3**: The **early feedback quiz** is a chance for us to gauge your understanding and provide feedback
+- **Week 8**: Coding and data skills evaluation covers R data manipulation and analysis
+- Final exam will NOT require you to write or interpret code -- focus on understanding concepts and interpreting results
+
+
+# Software and tools
+
+> The combination of some data and an aching desire for an answer does not ensure that a reasonable answer can be extracted from a given body of data.
+
+-- *John Tukey (1915 -- 2000)*
+
+
+## Baby steps...
+- This unit is designed for beginners - no prior statistics or programming required
+- We start with basics -- pace increases after **week 4**
+- Focus on understanding *concepts* first, then tools
+- We provide plenty of support -- more on this later
+
+## Our tech stack
+
+::: {.incremental}
+1. **MS Excel** -- for data entry and basic analysis
+2. **R** -- a programming language for data analysis
+3. **RStudio** -- an integrated development environment (IDE) for R
+4. Quarto (**Markdown**) -- a key platform for reproducible reports and documents
+5. **GitHub Copilot** -- AI-powered code completion tool. *Optional, but highly recommended*
+:::
+
+
+## MS Excel
+
+- **Widely used** for data entry and basic analysis
+- A standard tool in many industries, including science, often to *store* data
+- Can be a useful complement to R for data cleaning and simple calculations
+- A stepping stone to more advanced tools?
+
+![](images/msexcel.png)
+
+## R
+
+:::: {.columns}
+::: {.column width="50%"}
+![](images/Rlogo.svg)
+:::
+
+::: {.column width="50%"}
+<br>
+<br>
+<br>
+
+- A free, open-source programming language
+- Widely used for data analysis and statistics
+- **Standard tool in scientific research**
+- Extensive collection of packages for data science
+- Strong support for creating publication-quality graphics
+- **Large, active community for help and resources**
+:::
+::::
+
+## Why R?
+
+1. **Built for beginners**
+2. **Makes your work reproducible**
+3. **Powerful yet accessible**
+
+- **Importantly** -- the skills you learn are *highly* transferable to other tools and languages.
+- Most easily integrated with generative AI tools -- *more on this soon*
+- Well-documented and discussed online (so you can find help easily)
+
+## RStudio
+
+
+- NOT the same as R -- it's an **integrated development environment (IDE)**
+- Runs R (...and Python, and SQL, and more)
+- Makes it easier to write and run R code by providing a *significantly* more user-friendly interface
+
+
+![](images/rstudio.png)
+
+
+
+## Starting with R
+- It's normal to feel overwhelmed at first
+- We'll learn step by step
+- Practice is key - a little bit each day helps
+- Don't hesitate to ask questions!
+
+
+## Satisfying when it works
+
+```{r}
+#| eval: false
+#| code-fold: true
+#| code-summary: "Click to see the code for this animation"
+#| warning: false
+#| message: false
+
+# Load required packages
+library(gapminder) # Dataset of country statistics over time
+library(gganimate) # For creating animations in ggplot
+library(tidyverse) # Collection of data science packages
+
+# Create an animated plot showing how life expectancy relates to GDP
+# across different continents over time
+ggplot(
+  gapminder,
+  aes(gdpPercap, lifeExp, # GDP per capita vs life expectancy
+    size = pop, # Point size represents population
+    colour = country
+  )
+) + # Each country gets its own color
+  geom_point(
+    alpha = 0.7, # Semi-transparent points
+    show.legend = FALSE
+  ) + # Hide legend for cleaner look
+  scale_colour_manual(values = country_colors) +
+  scale_size(range = c(2, 12)) + # Set min/max point sizes
+  scale_x_log10() + # Log scale for GDP (wide range)
+  facet_wrap(~continent) + # Separate plot for each continent
+  labs(
+    title = "Year: {frame_time}",
+    x = "GDP per capita",
+    y = "Life expectancy"
+  ) +
+  transition_time(year) + # Animate through years
+  ease_aes("linear") # Smooth transitions
+```
+
+
+![](images/gapminder.gif)
+
+## Quarto
+
+- Marjority of our resources are built using [**Quarto**](https://quarto.org/) -- a markdown-based document format that **you will learn to use** in this unit
+  - Lecture slides
+  - Tutorials
+  - Lab exercises
+- Quarto  makes everything **reproducible** - what does it mean?
+- Free and open source, available on the [ENVX resources](https://github.com/ENVX-resources) GitHub repository -- re-use and modify as you wish (but follow [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/))
+
+
+
+::: fragment
+
+```markdown
+## Quarto
+
+- Marjority of our resources are built using [**Quarto**](https://quarto.org/) -- a markdown-based document format that **you will learn to use** in this unit
+  - Lecture slides
+  - Tutorials
+  - Lab exercises
+- Quarto  makes everything **reproducible** - what does it mean?
+- Free and open source, available on the [ENVX resources](https://github.com/ENVX-resources) GitHub repository -- re-use and modify as you wish (but follow [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/))
+```
+
+:::
+
+
+## R, RStudio, Quarto!?
+
+- Again, it's normal to feel overwhelmed at first
+- **These technologies are complementary -- everything is implemented in RStudio**
+- The **tutorials** and **labs** will guide you through the process
+
+![](images/adventuretime.gif)
+
+## GitHub Copilot
+
+![](images/copilot-logo.png)
+
+- Slightly different from your usual AI tools
+- Acts as a *pair programmer* -- suggests code as you type, based on context
+- **Double-edged sword -- can be a crutch if you rely on it too much**
+- We will start using this tool in **Week 4**
+
+# If you need help...
+
+## Seek help early
+
+- You are not alone, and **you need to learn to ask for help**
+- We provide a LOT of support in various forms:
+  - Face-to-face (in a group setting): tutorials, labs
+  - Face-to-face (one-on-one): consultations -- book a time with us (email)
+  - Online (collaborative): Ed for general questions
+  - Online (private): use **private posts** on Ed
+- From time to time, we will organise **drop-in sessions** for additional help
+
+NOTE: **We cannot help you if you don't ask!**
+
+
+# Thanks!
+
+**Tomorrow**: Lecture (1h) and then Tutorial (1h) -- see you there!
+
+This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
+
+<!-- Links -->
+[cc-by]: http://creativecommons.org/licenses/by/4.0/
+
+
+# References
+
+- Quinn & Keough (2002). Sections 1.1-1.2, pages 1-7.
