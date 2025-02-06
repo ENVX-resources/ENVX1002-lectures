@@ -1,0 +1,265 @@
+---
+title: Lecture 01b -- Reproducible Science
+author: Januar Harianto
+format: soles-revealjs
+# format: revealjs
+# fontsize: 16pt
+embed-resources: false
+---
+
+# Importance of statistics
+
+> Never leave a number all by itself. Never believe that one number on its own can be meaningful. If you are offered one number, always ask for at least one more. Something to compare it with.
+
+-- Hans Rosling (1948-2017)
+
+## Why learn statistics?
+
+All of science (and industry) are increasingly data-driven and computational:
+
+- **Research** papers are filled with statistical analyses
+- **Business** and **policy** decisions are based on data analytics
+- Environmental **policies** are guided by statistical models
+- **Medical** treatments are evaluated using statistical methods
+
+Most of you are majoring in a field that will require you to understand and use statistics in some form.
+
+## Benefits
+
+Even if you don't become a data scientist, statistics will help you to:
+
+::: fragment
+1. **Evaluate claims critically**
+   - Understand and analyse data in your field
+   - Make informed decisions based on evidence
+:::
+::: fragment
+2. **Communicate effectively**
+   - Create compelling data visualisations and reports
+   - Present findings clearly to different audiences
+:::
+::: fragment
+3. **Solve real-world problems**
+   - Design and analyse experiments properly
+   - Make evidence-based predictions and identify trends
+:::
+
+## The joy of stats
+
+
+### [200 countries, 200 years, 4 minutes](https://www.youtube.com/watch?v=jbkSRLYSojo)
+
+In your own time: [The best stats you've ever seen](https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen)
+
+
+
+## [Lionel Messi is impossible](https://fivethirtyeight.com/features/lionel-messi-is-impossible/)
+
+> It’s not possible to shoot more efficiently from outside the penalty area than many players shoot inside it. It’s not possible to lead the world in weak-kick goals and long-range goals. It’s not possible to score on unassisted plays as well as the best players in the world score on assisted ones. It’s not possible to lead the world’s forwards both in taking on defenders and in dishing the ball to others. And it’s certainly not possible to do most of these things by insanely wide margins.
+> 
+> **But Messi does all of this and more.**
+
+![Messi playing for Argentina](https://upload.wikimedia.org/wikipedia/commons/0/0e/Argentina_team_in_St._Petersburg_%28cropped%29_Messi.jpg){fig-align="left"}
+
+*Image credit: [Кирилл Венедиктов](https://commons.wikimedia.org/wiki/File:Argentina_team_in_St._Petersburg_(cropped)_Messi.jpg), CC BY-SA 3.0 GFDL, via Wikimedia Commons*
+
+## Lionel Messi is impossible
+
+![Source: [fivethirtyeight](https://fivethirtyeight.com/features/lionel-messi-is-impossible/)](images/messi-scoring-production.webp)
+
+
+## Lionel Messi is impossible
+
+![Source: [fivethirtyeight](https://fivethirtyeight.com/features/lionel-messi-is-impossible/)](images/messi-shooting-ratio.webp)
+
+## Serious stats
+
+
+### Which sepal length is longer?
+
+![Source: [Embedded Robotics](https://www.embedded-robotics.com/iris-dataset-classification/)](images/iris.png)
+
+*Note: common dataset used in statistics and machine learning.*
+
+
+## Serious stats
+### Visualise
+```{r}
+# load libraries
+pacman::p_load(ggplot2, rstatix, gt)
+
+# create boxplot
+ggplot(iris, aes(x = Species, y = Sepal.Length)) +
+  geom_boxplot() +
+  theme_classic() +
+  labs(y = "Sepal Length (cm)", title = "Sepal Length by Species")
+```
+
+## Serious stats
+### Infer
+
+We use formal statistical tests to determine if differences are **statistically significant** so that we can make **inferences** about the population based on the sample data -- part of the **scientific method**.
+
+```{r}
+# run ANOVA
+model <- aov(Sepal.Length ~ Species, data = iris)
+f_stat <- summary(model)[[1]]$`F value`[1]
+p_val <- summary(model)[[1]]$`Pr(>F)`[1]
+rstatix::anova_summary(model) |>
+  gt() |>
+  tab_caption(
+    caption = "Table 1: One-way ANOVA results comparing sepal length between iris species"
+  )
+```
+
+
+### Scientific reporting
+> A one-way ANOVA revealed significant differences in sepal length between species (ANOVA, F(2, 147) = `r sprintf("%.2f", f_stat)`, p < .001). 
+
+
+## Not *always* formal
+
+:::: {.columns}
+::: {.column width="25%"}
+![Source: [You scrolled 69,420 bananas this year](https://www.reddit.com/r/recap/comments/1h0igae/i_think_i_win_best_number_of_bananas/?ref=share&ref_source=link)](images/bananas_scrolled.jpeg){fig-align="left"} 
+
+
+:::
+::: {.column width="40%"}
+
+![Source: ["Guys where do you pee?"](https://www.reddit.com/r/dataisbeautiful/comments/1i3f1m8/oc_guys_where_do_you_pee_reddit_comments)](images/wherepee.webp){fig-align="left"} 
+
+:::
+::::
+
+
+The *beauty* of statistics -- formal hypothesis testing is not always required to make a point!
+
+
+# The scientific method
+
+> *The man of science has learned to believe in justification, not by faith, but by verification.*
+
+-- [Thomas Huxley (1825-1895)](https://en.wikipedia.org/wiki/Thomas_Henry_Huxley)
+
+
+## Science as an enterprise
+
+- The scientific method -- fundamental to centuries of scientific progress 
+- If you discover something (**or not**), it should be possible for others to verify your findings independently
+- Your findings should be **reproducible** and **replicable**
+
+![The logical framework by Underwood (1997)](images/logical_framework.png)
+
+## No single method
+
+Variation of the scientific method exist-- it is a **framework** that guides the process of scientific inquiry
+
+::: fragment
+![](images/workflow.png)
+:::
+
+## No single method
+
+### HATPC
+**H**ypothesis -- **A**ssumptions -- **T**est statistic -- **P**-value -- **C**onclusion
+
+
+::: fragment
+
+:::: {.columns}
+::: {.column width="50%"}
+![](images/hatpc.png){width=50%}
+:::
+
+::: {.column width="50%"}
+::: fragment
+### 
+
+You will see some variation of the HATPC in your first-year units -- a common framework for **report writing**
+:::
+:::
+
+::::
+:::
+
+## Key principles
+
+1. **Observation**: Identify a phenomenon of interest that can be measured
+2. **Question**: Formulate a question that can be answered by collecting data
+3. **Research**: Review the literature to understand what is already known -- your question may already have been asked by someone else. This step helps in understanding what is already known and what gaps in knowledge may exist.
+4. **Hypothesis**: Formulate a **testable** hypothesis -- something that can be assessed using data collection and analysis
+5. **Experiment**: Design an experiment to test the hypothesis
+6. **Data collection**: Collect data 
+7. **Analysis**: use statistical methods to analyse the data and determine if results are statistically significant or demonstrate a pattern
+8. **Conclusion**: Interpret the results and draw conclusions. If the results are not significant, this is still a valid conclusion!
+
+
+
+## Reproducibility crisis despite the scientific method
+
+From [Nature](https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970) (including image sources):
+
+> More than 70% of researchers have tried and failed to reproduce another scientist's experiments, and more than half have failed to reproduce their own experiments. 
+
+:::: {.columns}
+::: {.column width="30%"}
+![](images/reproduce-exp.webp)
+:::
+
+::: {.column width="50%"}
+![](images/factors-reproducibility.webp)
+
+Statistical analysis, experimental design and data issues are the main factors affecting research reproducibility.
+:::
+::::
+
+# Reproducibility and replicability
+
+## Key definitions
+
+- **Reproducibility**: the ability to re-run an analysis and obtain the same results
+- **Replicability**: the ability to obtain the same conclusions using a *different* dataset or study population
+
+Scientific findings should be **both** reproducible and replicable -- the tools that we use *should* facilitate this in the most efficient way possible.
+
+
+## Reproducibility
+
+How would you explain to someone how to reproduce this plot...
+
+- in Excel? Check the [guide](https://support.microsoft.com/en-au/office/create-a-box-plot-10204530-8cdf-40fe-a711-2eb9785e510f)
+- In SPSS? Check the [guide](https://www.ibm.com/docs/en/spss-statistics/30.0.0?topic=types-boxplots)
+- In R?
+
+### 
+```{r}
+library(palmerpenguins)
+boxplot(bill_length_mm ~ species, data = penguins)
+```
+
+
+## An over-simplification
+
+Those without programming knowledge will *still* struggle to understand and use the two lines of R code shown above.
+
+### Pre-requisites
+
+- Understanding of the R programming language
+- Knowing how to debug (i.e. read error messages or "play" with code)
+- It takes time, but the payoff is worth it -- all programming languages follow similar principles and you will find others easier to learn, even if not for statistics...
+
+# Demonstration
+
+
+# References
+
+- Quinn & Keough (2002). Sections 1.1-1.2, pages 1-7.
+- Underwood AJ (1997) Experiments in Ecology: Their Logical Design and Interpretation using Analysis of Variance. Cambridge University Press, Cambridge.
+
+# Thanks!
+
+This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
+
+<!-- Links -->
+[cc-by]: http://creativecommons.org/licenses/by/4.0/
