@@ -7,3 +7,7 @@ subtitle: ENVX1002 Introduction to Statistical Methods
 institute: The University of Sydney
 date: last-modified # today | last-modified
 date-format: "MMM YYYY" # see https://momentjs.com/docs/#/displaying/format/
+code-fold: true
+execute: 
+  echo: true
+  cache: false
