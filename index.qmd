@@ -9,7 +9,9 @@ anchor-sections: false
 section-divs: false
 ---
 
+**This site contains the lecture material for ENVX1002.** It is meant for lecturers to publish their lecture content in a structured way and has not been designed for student use. Most of the content is still in development and will be updated throughout the semester. If you happen to stumble upon this site, feel free to have a look around... but be aware that the content is *not* final and may contain errors.
 
+**ENVX1002 students should always navigate to [Canvas](https://canvas.sydney.edu.au/) to access the ENVX1002 page and view the course material in the right context.**
 
 
 ### Module 1 -- describing data
