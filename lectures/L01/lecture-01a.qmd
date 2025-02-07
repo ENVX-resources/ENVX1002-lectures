@@ -98,20 +98,20 @@ All lectures and tutorials are held in [ABS Lecture Theatre 1130](https://venuew
 
 
 ```{mermaid}
+%%| fig-alt: "Weekly schedule diagram showing lectures on Monday and Tuesday, tutorial on Tuesday, labs between Tuesday and Thursday, and self-revision between Thursday and Sunday"
 sequenceDiagram
-  participant M as Mon
-  participant T as Tue
-  participant W as Wed
-  participant Th as Thu
-  participant F as Fri
-  participant S as Sat
-  participant Su as Sun
+    participant M as Mon
+    participant T as Tue
+    participant W as Wed
+    participant Th as Thu
+    participant F as Fri
+    participant S as Sat
+    participant Su as Sun
 
-  Note over M,T: Lectures (recorded) - ABS LT 1130
-  Note over T: Tutorial (recorded) - ABS LT 1130
-  Note over T,Th: Lab Sessions - Biomedical Building
-  Th->>+Su: Self-revision, pick ONE day (encouraged)
-
+    Note over M,T: Lectures (recorded) - ABS LT 1130
+    Note over T: Tutorial (recorded) - ABS LT 1130
+    Note over T,Th: Lab Sessions - Biomedical Building
+    Th->>+Su: Self-revision, pick ONE day (encouraged)
 ```
 
 ## Resources
@@ -188,11 +188,11 @@ In a nutshell:
 #| echo: false
 #| warning: false
 #| message: false
+#| tbl-cap: "ENVX1002 Assessments"
 
 library(tinytable)
 library(tibble)
 
-# Create assessment table with explicit column types
 assessment_df <- tibble(
   Week = factor(c("3", "5", "8", "13", "Exam")),
   Assessment = factor(c(
@@ -211,28 +211,27 @@ assessment_df <- tibble(
   ))
 )
 
-# Create table with minimal styling
 tt(assessment_df)
 ```
 
-Any questions?
-
+**Any questions?**
 
 # Software and tools
 
-> The combination of some data and an aching desire for an answer does not ensure that a reasonable answer can be extracted from a given body of data.
+<!-- > The combination of some data and an aching desire for an answer does not ensure that a reasonable answer can be extracted from a given body of data.
 
--- *John Tukey (1915 -- 2000)*
+-- *John Tukey (1915 -- 2000)* -->
 
 
 ## Baby steps...
+
 - This unit is designed for beginners - no prior statistics or programming required
 - We start with basics -- pace increases after **week 4**
 - Focus on understanding *concepts* first, then tools
 - We provide plenty of support -- more on this later
 
-## Our tech stack
 
+## Our tech stack
 
 1. **MS Excel** -- for data entry and basic analysis
 2. **R** -- a programming language for data analysis
@@ -244,11 +243,11 @@ Any questions?
 ## MS Excel
 
 - **Widely used** for data entry and basic analysis
-- A standard tool in many industries, including science, often to *store* data
-- Can be a useful complement to R for data cleaning and simple calculations
-- A stepping stone to more advanced tools?
+- Versatile and user-friendly -- most of you are already familiar with it
+- Great data exploration tool
 
 ![](images/msexcel.png)
+
 
 ## R
 
@@ -273,7 +272,7 @@ Any questions?
 
 ## Why R?
 
-1. **Built for beginners**
+1. **Beginner friendly (works without needing to know a lot of programming)**
 2. **Makes your work reproducible**
 3. **Powerful yet accessible**
 
@@ -283,15 +282,11 @@ Any questions?
 
 ## RStudio
 
-
 - NOT the same as R -- it's an **integrated development environment (IDE)**
 - Runs R (...and Python, and SQL, and more)
 - Makes it easier to write and run R code by providing a *significantly* more user-friendly interface
-
-
+ 
 ![](images/rstudio.png)
-
-
 
 ## Starting with R
 - It's normal to feel overwhelmed at first
@@ -308,6 +303,7 @@ Any questions?
 #| code-summary: "Click to see the code for this animation"
 #| warning: false
 #| message: false
+#| fig-alt: "Animated scatter plot showing relationship between GDP per capita and life expectancy across continents from 1952-2007"
 
 # Load required packages
 library(gapminder) # Dataset of country statistics over time
@@ -315,29 +311,30 @@ library(gganimate) # For creating animations in ggplot
 library(tidyverse) # Collection of data science packages
 
 # Create an animated plot showing how life expectancy relates to GDP
-# across different continents over time
 ggplot(
   gapminder,
-  aes(gdpPercap, lifeExp, # GDP per capita vs life expectancy
-    size = pop, # Point size represents population
+  aes(gdpPercap, lifeExp,
+    size = pop,
     colour = country
   )
-) + # Each country gets its own color
+) +
   geom_point(
-    alpha = 0.7, # Semi-transparent points
+    alpha = 0.7,
     show.legend = FALSE
-  ) + # Hide legend for cleaner look
+  ) +
   scale_colour_manual(values = country_colors) +
-  scale_size(range = c(2, 12)) + # Set min/max point sizes
-  scale_x_log10() + # Log scale for GDP (wide range)
-  facet_wrap(~continent) + # Separate plot for each continent
+  scale_size(range = c(2, 12)) +
+  scale_x_log10() +
+  facet_wrap(~continent) +
   labs(
     title = "Year: {frame_time}",
-    x = "GDP per capita",
-    y = "Life expectancy"
+    x = "GDP per capita (log scale)",
+    y = "Life expectancy (years)",
+    caption = "Data: Gapminder"
   ) +
-  transition_time(year) + # Animate through years
-  ease_aes("linear") # Smooth transitions
+  theme_minimal(base_size = 12) +
+  transition_time(year) +
+  ease_aes("linear")
 ```
 
 
@@ -347,7 +344,7 @@ Note: we will revisit this plot in the next lecture
 
 ## Quarto
 
-- Marjority of our resources are built using [**Quarto**](https://quarto.org/) -- a markdown-based document format that **you will learn to use** in this unit
+- Majority of our resources are built using [**Quarto**](https://quarto.org/) -- a markdown-based document format that **you will learn to use** in this unit
   - Lecture slides
   - Tutorials
   - Lab exercises
@@ -361,7 +358,7 @@ Note: we will revisit this plot in the next lecture
 ```markdown
 ## Quarto
 
-- Marjority of our resources are built using [**Quarto**](https://quarto.org/) -- a markdown-based document format that **you will learn to use** in this unit
+- Majority of our resources are built using [**Quarto**](https://quarto.org/) -- a markdown-based document format that **you will learn to use** in this unit
   - Lecture slides
   - Tutorials
   - Lab exercises
@@ -380,14 +377,6 @@ Note: we will revisit this plot in the next lecture
 
 ![](images/adventuretime.gif)
 
-## GitHub Copilot
-
-![](images/copilot-logo.png)
-
-- Slightly different from your usual AI tools
-- Acts as a *pair programmer* -- suggests code as you type, based on context
-- **Double-edged sword -- can be a crutch if you rely on it too much**
-- We will start using this tool in **Week 4**
 
 # If you need help...
 
@@ -414,9 +403,12 @@ This presentation is based on the [SOLES Quarto reveal.js template](https://gith
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
 
 
-# References and links
+# References and Resources
 
-- Quinn & Keough (2002). Sections 1.1-1.2, pages 1-7.
-- [CRAN (The Comprehensive R Archive Network)](https://cran.r-project.org/)
-- [RStudio](https://posit.co/downloads/)
-- [Quarto](https://quarto.org/)
+## Core Reading
+- Quinn & Keough (2002). *Experimental Design and Data Analysis for Biologists*. Cambridge University Press. Sections 1.1-1.2, pages 1-7.
+
+## Software Resources
+- [CRAN (The Comprehensive R Archive Network)](https://cran.r-project.org/) - R packages repository
+- [RStudio](https://posit.co/downloads/) - Integrated development environment
+- [Quarto](https://quarto.org/) - Scientific publishing system
