@@ -1,6 +1,6 @@
 ---
 title: Lecture 01a -- This is ENVX1002
-author: Januar Harianto
+author: Floris Van Ogtrop (coordinator) & Januar Harianto
 format: soles-revealjs
 # format: revealjs
 # fontsize: 16pt
@@ -48,19 +48,16 @@ Weeks 9 -- 12, Lecturer
 :::
 :::
 
-## About ENVX1002
+## ENVX1002 Learning outcomes
 
-::: fragment
-### Learning outcomes
 
-::: incremental
 - **LO1.** Implement basic **reproducible research practices** -- including consistent data organisation, documented code, and version-controlled workflows so that statistical analyses and results can be readily replicated and validated by others.
 - **LO2.** Demonstrate proficiency in **utilising R and Excel** to effectively explore and describe life science datasets.
 - **LO3.** Apply parametric and non-parametric **statistical inference** methods to experimental and observational data using RStudio and effectively **interpret and communicate** the results in the context of the data.
 - **LO4.** Be able to put into practice **both linear and non-linear models** to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.
 - **LO5.** Be able to articulate statistical and modelling results clearly and convincingly in both **written reports and oral presentations**, working effectively as an individual and **collaboratively** in a team, showcasing the ability to convey complex information to varied audiences.
-:::
-:::
+
+
 
 ## Delivery format
 
@@ -69,25 +66,21 @@ All lectures and tutorials are held in [ABS Lecture Theatre 1130](https://venuew
 - **Lectures (recorded)**: deliver content, provide context, and introduce new concepts
 - **Tutorials (recorded)**: practice and apply concepts from lectures, prep for labs
 - **Labs**: hands-on practice with R and data analysis, with demonstrators to help you
-
-::: fragment
-The following are optional (but highly recommended):
-
-- **Drop-in sessions**: additional help and support, mostly on Zoom
 - **Ed discussion**: online forum for questions and discussions
-:::
+- **Drop-in sessions**: additional help and support as needed on Zoom or in person
+
 
 ## Timetable
 
 ::: fragment
-**Lectures** *(recorded)*
+**Lectures** 
 
 - Monday 12pm--1pm, ABS Lecture Theatre 1130
 - Tuesday 9am--10am, ABS Lecture Theatre 1130
 :::
 
 ::: fragment
-**Tutorials** *(recorded)*
+**Tutorials** 
 
 - Tuesday 10am--11am, ABS Lecture Theatre 1130
 - 1-hour tutorial directly following your lecture
@@ -124,8 +117,8 @@ sequenceDiagram
 ## Resources
 
 - [Canvas](https://canvas.sydney.edu.au/courses/64771) (of course)
-- [ENVX-resources](https://github.com/ENVX-resources) -- GitHub repository for our open-source materials
 - [Ed Discussion](https://edstem.org/au/dashboard) -- main platform for **ANNOUNCEMENTS** and Q&A
+- [ENVX-resources](https://github.com/ENVX-resources) -- GitHub repository for our open-source materials
 
 
 
@@ -137,19 +130,8 @@ sequenceDiagram
 
 ::: {.columns}
 
-::: {.column width="70%"}
-::: {.responsive-map}
-<iframe 
-  src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d6623.816347572!2d151.18975431930576!3d-33.89201869242399!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x6b12b1d46683b08b%3A0x16d4584b9e392df3!2sCarslaw%20Building%2C%20The%20University%20of%20Sydney%2C%20Camperdown%20NSW!3m2!1d-33.8885751!2d151.1903621!4m5!1s0x6b12b1d028a9f8b3%3A0x63baccfd62f322e5!2sBiomedical%20Building%2C%201%20Central%20Ave%2C%20Eveleigh%20NSW%202015!3m2!1d-33.8961182!2d151.1963471!5e0!3m2!1sen!2sau!4v1736997049585!5m2!1sen!2sau" 
-  width="100%" 
-  height="480" 
-  style="border:0;" 
-  title="Walking directions from Carslaw Building to Biomedical Building"
-  allowfullscreen="" 
-  loading="lazy" 
-  referrerpolicy="no-referrer-when-downgrade">
-</iframe>
-:::
+::: {.column width="50%"}
+![](images/walking-guide.png)
 :::
 
 ::: {.column width="30%"}
@@ -233,9 +215,7 @@ assessment_df <- tibble(
 tt(assessment_df)
 ```
 
-- **Week 3**: The **early feedback quiz** is a chance for us to gauge your understanding and provide feedback
-- **Week 8**: Coding and data skills evaluation covers R data manipulation and analysis
-- Final exam will NOT require you to write or interpret code -- focus on understanding concepts and interpreting results
+Any questions?
 
 
 # Software and tools
@@ -253,13 +233,12 @@ tt(assessment_df)
 
 ## Our tech stack
 
-::: {.incremental}
+
 1. **MS Excel** -- for data entry and basic analysis
 2. **R** -- a programming language for data analysis
 3. **RStudio** -- an integrated development environment (IDE) for R
 4. Quarto (**Markdown**) -- a key platform for reproducible reports and documents
-5. **GitHub Copilot** -- AI-powered code completion tool. *Optional, but highly recommended*
-:::
+5. **GitHub Copilot** -- AI-powered code completion tool. *Optional*
 
 
 ## MS Excel
@@ -364,6 +343,8 @@ ggplot(
 
 ![](images/gapminder.gif)
 
+Note: we will revisit this plot in the next lecture
+
 ## Quarto
 
 - Marjority of our resources are built using [**Quarto**](https://quarto.org/) -- a markdown-based document format that **you will learn to use** in this unit
@@ -433,6 +414,9 @@ This presentation is based on the [SOLES Quarto reveal.js template](https://gith
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
 
 
-# References
+# References and links
 
 - Quinn & Keough (2002). Sections 1.1-1.2, pages 1-7.
+- [CRAN (The Comprehensive R Archive Network)](https://cran.r-project.org/)
+- [RStudio](https://posit.co/downloads/)
+- [Quarto](https://quarto.org/)
