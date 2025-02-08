@@ -432,39 +432,39 @@
     "text": "About us…\nFloris van Ogtrop - Unit Coordinator\n\nRoom 306, Level 3, Biomedical Building, Australian Technology Park, Eveleigh\nPh: 02 8627 1024\nEmail: floris.vanogtrop@sydney.edu.au\n\n\nTeaching schedule\n\n\n\nJanuar Harianto\nWeeks 1 – 4, Lecturer\n\n\nFloris van Ogtrop\nWeeks 5 – 8, Unit Coordinator\n\n\nSi Yang Han\nWeeks 9 – 12, Lecturer"
   },
   {
-    "objectID": "lectures/L01/lecture-01a.html#about-envx1002",
-    "href": "lectures/L01/lecture-01a.html#about-envx1002",
+    "objectID": "lectures/L01/lecture-01a.html#envx1002-learning-outcomes",
+    "href": "lectures/L01/lecture-01a.html#envx1002-learning-outcomes",
     "title": "Lecture 01a – This is ENVX1002",
-    "section": "About ENVX1002",
-    "text": "About ENVX1002\n\nLearning outcomes\n\n\nLO1. Implement basic reproducible research practices – including consistent data organisation, documented code, and version-controlled workflows so that statistical analyses and results can be readily replicated and validated by others.\nLO2. Demonstrate proficiency in utilising R and Excel to effectively explore and describe life science datasets.\nLO3. Apply parametric and non-parametric statistical inference methods to experimental and observational data using RStudio and effectively interpret and communicate the results in the context of the data.\nLO4. Be able to put into practice both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.\nLO5. Be able to articulate statistical and modelling results clearly and convincingly in both written reports and oral presentations, working effectively as an individual and collaboratively in a team, showcasing the ability to convey complex information to varied audiences."
+    "section": "ENVX1002 Learning outcomes",
+    "text": "ENVX1002 Learning outcomes\n\nLO1. Implement basic reproducible research practices – including consistent data organisation, documented code, and version-controlled workflows so that statistical analyses and results can be readily replicated and validated by others.\nLO2. Demonstrate proficiency in utilising R and Excel to effectively explore and describe life science datasets.\nLO3. Apply parametric and non-parametric statistical inference methods to experimental and observational data using RStudio and effectively interpret and communicate the results in the context of the data.\nLO4. Be able to put into practice both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.\nLO5. Be able to articulate statistical and modelling results clearly and convincingly in both written reports and oral presentations, working effectively as an individual and collaboratively in a team, showcasing the ability to convey complex information to varied audiences."
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#delivery-format",
     "href": "lectures/L01/lecture-01a.html#delivery-format",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Delivery format",
-    "text": "Delivery format\nAll lectures and tutorials are held in ABS Lecture Theatre 1130. Lab sessions are held in the Biomedical Building, Australian Technology Park, Eveleigh.\n\nLectures (recorded): deliver content, provide context, and introduce new concepts\nTutorials (recorded): practice and apply concepts from lectures, prep for labs\nLabs: hands-on practice with R and data analysis, with demonstrators to help you\n\n\nThe following are optional (but highly recommended):\n\nDrop-in sessions: additional help and support, mostly on Zoom\nEd discussion: online forum for questions and discussions"
+    "text": "Delivery format\nAll lectures and tutorials are held in ABS Lecture Theatre 1130. Lab sessions are held in the Biomedical Building, Australian Technology Park, Eveleigh.\n\nLectures (recorded): deliver content, provide context, and introduce new concepts\nTutorials (recorded): practice and apply concepts from lectures, prep for labs\nLabs: hands-on practice with R and data analysis, with demonstrators to help you\nEd discussion: online forum for questions and discussions\nDrop-in sessions: additional help and support as needed on Zoom or in person"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#timetable",
     "href": "lectures/L01/lecture-01a.html#timetable",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Timetable",
-    "text": "Timetable\n\nLectures (recorded)\n\nMonday 12pm–1pm, ABS Lecture Theatre 1130\nTuesday 9am–10am, ABS Lecture Theatre 1130\n\n\n\nTutorials (recorded)\n\nTuesday 10am–11am, ABS Lecture Theatre 1130\n1-hour tutorial directly following your lecture\n\n\n\nComputer Labs\n\n2-hour in-person lab session with demonstrators\nBiomedical Building, Australian Technology Park, Eveleigh\nSee timetable for your allocated time"
+    "text": "Timetable\n\nLectures\n\nMonday 12pm–1pm, ABS Lecture Theatre 1130\nTuesday 9am–10am, ABS Lecture Theatre 1130\n\n\n\nTutorials\n\nTuesday 10am–11am, ABS Lecture Theatre 1130\n1-hour tutorial directly following your lecture\n\n\n\nComputer Labs\n\n2-hour in-person lab session with demonstrators\nBiomedical Building, Australian Technology Park, Eveleigh\nSee timetable for your allocated time"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#schedule-at-a-glance",
     "href": "lectures/L01/lecture-01a.html#schedule-at-a-glance",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Schedule at a glance…",
-    "text": "Schedule at a glance…\n\n\nCode\nsequenceDiagram\n  participant M as Mon\n  participant T as Tue\n  participant W as Wed\n  participant Th as Thu\n  participant F as Fri\n  participant S as Sat\n  participant Su as Sun\n\n  Note over M,T: Lectures (recorded) - ABS LT 1130\n  Note over T: Tutorial (recorded) - ABS LT 1130\n  Note over T,Th: Lab Sessions - Biomedical Building\n  Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)\n\n\n\n\n\nsequenceDiagram\n  participant M as Mon\n  participant T as Tue\n  participant W as Wed\n  participant Th as Thu\n  participant F as Fri\n  participant S as Sat\n  participant Su as Sun\n\n  Note over M,T: Lectures (recorded) - ABS LT 1130\n  Note over T: Tutorial (recorded) - ABS LT 1130\n  Note over T,Th: Lab Sessions - Biomedical Building\n  Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)"
+    "text": "Schedule at a glance…\n\n\nCode\nsequenceDiagram\n    participant M as Mon\n    participant T as Tue\n    participant W as Wed\n    participant Th as Thu\n    participant F as Fri\n    participant S as Sat\n    participant Su as Sun\n\n    Note over M,T: Lectures (recorded) - ABS LT 1130\n    Note over T: Tutorial (recorded) - ABS LT 1130\n    Note over T,Th: Lab Sessions - Biomedical Building\n    Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)\n\n\n\n\n\nsequenceDiagram\n    participant M as Mon\n    participant T as Tue\n    participant W as Wed\n    participant Th as Thu\n    participant F as Fri\n    participant S as Sat\n    participant Su as Sun\n\n    Note over M,T: Lectures (recorded) - ABS LT 1130\n    Note over T: Tutorial (recorded) - ABS LT 1130\n    Note over T,Th: Lab Sessions - Biomedical Building\n    Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#resources",
     "href": "lectures/L01/lecture-01a.html#resources",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Resources",
-    "text": "Resources\n\nCanvas (of course)\nENVX-resources – GitHub repository for our open-source materials\nEd Discussion – main platform for ANNOUNCEMENTS and Q&A"
+    "text": "Resources\n\nCanvas (of course)\nEd Discussion – main platform for ANNOUNCEMENTS and Q&A\nENVX-resources – GitHub repository for our open-source materials"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#where-are-the-labs",
@@ -485,7 +485,7 @@
     "href": "lectures/L01/lecture-01a.html#assessments",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Assessments",
-    "text": "Assessments\n\n\nCode\n# calculate this year's year number\nlibrary(lubridate)\nyear &lt;- year(Sys.Date())\naddress &lt;- paste0(\n  \"https://www.sydney.edu.au/units/ENVX1002/\",\n  year,\n  \"-S1C-ND-CC\"\n)\n\n\nThe most up to date (and slightly more comprehensive) information for 2025 is here. In a nutshell:\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Week\n                Assessment\n                Description\n              \n        \n        \n        \n                \n                  3   \n                  Early Feedback Quiz (individual 5%)               \n                  In-person - 15 minutes        \n                \n                \n                  5   \n                  Project 1: Exploring data (individual 10%)        \n                  Written report, 500 words     \n                \n                \n                  8   \n                  Coding and data skills evaluation (individual 15%)\n                  In-person - 50 minutes        \n                \n                \n                  13  \n                  Project 2: Modelling (10% + Peer assessment 5%)   \n                  Group presentation - 5 minutes\n                \n                \n                  Exam\n                  Final exam (individual 45%)                       \n                  MCQ + SAQ Questions - 2 hours \n                \n        \n      \n    \n\n\n\n\nWeek 3: The early feedback quiz is a chance for us to gauge your understanding and provide feedback\nWeek 8: Coding and data skills evaluation covers R data manipulation and analysis\nFinal exam will NOT require you to write or interpret code – focus on understanding concepts and interpreting results"
+    "text": "Assessments\n\n\nCode\n# calculate this year's year number\nlibrary(lubridate)\nyear &lt;- year(Sys.Date())\naddress &lt;- paste0(\n  \"https://www.sydney.edu.au/units/ENVX1002/\",\n  year,\n  \"-S1C-ND-CC\"\n)\n\n\nThe most up to date (and slightly more comprehensive) information for 2025 is here. In a nutshell:\n\n\n\n\n    \n\n    \n    \n      ENVX1002 Assessments\n        \n        \n              \n                Week\n                Assessment\n                Description\n              \n        \n        \n        \n                \n                  3   \n                  Early Feedback Quiz (individual 5%)               \n                  In-person - 15 minutes        \n                \n                \n                  5   \n                  Project 1: Exploring data (individual 10%)        \n                  Written report, 500 words     \n                \n                \n                  8   \n                  Coding and data skills evaluation (individual 15%)\n                  In-person - 50 minutes        \n                \n                \n                  13  \n                  Project 2: Modelling (10% + Peer assessment 5%)   \n                  Group presentation - 5 minutes\n                \n                \n                  Exam\n                  Final exam (individual 45%)                       \n                  MCQ + SAQ Questions - 2 hours \n                \n        \n      \n    \n\n\n\nAny questions?"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#baby-steps",
@@ -499,14 +499,14 @@
     "href": "lectures/L01/lecture-01a.html#our-tech-stack",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Our tech stack",
-    "text": "Our tech stack\n\n\nMS Excel – for data entry and basic analysis\nR – a programming language for data analysis\nRStudio – an integrated development environment (IDE) for R\nQuarto (Markdown) – a key platform for reproducible reports and documents\nGitHub Copilot – AI-powered code completion tool. Optional, but highly recommended"
+    "text": "Our tech stack\n\nMS Excel – for data entry and basic analysis\nR – a programming language for data analysis\nRStudio – an integrated development environment (IDE) for R\nQuarto (Markdown) – a key platform for reproducible reports and documents\nGitHub Copilot – AI-powered code completion tool. Optional"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#ms-excel",
     "href": "lectures/L01/lecture-01a.html#ms-excel",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "MS Excel",
-    "text": "MS Excel\n\nWidely used for data entry and basic analysis\nA standard tool in many industries, including science, often to store data\nCan be a useful complement to R for data cleaning and simple calculations\nA stepping stone to more advanced tools?"
+    "text": "MS Excel\n\nWidely used for data entry and basic analysis\nVersatile and user-friendly – most of you are already familiar with it\nGreat data exploration tool"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#r",
@@ -520,7 +520,7 @@
     "href": "lectures/L01/lecture-01a.html#why-r",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Why R?",
-    "text": "Why R?\n\nBuilt for beginners\nMakes your work reproducible\nPowerful yet accessible\n\n\nImportantly – the skills you learn are highly transferable to other tools and languages.\nMost easily integrated with generative AI tools – more on this soon\nWell-documented and discussed online (so you can find help easily)"
+    "text": "Why R?\n\nBeginner friendly (works without needing to know a lot of programming)\nMakes your work reproducible\nPowerful yet accessible\n\n\nImportantly – the skills you learn are highly transferable to other tools and languages.\nMost easily integrated with generative AI tools – more on this soon\nWell-documented and discussed online (so you can find help easily)"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#rstudio",
@@ -541,14 +541,14 @@
     "href": "lectures/L01/lecture-01a.html#satisfying-when-it-works",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Satisfying when it works",
-    "text": "Satisfying when it works\n\n\nClick to see the code for this animation\n# Load required packages\nlibrary(gapminder) # Dataset of country statistics over time\nlibrary(gganimate) # For creating animations in ggplot\nlibrary(tidyverse) # Collection of data science packages\n\n# Create an animated plot showing how life expectancy relates to GDP\n# across different continents over time\nggplot(\n  gapminder,\n  aes(gdpPercap, lifeExp, # GDP per capita vs life expectancy\n    size = pop, # Point size represents population\n    colour = country\n  )\n) + # Each country gets its own color\n  geom_point(\n    alpha = 0.7, # Semi-transparent points\n    show.legend = FALSE\n  ) + # Hide legend for cleaner look\n  scale_colour_manual(values = country_colors) +\n  scale_size(range = c(2, 12)) + # Set min/max point sizes\n  scale_x_log10() + # Log scale for GDP (wide range)\n  facet_wrap(~continent) + # Separate plot for each continent\n  labs(\n    title = \"Year: {frame_time}\",\n    x = \"GDP per capita\",\n    y = \"Life expectancy\"\n  ) +\n  transition_time(year) + # Animate through years\n  ease_aes(\"linear\") # Smooth transitions"
+    "text": "Satisfying when it works\n\n\nClick to see the code for this animation\n# Load required packages\nlibrary(gapminder) # Dataset of country statistics over time\nlibrary(gganimate) # For creating animations in ggplot\nlibrary(tidyverse) # Collection of data science packages\n\n# Create an animated plot showing how life expectancy relates to GDP\nggplot(\n  gapminder,\n  aes(gdpPercap, lifeExp,\n    size = pop,\n    colour = country\n  )\n) +\n  geom_point(\n    alpha = 0.7,\n    show.legend = FALSE\n  ) +\n  scale_colour_manual(values = country_colors) +\n  scale_size(range = c(2, 12)) +\n  scale_x_log10() +\n  facet_wrap(~continent) +\n  labs(\n    title = \"Year: {frame_time}\",\n    x = \"GDP per capita (log scale)\",\n    y = \"Life expectancy (years)\",\n    caption = \"Data: Gapminder\"\n  ) +\n  theme_minimal(base_size = 12) +\n  transition_time(year) +\n  ease_aes(\"linear\")\n\n\n\nNote: we will revisit this plot in the next lecture"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#quarto",
     "href": "lectures/L01/lecture-01a.html#quarto",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Quarto",
-    "text": "Quarto\n\nMarjority of our resources are built using Quarto – a markdown-based document format that you will learn to use in this unit\n\nLecture slides\nTutorials\nLab exercises\n\nQuarto makes everything reproducible - what does it mean?\nFree and open source, available on the ENVX resources GitHub repository – re-use and modify as you wish (but follow CC BY 4.0)\n\n\n## Quarto\n\n- Marjority of our resources are built using [**Quarto**](https://quarto.org/) -- a markdown-based document format that **you will learn to use** in this unit\n  - Lecture slides\n  - Tutorials\n  - Lab exercises\n- Quarto  makes everything **reproducible** - what does it mean?\n- Free and open source, available on the [ENVX resources](https://github.com/ENVX-resources) GitHub repository -- re-use and modify as you wish (but follow [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/))"
+    "text": "Quarto\n\nMajority of our resources are built using Quarto – a markdown-based document format that you will learn to use in this unit\n\nLecture slides\nTutorials\nLab exercises\n\nQuarto makes everything reproducible - what does it mean?\nFree and open source, available on the ENVX resources GitHub repository – re-use and modify as you wish (but follow CC BY 4.0)\n\n\n## Quarto\n\n- Majority of our resources are built using [**Quarto**](https://quarto.org/) -- a markdown-based document format that **you will learn to use** in this unit\n  - Lecture slides\n  - Tutorials\n  - Lab exercises\n- Quarto  makes everything **reproducible** - what does it mean?\n- Free and open source, available on the [ENVX resources](https://github.com/ENVX-resources) GitHub repository -- re-use and modify as you wish (but follow [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/))"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#r-rstudio-quarto",
@@ -558,18 +558,25 @@
     "text": "R, RStudio, Quarto!?\n\nAgain, it’s normal to feel overwhelmed at first\nThese technologies are complementary – everything is implemented in RStudio\nThe tutorials and labs will guide you through the process"
   },
   {
-    "objectID": "lectures/L01/lecture-01a.html#github-copilot",
-    "href": "lectures/L01/lecture-01a.html#github-copilot",
-    "title": "Lecture 01a – This is ENVX1002",
-    "section": "GitHub Copilot",
-    "text": "GitHub Copilot\n\n\nSlightly different from your usual AI tools\nActs as a pair programmer – suggests code as you type, based on context\nDouble-edged sword – can be a crutch if you rely on it too much\nWe will start using this tool in Week 4"
-  },
-  {
     "objectID": "lectures/L01/lecture-01a.html#seek-help-early",
     "href": "lectures/L01/lecture-01a.html#seek-help-early",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Seek help early",
     "text": "Seek help early\n\nYou are not alone, and you need to learn to ask for help\nWe provide a LOT of support in various forms:\n\nFace-to-face (in a group setting): tutorials, labs\nFace-to-face (one-on-one): consultations – book a time with us (email)\nOnline (collaborative): Ed for general questions\nOnline (private): use private posts on Ed\n\nFrom time to time, we will organise drop-in sessions for additional help\n\nNOTE: We cannot help you if you don’t ask!"
+  },
+  {
+    "objectID": "lectures/L01/lecture-01a.html#core-reading",
+    "href": "lectures/L01/lecture-01a.html#core-reading",
+    "title": "Lecture 01a – This is ENVX1002",
+    "section": "Core Reading",
+    "text": "Core Reading\n\nQuinn & Keough (2002). Experimental Design and Data Analysis for Biologists. Cambridge University Press. Sections 1.1-1.2, pages 1-7."
+  },
+  {
+    "objectID": "lectures/L01/lecture-01a.html#software-resources",
+    "href": "lectures/L01/lecture-01a.html#software-resources",
+    "title": "Lecture 01a – This is ENVX1002",
+    "section": "Software Resources",
+    "text": "Software Resources\n\nCRAN (The Comprehensive R Archive Network) - R packages repository\nRStudio - Integrated development environment\nQuarto - Scientific publishing system"
   },
   {
     "objectID": "lectures/L01/index.html",
@@ -1163,13 +1170,6 @@
     "text": "Summary\n\n\n\nWhen fitting a nonlinear model, there are three possible approaches:\n\nLinearise the relationship by transforming the response or predictor:\n\nFit: easy\nInterpret: difficult\n\nApproximate the model by adding polynomial terms:\n\nFit: easy\nInterpret: difficult\n\nFit the model using a nonlinear least squares algorithm:\n\nFit: difficult\nInterpret: easy\n\n\n\n\n\n\n\n\nNonlinear models:\n\nUseful for modelling more complex relationships.\nRequire some understanding of the underlying relationship (especially asympotic and logistic models)\nMainly for prediction rather than interpreting relationships."
   },
   {
-    "objectID": "lectures/L02/lecture-02.html#categorical-data---bar-chart-2",
-    "href": "lectures/L02/lecture-02.html#categorical-data---bar-chart-2",
-    "title": "Topic 2 – Exploratory Data Analysis (EDA)",
-    "section": "Categorical data - Bar chart",
-    "text": "Categorical data - Bar chart\n\nUsing tidyverse\n\n\n\nCode\n# Load necessary libraries\nlibrary(tidyverse)\n\n# Your disease data\ndisease &lt;- c(\"None\", \"Moderate\", \"None\", \"Severe\", \"Moderate\", \"Moderate\", \"Severe\", \"Moderate\", \"None\", \"Moderate\")\n\n# Convert to tibble and count occurrences\ndisease_data &lt;- tibble(disease) %&gt;%\n  mutate(disease = factor(disease, levels = c(\"None\", \"Moderate\", \"Severe\"))) %&gt;%\n  count(disease, name = \"Frequency\")\n\n# Create the bar plot\nggplot(disease_data, aes(x = disease, y = Frequency)) +\n  geom_bar(stat = \"identity\") +\n  ggtitle(\"Frequency of Disease Categories\") +\n  xlab(\"Disease Category\") +\n  ylab(\"Frequency\")"
-  },
-  {
     "objectID": "lectures/L10/lecture-10.html#module-overview",
     "href": "lectures/L10/lecture-10.html#module-overview",
     "title": "Topic 10 – Simple Linear Regression",
@@ -1191,11 +1191,11 @@
     "text": "Fitting the line\n Y_i = \\beta_0 + \\beta_1 x_i + \\epsilon_i \n Y = c + mx + \\epsilon \nHow do we fit a line to data if data are “noisy”?\n\n\nCode\nx &lt;- 1:10\ny &lt;- 2 * x + rnorm(10, 0, 2)\n# generate y with predicted values\ny_pred &lt;- 2 * x\ndf &lt;- data.frame(x, y)\n\np1 &lt;- ggplot(df, aes(x, y_pred)) +\n  geom_point(size = 2) +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"firebrick\") +\n  labs(x = \"x\", y = \"y\", title = \"A\")\n\np2 &lt;- ggplot(df, aes(x, y)) +\n  geom_point(size = 2) +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"royalblue\") +\n  labs(x = \"x\", y = \"y\", title = \"B (How do we fit this?)\")\n\nlibrary(patchwork)\np1 + p2 + plot_layout(ncol = 2)"
   },
   {
-    "objectID": "lectures/L10/lecture-10.html#usage-of-least-squares",
-    "href": "lectures/L10/lecture-10.html#usage-of-least-squares",
+    "objectID": "lectures/L10/lecture-10.html#usage",
+    "href": "lectures/L10/lecture-10.html#usage",
     "title": "Topic 10 – Simple Linear Regression",
-    "section": "Usage of least squares",
-    "text": "Usage of least squares\n\nStudent’s t-test (indirectly)\nlinear regression\n\n\n\nnonlinear regression (logistic, polynomial, exponential, etc.)\nanalysis of variance (ANOVA)\ngeneralised linear model\nprinciple component analysis\nmachine learning models\netc…"
+    "section": "Usage",
+    "text": "Usage\n\nStudent’s t-test (indirectly)\nlinear regression\n\n\n\nnonlinear regression (logistic, polynomial, exponential, etc.)\nanalysis of variance (ANOVA)\ngeneralised linear model\nprinciple component analysis\nmachine learning models\netc…"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#galtons-data-revisited",
@@ -1209,21 +1209,35 @@
     "href": "lectures/L10/lecture-10.html#how-do-we-analytically-fit-a-line",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "How do we analytically fit a line?",
-    "text": "How do we analytically fit a line?\nWe calculate slope (\\beta_1):\n \\beta_1 = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum_{i=1}^n (x_i - \\bar{x})^2} =  \\frac{Cov(x,y)}{Var(x)} = \\frac{SS_{xy}}{SS_{xx}}  Then substitute below to get the intercept (\\beta_0):\n \\beta_0 = \\bar{y} - \\beta_1 \\bar{x}  Imagine a dataset with a million points - this would be computationally taxing."
+    "text": "How do we analytically fit a line?\n\nMinimise the sum of the squared residuals:\n\n\\color{firebrick}{argmin_{\\beta_0, \\beta_1}} \\sum_{i=1}^n (y_i - \\color{royalblue}{(\\beta_0 + \\beta_1 x_i)})^2\n\nSource"
   },
   {
-    "objectID": "lectures/L10/lecture-10.html#how-do-we-numerically-fit-a-line",
-    "href": "lectures/L10/lecture-10.html#how-do-we-numerically-fit-a-line",
+    "objectID": "lectures/L10/lecture-10.html#residuals-hat-epsilon",
+    "href": "lectures/L10/lecture-10.html#residuals-hat-epsilon",
     "title": "Topic 10 – Simple Linear Regression",
-    "section": "How do we numerically fit a line?",
-    "text": "How do we numerically fit a line?\n\nMinimise the sum of the squared residuals via trial and error\nMost common method used via computers (gradient-descent)\nCan be done by hand (but not recommended)\n\n\\color{firebrick}{argmin_{\\beta_0, \\beta_1}} \\sum_{i=1}^n (y_i - \\color{royalblue}{(\\beta_0 + \\beta_1 x_i)}\\color{black})^2\n\nSource"
+    "section": "Residuals, \\hat \\epsilon",
+    "text": "Residuals, \\hat \\epsilon\n \\color{firebrick}{\\hat{\\epsilon_i}} = \\color{royalblue}{y_i} - \\color{forestgreen}{\\hat{y_i}} \n\n\n\nCode\n# simulate example data\nset.seed(340)\nx &lt;- runif(8, 0, 30)\ny &lt;- 5 * x + rnorm(8, 0, 40)\ndf &lt;- data.frame(x, y)\n\n# fit linear model, add residual vertical lines as arrows\nmod &lt;- lm(y ~ x, data = df)\np1 &lt;- ggplot(df, aes(x, y)) +\n  geom_point() +\n  geom_segment(aes(xend = x, yend = fitted(mod)),\n    arrow = arrow(length = unit(0.2, \"cm\")),\n    color = \"royalblue\"\n  ) +\n  labs(x = \"x\", y = \"y\")\n\np1 +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"firebrick\") +\n  annotate(\"text\",\n    x = 6.3, y = -6, size = 7,\n    label = expression(hat(epsilon[i])), colour = \"royalblue\"\n  ) +\n  annotate(\"text\",\n    x = 5.6, y = 25, size = 7,\n    label = expression(hat(y[i])), colour = \"forestgreen\"\n  ) +\n  annotate(\"text\",\n    x = 5.6, y = -36, size = 7,\n    label = expression(y[i]), colour = \"firebrick\"\n  )"
+  },
+  {
+    "objectID": "lectures/L10/lecture-10.html#slope-beta_1",
+    "href": "lectures/L10/lecture-10.html#slope-beta_1",
+    "title": "Topic 10 – Simple Linear Regression",
+    "section": "Slope, \\beta_1",
+    "text": "Slope, \\beta_1\n\n \\beta_1 = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum_{i=1}^n (x_i - \\bar{x})^2} =  \\frac{Cov(x,y)}{Var(x)} = \\frac{SS_{xy}}{SS_{xx}} \n\n\nCode\n# Calculate slope from df\nbeta1 &lt;- sum((df$x - mean(df$x)) * (df$y - mean(df$y))) /\n  sum((df$x - mean(df$x))^2)\n# beta0 &lt;- mean(df$y) - beta1 * mean(df$x)\n\np1 +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"firebrick\", linetype = 2) +\n  # label the line\n  annotate(\"text\",\n    x = 15, y = 65, size = 7,\n    label = expression(beta[1]), colour = \"firebrick\"\n  )"
+  },
+  {
+    "objectID": "lectures/L10/lecture-10.html#intercept",
+    "href": "lectures/L10/lecture-10.html#intercept",
+    "title": "Topic 10 – Simple Linear Regression",
+    "section": "Intercept",
+    "text": "Intercept\n \\beta_0 = \\bar{y} - \\beta_1 \\bar{x} \n\n\nCode\n# calculate mean y from df\nybar &lt;- mean(df$y)\nxbar &lt;- mean(df$x)\nbeta0 &lt;- ybar - beta1 * xbar\n\np1 + geom_vline(xintercept = xbar, linetype = \"dashed\", color = \"slateblue\") +\n  geom_hline(yintercept = ybar, linetype = \"dashed\", color = \"slateblue\") +\n  # label the lines\n  annotate(\"text\",\n    x = 25, y = ybar * 0.8, size = 7,\n    label = expression(bar(y)), colour = \"slateblue\"\n  ) +\n  annotate(\"text\",\n    x = xbar * 1.05, y = 150, size = 7,\n    label = expression(bar(x)), colour = \"slateblue\"\n  ) +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"firebrick\", linetype = 2) +\n  # extend the geom_smooth line to intercept x=0\n  geom_segment(aes(x = xbar, y = ybar, xend = 0, yend = beta0),\n    color = \"firebrick\", linetype = 2\n  ) +\n  # label the slope line\n  annotate(\"text\",\n    x = 15, y = 65, size = 7,\n    label = expression(beta[1]), colour = \"firebrick\"\n  ) +\n  # add a dot at the intercept\n  geom_point(aes(x = 0, y = beta0), color = \"seagreen\", size = 3) +\n  # label the intercept\n  annotate(\"text\",\n    x = 0, y = beta0 * 1.4, size = 7,\n    label = expression(beta[0]), colour = \"seagreen\"\n  )"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#fitting-a-linear-model-in-r",
     "href": "lectures/L10/lecture-10.html#fitting-a-linear-model-in-r",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Fitting a linear model in R",
-    "text": "Fitting a linear model in R\nIs there a relationship between the heights of parents and their children?\n\n\nCode\nfit &lt;- lm(child ~ parent, data = Galton)\nfit\n\n\n\nCall:\nlm(formula = child ~ parent, data = Galton)\n\nCoefficients:\n(Intercept)       parent  \n    23.9415       0.6463  \n\n\n \\widehat{child} = 23.9 + 0.646 \\cdot parent\n\nDo we trust our model? How good is the model? How can we interpret the results?"
+    "text": "Fitting a linear model in R\nIs there a relationship between the heights of parents and their children?\n\n\nCode\nfit &lt;- lm(child ~ parent, data = Galton)\nfit\n\n\n\nCall:\nlm(formula = child ~ parent, data = Galton)\n\nCoefficients:\n(Intercept)       parent  \n    23.9415       0.6463  \n\n\n \\widehat{child} = 23.9 + 0.646 \\cdot parent\n\nHow good is the model? Do we trust our model? How can we interpret the results?"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#steps-for-regression",
@@ -1237,21 +1251,21 @@
     "href": "lectures/L10/lecture-10.html#assumptions---line",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Assumptions - LINE",
-    "text": "Assumptions - LINE\n\nLinearity. The relationship between y and x is linear.\nIndependence. The errors \\epsilon are independent.\nNormal. The errors \\epsilon are normally distributed.\nEqual Variance of errors \\epsilon. At each value of x, the variance of y is the same i.e. homoskedasticity, or constant variance.\n\n\nWhy do we care?\n\nIf the assumptions are met, then we can be confident that the model is a good representation of the data.\nIf they are not met, the results are still presented, but our interpretation of the model is likely to be flawed.\n\nHypothesis test results are unreliable\nStandard error is unreliable\nPoor estimates of coefficients = poor predictions"
+    "text": "Assumptions - LINE\n\nLinearity. The relationship between y and x is linear.\nIndependence. The errors \\epsilon are independent.\nNormal. The errors \\epsilon are normally distributed.\nEqual Variance of errors \\epsilon. At each value of x, the variance of y is the same i.e. homoskedasticity, or constant variance.\n\n\n\n\n\n\n\n\nTip\n\n\nAll but the independence assumption can be assessed using diagnostic plots.\n\n\n\n\n\nWhy do we care?\n\nIf the assumptions are met, then we can be confident that the model is a good representation of the data.\nIf they are not met, the results are still presented, but our interpretation of the model is likely to be flawed.\n\nHypothesis test results are unreliable\nStandard error is unreliable\nPoor estimates of coefficients = poor predictions"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#how-do-we-check-the-assumptions",
     "href": "lectures/L10/lecture-10.html#how-do-we-check-the-assumptions",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "How do we check the assumptions?",
-    "text": "How do we check the assumptions?\nRecall that the linear model is a deterministic straight line equation y = c + mx plus some random noise \\epsilon:\n Y_i = \\beta_0 + \\beta_1 x + \\epsilon \n\nIf the only source of variation in y is \\epsilon, then we can check our assumptions by just looking at the residuals \\hat{\\epsilon}.\n\n\n\n\n\n\n\n\nTip\n\n\nAll but the independence assumption can be assessed using diagnostic plots. R will not warn you if the assumptions are not met. It is up to you to check them!\n\n\n\nHow do we get the residuals?\n\nFit the model!\nResiduals need to be calculated from the model, not from the raw data.\nIn R, these values are stored automatically.\n\n \\color{firebrick}{\\hat{\\epsilon_i}} = \\color{royalblue}{y_i} - \\color{forestgreen}{\\hat{y_i}} \n\n\nCode\n# simulate example data\nset.seed(340)\nx &lt;- runif(8, 0, 30)\ny &lt;- 5 * x + rnorm(8, 0, 40)\ndf &lt;- data.frame(x, y)\n\n# fit linear model, add residual vertical lines as arrows\nmod &lt;- lm(y ~ x, data = df)\np1 &lt;- ggplot(df, aes(x, y)) +\n  geom_point() +\n  geom_segment(aes(xend = x, yend = fitted(mod)),\n    arrow = arrow(length = unit(0.2, \"cm\")),\n    color = \"royalblue\"\n  ) +\n  labs(x = \"x\", y = \"y\")\n\np1 +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"firebrick\") +\n  annotate(\"text\",\n    x = 6.3, y = -6, size = 7,\n    label = expression(hat(epsilon[i])), colour = \"royalblue\"\n  ) +\n  annotate(\"text\",\n    x = 5.6, y = 25, size = 7,\n    label = expression(hat(y[i])), colour = \"forestgreen\"\n  ) +\n  annotate(\"text\",\n    x = 5.6, y = -36, size = 7,\n    label = expression(y[i]), colour = \"firebrick\"\n  ) +\n  theme_classic()"
+    "text": "How do we check the assumptions?\nRecall that the linear model is a deterministic straight line equation y = c + mx plus some random noise \\epsilon:\n Y_i = \\beta_0 + \\beta_1 x + \\epsilon \n\nIf the only source of variation in y is \\epsilon, then we can check our assumptions by just looking at the residuals \\hat{\\epsilon}.\n\n\n\n\n\n\n\n\nWarning\n\n\nR will not warn you if the assumptions are not met. It is up to you to check them!\n\n\n\nHow do we get the residuals?\n\nFit the model!\nResiduals need to be calculated from the model, not from the raw data.\nIn R, these values are stored automatically."
   },
   {
     "objectID": "lectures/L10/lecture-10.html#another-way-to-look-at-residuals",
     "href": "lectures/L10/lecture-10.html#another-way-to-look-at-residuals",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Another way to look at residuals",
-    "text": "Another way to look at residuals\n For a given ‘x’, there is a range of ‘y’ values that are possible.\n\ne.g. For a given parent height, there is a range of child heights that are possible."
+    "text": "Another way to look at residuals\n\nOnce you have fitted the line, it does not change. The residuals are the vertical distances between the points (not shown) and the line."
   },
   {
     "objectID": "lectures/L10/lecture-10.html#step",
@@ -1272,7 +1286,7 @@
     "href": "lectures/L10/lecture-10.html#examples",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Examples",
-    "text": "Examples\n \nLinear Models with R (Faraway 2005, p59)"
+    "text": "Examples\n Linear Models with R (Faraway 2005, p59)"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#assumption-normality",
@@ -1317,11 +1331,11 @@
     "text": "Outliers\n\nLeverage is a measure of how far away the predictor variable is from the mean of the predictor variable.\nThe Residuals vs Leverage plot shows the relationship between the residuals and the leverage of each point.\nCook’s distance is a measure of how much the model would change if a point was removed."
   },
   {
-    "objectID": "lectures/L10/lecture-10.html#what-can-we-do-if-the-assumptions-arent-met",
-    "href": "lectures/L10/lecture-10.html#what-can-we-do-if-the-assumptions-arent-met",
+    "objectID": "lectures/L10/lecture-10.html#it-depends",
+    "href": "lectures/L10/lecture-10.html#it-depends",
     "title": "Topic 10 – Simple Linear Regression",
-    "section": "What can we do if the assumptions aren’t met?",
-    "text": "What can we do if the assumptions aren’t met?\nIt depends…\n…which assumption is not met and the type of data i.e. circumstances.\n\nIf data is non-linear, try a transformation of the response variable y, from light to extreme:\n\nroot: \\sqrt{y} or \\sqrt{y+1} if y contains zeros\nlog: \\log(y) or \\log(y+1) if y contains zeros\ninverse: \\frac{1}{y} or \\frac{1}{y+1} if y contains zeros\n\nIf residuals are not normally distributed, try a transformation of the response variable y first, otherwise transform the predictor variable x. Both can be done at the same time.\nIf equal variances assumption is not met, same as above.\nIf outliers are present, try removing them, or transforming the response variable y."
+    "section": "It depends…",
+    "text": "It depends…\n…which assumption is not met and the type of data i.e. circumstances.\n\nIf data is non-linear, try a transformation of the response variable y, from light to extreme:\n\nroot: \\sqrt{y} or \\sqrt{y+1} if y contains zeros\nlog: \\log(y) or \\log(y+1) if y contains zeros\ninverse: \\frac{1}{y} or \\frac{1}{y+1} if y contains zeros\n\n\n\n\nIf residuals are not normally distributed, try a transformation of the response variable y first, otherwise transform the predictor variable x. Both can be done at the same time.\n\n\n\n\nIf equal variances assumption is not met, same as above.\nIf outliers are present, try removing them, or transforming the response variable y."
   },
   {
     "objectID": "lectures/L10/lecture-10.html#what-if-transformation-doesnt-work",
@@ -1342,28 +1356,42 @@
     "href": "lectures/L10/lecture-10.html#interpreting-the-output",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Interpreting the output",
-    "text": "Interpreting the output\n\n\nCode\nCall:\nlm(formula = child ~ parent, data = Galton)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-7.8050 -1.3661  0.0487  1.6339  5.9264 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 23.94153    2.81088   8.517   &lt;2e-16 ***\nparent       0.64629    0.04114  15.711   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.239 on 926 degrees of freedom\nMultiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 \nF-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16\n\n\n\nCall: the model formula\nResiduals: distribution of the residuals"
+    "text": "Interpreting the output\n\n\nCode\nCall:\nlm(formula = child ~ parent, data = Galton)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-7.8050 -1.3661  0.0487  1.6339  5.9264 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 23.94153    2.81088   8.517   &lt;2e-16 ***\nparent       0.64629    0.04114  15.711   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.239 on 926 degrees of freedom\nMultiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 \nF-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16\n\n\n\nCall: the model formula"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#interpreting-the-output-1",
     "href": "lectures/L10/lecture-10.html#interpreting-the-output-1",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Interpreting the output",
-    "text": "Interpreting the output\n\n\nCode\nCall:\nlm(formula = child ~ parent, data = Galton)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-7.8050 -1.3661  0.0487  1.6339  5.9264 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 23.94153    2.81088   8.517   &lt;2e-16 ***\nparent       0.64629    0.04114  15.711   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.239 on 926 degrees of freedom\nMultiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 \nF-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16\n\n\n\n\nCoefficients: a summary table of the coefficients, their standard errors, t-values, and p-values.\n(Intercept)/Estimate: the y-intercept, or the mean response when all predictors are 0.\nparent/Estimate: the slope coefficient - i.e. the change in the mean of the response for a one-unit increase in the predictor."
+    "text": "Interpreting the output\n\n\nCode\nCall:\nlm(formula = child ~ parent, data = Galton)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-7.8050 -1.3661  0.0487  1.6339  5.9264 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 23.94153    2.81088   8.517   &lt;2e-16 ***\nparent       0.64629    0.04114  15.711   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.239 on 926 degrees of freedom\nMultiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 \nF-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16\n\n\n\nResiduals: distribution of the residuals"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#interpreting-the-output-2",
     "href": "lectures/L10/lecture-10.html#interpreting-the-output-2",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Interpreting the output",
-    "text": "Interpreting the output\n\n\nCode\nCall:\nlm(formula = child ~ parent, data = Galton)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-7.8050 -1.3661  0.0487  1.6339  5.9264 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 23.94153    2.81088   8.517   &lt;2e-16 ***\nparent       0.64629    0.04114  15.711   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.239 on 926 degrees of freedom\nMultiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 \nF-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16\n\n\n\nPr: the p-value\n\n(Intercept)/Pr: the p-value of the y-intercept is not meaningful.\nparent/Pr: is parent a significant predictor to the model?"
+    "text": "Interpreting the output\n\n\nCode\nCall:\nlm(formula = child ~ parent, data = Galton)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-7.8050 -1.3661  0.0487  1.6339  5.9264 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 23.94153    2.81088   8.517   &lt;2e-16 ***\nparent       0.64629    0.04114  15.711   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.239 on 926 degrees of freedom\nMultiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 \nF-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16\n\n\n\nCoefficients: a summary table of the coefficients, their standard errors, t-values, and p-values.\n(Intercept)/Estimate: the y-intercept, or the mean response when all predictors are 0. Not meaningful in most cases e.g. no parent will have a height of 0 inches!\nparent/Estimate: the slope coefficient - i.e. the change in the mean of the response for a one-unit increase in the predictor.\n\nThe p-value (Pr) tells us whether the slope is significantly different from 0 (the mean).\nIf p &lt; 0.05, we can conclude that there is a significant linear relationship between the predictor and the response."
+  },
+  {
+    "objectID": "lectures/L10/lecture-10.html#hypothesis-testing",
+    "href": "lectures/L10/lecture-10.html#hypothesis-testing",
+    "title": "Topic 10 – Simple Linear Regression",
+    "section": "Hypothesis testing",
+    "text": "Hypothesis testing\nHow does our null (H_0: \\beta_1=0) model compare to the linear (H_0: \\beta_1 \\neq 0) model?\n\nIn simple linear regression, the p-value for the slope coefficient is the same as the p-value for the F-statistic.\n\n\n\nCode\nnull_model &lt;- Galton %&gt;%\n  lm(child ~ 1, data = .) %&gt;%\n  augment(Galton)\nlin_model &lt;- Galton %&gt;%\n  lm(child ~ parent, data = .) %&gt;%\n  augment(Galton)\nmodels &lt;- bind_rows(null_model, lin_model) %&gt;%\n  mutate(model = rep(c(\"Null model\", \"SLR model\"), each = nrow(Galton)))\n\nggplot(data = models, aes(x = parent, y = child)) +\n  geom_smooth(\n    data = filter(models, model == \"Null model\"),\n    method = \"lm\", se = FALSE, formula = y ~ 1, size = 0.5\n  ) +\n  geom_smooth(\n    data = filter(models, model == \"SLR model\"),\n    method = \"lm\", se = FALSE, formula = y ~ x, size = 0.5\n  ) +\n  geom_segment(\n    aes(xend = parent, yend = .fitted),\n    arrow = arrow(length = unit(0.1, \"cm\")),\n    size = 0.3, color = \"darkgray\"\n  ) +\n  geom_point(alpha = .2) +\n  facet_wrap(~model) +\n  xlab(\"Parent height (in)\") +\n  ylab(\"Child height (in)\")"
+  },
+  {
+    "objectID": "lectures/L10/lecture-10.html#what-are-we-testing",
+    "href": "lectures/L10/lecture-10.html#what-are-we-testing",
+    "title": "Topic 10 – Simple Linear Regression",
+    "section": "What are we testing?",
+    "text": "What are we testing?\n\nThe null model is a model with no predictors, i.e. y = \\beta_0 + \\epsilon\nThe linear model is a model with one predictor, i.e. y = \\beta_0 + \\beta_1 x + \\epsilon\nWe use the t-test to compare the two models:\n\n t = \\frac{estimate - 0}{Standard\\ error} = \\frac{\\hat{\\beta}_1 - 0}{SE(\\hat{\\beta}_1)}  where SE(\\hat{\\beta}_1) is the standard error of the slope estimate:\n SE(\\hat{\\beta}_1) = \\frac{\\hat{\\sigma}}{\\sqrt{\\sum_{i=1}^n (x_i - \\bar{x})^2}}"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#interpreting-the-output-3",
     "href": "lectures/L10/lecture-10.html#interpreting-the-output-3",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Interpreting the output",
-    "text": "Interpreting the output\n\n\nCode\nCall:\nlm(formula = child ~ parent, data = Galton)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-7.8050 -1.3661  0.0487  1.6339  5.9264 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 23.94153    2.81088   8.517   &lt;2e-16 ***\nparent       0.64629    0.04114  15.711   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.239 on 926 degrees of freedom\nMultiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 \nF-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16\n\n\n\nWe can also use the Estimate values to write the equation of the regression line:  \\widehat{child} = 23.94153 + 0.64629 \\cdot parent\nFor every one-inch increase in the parent height, the child height is predicted to increase by 0.64629 inches.\ne.g. if a parent is 70 inches, how tall will the child be? 23.94153 + 0.64629 \\cdot 70 = 68.5 inches (174 cm)."
+    "text": "Interpreting the output\n\n\nCode\nCall:\nlm(formula = child ~ parent, data = Galton)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-7.8050 -1.3661  0.0487  1.6339  5.9264 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 23.94153    2.81088   8.517   &lt;2e-16 ***\nparent       0.64629    0.04114  15.711   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.239 on 926 degrees of freedom\nMultiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 \nF-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16\n\n\n\nWe can also use the Estimate values to write the equation of the regression line:  \\widehat{child} = 23.94153 + 0.64629 \\cdot parent\nFor every one-inch increase in the parent height, the child height is predicted to increase by 0.64629 inches.\ne.g. if a parent is 70 inches, how tall will the child be?\n\n\nIf the parent is 70 inches (177.8 cm), the child will be: 23.94153 + 0.64629 \\cdot 70 = 68.5 inches (174 cm)."
   },
   {
     "objectID": "lectures/L10/lecture-10.html#interpreting-the-output-4",
@@ -1384,35 +1412,14 @@
     "href": "lectures/L10/lecture-10.html#interpreting-the-output-6",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Interpreting the output",
-    "text": "Interpreting the output\n\n\nCode\nCall:\nlm(formula = child ~ parent, data = Galton)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-7.8050 -1.3661  0.0487  1.6339  5.9264 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 23.94153    2.81088   8.517   &lt;2e-16 ***\nparent       0.64629    0.04114  15.711   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.239 on 926 degrees of freedom\nMultiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 \nF-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16\n\n\n\nF-statistic: the ratio of the variance explained by predictors, and the residual variance (variance not explained by predictors).\n\nAlso known as the partial F-test between the full model and the intercept-only (null) model.\n\np-value: the probability that the F-statistic is greater than the observed value under the null hypothesis.\n\nIn a simple linear regression, the p-value for the slope coefficient is the same as the p-value for the F-statistic."
-  },
-  {
-    "objectID": "lectures/L10/lecture-10.html#hypothesis-testing",
-    "href": "lectures/L10/lecture-10.html#hypothesis-testing",
-    "title": "Topic 10 – Simple Linear Regression",
-    "section": "Hypothesis testing",
-    "text": "Hypothesis testing\nHow does our null (H_0: \\beta_1=0) model compare to the linear (H_0: \\beta_1 \\neq 0) model?\n\nIn simple linear regression, the p-value for the slope coefficient is the same as the p-value for the F-statistic.\n\n\n\nCode\nnull_model &lt;- Galton %&gt;%\n  lm(child ~ 1, data = .) %&gt;%\n  augment(Galton)\nlin_model &lt;- Galton %&gt;%\n  lm(child ~ parent, data = .) %&gt;%\n  augment(Galton)\nmodels &lt;- bind_rows(null_model, lin_model) %&gt;%\n  mutate(model = rep(c(\"Null model\", \"SLR model\"), each = nrow(Galton)))\n\nggplot(data = models, aes(x = parent, y = child)) +\n  geom_smooth(\n    data = filter(models, model == \"Null model\"),\n    method = \"lm\", se = FALSE, formula = y ~ 1, size = 0.5\n  ) +\n  geom_smooth(\n    data = filter(models, model == \"SLR model\"),\n    method = \"lm\", se = FALSE, formula = y ~ x, size = 0.5\n  ) +\n  geom_segment(\n    aes(xend = parent, yend = .fitted),\n    arrow = arrow(length = unit(0.1, \"cm\")),\n    size = 0.3, color = \"darkgray\"\n  ) +\n  geom_point(alpha = .2) +\n  facet_wrap(~model) +\n  xlab(\"Parent height (in)\") +\n  ylab(\"Child height (in)\")"
-  },
-  {
-    "objectID": "lectures/L10/lecture-10.html#what-are-we-testing",
-    "href": "lectures/L10/lecture-10.html#what-are-we-testing",
-    "title": "Topic 10 – Simple Linear Regression",
-    "section": "What are we testing?",
-    "text": "What are we testing?\n\nThe null model is a model with no predictors, i.e. y = \\beta_0 + \\epsilon\nThe alternative model is a linear model with one predictor, i.e. y = \\beta_0 + \\beta_1 x + \\epsilon\nWe use the t-test to compare the two models:\n\n t = \\frac{estimate - 0}{Standard\\ error} = \\frac{\\hat{\\beta}_1 - 0}{SE(\\hat{\\beta}_1)}  where SE(\\hat{\\beta}_1) is the standard error of the slope estimate:\n SE(\\hat{\\beta}_1) = \\frac{\\hat{\\sigma}}{\\sqrt{\\sum_{i=1}^n (x_i - \\bar{x})^2}} \n\n\n\n\n\n\nNote\n\n\nIf the model is not significant, then the null model (i.e. mean) is better. If the model is significant, then the linear model is better."
+    "text": "Interpreting the output\n\n\nCode\nCall:\nlm(formula = child ~ parent, data = Galton)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-7.8050 -1.3661  0.0487  1.6339  5.9264 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 23.94153    2.81088   8.517   &lt;2e-16 ***\nparent       0.64629    0.04114  15.711   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.239 on 926 degrees of freedom\nMultiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 \nF-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16\n\n\n\nF-statistic: the ratio of the variance explained by predictors, and the residual variance (variance not explained by predictors).\n\nAlso known as the partial F-test between the full model and the intercept-only (null) model.\n\np-value: the probability that the F-statistic is greater than the observed value under the null hypothesis.\n\nA significant p-value indicates that the linear model is a better fit than the intercept-only model."
   },
   {
     "objectID": "lectures/L10/lecture-10.html#reporting",
     "href": "lectures/L10/lecture-10.html#reporting",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Reporting",
-    "text": "Reporting\n\nRefresher on earlier steps\n\nGalton collected data on the average height of both parents and their children. There wasa moderate, positive, linear relationship (r = 0.46) between parent and child height.\n\nCan we rely on our model results? Assumptions and hypothesis?\n\nWe fitted a linear model to predict child height from parent height, and model assumptions were met. The model was statistically significant (R2 = 0.21, F(1, 926) = 246.84, p &lt; .001), hence the null hypothesis was rejected in favour of the linear model. The effect of parent height is statistically significant and positive (\\beta = 0.65, t(926) = 15.71, p &lt; .001).\n\nEquation? Inference?\n\nFor every one-inch increase in parent height, child height is predicted to increase by 0.65 inches ($ = 23.94 + 0.65 parent$). The average height of both parents explains 21.05% of the variance in child height – there is an effect but there are clearly more factors at play."
-  },
-  {
-    "objectID": "lectures/L10/lecture-10.html#fun-fact",
-    "href": "lectures/L10/lecture-10.html#fun-fact",
-    "title": "Topic 10 – Simple Linear Regression",
-    "section": "Fun fact",
-    "text": "Fun fact\n\nGalton’s key finding was that children of tall parents are not as tall, children of short parents are not as short.\n\n \\widehat{child} = 23.94153 + 0.64629 \\cdot parent\n\ne.g. if average parent height is 60 inches (152 cm), how tall will the child be? 23.94153 + 0.64629 \\cdot 60 = 62.7 inches (159 cm).\ne.g. if average parent height is 75 inches (191 cm), how tall will the child be? 23.94153 + 0.64629 \\cdot 75 = 72.4 inches (184 cm).\nThe height of children appeared to regress towards the population mean, i.e. the concept of regression to the mean\nHence the Galton is credited with coining the term regression (and also correlation, percentile, median, etc.)"
+    "text": "Reporting\n\nGalton collected data on the heights of parents and their children.\n\n\nThere appeared to be a moderate, positive, linear relationship between parent and child height.\n\n\nWe fitted a linear model to predict child height from parent height (formula: child ~ parent), and model assumptions were met.\n\n\nThe model was statistically significant (R2 = 0.21, F(1, 926) = 246.84, p &lt; .001), hence the null hypothesis was rejected in favour of the linear model.\n\n\nParent height/the model explained 21.05% of the variance in child height.\n\n\nThe effect of parent height is statistically significant and positive (\\beta = 0.65, t(926) = 15.71, p &lt; .001).\n\n\nFor every one-inch increase in parent height, child height is predicted to increase by 0.65 inches."
   },
   {
     "objectID": "lectures/L10/lecture-10.html#explore",
@@ -1461,21 +1468,14 @@
     "href": "lectures/L10/lecture-10.html#interpretation",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Interpretation",
-    "text": "Interpretation\n\n\nCode\nsummary(fit)\n\n\n\nCall:\nlm(formula = log(Weight) ~ Length, data = alligator)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.289266 -0.079989  0.000933  0.102216  0.288491 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 1.335335   0.131394   10.16 5.63e-10 ***\nLength      0.035416   0.001506   23.52  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.1493 on 23 degrees of freedom\nMultiple R-squared:  0.9601,    Adjusted R-squared:  0.9583 \nF-statistic:   553 on 1 and 23 DF,  p-value: &lt; 2.2e-16\n\n\n\nLength is a statistically significant predictor of log(Weight) (p &lt; .001).\nThe model explains a statistically significant and large proportion (96%) of variance (R2 = 0.96, F(1, 23) = 553, p &lt; .001)\nFor every 1 cm increase in Length, log(Weight) increases by 0.0354, Weight increases by e^{0.0354} and Weight increases by approximately 3.54%"
-  },
-  {
-    "objectID": "lectures/L10/lecture-10.html#percent-change-with-ln-transformation",
-    "href": "lectures/L10/lecture-10.html#percent-change-with-ln-transformation",
-    "title": "Topic 10 – Simple Linear Regression",
-    "section": "Percent change with ln transformation",
-    "text": "Percent change with ln transformation\nInterpreting as a percent change can be more meaningful - it can be done with any log transformation (substitute e below for 10 or any other base), but the quick approximation only works with natural log transformations.\nIf y has been transformed with a natural log (log(y)), for a one-unit increase in x the percent change in y (not log(y)) is calculated with:\n\\Delta y \\% = 100 \\cdot (e^{\\beta_1}-1)\nIf \\beta_1 is small (i.e. -0.25 &lt; \\beta_1 &lt; 0.25), then: e^{\\beta_1} \\approx 1 + \\beta_1. So \\Delta y \\% \\approx 100 \\cdot \\beta_1.\n\n\n\n\n\n\n\n\n\n\nβ\nExact (e^{\\beta} - 1)%\nApproximate 100 \\cdot \\beta\n\n\n\n\n-0.25\n-22.13\n-25\n\n\n-0.1\n-9.52\n-10\n\n\n0.01\n1.01\n1\n\n\n0.1\n10.52\n10\n\n\n0.25\n28.41\n25\n\n\n0.5\n64.87\n50\n\n\n2\n638.91\n200\n\n\n\n\n\ny transformed: a one-unit increase in x is approximately a \\beta_1% change in y.\nx transformed: a 1% increase in x is approximately a 0.01 \\cdot \\beta_1 change in y.\nBoth x and y transformed: a 1% increase in x is approximately a \\beta_1% change in y."
+    "text": "Interpretation\n\n\nCode\nsummary(fit)\n\n\n\nCall:\nlm(formula = log(Weight) ~ Length, data = alligator)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.289266 -0.079989  0.000933  0.102216  0.288491 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 1.335335   0.131394   10.16 5.63e-10 ***\nLength      0.035416   0.001506   23.52  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.1493 on 23 degrees of freedom\nMultiple R-squared:  0.9601,    Adjusted R-squared:  0.9583 \nF-statistic:   553 on 1 and 23 DF,  p-value: &lt; 2.2e-16\n\n\n\nLength is a statistically significant predictor of log(Weight) (p &lt; .001).\nThe model explains a statistically significant and large proportion (96%) of variance (R2 = 0.96, F(1, 23) = 553, p &lt; .001)\nFor every 1 cm increase in Length, log(Weight) increases by 0.0354 and Weight increases by 3.54%\n\nNote: only natural log transformations can be interpreted as ‘percent change in y for 1% change in x’."
   },
   {
     "objectID": "lectures/L10/lecture-10.html#summary",
     "href": "lectures/L10/lecture-10.html#summary",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Summary",
-    "text": "Summary\nWorkflow\n\nUnderstand the variables: Which is the response variable? Is there a reason to believe a causal relationship?\nExplore data: How many observations? Summary statistics? Scatterplot and correlation?\nFit model\nCheck assumptions: Remember - it’s about the residuals! If assumptions fail, try transforming and return to Step 3. If assumptions still fail, consider another model and return to Step 3.\nAssess model fit: Hypothesis test, significance, F-statistic, p-value. R2, how much model variation was explained by the model.\nInterpret output: ‘For every one-unit increase in x, y increases by \\beta_1 units…’ and any additional research/insight."
+    "text": "Summary\nWorkflow\n\nUnderstand the variables\n\n\nWhich is the response variable? Is there a reason to believe a causal relationship?\n\n\nExplore data\n\n\nHow many observations? Summary statistics? Scatterplot and correlation?\n\n\nFit model\nCheck assumptions\n\n\nRemember - it’s about the residuals! If assumptions fail, try transforming and return to Step 3. If assumptions still fail, consider another model and return to Step 3.\n\n\nAssess model fit\n\n\nHypothesis test, significance, F-statistic, p-value. R2, how much model variation was explained by the model.\n\n\nInterpret output\n\n\n‘For every one-unit increase in x, y increases by \\beta_1 units…’ and any additional research/insight."
   },
   {
     "objectID": "lectures/L11/abalone-quiz.html#introduction",
@@ -1557,7 +1557,7 @@
     "href": "index.html",
     "title": "ENVX1002 – Introduction to statistical methods",
     "section": "",
-    "text": "Module 1 – describing data\n\nLecture 01 – Introduction & the scientific method\nLecture 02 – Exploring data\nLecture 03 – Probability distributions\nLecture 04 – Sampling distributions\n\nModule 2 – inference\n\nLecture 05 – Hypothesis testing & one-sample t-tests\nLecture 06 – Two-sample t-tests\nLecture 07 – Non-parametric tests\nLecture 08 – Bootstrapping | Revision\n\nModule 3 – modelling\n\nLecture 09 – Describing relationships\nLecture 10 – Linear functions\nLecture 11 – Linear functions - multiple predictors\nLecture 12 – Non-linear functions",
+    "text": "This site contains the lecture material for ENVX1002. It is meant for lecturers to publish their lecture content in a structured way and has not been designed for student use. Most of the content is still in development and will be updated throughout the semester. If you happen to stumble upon this site, feel free to have a look around… but be aware that the content is not final and may contain errors.\nENVX1002 students should always navigate to Canvas to access the ENVX1002 page and view the course material in the right context.\nModule 1 – describing data\n\nLecture 01 – Introduction & the scientific method\nLecture 02 – Exploring data\nLecture 03 – Probability distributions\nLecture 04 – Sampling distributions\n\nModule 2 – inference\n\nLecture 05 – Hypothesis testing & one-sample t-tests\nLecture 06 – Two-sample t-tests\nLecture 07 – Non-parametric tests\nLecture 08 – Bootstrapping | Revision\n\nModule 3 – modelling\n\nLecture 09 – Describing relationships\nLecture 10 – Linear functions\nLecture 11 – Linear functions - multiple predictors\nLecture 12 – Non-linear functions",
     "crumbs": [
       "{{< fa house-chimney >}}",
       "**Home**"
@@ -1858,7 +1858,7 @@
   {
     "objectID": "lectures/L03/index.html",
     "href": "lectures/L03/index.html",
-    "title": "Lecture 03",
+    "title": "Lecture 01 – Introduction",
     "section": "",
     "text": "Full Screen | PDF",
     "crumbs": [
@@ -1870,7 +1870,7 @@
   {
     "objectID": "lectures/L04/index.html",
     "href": "lectures/L04/index.html",
-    "title": "Lecture 04",
+    "title": "Lecture 01 – Introduction",
     "section": "",
     "text": "Full Screen | PDF",
     "crumbs": [
@@ -1894,7 +1894,7 @@
   {
     "objectID": "lectures/L02/index.html",
     "href": "lectures/L02/index.html",
-    "title": "Lecture 02",
+    "title": "Lecture 01 – Introduction",
     "section": "",
     "text": "Full Screen | PDF",
     "crumbs": [
