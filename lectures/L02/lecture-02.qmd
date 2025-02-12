@@ -343,6 +343,48 @@ Calculating the mode can be tricky, especially if there are multiple modes or no
 - What is the most common eye color in a group of people?
 :::
 
+## Mode in Excel
+
+::: {.columns}
+::: {.column width="50%"}
+Excel provides several methods to find the mode:
+
+1. **MODE.SNGL function** (single mode)
+   ```
+   =MODE.SNGL(A1:A10)
+   ```
+   - Returns most frequent value
+   - Returns #N/A if no repeats
+
+2. **MODE.MULT function** (multiple modes)
+   ```
+   =MODE.MULT(A1:A10)
+   ```
+   - Returns array of modes
+   - Press Ctrl+Shift+Enter
+:::
+
+::: {.column width="50%"}
+::: {.callout-tip}
+## Alternative Method
+If you need to count frequencies:
+
+1. Use COUNTIF function:
+   ```
+   =COUNTIF(range, value)
+   ```
+2. Find highest count
+3. Match back to original values
+
+This is useful when you need to:
+
+- See all frequencies
+- Handle text data
+- Find multiple modes
+:::
+:::
+:::
+
 ## Calculating the mode in R
 
 There is no built-in function to calculate the mode, so we use the `modeest` package:
