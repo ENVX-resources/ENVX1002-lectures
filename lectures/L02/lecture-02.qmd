@@ -2,20 +2,20 @@
 title: "Lecture 02: Introduction to statistical programming"
 author: Januar Harianto
 format: soles-revealjs
-embed-resources: false
+embed-resources: true
 ---
 
 
 # Learning outcomes
 
-By completing this lecture, you will be able to:
 
-1. Understand fundamental statistical concepts in plain language
-2. Learn how R implements these statistical concepts
-3. Write R code to calculate measures of central tendency and spread
-4. Choose appropriate statistical measures for different types of data
-5. Apply statistical programming to real data analysis
+## After this lecture, you will be able to:
 
+1. Understand and explain measures of central tendency (mean, median, mode) and spread (range, IQR, variance, standard deviation)
+2. Calculate statistical measures using both R and Excel
+3. Choose appropriate statistical measures for your data
+4. Interpret statistical results in a biological context
+5. Begin troubleshooting common programming issues
 
 
 ## Getting Started Checklist
@@ -185,11 +185,7 @@ The mean is what most people call the "average":
 - Population mean: $\mu = \frac{\sum_{i=1}^{N} x_i}{N}$
 - Sample mean: $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$
 
-Where:
-
-- $x_i$ is each individual value
-- $N$ is population size
-- $n$ is sample size
+Where $x_i$ is each individual value, $N$ is population size, and $n$ is sample size.
 :::
 
 ## Mean in R
@@ -343,47 +339,7 @@ Calculating the mode can be tricky, especially if there are multiple modes or no
 - What is the most common eye color in a group of people?
 :::
 
-## Mode in Excel
 
-::: {.columns}
-::: {.column width="50%"}
-Excel provides several methods to find the mode:
-
-1. **MODE.SNGL function** (single mode)
-   ```
-   =MODE.SNGL(A1:A10)
-   ```
-   - Returns most frequent value
-   - Returns #N/A if no repeats
-
-2. **MODE.MULT function** (multiple modes)
-   ```
-   =MODE.MULT(A1:A10)
-   ```
-   - Returns array of modes
-   - Press Ctrl+Shift+Enter
-:::
-
-::: {.column width="50%"}
-::: {.callout-tip}
-## Alternative Method
-If you need to count frequencies:
-
-1. Use COUNTIF function:
-   ```
-   =COUNTIF(range, value)
-   ```
-2. Find highest count
-3. Match back to original values
-
-This is useful when you need to:
-
-- See all frequencies
-- Handle text data
-- Find multiple modes
-:::
-:::
-:::
 
 ## Calculating the mode in R
 
@@ -445,6 +401,27 @@ modes
 ::: fragment
 **The point is that it doesn't matter how you calculate the mode, as long as you are able to do it.** Also -- if you needed this -- aren't you glad R has a package for it?
 :::
+
+## Mode in Excel
+
+
+Excel provides several methods to find the mode:
+
+### 1. **MODE.SNGL function** (single mode)
+```
+=MODE.SNGL(A1:A10)
+```
+
+- Returns most frequent value
+- Returns #N/A if no repeats
+
+### 2. **MODE.MULT function** (multiple modes)
+```
+=MODE.MULT(A1:A10)
+```
+
+- Returns array of modes
+- Press Ctrl+Shift+Enter
 
 # Measures of spread
 
@@ -557,38 +534,32 @@ exbay
 The larger IQR in the wave-exposed site shows more spread in the typical seagrass lengths
 :::
 
-## Variance
+## Variance: a detailed measure of spread
 
-::: {.columns}
-::: {.column width="60%"}
-**Why another measure of spread?**
+Variance measures how far data points are spread from their mean by:
 
-- Range: affected by outliers
-- IQR: only uses middle 50%
-- We need something that uses *all* the data
+1. Finding how far each point is from the mean
+2. Squaring these distances (to handle negative values)
+3. Taking the average of these squared distances
 
-**Variance measures:**
 
-- How far each value is from the mean
-- In both directions (above and below)
-- Squares the differences (makes them positive) -- otherwise the sum is zero
-:::
+### Why use variance?
 
-::: {.column width="40%"}
-::: {.callout-tip}
-## Key Ideas
+- Uses **all** data points (unlike IQR)
+- Less sensitive to outliers than range
+- Shows total spread in both directions
 
-- Uses every data point
-- Squares make big differences count more
-- Result is in squared units (cm²)
-:::
-:::
+
+::: fragment
+### Key Points
+- Measured in squared units (cm²)
+- Larger variance = more spread
 :::
 
 ## Calculating Variance in R
 
 ```{r}
-#| code-fold: false
+#| code-fold: true
 #| echo: true
 # Calculate variance for both sites
 cat("Protected bay variance:", var(seagrass_protected), "cm²\n")
@@ -599,73 +570,26 @@ cat("Wave-exposed variance:", var(seagrass_exposed), "cm²\n")
 The larger variance in wave-exposed site shows more spread from the mean!
 :::
 
-## How Variance Works
-
-::: {.columns}
-::: {.column width="60%"}
-Let's break it down with the protected bay:
-
-```{r}
-#| code-fold: false
-#| echo: true
-x <- seagrass_protected
-# Step 1: Find how far each value is from the mean
-diffs <- x - mean(x)
-cat("Distance from mean:", round(diffs, 2), "\n")
-# Step 2: Square these differences
-cat("Squared distances:", round(diffs^2, 2))
-```
-:::
-
-::: {.column width="40%"}
-::: {.callout-tip}
-## Steps to Variance
-1. Find mean
-2. Get distances from mean
-3. Square the distances
-4. Average the squares
-:::
-:::
-:::
-
-::: {.callout-note}
-The `var()` function does all this for us!
-:::
 
 
 
-## Comparing Spread Measures {.smaller}
+## Standard deviation: a more interpretable measure
 
-| Measure | Protected Bay | Wave-exposed Coast | What it Tells Us |
-|---------|:------------:|:-----------------:|------------------|
-| Range | `r round(diff(range(seagrass_protected)), 2)` cm | `r round(diff(range(seagrass_exposed)), 2)` cm | Overall spread (sensitive to outliers) |
-| IQR | `r round(IQR(seagrass_protected), 2)` cm | `r round(IQR(seagrass_exposed), 2)` cm | Middle 50% spread (ignores extremes) |
-| Variance | `r round(var(seagrass_protected), 2)` cm² | `r round(var(seagrass_exposed), 2)` cm² | Average squared distance from mean |
+Standard deviation (SD, or $\sigma$ for population, $s$ for sample) is the square root of variance:
 
-### Key Observations
-- Wave-exposed site shows consistently more variation
-- Each measure gives a different perspective
-- Choose based on your data and goals
+- Tells us the "typical distance" from the mean
+- Easy to understand - similar to saying "± value" after a mean
+- Small SD means values cluster closely around mean
+- Large SD means values are more spread out
+
+### When and Why to Use It
+- Values are in the **same units** as your data (unlike variance)
+- Perfect for describing natural variation (height, weight, temperature)
+- Used in many statistical tests
+- Great for comparing different groups or datasets
 
 
-## Standard deviation: Back to original units
-
-Standard deviation is the square root of variance, giving us a measure of spread in the original units (cm instead of cm²):
-
-```{r}
-#| code-fold: false
-#| echo: true
-# Calculate standard deviation for both sites
-cat("Protected bay SD:", sd(seagrass_protected), "cm\n")
-cat("Wave-exposed SD:", sd(seagrass_exposed), "cm\n")
-```
-
-::: {.callout-note}
-## For those interested in the math
-Standard deviation ($s$) is: $s = \sqrt{\frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}}$
-:::
-
-## Interpreting Standard Deviation
+## Interpreting standard deviation (with R)
 
 We can describe our seagrass lengths using mean ± standard deviation:
 
@@ -687,245 +611,72 @@ cat("Wave-exposed:", round(mean_e, 1), "±", round(sd_e, 2), "cm\n")
 The ± tells us about the typical variation around the mean. Larger values indicate more spread!
 :::
 
-# Debugging in R: Your problem-solving toolkit
 
-::: {.callout-note}
-## Remember: Everyone Faces Errors!
-Debugging is a normal part of programming. Even experienced programmers spend a lot of time debugging. It's not about avoiding errors - it's about learning how to fix them!
-:::
 
-## What is debugging?
+## Comparing Spread Measures
 
-::: {.columns}
-::: {.column width="60%"}
-- Process of finding and fixing errors in your code
-- Essential skill for statistical programming
-- Makes you a better programmer
-- Helps you understand how R works
-:::
+| Measure | Protected Bay | Wave-exposed Coast | What it Tells Us |
+|---------|:------------:|:-----------------:|------------------|
+| Range | `r round(diff(range(seagrass_protected)), 2)` cm | `r round(diff(range(seagrass_exposed)), 2)` cm | Overall spread (sensitive to outliers) |
+| IQR | `r round(IQR(seagrass_protected), 2)` cm | `r round(IQR(seagrass_exposed), 2)` cm | Middle 50% spread (ignores extremes) |
+| Variance | `r round(var(seagrass_protected), 2)` cm² | `r round(var(seagrass_exposed), 2)` cm² | Average squared distance from mean |
+| SD | `r round(sd(seagrass_protected), 2)` cm | `r round(sd(seagrass_exposed), 2)` cm | Average distance from mean (in original units) |
 
-::: {.column width="40%"}
-::: {.callout-tip}
-## Debugging Mindset
-- Stay calm - errors help you learn
-- Break problems into small steps
-- Take breaks if frustrated
-- Celebrate when you fix errors!
-:::
-:::
-:::
+### Key Observations
+- Wave-exposed site shows consistently more variation
+- Each measure gives a different perspective
+- Choose based on your data and goals
+- Standard deviation is most commonly used in research papers
 
-::: {.callout-note}
-## Fun fact
-The term "bug" comes from a moth found in an early computer in 1947! This shows that problems in computers have been around since the beginning - you're not alone in facing them.
-:::
 
-## Common Student Challenges
+## Basic Measures of Spread in Excel
 
-1. **Starting R for the first time**
-   ```r
-   # Error: could not find function
-   # Don't panic! You probably need to:
-   library(packagename)  # Load the package first
-   ```
+Common Excel functions for measuring spread:
 
-2. **Copy-paste issues**
-   ```r
-   # Error: unexpected symbol
-   # Check for hidden characters or
-   # incorrect quote marks (" vs ")
-   ```
+1. **Range**: Use `MAX()` and `MIN()`
+```
+=MAX(A1:A10) - MIN(A1:A10)
+```
 
-3. **Case sensitivity confusion**
-   ```r
-   # These are different!
-   myData <- c(1,2,3)
-   print(mydata)  # Error: object 'mydata' not found
-   ```
+2. **Quartiles and IQR**: Use `QUARTILE.INC()`
+```
+For Q1: =QUARTILE.INC(A1:A10, 1)
+For Q3: =QUARTILE.INC(A1:A10, 3)
+For IQR: =QUARTILE.INC(A1:A10, 3) - QUARTILE.INC(A1:A10, 1)
+```
 
-::: {.callout-warning}
-## When You're Stuck
-1. Read the error message carefully
-2. Check for typos
-3. Verify package is loaded
-4. Ask for help - we're here to support you!
-:::
+## Advanced Measures of Spread in Excel
 
-## Understanding R's Messages
+Statistical functions for variance and standard deviation:
 
-::: {.callout-note}
-## Think of R Messages as Helpful Feedback
-R tries to communicate with you in different ways. Learning to interpret these messages will make you a more confident R user!
-:::
+1. **Sample Variance**: Use `VAR.S()`
+```
+=VAR.S(A1:A10)
+```
 
-R has three types of friendly messages:
-
-1. **Messages** (Information) 💬
-   ```r
-   library(ggplot2)
-   #> Loading required package: ggplot2
-   ```
-   - Just keeping you informed
-   - Like a friendly "FYI"
-   - No action needed
-   - Common examples:
-     * Package loading messages
-     * Progress updates
-     * Information about operations
-
-2. **Warnings** (Potential issues) ⚠️
-   ```r
-   mean(c(1, 2, NA, 4))
-   #> Warning: NAs present, result might be unexpected
-   ```
-   - Code still runs but needs attention
-   - Like a "heads up" from R
-   - Good to investigate why
-   - Common examples:
-     * Missing values in calculations
-     * Data type conversions
-     * Deprecated function usage
-
-3. **Errors** (Code cannot run) 🛑
-   ```r
-   sum("apple")
-   #> Error: invalid 'type' (character) of argument
-   ```
-   - Must fix before continuing
-   - Think of these as learning opportunities
-   - Usually have clear solutions
-   - Common examples:
-     * Syntax mistakes
-     * Missing packages
-     * Wrong data types
+2. **Sample Standard Deviation**: Use `STDEV.S()`
+```
+=STDEV.S(A1:A10)
+```
 
 ::: {.callout-tip}
-## Message Handling Strategy
-1. Stay calm - messages are R's way of helping
-2. Read the message carefully
-3. Look for keywords that hint at the problem
-4. If stuck, use the message text to search for help
+## Tip
+Use `.P` instead of `.S` for population measures:
+- `VAR.P()` for population variance
+- `STDEV.P()` for population standard deviation
 :::
 
-## Common Error Types in R
+# References and Resources
 
-### Syntax Errors
-```{r}
-#| code-fold: false
-#| error: true
-#| warning: true
-mean(x = c(1,2,3))   
-mean(x = c(1,2,3,))  
-```
+## Core Reading
+- Quinn & Keough (2024). *Experimental Design and Data Analysis for Biologists*. Cambridge University Press. **Chapter 2**: Things to know before proceeding.
+- Canvas site for lecture notes and additional resources
 
-### Object Not Found
-```{r}
-#| code-fold: false
-#| error: true
-#| warning: true
-# Trying to use data before creating it
-plot(my_data)
-```
 
-## More Common Errors
+# Thanks!
 
-### Type Mismatches
-```{r}
-#| code-fold: false
-#| error: true
-#| warning: true
-# Mixing numbers and text
-sum(c(1, 2, "three"))
-```
+This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
 
-### Package Not Installed
-```{r}
-#| code-fold: false
-#| error: true
-#| warning: true
-# Trying to use function without loading package
-ggplot(data = mtcars)
-```
-
-## Understanding Warning Messages
-
-### Example 1: Missing Values
-```{r}
-#| code-fold: false
-#| error: true
-#| warning: true
-mean(c(1, 2, NA, 4))
-```
-
-### Example 2: Data Coercion
-```{r}
-#| code-fold: false
-#| error: true
-#| warning: true
-# Mixing data types
-as.numeric(c("1", "2", "three"))
-```
-
-## RStudio Debugging Tools
-
-Key features in RStudio for debugging:
-
-1. **Environment tab**
-   - View all objects
-   - Check data structures
-
-2. **Console messages**
-   - Red text = Errors
-   - Orange text = Warnings
-
-3. **Traceback**
-   - Shows error location
-   - Press 'Show Traceback'
-
-## Interactive Debugging
-
-Useful functions for debugging:
-
-```{r}
-#| code-fold: false
-#| eval: false
-str(data)      # Examine structure
-head(data)     # View first rows
-class(data)    # Check data type
-typeof(data)   # Check storage type
-```
-
-## Debugging Workflow
-
-1. **Identify the problem**
-   - Read error message carefully
-   - Check which line caused error
-   - Examine data structure
-
-2. **Isolate the issue**
-   - Run code line by line
-   - Print intermediate results
-   - Check object types
-
-3. **Test solutions**
-   - Try with simple examples
-   - Verify data types match
-   - Check documentation
-
-## Modern Debugging Resources
-
-1. **Online Communities**
-   - Stack Overflow
-   - RStudio Community
-   - R-bloggers
-
-2. **AI Assistants**
-   - GitHub Copilot
-   - ChatGPT
-   - Claude
-
-3. **R Documentation**
-   - `?function_name`
-   - Package vignettes
-   - CRAN documentation
+<!-- Links -->
+[cc-by]: http://creativecommons.org/licenses/by/4.0/
 
