@@ -197,10 +197,10 @@ assessment_df <- tibble(
   Week = factor(c("3", "5", "8", "13", "Exam")),
   Assessment = factor(c(
     "Early Feedback Quiz (individual 5%)",
-    "Project 1: Exploring data (individual 10%)",
+    "Project 1: Exploring data (individual 15%)",
     "Coding and data skills evaluation (individual 15%)",
     "Project 2: Modelling (10% + Peer assessment 5%)",
-    "Final exam (individual 45%)"
+    "Final exam (individual 50%)"
   )),
   Description = factor(c(
     "In-person - 15 minutes",
@@ -252,11 +252,11 @@ tt(assessment_df)
 ## R
 
 :::: {.columns}
-::: {.column width="50%"}
+::: {.column width="70%"}
 ![](images/Rlogo.svg)
 :::
 
-::: {.column width="50%"}
+::: {.column width="30%"}
 <br>
 <br>
 <br>
@@ -276,7 +276,7 @@ tt(assessment_df)
 2. **Makes your work reproducible**
 3. **Powerful yet accessible**
 
-- **Importantly** -- the skills you learn are *highly* transferable to other tools and languages.
+- **Importantly** -- the skills you learn are *highly* transferable to other tools and languages such as Python and Java.
 - Most easily integrated with generative AI tools -- *more on this soon*
 - Well-documented and discussed online (so you can find help easily)
 
@@ -358,12 +358,15 @@ Note: we will revisit this plot in the next lecture
 ```markdown
 ## Quarto
 
-- Majority of our resources are built using [**Quarto**](https://quarto.org/) -- a markdown-based document format that **you will learn to use** in this unit
+- Majority of our resources are built using [**Quarto**](https://quarto.org/) -- 
+a markdown-based document format that **you will learn to use** in this unit
   - Lecture slides
   - Tutorials
   - Lab exercises
 - Quarto  makes everything **reproducible** - what does it mean?
-- Free and open source, available on the [ENVX resources](https://github.com/ENVX-resources) GitHub repository -- re-use and modify as you wish (but follow [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/))
+- Free and open source, available on the [ENVX resources](https://github.com/ENVX-resources) 
+GitHub repository -- re-use and modify as you wish 
+(but follow [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/))
 ```
 
 :::
@@ -391,6 +394,28 @@ Note: we will revisit this plot in the next lecture
 - From time to time, we will organise **drop-in sessions** for additional help
 
 NOTE: **We cannot help you if you don't ask!**
+
+# Advice from 2024 ENVX1002 students!
+
+- "Practicals are important."
+- "Ed discussion is your saviour (but check if someone has asked the same q before posting)."
+- "The lab notes are really helpful for the projects - so turn up and pay attention." 
+- "Start work on the assignments early so that if you need help, you can get it."
+- "Complete the tutorials before the prac as it makes the prac a lot more meaningful"
+- "Watch the lectures."
+- "Taking step by step"
+- "Keep track of the code and what it means."
+- "Do not ignore the practicals and tutorials, they teach the most."
+- "Don't be closed minded."
+- "work with others to make notes for codes."
+- "find a stats buddy in your prac to talk things over with!"
+- "Ask questions, speak up if labs are moving too fast passed concepts and ask how things are relevant to out into practice."
+- "The experience that teachers and demos have makes it far more relatable and helps cement an idea through inference."
+- "Stick with it, focus in the pracs and all is fine."
+- "Keep up with tutorial quizzes, code along with the tutorials as well as the practical, the more code you do,  the more the content sticks in your head."
+- "Show up to the labs and don't rely on copilot or chat gpt."
+- "Study after practicals to ensure you understand code."
+- "do not panic and always ask for help, and do not stress too much over stats."
 
 
 # Thanks!
