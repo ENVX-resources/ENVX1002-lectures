@@ -55,7 +55,7 @@ In your own time: [The best stats you've ever seen](https://www.ted.com/talks/ha
 
 ## [Lionel Messi is impossible](https://fivethirtyeight.com/features/lionel-messi-is-impossible/)
 
-> It’s not possible to shoot more efficiently from outside the penalty area than many players shoot inside it. It’s not possible to lead the world in weak-kick goals and long-range goals. It’s not possible to score on unassisted plays as well as the best players in the world score on assisted ones. It’s not possible to lead the world’s forwards both in taking on defenders and in dishing the ball to others. And it’s certainly not possible to do most of these things by insanely wide margins.
+> It's not possible to shoot more efficiently from outside the penalty area than many players shoot inside it. It's not possible to lead the world in weak-kick goals and long-range goals. It's not possible to score on unassisted plays as well as the best players in the world score on assisted ones. It's not possible to lead the world's forwards both in taking on defenders and in dishing the ball to others. And it's certainly not possible to do most of these things by insanely wide margins.
 > 
 > **But Messi does all of this and more.**
 
@@ -135,6 +135,57 @@ rstatix::anova_summary(model) |>
 
 The *beauty* of statistics -- formal hypothesis testing is not always required to make a point!
 
+# Understanding data types
+
+## Types of data
+
+We encounter different types of data in our everyday lives:
+
+::: fragment
+1. **Numeric (Quantitative)**
+   - **Continuous**: Can take any value (e.g., height: 175.5 cm, temperature: 23.4°C)
+   - **Discrete**: Whole numbers only (e.g., number of students: 25, floors in a building: 10)
+:::
+
+::: fragment
+2. **Categorical (Qualitative)**
+   - **Nominal**: Categories without order (e.g., eye color, country of birth)
+   - **Ordinal**: Categories with order (e.g., satisfaction: poor → fair → good → excellent)
+:::
+
+## When data types blur
+
+The same data can be treated in different ways:
+
+::: fragment
+- Age can be numeric (25.5 years) or categorical (young/middle/old)
+- Temperature can be numeric (23.4°C) or categorical (cold/warm/hot)
+- Ratings can be numeric (1-5) or ordinal (poor to excellent)
+:::
+
+::: fragment
+How we treat the data depends on our research question:
+
+- What comparison makes sense for our goals?
+- What level of detail do we need?
+- What statistical tests are appropriate?
+:::
+
+## Why data types matter
+
+Understanding data types helps us:
+
+1. **Choose appropriate analyses**
+   - Different statistical tests for different data types
+   - Avoid incorrect conclusions
+
+2. **Create effective visualisations**
+   - Bar plots for categorical data
+   - Scatter plots for continuous data
+
+3. **Communicate results clearly**
+   - Use appropriate summary statistics
+   - Present data in meaningful ways
 
 # The scientific method
 
@@ -248,8 +299,6 @@ Those without programming knowledge will *still* struggle to understand and use 
 - Understanding of the R programming language
 - Knowing how to debug (i.e. read error messages or "play" with code)
 - It takes time, but the payoff is worth it -- all programming languages follow similar principles and you will find others easier to learn, even if not for statistics...
-
-# Demonstration
 
 
 # References

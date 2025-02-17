@@ -2,7 +2,7 @@
 title: "Lecture 02: Introduction to statistical programming"
 author: Januar Harianto
 format: soles-revealjs
-embed-resources: true
+embed-resources: false
 ---
 
 
@@ -11,32 +11,25 @@ embed-resources: true
 
 ## After this lecture, you will be able to:
 
-1. Understand and explain measures of central tendency (mean, median, mode) and spread (range, IQR, variance, standard deviation)
-2. Calculate statistical measures using both R and Excel
-3. Choose appropriate statistical measures for your data
-4. Interpret statistical results in a biological context
-5. Begin troubleshooting common programming issues
+1. Feel confident explaining basic statistical concepts like **samples** and **populations**
+2. Understand and explain measures of **central tendency** (mean, median, mode) clearly and without mathematical jargon
+3. Master different measures of **spread** (range, IQR, variance, standard deviation) through practical examples
+4. Calculate statistical measures confidently using **both R and Excel**
+5. Choose appropriate statistical measures for your biological data and explain your choices
+6. Begin troubleshooting common programming issues with a systematic approach
 
 
-## Getting Started Checklist
+## Quick checklist
 
-::: {.callout-tip}
-## Installation Support
-If you have any trouble with installation:
+By now you should have...
 
-1. Check our [troubleshooting guide](https://cran.r-project.org/doc/FAQ/R-FAQ.html)
-2. Ask on the unit discussion board
-3. Visit help sessions
-4. Email the teaching team
-:::
 
-### Essential Setup
 - [ ] Installed [**R**](https://cran.r-project.org/)
 - [ ] Installed [**RStudio**](https://posit.co/download/rstudio-desktop/)
-- [ ] Know some [Markdown basics](https://quarto.org/docs/authoring/markdown-basics.html)
+- [ ] Created one (or two) documents in [Markdown](https://quarto.org/docs/authoring/markdown-basics.html) using Quarto
 
 
-# Statistical computing: A quick history
+# History of statistical programming
 
 ## From calculators to computers
 
@@ -108,7 +101,7 @@ It's like having a *powerful calculator* that can help us tell stories about our
 
 - **Subset of the population**
 - What we *actually* measure
-- Example: 100 trees we measured
+- Example: 100 trees measured in a forest
 
 **Most (if not all) statistical analyses are based on samples, not populations.**
 :::
@@ -120,12 +113,13 @@ It's like having a *powerful calculator* that can help us tell stories about our
 
 How well does a sample represent the population?
 
-Some thoughts:
+It depends:
 
 - **Sample size**: Larger samples are more likely to represent the population
 - **Sampling method**: Random samples are more likely to be representative
 - **Population variability**: More variability means larger samples are needed
 
+In reality, we often have to balance these factors due to time, cost, and practical constraints.
 
 ## Samples will vary
 
@@ -136,13 +130,12 @@ Different samples give different results -- suppose we have a population of **10
 #| code-fold: true
 
 set.seed(258) 
-population <- rnorm(1000, mean = 20, sd = 5)
+population <- rnorm(1000, mean = 12, sd = 5)
 
 # create samples
-sample1 <- sample(population, size = 6)
-sample2 <- sample(population, size = 6)
-sample3 <- sample(population, size = 6)
-```
+sample1 <- round(sample(population, size = 6), 1)
+sample2 <- round(sample(population, size = 6), 1)
+sample3 <- round(sample(population, size = 6), 1)
 
 ```{r}
 # show samples
@@ -155,9 +148,7 @@ So how do we make sense of these samples?
 
 ## Descriptive statistics
 
-We can describe our samples using: 
-
-1. **Measures of central tendency** -- describe the "typical" value
+1. **Measures of central tendency** -- describe the "typical" value in a sample
    - mean, median, mode
 
 2. **Measures of spread** -- describe how much the data varies
@@ -174,8 +165,6 @@ We can describe our samples using:
 mean | median | mode
 
 ## Mean -- also known as the *average*
-
-The mean is what most people call the "average":
 
 - Add up all your numbers
 - Divide by how many numbers you have
@@ -551,7 +540,7 @@ Variance measures how far data points are spread from their mean by:
 
 
 ::: fragment
-### Key Points
+### Key points
 - Measured in squared units (cm²)
 - Larger variance = more spread
 :::
@@ -582,7 +571,7 @@ Standard deviation (SD, or $\sigma$ for population, $s$ for sample) is the squar
 - Small SD means values cluster closely around mean
 - Large SD means values are more spread out
 
-### When and Why to Use It
+### When and why to use it
 - Values are in the **same units** as your data (unlike variance)
 - Perfect for describing natural variation (height, weight, temperature)
 - Used in many statistical tests
@@ -613,7 +602,7 @@ The ± tells us about the typical variation around the mean. Larger values indic
 
 
 
-## Comparing Spread Measures
+## Comparing spread measures
 
 | Measure | Protected Bay | Wave-exposed Coast | What it Tells Us |
 |---------|:------------:|:-----------------:|------------------|
@@ -629,7 +618,7 @@ The ± tells us about the typical variation around the mean. Larger values indic
 - Standard deviation is most commonly used in research papers
 
 
-## Basic Measures of Spread in Excel
+## Range and IQR in Excel
 
 Common Excel functions for measuring spread:
 
@@ -645,7 +634,7 @@ For Q3: =QUARTILE.INC(A1:A10, 3)
 For IQR: =QUARTILE.INC(A1:A10, 3) - QUARTILE.INC(A1:A10, 1)
 ```
 
-## Advanced Measures of Spread in Excel
+## Variance and standard deviation in Excel
 
 Statistical functions for variance and standard deviation:
 
@@ -665,6 +654,7 @@ Use `.P` instead of `.S` for population measures:
 - `VAR.P()` for population variance
 - `STDEV.P()` for population standard deviation
 :::
+
 
 # References and Resources
 
