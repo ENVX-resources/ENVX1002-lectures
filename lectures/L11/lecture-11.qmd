@@ -393,6 +393,18 @@ summary(fit)
 - The MLR model explains 66% of variance (adjusted R^2^ = 0.66), whereas the SLR explains 48% of variance (multiple R^2^ = 0.48).
 - Thus the MLR is the better model.
 
+## Hypothesis Testing
+
+For multiple linear regression, there are two hypothesis tests:
+
+- Individual predictors, where the significance of each predictor is tested via t-tests
+
+$$H_0: \beta_k = 0$$
+$$H_1: \beta_k \neq 0$$
+- The overall model, which is tested with an F-test (to get F-stat). $H_0$ is an intercept-only model (i.e. the mean), so if at least one predictor is useful, the model is better than the intercept-only model.
+
+$$H_0: \beta_1 = \beta_2 = ... = \beta_k = 0$$
+$$H_1: \text{At least one } \beta_k \neq 0$$
 ## Interpreting coefficients
 
 ```r
