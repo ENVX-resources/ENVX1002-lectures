@@ -1,15 +1,15 @@
 # ENVX1002 Lectures
 
-This repository contains lecture materials for the ENVX1002 unit at the University of Sydney. The content is built using [Quarto](https://quarto.org/), providing interactive and dynamic lecture materials for environmental data science education.
+This repository contains lecture materials for the ENVX1002 unit at the University of Sydney. The content is built using [Quarto](https://quarto.org/).
 
 ## 📚 Course Overview
 
 ENVX1002 is an introductory unit focused on data analysis and statistics in environmental science. The course covers:
 
 - Introduction to R programming
-- Data visualization and analysis
-- Statistical methods in environmental science
-- Practical applications of data science in environmental contexts
+- Data visualisation and analysis
+- Statistical methods for hypothesis testing
+- Practical applications of data science in various scientific contexts
 
 ## 🗂️ Repository Structure
 
@@ -47,13 +47,6 @@ You will need R, a code editor like RStudio or VS Code and the Quarto package. N
 7. **Open a pull request**: Submit your changes for review to the main repository.
 
 
-
-## 🤝 Contributing
-
-We welcome contributions from teaching staff, students and the wider community. Please see our [Contributing Guidelines](CONTRIBUTING.md) for more information on how to contribute to this repository.
-
-For making pull requests, please follow our [Pull Request Template](PULL_REQUEST_TEMPLATE.md).
-
 ## 📝 License
 
 This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](LICENSE).
@@ -64,4 +57,4 @@ This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareA
 
 For questions or issues regarding these materials, please:
 1. Open an issue in this repository
-2. Contact the unit coordinator through the University of Sydney channels
+2. Contact the unit coordinator (you know our email addresses, check Canvas if not!)
