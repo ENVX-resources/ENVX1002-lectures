@@ -395,27 +395,46 @@ GitHub repository -- re-use and modify as you wish
 
 NOTE: **We cannot help you if you don't ask!**
 
-# Advice from 2024 ENVX1002 students!
+## Statbot
 
-- "Practicals are important."
-- "Ed discussion is your saviour (but check if someone has asked the same q before posting)."
+An AI-powered chatbot that can help you with your statistics questions. 
+
+- Available on Canvas: ENVX1002 -> Tool Kit -> StatBot
+- Powered by Cogniti -- a USYD-created AI Agent
+- "Unlimited" credits -- use it as much as you like; walled-garden environment but not limited to ENVX1002
+- Use it wisely!
+
+
+## Advice from 2024 ENVX1002 students! {.scrollable}
+
+### 🎯 
+- "Watch the lectures."
 - "The lab notes are really helpful for the projects - so turn up and pay attention." 
+- "Practicals are important."
+- "Do not ignore the practicals and tutorials, they teach the most."
+- "Show up to the labs and don't rely on copilot or chat gpt."
+
+### 🚀 
 - "Start work on the assignments early so that if you need help, you can get it."
 - "Complete the tutorials before the prac as it makes the prac a lot more meaningful"
-- "Watch the lectures."
+- "Study after practicals to ensure you understand code."
+- "Keep up with tutorial quizzes, code along with the tutorials"
+
+### 🙋‍♂️ 
+- "Ed discussion is your saviour (but check if someone has asked the same q before posting)."
+- "Ask questions, speak up if labs are moving too fast passed concepts"
+- "do not panic and always ask for help, and do not stress too much over stats."
+
+### 💪 
 - "Taking step by step"
 - "Keep track of the code and what it means."
-- "Do not ignore the practicals and tutorials, they teach the most."
-- "Don't be closed minded."
+- "The more code you do, the more the content sticks in your head."
+- "Stick with it, focus in the pracs and all is fine."
+
+### 👥 
 - "work with others to make notes for codes."
 - "find a stats buddy in your prac to talk things over with!"
-- "Ask questions, speak up if labs are moving too fast passed concepts and ask how things are relevant to out into practice."
-- "The experience that teachers and demos have makes it far more relatable and helps cement an idea through inference."
-- "Stick with it, focus in the pracs and all is fine."
-- "Keep up with tutorial quizzes, code along with the tutorials as well as the practical, the more code you do,  the more the content sticks in your head."
-- "Show up to the labs and don't rely on copilot or chat gpt."
-- "Study after practicals to ensure you understand code."
-- "do not panic and always ask for help, and do not stress too much over stats."
+- "Don't be closed minded."
 
 
 # Thanks!
@@ -428,12 +447,14 @@ This presentation is based on the [SOLES Quarto reveal.js template](https://gith
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
 
 
-# References and Resources
+## References and Resources
 
-## Core Reading
+### Core Reading
 - Quinn & Keough (2002). *Experimental Design and Data Analysis for Biologists*. Cambridge University Press. Sections 1.1-1.2, pages 1-7.
 
-## Software Resources
+### Software Resources
 - [CRAN (The Comprehensive R Archive Network)](https://cran.r-project.org/) - R packages repository
 - [RStudio](https://posit.co/downloads/) - Integrated development environment
 - [Quarto](https://quarto.org/) - Scientific publishing system
+
+Muddy points? [Take the muddy cards survey](https://saipll.shinyapps.io/student-interface/)
