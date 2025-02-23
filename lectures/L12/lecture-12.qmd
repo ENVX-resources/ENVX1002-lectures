@@ -28,8 +28,8 @@ ggplot2::theme_set(cowplot::theme_half_open())
     + [Assumptions, interpretation and the principle of parsimony]{style="color: #D0D3D4;"}
 
 - **Week 12. Nonlinear Regression**
-    + Common nonlinear functions]
-    + Transformations]
+    + Common nonlinear functions
+    + Transformations
 
 ## Regressions 
 
@@ -65,7 +65,7 @@ where $f(x_i, \beta)$ is a nonlinear function of the parameters $\beta$: "How do
 > Gauss-Newton approach to non-linear regression is most commonly used
 
 
-## Fitting a nonlinear model
+## Non-linear relationships
 
 Linear relationships are simple to interpret since the rate of change is constant.
 
@@ -75,6 +75,21 @@ Nonlinear relationships often involve exponential, logarithmic, or power functio
 
 **"As one changes, the other changes at a rate that is *not proportional* to the change in the other.**
 
+## Dealing with nonlinearity
+
+### Transformations
+
+Often, a nonlinear relationship may be transformed into a linear relationship by applying a transformation to the response variable or the predictor variable(s).
+
+- **Logarithmic**: $y = \log(x)$ 
+- **Exponential**: $y = e^x$
+- **Square-root**: $y = \sqrt{x}$
+- **Inverse**: $y = \frac{1}{x}$
+
+:::{.fragment}
+- Usually works when $y$ changes [monotically](https://en.wikipedia.org/wiki/Monotonic_function) with $x$.
+- More interpretable and easier to fit.
+:::
 
 ## Nonlinear relationships: exponents
 
@@ -107,9 +122,7 @@ tibble(x = seq(0, 10, by = 0.2), y = x^2) %>%
 - If $\log_a(y) = x$: as $x$ increases, $y$ increases at a rate of $y = a^x$.
 - If $y = \log_a(x)$: as $y$ increases, $x$ also increases, at $x = a^y$.
 
-
 ## Exponents and logarithms
-
 
 |       | Exponents        | Logarithms       |
 |-------|:----------------:|:----------------:|
@@ -121,24 +134,9 @@ tibble(x = seq(0, 10, by = 0.2), y = x^2) %>%
 
 
 :::{.callout-note}
-For your understanding, don't need to memorise.
+For your understanding, not examinable.
 :::
 
-## Dealing with nonlinearity
-
-### Transformations
-
-Often, a nonlinear relationship may be transformed into a linear relationship by applying a transformation to the response variable or the predictor variable(s).
-
-- **Logarithmic**: $y = \log(x)$ 
-- **Exponential**: $y = e^x$
-- **Square-root**: $y = \sqrt{x}$
-- **Inverse**: $y = \frac{1}{x}$
-
-:::{.fragment}
-- All good when $y$ changes [monotically](https://en.wikipedia.org/wiki/Monotonic_function) with $x$.
-- What if relationship is not monotonic, or is more complex?
-:::
 
 # Common nonlinear functions
 
@@ -148,7 +146,7 @@ $f(x_i, \beta)$
 
 Response variable *decreases* and approaches limit as predictor variable increases.
 
-$$ y = a \cdot e^{-b_x} $$
+$$ y = a \cdot e^{-bx} $$
 
 ```{r}
 #| code-fold: true
@@ -426,6 +424,7 @@ autoplot(lm(log(response) ~ predictor, data = curvilinear)) +
 - A way to model complex (nonlinear) relationships.
   - i.e. phenomena that arise in the natural and physical sciences e.g. biology, chemistry, physics, engineering.
 - At least *one* predictor is not linearly related to the response variable.
+- Unique/specific shape - apply only if you are sure of the relationship, e.g. asymptotic, quadratic.
 
 
 ## Performing nonlinear regression
@@ -447,6 +446,7 @@ where $k$ is the degree of the polynomial.
 
 - The model is still linear in the parameters $\beta$ and can be fitted using least squares.
 - Instead of multiple predictors, we have multiple *terms* of the same predictor (same $x$).
+- Only the *highest-order term* is tested for significance.
 - Can still be fit using `lm()`.
 - The more complex, the less likely it follows a true biological relationship...
 
@@ -575,7 +575,7 @@ We use adjusted R^2^ for polynomials - extra terms, extra complexity, so extra p
 - Meaning of the coefficients is not always clear.
 - Extrapolation can be *dangerous*.
 - Extra terms can lead to overfitting and are difficult to interpret:
-- Parsimony: is the most complex term (highest power) significant? If not, remove.
+- Parsimony: is the most complex term (highest power) significant? If not, use a lower power.
 
 ```{r}
 summary(poly10_fit)
@@ -630,7 +630,7 @@ Like all other models we have seen, we focus on the residuals to assess the mode
 :::{.columns}
 :::{.column width="50%"}
 - The parameters are estimated using the **method of least squares**.
-- For nonlinear models, a nonlinear optimization algorithm is used to find the best fit, rather than ordinary least squares, e.g.:
+- For nonlinear models, a nonlinear optimization algorithm is used to find the best fit, rather than ordinary least squares:
   - [Gauss-Newton algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm)
   - [Levenberg-Marquardt algorithm](https://en.wikipedia.org/wiki/Levenberg%E2%80%93Marquardt_algorithm)
 - This can only be performed iteratively and depends on a "best guess" of the parameters *as a start*.
@@ -646,9 +646,13 @@ Source: [Wikipedia](https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm
 :::
 :::
 
-## Implementation
 
-use `nls()` function in R.
+## Two methods in R
+
+:::{.columns}
+:::{.column width="50%"}
+
+Use `nls()` function in R.
 
 ```{r}
 #| eval: false
@@ -656,20 +660,137 @@ use `nls()` function in R.
 nls(formula, data, start)
 ```
 
-- `formula`: a formula object, with the response variable on the left of a ~ operator, and the predictor variable(s) on the right.
-- `data`: a data frame containing the variables in the model.
+- `formula`: a formula object, response variable ~ predictor variable(s).
+- `data`: a data frame containing the variables in the model (response, predictor).
 - `start`: a named list of starting values for the parameters in the model.
 
+:::
+:::{.column width="50%"}
+
+Self-starting functions: `SSexpf()`, `SSasymp()`, `SSlogis()`, etc.
+
+- Self-starting functions estimate the starting values for you.
+- Named after the models they fit.
+- Existing functions have pre-set formulas.
+- Can define own functions but more complex than `nls()`.
+
+:::
+
+# Example: Fitting an exponential model
+
+## With `nls()`
+
+$y=y_0e^{kx}$
+
+where
+
+-   $y$ is the response and $x$ is the predictor
+-   $y_0$ is the value of $y$ when $x = 0$
+-   $k$ is the rate of change
+
+$k$ can be estimated with the equation $slope = k = \frac{log_e y_{max} - log_e y_{min}}{x_{max} - x_{min}}$, but usually a value of 1 is a good starting point.
+
+```{r}
+#| code-fold: true
+set.seed(123)
+growth <- tibble(
+  predictor = seq(0,10, by = 0.2),
+  response = abs(exp(0.5*predictor) + rnorm(length(predictor), mean = 1, sd = 5)))
+
+ggplot(data = growth, aes(x = predictor, y = response)) +
+  geom_point() +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  labs(x = "Predictor", y = "Response")
+```
+
+## First guess
+
+Based on the plot, we can estimate $y_0 ~ 0$ and $k = 1$. Because of the equation, $y=y_0e^{kx}$, $y_0$ cannot be 0!
+
+```{r}
+#| echo: true
+fit_exponential <- nls(response ~ y0*exp(k*predictor), data = growth, 
+  start = list(y0 = 0.1, k = 1))
+```
+
+```{r}
+#| code-fold: true
+ggplot(data = growth, aes(x = predictor, y = response)) +
+  geom_point() + 
+  labs(x = "Predictor", y = "Response") +
+  geom_line(aes(y = predict(fit_exponential)), color = "red", size = 2)
+```
+
+## Check assumptions
+
+```{r}
+#| echo: true
+library(nlstools)
+resids <- nlsResiduals(fit_exponential)
+plot(resids)
+```
+
+- These plots determine if the residuals are normally distributed and have equal variance
+- *Normal QQ* looks good
+- *Residuals vs fitted* and *Standardized Residuals* even spread but slight fanning.
+- With *Autocorrelation* we want random scatter around 0 -- this indicates independence. Harder to meet with time-series data.
+- Non-linear models typically should meet assumptions because they are fitted specifically to the data.
+
+## Interpretation
+
+```{r}
+summary(fit_exponential)
+```
+
+- The model is significant since the p-value is less than 0.05 for all parameters.
+- If this were real data (e.g. population growth), the parameters themselves e.g. rate of change, are useful
+- The parameterised model is:
+
+$$ y = 1.17 \cdot e^{-0.484x} $$
+The R-squared value is not reported for nonlinear models as the sum of squares is not partitioned into explained and unexplained components. You can use the **residual standard error** and plots instead to compare between models.
+
+## A really bad guess
+
+What if we don't estimate our parameters very well? R will either give an error or get there eventually.
+
+Note the parameters and residual standard error are the same as the previous slide - but the `Number of iterations to convergence` is higher.
+
+```{r}
+#| echo: true
+fit_exponential <- nls(response ~ y0*exp(k*predictor), data = growth, 
+  start = list(y0 = 50, k = 1.5)) # totally bogus numbers
+
+summary(fit_exponential)
+```
+
+:::{.callout-tip}
+If an error pops up, try different starting values - the **rate of change** is most likely the problem.
+:::
+
+## Fitting the model with `SSexpf()`
+
+- `SSexpf()` is from the `nlraa` package.
+- It has the same formula as above -- different names for parameters ($y_0$ = $a$, $k$ = $c$) but we can re-define them to anything we want
+- Reaches the same result but with less effort.
+
+```{r}
+#| echo: true
+library(nlraa)
+fit_exponential_ss <- nls(response ~ SSexpf(predictor, y0, k), data = decay) 
+summary(fit_exponential_ss)
+```
 
 # Example: Fitting an asymptotic model
 
-## Finding starting values
+## The equation
 
-$$ y = a + b(1 - e^{-cx}) $$
+- There are multiple equations for asymptotic models, this is the equation that `SSasymp()` (base R) uses:
 
-- $a$ is value of $y$ when $x = 0$.
-- $b$ is the upper limit: the maximum value of $y$.
-- $c$ is the rate of change: the rate at which $y$ approaches the upper limit.
+$$ y = Asym + (R_0-Asym) \cdot e^{-e^{lrc} \cdot x} $$
+
+- $R_0$ is value of $y$ when $x = 0$.
+- $Asym$ is the upper limit: the maximum value of $y$.
+- $lrc$ is the rate of change: the rate at which $y$ approaches the upper limit.
 
 . . . 
 
@@ -686,14 +807,17 @@ ggplot(data = asymptotic, aes(x = predictor, y = response)) +
   labs(x = "Predictor", y = "Response")
 ```
 
-## First guess
+Some plausible estimates -- $R_0 = 0$, $Asym = 100$, $lrc = 0.8$.
 
-$$ y = a + b(1 - e^{-cx}) $$
+## Fit model
 
 ```{r}
 #| echo: true
-fit_asymptotic <- nls(response ~ a + b*(1-exp(-c*predictor)), data = asymptotic, 
-  start = list(a = 0, b = 100, c = 0.8))
+# fit_asymptotic <- nls(response ~ Asym + (R0-Asym)*(exp(-exp(lrc)*predictor)), data = asymptotic, 
+#   start = list(R0 = 0, Asym = 100, lrc = 0.8))
+
+fit_asymptotic <- nls(response ~ SSasymp(predictor, Asym, R0, lrc), data = asymptotic)
+
 ```
 
 ```{r}
@@ -725,171 +849,52 @@ summary(fit_asymptotic)
 - If this were real data (e.g. population growth), the parameters themselves e.g. rate of change, are useful
 - The parameterised model is:
 
-$$ y = -14.5 + 113.04(1 - e^{-0.63x}) $$
-The R-squared value is not reported for nonlinear models as the sum of squares is not partitioned into explained and unexplained components. You can use the **residual standard error** and plots instead to compare between models.
+$$ y = 98.5 + (-14.5-98.5) \cdot e^{-e^{-0.463} \cdot x}  $$
+# Example: fitting a logistic model
 
-## A really bad guess
+## The equation
 
-What if we don't estimate our parameters very well? R will either give an error or get there eventually.
+There are multiple equations for logistic models, but they all have an 'S' or sigmoid shape. The equation that `SSlogis()` (base R) assumes $y$ is positive and uses:
 
-```{r}
-#| echo: true
-fit_asymptotic <- nls(response ~ a + b*(1-exp(-c*predictor)), data = asymptotic, 
-  start = list(a = -100, b = 200, c = 15))
+$$ y = \frac{Asym}{1+e^{\frac{xmid-x}{scal}}} $$
+where
 
-summary(fit_asymptotic)
-```
-
-:::{.callout-tip}
-If an error pops up, try different starting values - the **rate of change** is most likely the problem.
-:::
-
-# Another example: Fitting a logistic model
-
-## Recap on logistic relationship
-
-$$ y = c + \frac{d-c}{1+e^{-b(x-a)}} $$
-
-```{r}
-#| code-fold: true
-ggplot(data = logistic, aes(x = predictor, y = response)) +
-  geom_point() +
-  geom_smooth() +
-  labs(x = "Predictor", y = "Response")
-```
-
-> S or sigmoid-shaped curve
-
-## Finding the starting values
-
-$$ y = c + \frac{d-c}{1+e^{-b(x-a)}} $$
-
-- $c$ is the lower limit: the minimum value of $y$.
-- $d$ is the upper limit: the maximum value of $y$.
-- $a$ is the value of $x$ when $y$ is halfway between the lower and upper limits.
-- $b$ is the rate of change: the rate at which $y$ approaches the upper limit.
-
-. . .
+- $Asym$ is the upper limit: the maximum value of $y$.
+- $xmid$ is the value of $x$ when $y$ is halfway between the lower and upper limits.
+- $scal$ is the rate of change: the rate at which $y$ approaches the upper limit.
 
 ```{r, out.width="50%"}
 #| code-fold: true
 ggplot(data = logistic, aes(x = predictor, y = response)) +
   geom_point() +
-  geom_smooth() +
   labs(x = "Predictor", y = "Response") +
-  geom_hline(yintercept = 0, linetype = "dashed") +
   geom_hline(yintercept = 300, linetype = "dashed") +
   geom_vline(xintercept = 5, linetype = "dashed") +
   # label the lines above
-  annotate("text", x = 9, y = 0, label = "c", size = 8, vjust = -1) +
-  annotate("text", x = 0, y = 300, label = "d", size = 8, vjust = 1.5) +
-  annotate("text", x = 5, y = 100, label = "a", size = 8, hjust = -1) +
+  annotate("text", x = 0, y = 300, label = "Asym", size = 8, vjust = 1.5) +
+  annotate("text", x = 5, y = 100, label = "xmid", size = 8, hjust = -1) +
   ## plot the rate
   geom_segment(aes(x = 2.5, y = 60, xend = 6, yend = 250), 
                arrow = arrow(length = unit(0.5, "cm")), 
                color = "red") +
   # label the rate
-  annotate("text", x = 4, y = 180, label = "b", size = 8, colour = "red", hjust = -1)
+  annotate("text", x = 4, y = 180, label = "scal", size = 8, colour = "red", hjust = -1)
 ```
 
+Some starting values would be $Asym = 300$, $xmid = 5$, $scal = 1$.
 
-## Finding the starting values
+## Fit model
 
-$$ y = c + \frac{d-c}{1+e^{-b(x-a)}} $$
-
-- $c$ is the lower limit: the minimum value of $y$.
-- $d$ is the upper limit: the maximum value of $y$.
-- $a$ is the value of $x$ when $y$ is halfway between the lower and upper limits.
-- $b$ is the rate of change: the rate at which $y$ approaches the upper limit.
+Estimating the parameters or using the self-starting function `SSlogis()` gives a near-identical result.
 
 ```{r}
 #| echo: true
-fit_logistic <- nls(
-  response ~ c + (d - c) / (1 + exp(-b * (predictor - a))),
-  data = logistic,
-  start = list(c = 20, d = 300, b = 5, a = 5)
-)
 
-```
+# fit_logistic <- nls(response ~ Asym/(1+exp((xmid-predictor)/scal)), data = logistic, 
+#    start = list(Asym = 300, xmid = 5, scal = 1))
 
-:::{.callout-note}
-It can be done this way, it is not the easiest way to do it.
-:::
+fit_logistic <- nls(response ~ SSlogis(predictor, Asym, xmid, scal), data = logistic)
 
-## How about a self-starting function?
-
-:::{.columns}
-:::{.column width="60%"}
-
-- The `nls()` function requires a **formula** and **starting parameters**.
-
-<br>
-
-### Self-starting functions
-
-- Several self-starting functions are available in R that can be used to estimate the starting values.
-- These functions are named after the model they fit, e.g. `SSasymp()`, `SSlogis()`, `SSexp` etc.
-
-:::
-
-:::{.column width="40%"}
-
-![](images/nope.gif)
-
-:::
-:::
-
-. . .
-
-:::{.callout-important}
-We still need to have some understanding of the underlying relationship between the variables to pick the right function.
-:::
-
-
-## Revisiting the logistic model
-
-$$ y = c + \frac{d-c}{1+e^{-b(x-a)}} $$
-
-Slightly different equation -- logistic growth curve that the lowest possible value is 0 (`c = 0`).
-
-$$ y = \frac{Asym}{1+exp \frac{xmid-input}{scal}} $$
-
-- `input`: the predictor variable.
-- `Asym`: the upper limit.
-- `xmid`: the value of $x$ when $y$ is halfway between the lower and upper limits.
-- `scal`: the rate of change.
-
-. . .
-
-
-```{r}
-#| eval: false
-#| echo: true
-SSlogis(input, Asym, xmid, scal)
-```
-
-Other than `input`, the other parameters can be left to the function to estimate.
-
-```{r}
-#| echo: true
-fit_logistic_ss <- nls(response ~ SSlogis(predictor, Asym, xmid, scal), data = logistic)
-```
-
-## What does the fit look like?
-
-```{r}
-#| code-fold: true
-ggplot(data = logistic, aes(x = predictor, y = response)) +
-  geom_point() +
-  labs(x = "Predictor", y = "Response") +
-  geom_line(aes(y = predict(fit_logistic)), color = "red", size = 2) +
-  geom_line(aes(y = predict(fit_logistic_ss)), color = "blue", size = 1)
-
-```
-
-## Check the fit
-
-```{r}
 resids <- nlsResiduals(fit_logistic)
 plot(resids)
 ```
@@ -902,27 +907,11 @@ plot(resids)
 summary(fit_logistic)
 ```
 
-# Back to asymptotic model
+- The model is significant since the p-value is less than 0.05 for all parameters.
+- If the model visually fits well and relationship has reasoning but not all parameters are significant -- that is fine.
+- The parameterised model is:
 
-## Comparing manual fit to self-starting function
-
-The self-starting function for the asymptotic model is `SSasymp()`.
-
-```{r}
-fit_asymptotic_ss <- nls(response ~ SSasymp(predictor, Asym, R0, lrc), data = asymptotic)
-```
-
-Comparing outputs:
-
-```{r}
-ggplot(data = asymptotic, aes(x = predictor, y = response)) +
-  geom_point() +
-  labs(x = "Predictor", y = "Response") +
-  geom_line(aes(y = predict(fit_asymptotic)), color = "red", size = 2) +
-  geom_line(aes(y = predict(fit_asymptotic_ss)), color = "blue", size = 1)
-```
-
-In some cases, the fits are identical, but in others, they are not.
+$$ y = \frac{310}{1+e^{\frac{4.93-x}{1.35}}} $$
 
 # How do we know which model is better? (Advanced)
 Note: this is non-examinable content but might be useful for your project.
@@ -963,7 +952,7 @@ We can use prediction quality metrics to compare the fits.
 [Bayesian information criterion (BIC)](https://en.wikipedia.org/wiki/Bayesian_information_criterion).
   - Useful for comparing model fits.
   - Has a penalty for more predictors
-- [root mean squared error (RMSE)](https://en.wikipedia.org/wiki/Root-mean-square_deviation)
+- Residual standard error, residual sum of squares (`deviance(mod)`), [root mean squared error (RMSE)](https://en.wikipedia.org/wiki/Root-mean-square_deviation)
 and [mean absolute error (MAE)](https://en.wikipedia.org/wiki/Mean_absolute_error).
   - Essentially the difference between observed and predicted (residuals).
   - RMSE penalises larger residuals.
@@ -1021,14 +1010,14 @@ Both the RMSE and MAE measure error on the same scale as the response variable. 
 
 ::::{.columns}
 :::{.column width="70%"}
-- When fitting a nonlinear model, there are three possible approaches:
-   1. **Linearise** the relationship by transforming the response or predictor: 
+- With nonlinear relationships, there are three possible approaches:
+   1. **Linearise** the relationship by transforming: 
       - Fit: easy
       - Interpret: difficult
-   2. Approximate the model by adding **polynomial** terms: 
+   2. Add **polynomial** terms: 
       - Fit: easy
       - Interpret: difficult
-   3. Fit the model using a **nonlinear** least squares algorithm:
+   3. Fit the model using a **nonlinear** algorithm:
       - Fit: difficult
       - Interpret: easy
 
@@ -1044,10 +1033,11 @@ Both the RMSE and MAE measure error on the same scale as the response variable. 
 . . .
 
 - Nonlinear models:
-  - Useful for modelling more complex relationships.
-  - Require some understanding of the underlying relationship (especially asympotic and logistic models)
+  - Useful for modelling more complex relationships. Require some understanding of the underlying relationship and equations.
   - Mainly for prediction rather than interpreting relationships.
-
+  - Self-starting functions have limited pre-defined formulas.
+  - Assumptions **INE**.
+ 
 # Thanks!
 
 This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
