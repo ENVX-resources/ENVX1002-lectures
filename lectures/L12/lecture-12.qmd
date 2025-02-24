@@ -675,6 +675,7 @@ Self-starting functions: `SSexpf()`, `SSasymp()`, `SSlogis()`, etc.
 - Can define own functions but more complex than `nls()`.
 
 :::
+:::
 
 # Example: Fitting an exponential model
 
