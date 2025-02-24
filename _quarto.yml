@@ -50,13 +50,13 @@ website:
       href: index.qmd
     - section: "**Module 1 describing data**"
       contents:
-        - text: "L01 -- Introduction"
+        - text: "L01 -- Reproducible science"
           href: lectures/L01/index.qmd
-        - text: "L02 -- Exlploring data"
+        - text: "L02 -- Statistical programming"
           href: lectures/L02/index.qmd
-        - text: "L03 -- Probability distributions"
+        - text: "L03 -- Exploring data"
           href: lectures/L03/index.qmd
-        - text: "L04 -- Sampling distributions"
+        - text: "L04 -- Central Limit Theorem"
           href: lectures/L04/index.qmd
     - section: "**Module 2 inference**"
       contents:
