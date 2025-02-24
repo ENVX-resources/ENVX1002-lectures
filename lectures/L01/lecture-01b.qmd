@@ -220,7 +220,7 @@ Variation of the scientific method exist-- it is a **framework** that guides the
 
 :::: {.columns}
 ::: {.column width="50%"}
-![](images/hatpc.png){width=50%}
+![](images/hatpc.png){width=40%}
 :::
 
 ::: {.column width="50%"}
@@ -228,6 +228,8 @@ Variation of the scientific method exist-- it is a **framework** that guides the
 ### 
 
 You will see some variation of the HATPC in your first-year units -- a common framework for **report writing**
+
+We will follow this framework in the future (easiest to apply)
 :::
 :::
 
@@ -247,21 +249,27 @@ You will see some variation of the HATPC in your first-year units -- a common fr
 
 
 
-## Reproducibility crisis despite the scientific method
+## Reproducibility crisis
 
-From [Nature](https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970) (including image sources):
+The Scientific Method does not guarantee that all research is reproducible or replicable -- sometimes the tools we use hinder, rather than help, reproducibility.
 
-> More than 70% of researchers have tried and failed to reproduce another scientist's experiments, and more than half have failed to reproduce their own experiments. 
+
 
 :::: {.columns}
 ::: {.column width="30%"}
 ![](images/reproduce-exp.webp)
 :::
 
-::: {.column width="50%"}
+::: {.column width="30%"}
 ![](images/factors-reproducibility.webp)
 
 Statistical analysis, experimental design and data issues are the main factors affecting research reproducibility.
+:::
+
+::: {.column width="40%"}
+From [Nature](https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970) (including image sources):
+
+> More than 70% of researchers have tried and failed to reproduce another scientist's experiments, and more than half have failed to reproduce their own experiments. 
 :::
 ::::
 
@@ -284,10 +292,20 @@ How would you explain to someone how to reproduce this plot...
 - In R?
 
 ### 
+
 ```{r}
+#| eval: false
+read_csv("data/penguins.csv")
+boxplot(bill_length_mm ~ species, data = penguins)
+```
+
+```{r}
+#| echo: false
 library(palmerpenguins)
 boxplot(bill_length_mm ~ species, data = penguins)
 ```
+
+
 
 
 ## An over-simplification
