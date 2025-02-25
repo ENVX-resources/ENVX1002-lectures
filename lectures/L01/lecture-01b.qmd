@@ -4,7 +4,7 @@ author: Januar Harianto
 format: soles-revealjs
 # format: revealjs
 # fontsize: 16pt
-embed-resources: true
+# embed-resources: true
 ---
 
 # Importance of statistics
@@ -130,6 +130,19 @@ rstatix::anova_summary(model) |>
 ![Source: ["Guys where do you pee?"](https://www.reddit.com/r/dataisbeautiful/comments/1i3f1m8/oc_guys_where_do_you_pee_reddit_comments)](images/wherepee.webp){fig-align="left"} 
 
 :::
+::: {.column width="35%"}
+<br>
+<br>
+<br>
+<br>
+
+::: {style="font-size: 300%;"}
+::: fragment
+🙀
+:::
+:::
+
+:::
 ::::
 
 
@@ -151,6 +164,10 @@ We encounter different types of data in our everyday lives:
 2. **Categorical (Qualitative)**
    - **Nominal**: Categories without order (e.g., eye color, country of birth)
    - **Ordinal**: Categories with order (e.g., satisfaction: poor → fair → good → excellent)
+:::
+
+::: fragment
+If data does not fall into either of the two major categories above, you're probably working with "string" or "character" data that falls into pattern-type analyses e.g. semantic/theme analysis -- common for interviews/surveys.
 :::
 
 ## When data types blur
@@ -318,15 +335,19 @@ Those without programming knowledge will *still* struggle to understand and use 
 - Knowing how to debug (i.e. read error messages or "play" with code)
 - It takes time, but the payoff is worth it -- all programming languages follow similar principles and you will find others easier to learn, even if not for statistics...
 
+## Thanks!
+
+### *Have a break (10 min) --- your tutorial will begin after this.*
+
+This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
+
+<!-- Links -->
+[cc-by]: http://creativecommons.org/licenses/by/4.0/
+
 
 # References
 
 - Quinn & Keough (2002). Sections 1.1-1.2, pages 1-7.
 - Underwood AJ (1997) Experiments in Ecology: Their Logical Design and Interpretation using Analysis of Variance. Cambridge University Press, Cambridge.
 
-# Thanks!
 
-This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
-
-<!-- Links -->
-[cc-by]: http://creativecommons.org/licenses/by/4.0/
