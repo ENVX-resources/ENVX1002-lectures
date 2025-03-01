@@ -2,7 +2,7 @@
 title: "Lecture 06"
 ---
 
-### Lecture 06a
+### Lecture 06
 [Full Screen](lecture-06.qmd) | [PDF]() 
 
 ```{=html}
