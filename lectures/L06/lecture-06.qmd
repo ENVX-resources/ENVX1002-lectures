@@ -57,8 +57,6 @@ p1 + p2
 :::
 
 
-
-
 ## What if we want to compare a sample of data to *another* sample?
 
 ::: fragment
@@ -107,7 +105,6 @@ p3 + p4
 :::
 
 
-
 # Two-sample *t*-test
 ## Comparing two samples: visualisation
 
@@ -135,8 +132,6 @@ p5 + p6
 ```
 :::
 
-
-
 ## Some considerations: the boxplot
 
 ::: fragment
@@ -152,13 +147,11 @@ p5 + p6
 - The *recommended* approach when comparing two or more groups of data in most cases.
 :::
 
-
 ## 
 
 ![][1]
 
   [1]: images/redbull.png
-
 
 
 # Does Red Bull increase the heart rate of students?
@@ -190,7 +183,6 @@ str(redbull)
 :::
 
 
-
 # HATPC
 
 Hypothesis \| Assumptions \| Test \| P-value \| Conclusion
@@ -207,8 +199,6 @@ $$H_1: \mu_{\text{redbull}} \neq \mu_{\text{control}}$$
 $$H_0: \mu = \mu_0$$
 $$H_1: \mu \neq \mu_0$$
 :::
-
-
 
 ## Assumptions
 The assumptions of the two-sample *t*-test include:
@@ -231,14 +221,11 @@ The assumptions of the two-sample *t*-test include:
 # Assumption: normality
 Histogram | QQ-plot | Shapiro-Wilk test
 
-
-
 ## Normality: histogram
 
 - We visually inspect the distribution of the data using histograms, generally for **each group**.
 - Look out for: symmetry, skewness, and multimodality.
 - Hard to visualise when n (sample size is small)
-
 
 ::: panel-tabset
 
@@ -287,8 +274,6 @@ gghistogram(redbull, x = "heart_rate", fill = "group", binwidth = 6) +
 ::: fragment
 Conclusion: *The data appear to be normally distributed, but it is better to confirm this with a QQ-plot.* 
 :::
-
-
 
 ## Normality: QQ-plot
 
@@ -347,8 +332,6 @@ ggqqplot(redbull$heart_rate) +
 Conclusion: *The data appear to be normally distributed.*
 :::
 
-
-
 ## Normality: formal test
 
 - Use the Shapiro-Wilk test which tests the null hypothesis that the data are normally distributed.
@@ -366,8 +349,6 @@ shapiro.test(redbull$heart_rate[redbull$group == "control"])
 Conclusion: *p*-values are greater than 0.05, so we do not reject the null hypothesis of normality. The data are normally distributed.
 :::
 
-
-
 ## What if the normality assumption is violated?
 
 - The *t*-test is robust to deviations from normality, especially for large sample sizes due to the Central Limit Theorem.
@@ -375,11 +356,8 @@ Conclusion: *p*-values are greater than 0.05, so we do not reject the null hypot
 - Alternatively, transform the data: **later**
 
 
-
 # Assumption: homogeneity of variance
 Boxplots | Formal tests 
-
-
 
 ## Equal variances: boxplot
 
@@ -432,8 +410,6 @@ ggboxplot(redbull,
 Conclusion: *The spread of the data appears to be similar between the two groups.*
 :::
 
-
-
 ## Equal variances: formal tests
 
 - Bartlett's and Levene's tests may be used to test the null hypothesis that the variances of the groups are equal.
@@ -458,11 +434,6 @@ bartlett.test(heart_rate ~ group, data = redbull)
 Conclusion: *p*-values are greater than 0.05, so we do not reject the null hypothesis of equal variances. The variances of the two groups are equal.
 :::
 
-
-
-
-
-
 ## What if the equal variance assumption is violated?
 
 Some debate exists on what to do, but choices include:
@@ -470,8 +441,6 @@ Some debate exists on what to do, but choices include:
 - Use the **Welch's *t*-test**, which is robust to unequal variances: *coming up next*
 - **Transform** the data to stabilise the variances: **later**
 - Perform a non-parametric test: **next week**
-
-
 
 ## The Welch's *t*-test
 
@@ -483,7 +452,6 @@ Some debate exists on what to do, but choices include:
 - Ongoing debate on whether to use the Welch's *t*-test or the Student's *t*-test when the variances are equal. 
 - The Welch's *t*-test is generally considered more robust, and **is the default in R's `t.test()` function**.
 - You can still use the Student's *t*-test by setting `var.equal = TRUE` in the `t.test()` function.
-
 
 ## Are the assumptions of normality and homogeneity of variance met?
 When reporting in journals, it is common to simply state that the assumptions were met and what tests were used to confirm them, without showing the exact results of the tests!
@@ -503,7 +471,6 @@ When reporting in journals, it is common to simply state that the assumptions we
 ::: fragment
 **For your lab reports, you should show the results of the tests (because we want to check your work!)**
 :::
-
 
 
 # P-value and Conclusion
@@ -526,12 +493,8 @@ t.test(heart_rate ~ group, data = redbull)
 ```
 :::
 
-
-
 ## Conclusion
 Differences in heart rate we not statistically significant between the Red Bull and control groups (t~22~ = -1.1, p = 0.27) indicating that Red Bull did not significantly increase the heart rate of students sampled from ENVX1002.
-
-
 
 
 # The paired *t*-test
@@ -546,7 +509,6 @@ When testing if two samples are different from each other, we need to consider t
 ::: fragment
 If the samples are related, a **paired *t*-test** is more appropriate than a two-sample *t*-test as it accounts for the relationship between the samples that could confound the results.
 :::
-
 
 
 ## Paired *t*-test
@@ -568,8 +530,6 @@ If the samples are related, a **paired *t*-test** is more appropriate than a two
 :::
 :::
 
-
-
 ## Hypothesis
 For a paired *t*-test, the null hypothesis is that the mean difference between the two groups is zero, and the alternative hypothesis is that the mean difference is different from zero.
 
@@ -583,14 +543,11 @@ $$H_1: \mu_{\text{redbull}} \neq \mu_{\text{control}}$$
 
 :::
 
-
-
 ## Assumptions of the paired *t*-test
 
 - The assumption of the paired *t*-test is that the differences between the two groups are normally distributed.
 - There is no assumption of equal variances, as the paired *t*-test is a one-sample *t*-test on the differences.
   - Another way to think about it is that since the data are paired, the variance of the differences is the same for both groups.
-
 
 ## Performing the paired *t*-test
 
@@ -633,7 +590,6 @@ The results for both methods are identical; the mean difference is not significa
 
 
 # When assumptions of the *t*-test are violated
-
 ## Recap: Assumptions of the two-sample *t*-test
 
 ### With independent samples:
@@ -654,8 +610,8 @@ The *t*-test:
 - may be **less powerful** (i.e., less likely to detect a true difference).
 - may be **biased** (i.e., systematically over- or under-estimating the true difference).
 
-# Don't throw the data away...
 
+# Don't throw the data away...
 ## What can we do?
 
 The *t*-test is quite robust to violations of normality, especially when the sample size is large. However, the assumption of equal variances is more critical – we cannot simply depend on large sample sizes to "fix" the problem.
@@ -722,8 +678,6 @@ ggplot(ants, aes(sample = Food)) +
 - **Let's transform the data.**
 :::
 
-
-
 ## Picking a transformation
 
 We need to consider the **type of data** and the **shape of its distribution** when choosing a transformation. These can be assessed using:
@@ -733,7 +687,6 @@ We need to consider the **type of data** and the **shape of its distribution** w
 - **Box plots** to assess homogeneity of variance - DONE
 - **Skewness** and **kurtosis** to assess the shape of the distribution - NEXT
 :::
-
 
 ## Skewness
 
@@ -747,7 +700,6 @@ The degree of asymmetry in the data distribution when compared to a normal distr
 :::
 
 ## Example: skewness
-
 
 ```{r}
 #| code-fold: true
@@ -784,7 +736,6 @@ Used to describe the extreme values (outliers) in the distribution versus the ta
 - **Low kurtosis (<3)** indicates a distribution with **light tails** and a **flat centre**. There are fewer to no outliers in the data.
 :::
 
-
 ## Example: kurtosis
 
 ```{r}
@@ -815,7 +766,6 @@ ggplot(data, aes(x = x, y = y)) +
   xlab("")
 ```
 
-
 ## Skewness and kurtosis in the ants data
 
 With experience we can "eyeball" the data, but we can also calculate the skewness and kurtosis.
@@ -836,20 +786,16 @@ From the results we can see that both sites have a **positive skewness**. Site `
 :::
 
 
-
 # Data transformation
-
-
 
 ## Workflow
 
 ::: incremental
 1. Check the data for normality and homogeneity of variance (i.e. **test assumptions**). 
-2. If the assumptions are violated, consider **transforming the data**.
+2. If the assumptions are violated, consider **transforming ALL the data**.
 3. **Repeat** checks on assumptions. If assumptions are **met**, proceed with the *t*-test on the transformed scale. *Otherwise, use a different transformation or consider using a non-parametric test.*
 4. Interpret the statistical results and **back-transform the results** to the original scale (optional but recommended) to aid interpretation.
 :::
-
 
 ## Picking a transformation
 
@@ -860,7 +806,6 @@ From the results we can see that both sites have a **positive skewness**. Site `
 - **Logarithmic** transformation: $\log(x)$ for skewness > 1 and kurtosis < 3.
 - **Reciprocal** transformation: $\frac{1}{x}$ for skewness > 1 and kurtosis > 3 (quite extreme).
 :::
-
 
 ::: fragment
 ### For negative skewness
@@ -918,13 +863,11 @@ fit <- t.test(Food_log ~ Tree, data = ants, var.equal = TRUE)
 fit
 ```
 
-
 ::: fragment
 ### How do we interpret the results?
 
 Evidence suggests that the log-transformed mean biomass of food collected by ants from the Rowan site is significantly different from the log-transformed mean biomass of food collected by ants from the Sycamore site (t = -2.05, df = 52, p = 0.045).
 :::
-
 
 ## Back-transforming the results
 
@@ -955,8 +898,6 @@ The mean biomass of food collected by ants from the Sycamore site (`r round(bsyc
 ant_ci <- exp(fit$conf.int)
 ant_ci
 ```
-
-
 
 ## Comparing to a test without transformation
 
@@ -993,8 +934,6 @@ The original mean values are based on the arithmetic mean, while the log-transfo
 The influence of kurtosis on the 95% confidence interval is evident when comparing the original and back-transformed confidence intervals, as the log transform reduces the effect of outliers on the data.
 :::
 ::::
-
-
 
 # Thanks!
 
