@@ -13,22 +13,12 @@ embed-resources: true
 - 1-sample tests
 
 
-
-
-
 # Inferential statistics
 
 - You should be familiar with **EDA** by now
 - Now we are going to take the next step into the world of **inferential statistics**
 - This is an important and sometimes difficult step in statistics
 - We are going to draw conclusions about a population from a “smaller” sample of that population
-
-
-
-
-
-
-
 
 
 # Hypothesis testing
@@ -43,8 +33,6 @@ embed-resources: true
 **Evidence?**
 
 - The data is not consistent with the hypothesis of the gap between the observed value (data) and the expected value is too big (> 2 or 3 Standard Errors)
-
-
 
 
 
@@ -79,7 +67,6 @@ embed-resources: true
 ![Underwood, A.J., 2009, April. Components of design in ecological field experiments. In Annales Zoologici Fennici (Vol. 46, No. 2, pp. 93-111). Finnish Zoological and Botanical Publishing Board.](images/underwood.png)
 
 
-
 # Hypothesis testing
 
 **We will follow the steps in hypothesis testing**
@@ -91,8 +78,6 @@ embed-resources: true
 - Obtain P-value or critical value
 - Make statistical conclusion
 - Write a scientific (biological) conclusion
-
-
 
 
 # Hypothesis testing
@@ -114,9 +99,6 @@ Sometimes we use HATPC to remember these steps - HAT Prevent Cancer - come up wi
 - The **alternative hypothesis** $(H_1)$ assumes that the difference between the observed value (data) and expected value is NOT due to chance alone.
 
 
-
-
-
 # Assumptions (A)
 
 - We need to check the assumptions of the test we are using.
@@ -125,15 +107,11 @@ Sometimes we use HATPC to remember these steps - HAT Prevent Cancer - come up wi
 - If the assumptions are not met, we may need to transform the data or use a non-parametric test.
 
 
-
-
 # Test Statistic (T)
 
 Measures the difference between what is observed in the data and what is expected from the null hypothesis.
 
 $\text{Test statistic}=\frac{\text{Observed value - Expected value}}{\text{Standard error}}$
-
-
 
 
 # P-Value (P)
@@ -147,15 +125,11 @@ More formally:
 - The P-value is the chance of observing the test statistic (or something more extreme) if the $H_0$ is true.
 
 
-
-
 # P-Value (P)
 
 **What does this have to do with sampling distributions??**
 
 ![](images/two_tail.png)
-
-
 
 
 # P-Value (P)
@@ -167,9 +141,6 @@ More formally:
   - We never say we accept the null hypothesis!!
   - 0.05 is called the significance level
   - We may choose other significance levels such as 0.2, 0.01, 0.001 (for this course we will use 0.05)
-
-
-
 
 
 # P-Value (P)
@@ -184,9 +155,6 @@ More formally:
 - The use of 0.05 is not mandatory, it is a convention.
 
 
-
-
-
 # P-value (P)
 
 **Controversy**
@@ -199,10 +167,6 @@ More formally:
 - Look up terms like **"P Hacking"**...
 
 
-
-
-
-
 # A little more on the P-value
 
 Why is the p-value 0.05?
@@ -211,18 +175,10 @@ Why is the p-value 0.05?
 - It is based on the idea we 1 in 20 times we will reject the null hypothesis when it is true.
 
 
-
-
-
-
 # Conclusion (C)
 
 - We make a statistical conclusion based on the p-value and the level of significance.
 - We also make a scientific (biological) conclusion based on the statistical conclusion.
-
-
-
-
 
 
 # Tails
@@ -233,9 +189,6 @@ Why is the p-value 0.05?
 
 - In this course we will mostly use two-tailed tests because we are interested in whether the observed value is different to the expected value.
 - One tailed tests are used when we are specifically interested in whether the observed value is greater or less than the expected value. Examples are in quality control and production processes.
-
-
-
 
 
 # Tails
@@ -252,10 +205,7 @@ Why is the p-value 0.05?
   - $H_1:\mu > c$ *One tailed - less than*
   
 - We usually use the first (two tailed) form unless we are specifically interested in testing whether the difference is in one direction or the means of two variables are equivalent (i.e. equivalence testing in production)
-- In this course we are assuming that the population/sample is normally distributed.
-
-
-
+- Initially we are assuming that the population/sample is normally distributed. Later we will look at what to do when this is not the case.
 
 
 # Type error??
@@ -273,9 +223,6 @@ Why is the p-value 0.05?
 **Note:** Decreasing the significance level ($\alpha$) to say 0.01 will increase the probability of type II error
 
 
-
-
-
 # Sample size and power
 
 **Sample size & Power**
@@ -291,9 +238,6 @@ $n = \left( \frac{(Z_{\alpha/2} + Z_{\beta})^2 \cdot (SD_1^2 + SD_2^2)}{\delta^2
 - $\delta$ is the minimum difference in means between the two groups that the study is designed to detect, also known as the effect size.
 
 
-
-
-
 # Sample size and power
 
 **Sample size & Power**
@@ -305,9 +249,6 @@ In a nut shell...
 **Low Power:** Conversely, if a test has low power, the probability of committing a Type II error is high. This means the test is less likely to detect an effect or difference, even if one exists.
 
 **Sample size:** Generally power increases as sample size increases, but so does time and costs!
-
-
-
 
 
 # The t-distribution and degrees of freedom?
@@ -322,7 +263,7 @@ The T-distribution has the following properties:
 
 -	The area under the curve = 1, as is the case for all continuous probability distributions.
 
--	The probability density function is defined by three parameters, the mean $\mu$, the standard deviation $\sigma$ and the sample size $n$. 
+-	The probability density function is defined by three parameters, the mean $\mu$, the standard deviation $\sigma$ and the sample size $n$. (The normal distribution only has two parameters)
 
 -	The exact shape of the t distribution depends on the quantity called degrees of freedom, df. The df = n – 1 for any t distribution.
 
@@ -335,12 +276,6 @@ The T-distribution has the following properties:
 :::
 
 ::::
-
-
-
-
-
-
 
 
 # Example 1: One sample t-test
@@ -370,8 +305,6 @@ Say our hippie friend here has seen the light after a helping of mung beans and 
 ::::
 
 
-
-
 # Example 1: One sample t-test
 
 <span style="color: blue;">**A**</span>ssumptions
@@ -382,8 +315,6 @@ Say our hippie friend here has seen the light after a helping of mung beans and 
 - Think about if our distribution is right skewed, then our *mean* may not reflect the central tendency of our sample population.
 
 
-
-
 # Example 1: One sample t-test
 
 <span style="color: blue;">**A**</span>ssumptions
@@ -391,10 +322,6 @@ Say our hippie friend here has seen the light after a helping of mung beans and 
 **Small Samples:** With small samples (typically n < 30), even slight deviations from normality can significantly impact the t-test's validity because the t-test relies heavily on the assumption of normality in this scenario. However, if the data are symmetrically distributed and don't have outliers, the t-test can be robust to mild violations of normality. Note that the t-test adjusts for the sample size, so the larger the sample, the less important the normality assumption becomes.
 
 **Large Samples:** For larger samples (n > 30), the Central Limit Theorem (CLT) suggests that the distribution of the sample means tends to be normal, regardless of the population distribution. This means that for sufficiently large samples, the t-test can be robust to violations of normality. *However, extreme skewness, heavy tails, or outliers can still affect the test's performance*.
-
-
-
-
 
 
 # Example 1: One sample t-test
@@ -438,12 +365,6 @@ print(p)
 ::::
 
 
-
-
-
-
-
-
 # Example 1: One sample t-test
 
 <span style="color: blue;">**A**</span>ssumptions
@@ -478,9 +399,6 @@ boxplot(heart_rate)
 ::::
 
 
-
-
-
 # Example 1: One sample t-test
 
 <span style="color: blue;">**A**</span>ssumptions
@@ -493,8 +411,6 @@ summary(heart_rate)
 
 - We can see that the mean and the median are quite similar. This is a good sign that the data is symmetrical and perhaps normally distributed. 
 - We can also start to think how our student heart rate compares to the national average of 70 bpm.
-
-
 
 
 # Example: One sample t-test
@@ -578,9 +494,6 @@ $t = \frac{\bar{y} - \mu}{s / \sqrt{n}}$ population variance unknown (estimate $
 - $n$ is the sample size
 
 
-
-
-
 # Example 1: One sample t-test
 
 <span style="color: blue;">**CI**</span> &
@@ -618,6 +531,7 @@ We can see the following output:
 
 ::::
 
+
 # Example 1: One sample t-test
 
 <span style="color: blue;">**C**</span>onclusion
@@ -647,9 +561,6 @@ Let's revisit our hippie friend's hypothesis
 ::::
 
 
-
-
-
 # Confidence intervals
 
 - A confidence interval is a range of values, derived from a sample, that is likely to contain the value of an unknown population parameter.
@@ -657,9 +568,6 @@ Let's revisit our hippie friend's hypothesis
 - There are two types we are going to look at:
   - Confidence interval where we **know** the population variance
   - Confidence interval where we **do not know** the population variance 
-
-
-
 
 
 # Confidence intervals - known variance
@@ -672,17 +580,12 @@ $CI = \bar{y} \pm Z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}$
 for the 95% confidence interval, $\alpha = 0.05$ and $Z_{\alpha/2} = 1.96$ i.e. 2 standard errors from the mean.
 
 
-
-
 # Confidence intervals - known variance
 
 - $\bar y$  is a random variable with a sampling distribution. 
 - Because there is an infinite number of values of  $\bar y$, there is an infinite number of intervals of the form  $CI = \bar{y} \pm 1.96 \cdot \frac{\sigma}{\sqrt{n}}$. 
 - The probability statement says that 95% of these intervals will actually include $\mu$ between the limits. 
 - For any one interval,  $CI = \bar{y} \pm 1.96 \cdot \frac{\sigma}{\sqrt{n}}$, we say that we are 95% confident that $\mu$ lies between these limits. 
-
-
-
 
 
 # Confidence intervals - known variance
@@ -705,12 +608,6 @@ So we are 95% confident that the true mean weight of the chocolate bars is betwe
 - We will calculate confidence intervals with **unknown variance** in later on.
 
 
-
-
-
-
-
-
 # Confidence intervals - Unknown variance
 
 - We can also calculate a confidence interval when we do not know the population variance.
@@ -725,17 +622,11 @@ qt(0.975, df = 20)
 ```
 
 
-
-
-
 # Confidence intervals - Unknown variance
 
 - Another interesting result to contemplate can be demonstrated through the following simulation of 100 studies, each containing n = 6 observations of a fictitious toxic substance concentration ($\mu g / l$) assumed to be $\sim N(0.3, 0.12)$. For each sample the 95% confidence interval calculated: 
 
 ![Depiction of confidence intervals from each of 100 simulated samples](images/CI_sim.png)
-
-
-
 
 
 # Confidence intervals - Unknown variance
@@ -745,19 +636,12 @@ qt(0.975, df = 20)
 - We can widen the confidence interval to 99% so we are more confident but this can increase the chance of a type II error. 
 
 
-
-
-
-
-
 # Example 2: One sample test
 
 What happens when the assumptions are not met?
 
 1. We can try and transform the data to make it more normal (and equal variance for later)
 2. We can use a non-parametric test (later)
-
-
 
 
 # Example 2: Data transformations 
@@ -774,9 +658,6 @@ str(TN)
 mean(TN$TN, na.rm = TRUE) # na.rm=TRUE if we have missing values
 median(TN$TN, na.rm = TRUE)
 ```
-
-
-
 
 
 # Example 2: State Hypothesis
@@ -796,9 +677,6 @@ median(TN$TN, na.rm = TRUE)
 
 :::
 ::::
-
-
-
 
 
 # Example 2: Check assumptions
@@ -847,9 +725,6 @@ grid.arrange(p1, p2, p3, ncol = 2)
 ::::
 
 
-
-
-
 # Example 2: Check assumptions
 
 **Shapiro-Wilk normality test**
@@ -864,7 +739,6 @@ shapiro.test(TN$TN)
 - For really large samples (>>30) the central limit theorem suggests that the distribution of the sample means tends to be normal, regardless of the population distribution. This means that for sufficiently large samples, the t-test can be robust to violations of normality. However, extreme skewness, heavy tails, or outliers can still affect the test's performance.
 
 
-
 # Example 2: Transformations
 
 For right (positive) skewed data, we can use a 
@@ -876,7 +750,6 @@ For right (positive) skewed data, we can use a
 For left (negative) skewed data (which is rare to find), we can "try" a
 
 - $x^2$ or $x^3$ transformation.
-
 
 
 # Example 2: Transformations & Recheck assumptions
@@ -896,8 +769,6 @@ Note that now we are looking at the geometric mean as opposed the the arithmatic
 ```{r}
 10^mean(TN$log10_TN)
 ```
-
-
 
 
 # Example 2: Recheck assumptions
@@ -946,10 +817,6 @@ grid.arrange(p1, p2, p3, ncol = 2)
 ::::
 
 
-
-
-
-
 # Example 2: Recheck assumptions
 
 **Shapiro-Wilk normality test**
@@ -962,10 +829,6 @@ shapiro.test(TN$log10_TN)
 - Now P>0.05 so we **fail to reject** the null hypothesis that the data is normally distributed.
 - We can now proceed with our t-test using the log transformed data.
 - **NOTE:** *We will also need to transform the hypothesised mean of 500 to the log10 scale.*
-
-
-
-
 
 
 # Example 2: T-test & P-Value
@@ -983,9 +846,6 @@ t.test(TN$log10_TN,
 - Can we say something about the direction??
 
 
-
-
-
 # Example 2: Confidence intervals
 
 - We need to back transform the confidence interval to the original scale.
@@ -1001,19 +861,12 @@ $10^{CI_{low}}$ and $10^{CI_{high}}$
 - This means that we are 95% confident that the geometric mean (back-transformed mean) of the sample is between approximately 646 and 933 ug/l. This is higher than the hypothesised mean.
 
 
-
-
-
-
 # Example 2: Conclusion
 
 1. The data was log10 transformed to meet the assumptions of the t-test.
 2. We have strong evidence that the mean value of Total Nitrogen in Nepean River is different to 500 ug/L.
 3. We are 95% confident that the geometric mean (back-transformed mean) of the sample is between approximately 646 and 933 ug/l.
 4. Looking at the confidence interval, we can say that the mean value of TN in Nepean River is significantly greater than 500 ug/L.
-
-
-
 
 
 # Example 3: One tailed test
@@ -1023,9 +876,6 @@ $10^{CI_{low}}$ and $10^{CI_{high}}$
 
 - $H_0: \mu = 500$ $\mu g/l$ (Null hypothesis)
 - $H_1: \mu > 500$ $\mu g/l$ (Alternate hypothesis)
-
-
-
 
 
 # Example 3: One tailed test
@@ -1043,15 +893,13 @@ t.test(TN$log10_TN,
 - Take a look at the confidence interval and the p-value. What do you notice when comparing to the two tailed test?
 
 
-
 # Example 3: One tailed test
 
 [Ruxton and Neuhäuser 2010](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/j.2041-210X.2010.00014.x)
 
 ![](images/one_tail.png)
-
-
-
+1. Explain why the expected effect is in one direction. Or why the effect in one direction is of more interest than the other?
+2. Explain why a large difference in the opposite direction is not of importance. 
 
 # References
 
@@ -1059,7 +907,6 @@ t.test(TN$log10_TN,
 - Logan, M. (2010). Biostatistical design and analysis using R a practical guide. Hoboken, N.J., Wiley-Blackwell.
 - Fox, G. A., S. Negrete-Yankelevich, and V. J. Sosa. (2015). Ecological statistics: contemporary theory and application. Oxford University Press, USA
 - Ruxton, G.D. and Neuhäuser, M., 2010. When should we use one-tailed hypothesis testing? Methods in Ecology and Evolution, 1 (2), 114-117.
-
 
 
 # Thanks!
