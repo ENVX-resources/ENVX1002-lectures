@@ -1,9 +1,10 @@
 ---
 title: Topic 8 -- Permutation tests and bootstrap
-author: Januar Harianto 
+author: Floris van Ogtrop 
 format: soles-revealjs
 embed-resources: true
 ---
+
 
 # Recap
 
@@ -24,11 +25,12 @@ Where data does not meet the assumptions of parametric tests, we have two option
 - Retains estimates of **effect size** and **confidence intervals**.
 :::
 
+
 # Resampling techniques
 
 . . .
 
->Two roads diverged in a yellow wood,  
+> Two roads diverged in a yellow wood,  
 > And sorry I could not travel both  
 > And be one traveler, long I stood  
 > And looked down one as far as I could  
@@ -36,9 +38,7 @@ Where data does not meet the assumptions of parametric tests, we have two option
 
 – Robert Frost, The Road Not Taken, 1916
 
-
 ## Model-based inferential techniques
-
 
 ::: incremental
 - Traditionally, inferential statistics is based on **mathematical approximations** and *assumptions* about how data is obtained.
@@ -93,8 +93,6 @@ Generate a distribution of the **parameter** of interest (e.g. mean) by resampli
 :::
 ::::
 
-
-
 ## Why would these techniques work?
 
 At the core of the resampling approach is the idea that the **observed data** is a **random sample** from a **larger population**.
@@ -131,7 +129,6 @@ To generate a distribution of the test statistic under the null hypothesis.
 
 [^scores]: Basically any measure of interest.
 
-
 ## Data
 
 The `sleep` dataset in R contains the average **extra** hours of sleep, compared to control,  for 10 patients who were given two different drugs.
@@ -151,13 +148,11 @@ ggplot(sleep, aes(x = group, y = extra)) +
   geom_boxplot()
 ```
 
-
-
 ## Calculating the *t*-test statistic
 
 Recall that the test statistic for the two-sample *t*-test is:
 
-$$ t = \frac{observed\ value - expected\ value}{standard\ error} $$
+$$ t = \frac{Difference\ in\ the\ means}{Standard\ error\ of\ the\ difference} $$
 
 We could calculate it manually, but let's just use the `t.test()` function in R since the function calculates the test statistic for us. For example, the observed test statistic for the `sleep` data is:
 
@@ -325,6 +320,26 @@ ggplot(data.frame(t = random_t_values), aes(x = t)) +
 
 We can see that the observed test statistic is well within the distribution of the randomised test statistics (which is normally distributed).
 
+# Randomisation test using a package
+
+## Randomisation tests using `coin`
+
+The `coin` package in R provides a simple interface to perform randomisation tests.
+
+```{r}
+library(coin)
+```
+
+Let's use the `sleep` dataset to demonstrate how to use the `coin` package to perform a randomisation test.
+
+```{r}
+perm_test <- independence_test(extra ~ group, data = sleep, distribution = approximate(B = 9999))
+
+# Print results
+print(perm_test)
+```
+
+
 # Bootstrap
 
 To generate a distribution of the parameter of interest.
@@ -452,13 +467,34 @@ t.test(BOD$demand)
 - The **size** of the CI is smaller for the **bootstrap** method, indicating that the **parametric** method is **overestimating** the precision of the estimate.
 :::
 
-# Modern statistics using `tidymodels`
+# Bootstrap test using `boot`
 
-## The `tidymodels` framework
+## Again we can use a package to do this
 
-- It is clear that bootstrapping and randomisation tests are powerful tools for modern statistics, but they can be cumbersome to implement manually.
-- Interestingly, modern data science prefers resampling techniques over traditional methods even when the assumptions are met, because they are more robust and provide more information.
-- The `tidymodels` framework in R contains the `infer` package which provides a simple interface to perform most parametric tests using resampling techniques by default!
+The `boot` package in R provides a simple interface to perform bootstrap tests.
+
+```{r}
+library(boot)
+```
+
+Let's use the `BOD` dataset to demonstrate how to use the `boot` package to perform a bootstrap test.
+
+```{r}
+# Define function to compute mean
+boot_mean <- function(data, indices) {
+  return(mean(data[indices]))
+}
+
+boot_test <- boot(BOD$demand, boot_mean, R = 10000)
+
+# Print results 
+print(boot_test)
+
+# Compute bootstrap confidence interval
+boot.ci(boot_test, type = c("perc"))
+```
+
+# What is recommended?
 
 ::: callout-note
 ## TLDR
@@ -610,15 +646,12 @@ p_ttest <- t.test(BEETLES ~ SIZE, data = beetle)$p.value %>%
 
 ### Wilcoxon rank-sum test
 
-
 ```{r}
 p_wilcox <- wilcox.test(BEETLES ~ SIZE, data = beetle)$p.value %>%
   round(3)
 ```
 
-
 ### Randomisation test
-
 
 ```{r}
 p_infer <- pull(pval_infer, p_value) %>%
