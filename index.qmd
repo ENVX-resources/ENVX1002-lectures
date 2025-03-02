@@ -15,10 +15,10 @@ section-divs: false
 
 
 ### Module 1 -- describing data
-- [Lecture 01](lectures/L01/index.qmd) -- Introduction & the scientific method
-- [Lecture 02](lectures/L02/index.qmd) -- Exploring data
-- [Lecture 03](lectures/L03/index.qmd) -- Probability distributions
-- [Lecture 04](lectures/L04/index.qmd) -- Sampling distributions
+- [Lecture 01](lectures/L01/index.qmd) -- Reproducible science
+- [Lecture 02](lectures/L02/index.qmd) -- Introduction to statistical programming
+- [Lecture 03](lectures/L03/index.qmd) -- Exploring and visualising data
+- [Lecture 04](lectures/L04/index.qmd) -- The central limit theorem
 
 ### Module 2 -- inference
 - [Lecture 05](lectures/L05/index.qmd) -- Hypothesis testing & one-sample *t*-tests
