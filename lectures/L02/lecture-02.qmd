@@ -143,7 +143,7 @@ By now you should have...
 | All trees in a national park | 75 trees measured in random plots |
 | All possible blood test results | Blood samples from 100 patients |
 
-
+*Disclaimer: use of GenAI for content generation in this slide.*
 
 ## How well does a sample represent the population?
 
