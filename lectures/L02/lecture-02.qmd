@@ -1,33 +1,33 @@
 ---
 title: "Lecture 02: Introduction to statistical programming"
 author: Januar Harianto
+# format: revealjs
+# fontsize: 16px
 format: soles-revealjs
-embed-resources: false
+embed-resources: true
 ---
 
 
 # Learning outcomes
 
 
-## After this lecture, you will be able to:
+## After this **week**, you will be able to:
 
-1. Feel confident explaining basic statistical concepts like **samples** and **populations**
-2. Understand and explain measures of **central tendency** (mean, median, mode) clearly and without mathematical jargon
-3. Master different measures of **spread** (range, IQR, variance, standard deviation) through practical examples
-4. Calculate statistical measures confidently using **both R and Excel**
-5. Choose appropriate statistical measures for your biological data and explain your choices
-6. Begin troubleshooting common programming issues with a systematic approach
-
+1. Navigate and use the RStudio interface effectively
+2. Execute basic R functions and understand their syntax
+3. Feel confident explaining basic statistical concepts like **samples** and **populations**
+4. Understand and explain measures of **central tendency** (mean, median, mode) clearly and without mathematical jargon
+5. Master different measures of **spread** (range, IQR, variance, standard deviation) through practical examples
+6. Calculate statistical measures using **both R and Excel**
+7. Choose appropriate statistical measures for your biological data and explain your choices
 
 ## Quick checklist
 
 By now you should have...
 
-
 - [ ] Installed [**R**](https://cran.r-project.org/)
 - [ ] Installed [**RStudio**](https://posit.co/download/rstudio-desktop/)
 - [ ] Created one (or two) documents in [Markdown](https://quarto.org/docs/authoring/markdown-basics.html) using Quarto
-
 
 # History of statistical programming
 
@@ -35,13 +35,13 @@ By now you should have...
 
 ::: {layout-ncol=2}
 
-![1800s: Mechanical calculators. [Source](https://commons.wikimedia.org/wiki/File:Mechanical_calculators_Keyboards.png)](images/calculator1800s.png){height=400 fig-align="left"}
+![1800s: Mechanical calculators. [Source](https://upload.wikimedia.org/wikipedia/commons/5/57/Mechanical_calculators_Keyboards.png)](images/calculator1800s.png){height=400 fig-align="left"}
 
 ![1960s: Statistical software BMDP and SPSS (not in image). [Source](https://economicsnetwork.ac.uk/cheer/ch10_3/ch10_3p21.htm)](images/bmdp.gif){height=400}
 
 :::
 
-## Statistical softare in the 1970s
+## Statistical software in the 1970s
 
 ::: {layout-ncol=2}
 
@@ -68,16 +68,37 @@ By now you should have...
 ![RStudio IDE. Source: Januar Harianto](images/rstudio.png){fig-align="left"}
 
 
-## Why statistical programming?
+# Getting Started with R
 
-Statistical programming **combines** statistics and computer code to:
+## Your RStudio workspace
 
-1. **Analyse** data quickly and accurately -- especially large datasets
-2. **Share** methods and results with others
-3. **Automate** complex calculations and visualise results clearly
+![](images/rstudio-interface.png)
 
-It's like having a *powerful calculator* that can help us tell stories about our data in a repeatable way.
+**Left**: all input, **Right**: all output
 
+## We will always work in Quarto
+
+- A **Markdown-based** authoring tool
+- Allows you to write **reproducible documents** with code and text
+- Outputs to various formats: HTML, PDF, Word, and more
+- [Quarto gallery](https://quarto.org/docs/gallery/)
+
+## How Quarto works
+
+- Write your content in **Markdown** (left panel)
+- View the output in **Preview** (right panel) 
+- Quick demo (only available in the live lecture)
+
+![](images/quarto-connection.jpeg)
+
+
+
+## Essential Resources
+
+- Read "A brief R guide for surviving ENVX1002" by Dr. Geoffrey Mazue
+  - Available in the Tool Kit section on Canvas
+  - Contains essential R programming tips and best practices for this unit
+- Use the Help panel in RStudio
 
 # Key statistical concepts
 
@@ -109,9 +130,22 @@ It's like having a *powerful calculator* that can help us tell stories about our
 
 
 
-## Sampling in statistics
+## Populations and their samples
 
-How well does a sample represent the population?
+| Population | Sample |
+|------------|--------|
+| All koalas in Australia | 150 koalas studied in NSW |
+| Every fish in Sydney Harbour | 300 fish caught in specific locations |
+| All soil bacteria in a forest | Bacteria from 50 soil cores |
+| All cookies in a bakery | Tasting 3 cookies to judge quality |
+| All students at the university | The 200 students in this course |
+| Water quality in the entire ocean | Water samples from specific locations |
+| All trees in a national park | 75 trees measured in random plots |
+| All possible blood test results | Blood samples from 100 patients |
+
+
+
+## How well does a sample represent the population?
 
 It depends:
 
@@ -121,9 +155,11 @@ It depends:
 
 In reality, we often have to balance these factors due to time, cost, and practical constraints.
 
-## Samples will vary
+## Samples vary
 
-Different samples give different results -- suppose we have a population of **1000 trees** and we randomly sample 6 tree heights. If this is done 3 times, it is likely that the samples will be different:
+Different samples give different results -- suppose we have a population of **1000 trees** and we randomly sample 6 tree heights. If this is done 3 times, it is likely that the samples will be different.
+
+We have code to demonstrate this but just focus on the results for now:
 
 ```{r}
 #| echo: true
@@ -136,25 +172,24 @@ population <- rnorm(1000, mean = 12, sd = 5)
 sample1 <- round(sample(population, size = 6), 1)
 sample2 <- round(sample(population, size = 6), 1)
 sample3 <- round(sample(population, size = 6), 1)
-
-```{r}
 # show samples
 for (i in 1:3) {
    cat(sprintf("Sample %d: ", i), get(paste0("sample", i)), "\n")
 }
 ```
 
-So how do we make sense of these samples?
+Are the samples different? *How* different are they?
+
 
 ## Descriptive statistics
 
+We use **descriptive statistics** to summarise and describe data, helping us compare and contrast.
+
 1. **Measures of central tendency** -- describe the "typical" value in a sample
    - mean, median, mode
-
 2. **Measures of spread** -- describe how much the data varies
    - standard deviation, variance (commonly used)
    - range, quartiles, IQR (for unique cases)
-
 3. **Measures of uncertainty** -- describe how confident we are in our estimates
    - standard error 
    - confidence intervals
@@ -162,7 +197,6 @@ So how do we make sense of these samples?
 
 # Measures of central tendency
 
-mean | median | mode
 
 ## Mean -- also known as the *average*
 
@@ -175,41 +209,6 @@ mean | median | mode
 - Sample mean: $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$
 
 Where $x_i$ is each individual value, $N$ is population size, and $n$ is sample size.
-:::
-
-## Mean in R
-
-We can save a group of numbers in a vector called `scores` in R:
-
-```{r}
-#| code-fold: false
-#| echo: true
-# Our test scores
-scores <- c(80, 85, 90, 95)
-```
-
-::: fragment
-Manual calculations:
-```{r}
-#| code-fold: false
-#| echo: true
-
-# manual calculation
-(80 + 85 + 90 + 95) / 4
-
-# Alternative way
-sum(scores) / length(scores)
-```
-:::
-
-::: fragment
-We can use the `mean()` function:
-
-```{r}
-#| code-fold: false
-#| echo: true
-mean(scores)
-```
 :::
 
 
@@ -239,6 +238,49 @@ Excel offers several ways to calculate the mean:
 :::
 
 
+
+## Mean in R
+
+I'll show you how to do this in RStudio.
+
+### Step 1: Create a vector of values
+
+In R, we store data in **vectors** (lists of values):
+
+```{r}
+#| code-fold: false
+#| echo: true
+# Create a vector of test scores
+scores <- c(80, 85, 90, 95)
+
+# Display the scores
+scores
+```
+
+### Step 2: Calculate
+
+:::: {.columns}
+::: {.column width="50%"}
+Either calculate the mean manually:
+```{r}
+#| code-fold: false
+#| echo: true
+# Sum divided by count
+sum(scores) / length(scores)
+```
+:::
+::: {.column width="50%"}
+Or use the `mean()` function:
+```{r}
+#| code-fold: false
+#| echo: true
+# The mean() function does the work for us
+mean(scores)
+```
+:::
+::::
+
+
 ## Median -- the middle value
 
 The median is the middle number when your data is in order:
@@ -258,6 +300,25 @@ Order: 450, 450, 420, 460, **470**, 470, 480, 1100, 1400
 **How is it useful?**
 :::
 :::
+
+## Median in Excel
+
+
+Excel provides two main ways to find the median:
+
+1. **Using MEDIAN function**
+   ```
+   =MEDIAN(A1:A9)
+   ```
+   - Type `=MEDIAN(`
+   - Select your data range
+   - Press Enter
+
+2. **Alternative method**
+   - Sort your data first (use the Sort functionality in the Data tab)
+   - Find middle value(s)
+   - If even number of values, average the middle two
+
 
 ## Median in R
 
@@ -287,25 +348,6 @@ mean(prices)
 **Which is a better measure for house prices?**
 :::
 
-## Median in Excel
-
-
-Excel provides two main ways to find the median:
-
-1. **Using MEDIAN function**
-   ```
-   =MEDIAN(A1:A9)
-   ```
-   - Type `=MEDIAN(`
-   - Select your data range
-   - Press Enter
-
-2. **Alternative method**
-   - Sort your data first (use the Sort functionality in the Data tab)
-   - Find middle value(s)
-   - If even number of values, average the middle two
-
-
 
 ## Mode -- most frequent value
 
@@ -328,9 +370,22 @@ Calculating the mode can be tricky, especially if there are multiple modes or no
 - What is the most common eye color in a group of people?
 :::
 
+## Mode in Excel
 
 
-## Calculating the mode in R
+Excel provides several methods to find the mode but the simplest is to use the MODE function:
+
+
+```
+=MODE(A1:A10)
+```
+- Type `=MODE(`
+- Select your data range
+- Press Enter
+
+
+
+## Mode in R
 
 There is no built-in function to calculate the mode, so we use the `modeest` package:
 
@@ -391,26 +446,7 @@ modes
 **The point is that it doesn't matter how you calculate the mode, as long as you are able to do it.** Also -- if you needed this -- aren't you glad R has a package for it?
 :::
 
-## Mode in Excel
 
-
-Excel provides several methods to find the mode:
-
-### 1. **MODE.SNGL function** (single mode)
-```
-=MODE.SNGL(A1:A10)
-```
-
-- Returns most frequent value
-- Returns #N/A if no repeats
-
-### 2. **MODE.MULT function** (multiple modes)
-```
-=MODE.MULT(A1:A10)
-```
-
-- Returns array of modes
-- Press Ctrl+Shift+Enter
 
 # Measures of spread
 
@@ -651,6 +687,7 @@ Statistical functions for variance and standard deviation:
 ::: {.callout-tip}
 ## Tip
 Use `.P` instead of `.S` for population measures:
+
 - `VAR.P()` for population variance
 - `STDEV.P()` for population standard deviation
 :::
