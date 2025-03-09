@@ -55,11 +55,11 @@ website:
       contents:
         - text: "L01 -- Introduction"
           href: lectures/L01/index.qmd
-        - text: "L02 -- Exlploring data"
+        - text: "L02 -- Introduction to statistical programming"
           href: lectures/L02/index.qmd
-        - text: "L03 -- Probability distributions"
+        - text: "L03 -- Exploring and visualising data"
           href: lectures/L03/index.qmd
-        - text: "L04 -- Sampling distributions"
+        - text: "L04 -- The central limit theorem"
           href: lectures/L04/index.qmd
     - section: "**Module 2 inference**"
       contents:
