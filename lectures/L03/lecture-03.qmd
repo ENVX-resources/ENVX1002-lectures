@@ -2,7 +2,7 @@
 title: "Lecture 03: Exploring and visualising data"
 author: Januar Harianto
 format: soles-revealjs
-embed-resources: false
+embed-resources: true
 execute:
   cache: true
 ---
