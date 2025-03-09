@@ -773,7 +773,7 @@
     "crumbs": [
       "{{< fa house-chimney >}}",
       "**Module 1 describing data**",
-      "L04 -- Sampling distributions"
+      "L04 -- The central limit theorem"
     ]
   },
   {
@@ -785,7 +785,7 @@
     "crumbs": [
       "{{< fa house-chimney >}}",
       "**Module 1 describing data**",
-      "L03 -- Probability distributions"
+      "L03 -- Exploring and visualising data"
     ]
   },
   {
@@ -797,7 +797,7 @@
     "crumbs": [
       "{{< fa house-chimney >}}",
       "**Module 1 describing data**",
-      "L02 -- Exlploring data"
+      "L02 -- Introduction to statistical programming"
     ]
   },
   {
