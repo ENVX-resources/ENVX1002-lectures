@@ -1,5 +1,8 @@
 project:
   type: website
+  render: 
+    - "*.qmd"
+    - "!*.md"
 editor:
   render-on-save: true
 execute:
