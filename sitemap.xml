@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L08/lecture-08.html</loc>
-    <lastmod>2025-03-02T04:43:38.215Z</lastmod>
+    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L12/lecture-12.html</loc>
+    <lastmod>2025-02-24T14:42:03.636Z</lastmod>
   </url>
   <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L06/lecture-06.html</loc>
-    <lastmod>2025-03-02T04:43:38.205Z</lastmod>
+    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L11/lecture-11.html</loc>
+    <lastmod>2025-02-23T13:17:52.174Z</lastmod>
   </url>
   <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L01/lecture-01a.html</loc>
-    <lastmod>2025-02-24T14:42:03.440Z</lastmod>
+    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L11/abalone-quiz.html</loc>
+    <lastmod>2025-02-06T04:53:13.717Z</lastmod>
   </url>
   <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L01/index.html</loc>
-    <lastmod>2025-03-02T14:50:03.430Z</lastmod>
+    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L10/index.html</loc>
+    <lastmod>2025-02-06T04:53:13.679Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L09/index.html</loc>
+    <lastmod>2025-02-06T04:53:13.626Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L08/index.html</loc>
+    <lastmod>2025-02-06T04:53:13.585Z</lastmod>
   </url>
   <url>
     <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L07/index.html</loc>
     <lastmod>2025-03-02T04:43:38.205Z</lastmod>
   </url>
   <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L09/lecture-09.html</loc>
-    <lastmod>2025-02-06T04:53:13.675Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L12/index.html</loc>
-    <lastmod>2025-02-06T04:53:13.745Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L02/index.html</loc>
-    <lastmod>2025-03-02T14:50:29.057Z</lastmod>
+    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L06/index.html</loc>
+    <lastmod>2025-03-02T04:43:38.191Z</lastmod>
   </url>
   <url>
     <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L05/index.html</loc>
@@ -45,56 +45,36 @@
     <lastmod>2025-02-08T10:11:41.936Z</lastmod>
   </url>
   <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L10/index.html</loc>
-    <lastmod>2025-02-06T04:53:13.679Z</lastmod>
+    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L02/index.html</loc>
+    <lastmod>2025-03-02T14:50:29.057Z</lastmod>
   </url>
   <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L11/lecture-11.html</loc>
-    <lastmod>2025-02-23T13:17:52.174Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/memory-bank/systemPatterns.html</loc>
-    <lastmod>2025-03-02T04:12:07.221Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/memory-bank/productContext.html</loc>
-    <lastmod>2025-02-28T23:35:17.775Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/memory-bank/activeContext.html</loc>
-    <lastmod>2025-03-02T04:09:19.859Z</lastmod>
+    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L01/lecture-01a.html</loc>
+    <lastmod>2025-02-24T14:42:03.440Z</lastmod>
   </url>
   <url>
     <loc>https://ENVX-resources.github.io/ENVX1002-lectures/index.html</loc>
-    <lastmod>2025-03-02T04:59:37.748Z</lastmod>
+    <lastmod>2025-03-09T11:48:22.120Z</lastmod>
   </url>
   <url>
     <loc>https://ENVX-resources.github.io/ENVX1002-lectures/about.html</loc>
     <lastmod>2025-02-06T04:53:13.107Z</lastmod>
   </url>
   <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/memory-bank/progress.html</loc>
-    <lastmod>2025-03-02T04:22:39.590Z</lastmod>
+    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L01/index.html</loc>
+    <lastmod>2025-03-02T14:50:03.430Z</lastmod>
   </url>
   <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/memory-bank/decisionLog.html</loc>
-    <lastmod>2025-03-02T04:10:38.732Z</lastmod>
+    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L01/lecture-01b.html</loc>
+    <lastmod>2025-02-24T21:41:52.594Z</lastmod>
   </url>
   <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L11/index.html</loc>
-    <lastmod>2025-02-06T04:53:13.725Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L11/abalone-quiz.html</loc>
-    <lastmod>2025-02-06T04:53:13.717Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L10/lecture-10.html</loc>
-    <lastmod>2025-02-08T10:11:41.988Z</lastmod>
+    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L02/lecture-02.html</loc>
+    <lastmod>2025-03-09T06:34:47.145Z</lastmod>
   </url>
   <url>
     <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L03/lecture-03.html</loc>
-    <lastmod>2025-02-08T10:11:41.937Z</lastmod>
+    <lastmod>2025-03-09T11:49:32.138Z</lastmod>
   </url>
   <url>
     <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L04/lecture-04.html</loc>
@@ -105,31 +85,31 @@
     <lastmod>2025-03-02T04:43:38.191Z</lastmod>
   </url>
   <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L02/lecture-02.html</loc>
-    <lastmod>2025-03-02T14:46:23.414Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L12/lecture-12.html</loc>
-    <lastmod>2025-02-24T14:42:03.636Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L09/index.html</loc>
-    <lastmod>2025-02-06T04:53:13.626Z</lastmod>
+    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L06/lecture-06.html</loc>
+    <lastmod>2025-03-02T04:43:38.205Z</lastmod>
   </url>
   <url>
     <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L07/lecture-07.html</loc>
     <lastmod>2025-03-02T04:43:38.214Z</lastmod>
   </url>
   <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L01/lecture-01b.html</loc>
-    <lastmod>2025-02-24T21:41:52.594Z</lastmod>
+    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L08/lecture-08.html</loc>
+    <lastmod>2025-03-02T04:43:38.215Z</lastmod>
   </url>
   <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L06/index.html</loc>
-    <lastmod>2025-03-02T04:43:38.191Z</lastmod>
+    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L09/lecture-09.html</loc>
+    <lastmod>2025-02-06T04:53:13.675Z</lastmod>
   </url>
   <url>
-    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L08/index.html</loc>
-    <lastmod>2025-02-06T04:53:13.585Z</lastmod>
+    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L10/lecture-10.html</loc>
+    <lastmod>2025-02-08T10:11:41.988Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L11/index.html</loc>
+    <lastmod>2025-02-06T04:53:13.725Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ENVX-resources.github.io/ENVX1002-lectures/lectures/L12/index.html</loc>
+    <lastmod>2025-02-06T04:53:13.745Z</lastmod>
   </url>
 </urlset>
