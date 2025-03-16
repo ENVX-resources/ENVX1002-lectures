@@ -2,7 +2,7 @@
 title: "Lecture 04 -- The central limit theorem"
 author: Januar Harianto
 format: soles-revealjs
-embed-resources: false
+embed-resources: true
 execute:
   cache: true
 ---
@@ -1035,19 +1035,18 @@ kable(sd_se_comparison,
 
 ## Practical implications of the CLT
 
-The Central Limit Theorem is fundamental to statistics because:
+The Central Limit Theorem enables modern inferential statistics:
 
-1. It allows us to make inferences about populations using samples
-   - We can estimate population parameters with known precision
-   - We can construct confidence intervals
+1. **Making inferences from samples to populations**
+   - Estimate population parameters with quantifiable precision
+   - Calculate confidence intervals for parameters (coming soon!)
+   - Perform hypothesis tests with known error rates
+2. **Works regardless of population distribution**
+   - Non-normal data still produces normally distributed sample means
+   - Enables parametric tests even when original data is skewed
+   - Only requires sufficiently large samples (n ≥ 30 is often adequate)
+3. **Foundation for statistical theory**
 
-2. It works for any population distribution
-   - Even when data is not normally distributed (like our rainfall)
-   - Enables parametric tests for non-normal data (with sufficient sample size)
-
-3. It explains why the normal distribution is so important
-   - Many natural phenomena represent averages of many small effects
-   - This is why we see normal distributions so often in nature
 
 # Thanks!
 
