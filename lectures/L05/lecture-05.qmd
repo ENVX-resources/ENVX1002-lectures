@@ -9,7 +9,7 @@ embed-resources: false
 
 # Quick reminder on Project 1
 
-**Before submitting to Canvas** please check that you have `embed-resources: true` in your YAML header -- **the template has this already!**
+**Before submitting to Canvas** please check that you have `embed-resources: true` in your YAML header.
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -217,14 +217,14 @@ Why is the p-value 0.05?
 
 - Let say we would like to test whether a sample or population behaves according to a known or expected value. For example, ENVX1002 students have a mean heart rate of 70 beats per minute $(c)$. We could test the relationship between our population or sample mean $(\mu)$ or $(y)$ and our expected mean $(c)$.
 
-  - $H_0:\mu=c$ *Two tailed*
-  - $H_1:\mu \ne c$ *Two tailed*
-  
-  - $H_0:\mu \ge c$ *One tailed - greater than*
-  - $H_1:\mu < c$ *One tailed - greater than*
-  
-  - $H_0:\mu \le c$ *One tailed - less than*
-  - $H_1:\mu > c$ *One tailed - less than*
+- $H_0:\mu=c$ *Two tailed*
+- $H_1:\mu \ne c$ *Two tailed*
+
+- $H_0:\mu \ge c$ *One tailed - greater than*
+- $H_1:\mu < c$ *One tailed - greater than*
+
+- $H_0:\mu \le c$ *One tailed - less than*
+- $H_1:\mu > c$ *One tailed - less than*
   
 - We usually use the first (two tailed) form unless we are specifically interested in testing whether the difference is in one direction or the means of two variables are equivalent (i.e. equivalence testing in production)
 - Initially we are assuming that the population/sample is normally distributed. Later we will look at what to do when this is not the case.
