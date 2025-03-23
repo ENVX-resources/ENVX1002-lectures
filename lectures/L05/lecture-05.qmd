@@ -1,9 +1,31 @@
 ---
 title: Topic 5 -- Introduction to hypothesis testing
 author: Floris van Ogtrop
-format: soles-revealjs
-embed-resources: true
+format: 
+  soles-revealjs:
+    scrollable: true
+embed-resources: false
 ---
+
+# Quick reminder on Project 1
+
+**Before submitting to Canvas** please check that you have `embed-resources: true` in your YAML header -- **the template has this already!**
+
+:::: {.columns}
+::: {.column width="50%"}
+**`embed-resources: true`**
+
+![](images/with-embed.png){.lightbox style="border: 1px solid forestgreen;"}
+
+:::
+
+::: {.column width="50%"}
+**`embed-resources: false` or not included**
+
+![](images/no-embed.png){.lightbox style="border: 1px solid grey;"}
+
+:::
+::::
 
 # Outline
 
@@ -900,6 +922,12 @@ t.test(TN$log10_TN,
 ![](images/one_tail.png)
 1. Explain why the expected effect is in one direction. Or why the effect in one direction is of more interest than the other?
 2. Explain why a large difference in the opposite direction is not of importance. 
+
+# Muddy notes
+
+Questions? Confused? **Use this QR code and 1-2 minutes to leave a note for me.**
+
+![](images/muddyqr.png)
 
 # References
 
