@@ -1,10 +1,8 @@
 ---
 title: Topic 5 -- Introduction to hypothesis testing
 author: Floris van Ogtrop
-format: 
-  soles-revealjs:
-    scrollable: true
-embed-resources: false
+format: soles-revealjs
+embed-resources: true
 ---
 
 # Quick reminder on Project 1
