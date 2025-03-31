@@ -2193,7 +2193,14 @@
     "href": "lectures/L06/lecture-06.html#performing-the-paired-t-test",
     "title": "Topic 6 – Two-sample t-tests",
     "section": "Performing the paired t-test",
-    "text": "Performing the paired t-test\nThere are two ways.\n\n\n\nMethod 1: Calculate the differences, then perform a one-sample t-test using t.test()\n\ndiff &lt;- redbull$heart_rate[redbull$group == \"redbull\"] - \n  redbull$heart_rate[redbull$group == \"control\"]\nt.test(diff)\n\n\n    One Sample t-test\n\ndata:  diff\nt = 1.6578, df = 11, p-value = 0.1256\nalternative hypothesis: true mean is not equal to 0\n95 percent confidence interval:\n -1.501628 10.668294\nsample estimates:\nmean of x \n 4.583333 \n\n\n\n\n\nMethod 2: Use the t.test() function with the paired = TRUE argument\n\n# t.test(heart_rate ~ group, data = redbull, \n#   paired = TRUE)\n\n\n\n\nThe results for both methods are identical; the mean difference is not significantly different from zero (p = 0.13)."
+    "text": "Performing the paired t-test\nThere are two ways.\nMethod 1: Calculate the differences, then perform a one-sample t-test using t.test()\n\ndiff &lt;- redbull$heart_rate[redbull$group == \"redbull\"] - \n  redbull$heart_rate[redbull$group == \"control\"]\nt.test(diff)\n\n\n    One Sample t-test\n\ndata:  diff\nt = 1.6578, df = 11, p-value = 0.1256\nalternative hypothesis: true mean is not equal to 0\n95 percent confidence interval:\n -1.501628 10.668294\nsample estimates:\nmean of x \n 4.583333"
+  },
+  {
+    "objectID": "lectures/L06/lecture-06.html#performing-the-paired-t-test-1",
+    "href": "lectures/L06/lecture-06.html#performing-the-paired-t-test-1",
+    "title": "Topic 6 – Two-sample t-tests",
+    "section": "Performing the paired t-test",
+    "text": "Performing the paired t-test\nThere are two ways.\nMethod 2: Use the t.test() function with the x and y and paired = TRUE argument\n\n# t.text(group1, group2, paired = TRUE)\nt.test(redbull$heart_rate[redbull$group == \"redbull\"], \n  redbull$heart_rate[redbull$group == \"control\"],\n  paired = TRUE)\n\n\n    Paired t-test\n\ndata:  redbull$heart_rate[redbull$group == \"redbull\"] and redbull$heart_rate[redbull$group == \"control\"]\nt = 1.6578, df = 11, p-value = 0.1256\nalternative hypothesis: true mean difference is not equal to 0\n95 percent confidence interval:\n -1.501628 10.668294\nsample estimates:\nmean difference \n       4.583333 \n\n\nThe results for both methods are identical; the mean difference is not significantly different from zero (p = 0.13)."
   },
   {
     "objectID": "lectures/L06/lecture-06.html#recap-assumptions-of-the-two-sample-t-test",
