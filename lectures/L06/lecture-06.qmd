@@ -571,12 +571,12 @@ t.test(diff)
 
 ::: column
 ::: fragment
-### Method 2: Use the `t.test()` function with the `paired = TRUE` argument
+### Method 2: Use the `t.test()` function with the x and y and `paired = TRUE` argument
 
 ```{r}
 #| code-fold: false
 
-# t.test(heart_rate ~ group, data = redbull, 
+# t.test(redbull$heart_rate[redbull$group == "redbull"], ~ group, data = redbull, redbull$heart_rate[redbull$group == "control"],
 #   paired = TRUE)
 ```
 
