@@ -1,7 +1,9 @@
 ---
 title: Topic 6 -- Two-sample *t*-tests
 author: Floris van Ogtrop
-format: soles-revealjs
+format: 
+  soles-revealjs:
+    scrollable: true
 embed-resources: true
 ---
 
@@ -553,9 +555,7 @@ $$H_1: \mu_{\text{redbull}} \neq \mu_{\text{control}}$$
 
 There are two ways.
 
-:::: columns
-::: column
-::: fragment
+
 ### Method 1: Calculate the differences, then perform a one-sample *t*-test using `t.test()`
 
 ```{r}
@@ -566,27 +566,22 @@ diff <- redbull$heart_rate[redbull$group == "redbull"] -
 t.test(diff)
 ```
 
-:::
-:::
+## Performing the paired *t*-test
 
-::: column
-::: fragment
+There are two ways.
+
 ### Method 2: Use the `t.test()` function with the x and y and `paired = TRUE` argument
 
 ```{r}
 #| code-fold: false
-
-# t.test(redbull$heart_rate[redbull$group == "redbull"], ~ group, data = redbull, redbull$heart_rate[redbull$group == "control"],
-#   paired = TRUE)
+# t.text(group1, group2, paired = TRUE)
+t.test(redbull$heart_rate[redbull$group == "redbull"], 
+  redbull$heart_rate[redbull$group == "control"],
+  paired = TRUE)
 ```
 
-:::
-:::
-::::
 
-::: fragment
 The results for both methods are identical; the mean difference is not significantly different from zero (p = 0.13).
-:::
 
 
 # When assumptions of the *t*-test are violated
