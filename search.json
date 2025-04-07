@@ -2350,6 +2350,13 @@
     "text": "References\n\nQuinn G. P. & Keough M. J. (2002) Experimental design and data analysis for biologists. Cambridge University Press, Cambridge, UK.\nLogan, M. (2010). Biostatistical design and analysis using R a practical guide. Hoboken, N.J., Wiley-Blackwell."
   },
   {
+    "objectID": "lectures/L07/lecture-07.html#at-the-end-of-this-week-you-will-be-able-to",
+    "href": "lectures/L07/lecture-07.html#at-the-end-of-this-week-you-will-be-able-to",
+    "title": "Topic 7 – Non-parametric tests",
+    "section": "At the end of this week, you will be able to:",
+    "text": "At the end of this week, you will be able to:\n\nExplain the rationale for using non-parametric tests, including when to choose them over parametric tests due to violations of assumptions (e.g., non-normality, ordinal data).\nDifferentiate between:\n\nThe Wilcoxon signed-rank tests (for one-sample or paired data),\nThe Mann-Whitney U test (AKA Wilcoxon rank-sum test) for two independent samples, and\nThe Chi-squared test, including tests for proportions (goodness-of-fit) and association (independence).\n\nApply and interpret Wilcoxon and Mann-Whitney tests in R, for one-sample paired samples or two independent samples\nConduct and interpret Chi-squared tests in R, including:\n\nChi-squared test of independence to examine association between two categorical variables\nChi-squared goodness-of-fit test to compare observed proportions with expected proportions\nCheck assumptions for the Chi-squared test (e.g., expected cell counts) and understand potential limitations and alternatives (e.g., Fisher’s Exact Test).\n\nPresent and visualise results from all non-parametric tests using RStudio output, with appropriate interpretation and reporting."
+  },
+  {
     "objectID": "lectures/L07/lecture-07.html#overview",
     "href": "lectures/L07/lecture-07.html#overview",
     "title": "Topic 7 – Non-parametric tests",
