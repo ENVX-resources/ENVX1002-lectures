@@ -27,18 +27,18 @@ theme_set(theme_cowplot())
 
 1. **Explain the rationale** for using non-parametric tests, including when to choose them over parametric tests due to violations of assumptions (e.g., non-normality, ordinal data).
 2. Differentiate between:
-- The Wilcoxon signed-rank test (for one-sample or paired data),
-- The Mann-Whitney U test / Wilcoxon rank-sum test (for two independent samples), and
-- The Chi-squared test, including tests for proportions (goodness-of-fit) and association (independence).
-3. Apply and interpret Wilcoxon and Mann-Whitney tests in R, for:
+- The **Wilcoxon signed-rank tests** (for one-sample or paired data),
+- The **Mann-Whitney U test** (AKA Wilcoxon rank-sum test) for two independent samples, and
+- The **Chi-squared test**, including tests for proportions (goodness-of-fit) and association (independence).
+3. **Apply and interpret** Wilcoxon and Mann-Whitney tests in R, for:
 - One-sample
 - Paired samples
 - Two independent samples
-4. Conduct and interpret Chi-squared tests in R, including:
+4. **Conduct and interpret** Chi-squared tests in R, including:
 - Chi-squared test of independence to examine association between two categorical variables
 - Chi-squared goodness-of-fit test to compare observed proportions with expected proportions
 - Check assumptions for the Chi-squared test (e.g., expected cell counts) and understand potential limitations and alternatives (e.g., Fisher’s Exact Test).
-5. Present and visualise results from all non-parametric tests using RStudio output, with appropriate interpretation and reporting.
+5. **Present and visualise results** from all non-parametric tests using RStudio output, with appropriate interpretation and reporting.
 
 # Parametric vs non-parametric methods
 
