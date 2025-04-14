@@ -2784,6 +2784,20 @@
     "text": "When to use a chi-squared test?\n\nThe chi-squared test is not an “alternative” to a parametric test, but is better suited for certain types of data and requires delibarate experimental design that collects data in a certain way.\nIf we have categorical data and we want to determine whether the observed frequencies differ from the expected frequencies, then we can use a chi-squared test."
   },
   {
+    "objectID": "lectures/L08/lecture-08.html#announcement",
+    "href": "lectures/L08/lecture-08.html#announcement",
+    "title": "Topic 8 – Permutation tests and bootstrap",
+    "section": "Announcement",
+    "text": "Announcement\n\nPractice Skills assessment this week, run in your respective labs. You must attend your lab to complete the assessment.\nA reminder that you are allowed to use cheat sheets for the assessment, but you must write or print them yourself\n\nmaximum 4 sides of A4 paper\nno electronic devices allowed\n\nPrinting services are available on campus. See here."
+  },
+  {
+    "objectID": "lectures/L08/lecture-08.html#learning-outcomes",
+    "href": "lectures/L08/lecture-08.html#learning-outcomes",
+    "title": "Topic 8 – Permutation tests and bootstrap",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\nAt the end of this week, you will be able to:\n\nUnderstand and explain resampling techniques as alternatives to parametric and non-parametric tests\nApply permutation tests to analyse data when parametric assumptions are not met\nImplement bootstrap methods to estimate confidence intervals and statistical parameters\nCompare and contrast different statistical approaches (parametric, non-parametric, and resampling)"
+  },
+  {
     "objectID": "lectures/L08/lecture-08.html#non-normal-data",
     "href": "lectures/L08/lecture-08.html#non-normal-data",
     "title": "Topic 8 – Permutation tests and bootstrap",
