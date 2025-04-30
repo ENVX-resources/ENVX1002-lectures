@@ -4,7 +4,7 @@
     "href": "lectures/L12/lecture-12.html#module-overview",
     "title": "Topic 12 – Non-linear regression",
     "section": "Module overview",
-    "text": "Module overview\n\nWeek 9. Describing Relationships\n\nCorrelation (calculation, interpretation)\nRegression (model structure, model fitting\nWhat/when/why/how\n\nWeek 10. Simple Linear Regression\n\nCan we use the model?(assumptions, hypothesis testing)\nHow good is the model?(interpretation, model fit)\n\nWeek 11. Multiple Linear Regression\n\nMultiple Linear Regression (MLR) modelling\nAssumptions, interpretation and the principle of parsimony\n\nWeek 12. Nonlinear Regression\n\nCommon nonlinear functions\nTransformations"
+    "text": "Module overview\n\n\n\n\nWeek 9. Describing Relationships\n\nCorrelation (calculation, interpretation)\nRegression (model structure, model fitting\nWhat/when/why/how\n\nWeek 10. Simple Linear Regression\n\nCan we use the model?(assumptions, hypothesis testing)\nHow good is the model?(interpretation, model fit)\n\nWeek 11. Multiple Linear Regression\n\nMultiple Linear Regression (MLR) modelling\nAssumptions, interpretation and the principle of parsimony\n\nWeek 12. Nonlinear Regression\n\nCommon nonlinear functions\nTransformations"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#regressions",
@@ -361,7 +361,7 @@
     "href": "lectures/L11/lecture-11.html#module-overview",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Module overview",
-    "text": "Module overview\n\nWeek 9. Describing Relationships\n\nCorrelation (calculation, interpretation)\nRegression (model structure, model fitting\nWhat/when/why/how\n\nWeek 10. Simple Linear Regression\n\nCan we use the model?(assumptions, hypothesis testing)\nHow good is the model?(interpretation, model fit)\n\nWeek 11. Multiple Linear Regression\n\nMultiple Linear Regression (MLR) modelling\nAssumptions, interpretation and the principle of parsimony\n\nWeek 12. Nonlinear Regression\n\nCommon nonlinear functions\nTransformations"
+    "text": "Module overview\n\n\n\n\nWeek 9. Describing Relationships\n\nCorrelation (calculation, interpretation)\nRegression (model structure, model fitting\nWhat/when/why/how\n\nWeek 10. Simple Linear Regression\n\nCan we use the model?(assumptions, hypothesis testing)\nHow good is the model?(interpretation, model fit)\n\nWeek 11. Multiple Linear Regression\n\nMultiple Linear Regression (MLR) modelling\nAssumptions, interpretation and the principle of parsimony\n\nWeek 12. Nonlinear Regression\n\nCommon nonlinear functions\nTransformations"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#last-week-simple-linear-regression",
@@ -1164,14 +1164,14 @@
     "href": "lectures/L02/lecture-02.html#from-calculators-to-computers",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "From calculators to computers",
-    "text": "From calculators to computers\n\n\n\n\n\n\n\n\n\n1800s: Mechanical calculators. Source\n\n\n\n\n\n\n\n1960s: Statistical software BMDP and SPSS (not in image). Source"
+    "text": "From calculators to computers\n\n\n\n\n\n\n1800s: Mechanical calculators. Source\n\n\n\n\n\n\n\n1960s: Statistical software BMDP and SPSS (not in image). Source"
   },
   {
     "objectID": "lectures/L02/lecture-02.html#statistical-software-in-the-1970s",
     "href": "lectures/L02/lecture-02.html#statistical-software-in-the-1970s",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Statistical software in the 1970s",
-    "text": "Statistical software in the 1970s\n\n\n\n\n\n\n\n\n\n1970s: SAS (Statistical Analysis System) Source\n\n\n\n\n\n\n\n1976: Birth of S at Bell Labs. S-PLUS debuts in 1988. Source"
+    "text": "Statistical software in the 1970s\n\n\n\n\n\n\n1970s: SAS (Statistical Analysis System) Source\n\n\n\n\n\n\n\n1976: Birth of S at Bell Labs. S-PLUS debuts in 1988. Source"
   },
   {
     "objectID": "lectures/L02/lecture-02.html#r-in-todays-world",
@@ -2081,7 +2081,7 @@
     "href": "lectures/L06/lecture-06.html#assumptions",
     "title": "Topic 6 – Two-sample t-tests",
     "section": "Assumptions",
-    "text": "Assumptions\nThe assumptions of the two-sample t-test include:\n\nNormality: the data are normally distributed.\nHomogeneity of variance: the variances of the two groups are equal.\n\n\nWhy are these assumptions important?\n\n\nSince the t-test compares the means of two groups, normality ensures that the means are the best estimate of the population means.\nEqual variances indicates that the two groups have similar “noise” influencing their means, except for the “treatment” effect.\n\nIn the Red Bull example, this means that the range of heart rate values in students for both groups is similar, except for the effect of consuming Red Bull."
+    "text": "Assumptions\nThe assumptions of the two-sample t-test include:\n\nNormality: the data are normally distributed.\nHomogeneity of variance: the variances of the two groups are equal.\n\n\nWhy are these assumptions important?\n\nSince the t-test compares the means of two groups, normality ensures that the means are the best estimate of the population means.\nEqual variances indicates that the two groups have similar “noise” influencing their means, except for the “treatment” effect.\n\nIn the Red Bull example, this means that the range of heart rate values in students for both groups is similar, except for the effect of consuming Red Bull."
   },
   {
     "objectID": "lectures/L06/lecture-06.html#normality-histogram",
@@ -2172,7 +2172,7 @@
     "href": "lectures/L06/lecture-06.html#paired-t-test",
     "title": "Topic 6 – Two-sample t-tests",
     "section": "Paired t-test",
-    "text": "Paired t-test\nExperimental design (what if?)\nBefore\n\nTwo groups of students selected at random, without replacement, from the ENVX1002 cohort.\n\n\nPaired design\nThe same student was used in a before/after experiment, where the heart rate was measured before and after consuming 250ml of Red Bull. Twelve (12) students were selected at random from the ENVX1002 cohort.\n\n\nData is no longer independent, as the same student is measured twice.\nThe student now confounds the results, as the heart rate of the same student is likely to be correlated even without consuming Red Bull.\nTotal number of students is now 12, not 24.\nLet’s assume the data collected are exactly the same."
+    "text": "Paired t-test\nExperimental design (what if?)\nBefore\n\nTwo groups of students selected at random, without replacement, from the ENVX1002 cohort.\n\n\nPaired design\nThe same student was used in a before/after experiment, where the heart rate was measured before and after consuming 250ml of Red Bull. Twelve (12) students were selected at random from the ENVX1002 cohort.\n\nData is no longer independent, as the same student is measured twice.\nThe student now confounds the results, as the heart rate of the same student is likely to be correlated even without consuming Red Bull.\nTotal number of students is now 12, not 24.\nLet’s assume the data collected are exactly the same."
   },
   {
     "objectID": "lectures/L06/lecture-06.html#hypothesis-1",
@@ -2242,14 +2242,14 @@
     "href": "lectures/L06/lecture-06.html#checking-assumptions",
     "title": "Topic 6 – Two-sample t-tests",
     "section": "Checking assumptions",
-    "text": "Checking assumptions\nWe have some idea that the data may not be normally distributed, but are not quite sure. So let’s check using the Q-Q plot.\n\n\nCode\nggplot(ants, aes(sample = Food)) +\n  stat_qq() +\n  stat_qq_line() +\n  facet_wrap(~Tree) +\n  theme_minimal()\n\n\n\n\n\nCurvature of the data points away from the line indicates non-normality.\nBoxplots (previous slide) suggest equal variances.\nLet’s transform the data."
+    "text": "Checking assumptions\nWe have some idea that the data may not be normally distributed, but are not quite sure. So let’s check using the Q-Q plot.\n\n\nCode\nggplot(ants, aes(sample = Food)) +\n  stat_qq() +\n  stat_qq_line() +\n  facet_wrap(~Tree) +\n  theme_minimal()\n\n\n\n\nCurvature of the data points away from the line indicates non-normality.\nBoxplots (previous slide) suggest equal variances.\nLet’s transform the data."
   },
   {
     "objectID": "lectures/L06/lecture-06.html#picking-a-transformation",
     "href": "lectures/L06/lecture-06.html#picking-a-transformation",
     "title": "Topic 6 – Two-sample t-tests",
     "section": "Picking a transformation",
-    "text": "Picking a transformation\nWe need to consider the type of data and the shape of its distribution when choosing a transformation. These can be assessed using:\n\n\nHistograms and Q-Q plots to assess normality - DONE\nBox plots to assess homogeneity of variance - DONE\nSkewness and kurtosis to assess the shape of the distribution - NEXT"
+    "text": "Picking a transformation\nWe need to consider the type of data and the shape of its distribution when choosing a transformation. These can be assessed using:\n\nHistograms and Q-Q plots to assess normality - DONE\nBox plots to assess homogeneity of variance - DONE\nSkewness and kurtosis to assess the shape of the distribution - NEXT"
   },
   {
     "objectID": "lectures/L06/lecture-06.html#skewness",
@@ -2291,7 +2291,7 @@
     "href": "lectures/L06/lecture-06.html#workflow",
     "title": "Topic 6 – Two-sample t-tests",
     "section": "Workflow",
-    "text": "Workflow\n\n\nCheck the data for normality and homogeneity of variance (i.e. test assumptions).\nIf the assumptions are violated, consider transforming ALL the data.\nRepeat checks on assumptions. If assumptions are met, proceed with the t-test on the transformed scale. Otherwise, use a different transformation or consider using a non-parametric test.\nInterpret the statistical results and back-transform the results to the original scale (optional but recommended) to aid interpretation."
+    "text": "Workflow\n\nCheck the data for normality and homogeneity of variance (i.e. test assumptions).\nIf the assumptions are violated, consider transforming ALL the data.\nRepeat checks on assumptions. If assumptions are met, proceed with the t-test on the transformed scale. Otherwise, use a different transformation or consider using a non-parametric test.\nInterpret the statistical results and back-transform the results to the original scale (optional but recommended) to aid interpretation."
   },
   {
     "objectID": "lectures/L06/lecture-06.html#picking-a-transformation-1",
@@ -2438,7 +2438,7 @@
     "href": "lectures/L07/lecture-07.html#calculating-ranks",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Calculating ranks",
-    "text": "Calculating ranks\nIf comparing two groups, the ranks are calculated as follows:\n\n\nCalculate the difference D between the two groups.\nRank the absolute values of the differences in ascending order.\nAssign the sign of the difference to the rank.\nSum the ranks for each group – zero differences are ignored.\n\n\n\n\n\n\n\n\n\nNote\n\n\nSee Slide 5 to recall how ranks are calculated, but we will show another example in the next slide."
+    "text": "Calculating ranks\nIf comparing two groups, the ranks are calculated as follows:\n\nCalculate the difference D between the two groups.\nRank the absolute values of the differences in ascending order.\nAssign the sign of the difference to the rank.\nSum the ranks for each group – zero differences are ignored.\n\n\n\n\n\n\n\n\nNote\n\n\nSee Slide 5 to recall how ranks are calculated, but we will show another example in the next slide."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#weight-gain",
@@ -2550,7 +2550,7 @@
     "href": "lectures/L07/lecture-07.html#transform-or-non-parametric",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Transform, or non-parametric?",
-    "text": "Transform, or non-parametric?\n\n\nAs usual, there is ongoing debate on whether to transform the data or use non-parametric tests, but the general consensus is to always prefer parametric tests and transformations when assumptions are met using those techniques.\n\ne.g. Parametric analysis of transformed data is more powerful than non-parametric analysis\n\nSome argue that non-parametric tests must be decided during experimental design and not when the data fails to meet the normality assumption: as the decision to rank data has implications on the interpretation of the results.\n\ne.g. Graphpad Advice: Don’t automate the decision to use a nonparametric test\n\nThe conventional wisdom is to transform the data and check for normality if the assumption is not met. If the data is still not normal, then use non-parametric tests (after considering the implications on interpretation).\n\nOr, use bootstrapping (next week!)."
+    "text": "Transform, or non-parametric?\n\nAs usual, there is ongoing debate on whether to transform the data or use non-parametric tests, but the general consensus is to always prefer parametric tests and transformations when assumptions are met using those techniques.\n\ne.g. Parametric analysis of transformed data is more powerful than non-parametric analysis\n\nSome argue that non-parametric tests must be decided during experimental design and not when the data fails to meet the normality assumption: as the decision to rank data has implications on the interpretation of the results.\n\ne.g. Graphpad Advice: Don’t automate the decision to use a nonparametric test\n\nThe conventional wisdom is to transform the data and check for normality if the assumption is not met. If the data is still not normal, then use non-parametric tests (after considering the implications on interpretation).\n\nOr, use bootstrapping (next week!)."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#summary",
@@ -2564,14 +2564,14 @@
     "href": "lectures/L07/lecture-07.html#parametric-and-non-parametric-alternatives",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Parametric and non-parametric alternatives",
-    "text": "Parametric and non-parametric alternatives\n\n\nSo far, all of our techniques have been aimed at comparing means/medians of continuous variables.\nThe assumption of normality underpins these techniques – if the data is not normally distributed, we have alternatives like transforming the data or using non-parametric tests.\nDoes this apply to all data?"
+    "text": "Parametric and non-parametric alternatives\n\nSo far, all of our techniques have been aimed at comparing means/medians of continuous variables.\nThe assumption of normality underpins these techniques – if the data is not normally distributed, we have alternatives like transforming the data or using non-parametric tests.\nDoes this apply to all data?"
   },
   {
     "objectID": "lectures/L07/lecture-07.html#a-rational-assumption",
     "href": "lectures/L07/lecture-07.html#a-rational-assumption",
     "title": "Topic 7 – Non-parametric tests",
     "section": "A rational assumption?",
-    "text": "A rational assumption?\n\n\nAre all randomly sampled data normally distributed?\nRecall probability distributions (Week 3) – normal distribution is just one of several possible distributions of data.\nIt turns out that there are non-parametric techniques that are not just alternatives of parametric tests, but better suited for certain types of data."
+    "text": "A rational assumption?\n\nAre all randomly sampled data normally distributed?\nRecall probability distributions (Week 3) – normal distribution is just one of several possible distributions of data.\nIt turns out that there are non-parametric techniques that are not just alternatives of parametric tests, but better suited for certain types of data."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#what-are-categorical-variables",
@@ -2802,21 +2802,21 @@
     "href": "lectures/L08/lecture-08.html#non-normal-data",
     "title": "Topic 8 – Permutation tests and bootstrap",
     "section": "Non-normal data",
-    "text": "Non-normal data\nWhere data does not meet the assumptions of parametric tests, we have two options:\n\nTransform the data, and continue with parametric tests; or\nUse non-parametric “equivalents” of parametric tests at the cost of power and loss of information.\n\n\nA third option exists.\n\n\n\nUse computer intensive, randomisation-based methods to test hypotheses, called resampling techniques.\nThese methods include randomisation (or permutation) tests and bootstrap.\nRetains estimates of effect size and confidence intervals."
+    "text": "Non-normal data\nWhere data does not meet the assumptions of parametric tests, we have two options:\n\nTransform the data, and continue with parametric tests; or\nUse non-parametric “equivalents” of parametric tests at the cost of power and loss of information.\n\n\nA third option exists.\n\n\nUse computer intensive, randomisation-based methods to test hypotheses, called resampling techniques.\nThese methods include randomisation (or permutation) tests and bootstrap.\nRetains estimates of effect size and confidence intervals."
   },
   {
     "objectID": "lectures/L08/lecture-08.html#model-based-inferential-techniques",
     "href": "lectures/L08/lecture-08.html#model-based-inferential-techniques",
     "title": "Topic 8 – Permutation tests and bootstrap",
     "section": "Model-based inferential techniques",
-    "text": "Model-based inferential techniques\n\n\nTraditionally, inferential statistics is based on mathematical approximations and assumptions about how data is obtained.\nBased on knowledge that “randomness” somehow obeys certain patterns in nature which can be reliably described by probability distributions.\nUses probability theory to draw approximate conclusions about these patterns when we observe data."
+    "text": "Model-based inferential techniques\n\nTraditionally, inferential statistics is based on mathematical approximations and assumptions about how data is obtained.\nBased on knowledge that “randomness” somehow obeys certain patterns in nature which can be reliably described by probability distributions.\nUses probability theory to draw approximate conclusions about these patterns when we observe data."
   },
   {
     "objectID": "lectures/L08/lecture-08.html#resampling-techniques-1",
     "href": "lectures/L08/lecture-08.html#resampling-techniques-1",
     "title": "Topic 8 – Permutation tests and bootstrap",
     "section": "Resampling techniques",
-    "text": "Resampling techniques\n\n\nBased on the idea that we can use the data itself to estimate the distribution of the test statistic or parameter of interest.\nThese methods are model-free and distribution-free.\nRequires comparatively higher computational power, but nowadays it is not a problem – any modern personal computer can handle it."
+    "text": "Resampling techniques\n\nBased on the idea that we can use the data itself to estimate the distribution of the test statistic or parameter of interest.\nThese methods are model-free and distribution-free.\nRequires comparatively higher computational power, but nowadays it is not a problem – any modern personal computer can handle it."
   },
   {
     "objectID": "lectures/L08/lecture-08.html#randomisation-or-bootstrap",
@@ -2837,14 +2837,14 @@
     "href": "lectures/L08/lecture-08.html#example-comparing-two-groups",
     "title": "Topic 8 – Permutation tests and bootstrap",
     "section": "Example: comparing two groups",
-    "text": "Example: comparing two groups\n\n\nSuppose we have two samples (groups) and we want to test if the mean scores1 are different.\nUnder the null hypothesis that there is no difference between the groups, the two sets of scores will have the same distribution.\nThus, we can pool the scores and reassign them to the two groups, since any score is equally likely to belong in either group, i.e. the scores are exchangeable.\n\n\nBasically any measure of interest."
+    "text": "Example: comparing two groups\n\nSuppose we have two samples (groups) and we want to test if the mean scores1 are different.\nUnder the null hypothesis that there is no difference between the groups, the two sets of scores will have the same distribution.\nThus, we can pool the scores and reassign them to the two groups, since any score is equally likely to belong in either group, i.e. the scores are exchangeable.\n\nBasically any measure of interest."
   },
   {
     "objectID": "lectures/L08/lecture-08.html#steps",
     "href": "lectures/L08/lecture-08.html#steps",
     "title": "Topic 8 – Permutation tests and bootstrap",
     "section": "Steps",
-    "text": "Steps\n\n\nPool the scores from both groups into a single dataset.\nRandomly reassign the scores to two groups.\nCalculate the test statistic of interest, in this case the t-test statistic.\nRepeat steps 2 and 3 many times to generate a distribution of the test statistic under the null hypothesis.\nCompare the observed test statistic to the randomised distribution to calculate a p-value."
+    "text": "Steps\n\nPool the scores from both groups into a single dataset.\nRandomly reassign the scores to two groups.\nCalculate the test statistic of interest, in this case the t-test statistic.\nRepeat steps 2 and 3 many times to generate a distribution of the test statistic under the null hypothesis.\nCompare the observed test statistic to the randomised distribution to calculate a p-value."
   },
   {
     "objectID": "lectures/L08/lecture-08.html#data",
@@ -2928,14 +2928,14 @@
     "href": "lectures/L08/lecture-08.html#example-estimating-the-mean",
     "title": "Topic 8 – Permutation tests and bootstrap",
     "section": "Example: estimating the mean",
-    "text": "Example: estimating the mean\n\n\nSuppose we have two samples (groups) and we want to estimate the difference in means, and the 95% confidence interval of the difference.\nWe can use the usual mathematical equation to calculate 95% CI, but if the data does not meet the assumption of normality, then the CI will be a bad estimate.\nInstead, we can use the bootstrap to estimate the 95% CI, which is based on the simulated distribution of the mean difference."
+    "text": "Example: estimating the mean\n\nSuppose we have two samples (groups) and we want to estimate the difference in means, and the 95% confidence interval of the difference.\nWe can use the usual mathematical equation to calculate 95% CI, but if the data does not meet the assumption of normality, then the CI will be a bad estimate.\nInstead, we can use the bootstrap to estimate the 95% CI, which is based on the simulated distribution of the mean difference."
   },
   {
     "objectID": "lectures/L08/lecture-08.html#steps-1",
     "href": "lectures/L08/lecture-08.html#steps-1",
     "title": "Topic 8 – Permutation tests and bootstrap",
     "section": "Steps",
-    "text": "Steps\n\n\nResample the data with replacement.\nCalculate the parameter of interest (e.g. mean) for each resample.\nRepeat steps 1 and 2 many times (N) to generate a distribution of the parameter of interest.\nCalculate the 95% confidence interval from the simulated distribution:\n\nThe mean of the distribution is the point estimate.\nThe 0.025 \\times Nth smallest mean is the lower bound of the 95% CI.\nThe 0.975\\times Nth smallest mean is the upper bound of the 95% CI."
+    "text": "Steps\n\nResample the data with replacement.\nCalculate the parameter of interest (e.g. mean) for each resample.\nRepeat steps 1 and 2 many times (N) to generate a distribution of the parameter of interest.\nCalculate the 95% confidence interval from the simulated distribution:\n\nThe mean of the distribution is the point estimate.\nThe 0.025 \\times Nth smallest mean is the lower bound of the 95% CI.\nThe 0.975\\times Nth smallest mean is the upper bound of the 95% CI."
   },
   {
     "objectID": "lectures/L08/lecture-08.html#data-1",
@@ -2977,7 +2977,7 @@
     "href": "lectures/L08/lecture-08.html#how-different-are-the-results",
     "title": "Topic 8 – Permutation tests and bootstrap",
     "section": "How different are the results?",
-    "text": "How different are the results?\n\n\n\nMethod\nMean\n95% CI\nCI size\n\n\n\n\nBootstrap\n14.85\n[11.25, 18.13]\n6.88\n\n\nParametric\n14.83\n[9.97, 19.69]\n9.72\n\n\n\n\n\nThe point estimates of the mean are almost identical.\nThe 95% CI of the mean are similar, but the bootstrap CI is non-symmetric - it represents the true distribution of the mean.\nThe size of the CI is smaller for the bootstrap method, indicating that the parametric method is overestimating the precision of the estimate."
+    "text": "How different are the results?\n\n\n\nMethod\nMean\n95% CI\nCI size\n\n\n\n\nBootstrap\n14.85\n[11.25, 18.13]\n6.88\n\n\nParametric\n14.83\n[9.97, 19.69]\n9.72\n\n\n\n\nThe point estimates of the mean are almost identical.\nThe 95% CI of the mean are similar, but the bootstrap CI is non-symmetric - it represents the true distribution of the mean.\nThe size of the CI is smaller for the bootstrap method, indicating that the parametric method is overestimating the precision of the estimate."
   },
   {
     "objectID": "lectures/L08/lecture-08.html#again-we-can-use-a-package-to-do-this",
@@ -3054,7 +3054,7 @@
     "href": "lectures/L09/lecture-09.html#about-me",
     "title": "Topic 9 – Describing relationships",
     "section": "About me",
-    "text": "About me\n\n\n\n\n\n\n\nResearch topics: spatial modelling and mapping, precision agriculture, winter grains\nTimeline at USYD\n\nBSc (Hons) in Agricultural Science\nPhD in Digital Agriculture\nPostdoc in Spatial Modelling\nAssociate Lecturer in Agricultural Data Science\n\n\n\n\n\n\n\nFaba beans at Trangie"
+    "text": "About me\n\n\n\n\nResearch topics: spatial modelling and mapping, precision agriculture, winter grains\nTimeline at USYD\n\nBSc (Hons) in Agricultural Science\nPhD in Digital Agriculture\nPostdoc in Spatial Modelling\nAssociate Lecturer in Agricultural Data Science\n\n\n\n\n\n\n\nFaba beans at Trangie"
   },
   {
     "objectID": "lectures/L09/lecture-09.html#learning-outcomes",
@@ -3320,7 +3320,7 @@
     "href": "lectures/L10/lecture-10.html#module-overview",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Module overview",
-    "text": "Module overview\n\nWeek 9. Describing Relationships\n\nCorrelation (calculation, interpretation)\nRegression (model structure, model fitting\nWhat/when/why/how\n\nWeek 10. Simple Linear Regression\n\nCan we use the model?(assumptions, hypothesis testing)\nHow good is the model?(interpretation, model fit)\n\nWeek 11. Multiple Linear Regression\n\nMultiple Linear Regression (MLR) modelling\nAssumptions, interpretation and the principle of parsimony\n\nWeek 12. Nonlinear Regression\n\nCommon nonlinear functions\nTransformations"
+    "text": "Module overview\n\n\n\n\nWeek 9. Describing Relationships\n\nCorrelation (calculation, interpretation)\nRegression (model structure, model fitting\nWhat/when/why/how\n\nWeek 10. Simple Linear Regression\n\nCan we use the model?(assumptions, hypothesis testing)\nHow good is the model?(interpretation, model fit)\n\nWeek 11. Multiple Linear Regression\n\nMultiple Linear Regression (MLR) modelling\nAssumptions, interpretation and the principle of parsimony\n\nWeek 12. Nonlinear Regression\n\nCommon nonlinear functions\nTransformations"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#last-week",
