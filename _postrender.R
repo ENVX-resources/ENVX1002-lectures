@@ -80,4 +80,3 @@ convert_html_to_pdf <- function(html_dir, pdf_dir) {
 
 # Example usage:
 convert_html_to_pdf("_site/lectures", "lectures")
-

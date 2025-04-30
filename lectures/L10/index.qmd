@@ -3,7 +3,7 @@ title: "Lecture 10"
 ---
 
 
-[Full Screen](lecture-10.qmd) | [PDF]() 
+[Full Screen](lecture-10.qmd) | [PDF](lecture-10.pdf) 
 
 ```{=html}
 <iframe class="slide-deck" src="lecture-10.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>

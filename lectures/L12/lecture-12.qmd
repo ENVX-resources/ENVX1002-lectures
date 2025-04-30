@@ -1,9 +1,22 @@
 ---
 title: Topic 12 -- Non-linear regression
 author: Si Yang Han
-format: soles-revealjs
+format:
+  soles-revealjs:
+    logo: ../muddyqr.png
+    # footer: "Scan the QR code to provide feedback on this lecture"
 embed-resources: true
 ---
+## Module overview
+
+```{css, echo=FALSE}
+.reveal .slide-logo {
+  height: 8rem !important;
+  max-height: 8rem !important;
+  bottom: -2px;
+  right: 10px;
+}
+```
 
 ```{r setup, include=FALSE}
 if (!require("pacman")) install.packages("pacman", repos = "http://cran.us.r-project.org")
@@ -12,7 +25,6 @@ pacman::p_load(tidyverse, cowplot, ggfortify, patchwork, broom, remotes, corrplo
 ggplot2::theme_set(cowplot::theme_half_open())
 ```
 
-## Module overview
 
 - [Week 9. Describing Relationships]{style="color: #D0D3D4;"}
     + [Correlation (calculation, interpretation)]{style="color: #D0D3D4;"}
