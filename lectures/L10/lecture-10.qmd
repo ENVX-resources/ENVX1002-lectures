@@ -6,6 +6,7 @@ format:
     logo: ../muddyqr.png
     # footer: "Scan the QR code to provide feedback on this lecture"
 embed-resources: true
+scrollable: true
 ---
 
 ## Module overview
@@ -489,8 +490,8 @@ Now what?
 
 ```{r}
 #| eval: false
+#| code-fold: false
 #| code-line-numbers: 1-6
-
 Call:
 lm(formula = child ~ parent, data = Galton)
 
@@ -517,6 +518,7 @@ F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
 
 ```{r}
 #| eval: false
+#| code-fold: false
 #| code-line-numbers: 8-11
 
 Call:
@@ -548,6 +550,7 @@ F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
 
 ```{r}
 #| eval: false
+#| code-fold: false
 #| code-line-numbers: 8-11
 
 Call:
@@ -577,6 +580,7 @@ F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
 
 ```{r}
 #| eval: false
+#| code-fold: false
 #| code-line-numbers: 10-11
 
 Call:
@@ -609,6 +613,7 @@ $$ \widehat{child} = 23.94153 + 0.64629 \cdot parent$$
 
 ```{r}
 #| eval: false
+#| code-fold: false
 #| code-line-numbers: 15-15
 
 Call:
@@ -638,6 +643,7 @@ F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
 
 ```{r}
 #| eval: false
+#| code-fold: false
 #| code-line-numbers: 16-16
 
 Call:
@@ -668,6 +674,7 @@ F-statistic: 246.8 on 1 and 926 DF,  p-value: < 2.2e-16
 
 ```{r}
 #| eval: false
+#| code-fold: false
 #| code-line-numbers: 17-17
 
 Call:
