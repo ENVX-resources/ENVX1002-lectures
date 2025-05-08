@@ -6,6 +6,7 @@ format:
     logo: ../muddyqr.png
     # footer: "Scan the QR code to provide feedback on this lecture"
 embed-resources: true
+scrollable: true
 ---
 ## Module overview
 
@@ -549,7 +550,7 @@ poly10_fit <- lm(response ~ poly(predictor, 10), asymptotic)
 ```
 
 ```{r}
-#| code-fold: true
+#| echo: false
 ggplot(asymptotic, aes(x = predictor, y = response)) +
   geom_point() +
   labs(x = "Predictor", y = "Response") +
@@ -921,7 +922,7 @@ summary(fit_logistic)
 ```
 
 - The model is significant since the p-value is less than 0.05 for all parameters.
-- If the model visually fits well and relationship has reasoning but not all parameters are significant -- that is fine.
+- If the model visually fits well and relationship has reasoning (parameter significance not always important).
 - The parameterised model is:
 
 $$ y = \frac{310}{1+e^{\frac{4.93-x}{1.35}}} $$

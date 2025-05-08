@@ -211,7 +211,7 @@ $$ Y_i = \beta_0 + \beta_1 x + \epsilon $$
 All but the independence assumption can be assessed using diagnostic plots. R will not warn you if the assumptions are not met. It is up to you to check them!
 :::
 
-### How do we get the residuals?
+## How do we get the residuals?
 
 - Fit the model!
 - Residuals need to be calculated from the model, not from the raw data.
@@ -889,9 +889,9 @@ plot(fit)
 summary(fit)
 ```
 
-- `Length` is a statistically significant predictor of `log(Weight)` (p < .001).
+- `Length` is a statistically significant predictor of `log(Weight)` (p < .001)
 - The model explains a statistically significant and large proportion (96%) of variance (R^2^ = 0.96, F(1, 23) = 553, p < .001)
-- For every 1 cm increase in `Length`, `log(Weight)` increases by 0.0354, `Weight` increases by $e^{0.0354}$ and `Weight` increases by *approximately* 3.54%
+- For every 1 cm increase in `Length`, `log(Weight)` increases by a value of 0.0354, `Weight` increases by $e^{0.0354}$ **times** and `Weight` increases by *approximately* 3.54%
 
 ## Percent change with $ln$ transformation
 
