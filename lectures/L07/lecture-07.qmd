@@ -1,0 +1,1003 @@
+---
+title: Topic 7 -- Non-parametric tests
+author: Floris van Ogtrop
+format: soles-revealjs
+embed-resources: true
+---
+
+```{r setup}
+#| include: false
+library(tidyverse)
+
+library(cowplot)
+library(gt)
+theme_set(theme_cowplot())
+```
+
+
+# Evaluation task (Week 8)
+
+- Testing materials in weeks 2 - 6 (No non-parametric test).
+- **No GenAI**: we will check.
+- Practice before the test using the practice test found on Canvas
+
+# Learning Outcomes
+
+## At the end of this week, you will be able to:
+
+1. **Explain the rationale** for using non-parametric tests, including when to choose them over parametric tests due to violations of assumptions (e.g., non-normality, ordinal data).
+2. Differentiate between:
+   - The **Wilcoxon signed-rank tests** (for one-sample or paired data),
+   - The **Mann-Whitney U test** (AKA Wilcoxon rank-sum test) for two independent samples, and
+   - The **Chi-squared test**, including tests for proportions (goodness-of-fit) and association (independence).
+3. **Apply and interpret** Wilcoxon and Mann-Whitney tests in R, for one-sample paired samples or two independent samples
+4. **Conduct and interpret** Chi-squared tests in R, including:
+   - Chi-squared test of independence to examine association between two categorical variables
+   - Chi-squared goodness-of-fit test to compare observed proportions with expected proportions
+   - Check assumptions for the Chi-squared test (e.g., expected cell counts) and understand potential limitations and alternatives (e.g., Fisher’s Exact Test).
+5. **Present and visualise results** from all non-parametric tests using RStudio output, with appropriate interpretation and reporting.
+
+# Parametric vs non-parametric methods
+
+## Overview
+
+### Parametric methods
+
+Depends on the assumption that the data is normally distributed with mean $\mu$ and standard deviation $\sigma$ ,e.g. $t$-test, ANOVA, linear regression.
+
+::: fragment
+### Non-parametric methods
+
+Do **not** make *any* assumptions about the distribution of the data. 
+
+**Uses other properties** e.g. ranking of the data, e.g. Wilcoxon signed-rank test, Mann-Whitney U test, Kruskal-Wallis test.
+:::
+
+## Rank-based tests
+
+### General idea
+
+- Rank the data e.g., from smallest to largest.
+- Replace the data with their ranks.
+- Perform the test on the ranks.
+
+## It's *kind of* like a transformation...
+
+. . .
+
+For the **Wilcoxon signed-rank test** suppose we have the following data:
+
+| sample: | [12]{style="color:black"} | 10 | 8 | 6 | 4 | 10 | 8 | 6 | 10 |
+|--------|----|----|----|---|---|---|---|----|----|
+
+. . .
+
+We arrange the data in ascending order (*similar values are given the same colour for illustration*):
+
+| ordered: | [4]{style="color:blue"} | [6]{style="color:orange"} | [6]{style="color:orange"} | [8]{style="color:green"} | [8]{style="color:green"} | [10]{style="color:red"} | [10]{style="color:red"} | [10]{style="color:red"} | [12]{style="color:violet"} |
+|--------|----|----|----|---|---|---|---|----|----|
+
+. . .
+
+Then, we rank the data:
+
+| ordered ranks: | [1]{style="color:blue"} | [2]{style="color:orange"} | [3]{style="color:orange"} | [4]{style="color:green"} | [5]{style="color:green"} | [6]{style="color:red"} | [7]{style="color:red"} | [8]{style="color:red"} | [9]{style="color:violet"} |
+|--------|----|----|----|---|---|---|---|----|----|
+
+. . .
+
+Finally, ranks that are *tied* are given the average rank:
+
+| final rank: | [1]{style="color:blue"} | [2.5]{style="color:orange"} | [2.5]{style="color:orange"} | [4.5]{style="color:green"} | [4.5]{style="color:green"} | [7]{style="color:red"} | [7]{style="color:red"} | [7]{style="color:red"} | [9]{style="color:violet"} |
+|--------|----|----|----|---|---|---|---|----|----|
+
+**These ranks are then used to perform the test, instead of the original data.**
+
+
+# Use case
+
+## Two-sample $t$-test
+
+Consider two sets of **identical** data that compares between a group **A** and **B**, where one contains an outlier.
+
+:::: columns
+::: column
+**Data:**
+
+```{r}
+#| code-fold: true
+
+library(tidyverse)
+
+# for display only
+data.frame(A = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+           B = c(7, 8, 9, 10, 11, 12, 13, 14, 15, 16)) %>%
+  gt()
+```
+:::
+
+::: column
+**Data *with* outlier:**
+
+```{r}
+#| code-fold: true
+
+data.frame(A = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+           B = c(7, 8, 9, 10, 11, 12, 13, 14, 15, 200)) %>%
+  gt()
+```
+:::
+::::
+
+## Should there be a difference?
+
+Without the outlier, the data would have been normally distributed.
+
+```{r}
+#| code-fold: true
+
+df <- data.frame(
+  group = rep(c("A", "B"), each = 10),
+  response = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+            7, 8, 9, 10, 11, 12, 13, 14, 15, 16))
+
+df_with_outlier <- data.frame(
+  group = rep(c("A", "B"), each = 10),
+  response = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+            7, 8, 9, 10, 11, 12, 13, 14, 15, 200))
+
+ggplot(df, aes(x = response, y = group)) +
+  geom_boxplot()
+```
+
+## Outlier
+
+The same data, but with a single outlier in group **B**:
+
+```{r}
+#| code-fold: true
+
+ggplot(df_with_outlier, aes(x = response, y = group)) +
+  geom_boxplot()
+```
+
+## Analysis
+
+If we perform $t$-tests on both data sets, we get the following results:
+
+:::: columns
+::: column
+```{r}
+fit <- t.test(response ~ group, data = df)
+fit
+```
+
+Results indicate that there is a statistically significant difference between the two groups (t~18~ = -4.4, p < 0.05).
+:::
+::: column
+```{r}
+fit2 <- t.test(response ~ group, data = df_with_outlier)
+fit2
+
+```
+
+Results indicate that the two groups are **not** significantly different (t~18~ = -2.1, p = `{r} round(fit2$p.value, 2)`).
+:::
+::::
+
+. . .
+
+The real difference between the two groups is *obscured* by the outlier. **Type II error** (false negative)?
+
+
+# Non-parametric alternatives
+
+## When to use
+
+1. If assumptions are met (normality, homogeneity of variance), use parametric tests as they are more powerful and efficient than non-parametric tests.
+2. If the normality assumption is violated, transform the data and check for normality again (*optional*).
+3. **Non-parametric tests are a good way to deal with circumstances in which parametric tests perform "poorly".**
+
+## What to use
+
+
+```{r}
+#| code-fold: true
+library(tidyverse)
+library(gt)
+
+df <- tibble(
+  parametric = c("One-sample t-test", "Two-sample t-test", "ANOVA", "Pearson's correlation"),
+  non_parametric = c("Wilcoxon signed-rank test", "Mann-Whitney U test", "Kruskal-Wallis test", "Spearman's rank correlation"))
+
+gt(df) %>%
+  cols_label(parametric = "Parametric tests", non_parametric = "Non-parametric counterpart") %>%
+  tab_options(
+    table.font.size = px(24),
+    column_labels.font.weight = "bold")
+
+```
+
+All of the non-parametric techniques above convert the data into **ranks** before performing the test.
+
+. . .
+
+::: callout-note
+We will focus on the **Wilcoxon signed-rank test** and the **Mann-Whitney U test**.
+:::
+
+
+# Wilcoxon signed-rank test
+
+Altenrative to the one-sample $t$-test and the paired $t$-test.
+
+## Overview
+
+The Wilcoxon signed-rank test is a non-parametric test used to compare two related samples, matched pairs, or repeated measures on a single sample.
+
+. . .
+
+Is an alternative to:
+
+- One-sample $t$-test
+- Paired $t$-test
+
+## Assumptions
+
+. . .
+
+- Data comes from the same population
+- Data are randomly and independently sampled
+
+. . .
+
+Basically, used in same situations as the one-sample or paired $t$-test, but when the data is not normally distributed but **still symmetric**.
+
+## Calculating ranks
+
+If comparing two groups, the ranks are calculated as follows:
+
+::: incremental
+1. Calculate the difference $D$ between the two groups.
+2. Rank the absolute values of the differences in ascending order.
+3. Assign the sign of the difference to the rank.
+4. Sum the ranks for each group -- **zero differences are ignored**.
+:::
+
+. . .
+
+::: callout-note
+See Slide 5 to recall how ranks are calculated, but we will show another example in the next slide.
+:::
+
+
+# Example: Paired data
+
+## Weight gain
+
+We measured weight gain in chickens before and after a diet.
+
+```{r}
+#| code-fold: true
+
+weight <- c(2.5, 3.5, 3.5, 3.4)
+weight_after <- c(4, 5, 5, 4.6)
+
+df <- tibble(
+  chicken = 1:4,
+  weight = weight,
+  weight_after = weight_after)
+
+gt(df) %>%
+  tab_options(
+    table.font.size = px(24),
+    column_labels.font.weight = "bold")
+```
+
+### Is there a significant increase in weight gain after the diet?
+
+## Rank values
+
+```{r}
+#| code-fold: true
+
+df %>%
+  mutate(D = weight_after - weight) %>%
+  mutate(Sign = ifelse(D > 0, "+", "-")) %>%
+  mutate(rank = rank(abs(D))) %>%
+  mutate("Signed rank" = ifelse(D > 0, rank, -rank)) %>%
+  gt() %>%
+  tab_options(
+    table.font.size = px(24),
+    column_labels.font.weight = "bold")
+```
+
+::: callout-note
+The order of the ranks is based on the **absolute** values of the differences; the signs are assigned afterward.
+:::
+
+## Hypothesis
+
+> Is there a significant increase in weight gain after the diet?
+
+$$H_0: \mu_{\text{before}} = \mu_{\text{after}}$$
+$$H_1: \mu_{\text{before}} < \mu_{\text{after}}$$
+
+. . .
+
+In words: 
+
+- $H_0$: There is no difference in weight gain before and after the diet.
+- $H_1$: There is an increase in weight gain after the diet.
+
+---
+
+Alternatively, since the data is paired, we may also consider hypotheses based on the differences between the two groups:
+
+$$H_0: \mu_D = 0$$
+$$H_1: \mu_D > 0$$
+
+where $D$ is the difference between the two groups.
+
+## Assumptions
+
+```{r}
+#| code-fold: true
+
+p1 <- ggplot(df, aes(x = weight_after - weight)) +
+  geom_histogram(bins = 10)
+p2 <- ggplot(df, aes(sample = weight_after - weight)) +
+  stat_qq() +
+  stat_qq_line()
+p3 <- ggplot(df, aes(x = "", y = weight_after - weight)) +
+  geom_boxplot()
+
+library(patchwork)
+p1 + p2 + p3
+```
+
+With so few data points, we may want to use a formal test to check for normality.
+
+## Assumptions
+
+```{r}
+#| code-fold: false
+
+shapiro.test(df$weight_after - df$weight)
+```
+
+Results indicate that the data significantly deviates from normality (W = 0.63, p < 0.05). We will use the Wilcoxon signed-rank test.
+
+## Performing the test
+
+### In R
+
+```{r}
+#| code-fold: false
+
+wilcox.test(x = df$weight_after, y = df$weight,  # data must be x - y
+  alternative = "greater",  # because we are testing for an increase
+  paired = TRUE)            # because the data is paired
+```
+
+where `V` is the sum of the signed ranks.
+
+::: fragment
+The results indicate that there is a **significant increase in weight gain** after the diet (V = 10, p < 0.05). 
+:::
+
+
+# Example: One-sample data
+
+## Beetle consumption in lizards
+
+Researchers investigated differences in beetle
+consumption between two size classes of eastern horned lizard (*Phrynosoma
+douglassi brevirostre*) 
+
+- **Larger class**: adult females.
+- **Smaller class**: adult males, yearling females.
+
+. . .
+
+**Focusing on just the smaller size class** (for now) -- it was hypothesised that this size class would eat a minimum of 100 beetles per day.
+
+## Hypothesis
+
+Does the average smaller size class lizard eat about 100 beetles per day?
+
+$$H_0: \mu = 100$$
+$$H_1: \mu \neq 100$$
+
+### Dataset [Download](data/beetle.csv)
+
+```{r}
+beetle <- read_csv("data/beetle.csv")
+glimpse(beetle)
+```
+
+## First, check assumptions
+
+```{r}
+#| code-fold: true
+
+p1 <- ggplot(beetle, aes(x = BEETLES)) +
+  geom_histogram(bins = 10)
+p2 <- ggplot(beetle, aes(sample = BEETLES)) +
+  stat_qq() +
+  stat_qq_line()
+p3 <- ggplot(beetle, aes(x = "", y = BEETLES)) +
+  geom_boxplot()
+
+library(patchwork)
+p1 + p2 + p3
+```
+
+Is it normally distributed?
+
+## Run the test
+
+The Wilcoxon signed-rank test for one sample can be performed as follows:
+
+```{r}
+#| code-fold: false
+
+beetle %>%
+  filter(SIZE == "small") %>%  # filter only the smaller size class
+  pull(BEETLES) %>%            # convert to a vector using pull()
+  wilcox.test(mu = 100)        # wilcox.text(x, mu)
+              
+```
+
+. . .
+
+Results indicate that the average number of beetles consumed by the smaller size class lizard is **not significantly different from 100** (V = 92, p = 0.1).
+
+. . .
+
+::: callout-important
+We are unable to make a conclusion about effect size from non-parametric tests as the information is lost when the data is transformed into ranks.
+:::
+
+
+# Mann-Whitney U test
+
+Alternative to the **two-sample $t$-test**. 
+
+*Also called the Mann–Whitney–Wilcoxon (MWW/MWU), **Wilcoxon rank-sum test (what R calls it)**, or Wilcoxon–Mann–Whitney test*.
+
+## About
+
+- A **non-parametric test** used to compare two independent samples similar to the two-sample $t$-test.
+- Like the Wilcoxon signed-rank test, it uses **ranks** to perform the test and does not assume normality. 
+- It is also more *relaxed* in that it does not assume symmetry in the distribution of the data -- instead, it assumes that the two groups have the same shape/distribution.
+
+
+# Example: Back to the lizards
+
+## Beetle consumption in lizards
+
+Researchers investigated differences in beetle consumption between two size classes of eastern horned lizard (*Phrynosoma douglassi brevirostre*) 
+
+- **Larger class**: adult females.
+- **Smaller class**: adult males, yearling females.
+
+We will now compare the number of beetles consumed by the **larger** and **smaller** size classes of lizards.
+
+## Hypotheses
+
+> Are the number of beetles consumed by the larger and smaller size classes of lizards different?
+
+Loosely speaking, because we are not assuming symmetry, the most appropriate summary statistic to use when comparing the two groups is the **median**.
+
+$$H_0: median_{\text{larger}} = median_{\text{smaller}}$$
+$$H_1: median_{\text{larger}} \neq median_{\text{smaller}}$$
+
+More accurately, we are testing for a difference in the *distribution* of the two groups.
+
+## Assumptions
+
+```{r}
+#| code-fold: true
+
+p1 <- ggplot(beetle, aes(x = BEETLES)) +
+  geom_histogram(bins = 14, position = "dodge") +
+  facet_wrap(~SIZE, ncol = 1)
+p2 <- ggplot(beetle, aes(x = SIZE, y = BEETLES)) +
+  geom_boxplot()
+p3 <- ggplot(beetle, aes(sample = BEETLES)) +
+  stat_qq() +
+  stat_qq_line() +
+  facet_wrap(~SIZE, ncol = 1)
+
+library(patchwork)
+p1 + p2 + p3
+```
+
+Data does not meet the normality assumption.
+
+## Test statistic
+
+The same function `wilcox.test()` can be used to perform the Mann-Whitney U test.
+
+```{r}
+#| code-fold: false
+
+wilcox.test(BEETLES ~ SIZE, data = beetle)
+```
+
+- `W` is the sum of the ranks of the *smaller* group.
+- The "true location shift" is the median of the larger group minus the median of the smaller group.
+
+::: fragment
+The results indicate that the number of beetles consumed by the larger and smaller size classes of lizards is **not significantly different** (W = 329, p = 0.07).
+:::
+
+
+# What about transformations?
+
+## Transform, or non-parametric?
+
+::: incremental
+- As usual, there is ongoing debate on whether to transform the data or use non-parametric tests, but the general consensus is to always prefer parametric tests and transformations when assumptions are met using those techniques.
+  - e.g. [Parametric analysis of transformed data is more powerful than non-parametric analysis](https://doi.org/10.1177/001316449105100402)
+- Some argue that non-parametric tests **must** be decided during experimental design and not when the data fails to meet the normality assumption: **as the decision to rank data has implications on the interpretation of the results.**
+  - e.g. [Graphpad Advice: Don't automate the decision to use a nonparametric test](https://www.graphpad.com/guides/prism/latest/statistics/using_a_normality_test_to_choo.htm)
+- The conventional wisdom is to **transform the data** and check for normality if the assumption is not met. If the data is *still* not normal, then use non-parametric tests (after considering the implications on interpretation).
+  - Or, use bootstrapping (next week!).
+
+:::
+
+## Summary
+
+- **Wilcoxon signed-rank test**: alternative to the one-sample $t$-test and paired $t$-test.
+- **Mann-Whitney U test**: alternative to the two-sample $t$-test.
+- **Advantages**: **Robust** to outliers, skewness, and non-normality.
+- **Drawbacks**: Less powerful than parametric tests when assumptions are met, provide no insight into the size of the effect.
+
+
+# Questions?
+
+# Recap
+
+## Parametric and non-parametric alternatives
+
+::: incremental
+- So far, **all** of our techniques have been aimed at comparing **means/medians** of continuous variables.
+- The *assumption of normality* **underpins** these techniques -- if the data is not normally distributed, we have alternatives like *transforming* the data or using *non-parametric tests*.
+- **Does this apply to all data?**
+:::
+
+## A rational assumption?
+
+::: incremental
+- **Are all randomly sampled data normally distributed?**
+- Recall probability distributions (Week 3) -- **normal distribution** is just *one of several* possible distributions of data.
+- It turns out that there are non-parametric techniques that are not just *alternatives* of parametric tests, but **better suited** for certain types of data.
+:::
+
+
+# Categorical data
+Some data are not measured on a continuous scale, but rather as **categories**. 
+
+## What are categorical variables?
+
+Consider the following questions:
+
+::: fragment
+
+> A biologist claims that when sampling the Australian Botanical Gardens for butterflies, the ratio of the most dominant colours (red, blue, green, and yellow) is equal. How would you determine if the biologist's claim is true?
+
+> A study was conducted on a population of deer to see if there is a relationship between their age group (young, adult, old) and their preferred type of vegetation (grass, leaves, bark). Is age group of the deer independent of their vegetation preference?
+:::
+
+::: fragment
+How would you **measure** these variables, and what sort of summary statistics can you use?
+
+:::
+
+
+## Visualising categorical variables
+
+```{r}
+#| code-fold: true
+
+library(ggplot2)
+# generate some butterfly data
+butterfly_data <- data.frame(
+  color = c("red", "blue", "green", "yellow"),
+  count = c(48, 62, 56, 34)
+)
+
+# plot the data
+ggplot(butterfly_data, aes(x = color, y = count)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Butterfly colour distribution")
+
+```
+
+We can only **count** the number of times a particular category occurs, or the **proportion** of the total that each category represents.
+
+## Types of categorical data
+
+- Rather than measuring a continuous variable, we are interested in **counting** the number of times a particular category occurs, or the **proportion** of the total that each category represents.
+- These are known as **categorical variables**.
+- Generally 3 types of categorical data:
+  - **Nominal**: Categories have no inherent order (e.g. colours, breeds of dogs).
+  - **Ordinal**: Categories have an inherent order (e.g. Likert scales, grades).
+  - **Binary**: Only two mutually exclusive categories (e.g rain or no rain).
+  
+  
+# Chi-squared distribution
+
+## The chi-squared test
+
+- The chi-squared test is perhaps one of the most prominent examples of non-parametric tests.
+- Developed by Karl Pearson in 1900, pronounced "ki" as in "kite", uses the Greek letter $\chi$.
+- Actually derived from the normal distribution: a chi-squared distribution is the sum of squared standard normal deviates -- essentially a **folded-over** and **stretched out** normal.
+
+## Chi-squared distribution vs normal distribution
+
+```{r}
+#| code-fold: true
+
+curve(dchisq(x, df = 1), from = 0, to = 9, xlim = c(-10, 10), col = "blue", lwd = 2, ylab = "Density", xlab = "Value", main = "Chi-squared vs. normal")
+curve(dnorm(x, mean = 0, sd = 1), from = -9, to = 9, col = "red", lwd = 2, add = TRUE)
+abline(v = 0, col = "black", lty = 2)
+legend("topright", legend = c("Chi-squared with 1 df", "Normal"), col = c("blue", "red"), lwd = 2)
+
+```
+
+How is the chi-squared distribution used in hypothesis testing?
+
+## Butterflies data
+
+> A biologist claims that when sampling the Australian Botanical Gardens for butterflies, the ratio of the most dominant colours (red, blue, green, and yellow) is equal. How would you determine if the biologist's claim is true?
+
+Suppose we have the following data on the colours of butterflies after randomly sampling 200 of them:
+
+```{r}
+#| code-fold: true
+butterfly_data %>%
+  knitr::kable()
+```
+
+## Testing the claim
+
+- If the biologist's claim is true, we would expect the number of butterflies of each colour to be equal.
+- If 200 butterflies were sampled, we would expect 50 of each colour, as the expected frequency of each colour is 200 $\times$ 0.25 = 50.
+
+
+Therefore:
+
+```{r}
+#| code-fold: true
+df <- butterfly_data %>%
+  mutate(expected = 200 * 0.25)
+knitr::kable(df)
+```
+
+## Test statistic
+
+The **test statistic** for the chi-squared test is calculated as:
+
+$$ \chi^2 = \sum \frac{(O - E)^2}{E} $$
+
+where $O$ is the observed frequency and $E$ is the expected frequency.
+
+. . .
+
+So for the butterfly data:
+
+```{r}
+#| code-fold: false
+chi_squared <- sum((df$count - df$expected)^2 / df$expected)
+chi_squared
+```
+
+This is the test statistic for one sample. How do we interpret this value?
+
+## Simulate the null distribution
+
+Under the null hypothesis, the observed frequencies are equal to the expected frequencies i.e. the biologist's claim is true.
+
+Suppose we repeat the sampling process many times, **assuming the null hypothesis is true**, each time calculating the test statistic. What would the distribution of test statistics look like?
+
+
+```{r, fig.width=16}
+#| code-fold: true
+
+# simulate sampling of 200 butterflies 1000 times under the null hypothesis and plot the distribution of chi-squared values
+set.seed(123)
+cols <- c("red", "blue", "green", "yellow")
+B <- 3000
+test_statistic <- vector(mode = "numeric", length = B)
+for (i in 1:B) {
+  sim <- sample(
+    x = cols, size = 200, replace = TRUE,
+    prob = c(0.25, 0.25, 0.25, 0.25)
+  )
+  sim_y <- table(sim)
+  test_statistic[i] <- sum((sim_y - 50)^2 / 50)
+}
+
+p1 <-
+  ggplot(data.frame(test_statistic), aes(x = test_statistic)) +
+  geom_histogram(aes(y = ..density..), bins = 20, fill = "blue", colour = "black", alpha = 0.3) +
+  ylim(0, 0.3) +
+  labs(title = "Simulated distribution of chi-squared values under the null hypothesis") +
+  xlab("Chi-squared value") +
+  ylab("Frequency")
+p1
+```
+
+## What does our test statistic tell us?
+
+::: fragment
+```{r}
+#| code-fold: true
+p1 +
+  geom_vline(xintercept = chi_squared, color = "red", size = 1) +
+  # label the line
+  annotate("text", x = chi_squared + 1.5, y = 0.25, label = "Observed value", color = "red", size = 5)
+```
+
+```{r}
+mean(test_statistic >= chi_squared)
+```
+
+Comparing our test statistic to the simulated distribution, we can see that the 0.03% of the simulated values are greater than our test statistic. **What does this tell us?**
+:::
+
+## A $\chi^2$ test
+
+A chi-squared distribution allows us to perform the same hypothesis test without the need for simulation.
+
+. . .
+
+```{r}
+#| code-fold: true
+
+ggplot(data.frame(test_statistic), aes(x = test_statistic)) +
+  geom_histogram(aes(y = ..density..), bins = 20, fill = "blue", colour = "black", alpha = 0.3) +
+  ylim(0, 0.3) +
+  stat_function(fun = dchisq, args = list(df = 3), color = "red", size = 1) +
+  labs(title = "Simulated distribution of chi-squared values under the null hypothesis") +
+  xlab("Chi-squared value") +
+  ylab("Frequency")
+```
+
+## Conclusion?
+
+The results of the simulation suggest that the observed frequencies of butterfly colours are **significantly different** from the expected frequencies, and we can **reject** the biologist's claim.
+
+## More on the chi-squared distribution
+
+- The chi-squared distribution is **non-symmetric** and **right-skewed**.
+- The shape of the distribution is determined by the **degrees of freedom**, calculated as the number of categories minus 1.
+- As the degrees of freedom increase, the chi-squared distribution approaches a normal distribution due to the **central limit theorem**.
+
+---
+
+
+```{r}
+#| code-fold: true
+
+par(mfrow = c(2, 2))
+curve(dchisq(x, df = 2), from = 0, to = qchisq(0.995, df = 2), col = "blue", lwd = 2, ylab = "Density", xlab = "Value", main = "Chi-squared with 2 df")
+curve(dchisq(x, df = 10), from = 0, to = qchisq(0.995, df = 10), col = "blue", lwd = 2, ylab = "Density", xlab = "Value", main = "Chi-squared with 10 df")
+curve(dchisq(x, df = 50), from = 0, to = qchisq(0.995, df = 50), col = "blue", lwd = 2, ylab = "Density", xlab = "Value", main = "Chi-squared with 50 df")
+curve(dchisq(x, df = 100), from = 0, to = qchisq(0.995, df = 100), col = "blue", lwd = 2, ylab = "Density", xlab = "Value", main = "Chi-squared with 100 df")
+
+```
+
+# The Chi-squared test
+
+## Definitions
+
+- **Chi-squared distribution**: a distribution derived from the normal distribution
+that allows us to determine whether the observed frequencies of a categorical variable differ from the expected frequencies.
+- **Contingency table**: a table that displays the frequency of observations for two or more categorical variables.
+- **Expected frequency**: the frequency that we would expect to observe if the null hypothesis is true.
+- **Observed frequency**: the frequency that we actually observe.
+- **Test statistic**: a **measure** of how much the observed frequencies differ from the expected frequencies, standardised by the expected frequencies.
+
+
+## Types of chi-squared tests
+
+- **Goodness-of-fit test**: used to determine whether the observed frequencies of a categorical variable differ from the expected frequencies.
+- **Test of independence**: used to determine whether there is a relationship between two or more categorical variables.
+- **Test of homogeneity**: used to determine whether the distribution of a categorical variable is the same across different groups.
+
+## Assumptions
+
+- The chi-squared test is a **non-parametric** test, so it does not rely on the assumption of normality. However, it does have some assumptions:
+  - **Independence**: the observations are independent.
+  - **Sample size**: the expected frequency of each category is at least 1, and no more than 20% of the expected frequencies are less than 5.
+  
+The sample size assumption ensures that the chi-squared distribution is a good approximation of the normal distribution.
+
+
+# Example: Goodness of fit
+
+> A biologist claims that when sampling the Australian Botanical Gardens for butterflies, the ratio of the most dominant colours (red, blue, green, and yellow) is equal. How would you determine if the biologist's claim is true?
+
+## Hypothesis
+
+- **Null hypothesis**: the observed proportion of butterfly colours are equal to the expected proportions of 0.25 each.
+- **Alternative hypothesis**: the observed proportions are not equal.
+
+$$ H_0: p_1 = p_2 = p_3 = p_4 = 0.25 $$
+$$ H_1: \text{at least one } p_i \neq 0.25 $$
+
+## Test statistic and check assumptions (in R)
+
+```{r}
+#| code-fold: false
+
+# chi-squared test for goodness of fit
+fit <- chisq.test(df$count, p = rep(0.25, 4))
+```
+
+**Assumptions**
+
+By performing the chi-squared test, we can check the assumptions of the test by looking at the calculated frequences in the output:
+
+```{r}
+fit$observed
+```
+
+**Test statistic**
+
+```{r}
+fit
+```
+
+## Conclusion
+
+The results of the chi-squared test suggest that the observed frequencies of butterfly colours are **significantly different** from the expected frequencies ($\chi^2 = 8.8$, $df = 3$, $p < 0.001$). We can reject the null hypothesis and conclude that the biologist's claim is not true.
+
+::: callout-note
+If you're interested, compare this result to the simulation we performed earlier.
+:::
+
+
+# Example: Test of independence
+
+> A study was conducted on a population of deer to see if there is a relationship between their age group (young, adult, old) and their preferred type of vegetation (grass, leaves, bark). Is age group of the deer independent of their vegetation preference?
+
+## Hypothesis
+
+- **Null hypothesis**: the age group of the deer is independent of their vegetation preference.
+- **Alternative hypothesis**: the age group of the deer is not independent of their vegetation preference.
+
+$$ H_0: \text{Age group is independent of vegetation preference} $$
+
+> No relationship between the two variables
+
+$$ H_1: \text{Age group is not independent of vegetation preference} $$
+
+> There is a relationship between the two variables
+
+## Data
+
+Suppose we have the following data on the age group and vegetation preference of 100 deer:
+
+```{r}
+#| code-fold: true
+
+# create contingency table as matrix with labels
+deer_data <- matrix(c(20, 30, 10, 10, 10, 20, 10, 10, 10), nrow = 3, byrow = TRUE)
+rownames(deer_data) <- c("young", "adult", "old")
+colnames(deer_data) <- c("grass", "leaves", "bark")
+deer_data
+
+```
+
+## Test statistic and check assumptions (in R)
+
+**Assumptions** are met as we can see the contingency table in the previous slide.
+
+### Test statistic
+<br>
+
+```{r}
+#| code-fold: false
+
+# chi-squared test for independence
+fit <- chisq.test(deer_data) # exclude the age group column
+fit
+```
+
+We reject the null hypothesis since the p-value is less than 0.05.
+
+## Conclusion
+
+The results of the chi-squared test suggest that the age group of the deer is **not independent** of their vegetation preference ($\chi^2 = 12.4$, $df = 4$, $p < 0.001$). We can reject the null hypothesis and conclude that there is a relationship between the age group of the deer and their vegetation preference.
+
+# How do we visualise the differences in a contingency table?
+
+## Mosaic plots
+
+```{r}
+#| code-fold: true
+
+mosaicplot(deer_data,
+  shade = TRUE,
+  main = "Deer age group and vegetation preference"
+)
+```
+
+## Interpretation
+
+- The area of each rectangle is proportional to the number of observations in that category.
+- The **shading** of each rectangle indicates the **expected** frequency of observations in that category.
+- The **darker** the shading, the **greater** the difference between the observed and expected frequencies.
+- Dotted lines indicate **independence** between the two variables.
+- Solid lines indicate **dependence** between the two variables.
+
+## Association plots
+
+```{r}
+#| code-fold: true
+
+library(vcd)
+assoc(deer_data, shade = TRUE, main = "Deer age group and vegetation preference")
+
+```
+
+## Interpretation
+
+- Size of cells indicate the number of observations in that category.
+- The shadings are made based on the residuals of the chi-squared test (see legend), highlighting which cells contribute most to the chi-squared statistic.
+- Colour of the shadings indicate whether they are more or less frequent than expected (again, see legend).
+
+# What about the test of homogeneity?
+
+## Test of homogeneity vs. test of independence
+
+- The **test of homogeneity** is similar to the **test of independence**, but is used when we have **two or more groups** and we want to determine whether the distribution of a categorical variable is the same across different groups.
+- In general, this means that the null hypothesis is stated differently, and the test statistic is calculated in a slightly different way with different degrees of freedom.
+- Homogeneity
+  - $H_0$: The distribution of the categorical variable is the same across different groups.
+  - $H_1$: The distribution of the categorical variable is not the same across different groups.
+- Independence
+  - $H_0$: The variables of interest are independent.
+  - $H_1$: The variables of interest are not independent.
+  
+## Differences are subtle
+
+- In the test of independence, observational units are collected at random from **a single population** and two (or more) categorical variables are observed for each unit.
+- For the deer example, the experimental design would involve randomly sampling deer and recording their age group and vegetation preference.
+
+> Is age group independent of vegetation preference?
+
+- In the test of homogeneity, the data are collected by randomly sampling from **two or more subgroups**, and the same categorical variable is observed for each unit.
+- For the deer example, the experimental design would have to be modified to sample the vegetation preference of deer from young, adult, and old populations.
+
+> Is the distribution of vegetation preference the same if we compare young, adult, and old deer?
+
+
+# Summary
+
+## When to use a chi-squared test?
+
+- The chi-squared test is not an "alternative" to a parametric test, but is **better suited** for certain types of data and requires delibarate experimental design that collects data in a certain way.
+- If we have **categorical data** and we want to determine whether the observed frequencies differ from the expected frequencies, then we can use a **chi-squared test**.
+
+<!-- ## Willows -->
+
+<!-- The diamond leaf willow (*Salix pulcha*) and the Arctic willow (*Salix arctica*) are both found on rocky outcrops in marshy ground in the Arctic tundra. Does the presence of one species affect the presence of the other? -->
+
+<!-- ::: {layout-ncol=2} -->
+<!-- ![*Salix pulcha*. From Wikipedia.](images/salix_pulcha.jpg){#fig-salix_pulcha} -->
+
+<!-- ![*Salix arcica*. From Wikipedia.](images/salix_arctica.jpg){#fig-salix_arctica} -->
+<!-- ::: -->
+
+
+# Thanks!
+
+This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
+
+<!-- Links -->

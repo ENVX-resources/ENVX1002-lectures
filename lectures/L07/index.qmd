@@ -2,16 +2,9 @@
 title: "Lecture 07"
 ---
 
-### Lecture 07a
-[Full Screen](lecture-07a-non-parametric.qmd) | [PDF]() 
+### Lecture 07
+[Full Screen](lecture-07.qmd) | [PDF]() 
 
 ```{=html}
-<iframe class="slide-deck" src="lecture-07a-non-parametric.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
-```
-
-### Lecture 07b
-[Full Screen](lecture-07b-chisq.qmd) | [PDF]() 
-
-```{=html}
-<iframe class="slide-deck" src="lecture-07b-chisq.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+<iframe class="slide-deck" src="lecture-07.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
 ```

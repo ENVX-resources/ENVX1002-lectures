@@ -1,864 +1,709 @@
 ---
-title: Topic 2 -- Exploratory Data Analysis (EDA)
-author: Dr. Floris van Ogtrop
+title: "Lecture 02: Introduction to statistical programming"
+author: Januar Harianto
+# format: revealjs
+# fontsize: 16px
 format: soles-revealjs
 embed-resources: true
 ---
 
-# Topic 2 - Exploratory Data Analysis
 
-- Summary statistics:
-  - measures of centre;
-  - measures of spread (dispersion).
-
-- Graphical summaries:
-  - bar chart;
-  - histogram;
-  - boxplot.
-  
+# Learning outcomes
 
 
+## After this **week**, you will be able to:
 
+1. Navigate and use the RStudio interface effectively
+2. Execute basic R functions and understand their syntax
+3. Feel confident explaining basic statistical concepts like **samples** and **populations**
+4. Understand and explain measures of **central tendency** (mean, median, mode) clearly and without mathematical jargon
+5. Master different measures of **spread** (range, IQR, variance, standard deviation) through practical examples
+6. Calculate statistical measures using **both R and Excel**
+7. Choose appropriate statistical measures for your biological data and explain your choices
 
-# Learning Outcomes
+## Quick checklist
 
-- At the end of this topic students should able to:
-  - Calculate “by hand” summary statistics for simple datasets; 
-  - Manually draw graphical summaries (boxplots and histograms) for simple datasets; 
-  - Demonstrate proficiency in the use of R and Excel for calculating summary statistics and generating graphical summaries; 
-  - Describe key features of their data using summary statistics and graphical summaries.
+By now you should have...
 
+- [ ] Installed [**R**](https://cran.r-project.org/)
+- [ ] Installed [**RStudio**](https://posit.co/download/rstudio-desktop/)
+- [ ] Created one (or two) documents in [Markdown](https://quarto.org/docs/authoring/markdown-basics.html) using Quarto
 
+# History of statistical programming
 
+## From calculators to computers
 
+::: {layout-ncol=2}
 
-# Types of data
+![1800s: Mechanical calculators. [Source](https://upload.wikimedia.org/wikipedia/commons/5/57/Mechanical_calculators_Keyboards.png)](images/calculator1800s.png){height=400 fig-align="left"}
 
-- Numerical:
-  - Continuous:  yield, weight
-  - Discrete:  weeds per $m^2$
-
-- Categorical:
-  - Binary:  2 mutually exclusive categories 
-  - Ordinal:  categories ranked in order
-  - Nominal:  qualitative data
-
-
-
-
-
-
-# Presentation of data
-
-**Tables:** Experimental data
-
-![](images/L2_irrigation_Table.png)
-
-
-
-
-# Presentation of data
-
-**Tables:** Observational data
-
-![](images/L2_Eastings.png)
-
-
-
-
-
-
-# Population versus Sample
-
-Before we go calculate averages, we need to think about the difference between population and sample
-
-- We take a sample from a larger population
-- What information does the sample give about the population and how reliable is that information?
-
-![bakhtiarzein - https://stock.adobe.com/](images/AdobeStock_166541103.jpeg)
-
-
-
-
-# Descriptive statistics
-
-
-:::: {.columns}
-::: {.column width="50%"}
-- Measures of central tendency
-  - Mean
-  - Median
-  - Mode
-
-- Measures of spread or dispersion
-  - Range
-  - Interquartile range
-  - Standard deviation / Variance
+![1960s: Statistical software BMDP and SPSS (not in image). [Source](https://economicsnetwork.ac.uk/cheer/ch10_3/ch10_3p21.htm)](images/bmdp.gif){height=400}
 
 :::
 
-::: {.column width="50%"}
-```{r}
-library(ggplot2)
-library(tidyverse)
+## Statistical software in the 1970s
 
-# Generate a normal distribution
-normal_dist <- tibble(x = seq(-4, 4, by = 0.01)) %>%
-  mutate(y = dnorm(x))
+::: {layout-ncol=2}
 
-# Plot the distribution
-ggplot(normal_dist, aes(x = x, y = y)) +
-  geom_line() +
-  ggtitle("Standard Normal Distribution") +
-  xlab("Value") +
-  ylab("Density")
-```
+![1970s: SAS (Statistical Analysis System) [Source](https://data-flair.training/blogs/sas-software/)](images/sas-stat.webp){height=300 fig-align="left"}
 
-:::
-::::
-
-
-
-
-
-
-# Motivating example
-
-:::: {.columns}
-::: {.column width="50%"}
-- Sequestered soil carbon is worth $35/tonne if measured (1 Tonne of Carbon = 1 Australian Carbon Credit Unit = $AU35 See [Clean Energy Regulator](https://www.cleanenergyregulator.gov.au))
-- It costs $100 to collect and analyse one soil sample for soil carbon
-- The farmer needs an estimate of carbon stored on the property. 
-- How many samples are needed to give a good estimate of carbon on the property? Is it worth measuring soil carbon for a land holder?
+![1976: Birth of S at Bell Labs. S-PLUS debuts in 1988. [Source](https://solutionmetrics.com.au/splus/)](images/splus.png){height=300}
 
 :::
 
+# The R story
+- Created at University of Auckland, New Zealand in 1993
+- Named after creators (Ross & Robert) -- and inspired by S programming language
+- Developed rapidly in the 2000s
+- Designed specifically for statistical computing and graphics, but now used in many fields
+
+![The R graphical user interface. [Source](https://users.ssc.wisc.edu/~hemken/Rworkshops/interface/RConsole.html)](images/rgui.jpeg){fig-align="left"}
+
+## R in today's world
+- Leading tool in data science and statistics (although Python leads in majority of machine learning workflows)
+- Over 22,000 [packages on CRAN](https://cran.r-project.org/web/packages/index.html) -- extensive statistical capabilities
+- Integration with other modern tools: Python, HTML, Javascript, Excel, AJAX...
+- **Meets modern academic standards of reproducibility and increasingly preferred by statisticians**
+
+![RStudio IDE. Source: Januar Harianto](images/rstudio.png){fig-align="left"}
+
+
+# Getting Started with R
+
+## Your RStudio workspace
+
+![](images/rstudio-interface.png)
+
+**Left**: all input, **Right**: all output
+
+## We will always work in Quarto
+
+- A **Markdown-based** authoring tool
+- Allows you to write **reproducible documents** with code and text
+- Outputs to various formats: HTML, PDF, Word, and more
+- [Quarto gallery](https://quarto.org/docs/gallery/)
+
+## How Quarto works
+
+- Write your content in **Markdown** (left panel)
+- View the output in **Preview** (right panel) 
+- Quick demo (only available in the live lecture)
+
+![](images/quarto-connection.jpeg)
+
+
+
+## Essential Resources
+
+- Read "A brief R guide for surviving ENVX1002" by Dr. Geoffrey Mazue
+  - Available in the Tool Kit section on Canvas
+  - Contains essential R programming tips and best practices for this unit
+- Use the Help panel in RStudio
+
+# Key statistical concepts
+
+## Population vs Sample
+
+::: {.columns}
 ::: {.column width="50%"}
-
-![Source: https://www.energy.nsw.gov.au/business-and-industry/programs-grants-and-schemes/primary-industries-carbon-farming](images/L2_202302-carbon-figure.jpeg)
+![](images/sample.jpeg)\
 :::
-::::
+
+::: {.column width="50%"}
+###
+
+**Population**
+
+- All possible observations
+- Usually too large to measure
+- Example: All trees in a forest
+
+**Sample**
+
+- **Subset of the population**
+- What we *actually* measure
+- Example: 100 trees measured in a forest
+
+**Most (if not all) statistical analyses are based on samples, not populations.**
+:::
+:::
 
 
 
+## Populations and their samples
 
+| Population | Sample |
+|------------|--------|
+| All koalas in Australia | 150 koalas studied in NSW |
+| Every fish in Sydney Harbour | 300 fish caught in specific locations |
+| All soil bacteria in a forest | Bacteria from 50 soil cores |
+| All cookies in a bakery | Tasting 3 cookies to judge quality |
+| All students at the university | The 200 students in this course |
+| Water quality in the entire ocean | Water samples from specific locations |
+| All trees in a national park | 75 trees measured in random plots |
+| All possible blood test results | Blood samples from 100 patients |
 
+*Disclaimer: use of GenAI for content generation in this slide.*
 
-# Motivating example
+## How well does a sample represent the population?
 
-![Google earth image with farm and soil-landscape boundaries](images/L2_Farm.png)
+It depends:
 
+- **Sample size**: Larger samples are more likely to represent the population
+- **Sampling method**: Random samples are more likely to be representative
+- **Population variability**: More variability means larger samples are needed
 
+In reality, we often have to balance these factors due to time, cost, and practical constraints.
 
+## Samples vary
 
+Different samples give different results -- suppose we have a population of **1000 trees** and we randomly sample 6 tree heights. If this is done 3 times, it is likely that the samples will be different.
 
-# Motivating example
-
-- Soil carbon content was measured at 6 points across a farm 
-  - The amount at each location was 48, 56, 90, 78, 86, 271 (t/ha)
-  
-- We will now get into some formulas and calculations ;o)
-
-
-
-
-
-
-# Sigma notation
-
-- $\Sigma$, is the greek capital letter called sigma, refers to the sum
-- It is a convenient way to represent long sums 
-
-$\Sigma_{i=1}^n=x_1+x_2+x_3+...+x_n$
-
-![](images/R_logo.jpg) - `sum(c(48, 56, 78, 86, 90, 271))`
-
-```{r}
-total_c <- sum(c(48, 56, 78, 86, 90, 271))
-print(total_c)
-```
-
-![](images/Excel_logo.jpg) - `=SUM(A1:A6)`
-
-
-
-
-
-
-# Centre: Arithmetic mean
-
-- Population mean $(\mu)$:  sum of all values of a variable divided by the number of objects in the population;
-
-$\mu = \frac{\sum_{i=1}^{N} y_i}{N}$
-
-- Sample mean $(\overline{y})$ is based on a subset of n objects from a population of size $N$ 
-
-$\overline{y} = \frac{\sum_{i=1}^{n} y_i}{n}$
-
-![](images/R_logo.jpg) - `mean(c(48, 56, 78, 86, 90, 271))`
+We have code to demonstrate this but just focus on the results for now:
 
 ```{r}
-mean_c <- mean(c(48, 56, 78, 86, 90, 271))
-print(mean_c)
-```
+#| echo: true
+#| code-fold: true
 
-![](images/Excel_logo.jpg) - `=AVERAGE(A1:A6)`
+set.seed(258) 
+population <- rnorm(1000, mean = 12, sd = 5)
 
-
-
-
-
-
-# Centre: Median
-
-- Median is the middle number of a set of ordered observations
-
-Population median: $M=\left(\frac{N+1}{2}\right)th$ sorted value
-
-Sample median: $\tilde{y}=\left(\frac{n+1}{2}\right)th$ sorted value
-
-
-![](images/R_logo.jpg) - `median(c(48, 56, 78, 86, 90, 271))`
-
-```{r}
-median_c <- median(c(48, 56, 78, 86, 90, 271))
-print(median_c)
-```
-
-![](images/Excel_logo.jpg) - `=MEDIAN(A1:A6)`
-
-
-
-
-
-
-# Centre: Mode
-
-Mode is the most commonly occurring number in a set of observations
-
-
-![](images/R_logo.jpg) - 
-
-```{r}
-mode_function <- function(x) {
-  uniq_x <- unique(x)
-  uniq_x[which.max(tabulate(match(x, uniq_x)))]
+# create samples
+sample1 <- round(sample(population, size = 6), 1)
+sample2 <- round(sample(population, size = 6), 1)
+sample3 <- round(sample(population, size = 6), 1)
+# show samples
+for (i in 1:3) {
+   cat(sprintf("Sample %d: ", i), get(paste0("sample", i)), "\n")
 }
-data_vector <- c(1, 2, 4, 4, 3, 5, 4)
-mode_value <- mode_function(data_vector)
-print(mode_value)
 ```
 
-
-![](images/Excel_logo.jpg) - `=MODE.SNGL(A1:A7)`
-
+Are the samples different? *How* different are they?
 
 
+## Descriptive statistics
+
+We use **descriptive statistics** to summarise and describe data, helping us compare and contrast.
+
+1. **Measures of central tendency** -- describe the "typical" value in a sample
+   - mean, median, mode
+2. **Measures of spread** -- describe how much the data varies
+   - standard deviation, variance (commonly used)
+   - range, quartiles, IQR (for unique cases)
+3. **Measures of uncertainty** -- describe how confident we are in our estimates
+   - standard error 
+   - confidence intervals
+
+
+# Measures of central tendency
+
+
+## Mean -- also known as the *average*
+
+- Add up all your numbers
+- Divide by how many numbers you have
+
+::: {.callout-note}
+## Mathematical notation
+- Population mean: $\mu = \frac{\sum_{i=1}^{N} x_i}{N}$
+- Sample mean: $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$
+
+Where $x_i$ is each individual value, $N$ is population size, and $n$ is sample size.
+:::
+
+
+## Mean in Excel
+
+::: {.columns}
+::: {.column width="40%"}
+Excel offers several ways to calculate the mean:
+
+1. **Using AVERAGE function**
+   ```
+   =AVERAGE(A1:A4)
+   ```
+   - Type `=AVERAGE(`
+   - Select cells with your data
+   - Press Enter
+
+2. **Using AutoCalculate**
+   - Select your data cells
+   - Look at bottom right
+   - Average shown automatically
+:::
+
+::: {.column width="60%"}
+![](images/excel-mean.gif)
+:::
+:::
 
 
 
-# Spread: Range
+## Mean in R
 
-- Difference between largest and smallest observations in a group of data
-- Note that we also refer to spread as measures of dispersion
+I'll show you how to do this in RStudio.
 
-![](images/R_logo.jpg) - `max(c(48, 56, 78, 86, 90, 271)) - min(c(48, 56, 78, 86, 90, 271))`
+### Step 1: Create a vector of values
+
+In R, we store data in **vectors** (lists of values):
 
 ```{r}
-range_c <- max(c(48, 56, 78, 86, 90, 271)) - min(c(48, 56, 78, 86, 90, 271))
-print(range_c)
+#| code-fold: false
+#| echo: true
+# Create a vector of test scores
+scores <- c(80, 85, 90, 95)
+
+# Display the scores
+scores
 ```
 
-![](images/Excel_logo.jpg) - `=MAX(A1:A6) - MAX(A1:A6)`
-
-
-
-
-
-
-# Spread: Inter-quartile range (IQR)
-
-- Median divides dataset into 2, quartile divides it into 4:
-  - 25% observations ≤ 1st quartile (Q1) 
-  - 50% observations ≤ Median (Q2)
-  - 75% observations ≤ 3rd quartile (Q3)
-
-
-Let's take an easy example
-
-1 2 3 4 5 6 7 8 9
-
-What is Q1, Median, Q3?
-
-```{r}
-quantile(c(1,2,3,4,5,6,7,8,9))
-```
-
-
-
-
-
-# Spread: Inter-quartile range (IQR)
-
-- $IQR = Q_3 - Q_1$
-
-![Source: Nicholas (1999)](images/L2_quartiles.png)
-
-
-
-
-
-
-# Spread: Inter-quartile range (IQR)
-
-**Quartiles**
-
-![](images/R_logo.jpg) - `quantile(c(48, 56, 78, 86, 90, 271))`
-
-```{r}
-quant_c <- quantile(c(48, 56, 78, 86, 90, 271))
-print(quant_c)
-```
-
-
-![](images/Excel_logo.jpg) - `=QUARTILE.INC(A1:A6, 1)` - first quartile
-
-
-
-
-
-# Spread: Inter-quartile range (IQR)
-
-**IQR**
-
-![](images/R_logo.jpg) - `IQR(c(48, 56, 78, 86, 90, 271))`
-
-```{r}
-iqr_c <- IQR(c(48, 56, 78, 86, 90, 271))
-print(iqr_c)
-```
-
-
-![](images/Excel_logo.jpg) - `=QUARTILE.INC(A1:A6, 3)-QUARTILE.INC(A1:A6, 1)` - third quartile - first quartile
-
-
-
-
-
-# Spread: Variance
-
-- Describes variability around the arithmetic mean
-
-Population variance: $\sigma^2 = \frac{\sum_{i=1}^{N}(y_i - \mu)^2}{N}$
-
-Sample variance: $s^2 = \frac{\sum_{i=1}^{n}(y_i - \overline{y})^2}{n-1}$
-
-![](images/R_logo.jpg) - `var(c(48, 56, 78, 86, 90, 271))`
-
-```{r}
-var_c <- var(c(48, 56, 78, 86, 90, 271))
-print(var_c)
-```
-
-![](images/Excel_logo.jpg) - `=VAR.S(A1:A6)`
-
-
-
-
-
-
-# Spread: Standard deviation
-
-- Describes variability around the **arithmetic mean**
-  - Variance is in $units^2$ as it is based on squared deviations from the mean
-  - Standard deviation describes variability around the mean in original units
-  - Standard deviation $\sqrt()$ of the variance
-
-Population standard deviation: $\sigma = \sqrt{\frac{\sum_{i=1}^{N}(y_i - \mu)^2}{N}}$
-
-Sample standard deviation: $s = \sqrt{\frac{\sum_{i=1}^{n}(y_i - \overline{y})^2}{n-1}}$
-
-
-
-
-
-
-# Spread: Standard deviation
-
-- R's sd function always calculates the sample standard deviation
-- The denominator of sample standard is n−1 (Bessel's correction) this is an important concept in statistics. A key property is that it gives a more accurate estimate of the population variance and standard deviation when working with a sample. 
-
-![](images/R_logo.jpg) - `sd(c(48, 56, 78, 86, 90, 271))`
-
-```{r}
-sd_c <- sd(c(48, 56, 78, 86, 90, 271))
-print(sd_c)
-```
-
-![](images/Excel_logo.jpg) - `=STDEV.S(A1:A6)`
-
-
-
-
-# Spread: Coefficient of variation
-
-- Let's take an example where we measured both nitrogen and carbon in our soil such that: 
-
-Soil nitrogen (%):  2	16	22	45	65	93
-
-- How could we find out which measurements have a greater spread given they have very different units (% versus t/ha)?
-- It turns out we can use the CV
-
-$CV=\left(\frac{s}{\overline{y}}\right)\times{100}$
-
-
-
-
-
-# Spread: Coefficient of variation
-
-- Looking at the calculations below, which is more variable, Carbon or Nitrogen?
-
-![](images/R_logo.jpg) - `sd(c(48, 56, 78, 86, 90, 271))`
-
-```{r}
-cv_c <- sd(c(48, 56, 78, 86, 90, 271))/mean(c(48, 56, 78, 86, 90, 271))*100
-print(cv_c)
-
-cv_n <- sd(c(2, 16, 22, 45, 65, 93))/mean(c(2, 16, 22, 45, 65, 93))*100
-print(cv_n)
-```
-
-![](images/Excel_logo.jpg) - `=(STDEV.S(A1:A6)/AVERAGE(A1:A6))*100`
-
-
-
-
-
-# Robustness (to outliers)
-
-- Which summary statistics should I use to describe centre?
-  - Example:  48, 56, 8, 86, 90, 27
-  - Example: 48, 56, 8, 86, 90, 271
+### Step 2: Calculate
 
 :::: {.columns}
 ::: {.column width="50%"}
-mean - $\overline{y}$: 
+Either calculate the mean manually:
 ```{r}
-mean(c(48, 56, 8, 86, 90, 27))
-mean(c(48, 56, 8, 86, 90, 271))
+#| code-fold: false
+#| echo: true
+# Sum divided by count
+sum(scores) / length(scores)
 ```
 :::
-
 ::: {.column width="50%"}
-median - $\tilde{y}$: 
+Or use the `mean()` function:
 ```{r}
-median(c(48, 56, 8, 86, 90, 27))
-median(c(48, 56, 8, 86, 90, 271))
+#| code-fold: false
+#| echo: true
+# The mean() function does the work for us
+mean(scores)
 ```
 :::
 ::::
 
 
+## Median -- the middle value
+
+The median is the middle number when your data is in order:
+
+1. First, put your numbers in order
+2. Find the middle value
+3. If you have an even number of values, take the average of the two middle numbers
+
+::: fragment
+Example: House prices ($'000s): 450, 1100, 480, 460, 470, 420, 1400, 450, 470
+
+::: fragment
+Order: 450, 450, 420, 460, **470**, 470, 480, 1100, 1400
+:::
+
+::: fragment
+**How is it useful?**
+:::
+:::
+
+## Median in Excel
 
 
+Excel provides two main ways to find the median:
 
-# Robustness (to outliers)
+1. **Using MEDIAN function**
+   ```
+   =MEDIAN(A1:A9)
+   ```
+   - Type `=MEDIAN(`
+   - Select your data range
+   - Press Enter
 
-- Which summary statistics should I use to describe spread?
-  - Example:  48, 56, 8, 86, 90, 27
-  - Example: 48, 56, 8, 86, 90, 271
+2. **Alternative method**
+   - Sort your data first (use the Sort functionality in the Data tab)
+   - Find middle value(s)
+   - If even number of values, average the middle two
 
-:::: {.columns}
-::: {.column width="50%"}
-variance - $s$: 
+
+## Median in R
+
+R does all the ordering and finding the middle for us:
+
 ```{r}
-var(c(48, 56, 8, 86, 90, 27))
-var(c(48, 56, 8, 86, 90, 271))
+#| code-fold: false
+#| echo: true
+# House prices
+prices <- c(450, 1100, 480, 460, 470, 420, 1400, 450, 470)
+
+# Find median
+median(prices)
+```
+
+::: fragment
+Comparing the mean and median:
+```{r}
+#| code-fold: false
+#| echo: true
+# Compare with mean
+mean(prices)
 ```
 :::
 
-::: {.column width="50%"}
-Inter quartile range - $IQR$: 
+::: fragment
+**Which is a better measure for house prices?**
+:::
+
+
+## Mode -- most frequent value
+
+::: fragment
+The mode is the value that appears most frequently in your data. It's particularly useful for:
+
+- Categorical data (like blood types, eye colors)
+- Finding the most common item in a group
+- Data that has clear repeated values
+:::
+
+::: fragment
+Calculating the mode can be tricky, especially if there are multiple modes or no mode at all. This is why the mode is not commonly used in statistics.
+:::
+
+::: fragment
+### Questions that the mode can answer
+
+- What is the most common blood type in a population?
+- What is the most common eye color in a group of people?
+:::
+
+## Mode in Excel
+
+
+Excel provides several methods to find the mode but the simplest is to use the MODE function:
+
+
+```
+=MODE(A1:A10)
+```
+- Type `=MODE(`
+- Select your data range
+- Press Enter
+
+
+
+## Mode in R
+
+There is no built-in function to calculate the mode, so we use the `modeest` package:
+
 ```{r}
-IQR(c(48, 56, 8, 86, 90, 27))
-IQR(c(48, 56, 8, 86, 90, 271))
+#| code-fold: false
+#| echo: true
+
+if(!require("modeest")) install.packages("modeest")
+library(modeest)
+
+df <- c(1, 2, 3, 3, 4, 5, 5, 5, 6)
+mlv(df, method = "mfv")  # most frequent value
+```
+
+::: fragment
+If you were to do it yourself, how would you do it in R? 
+:::
+
+::: fragment
+::: {.panel-tabset}
+
+## Using frequencies
+Use the `table()` function to count frequencies:
+```{r}
+#| code-fold: false
+#| echo: true
+freq_table <- table(df) # Count frequencies of each value
+# Find which value(s) appear most often
+modes <- as.numeric(names(freq_table[freq_table == max(freq_table)]))
+modes
+```
+
+## Using run-length encoding
+Use run-length encoding after sorting:
+```{r}
+#| code-fold: false
+#| echo: true
+sorted_df <- sort(df) # Sort the vector first
+runs <- rle(sorted_df) # Use run-length encoding to find sequences
+modes <- runs$values[runs$lengths == max(runs$lengths)] # Find the value(s) with max length
+modes
+```
+
+## Using loops
+Loop through the vector and count occurrences:
+```{r}
+#| code-fold: false
+#| echo: true
+unique_vals <- factor(df) # Create a factor of unique values
+counts <- tapply(df, unique_vals, length) # Count occurrences using tapply
+modes <- as.numeric(names(counts[counts == max(counts)])) # Find which values have the maximum count
+modes
 ```
 :::
-::::
+:::
+
+::: fragment
+**The point is that it doesn't matter how you calculate the mode, as long as you are able to do it.** Also -- if you needed this -- aren't you glad R has a package for it?
+:::
 
 
 
+# Measures of spread
 
-# Graphical and tabular summaries
+## A biological example
 
-- Visualisation of data is useful for identifying
-  - outliers
-  - shape and distribution
-  - communicating results
-  - suggest modelling strategies
-- Bar chart
-- Strip chart
-- Boxplot
-- Histogram
+![[Source: Adobe Stock](https://stock.adobe.com/au) # 85659279](images/seagrass.jpg){fig-align="left"}
 
+Imagine sampling seagrass blade lengths from two different sites in a marine ecosystem, and they have the same mean length of 15.2 cm. Are both sites the same?
 
-# Categorical data - table
+::: fragment
+- **Site A (Protected Bay)**: 15.2, 15.0, 15.3, 15.1, 15.2 centimetres
+- **Site B (Wave-exposed Coast)**: 12.0, 18.0, 14.5, 16.5, 15.0 centimetres
+:::
 
-- Different types with examples:
-  - Binary:  We spray insects and see how many die
-  - Nominal:  We count how animals, and their species, are in a forest 
-  - Ordinal:  Different disease levels for a plant, no disease, moderate, severe
-
-- We can count the number observations belonging to each class, called frequency, f.
-  - Can present as a frequency table
-  
-![](images/L2_PlantDisease.png)
-
-
-
-# Categorical data - Bar chart
-
-- We first tabulate the data 
+## Comparing Different Measures
 
 ```{r}
-# Load necessary library
+# Plot seagrass lengths
 library(ggplot2)
+library(patchwork)
 
-# Your disease data
-disease <- c("None", "Moderate", "None", "Severe", "Moderate", "Moderate", "Severe", "Moderate", "None", "Moderate")
+seagrass_protected <- c(15.2, 15.0, 15.3, 15.1, 15.2)
+seagrass_exposed <- c(12.0, 18.0, 14.5, 16.5, 15.0)
 
-# Order factors from no disease to severe disease 
-disease = factor(disease, levels = c("None", "Moderate", "Severe"))
+# Create plots for both sites
+p1 <- ggplot() +
+   geom_point(aes(x = 1:5, y = seagrass_protected), size = 3) +
+   geom_hline(yintercept = mean(seagrass_protected), linetype = "dashed", color = "red") +
+   labs(title = "Site A: Protected Bay", x = "Measurement", y = "Length (cm)") +
+   ylim(10, 20)
 
-# Create a frequency table
-disease_tbl <- table(disease)
-print(disease_tbl)
+p2 <- ggplot() +
+   geom_point(aes(x = 1:5, y = seagrass_exposed), size = 3) +
+   geom_hline(yintercept = mean(seagrass_exposed), linetype = "dashed", color = "red") +
+   labs(title = "Site B: Wave-exposed Coast", x = "Measurement", y = "Length (cm)") +
+   ylim(10, 20)
+
+# Combine plots side by side
+p1 + p2
 ```
 
+## Why do we need measures of spread?
 
+- Central tendency (mean, median, mode) only tells part of the story
+- Spread tells us how much variation exists in our data
+- Different measures of spread tell us different things:
+  - **Range**: Overall spread of data
+  - **IQR**: Spread of middle 50% of data
+  - **Variance**: Average squared deviation from mean
+  - **Standard deviation**: Average deviation in original units
 
-
-
-
-# Categorical data - Bar chart
-
-:::: {.columns}
-::: {.column width="50%"}
-- We then plot the table in ggplot
+## Range -- The simplest measure of spread
 
 ```{r}
-# Convert the table to a data frame for ggplot2
-disease_df <- as.data.frame(disease_tbl)
+#| code-fold: false
+#| echo: true
+# Create our seagrass data
+seagrass_protected <- c(15.2, 15.0, 15.3, 15.1, 15.2)  # Protected bay
+seagrass_exposed <- c(12.0, 18.0, 14.5, 16.5, 15.0)    # Wave-exposed coast
 
-# Rename the columns appropriately
-names(disease_df) <- c("Disease", "Frequency")
-
-# Create the bar plot
-p <- ggplot(disease_df, aes(x = Disease, y = Frequency)) +
-  geom_bar(stat = "identity") +
-  ggtitle("Frequency of Disease Categories") +
-  xlab("Disease Category") +
-  ylab("Frequency")
+# Calculate ranges
+cat("Protected bay range:", diff(range(seagrass_protected)), "cm\n")
+cat("Wave-exposed range:", diff(range(seagrass_exposed)), "cm\n")
 ```
 
-:::
-::: {.column width="50%"}
-
-```{r}
-print(p)
-```
-:::
-::::
-
-
-
-## Categorical data - Bar chart
-
-- Using `tidyverse`
-
-```{r}
-# Load necessary libraries
-library(tidyverse)
-
-# Your disease data
-disease <- c("None", "Moderate", "None", "Severe", "Moderate", "Moderate", "Severe", "Moderate", "None", "Moderate")
-
-# Convert to tibble and count occurrences
-disease_data <- tibble(disease) %>%
-  mutate(disease = factor(disease, levels = c("None", "Moderate", "Severe"))) %>%
-  count(disease, name = "Frequency")
-
-# Create the bar plot
-ggplot(disease_data, aes(x = disease, y = Frequency)) +
-  geom_bar(stat = "identity") +
-  ggtitle("Frequency of Disease Categories") +
-  xlab("Disease Category") +
-  ylab("Frequency")
-```
-
-
-
-
-
-
-# Categorical data - Bar chart
-
-- NOTE: Bar charts should generally not used for continuous numerical data
-
-![Source: Weissgerber at al. (2015)](images/L2_NoBar.png) 
-
-
-
-
-
-# Numerical Data - Strip chart
-
-- Often if we have a small data set (1-5 data points), we can use a stripchart to visualise our data. We will demonstrate using our soil carbon data set.
-- What do we notice from the plot?
-
-:::: {.columns}
-::: {.column width="50%"}
-
-```{r}
-# Load necessary library
-library(ggplot2)
-
-# Your data
-soil_c <- c(48, 56, 8, 86, 90, 271)
-
-# Convert to a data frame
-soil_c_df <- data.frame(Value = soil_c)
-
-# Create the strip chart
-p <- ggplot(soil_c_df, aes(x = "", y = Value)) +
-  geom_jitter(width = 0) +
-  ggtitle("Strip chart of soil carbon") +
-  xlab("") +
-  ylab("Soil carbon (t/ha)")
-```
-
-:::
-::: {.column width="50%"}
-
-```{r}
-print(p)
-```
-
+::: {.callout-note}
+The range shows us that seagrass lengths are much more variable in the wave-exposed site!
 :::
 
-::::
+## Interquartile range (IQR): The middle 50%
 
 
-
-# Numerical Data - Boxplot
-
-- We can overlay our strip chart with a boxplot. This shows use the min/max, quartiles and median and can also show outliers.
-- We generally use boxplots when we have more than 5 data points.
-- See lecture notes for creating boxplot by hand.
-
-![Source: Nicholas (1999)](images/L2_Boxplot.jpg) 
-
-
-
-# Numerical Data - Boxplot
-
-- Here is a slightly larger data set from a trial where creeping bentgrass turf was laid in an experiment to assess root growth. Eighty (80)
-“plugs” were randomly sampled 4 weeks after laying. Root growth was measured by averaging the length (mm) of the ten longest roots in each plug.
+The IQR tells us how spread out the middle 50% of our data is:
 
 ```{r}
-root_length <- c(108, 102, 100, 135, 113, 109, 92, 97, 73, 65,
-68, 74, 93, 97, 118, 121, 103, 99, 90, 90,
-99, 102, 106, 90, 92, 97, 100, 92, 80, 99,
-103, 103, 115, 85, 96, 86, 85, 86, 91, 90,
-94, 93, 93, 99, 109, 115, 110, 94, 107, 88,
-101, 89, 117, 91, 112, 101, 91, 81, 80, 67,
-69, 80, 86, 81, 65, 90, 99, 93, 90, 102,
-72, 70, 90, 90, 87, 89, 90, 96, 108, 86)
+#| code-fold: false
+#| echo: true
+# Get quartiles for protected bay
+quantile(seagrass_protected)
 ```
 
+- 25% of data below Q1 (1st quartile)
+- 75% of data below Q3 (3rd quartile)
+- IQR = Q3 - Q1
 
 
 
+### Why use IQR?
+- Ignores extreme values
+- Works with skewed data
+- More stable than range
 
-# Numerical Data - Boxplot
 
-:::: {.columns}
-::: {.column width="50%"}
-
-- The follow produces a boxplot and also includes the jittered data points (red coloured)
-- Note that there is on outlier which is the black data pointat the top of the plot
-
-:::
-::: {.column width="50%"}
+## Comparing Sites Using IQR
 
 ```{r}
-# Load necessary library
-library(ggplot2)
-
-# Convert to a data frame
-root_length_df <- data.frame(Value = root_length)
-
-# Create the strip chart
-ggplot(root_length_df, aes(x = "", y = Value)) +
-  geom_boxplot() +
-  geom_jitter(width = 0.1, col = "red") +
-  ggtitle("Boxplot of root length in bentgrass") +
-  xlab("") +
-  ylab("Root length (mm)")
+#| code-fold: false
+#| echo: true
+# Compare IQRs
+pbay <- IQR(seagrass_protected)
+pbay
+exbay <- IQR(seagrass_exposed)
+exbay
 ```
 
-:::
-::::
+- Protected bay IQR: `r pbay` cm
+- Wave-exposed IQR: `r exbay` cm
 
-
-
-
-
-# Numerical Data - Histogram
-
-:::: {.columns}
-::: {.column width="50%"}
-
-- Based on frequency table
-  - Height of each bar proportional to frequency - need to group data
-  - We can use histograms to describe the shape of distributions for continuous data sets that are larger than 20 data points.
-
-:::
-::: {.column width="50%"}
-
-```{r}
-# Load necessary library
-library(ggplot2)
-
-# Convert to a data frame
-root_length_df <- data.frame(Value = root_length)
-
-# Create the strip chart
-ggplot(root_length_df, aes(Value)) +
-  geom_histogram() +
-  ggtitle("Boxplot of root length in bentgrass") +
-  xlab("Root length (mm)") 
-```
-
-:::
-::::
-
-
-
-
-
-# Summary
-
-- The following is a rough guide for plotting *continuous* data
-
-![](images/L2_WhichPlot.png)
-
-- Remember for *categorical* data we use **Tables** and **Bar Charts**
-
-
-
-
-
-
-# Numerical Data - Symmetry
-
-- Throughout this unit you will be assessing the shape of distributions, in particular you will be looking at whether the distribution (histogram) of the data is symmetrical in shape;
-- For small data sets, you will generally compare the mean and median; 
-  - if the mean and the median are similar it indicates that the data is symmetrical.
-  - if the mean and the median are not similar it indicates that the data is skewed.
-
-```{r}
-mean(soil_c)
-median(soil_c)
-```
-- What can we conclude from the mean and median of our soil carbon data?
-
-
-
-
-
-
-
-# Numerical Data - Symmetry
-
-:::: {.columns}
-::: {.column width="50%"}
-
-- For larger data sets, we can look at the mean, median and the histogram to determine if it is symmetrical.
-
-```{r}
-mean(root_length)
-median(root_length)
-```
-
+::: {.callout-note}
+The larger IQR in the wave-exposed site shows more spread in the typical seagrass lengths
 :::
 
-::: {.column width="50%"}
+## Variance: a detailed measure of spread
 
-```{r}
-# Create the strip chart
-ggplot(root_length_df, aes(Value)) +
-  geom_histogram() +
-  ggtitle("Boxplot of root length in bentgrass") +
-  xlab("Root length (mm)") 
-```
+Variance measures how far data points are spread from their mean by:
 
+1. Finding how far each point is from the mean
+2. Squaring these distances (to handle negative values)
+3. Taking the average of these squared distances
+
+
+### Why use variance?
+
+- Uses **all** data points (unlike IQR)
+- Less sensitive to outliers than range
+- Shows total spread in both directions
+
+
+::: fragment
+### Key points
+- Measured in squared units (cm²)
+- Larger variance = more spread
 :::
-::::
 
-
-
-# Numerical Data - Symmetry
-
-- We can also calculate skewness using the following equation 
-
-$g_1 = \frac{n}{(n-1)(n-2)} \sum_{i=1}^{n} \left( \frac{y_i - \bar{y}}{s} \right)^3$
-
-- in RStudio, we can use the `skewness` function found in the `e1071` package 
+## Calculating Variance in R
 
 ```{r}
-library(e1071)
-skewness(root_length)
+#| code-fold: true
+#| echo: true
+# Calculate variance for both sites
+cat("Protected bay variance:", var(seagrass_protected), "cm²\n")
+cat("Wave-exposed variance:", var(seagrass_exposed), "cm²\n")
 ```
 
-- if $|{g_1}|<1.0$ then the dataset is approximately symmetrical. If $g_1>1.0$ then the data is positively skewed and if $g_1<-1.0$ then the data is negatively skewed 
+::: {.callout-note}
+The larger variance in wave-exposed site shows more spread from the mean!
+:::
 
 
 
 
+## Standard deviation: a more interpretable measure
 
-# Reading 
+Standard deviation (SD, or $\sigma$ for population, $s$ for sample) is the square root of variance:
 
-- Canvas site
-- Notes
-- Quinn & Keough (2002)
-  - Chapter 2. Sections 2.1-2.2, p. 14-17.
-  - Chapter 4. Sections 4.1, p. 58-61 (stop at scatterplot)
-- Mead et al. (2002).
-  - Chapter 1.
-  - Chapter 2.  Sections 2.1-2.3, p. 9-19
-  
-  
+- Tells us the "typical distance" from the mean
+- Easy to understand - similar to saying "± value" after a mean
+- Small SD means values cluster closely around mean
+- Large SD means values are more spread out
 
-
-
-# References
-
-- J. Nicholas (1999). Introduction to descriptive statistics. Mathematics Learning Centre, University of Sydney.
-- T. L. Weissgerber, N. M. Milic, S. J. Winham and V. D. Garovic (2015). Beyond bar and line graphs: time for a new data presentation paradigm. PLOS Biology. 13. e1002128. 
+### When and why to use it
+- Values are in the **same units** as your data (unlike variance)
+- Perfect for describing natural variation (height, weight, temperature)
+- Used in many statistical tests
+- Great for comparing different groups or datasets
 
 
+## Interpreting standard deviation (with R)
+
+We can describe our seagrass lengths using mean ± standard deviation:
+
+```{r}
+#| code-fold: false
+#| echo: true
+# Protected bay
+mean_p <- mean(seagrass_protected)
+sd_p <- sd(seagrass_protected)
+cat("Protected bay:", round(mean_p, 1), "±", round(sd_p, 2), "cm\n")
+
+# Wave-exposed
+mean_e <- mean(seagrass_exposed)
+sd_e <- sd(seagrass_exposed)
+cat("Wave-exposed:", round(mean_e, 1), "±", round(sd_e, 2), "cm\n")
+```
+
+::: {.callout-tip}
+The ± tells us about the typical variation around the mean. Larger values indicate more spread!
+:::
+
+
+
+## Comparing spread measures
+
+| Measure | Protected Bay | Wave-exposed Coast | What it Tells Us |
+|---------|:------------:|:-----------------:|------------------|
+| Range | `r round(diff(range(seagrass_protected)), 2)` cm | `r round(diff(range(seagrass_exposed)), 2)` cm | Overall spread (sensitive to outliers) |
+| IQR | `r round(IQR(seagrass_protected), 2)` cm | `r round(IQR(seagrass_exposed), 2)` cm | Middle 50% spread (ignores extremes) |
+| Variance | `r round(var(seagrass_protected), 2)` cm² | `r round(var(seagrass_exposed), 2)` cm² | Average squared distance from mean |
+| SD | `r round(sd(seagrass_protected), 2)` cm | `r round(sd(seagrass_exposed), 2)` cm | Average distance from mean (in original units) |
+
+### Key Observations
+- Wave-exposed site shows consistently more variation
+- Each measure gives a different perspective
+- Choose based on your data and goals
+- Standard deviation is most commonly used in research papers
+
+
+## Range and IQR in Excel
+
+Common Excel functions for measuring spread:
+
+1. **Range**: Use `MAX()` and `MIN()`
+```
+=MAX(A1:A10) - MIN(A1:A10)
+```
+
+2. **Quartiles and IQR**: Use `QUARTILE.INC()`
+```
+For Q1: =QUARTILE.INC(A1:A10, 1)
+For Q3: =QUARTILE.INC(A1:A10, 3)
+For IQR: =QUARTILE.INC(A1:A10, 3) - QUARTILE.INC(A1:A10, 1)
+```
+
+## Variance and standard deviation in Excel
+
+Statistical functions for variance and standard deviation:
+
+1. **Sample Variance**: Use `VAR.S()`
+```
+=VAR.S(A1:A10)
+```
+
+2. **Sample Standard Deviation**: Use `STDEV.S()`
+```
+=STDEV.S(A1:A10)
+```
+
+::: {.callout-tip}
+## Tip
+Use `.P` instead of `.S` for population measures:
+
+- `VAR.P()` for population variance
+- `STDEV.P()` for population standard deviation
+:::
+
+
+# References and Resources
+
+## Core Reading
+- Quinn & Keough (2024). *Experimental Design and Data Analysis for Biologists*. Cambridge University Press. **Chapter 2**: Things to know before proceeding.
+- Canvas site for lecture notes and additional resources
 
 
 # Thanks!
 
 This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
 
-```{r, echo = FALSE, eval = FALSE}
-renderthis::to_pdf("ENVX1002-2024-Lecture-Topic02.html")
-```
-
-
 <!-- Links -->
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
+

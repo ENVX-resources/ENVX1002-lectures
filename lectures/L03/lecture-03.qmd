@@ -1,558 +1,758 @@
 ---
-title: Topic 3 -- Discrete Distributions
-author: Dr. Floris van Ogtrop
+title: "Lecture 03: Exploring and visualising data"
+author: Januar Harianto
 format: soles-revealjs
 embed-resources: true
+execute:
+  cache: true
 ---
 
-# Outline – Discrete distributions
-
-- Example
-- What is a distribution
-- Binomial distribution
-- Poisson distribution
-
-
-
-
+```{r setup, include=FALSE}
+pacman::p_load(tidyverse, gt, kableExtra, cowplot)
+theme_set(theme_cowplot())
+```
 
 # Learning outcomes
 
-At the end of this topic students should able to:
+## After this **week**, you will be able to:
 
-- Have a good understanding of what a distribution is
-  - Definitions
-  - Functions
-  - Binomial and Poisson distributions
-- Apply the correct model to describe data
-- Demonstrate proficiency in the use of R and Excel for calculating probabilities
+1. Understand the importance of data exploration before analysis
+2. Apply exploratory functions to explore and summarise datasets
+3. Identify different data types and structures in datasets
+4. Select appropriate visualization types based on data characteristics
+5. Understand the Grammar of Graphics approach to data visualisation
+6. Create and customise visualisations in R using the ggplot2 package
+7. Build plots layer-by-layer using the ggplot2 framework
+8. Interpret distributions, including skewness, kurtosis, and outliers
 
+## Quick checklist
 
+By now you should have...
 
+- [ ] Installed [**R**](https://cran.r-project.org/) and [**RStudio**](https://posit.co/download/rstudio-desktop/)
+- [ ] Completed Lecture 2 content and read the ENVX1002 R guide
+- [ ] A basic understanding of measures of central tendency and spread
+- [ ] A basic understanding of what a `function(argument = value)` is in R
+- [ ] Rendered a few Quarto documents in RStudio
 
+# Core concepts
 
+## Data exploration
 
-# Types of data
+### Why explore data before analysis?
+- Identify patterns, outliers, and relationships
+- Detect data quality issues
+- Guide selection of appropriate statistical methods
+- Avoid incorrect conclusions from flawed data
 
-**Remember the types of data**
+### The data exploration workflow
+  1. Understand data structure and types
+  2. Examine distributions and summary statistics
+  3. Visualise relationships between variables
+  4. Identify patterns and anomalies
 
-**Numerical**
+## Types of data: recap from Week 1
 
-- Continuous:  yield, weight
-- Discrete:  weeds per $m^2$
+Data in R can be broadly categorized as either **categorical** or **continuous**.
 
-**Categorical**
+- Different data types require different analysis approaches
+- Understanding data types helps select appropriate visualisations
+- **R stores different data types in specific formats** (which is why we need to know what they are when we import data!)
 
-- Binary:  2 mutually exclusive categories 
-- Ordinal:  categories ranked in order 
-- Nominal:  qualitative data
+## Categorical data
 
+- **Nominal**: no natural order, e.g.
+  - Species (dog, cat, fish)
+  - Hair colour (black, brown, blonde)
+  - Blood type (A, B, AB, O)
 
+- **Ordinal**: natural order exists, e.g.
+  - Education (primary, secondary, tertiary)
+  - Pain scale (mild, moderate, severe)
+  - T-shirt sizes (S, M, L, XL)
 
+## Continuous data
 
-# Example
+- **Interval**: equal intervals, no true zero, e.g.
+  - Temperature in °C (0°C isn't "no temperature")
+  - Calendar dates
+  - pH scale
 
-:::: {.columns}
-::: {.column width="50%"}
-- We have 5 insects which we spray with an insecticide, each insect has a 60% chance of being killed;
-- $P(K) = 0.6$
-- Possible questions:
-  - What is the probability that all 5 insects will be killed?
-  - What is the probability that at least 3 insects will be killed?
-- The data is ‘binary’ and the events are mutually exclusive (either dead or alive unless it is zombie fly);
-  - we can say the data is categorical or numeric discrete 
-  - we can use a binomial (discrete) distribution to "model" the data.
-
-:::
-::: {.column width="50%"}
-
-![Generated using DALL.E3](images/L3_zombie_fly.png){width=80%}
-
-:::
-
-::::
-
-
-
-
-# What is a distribution?
-
-- In our case we are generally referring to a distribution function
-  - This is a function (or model) that describes the probability that a system will take on value or set of values {x}
-
-- For any variable X, we describe probabilities by
-  - Discrete variables: probability distribution function $P(X=x)$
-  - Continuous variables: probability density function $f(x)$
-  - Discrete and Continuous variables: cumulative density function 
-$F(x) = P(X\le{x})$ 
-
-
-
+- **Ratio**: equal intervals with true zero, e.g.
+  - Height (0 cm = no height)
+  - Weight (0 kg = no weight)
+  - Age (0 years = birth)
 
 
-# Back to our example
+# Different types of data are distributed differently
 
-- We spray 5 flies with insecticide which has 60% chance of killing each insect. If $X$ is the number of flies that die, what is the distribution of $X$?
-- The set of possible values is $x=0,1,2,3,4,5$
-- The likelihood of each value is 
-- $P(X=0)=P(\text{no insects die})=0.4× 0.4× 0.4× 0.4× 0.4=0.4^5=0.01024$ 
-- $P(X=1)=P(\text{one insects die})=0.6× 0.4× 0.4× 0.4× 0.4 + 0.4× 0.6× 0.4× 0.4× 0.4 + 0.4× 0.4× 0.6× 0.4× 0.4 + 0.4× 0.4× 0.4× 0.6× 0.4 + 0.4× 0.4× 0.4× 0.4× 0.6 = 0.0768$
-- $P(X=2)=P(\text{two insects die})=… \text{10 different combinations} = 0.2304$
-- $P(X=3)=P(\text{three insects die})=… \text{10 different combinations} = 0.3456$
-- $P(X=4)=P(\text{four insects die})=… \text{5 combinations} = 0.2592$
-- $P(X=0)=P(\text{all insects die})=0.6× 0.6× 0.6× 0.6× 0.6=0.65=0.07776$
+Understanding how data is distributed is crucial for selecting appropriate ways to explain it to others.
 
 
+## Normal distribution: Introduction
+
+- Bell-shaped, symmetric curve
+- Defined by mean (μ) and standard deviation ($\sigma$)
+- Many natural phenomena follow this distribution
+  - Heights of individuals in a population
+  - Measurement errors
+  - Many physiological traits
+
+$$X \sim N(\mu, \sigma^2)$$
+
+> The random variable X follows a normal distribution with mean $\mu$ and variance $\sigma^2$
+
+## What does a normal distribution look like?
+
+```{r normal_dist_plot}
+# Generate normal distribution data
+set.seed(123)
+normal_data <- rnorm(1000, mean = 0, sd = 1)
+
+# Plot normal distribution
+ggplot(data.frame(x = normal_data), aes(x = x)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 30,
+                 fill = "skyblue",
+                 colour = "black") +
+  geom_density(colour = "red") +
+  labs(title = "Standard Normal Distribution (μ = 0, σ = 1)",
+       x = "Value",
+       y = "Density")
+```
+
+## Properties of normal distribution: The empirical rule
+
+- Mean = median = mode
+- ~68% of data within 1$\sigma$ of mean
+- ~95% of data within 2$\sigma$ of mean
+- ~99.7% of data within 3$\sigma$ of mean
 
 
-# Example plot
+## The empirical rule visualised
 
-```{r}
-x <- c(0, 1, 2, 3, 4, 5)
-p <- c(0.01024, 0.0768, 0.2304, 0.3456, 0.2592, 0.07776)
-plot(x, p, type = "h")
+```{r normal_empirical_rule}
+# Create a standard normal distribution
+x <- seq(-4, 4, length.out = 1000)
+y <- dnorm(x)
+df <- data.frame(x = x, y = y)
 
+# Plot with empirical rule highlighted
+ggplot(df, aes(x = x, y = y)) +
+  geom_line() +
+  # Add vertical reference lines at standard deviations
+  geom_vline(xintercept = c(-3, -2, -1, 0, 1, 2, 3), linetype = "dashed", colour = "gray50", alpha = 0.7) +
+  geom_area(data = subset(df, x >= -1 & x <= 1), fill = "darkblue", alpha = 0.3) +
+  geom_area(data = subset(df, (x >= -2 & x < -1) | (x > 1 & x <= 2)), fill = "darkgreen", alpha = 0.3) +
+  geom_area(data = subset(df, (x >= -3 & x < -2) | (x > 2 & x <= 3)), fill = "darkred", alpha = 0.3) +
+  annotate("text", x = 0, y = 0.2, label = "68%", colour = "darkblue") +
+  annotate("text", x = 1.5, y = 0.1, label = "95%", colour = "darkgreen") +
+  annotate("text", x = 2.5, y = 0.05, label = "99.7%", colour = "darkred") +
+  labs(title = "Normal Distribution: Empirical Rule",
+       x = "Standard Deviations from Mean",
+       y = "Density")
+```
+
+## Why normal distributions matter in data exploration
+
+When exploring data, understanding distributions helps you:
+
+1. **Identify patterns and anomalies**
+   - Is your data normally distributed as expected?
+   - Are there unexpected skews or outliers?
+
+2. **Choose appropriate analysis methods**
+   - Many statistical tests assume normality
+   - Non-normal data may require different approaches
+
+3. **Interpret results correctly**
+   - Context for understanding how unusual a value is
+   - Framework for making statistical inferences
+
+## Example
+
+Many biological traits follow normal distributions. For example, plant heights within a species:
+
+```{r plant_height_example}
+# Simulate plant height data
+set.seed(456)
+plant_heights <- rnorm(200, mean = 25, sd = 3)  # Heights in cm
+
+# Plot the distribution
+ggplot(data.frame(height = plant_heights), aes(x = height)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 20,
+                 fill = "#66c2a5",
+                 colour = "black") +
+  geom_density(colour = "#1f78b4", linewidth = 1) +
+  geom_vline(xintercept = 25, linetype = "dashed", colour = "red") +
+  annotate("text", x = 25.5, y = 0.05, label = "μ = 25 cm", colour = "red") +
+  labs(title = "Distribution of Plant Heights in a Population",
+       subtitle = "Example of a biological trait following normal distribution",
+       x = "Height (cm)",
+       y = "Density")
+```
+
+This example shows how plant heights cluster around the mean (25 cm) following a normal distribution pattern. This helps researchers identify outliers, establish experimental categories, and detect environmental effects on growth patterns.
+
+## Skewness
+
+### What is skewness?
+
+- Measure of asymmetry in a distribution
+- Indicates which side of the distribution has a longer tail
+- Important for selecting appropriate statistical tests
+
+## Positive skew (right-skewed)
+
+- Long tail on right side
+- Mean > median
+
+```{r positive_skew_plot}
+# Generate positive skewed distribution
+set.seed(123)
+right_skewed <- exp(rnorm(1000, 0, 0.5))
+
+# Calculate statistics
+mean_val <- mean(right_skewed)
+median_val <- median(right_skewed)
+
+# Plot positive skewed distribution
+ggplot(data.frame(x = right_skewed), aes(x = x)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 30,
+                 fill = "#66c2a5", # colourblind-friendly green
+                 colour = "black") +
+  geom_density(colour = "#1f78b4", linewidth = 1) +
+  # Add vertical lines for mean and median
+  geom_vline(xintercept = mean_val, colour = "red", linetype = "dashed", linewidth = 1) +
+  geom_vline(xintercept = median_val, colour = "blue", linetype = "dashed", linewidth = 1) +
+  # Add annotations
+  annotate("text", x = mean_val + 0.2, y = 0.5, label = paste("Mean =", round(mean_val, 2)), colour = "red") +
+  annotate("text", x = median_val - 0.2, y = 0.4, label = paste("Median =", round(median_val, 2)), colour = "blue") +
+  labs(title = "Positive skew (right-skewed)",
+       subtitle = "Note that Mean > Median",
+       x = "Value",
+       y = "Density")
+```
+
+## Negative skew (left-skewed)
+
+- Long tail on left side
+- Mean < median
+
+```{r negative_skew_plot}
+# Generate skewed distributions
+set.seed(123)
+left_skewed <- max(right_skewed) - right_skewed + min(right_skewed)
+
+# Calculate statistics
+mean_val <- mean(left_skewed)
+median_val <- median(left_skewed)
+
+# Plot negative skewed distribution
+ggplot(data.frame(x = left_skewed), aes(x = x)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 30,
+                 fill = "#8da0cb", # colourblind-friendly blue
+                 colour = "black") +
+  geom_density(colour = "#1f78b4", linewidth = 1) +
+  # Add vertical lines for mean and median
+  geom_vline(xintercept = mean_val, colour = "red", linetype = "dashed", linewidth = 1) +
+  geom_vline(xintercept = median_val, colour = "blue", linetype = "dashed", linewidth = 1) +
+  # Add annotations
+  annotate("text", x = mean_val - 0.2, y = 0.5, label = paste("Mean =", round(mean_val, 2)), colour = "red") +
+  annotate("text", x = median_val + 0.2, y = 0.4, label = paste("Median =", round(median_val, 2)), colour = "blue") +
+  labs(title = "Negative skew (left-skewed)",
+       subtitle = "Note that Mean < Median",
+       x = "Value",
+       y = "Density")
+```
+
+## Kurtosis
+
+- Measure of "tailedness" of a distribution
+- Describes the shape of a distribution's tails relative to its overall shape
+- Affects the choice of statistical methods
+
+### Types of kurtosis
+- **Mesokurtic**: Normal distribution (kurtosis = 3)
+- **Leptokurtic**: Sharper peak, heavier tails (kurtosis > 3)
+- **Platykurtic**: Flatter peak, thinner tails (kurtosis < 3)
+
+## Visualising kurtosis
+
+```{r kurtosis_plots_combined}
+# Generate distributions with different kurtosis
+set.seed(123)
+normal <- rnorm(1000, 0, 1)  # Mesokurtic
+leptokurtic <- rt(1000, df = 5)  # t-distribution with 5 df is leptokurtic
+platykurtic <- runif(1000, -3, 3)  # Uniform distribution is platykurtic
+
+# Calculate kurtosis values (using e1071 package)
+library(e1071)
+k_normal <- kurtosis(normal)
+k_lepto <- kurtosis(leptokurtic)
+k_platy <- kurtosis(platykurtic)
+
+# Plot distributions
+p1 <- ggplot(data.frame(x = normal), aes(x = x)) +
+  geom_histogram(aes(y = after_stat(density)), bins = 30,
+                 fill = "#a6cee3", # colourblind-friendly blue
+                 colour = "black") +
+  geom_density(colour = "#1f78b4", linewidth = 1) + # Darker blue
+  annotate("text", x = 2, y = 0.3,
+           label = paste("Kurtosis =", round(k_normal, 2)),
+           colour = "#1f78b4") +
+  labs(title = "Mesokurtic (normal)",
+       subtitle = "Normal distribution with balanced tails",
+       x = "Value",
+       y = "Density")
+
+p2 <- ggplot(data.frame(x = leptokurtic), aes(x = x)) +
+  geom_histogram(aes(y = after_stat(density)), bins = 30,
+                 fill = "#fb9a99", # colourblind-friendly pink
+                 colour = "black") +
+  geom_density(colour = "#e31a1c", linewidth = 1) + # Darker red
+  annotate("text", x = 2, y = 0.3,
+           label = paste("Kurtosis =", round(k_lepto, 2)),
+           colour = "#e31a1c") +
+  labs(title = "Leptokurtic (heavy-tailed)",
+       subtitle = "Sharper peak, heavier tails",
+       x = "Value",
+       y = "Density")
+
+p3 <- ggplot(data.frame(x = platykurtic), aes(x = x)) +
+  geom_histogram(aes(y = after_stat(density)), bins = 30,
+                 fill = "#b2df8a", # colourblind-friendly green
+                 colour = "black") +
+  geom_density(colour = "#33a02c", linewidth = 1) + # Darker green
+  annotate("text", x = 0, y = 0.15,
+           label = paste("Kurtosis =", round(k_platy, 2)),
+           colour = "#33a02c") +
+  labs(title = "Platykurtic (light-tailed)",
+       subtitle = "Flatter peak, thinner tails",
+       x = "Value",
+       y = "Density")
+
+# Display plots vertically
+library(patchwork)
+p1 + p2 + p3
 ```
 
 
+# Exploring data in R
 
 
 
+## Data structures in R
 
-# Example – properties of the distribution
+Data is stored in R in various structures, each with specific purposes:
 
-- Remember we have a binomial (dead or alive) distribution here
-- A key property of all (discrete) distributions is that all probabilities add to 
+**Vectors**: 1-dimensional collection of elements
 
-$\Sigma_{i=0}^5P(X=i)=0.01024+0.0768+0.2304+0.3456+0.2592+0.07776=1$
-
-- Note that all probabilities lie between 0 and 1
-
-
-
-
-
-
-# Binomial Distribution
-
-- Why does a binomial distribution fit our insect data??
-  - Basic element is a Bernoulli trial – each insect;
-  - The outcome of each trial can be classified in precisely one of two mutually exclusive ways termed “success” (dead) and “failure” (alive);
-    - We usually assign **$p$** to success and $q$ to failure.
-  - Binomial experiments consists of n Bernouilli (independent binary) trials (i.e. 5 insects);
-  - The probability of a success, denoted by p, remains constant from trial to trial. The probability of a failure, $q =1 – p$;
-    - $p = 0.6$ and $q = 0.4$
-  - The trials are independent; that is, the outcome of any particular trial is not affected by the outcome of any other trial;
-  - The number of successes, x, is a binomial variable.
-  
-  
-  
-  
-  
-  
-# Example
-:::: {.columns}
-::: {.column width="50%"}
-
-- How many combinations are there for exactly 2 flies to die out of 5 flies?
-
-${5\choose{2}}=\frac{5!}{2!(5−2)!}= \frac{(5×4×3×2×1)}{(2×1×3×2×1)}=10$
-
-- What is the probability that exactly 2 flies will die?
-
-$P(X=x)={n\choose{x}}p^x(1-p)^{n-x}={5\choose{2}}0.6^2(1-0.6)^{5-2}$
-
-$=10×0.36×0.064=0.2304$
-
-:::
-
-::: {.column width="50%"}
-
-![](images/R_logo.jpg) - `dbinom(2,5,0.6)`
-
-```{r}
-dbinom(2,5,0.6)
+```{r vector_example}
+# Vector - 1-dimensional collection of elements
+heights <- c(1.65, 1.70, 1.75, 1.80, 1.85)
+heights
 ```
 
-![](images/Excel_logo.jpg) - `=BINOM.DIST(2,5,0.6,FALSE)`
+**Data frames**: 2-dimensional tables with rows and columns
 
-:::
-::::
-
-
-
-
-# Point, cumulative or interval probabilities
-
-:::: {.columns}
-::: {.column width="50%"}
-- We have already calculated a point probability i.e. the probability of exactly 2 flies dying.
-- But what about if we wanted to know the probability of 2 or more flies dying $P(X\ge{2})$ or between 2 and 4 flies $P(2\le{X}\le{4})$ dying??
-- So how can we calculate these?
-  - One way is to calculate all the point probabilities from 0-5 and add the probabilities cumulatively or in the interval
-
-:::
-
-::: {.column width="50%"}
-![](images/L3_CumulativeP.png){width="50%"} 
-
-:::
-
-::::
-
-
-# Point, cumulative or interval probabilities
-
-:::: {.columns}
-::: {.column width="50%"}
-
-$P(X\ge{2})=(X=2)+(X=3)+(X=4)+(X=5)=0.2304+0.3456+0.2592+0.07776=0.91296$
- 
-- You guys try to calculate the following
-
-$P(2\le{X}\le{4})=??$
-
-
-:::
-
-::: {.column width="50%"}
-![](images/L3_CumulativeP.png){width="50%"} 
-
-:::
-
-::::
-
-
-
-
-
-# Cumulative
-
-$P(X\ge{2})$
-
-![](images/R_logo.jpg)
-
-```{r}
-1 - pbinom(1,5,0.6)
-
-## OR
-
-pbinom(1,5,0.6, lower.tail = FALSE)
+```{r dataframe_example}
+# Data frame - 2-dimensional table
+df <- data.frame(
+  species = c("A", "B", "C", "A", "B"),
+  height = c(1.65, 1.70, 1.75, 1.80, 1.85),
+  weight = c(60, 65, 70, 75, 80)
+)
+df
 ```
 
-![](images/Excel_logo.jpg) - `=1-BINOM.DIST(1,5,0.6,TRUE)`
+**Other data structures** include lists, matrices, arrays, and factors, but these are less common at your level.
 
 
 
+## Common functions
 
+Use these essential functions to understand your data structure and summary statistics:
 
-# Interval
+```{r exploring_structure}
+#| code-fold: false
+# Core function 1: Structure overview
+str(df)
 
-$P(2 \le X \le 4)$
-
-![](images/R_logo.jpg)
-
-```{r}
-pbinom(4,5,0.6)-pbinom(1,5,0.6)
+# Core function 2: Statistical summary
+summary(df)
 ```
 
-![](images/Excel_logo.jpg) - `=BINOM.DIST(4,5,0.6,TRUE)-BINOM.DIST(1,5,0.6,TRUE)`
+The `summary()` function provides a quick overview of your data and can help identify skewness, outliers, and missing values...but it isn't always enough.
 
+## Your options are endless (almost)
 
+There are many specialised functions for exploring different aspects of your data:
 
+```{r additional_exploration_combined}
+#| code-fold: false
+# Check for unique values in categorical variables
+unique(df$species)
 
-
-
-
-# Mean and variance of the binomial distribution
-
-- Mean binomial distribution 
-
-$\mu_x=np$
-
-$=5\times{0.6} = 3$ On average 3 flies die in 5 trials
-
-- Variance binomial distribution
-
-$\sigma_x^2=np(1-p)$
-
-$=5\times{0.6}(1-0.6)=1.2$ with a variance of 1.2 flies
-
-
-
-
-
-
-# Count Data
-
-:::: {.columns}
-::: {.column width="50%"}
-- Often we are interested in count data such as the number of events occurring in an interval;
-- We generally model this data using the Poisson distribution (Described by Simeon-Denis Poisson) where we use $\lambda$ denotes the average number of events occurring in an interval
-
-![Source: https://sharemylesson.com/teaching-resource/sesame-street-song-count-253315](images/L3_Count.png) 
-
-:::
-
-::: {.column width="50%"}
-
-- We often write this as 
-
-$X\sim{Po(\lambda)}$
-
-- Where $X$ is the number of discrete and independent events in the interval
-  - e.g. number of plants of a certain species along transect
-  - e.g. occurrence of disease in a period of time
-
-
-
-:::
-
-::::
-
-
-
-
-
-
-# Horse kick deaths in the Prussian Army
-
-```{r}
-library(knitr)
-kick <- read.csv("data/Kick_deaths.csv")
-kable(kick[1:12,])
+# Visualise missing data patterns
+library(naniar)
+vis_miss(airquality)
 ```
 
+## The value of data visualisation
 
+The output of `vis_mis()` cleary demonstrates the advantage of a **visual** approach to data exploration.
 
+::: {.fragment}
+Compare the visualisation to looking at the raw data or a summary of the raw data
 
-
-
-
-# Horse kick deaths in the Prussian Army
-
-https://en.wikipedia.org/wiki/Ladislaus_Bortkiewicz 
-
-:::: {.columns}
-::: {.column width="50%"}
-
-```{r}
-library(tidyverse)
-
-frequency_kick <- kick %>%
-  select(-Year) %>%
-  pivot_longer(cols = everything(), names_to = "Column", values_to = "Deaths") %>%
-  count(Deaths) %>%
-  arrange(Deaths) %>%
-  mutate(Total_Deaths = Deaths*n) %>%
-  mutate(Probability = "?")
-
-kable(frequency_kick)
+```{r manual_na_check}
+#| code-fold: false
+airquality$Ozone
+summary(airquality$Ozone)
 ```
 :::
 
-::: {.column width="50%"}
+## Common plot types and their applications
 
-- What is the Probability in any month of 
-  - 0 injuries by horse kick 
-  - 1 injuries by horse kick
-  - 2 injuries by horse kick 
-  - 3 injuries by horse kick 
-  - 4 injuries by horse kick
-- $\lambda$ “Lambda” is the mean
+Different types of data require different visualisation approaches. Let's explore the most common plot types and when to use them.
 
-:::
+## Histograms
 
-::::
+**Purpose and applications:**
 
+- Visualise distribution of continuous data
+- Identify central tendency, spread, outliers, and skewness
+- Examine distributions of measurements in biological data
 
+**When to use:**
 
+- For continuous variables (interval or ratio data)
+- When you want to understand the shape of a distribution
+- Examples: heights, weights, temperatures, measurements
 
+##
+```{r load_penguins, include=FALSE}
+# Load palmerpenguins dataset
+library(palmerpenguins)
+```
 
-# Horse kick deaths in the Prussian Army
+```{r histogram_base_example}
+# Example using base R with palmerpenguins data
+hist(penguins$body_mass_g,
+     main = "Distribution of Penguin Body Mass",
+     xlab = "Body Mass (g)",
+     col = "skyblue",
+     border = "white")
+```
 
-```{r}
-total_kick <- frequency_kick %>% 
-  summarize(n = sum(n), sum_Total_Deaths = sum(Total_Deaths))
+## Bar plots
 
-kable(total_kick)
+**Purpose and applications:**
+
+- Compare values across categories
+- Show proportions or counts in categorical data
+- Visualise species abundance, treatment effects
+
+**When to use:**
+
+- For categorical variables (nominal or ordinal data)
+- When comparing frequencies or counts across groups
+- Examples: species counts, treatment groups, survey responses
+
+##
+```{r barplot_base_example}
+# Example using base R with palmerpenguins data
+species_counts <- table(penguins$species)
+barplot(species_counts,
+        main = "Count of Penguins by Species",
+        xlab = "Species",
+        ylab = "Count",
+        col = c("darkorange", "purple", "cyan4"),
+        border = "white")
+```
+
+## Scatterplots
+
+**Purpose and applications:**
+
+- Examine relationships between continuous variables
+- Identify correlations, patterns, and outliers
+- Explore relationships between measurements
+
+**When to use:**
+
+- When examining relationships between two continuous variables
+- When looking for correlations or patterns
+- Examples: height vs. weight, temperature vs. growth rate
+
+##
+
+```{r scatterplot_base_example}
+# Example using base R with palmerpenguins data
+# Remove NA values for this example
+penguins_clean <- na.omit(penguins[, c("flipper_length_mm", "body_mass_g")])
+plot(penguins_clean$flipper_length_mm, penguins_clean$body_mass_g,
+     main = "Relationship Between Flipper Length and Body Mass",
+     xlab = "Flipper Length (mm)",
+     ylab = "Body Mass (g)",
+     pch = 19,
+     col = "darkblue")
+```
+
+## Boxplots
+
+**Purpose and applications:**
+
+- Compare distributions across groups
+- Visualise median, quartiles, and outliers
+- Compare measurements across treatments
+
+**When to use:**
+
+- When comparing a continuous variable across categorical groups
+- When you need to show the spread and central tendency
+- Examples: comparing heights across species, measurements across treatments
+
+##
+
+```{r boxplot_base_example}
+# Example using base R with palmerpenguins data
+boxplot(body_mass_g ~ species, data = penguins,
+        main = "Body Mass by Penguin Species",
+        xlab = "Species",
+        ylab = "Body Mass (g)",
+        col = c("darkorange", "purple", "cyan4"),
+        border = "black")
+```
+
+# Introduction to ggplot2
+
+## The Grammar of Graphics
+
+**ggplot2** is based on the Grammar of Graphics, a systematic approach to creating visualisations by combining different components:
+
+1. **Data**: The dataset you want to visualise
+2. **Aesthetics**: Mapping variables to visual properties (position, colour, size, etc.)
+3. **Geometries**: The shapes used to represent the data (points, lines, bars, etc.)
+4. **Scales**: How values are mapped to visual properties
+5. **Facets**: How to split the data into subplots
+6. **Coordinates**: The coordinate system to use
+7. **Themes**: Visual styling of the plot
+
+This grammar allows you to build complex visualisations layer by layer.
+
+## Why use ggplot2?
+
+- **Consistent syntax** across different plot types
+- **Layered approach** makes it easy to build complex visualisations
+- **Excellent defaults** that produce publication-quality graphics
+- **Highly customisable** with extensive options for fine-tuning
+- **Large community** with extensive documentation and examples
+
+## Building a plot: Step 1 - Start with data
+
+Let's build a scatterplot of penguin flipper length vs. body mass using the palmerpenguins dataset.
+
+First, we need to load the ggplot2 package and prepare our data:
+
+```{r ggplot2_step1}
+library(ggplot2)
+# Remove missing values for this example
+penguins_clean <- na.omit(penguins)
+
+# Look at the first few rows of our data
+head(penguins_clean[, c("species", "flipper_length_mm", "body_mass_g")])
+```
+
+## Building a plot: Step 2 - Create a blank canvas
+
+The `ggplot()` function initialises a plot with data:
+
+```{r ggplot2_step2}
+# Create a blank canvas with our data
+p <- ggplot(penguins_clean)
+p
+```
+
+This creates an empty plot. We need to add layers to visualise our data.
+
+## Building a plot: Step 3 - Add aesthetics
+
+Aesthetics map variables in the data to visual properties:
+
+```{r ggplot2_step3}
+# Add aesthetics mapping
+p <- ggplot(penguins_clean, aes(x = flipper_length_mm, y = body_mass_g))
+p
+```
+
+We've defined which variables go on which axes, but we still need to specify how to represent the data.
+
+## Building a plot: Step 4 - Add a geometry
+
+Geometries define how the data is represented visually:
+
+```{r ggplot2_step4}
+# Add points geometry
+p <- ggplot(penguins_clean, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point()
+p
+```
+
+Now we can see the relationship between flipper length and body mass!
+
+## Building a plot: Step 5 - Add colour by species
+
+We can map the species variable to the colour aesthetic:
+
+```{r ggplot2_step5}
+# colour points by species
+p <- ggplot(penguins_clean, aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +
+  geom_point()
+p
+```
+
+Notice how ggplot2 automatically creates a legend for the species colours.
+
+## Building a plot: Step 6 - Customise point appearance
+
+We can adjust the size and transparency of points:
+
+```{r ggplot2_step6}
+# Customize point appearance
+p <- ggplot(penguins_clean, aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +
+  geom_point(size = 3, alpha = 0.7)
+p
+```
+
+## Building a plot: Step 7 - Add labels and title
+
+Let's add informative labels and a title:
+
+```{r ggplot2_step7}
+# Add labels and title
+p <- ggplot(penguins_clean, aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +
+  geom_point(size = 3, alpha = 0.7) +
+  labs(
+    title = "Relationship Between Flipper Length and Body Mass",
+    subtitle = "Palmer Penguins Dataset",
+    x = "Flipper Length (mm)",
+    y = "Body Mass (g)",
+    colour = "Penguin Species"
+  )
+p
+```
+
+## Building a plot: Step 8 - Customise colours
+
+We can use a custom colour palette:
+
+```{r ggplot2_step8}
+# Customize colours
+p <- ggplot(penguins_clean, aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +
+  geom_point(size = 3, alpha = 0.7) +
+  scale_colour_manual(values = c("darkorange", "purple", "cyan4")) +
+  labs(
+    title = "Relationship Between Flipper Length and Body Mass",
+    subtitle = "Palmer Penguins Dataset",
+    x = "Flipper Length (mm)",
+    y = "Body Mass (g)",
+    colour = "Penguin Species"
+  )
+p
+```
+
+## Building a plot: Step 9 - Apply a theme
+
+Finally, let's apply a theme to change the overall appearance:
+
+```{r ggplot2_step9}
+# Apply a theme
+p <- ggplot(penguins_clean, aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +
+  geom_point(size = 3, alpha = 0.7) +
+  scale_colour_manual(values = c("darkorange", "purple", "cyan4")) +
+  labs(
+    title = "Relationship Between Flipper Length and Body Mass",
+    subtitle = "Palmer Penguins Dataset",
+    x = "Flipper Length (mm)",
+    y = "Body Mass (g)",
+    colour = "Penguin Species"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold"),
+    axis.title = element_text(face = "italic")
+  )
+p
+```
+
+## Adding more layers: Trend lines
+
+One of the strengths of ggplot2 is the ability to add multiple layers:
+
+```{r ggplot2_trendlines}
+# Add trend lines for each species
+p + geom_smooth(method = "lm", se = FALSE)
+```
+
+## Faceting: Split by species
+
+We can also split the plot into facets by species:
+
+```{r ggplot2_facets}
+# Create facets by species
+p + facet_wrap(~ species)
+```
+
+## The complete ggplot2 code
+
+Here's the complete code for our final plot:
+
+```{r ggplot2_complete, eval=FALSE}
+ggplot(penguins_clean, aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +
+  geom_point(size = 3, alpha = 0.7) +
+  scale_colour_manual(values = c("darkorange", "purple", "cyan4")) +
+  labs(
+    title = "Relationship Between Flipper Length and Body Mass",
+    subtitle = "Palmer Penguins Dataset",
+    x = "Flipper Length (mm)",
+    y = "Body Mass (g)",
+    colour = "Penguin Species"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold"),
+    axis.title = element_text(face = "italic")
+  )
 ```
 
 
+## Resources for further learning
 
+- [R Graphics Cookbook](https://r-graphics.org/)
+- [ggplot2 documentation](https://ggplot2.tidyverse.org/)
+- [R for Data Science](https://r4ds.had.co.nz/)
 
+# References and resources
 
+## Core reading
 
+- Wickham, H. (2016). *ggplot2: Elegant Graphics for Data Analysis*. Springer.
+- Chang, W. (2018). *R Graphics Cookbook*. O'Reilly Media.
+- Wickham, H., & Grolemund, G. (2017). *R for Data Science*. O'Reilly Media.
 
-# Poisson Distribution
+## Online resources
 
-$X\sim{Po(\lambda)}$
-
-$P(X=x)=\frac{\lambda^x e^{-\lambda}}{x!}$ $x=0,1,2,...$ $\lambda>0$
-
-- Note that $e$ denotes the exponential function such that
-  - $e^0=1$
-  - $e^-2=0.135 \text{(3 d.p.)}$
-  - $e^-10=4.540\times 10^{−5} \text{(3 d.p.)}$
-  
-  
-
-
-
-
-# Example with kick deaths
-
-- We first identify the model
-  - $X$ = the number of soldiers injured by horse kick $\sim{Po(\lambda)}$ where $\lambda$ = the average number of deaths = $196/280 = 0.7$. We can now calculate the probability of having exactly 0, 1, 2, 3, 4, 5 deaths
-
-- $P(X=0)=\frac{0.7^0 e^{-0.7}}{0!}=\frac{1e^{-0.7}}{1}=0.497 \text{(3 d.p.)}$
-- $P(X=1)=\frac{0.7^1 e^{-0.7}}{1!}=\frac{0.7e^{-0.7}}{1}=0.348 \text{(3 d.p.)}$
-- $P(X=2)=\frac{0.7^2 e^{-0.7}}{2!}=\frac{0.49e^{-0.7}}{2\times1}=0.122 \text{(3 d.p.)}$
-- $P(X=3)=\frac{0.7^3 e^{-0.7}}{3!}=\frac{0.343e^{-0.7}}{3\times2\times1}=0.028 \text{(3 d.p.)}$
-- $P(X=4)=\frac{0.7^4 e^{-0.7}}{4!}=\frac{0.2401e^{-0.7}}{4\times3\times2\times1}=0.005 \text{(3 d.p.)}$
-
-
-
-
-# Example with kick deaths
-
-```{r}
-x <- c(0, 1, 2, 3, 4) 
-p <- c(0.497, 0.348, 0.122, 0.028, 0.005) 
-plot(x, p, type = "h")
-```
-
-
-
-
-# Example with kick deaths
-
-```{r}
-
-frequency_kick1 <- kick %>%
-  select(-Year) %>%
-  pivot_longer(cols = everything(), names_to = "Column", values_to = "Deaths") %>%
-  count(Deaths) %>%
-  arrange(Deaths) %>%
-  mutate(Total_Deaths = Deaths*n) %>%
-  mutate(Probability = c(0.497, 0.348, 0.122, 0.028, 0.005)) %>%
-  mutate(Observed_Probability = n/280)
-
-kable(frequency_kick1)
-```
-
-- note that observed probability is n divided by the total number of observations (280). For example, for 0 deaths there were 144 observed out of a total of 280 observations i.e. the observed probability of 0 deaths in a cavalry corps over 20 years of observations was 0.51 or 51%
-
-
-
-
-
-# Example with kick deaths
-
-- So now you all can calculate what the probability is, as an example, the of having less than 2 deaths across all cavalry corps for the period of 1875-1894 $P(X<2)$.
-
-
-![](images/R_logo.jpg)
-
-```{r}
-ppois(1,0.7)
-```
-
-![](images/Excel_logo.jpg) - `=POISSON(1,0.7,TRUE)`
-
-
-
-
-
-
-
-
-# Example with kick deaths
-
-- Another example, is having exactly 2 deaths across all cavalry corps for the period of 1875-1894 $P(X=2)$.
-
-
-![](images/R_logo.jpg)
-
-```{r}
-dpois(2,0.7)
-```
-
-![](images/Excel_logo.jpg) - `=POISSON(2,0.7,FALSE)`
-
-
-
-
-
-
-# Interesting results with the binomial and Poisson distributions
-
-- For large $n$ and small p the Binomial distribution $X\sim{Bin(n,p)}$ can be approximated by the Poisson distribution $Y\sim{Po(\lambda{=np})}$
-  - The general rule is if $n>20$ and $np<5$
-- We often say that the Poisson Distribution models rare events
-
-
-
-
-
-# Interesting results with the binomial and Poisson distributions
-
-:::: {.columns}
-::: {.column width="50%"}
-
-```{r}
-# Parameters for the binomial distribution
-n <- 100
-p <- 0.05
-
-# Calculating lambda for the Poisson approximation
-lambda <- n * p
-
-# Generate the range of values
-x <- 0:n
-
-# Data frames for plotting
-data_binom <- data.frame(x = x, probability = dbinom(x, n, p), Distribution = "Binomial")
-data_pois <- data.frame(x = x, probability = dpois(x, lambda), Distribution = "Poisson")
-
-# Combine data
-data_combined <- rbind(data_binom, data_pois)
-
-# Create the plot
-p <- ggplot(data_combined, aes(x = factor(x), y = probability, fill = Distribution)) +
-    geom_bar(stat = "identity", position = position_dodge()) +
-    ggtitle("Binomial vs Poisson Distribution") +
-    xlab("Number of successes") +
-    ylab("Probability") +
-    scale_fill_manual(values = c("blue", "red")) +
-    theme_minimal() +
-    scale_x_discrete(breaks = seq(0, n, by = 10))  # Display every 10th label
-```
-
-:::
-::: {.column width="50%"}
-
-```{r}
-print(p)
-```
-
-:::
-::::
-
-# Further reading
-
-- Quinn & Keough (2002) 
-  - Chapter 1. Sections 1.5, p. 9-13
-- Mead et al. (2002)
-  - Chapter14. Sections 14.4-14.5, p. 339-377 
-
-
-
-
-
-
-
-
+- [ggplot2 documentation](https://ggplot2.tidyverse.org/)
+- [R for Data Science - Data Visualization chapter](https://r4ds.had.co.nz/data-visualisation.html)
+- [The R Graph Gallery](https://www.r-graph-gallery.com/)
+- [Cookbook for R - Graphs](http://www.cookbook-r.com/Graphs/)
 
 # Thanks!
 
