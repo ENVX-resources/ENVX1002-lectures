@@ -1,5 +1,5 @@
 ---
-title: Topic 12 -- Non-linear regression
+title: Topic 12 -- Nonlinear regression
 author: Si Yang Han
 format:
   soles-revealjs:
@@ -74,10 +74,10 @@ where $f(x_i, \beta)$ is a nonlinear function of the parameters $\beta$: "How do
 ![](images/netwon.jpg)
 
 > Carl Friedrich Gauss (1777-1855) and Isaac Newton (1642-1726)
-> Gauss-Newton approach to non-linear regression is most commonly used
+> Gauss-Newton approach to nonlinear regression is most commonly used
 
 
-## Non-linear relationships
+## Nonlinear relationships
 
 Linear relationships are simple to interpret since the rate of change is constant.
 
@@ -747,7 +747,7 @@ plot(resids)
 - *Normal QQ* looks good
 - *Residuals vs fitted* and *Standardized Residuals* even spread but slight fanning.
 - With *Autocorrelation* we want random scatter around 0 -- this indicates independence. Harder to meet with time-series data.
-- Non-linear models typically should meet assumptions because they are fitted specifically to the data.
+- Nonlinear models typically should meet assumptions because they are fitted specifically to the data.
 
 ## Interpretation
 
