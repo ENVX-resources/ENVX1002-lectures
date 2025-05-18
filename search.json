@@ -2,357 +2,357 @@
   {
     "objectID": "lectures/L12/lecture-12.html#module-overview",
     "href": "lectures/L12/lecture-12.html#module-overview",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Module overview",
     "text": "Module overview\n\n\n\n\nWeek 9. Describing Relationships\n\nCorrelation (calculation, interpretation)\nRegression (model structure, model fitting\nWhat/when/why/how\n\nWeek 10. Simple Linear Regression\n\nCan we use the model?(assumptions, hypothesis testing)\nHow good is the model?(interpretation, model fit)\n\nWeek 11. Multiple Linear Regression\n\nMultiple Linear Regression (MLR) modelling\nAssumptions, interpretation and the principle of parsimony\n\nWeek 12. Nonlinear Regression\n\nCommon nonlinear functions\nTransformations"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#regressions",
     "href": "lectures/L12/lecture-12.html#regressions",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Regressions",
     "text": "Regressions\nSimple linear regression\n Y_i = \\beta_0 + \\beta_1 x_i + \\epsilon_i \nIdeal for predicting a continuous response variable from a single predictor variable: “How does y change as x changes, when the relationship is linear?”\nMultiple linear regression\n Y_i = \\beta_0 + \\beta_1 x_{1i} + \\beta_2 x_{2i} + ... + \\beta_k x_{ki} + \\epsilon_i \n“How does y change as x_1, x_2, …, x_k change?”\n\nNonlinear regression\n Y_i = f(x_i, \\beta) + \\epsilon_i \n\n\nwhere f(x_i, \\beta) is a nonlinear function of the parameters \\beta: “How do we model a change in y with x when the relationship is nonlinear?”"
   },
   {
-    "objectID": "lectures/L12/lecture-12.html#non-linear-relationships",
-    "href": "lectures/L12/lecture-12.html#non-linear-relationships",
-    "title": "Topic 12 – Non-linear regression",
-    "section": "Non-linear relationships",
-    "text": "Non-linear relationships\nLinear relationships are simple to interpret since the rate of change is constant.\n“As one changes, the other changes at a constant rate.”\nNonlinear relationships often involve exponential, logarithmic, or power functions.\n“As one changes, the other changes at a rate that is not proportional to the change in the other."
+    "objectID": "lectures/L12/lecture-12.html#nonlinear-relationships",
+    "href": "lectures/L12/lecture-12.html#nonlinear-relationships",
+    "title": "Topic 12 – Nonlinear regression",
+    "section": "Nonlinear relationships",
+    "text": "Nonlinear relationships\nLinear relationships are simple to interpret since the rate of change is constant.\n“As one changes, the other changes at a constant rate.”\nNonlinear relationships often involve exponential, logarithmic, or power functions.\n“As one changes, the other changes at a rate that is not proportional to the change in the other."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#dealing-with-nonlinearity",
     "href": "lectures/L12/lecture-12.html#dealing-with-nonlinearity",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Dealing with nonlinearity",
     "text": "Dealing with nonlinearity\nTransformations\nOften, a nonlinear relationship may be transformed into a linear relationship by applying a transformation to the response variable or the predictor variable(s).\n\nLogarithmic: y = \\log(x)\nExponential: y = e^x\nSquare-root: y = \\sqrt{x}\nInverse: y = \\frac{1}{x}\n\n\n\nUsually works when y changes monotically with x.\nMore interpretable and easier to fit."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#nonlinear-relationships-exponents",
     "href": "lectures/L12/lecture-12.html#nonlinear-relationships-exponents",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Nonlinear relationships: exponents",
     "text": "Nonlinear relationships: exponents\n\nx^2 is the square of x.\nx^3 is the cube of x.\nx^a is x raised to the power of a.\n\n\nIn a relationship where y is a function of x^a, as y increases, x increases at a rate that is equal to x to the power of a.\n\n\n\nCode\n# Plot a simulation of above in ggplot2\nset.seed(123)\ntibble(x = seq(0, 10, by = 0.2), y = x^2) %&gt;%\n  ggplot(aes(x = x, y = y)) +\n  geom_point() +\n  labs(x = \"x\", y = \"y\") +\n  ggtitle(expression(y == x^2)) +\n  theme(plot.title = element_text(size = 40, face = \"bold\"))"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#nonlinear-relationships-logarithms",
     "href": "lectures/L12/lecture-12.html#nonlinear-relationships-logarithms",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Nonlinear relationships: logarithms",
     "text": "Nonlinear relationships: logarithms\n\nlog_e(x) is the natural logarithm of x.\nlog_{10}(x) is the common logarithm of x.\nlog_a(x) is the logarithm of x to the base a.\n\nInterpretation:\n\nIf \\log_a(y) = x: as x increases, y increases at a rate of y = a^x.\nIf y = \\log_a(x): as y increases, x also increases, at x = a^y."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#exponents-and-logarithms",
     "href": "lectures/L12/lecture-12.html#exponents-and-logarithms",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Exponents and logarithms",
     "text": "Exponents and logarithms\n\n\n\n\n\n\n\n\n\nExponents\nLogarithms\n\n\n\n\nDefinition\nIf a^n = b, a is the base, n is the exponent, and b is the result.\nIf \\log_a b = n, a is the base, b is the result, and n is the logarithm (or the exponent in the equivalent exponential form).\n\n\nExample\n2^3 = 8\n\\log_2 8 = 3\n\n\nInterpretation\n2 raised to the power of 3 equals 8.\nThe power to which you must raise 2 to get 8 is 3.\n\n\nInverse\nThe logarithm is the inverse operation of exponentiation.\nThe exponentiation is the inverse operation of logarithm.\n\n\nProperties\n(a^n)^m = a^{n \\cdot m}, a^n \\cdot a^m = a^{n+m}, \\frac{a^n}{a^m} = a^{n-m}\n\\log_a(b \\cdot c) = \\log_a b + \\log_a c, \\log_a\\left(\\frac{b}{c}\\right) = \\log_a b - \\log_a c, \\log_a(b^n) = n \\cdot \\log_a b\n\n\n\n\n\n\n\n\n\nNote\n\n\nFor your understanding, not examinable."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#exponential-decay-relationship",
     "href": "lectures/L12/lecture-12.html#exponential-decay-relationship",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Exponential decay relationship",
     "text": "Exponential decay relationship\nResponse variable decreases and approaches limit as predictor variable increases.\n y = a \\cdot e^{-bx} \n\n\nCode\nset.seed(429) # set seed\n# Simulate data:\ndecay &lt;- tibble(\n  predictor = seq(0,10, by = 0.2),\n  response = abs(exp(-0.5*predictor) + rnorm(length(predictor), mean = 1, sd = 0.1)))\n\nggplot(data = decay, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\nExamples: radioactive decay, population decline, chemical reactions."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#asymptotic-relationship",
     "href": "lectures/L12/lecture-12.html#asymptotic-relationship",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Asymptotic relationship",
     "text": "Asymptotic relationship\nResponse variable increases and approaches a limit as the predictor variable increases.\n y = a + b(1 - e^{-cx}) \n\n\nCode\nset.seed(442) # set seed\n# Simulate data:\nasymptotic = tibble(\n  predictor = seq(0, 10, by = 0.2),\n  response = 100*(1-exp(-0.5*predictor)) + rnorm(length(predictor), mean = 0, sd = 10))\n\nggplot(data = asymptotic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\nExamples: population growth, enzyme kinetics."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#logistic-relationship",
     "href": "lectures/L12/lecture-12.html#logistic-relationship",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Logistic relationship",
     "text": "Logistic relationship\nAn S-shaped relationship, where the response variable is at first exponential, then asymptotic.\n y = c + \\frac{d-c}{1+e^{-b(x-a)}} \n\n\nCode\nset.seed(450)\n# Simulate data:\nlogistic &lt;- tibble(predictor = seq(0, 10, by = 0.2), \n  response = 10 + abs(300 * (1 / (1 + exp(-0.8 * (predictor - 5)))) + rnorm(length(predictor), mean = 0, sd = 10)))\n\nggplot(data = logistic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\nExamples: growth of bacteria, disease spread, species growth."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#polynomial-relationship",
     "href": "lectures/L12/lecture-12.html#polynomial-relationship",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Polynomial relationship",
     "text": "Polynomial relationship\nResponse variable changes in a variety of ways as the predictor variable changes. Also known as ‘curvilinear’.\n y = a + bx + cx^2 + dx^3 + ... \n\n\nCode\n# Set seed for reproducibility\nset.seed(529)\n# Simulate data:\ncurvilinear &lt;- tibble(predictor = seq(0, 30, length.out = 50), \n  response = 50 * (1 - (predictor - 15)^2 / 225) + rnorm(length(predictor), mean = 0, sd = 5))\n\nggplot(data = curvilinear, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\nExamples: food intake, drug dosage, exercise."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#transformations-exponential-decay",
     "href": "lectures/L12/lecture-12.html#transformations-exponential-decay",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Transformations: exponential decay",
     "text": "Transformations: exponential decay\n\n\nBefore transformation\n\n\nCode\nggplot(data = decay,\n       aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\n\n\n\n\n\n\n\n\nAfter loge transform\n\n\nCode\nggplot(data = decay, \n       aes(x = predictor, y = log(response))) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#transformations-exponential-decay-1",
     "href": "lectures/L12/lecture-12.html#transformations-exponential-decay-1",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Transformations: exponential decay",
     "text": "Transformations: exponential decay\n\n\nBefore transformation\n\n\nCode\nautoplot(lm(response ~ predictor, data = decay)) +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\n\n\n\n\n\n\n\nAfter loge transform\n\n\nCode\nautoplot(lm(log(response) ~ predictor, data = decay)) +\n  labs(x = \"Predictor\", y = \"Response\")"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#transformations-asymptotic-relationship",
     "href": "lectures/L12/lecture-12.html#transformations-asymptotic-relationship",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Transformations: asymptotic relationship",
     "text": "Transformations: asymptotic relationship\n\n\nBefore transformation\n\n\nCode\nggplot(data = asymptotic,\n       aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\n\n\n\n\n\n\n\n\nAfter loge transform\n\n\nCode\nggplot(data = asymptotic, \n       aes(x = log(predictor), y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#transformations-asymptotic-relationship-1",
     "href": "lectures/L12/lecture-12.html#transformations-asymptotic-relationship-1",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Transformations: asymptotic relationship",
     "text": "Transformations: asymptotic relationship\n\n\nBefore transformation\n\n\nCode\nautoplot(lm(response ~ predictor, data = asymptotic)) +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\n\n\n\n\n\n\n\nAfter loge transform\n\n\nCode\nautoplot(lm(log(response) ~ predictor, data = asymptotic)) +\n  labs(x = \"Predictor\", y = \"Response\")"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#transformations-logistic-relationship",
     "href": "lectures/L12/lecture-12.html#transformations-logistic-relationship",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Transformations: logistic relationship",
     "text": "Transformations: logistic relationship\n\n\nBefore transformation\n\n\nCode\nggplot(data = logistic,\n       aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\n\n\n\n\n\n\n\n\nAfter loge transform\n\n\nCode\nggplot(data = logistic, \n       aes(x = predictor, y = log(response))) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#transformations-logistic-relationship-1",
     "href": "lectures/L12/lecture-12.html#transformations-logistic-relationship-1",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Transformations: logistic relationship",
     "text": "Transformations: logistic relationship\n\n\nBefore transformation\n\n\nCode\nautoplot(lm(response ~ predictor, data = logistic)) +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\n\n\n\n\n\n\n\nAfter loge transform\n\n\nCode\nautoplot(lm(log(response) ~ predictor, data = logistic)) +\n  labs(x = \"Predictor\", y = \"Response\")"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#transformations-polynomial-relationship",
     "href": "lectures/L12/lecture-12.html#transformations-polynomial-relationship",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Transformations: polynomial relationship",
     "text": "Transformations: polynomial relationship\n\n\nBefore transformation\n\n\nCode\nggplot(data = curvilinear,\n       aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\n\n\n\n\n\n\n\n\nAfter loge transform\n\n\nCode\nggplot(data = curvilinear, \n       aes(x = predictor, y = log(response))) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#transformations-polynomial-relationship-1",
     "href": "lectures/L12/lecture-12.html#transformations-polynomial-relationship-1",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Transformations: polynomial relationship",
     "text": "Transformations: polynomial relationship\n\n\nBefore transformation\n\n\nCode\nautoplot(lm(response ~ predictor, data = curvilinear)) +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\n\n\n\n\n\n\n\nAfter loge transform\n\n\nCode\nautoplot(lm(log(response) ~ predictor, data = curvilinear)) +\n  labs(x = \"Predictor\", y = \"Response\")"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#did-the-transformations-work",
     "href": "lectures/L12/lecture-12.html#did-the-transformations-work",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Did the transformations work?",
     "text": "Did the transformations work?\n\nTo a certain extent…\nProblems:\n\nRelationships typically do not meet the linear assumption, but seem “ok” for other assumptions.\nPoor fit to the data (over or underfitting in some areas).\nDifficult to interpret the results."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#nonlinear-regression-2",
     "href": "lectures/L12/lecture-12.html#nonlinear-regression-2",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Nonlinear regression",
     "text": "Nonlinear regression\n\nA way to model complex (nonlinear) relationships.\n\ni.e. phenomena that arise in the natural and physical sciences e.g. biology, chemistry, physics, engineering.\n\nAt least one predictor is not linearly related to the response variable.\nUnique/specific shape - apply only if you are sure of the relationship, e.g. asymptotic, quadratic."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#performing-nonlinear-regression",
     "href": "lectures/L12/lecture-12.html#performing-nonlinear-regression",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Performing nonlinear regression",
     "text": "Performing nonlinear regression\n\nPolynomial regression: still linear in the parameters and a good place to start.\nNonlinear regression: use the nls() function to fit the following nonlinear models:\n\nExponential growth\nExponential decay\nLogistic"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#model",
     "href": "lectures/L12/lecture-12.html#model",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Model",
     "text": "Model\n Y_i = \\beta_0 + \\beta_1 x_i + \\beta_2 x_i^2 + ... + \\beta_k x_i^k + \\epsilon_i \nwhere k is the degree of the polynomial.\n\nThe model is still linear in the parameters \\beta and can be fitted using least squares.\nInstead of multiple predictors, we have multiple terms of the same predictor (same x).\nOnly the highest-order term is tested for significance.\nCan still be fit using lm().\nThe more complex, the less likely it follows a true biological relationship…\n\n\n\nAdding polynomial terms\n\nLinear: y = \\beta_0 + \\beta_1 x\nQuadratic: y = \\beta_0 + \\beta_1 x + \\beta_2 x^2\nCubic: y = \\beta_0 + \\beta_1 x + \\beta_2 x^2 + \\beta_3 x^3\nEach level increases the power of the predictor by 1."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#the-data",
     "href": "lectures/L12/lecture-12.html#the-data",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "The data",
     "text": "The data\nSee Slide 11 for the relationship and mathematical expression.\n\n\nCode\nggplot(asymptotic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#fitting-the-model-linear",
     "href": "lectures/L12/lecture-12.html#fitting-the-model-linear",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Fitting the model (linear)",
     "text": "Fitting the model (linear)\n Y_i = \\beta_0 + \\beta_1 x_i + \\epsilon_i \n\n\nCode\nlin_fit &lt;- lm(response ~ predictor, asymptotic)\n\n\n\n\nCode\nggplot(asymptotic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\") +\n  geom_line(aes(y = predict(lin_fit)), color = \"red\", size = 2)"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#fitting-the-model-polydegree-2",
     "href": "lectures/L12/lecture-12.html#fitting-the-model-polydegree-2",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Fitting the model (poly(degree = 2))",
     "text": "Fitting the model (poly(degree = 2))\n Y_i = \\beta_0 + \\beta_1 x_i + \\beta_2 x_i^2 + \\epsilon_i \n\n\nCode\npoly2_fit &lt;- lm(response ~ poly(predictor, 2), asymptotic)\n\n\n\n\nCode\nggplot(asymptotic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\") +\n  geom_line(aes(y = predict(lin_fit)), color = \"red\") +\n  geom_line(aes(y = predict(poly2_fit)), color = \"slateblue\", size = 2)"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#fitting-the-model-polydegree-3",
     "href": "lectures/L12/lecture-12.html#fitting-the-model-polydegree-3",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Fitting the model (poly(degree = 3))",
     "text": "Fitting the model (poly(degree = 3))\n Y_i = \\beta_0 + \\beta_1 x_i + \\beta_2 x_i^2 + \\beta_3 x_i^3 + \\epsilon_i \n\n\nCode\npoly3_fit &lt;- lm(response ~ poly(predictor, 3), asymptotic)\n\n\n\n\nCode\nggplot(asymptotic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\") +\n  geom_line(aes(y = predict(lin_fit)), color = \"red\") +\n  geom_line(aes(y = predict(poly2_fit)), color = \"slateblue\") +\n  geom_line(aes(y = predict(poly3_fit)), color = \"seagreen\", size = 2)"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#fitting-the-model-polydegree-10",
     "href": "lectures/L12/lecture-12.html#fitting-the-model-polydegree-10",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Fitting the model (poly(degree = 10))",
     "text": "Fitting the model (poly(degree = 10))\n Y_i = \\beta_0 + \\beta_1 x_i + \\beta_2 x_i^2 + ... + \\beta_10 x_i^{10} + \\epsilon_i \n\n\nCode\npoly10_fit &lt;- lm(response ~ poly(predictor, 10), asymptotic)\n\n\n\n\nCode\nggplot(asymptotic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\") +\n  geom_line(aes(y = predict(lin_fit)), color = \"red\") +\n  geom_line(aes(y = predict(poly2_fit)), color = \"slateblue\") +\n  geom_line(aes(y = predict(poly3_fit)), color = \"seagreen\") +\n  geom_line(aes(y = predict(poly10_fit)), color = \"firebrick\", size = 2)\n\n\n\nCode\n# 1) Compute R^2 values\nR2_lin    &lt;- summary(lin_fit)$r.squared\nR2_poly2  &lt;- summary(poly2_fit)$adj.r.squared\nR2_poly3  &lt;- summary(poly3_fit)$adj.r.squared\nR2_poly10 &lt;- summary(poly10_fit)$adj.r.squared\n\n# 2) Create a simple table (data frame)\nmodel_r2_table &lt;- data.frame(\n  Model = c(\"Linear\", \"Poly2\", \"Poly3\", \"Poly10\"),\n  R2    = c(R2_lin, R2_poly2, R2_poly3, R2_poly10)\n)\n\n# Display the table\nknitr::kable(\n  model_r2_table, \n  digits  = 3, \n  caption = \"Comparison of R^2^ of Polynomial Models\"\n)\n\n\n\nComparison of R2 of Polynomial Models\n\n\nModel\nR2\n\n\n\n\nLinear\n0.570\n\n\nPoly2\n0.820\n\n\nPoly3\n0.872\n\n\nPoly10\n0.862\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nWe use adjusted R2 for polynomials - extra terms, extra complexity, so extra penalty."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#limitations",
     "href": "lectures/L12/lecture-12.html#limitations",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Limitations",
     "text": "Limitations\n\nMeaning of the coefficients is not always clear.\nExtrapolation can be dangerous.\nExtra terms can lead to overfitting and are difficult to interpret:\nParsimony: is the most complex term (highest power) significant? If not, use a lower power.\n\n\n\nCode\nsummary(poly10_fit)\n\n\n\nCall:\nlm(formula = response ~ poly(predictor, 10), data = asymptotic)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-17.1659  -8.6908  -0.0494   8.8003  16.4012 \n\nCoefficients:\n                      Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)             79.818      1.552  51.426  &lt; 2e-16 ***\npoly(predictor, 10)1   159.368     11.084  14.378  &lt; 2e-16 ***\npoly(predictor, 10)2  -106.939     11.084  -9.648 5.37e-12 ***\npoly(predictor, 10)3    48.570     11.084   4.382 8.28e-05 ***\npoly(predictor, 10)4   -19.411     11.084  -1.751   0.0876 .  \npoly(predictor, 10)5     1.193     11.084   0.108   0.9148    \npoly(predictor, 10)6    -2.769     11.084  -0.250   0.8040    \npoly(predictor, 10)7    -1.343     11.084  -0.121   0.9042    \npoly(predictor, 10)8    -4.009     11.084  -0.362   0.7195    \npoly(predictor, 10)9    -2.851     11.084  -0.257   0.7984    \npoly(predictor, 10)10    5.769     11.084   0.520   0.6056    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 11.08 on 40 degrees of freedom\nMultiple R-squared:  0.8897,    Adjusted R-squared:  0.8621 \nF-statistic: 32.26 on 10 and 40 DF,  p-value: 4.846e-16\n\n\nStill:\n\nEasy to fit: just add polynomial terms to the model.\nSimple to perform: use lm()."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#fitting-a-nonlinear-model",
     "href": "lectures/L12/lecture-12.html#fitting-a-nonlinear-model",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Fitting a nonlinear model",
     "text": "Fitting a nonlinear model\nIf you have some understanding of the underlying relationship (e.g. mechanistic process) between the variables, you can fit a nonlinear model. \n\nMathematical expression\n Y_i = f(x_i, \\beta) + \\epsilon_i \nwhere f(x_i, \\beta) is a nonlinear function of the parameters \\beta.\n\nY_i is the continuous response variable.\nx_i is the vector of predictor variables.\n\\beta is the vector of unknown parameters.\n\\epsilon_i is the random error term (residual error)."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#assumptions",
     "href": "lectures/L12/lecture-12.html#assumptions",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Assumptions",
     "text": "Assumptions\nLike the linear model, the nonlinear model assumes INE:\n\nError terms are independent (Independence).\nError terms are normally distributed (Normality).\nError terms have equal/constant variance (Homoscedasticity).\n\nBasically:\n \\epsilon_i \\sim N(0, \\sigma^2) \n\nLike all other models we have seen, we focus on the residuals to assess the model fit, since the residuals are the only part of the model that is random."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#estimating-the-model-parameters",
     "href": "lectures/L12/lecture-12.html#estimating-the-model-parameters",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Estimating the model parameters",
     "text": "Estimating the model parameters\n\n\n\nThe parameters are estimated using the method of least squares.\nFor nonlinear models, a nonlinear optimization algorithm is used to find the best fit, rather than ordinary least squares:\n\nGauss-Newton algorithm\nLevenberg-Marquardt algorithm\n\nThis can only be performed iteratively and depends on a “best guess” of the parameters as a start.\n\ni.e. we need to provide a starting point for a nonlinear least squares algorithm to begin.\n\n\n\n\nSource: Wikipedia"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#two-methods-in-r",
     "href": "lectures/L12/lecture-12.html#two-methods-in-r",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Two methods in R",
     "text": "Two methods in R\n\n\nUse nls() function in R.\n\n\nCode\nnls(formula, data, start)\n\n\n\nformula: a formula object, response variable ~ predictor variable(s).\ndata: a data frame containing the variables in the model (response, predictor).\nstart: a named list of starting values for the parameters in the model.\n\n\nSelf-starting functions: SSexpf(), SSasymp(), SSlogis(), etc.\n\nSelf-starting functions estimate the starting values for you.\nNamed after the models they fit.\nExisting functions have pre-set formulas.\nCan define own functions but more complex than nls()."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#with-nls",
     "href": "lectures/L12/lecture-12.html#with-nls",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "With nls()",
     "text": "With nls()\ny=y_0e^{kx}\nwhere\n\ny is the response and x is the predictor\ny_0 is the value of y when x = 0\nk is the rate of change\n\nk can be estimated with the equation slope = k = \\frac{log_e y_{max} - log_e y_{min}}{x_{max} - x_{min}}, but usually a value of 1 is a good starting point.\n\n\nCode\nset.seed(123)\ngrowth &lt;- tibble(\n  predictor = seq(0,10, by = 0.2),\n  response = abs(exp(0.5*predictor) + rnorm(length(predictor), mean = 1, sd = 5)))\n\nggplot(data = growth, aes(x = predictor, y = response)) +\n  geom_point() +\n  geom_hline(yintercept = 0, linetype = \"dashed\") +\n  labs(x = \"Predictor\", y = \"Response\")"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#first-guess",
     "href": "lectures/L12/lecture-12.html#first-guess",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "First guess",
     "text": "First guess\nBased on the plot, we can estimate y_0 ~ 0 and k = 1. Because of the equation, y=y_0e^{kx}, y_0 cannot be 0!\n\n\nCode\nfit_exponential &lt;- nls(response ~ y0*exp(k*predictor), data = growth, \n  start = list(y0 = 0.1, k = 1))\n\n\n\n\nCode\nggplot(data = growth, aes(x = predictor, y = response)) +\n  geom_point() + \n  labs(x = \"Predictor\", y = \"Response\") +\n  geom_line(aes(y = predict(fit_exponential)), color = \"red\", size = 2)"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#check-assumptions",
     "href": "lectures/L12/lecture-12.html#check-assumptions",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Check assumptions",
-    "text": "Check assumptions\n\n\nCode\nlibrary(nlstools)\nresids &lt;- nlsResiduals(fit_exponential)\nplot(resids)\n\n\n\n\nThese plots determine if the residuals are normally distributed and have equal variance\nNormal QQ looks good\nResiduals vs fitted and Standardized Residuals even spread but slight fanning.\nWith Autocorrelation we want random scatter around 0 – this indicates independence. Harder to meet with time-series data.\nNon-linear models typically should meet assumptions because they are fitted specifically to the data."
+    "text": "Check assumptions\n\n\nCode\nlibrary(nlstools)\nresids &lt;- nlsResiduals(fit_exponential)\nplot(resids)\n\n\n\n\nThese plots determine if the residuals are normally distributed and have equal variance\nNormal QQ looks good\nResiduals vs fitted and Standardized Residuals even spread but slight fanning.\nWith Autocorrelation we want random scatter around 0 – this indicates independence. Harder to meet with time-series data.\nNonlinear models typically should meet assumptions because they are fitted specifically to the data."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#interpretation",
     "href": "lectures/L12/lecture-12.html#interpretation",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Interpretation",
     "text": "Interpretation\n\n\nCode\nsummary(fit_exponential)\n\n\n\nFormula: response ~ y0 * exp(k * predictor)\n\nParameters:\n   Estimate Std. Error t value Pr(&gt;|t|)    \ny0   1.1694     0.1291   9.059 4.82e-12 ***\nk    0.4847     0.0121  40.057  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.409 on 49 degrees of freedom\n\nNumber of iterations to convergence: 8 \nAchieved convergence tolerance: 1.204e-06\n\n\n\nThe model is significant since the p-value is less than 0.05 for all parameters.\nIf this were real data (e.g. population growth), the parameters themselves e.g. rate of change, are useful\nThe parameterised model is:\n\n y = 1.17 \\cdot e^{-0.484x}  The R-squared value is not reported for nonlinear models as the sum of squares is not partitioned into explained and unexplained components. You can use the residual standard error and plots instead to compare between models."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#a-really-bad-guess",
     "href": "lectures/L12/lecture-12.html#a-really-bad-guess",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "A really bad guess",
     "text": "A really bad guess\nWhat if we don’t estimate our parameters very well? R will either give an error or get there eventually.\nNote the parameters and residual standard error are the same as the previous slide - but the Number of iterations to convergence is higher.\n\n\nCode\nfit_exponential &lt;- nls(response ~ y0*exp(k*predictor), data = growth, \n  start = list(y0 = 50, k = 1.5)) # totally bogus numbers\n\nsummary(fit_exponential)\n\n\n\nFormula: response ~ y0 * exp(k * predictor)\n\nParameters:\n   Estimate Std. Error t value Pr(&gt;|t|)    \ny0   1.1694     0.1291   9.059 4.82e-12 ***\nk    0.4847     0.0121  40.057  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.409 on 49 degrees of freedom\n\nNumber of iterations to convergence: 28 \nAchieved convergence tolerance: 1.982e-06\n\n\n\n\n\n\n\n\nTip\n\n\nIf an error pops up, try different starting values - the rate of change is most likely the problem."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#fitting-the-model-with-ssexpf",
     "href": "lectures/L12/lecture-12.html#fitting-the-model-with-ssexpf",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Fitting the model with SSexpf()",
     "text": "Fitting the model with SSexpf()\n\nSSexpf() is from the nlraa package.\nIt has the same formula as above – different names for parameters (y_0 = a, k = c) but we can re-define them to anything we want\nReaches the same result but with less effort.\n\n\n\nCode\nlibrary(nlraa)\nfit_exponential_ss &lt;- nls(response ~ SSexpf(predictor, y0, k), data = decay) \nsummary(fit_exponential_ss)\n\n\n\nFormula: response ~ SSexpf(predictor, y0, k)\n\nParameters:\n   Estimate Std. Error t value Pr(&gt;|t|)    \ny0  1.65486    0.04699   35.22  &lt; 2e-16 ***\nk  -0.06527    0.00590  -11.06 6.33e-15 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.1471 on 49 degrees of freedom\n\nNumber of iterations to convergence: 5 \nAchieved convergence tolerance: 1.048e-06"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#the-equation",
     "href": "lectures/L12/lecture-12.html#the-equation",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "The equation",
     "text": "The equation\n\nThere are multiple equations for asymptotic models, this is the equation that SSasymp() (base R) uses:\n\n y = Asym + (R_0-Asym) \\cdot e^{-e^{lrc} \\cdot x} \n\nR_0 is value of y when x = 0.\nAsym is the upper limit: the maximum value of y.\nlrc is the rate of change: the rate at which y approaches the upper limit.\n\n\n\n\nCode\nggplot(data = asymptotic, aes(x = predictor, y = response)) +\n  geom_point() + \n  geom_hline(yintercept = 100, linetype = \"dashed\") +\n  geom_vline(xintercept = 0, linetype = \"dashed\") +\n  ## plot the rate\n  geom_segment(aes(x = 0, y = 0, xend = 2.5, yend = 100), \n               arrow = arrow(length = unit(0.5, \"cm\")), \n               color = \"red\") +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\n\n\n\n\n\n\nSome plausible estimates – R_0 = 0, Asym = 100, lrc = 0.8."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#fit-model",
     "href": "lectures/L12/lecture-12.html#fit-model",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Fit model",
     "text": "Fit model\n\n\nCode\n# fit_asymptotic &lt;- nls(response ~ Asym + (R0-Asym)*(exp(-exp(lrc)*predictor)), data = asymptotic, \n#   start = list(R0 = 0, Asym = 100, lrc = 0.8))\n\nfit_asymptotic &lt;- nls(response ~ SSasymp(predictor, Asym, R0, lrc), data = asymptotic)\n\n\n\n\nCode\nggplot(data = asymptotic, aes(x = predictor, y = response)) +\n  geom_point() + \n  geom_hline(yintercept = 100, linetype = \"dashed\") +\n  geom_vline(xintercept = 0, linetype = \"dashed\") +\n  labs(x = \"Predictor\", y = \"Response\") +\n  geom_line(aes(y = predict(fit_asymptotic)), color = \"red\", size = 2)"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#check-assumptions-1",
     "href": "lectures/L12/lecture-12.html#check-assumptions-1",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Check assumptions",
     "text": "Check assumptions\n\n\nCode\nlibrary(nlstools)\nresids &lt;- nlsResiduals(fit_asymptotic)\nplot(resids)"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#interpretation-1",
     "href": "lectures/L12/lecture-12.html#interpretation-1",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Interpretation",
     "text": "Interpretation\n\n\nCode\nsummary(fit_asymptotic)\n\n\n\nFormula: response ~ SSasymp(predictor, Asym, R0, lrc)\n\nParameters:\n     Estimate Std. Error t value Pr(&gt;|t|)    \nAsym  98.5204     2.2852  43.113  &lt; 2e-16 ***\nR0   -14.5176     6.6416  -2.186  0.03374 *  \nlrc   -0.4626     0.1134  -4.079  0.00017 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 10.21 on 48 degrees of freedom\n\nNumber of iterations to convergence: 0 \nAchieved convergence tolerance: 3.197e-07\n\n\n\nThe model is significant since the p-value is less than 0.05 for all parameters.\nIf this were real data (e.g. population growth), the parameters themselves e.g. rate of change, are useful\nThe parameterised model is:\n\n y = 98.5 + (-14.5-98.5) \\cdot e^{-e^{-0.463} \\cdot x}   # Example: fitting a logistic model"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#the-equation-1",
     "href": "lectures/L12/lecture-12.html#the-equation-1",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "The equation",
     "text": "The equation\nThere are multiple equations for logistic models, but they all have an ‘S’ or sigmoid shape. The equation that SSlogis() (base R) assumes y is positive and uses:\n y = \\frac{Asym}{1+e^{\\frac{xmid-x}{scal}}}  where\n\nAsym is the upper limit: the maximum value of y.\nxmid is the value of x when y is halfway between the lower and upper limits.\nscal is the rate of change: the rate at which y approaches the upper limit.\n\n\n\nCode\nggplot(data = logistic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\") +\n  geom_hline(yintercept = 300, linetype = \"dashed\") +\n  geom_vline(xintercept = 5, linetype = \"dashed\") +\n  # label the lines above\n  annotate(\"text\", x = 0, y = 300, label = \"Asym\", size = 8, vjust = 1.5) +\n  annotate(\"text\", x = 5, y = 100, label = \"xmid\", size = 8, hjust = -1) +\n  ## plot the rate\n  geom_segment(aes(x = 2.5, y = 60, xend = 6, yend = 250), \n               arrow = arrow(length = unit(0.5, \"cm\")), \n               color = \"red\") +\n  # label the rate\n  annotate(\"text\", x = 4, y = 180, label = \"scal\", size = 8, colour = \"red\", hjust = -1)\n\n\n\nSome starting values would be Asym = 300, xmid = 5, scal = 1."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#fit-model-1",
     "href": "lectures/L12/lecture-12.html#fit-model-1",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Fit model",
     "text": "Fit model\nEstimating the parameters or using the self-starting function SSlogis() gives a near-identical result.\n\n\nCode\n# fit_logistic &lt;- nls(response ~ Asym/(1+exp((xmid-predictor)/scal)), data = logistic, \n#    start = list(Asym = 300, xmid = 5, scal = 1))\n\nfit_logistic &lt;- nls(response ~ SSlogis(predictor, Asym, xmid, scal), data = logistic)\n\nresids &lt;- nlsResiduals(fit_logistic)\nplot(resids)"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#interpretation-2",
     "href": "lectures/L12/lecture-12.html#interpretation-2",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Interpretation",
     "text": "Interpretation\nSSlogis() guessed the parameters on the first try.\n\n\nCode\nsummary(fit_logistic)\n\n\n\nFormula: response ~ SSlogis(predictor, Asym, xmid, scal)\n\nParameters:\n      Estimate Std. Error t value Pr(&gt;|t|)    \nAsym 310.64727    4.62579   67.16   &lt;2e-16 ***\nxmid   4.92715    0.07142   68.99   &lt;2e-16 ***\nscal   1.34877    0.05418   24.90   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 10.22 on 48 degrees of freedom\n\nNumber of iterations to convergence: 1 \nAchieved convergence tolerance: 6.626e-07\n\n\n\nThe model is significant since the p-value is less than 0.05 for all parameters.\nIf the model visually fits well and relationship has reasoning but not all parameters are significant – that is fine.\nThe parameterised model is:\n\n y = \\frac{310}{1+e^{\\frac{4.93-x}{1.35}}}"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#example-polynomial-regression",
     "href": "lectures/L12/lecture-12.html#example-polynomial-regression",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Example: polynomial regression",
     "text": "Example: polynomial regression\n\n\nCode\nlibrary(tidyr)\n\n# Create a new data frame with predictor values and model predictions\npredictions &lt;- data.frame(\n  predictor = asymptotic$predictor,\n  Linear = predict(lin_fit),\n  Poly_2 = predict(poly2_fit),\n  Poly_3 = predict(poly3_fit),\n  Poly_10 = predict(poly10_fit)\n)\n\n# Reshape the data to long format\npredictions_long &lt;- predictions %&gt;%\n  pivot_longer(cols = -predictor, names_to = \"Model\", values_to = \"response\")\n\n# Plot the data\nggplot(predictions_long, aes(x = predictor, y = response, color = Model)) +\n  geom_point(data = asymptotic, aes(x = predictor, y = response), inherit.aes = FALSE) +\n  geom_line(linewidth = 1) +\n  labs(x = \"Predictor\", y = \"Response\") +\n  scale_color_brewer(palette = \"Spectral\")"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#prediction-quality",
     "href": "lectures/L12/lecture-12.html#prediction-quality",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Prediction quality",
     "text": "Prediction quality\nWe can use prediction quality metrics to compare the fits.\n\nAkaike information criterion (AIC) and Bayesian information criterion (BIC).\n\nUseful for comparing model fits.\nHas a penalty for more predictors\n\nResidual standard error, residual sum of squares (deviance(mod)), root mean squared error (RMSE) and mean absolute error (MAE).\n\nEssentially the difference between observed and predicted (residuals).\nRMSE penalises larger residuals."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#aic-and-bic",
     "href": "lectures/L12/lecture-12.html#aic-and-bic",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "AIC and BIC",
     "text": "AIC and BIC\nUse the broom package to extract the AIC and BIC values from the model fits.\n\n\nCode\nlibrary(broom)\n# collect all polynomial fits into a single tibble using glance\npoly_fits &lt;- tibble(\n  model = c(\"linear\", \"poly2\", \"poly3\", \"poly10\"),\n  fit = list(lin_fit, poly2_fit, poly3_fit, poly10_fit)) %&gt;%\n  mutate(glance = map(fit, glance)) %&gt;%\n  unnest(glance) %&gt;%\n  select(model, AIC, BIC)\npoly_fits\n\n\n# A tibble: 4 × 3\n  model    AIC   BIC\n  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 linear  453.  459.\n2 poly2   409.  416.\n3 poly3   392.  402.\n4 poly10  402.  425.\n\n\n\nThe smaller the AIC or BIC, the better the fit compared to other models."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#calculate-rmse-and-mae",
     "href": "lectures/L12/lecture-12.html#calculate-rmse-and-mae",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Calculate RMSE and MAE",
     "text": "Calculate RMSE and MAE\n\n\nCode\npredictions &lt;- data.frame(\n  observed = asymptotic$response,\n  Linear = predict(lin_fit),\n  Poly_2 = predict(poly2_fit),\n  Poly_3 = predict(poly3_fit),\n  Poly_10 = predict(poly10_fit)\n)\n\nerrors &lt;- predictions %&gt;%\n  pivot_longer(cols = -observed, names_to = \"Model\", values_to = \"Predicted\") %&gt;%\n  group_by(Model) %&gt;%\n  summarise(\n    RMSE = sqrt(mean((observed - Predicted)^2)),\n    MAE = mean(abs(observed - Predicted))\n)\n\nknitr::kable(errors, digits=2, caption = \"Comparison of RMSE and MAE for different models\")\n\n\n\nComparison of RMSE and MAE for different models\n\n\nModel\nRMSE\nMAE\n\n\n\n\nLinear\n19.38\n15.17\n\n\nPoly_10\n9.82\n8.57\n\n\nPoly_2\n12.30\n9.88\n\n\nPoly_3\n10.25\n8.83\n\n\n\n\n\n\nFrom the results, the polynomial to the degree of 10 has the lowest error - but visually we know it is overfitting, and the cubic polynomial is more parsimonius.\nWe can say the model has a prediction error of 10.25 units (RMSE) and 8.83 units (MAE).\n\n\n\n\n\n\n\nNote\n\n\nBoth the RMSE and MAE measure error on the same scale as the response variable. e.g. if the response variable is in kg, the error will be in kg."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#summary",
     "href": "lectures/L12/lecture-12.html#summary",
-    "title": "Topic 12 – Non-linear regression",
+    "title": "Topic 12 – Nonlinear regression",
     "section": "Summary",
     "text": "Summary\n\n\n\nWith nonlinear relationships, there are three possible approaches:\n\nLinearise the relationship by transforming:\n\nFit: easy\nInterpret: difficult\n\nAdd polynomial terms:\n\nFit: easy\nInterpret: difficult\n\nFit the model using a nonlinear algorithm:\n\nFit: difficult\nInterpret: easy\n\n\n\n\n\n\n\n\nNonlinear models:\n\nUseful for modelling more complex relationships. Require some understanding of the underlying relationship and equations.\nMainly for prediction rather than interpreting relationships.\nSelf-starting functions have limited pre-defined formulas.\nAssumptions INE."
   },
@@ -745,7 +745,7 @@
     "href": "lectures/L06/index.html",
     "title": "Lecture 06",
     "section": "",
-    "text": "Lecture 06\nFull Screen | PDF",
+    "text": "Lecture 06a\nFull Screen | PDF",
     "crumbs": [
       "{{< fa house-chimney >}}",
       "**Module 2 inference**",
@@ -808,39 +808,39 @@
     "text": "About us…\nFloris van Ogtrop - Unit Coordinator\n\nRoom 306, Level 3, Biomedical Building, Australian Technology Park, Eveleigh\nPh: 02 8627 1024\nEmail: floris.vanogtrop@sydney.edu.au\n\n\nTeaching schedule\n\n\n\nJanuar Harianto\nWeeks 1 – 4, Lecturer\n\n\nFloris van Ogtrop\nWeeks 5 – 8, Unit Coordinator\n\n\nSi Yang Han\nWeeks 9 – 12, Lecturer"
   },
   {
-    "objectID": "lectures/L01/lecture-01a.html#envx1002-learning-outcomes",
-    "href": "lectures/L01/lecture-01a.html#envx1002-learning-outcomes",
+    "objectID": "lectures/L01/lecture-01a.html#about-envx1002",
+    "href": "lectures/L01/lecture-01a.html#about-envx1002",
     "title": "Lecture 01a – This is ENVX1002",
-    "section": "ENVX1002 Learning outcomes",
-    "text": "ENVX1002 Learning outcomes\n\nLO1. Implement basic reproducible research practices – including consistent data organisation, documented code, and version-controlled workflows so that statistical analyses and results can be readily replicated and validated by others.\nLO2. Demonstrate proficiency in utilising R and Excel to effectively explore and describe life science datasets.\nLO3. Apply parametric and non-parametric statistical inference methods to experimental and observational data using RStudio and effectively interpret and communicate the results in the context of the data.\nLO4. Be able to put into practice both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.\nLO5. Be able to articulate statistical and modelling results clearly and convincingly in both written reports and oral presentations, working effectively as an individual and collaboratively in a team, showcasing the ability to convey complex information to varied audiences."
+    "section": "About ENVX1002",
+    "text": "About ENVX1002\n\nLearning outcomes\n\nLO1. Implement basic reproducible research practices – including consistent data organisation, documented code, and version-controlled workflows so that statistical analyses and results can be readily replicated and validated by others.\nLO2. Demonstrate proficiency in utilising R and Excel to effectively explore and describe life science datasets.\nLO3. Apply parametric and non-parametric statistical inference methods to experimental and observational data using RStudio and effectively interpret and communicate the results in the context of the data.\nLO4. Be able to put into practice both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.\nLO5. Be able to articulate statistical and modelling results clearly and convincingly in both written reports and oral presentations, working effectively as an individual and collaboratively in a team, showcasing the ability to convey complex information to varied audiences."
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#delivery-format",
     "href": "lectures/L01/lecture-01a.html#delivery-format",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Delivery format",
-    "text": "Delivery format\nAll lectures and tutorials are held in ABS Lecture Theatre 1130. Lab sessions are held in the Biomedical Building, Australian Technology Park, Eveleigh.\n\nLectures (recorded): deliver content, provide context, and introduce new concepts\nTutorials (recorded): practice and apply concepts from lectures, prep for labs\nLabs: hands-on practice with R and data analysis, with demonstrators to help you\nEd discussion: online forum for questions and discussions\nDrop-in sessions: additional help and support as needed on Zoom or in person"
+    "text": "Delivery format\nAll lectures and tutorials are held in ABS Lecture Theatre 1130. Lab sessions are held in the Biomedical Building, Australian Technology Park, Eveleigh.\n\nLectures (recorded): deliver content, provide context, and introduce new concepts\nTutorials (recorded): practice and apply concepts from lectures, prep for labs\nLabs: hands-on practice with R and data analysis, with demonstrators to help you\n\n\nThe following are optional (but highly recommended):\n\nDrop-in sessions: additional help and support, mostly on Zoom\nEd discussion: online forum for questions and discussions"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#timetable",
     "href": "lectures/L01/lecture-01a.html#timetable",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Timetable",
-    "text": "Timetable\n\nLectures\n\nMonday 12pm–1pm, ABS Lecture Theatre 1130\nTuesday 9am–10am, ABS Lecture Theatre 1130\n\n\n\nTutorials\n\nTuesday 10am–11am, ABS Lecture Theatre 1130\n1-hour tutorial directly following your lecture\n\n\n\nComputer Labs\n\n2-hour in-person lab session with demonstrators\nBiomedical Building, Australian Technology Park, Eveleigh\nSee timetable for your allocated time"
+    "text": "Timetable\n\nLectures (recorded)\n\nMonday 12pm–1pm, ABS Lecture Theatre 1130\nTuesday 9am–10am, ABS Lecture Theatre 1130\n\n\n\nTutorials (recorded)\n\nTuesday 10am–11am, ABS Lecture Theatre 1130\n1-hour tutorial directly following your lecture\n\n\n\nComputer Labs\n\n2-hour in-person lab session with demonstrators\nBiomedical Building, Australian Technology Park, Eveleigh\nSee timetable for your allocated time"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#schedule-at-a-glance",
     "href": "lectures/L01/lecture-01a.html#schedule-at-a-glance",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Schedule at a glance…",
-    "text": "Schedule at a glance…\n\n\nCode\nsequenceDiagram\n    participant M as Mon\n    participant T as Tue\n    participant W as Wed\n    participant Th as Thu\n    participant F as Fri\n    participant S as Sat\n    participant Su as Sun\n\n    Note over M,T: Lectures (recorded) - ABS LT 1130\n    Note over T: Tutorial (recorded) - ABS LT 1130\n    Note over T,Th: Lab Sessions - Biomedical Building\n    Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)\n\n\n\n\n\nsequenceDiagram\n    participant M as Mon\n    participant T as Tue\n    participant W as Wed\n    participant Th as Thu\n    participant F as Fri\n    participant S as Sat\n    participant Su as Sun\n\n    Note over M,T: Lectures (recorded) - ABS LT 1130\n    Note over T: Tutorial (recorded) - ABS LT 1130\n    Note over T,Th: Lab Sessions - Biomedical Building\n    Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)"
+    "text": "Schedule at a glance…\n\n\nCode\nsequenceDiagram\n  participant M as Mon\n  participant T as Tue\n  participant W as Wed\n  participant Th as Thu\n  participant F as Fri\n  participant S as Sat\n  participant Su as Sun\n\n  Note over M,T: Lectures (recorded) - ABS LT 1130\n  Note over T: Tutorial (recorded) - ABS LT 1130\n  Note over T,Th: Lab Sessions - Biomedical Building\n  Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)\n\n\n\n\n\nsequenceDiagram\n  participant M as Mon\n  participant T as Tue\n  participant W as Wed\n  participant Th as Thu\n  participant F as Fri\n  participant S as Sat\n  participant Su as Sun\n\n  Note over M,T: Lectures (recorded) - ABS LT 1130\n  Note over T: Tutorial (recorded) - ABS LT 1130\n  Note over T,Th: Lab Sessions - Biomedical Building\n  Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#resources",
     "href": "lectures/L01/lecture-01a.html#resources",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Resources",
-    "text": "Resources\n\nCanvas (of course)\nEd Discussion – main platform for ANNOUNCEMENTS and Q&A\nENVX-resources – GitHub repository for our open-source materials"
+    "text": "Resources\n\nCanvas (of course)\nENVX-resources – GitHub repository for our open-source materials\nEd Discussion – main platform for ANNOUNCEMENTS and Q&A"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#where-are-the-labs",
@@ -861,7 +861,7 @@
     "href": "lectures/L01/lecture-01a.html#assessments",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Assessments",
-    "text": "Assessments\n\n\nCode\n# calculate this year's year number\nlibrary(lubridate)\nyear &lt;- year(Sys.Date())\naddress &lt;- paste0(\n  \"https://www.sydney.edu.au/units/ENVX1002/\",\n  year,\n  \"-S1C-ND-CC\"\n)\n\n\nThe most up to date (and slightly more comprehensive) information for 2025 is here. In a nutshell:\n\n\n\n\n    \n\n    \n    \n      ENVX1002 Assessments\n        \n        \n              \n                Week\n                Assessment\n                Description\n              \n        \n        \n        \n                \n                  3\n                  Early Feedback Quiz (individual 5%)\n                  In-person - 15 minutes\n                \n                \n                  5\n                  Project 1: Exploring data (individual 15%)\n                  Written report, 500 words\n                \n                \n                  8\n                  Coding and data skills evaluation (individual 15%)\n                  In-person - 50 minutes\n                \n                \n                  13\n                  Project 2: Modelling (10% + Peer assessment 5%)\n                  Group presentation - 5 minutes\n                \n                \n                  Exam\n                  Final exam (individual 50%)\n                  MCQ + SAQ Questions - 2 hours\n                \n        \n      \n    \n\n\n\nAny questions?"
+    "text": "Assessments\n\n\nCode\n# calculate this year's year number\nlibrary(lubridate)\nyear &lt;- year(Sys.Date())\naddress &lt;- paste0(\n  \"https://www.sydney.edu.au/units/ENVX1002/\",\n  year,\n  \"-S1C-ND-CC\"\n)\n\n\nThe most up to date (and slightly more comprehensive) information for 2025 is here. In a nutshell:\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Week\n                Assessment\n                Description\n              \n        \n        \n        \n                \n                  3\n                  Early Feedback Quiz (individual 5%)\n                  In-person - 15 minutes\n                \n                \n                  5\n                  Project 1: Exploring data (individual 10%)\n                  Written report, 500 words\n                \n                \n                  8\n                  Coding and data skills evaluation (individual 15%)\n                  In-person - 50 minutes\n                \n                \n                  13\n                  Project 2: Modelling (10% + Peer assessment 5%)\n                  Group presentation - 5 minutes\n                \n                \n                  Exam\n                  Final exam (individual 45%)\n                  MCQ + SAQ Questions - 2 hours\n                \n        \n      \n    \n\n\n\n\nWeek 3: The early feedback quiz is a chance for us to gauge your understanding and provide feedback\nWeek 8: Coding and data skills evaluation covers R data manipulation and analysis\nFinal exam will NOT require you to write or interpret code – focus on understanding concepts and interpreting results"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#baby-steps",
@@ -875,14 +875,14 @@
     "href": "lectures/L01/lecture-01a.html#our-tech-stack",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Our tech stack",
-    "text": "Our tech stack\n\nMS Excel – for data entry and basic analysis\nR – a programming language for data analysis\nRStudio – an integrated development environment (IDE) for R\nQuarto (Markdown) – a key platform for reproducible reports and documents\nGitHub Copilot – AI-powered code completion tool. Optional"
+    "text": "Our tech stack\n\nMS Excel – for data entry and basic analysis\nR – a programming language for data analysis\nRStudio – an integrated development environment (IDE) for R\nQuarto (Markdown) – a key platform for reproducible reports and documents\nGitHub Copilot – AI-powered code completion tool. Optional, but highly recommended"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#ms-excel",
     "href": "lectures/L01/lecture-01a.html#ms-excel",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "MS Excel",
-    "text": "MS Excel\n\nWidely used for data entry and basic analysis\nVersatile and user-friendly – most of you are already familiar with it\nGreat data exploration tool"
+    "text": "MS Excel\n\nWidely used for data entry and basic analysis\nA standard tool in many industries, including science, often to store data\nCan be a useful complement to R for data cleaning and simple calculations\nA stepping stone to more advanced tools?"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#r",
@@ -896,7 +896,7 @@
     "href": "lectures/L01/lecture-01a.html#why-r",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Why R?",
-    "text": "Why R?\n\nBeginner friendly (works without needing to know a lot of programming)\nMakes your work reproducible\nPowerful yet accessible\n\n\nImportantly – the skills you learn are highly transferable to other tools and languages such as Python and Java.\nMost easily integrated with generative AI tools – more on this soon\nWell-documented and discussed online (so you can find help easily)"
+    "text": "Why R?\n\nBuilt for beginners\nMakes your work reproducible\nPowerful yet accessible\n\n\nImportantly – the skills you learn are highly transferable to other tools and languages.\nMost easily integrated with generative AI tools – more on this soon\nWell-documented and discussed online (so you can find help easily)"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#rstudio",
@@ -917,14 +917,14 @@
     "href": "lectures/L01/lecture-01a.html#satisfying-when-it-works",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Satisfying when it works",
-    "text": "Satisfying when it works\n\n\nClick to see the code for this animation\n# Load required packages\nlibrary(gapminder) # Dataset of country statistics over time\nlibrary(gganimate) # For creating animations in ggplot\nlibrary(tidyverse) # Collection of data science packages\n\n# Create an animated plot showing how life expectancy relates to GDP\nggplot(\n  gapminder,\n  aes(gdpPercap, lifeExp,\n    size = pop,\n    colour = country\n  )\n) +\n  geom_point(\n    alpha = 0.7,\n    show.legend = FALSE\n  ) +\n  scale_colour_manual(values = country_colors) +\n  scale_size(range = c(2, 12)) +\n  scale_x_log10() +\n  facet_wrap(~continent) +\n  labs(\n    title = \"Year: {frame_time}\",\n    x = \"GDP per capita (log scale)\",\n    y = \"Life expectancy (years)\",\n    caption = \"Data: Gapminder\"\n  ) +\n  theme_minimal(base_size = 12) +\n  transition_time(year) +\n  ease_aes(\"linear\")\n\n\n\nNote: we will revisit this plot in the next lecture"
+    "text": "Satisfying when it works\n\n\nClick to see the code for this animation\n# Load required packages\nlibrary(gapminder) # Dataset of country statistics over time\nlibrary(gganimate) # For creating animations in ggplot\nlibrary(tidyverse) # Collection of data science packages\n\n# Create an animated plot showing how life expectancy relates to GDP\n# across different continents over time\nggplot(\n  gapminder,\n  aes(gdpPercap, lifeExp, # GDP per capita vs life expectancy\n    size = pop, # Point size represents population\n    colour = country\n  )\n) + # Each country gets its own color\n  geom_point(\n    alpha = 0.7, # Semi-transparent points\n    show.legend = FALSE\n  ) + # Hide legend for cleaner look\n  scale_colour_manual(values = country_colors) +\n  scale_size(range = c(2, 12)) + # Set min/max point sizes\n  scale_x_log10() + # Log scale for GDP (wide range)\n  facet_wrap(~continent) + # Separate plot for each continent\n  labs(\n    title = \"Year: {frame_time}\",\n    x = \"GDP per capita\",\n    y = \"Life expectancy\"\n  ) +\n  transition_time(year) + # Animate through years\n  ease_aes(\"linear\") # Smooth transitions"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#quarto",
     "href": "lectures/L01/lecture-01a.html#quarto",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Quarto",
-    "text": "Quarto\n\nMajority of our resources are built using Quarto – a markdown-based document format that you will learn to use in this unit\n\nLecture slides\nTutorials\nLab exercises\n\nQuarto makes everything reproducible - what does it mean?\nFree and open source, available on the ENVX resources GitHub repository – re-use and modify as you wish (but follow CC BY 4.0)\n\n\n## Quarto\n\n- Majority of our resources are built using [**Quarto**](https://quarto.org/) -- \na markdown-based document format that **you will learn to use** in this unit\n  - Lecture slides\n  - Tutorials\n  - Lab exercises\n- Quarto  makes everything **reproducible** - what does it mean?\n- Free and open source, available on the [ENVX resources](https://github.com/ENVX-resources) \nGitHub repository -- re-use and modify as you wish \n(but follow [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/))"
+    "text": "Quarto\n\nMarjority of our resources are built using Quarto – a markdown-based document format that you will learn to use in this unit\n\nLecture slides\nTutorials\nLab exercises\n\nQuarto makes everything reproducible - what does it mean?\nFree and open source, available on the ENVX resources GitHub repository – re-use and modify as you wish (but follow CC BY 4.0)\n\n\n## Quarto\n\n- Marjority of our resources are built using [**Quarto**](https://quarto.org/) -- a markdown-based document format that **you will learn to use** in this unit\n  - Lecture slides\n  - Tutorials\n  - Lab exercises\n- Quarto  makes everything **reproducible** - what does it mean?\n- Free and open source, available on the [ENVX resources](https://github.com/ENVX-resources) GitHub repository -- re-use and modify as you wish (but follow [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/))"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#r-rstudio-quarto",
@@ -934,32 +934,18 @@
     "text": "R, RStudio, Quarto!?\n\nAgain, it’s normal to feel overwhelmed at first\nThese technologies are complementary – everything is implemented in RStudio\nThe tutorials and labs will guide you through the process"
   },
   {
+    "objectID": "lectures/L01/lecture-01a.html#github-copilot",
+    "href": "lectures/L01/lecture-01a.html#github-copilot",
+    "title": "Lecture 01a – This is ENVX1002",
+    "section": "GitHub Copilot",
+    "text": "GitHub Copilot\n\n\nSlightly different from your usual AI tools\nActs as a pair programmer – suggests code as you type, based on context\nDouble-edged sword – can be a crutch if you rely on it too much\nWe will start using this tool in Week 4"
+  },
+  {
     "objectID": "lectures/L01/lecture-01a.html#seek-help-early",
     "href": "lectures/L01/lecture-01a.html#seek-help-early",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Seek help early",
     "text": "Seek help early\n\nYou are not alone, and you need to learn to ask for help\nWe provide a LOT of support in various forms:\n\nFace-to-face (in a group setting): tutorials, labs\nFace-to-face (one-on-one): consultations – book a time with us (email)\nOnline (collaborative): Ed for general questions\nOnline (private): use private posts on Ed\n\nFrom time to time, we will organise drop-in sessions for additional help\n\nNOTE: We cannot help you if you don’t ask!"
-  },
-  {
-    "objectID": "lectures/L01/lecture-01a.html#statbot",
-    "href": "lectures/L01/lecture-01a.html#statbot",
-    "title": "Lecture 01a – This is ENVX1002",
-    "section": "Statbot",
-    "text": "Statbot\nAn AI-powered chatbot that can help you with your statistics questions.\n\nAvailable on Canvas: ENVX1002 -&gt; Tool Kit -&gt; StatBot\nPowered by Cogniti – a USYD-created AI Agent\n“Unlimited” credits – use it as much as you like; walled-garden environment but not limited to ENVX1002\nUse it wisely!"
-  },
-  {
-    "objectID": "lectures/L01/lecture-01a.html#advice-from-2024-envx1002-students",
-    "href": "lectures/L01/lecture-01a.html#advice-from-2024-envx1002-students",
-    "title": "Lecture 01a – This is ENVX1002",
-    "section": "Advice from 2024 ENVX1002 students!",
-    "text": "Advice from 2024 ENVX1002 students!\n🎯\n\n“Watch the lectures.”\n“The lab notes are really helpful for the projects - so turn up and pay attention.”\n“Practicals are important.”\n“Do not ignore the practicals and tutorials, they teach the most.”\n“Show up to the labs and don’t rely on copilot or chat gpt.”\n\n🚀\n\n“Start work on the assignments early so that if you need help, you can get it.”\n“Complete the tutorials before the prac as it makes the prac a lot more meaningful”\n“Study after practicals to ensure you understand code.”\n“Keep up with tutorial quizzes, code along with the tutorials”\n\n🙋‍♂️\n\n“Ed discussion is your saviour (but check if someone has asked the same q before posting).”\n“Ask questions, speak up if labs are moving too fast passed concepts”\n“do not panic and always ask for help, and do not stress too much over stats.”\n\n💪\n\n“Taking step by step”\n“Keep track of the code and what it means.”\n“The more code you do, the more the content sticks in your head.”\n“Stick with it, focus in the pracs and all is fine.”\n\n👥\n\n“work with others to make notes for codes.”\n“find a stats buddy in your prac to talk things over with!”\n“Don’t be closed minded.”"
-  },
-  {
-    "objectID": "lectures/L01/lecture-01a.html#references-and-resources",
-    "href": "lectures/L01/lecture-01a.html#references-and-resources",
-    "title": "Lecture 01a – This is ENVX1002",
-    "section": "References and Resources",
-    "text": "References and Resources\nCore Reading\n\nQuinn & Keough (2002). Experimental Design and Data Analysis for Biologists. Cambridge University Press. Sections 1.1-1.2, pages 1-7.\n\nSoftware Resources\n\nCRAN (The Comprehensive R Archive Network) - R packages repository\nRStudio - Integrated development environment\nQuarto - Scientific publishing system\n\nMuddy points? Take the muddy cards survey"
   },
   {
     "objectID": "index.html",
@@ -1059,28 +1045,7 @@
     "href": "lectures/L01/lecture-01b.html#not-always-formal",
     "title": "Lecture 01b – Reproducible Science",
     "section": "Not always formal",
-    "text": "Not always formal\n\n\n\n\n\nSource: You scrolled 69,420 bananas this year\n\n\n\n\n\n\nSource: “Guys where do you pee?”\n\n\n\n   \n\n\n🙀\n\n\n\nThe beauty of statistics – formal hypothesis testing is not always required to make a point!"
-  },
-  {
-    "objectID": "lectures/L01/lecture-01b.html#types-of-data",
-    "href": "lectures/L01/lecture-01b.html#types-of-data",
-    "title": "Lecture 01b – Reproducible Science",
-    "section": "Types of data",
-    "text": "Types of data\nWe encounter different types of data in our everyday lives:\n\n\nNumeric (Quantitative)\n\nContinuous: Can take any value (e.g., height: 175.5 cm, temperature: 23.4°C)\nDiscrete: Whole numbers only (e.g., number of students: 25, floors in a building: 10)\n\n\n\n\n\nCategorical (Qualitative)\n\nNominal: Categories without order (e.g., eye color, country of birth)\nOrdinal: Categories with order (e.g., satisfaction: poor → fair → good → excellent)\n\n\n\n\nIf data does not fall into either of the two major categories above, you’re probably working with “string” or “character” data that falls into pattern-type analyses e.g. semantic/theme analysis – common for interviews/surveys."
-  },
-  {
-    "objectID": "lectures/L01/lecture-01b.html#when-data-types-blur",
-    "href": "lectures/L01/lecture-01b.html#when-data-types-blur",
-    "title": "Lecture 01b – Reproducible Science",
-    "section": "When data types blur",
-    "text": "When data types blur\nThe same data can be treated in different ways:\n\n\nAge can be numeric (25.5 years) or categorical (young/middle/old)\nTemperature can be numeric (23.4°C) or categorical (cold/warm/hot)\nRatings can be numeric (1-5) or ordinal (poor to excellent)\n\n\n\nHow we treat the data depends on our research question:\n\nWhat comparison makes sense for our goals?\nWhat level of detail do we need?\nWhat statistical tests are appropriate?"
-  },
-  {
-    "objectID": "lectures/L01/lecture-01b.html#why-data-types-matter",
-    "href": "lectures/L01/lecture-01b.html#why-data-types-matter",
-    "title": "Lecture 01b – Reproducible Science",
-    "section": "Why data types matter",
-    "text": "Why data types matter\nUnderstanding data types helps us:\n\nChoose appropriate analyses\n\nDifferent statistical tests for different data types\nAvoid incorrect conclusions\n\nCreate effective visualisations\n\nBar plots for categorical data\nScatter plots for continuous data\n\nCommunicate results clearly\n\nUse appropriate summary statistics\nPresent data in meaningful ways"
+    "text": "Not always formal\n\n\n\n\n\nSource: You scrolled 69,420 bananas this year\n\n\n\n\n\n\nSource: “Guys where do you pee?”\n\n\n\nThe beauty of statistics – formal hypothesis testing is not always required to make a point!"
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#science-as-an-enterprise",
@@ -1101,7 +1066,7 @@
     "href": "lectures/L01/lecture-01b.html#no-single-method-1",
     "title": "Lecture 01b – Reproducible Science",
     "section": "No single method",
-    "text": "No single method\nHATPC\nHypothesis – Assumptions – Test statistic – P-value – Conclusion\n\n\n\n\n\n\n\nYou will see some variation of the HATPC in your first-year units – a common framework for report writing\nWe will follow this framework in the future (easiest to apply)"
+    "text": "No single method\nHATPC\nHypothesis – Assumptions – Test statistic – P-value – Conclusion\n\n\n\n\n\n\n\nYou will see some variation of the HATPC in your first-year units – a common framework for report writing"
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#key-principles",
@@ -1111,11 +1076,11 @@
     "text": "Key principles\n\nObservation: Identify a phenomenon of interest that can be measured\nQuestion: Formulate a question that can be answered by collecting data\nResearch: Review the literature to understand what is already known – your question may already have been asked by someone else. This step helps in understanding what is already known and what gaps in knowledge may exist.\nHypothesis: Formulate a testable hypothesis – something that can be assessed using data collection and analysis\nExperiment: Design an experiment to test the hypothesis\nData collection: Collect data\nAnalysis: use statistical methods to analyse the data and determine if results are statistically significant or demonstrate a pattern\nConclusion: Interpret the results and draw conclusions. If the results are not significant, this is still a valid conclusion!"
   },
   {
-    "objectID": "lectures/L01/lecture-01b.html#reproducibility-crisis",
-    "href": "lectures/L01/lecture-01b.html#reproducibility-crisis",
+    "objectID": "lectures/L01/lecture-01b.html#reproducibility-crisis-despite-the-scientific-method",
+    "href": "lectures/L01/lecture-01b.html#reproducibility-crisis-despite-the-scientific-method",
     "title": "Lecture 01b – Reproducible Science",
-    "section": "Reproducibility crisis",
-    "text": "Reproducibility crisis\nThe Scientific Method does not guarantee that all research is reproducible or replicable – sometimes the tools we use hinder, rather than help, reproducibility.\n\n\n\n\n\nStatistical analysis, experimental design and data issues are the main factors affecting research reproducibility.\n\nFrom Nature (including image sources):\n\nMore than 70% of researchers have tried and failed to reproduce another scientist’s experiments, and more than half have failed to reproduce their own experiments."
+    "section": "Reproducibility crisis despite the scientific method",
+    "text": "Reproducibility crisis despite the scientific method\nFrom Nature (including image sources):\n\nMore than 70% of researchers have tried and failed to reproduce another scientist’s experiments, and more than half have failed to reproduce their own experiments.\n\n\n\n\n\n\nStatistical analysis, experimental design and data issues are the main factors affecting research reproducibility."
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#key-definitions",
@@ -1129,7 +1094,7 @@
     "href": "lectures/L01/lecture-01b.html#reproducibility",
     "title": "Lecture 01b – Reproducible Science",
     "section": "Reproducibility",
-    "text": "Reproducibility\nHow would you explain to someone how to reproduce this plot…\n\nin Excel? Check the guide\nIn SPSS? Check the guide\nIn R?\n\n\n\n\nCode\nread_csv(\"data/penguins.csv\")\nboxplot(bill_length_mm ~ species, data = penguins)"
+    "text": "Reproducibility\nHow would you explain to someone how to reproduce this plot…\n\nin Excel? Check the guide\nIn SPSS? Check the guide\nIn R?\n\n\n\n\nCode\nlibrary(palmerpenguins)\nboxplot(bill_length_mm ~ species, data = penguins)"
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#an-over-simplification",
@@ -1137,13 +1102,6 @@
     "title": "Lecture 01b – Reproducible Science",
     "section": "An over-simplification",
     "text": "An over-simplification\nThose without programming knowledge will still struggle to understand and use the two lines of R code shown above.\nPre-requisites\n\nUnderstanding of the R programming language\nKnowing how to debug (i.e. read error messages or “play” with code)\nIt takes time, but the payoff is worth it – all programming languages follow similar principles and you will find others easier to learn, even if not for statistics…"
-  },
-  {
-    "objectID": "lectures/L01/lecture-01b.html#thanks",
-    "href": "lectures/L01/lecture-01b.html#thanks",
-    "title": "Lecture 01b – Reproducible Science",
-    "section": "Thanks!",
-    "text": "Thanks!\nHave a break (10 min) — your tutorial will begin after this.\nThis presentation is based on the SOLES Quarto reveal.js template and is licensed under a Creative Commons Attribution 4.0 International License."
   },
   {
     "objectID": "lectures/L02/lecture-02.html#after-this-week-you-will-be-able-to",
@@ -2193,14 +2151,7 @@
     "href": "lectures/L06/lecture-06.html#performing-the-paired-t-test",
     "title": "Topic 6 – Two-sample t-tests",
     "section": "Performing the paired t-test",
-    "text": "Performing the paired t-test\nThere are two ways.\nMethod 1: Calculate the differences, then perform a one-sample t-test using t.test()\n\ndiff &lt;- redbull$heart_rate[redbull$group == \"redbull\"] - \n  redbull$heart_rate[redbull$group == \"control\"]\nt.test(diff)\n\n\n    One Sample t-test\n\ndata:  diff\nt = 1.6578, df = 11, p-value = 0.1256\nalternative hypothesis: true mean is not equal to 0\n95 percent confidence interval:\n -1.501628 10.668294\nsample estimates:\nmean of x \n 4.583333"
-  },
-  {
-    "objectID": "lectures/L06/lecture-06.html#performing-the-paired-t-test-1",
-    "href": "lectures/L06/lecture-06.html#performing-the-paired-t-test-1",
-    "title": "Topic 6 – Two-sample t-tests",
-    "section": "Performing the paired t-test",
-    "text": "Performing the paired t-test\nThere are two ways.\nMethod 2: Use the t.test() function with the x and y and paired = TRUE argument\n\n# t.text(group1, group2, paired = TRUE)\nt.test(redbull$heart_rate[redbull$group == \"redbull\"], \n  redbull$heart_rate[redbull$group == \"control\"],\n  paired = TRUE)\n\n\n    Paired t-test\n\ndata:  redbull$heart_rate[redbull$group == \"redbull\"] and redbull$heart_rate[redbull$group == \"control\"]\nt = 1.6578, df = 11, p-value = 0.1256\nalternative hypothesis: true mean difference is not equal to 0\n95 percent confidence interval:\n -1.501628 10.668294\nsample estimates:\nmean difference \n       4.583333 \n\n\nThe results for both methods are identical; the mean difference is not significantly different from zero (p = 0.13)."
+    "text": "Performing the paired t-test\nThere are two ways.\n\n\n\nMethod 1: Calculate the differences, then perform a one-sample t-test using t.test()\n\ndiff &lt;- redbull$heart_rate[redbull$group == \"redbull\"] - \n  redbull$heart_rate[redbull$group == \"control\"]\nt.test(diff)\n\n\n    One Sample t-test\n\ndata:  diff\nt = 1.6578, df = 11, p-value = 0.1256\nalternative hypothesis: true mean is not equal to 0\n95 percent confidence interval:\n -1.501628 10.668294\nsample estimates:\nmean of x \n 4.583333 \n\n\n\n\n\nMethod 2: Use the t.test() function with the paired = TRUE argument\n\n# t.test(heart_rate ~ group, data = redbull, \n#   paired = TRUE)\n\n\n\n\nThe results for both methods are identical; the mean difference is not significantly different from zero (p = 0.13)."
   },
   {
     "objectID": "lectures/L06/lecture-06.html#recap-assumptions-of-the-two-sample-t-test",
@@ -2291,7 +2242,7 @@
     "href": "lectures/L06/lecture-06.html#workflow",
     "title": "Topic 6 – Two-sample t-tests",
     "section": "Workflow",
-    "text": "Workflow\n\nCheck the data for normality and homogeneity of variance (i.e. test assumptions).\nIf the assumptions are violated, consider transforming ALL the data.\nRepeat checks on assumptions. If assumptions are met, proceed with the t-test on the transformed scale. Otherwise, use a different transformation or consider using a non-parametric test.\nInterpret the statistical results and back-transform the results to the original scale (optional but recommended) to aid interpretation."
+    "text": "Workflow\n\nCheck the data for normality and homogeneity of variance (i.e. test assumptions).\nIf the assumptions are violated, consider transforming the data.\nRepeat checks on assumptions. If assumptions are met, proceed with the t-test on the transformed scale. Otherwise, use a different transformation or consider using a non-parametric test.\nInterpret the statistical results and back-transform the results to the original scale (optional but recommended) to aid interpretation."
   },
   {
     "objectID": "lectures/L06/lecture-06.html#picking-a-transformation-1",
