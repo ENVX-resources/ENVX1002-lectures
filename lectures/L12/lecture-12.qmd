@@ -6,6 +6,7 @@ format:
     logo: ../muddyqr.png
     # footer: "Scan the QR code to provide feedback on this lecture"
 embed-resources: true
+scrollable: true
 ---
 ## Module overview
 
@@ -109,7 +110,7 @@ Often, a nonlinear relationship may be transformed into a linear relationship by
 - $x^3$ is the *cube* of $x$.
 - $x^a$ is x raised to the *power* of $a$.
 
-> In a relationship where $y$ is a function of $x^a$, as $y$ increases, $x$ increases at a rate that is equal to $x$ to the power of $a$.
+> In a relationship where $y$ is a function of $x^a$, as $x$ increases, $y$ increases nonlinearly at a rate that depends on the value of $x$ and $a$ ($\frac{dy}{dx} = ax^{a-1}$).
 
 ```{r}
 #| code-fold: true
@@ -131,8 +132,8 @@ tibble(x = seq(0, 10, by = 0.2), y = x^2) %>%
 
 **Interpretation:**
 
-- If $\log_a(y) = x$: as $x$ increases, $y$ increases at a rate of $y = a^x$.
-- If $y = \log_a(x)$: as $y$ increases, $x$ also increases, at $x = a^y$.
+- If $\log_a(y) = x$: as $x$ increases, the value of $y$ increases by $y = a^x$.
+- If $y = \log_a(x)$: as $x$ increases, the value of $y$ increases by $y = \log_a(x)$. As $y$ increases, the value of $x$ increases by $x = a^y$.
 
 ## Exponents and logarithms
 
