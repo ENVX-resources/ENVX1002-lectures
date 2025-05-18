@@ -6,6 +6,7 @@ format:
     logo: ../muddyqr.png
     # footer: "Scan the QR code to provide feedback on this lecture"
 embed-resources: true
+scrollable: true
 ---
 
 ## Module overview
@@ -418,6 +419,7 @@ $$H_1: \beta_k \neq 0$$
 
 $$H_0: \beta_1 = \beta_2 = ... = \beta_k = 0$$
 $$H_1: \text{At least one } \beta_k \neq 0$$
+
 ## Interpreting coefficients
 
 ```r
