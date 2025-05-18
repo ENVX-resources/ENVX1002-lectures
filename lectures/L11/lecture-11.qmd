@@ -6,6 +6,7 @@ format:
     logo: ../muddyqr.png
     # footer: "Scan the QR code to provide feedback on this lecture"
 embed-resources: true
+scrollable: true
 ---
 
 ## Module overview
@@ -21,7 +22,7 @@ embed-resources: true
 
 ```{r setup, include=FALSE}
 if (!require("pacman")) install.packages("pacman", repos = "http://cran.us.r-project.org")
-pacman::p_load(tidyverse, cowplot, HistData, datasauRus, patchwork, broom, remotes, corrplot, psych, plotly)
+pacman::p_load(tidyverse, cowplot, HistData, datasauRus, patchwork, broom, remotes, corrplot, psych, plotly, performance)
 pacman::p_load_gh("datalorax/equatiomatic")
 
 ggplot2::theme_set(cowplot::theme_half_open())
@@ -184,11 +185,18 @@ par(mfrow = c(2, 2)) # set up a 2 x 2 grid for plots
 plot(fit)
 ```
 
-## Assumptions via `ggfortify`
+## Assumptions via `ggfortify` package
 
 ```{r}
 library(ggfortify)
 ggplot2::autoplot(fit) # requires ggfortify but is a ggplot2 function
+```
+
+## Assumptions via `performance` package
+
+```{r}
+library(performance)
+performance::check_model(fit, check = c("linearity", "qq", "homogeneity", "outliers")) # check specific assumptions
 ```
 
 ## Interpretation
@@ -414,10 +422,12 @@ For multiple linear regression, there are two hypothesis tests:
 
 $$H_0: \beta_k = 0$$
 $$H_1: \beta_k \neq 0$$
+
 - The overall model, which is tested with an F-test (to get F-stat). $H_0$ is an intercept-only model (i.e. the mean), so if at least one predictor is useful, the model is better than the intercept-only model.
 
 $$H_0: \beta_1 = \beta_2 = ... = \beta_k = 0$$
 $$H_1: \text{At least one } \beta_k \neq 0$$
+
 ## Interpreting coefficients
 
 ```r
@@ -469,7 +479,7 @@ exp(0.51) #backtransform
 ```
 
 - On average, the model predicts `Ozone` within `r round(exp(0.51),2)` ppb of the true value.
-- Degrees of freedom (107) = number of observations (111) - number of predictors in the model (3) - 1
+- Degrees of freedom (107) = number of observations (111) - number of parameters in the model (3 predictors and 1 intercept)
 
 . . .
 
@@ -513,7 +523,7 @@ A quick (but not complete) summary:
 
 - Multiple linear regression was conducted on these variables, and model assumptions (CLINE) were met.
 
-- Solar radiation, wind speed and temperature are **significant predictors** of Ozone concentration (**p < 0.001**) with the model accounting for **66% of the variation** in weight. The model explained more variance than a one-predictor model and was found to be significantly better than the null model.
+- Solar radiation, wind speed and temperature are **significant predictors** of Ozone concentration (**p < 0.001**) with the model accounting for **66% of the variation** in log(Ozone). The model explained more variance than a one-predictor model and was found to be significantly better than the null model.
 
 # Abalone Quiz
 
