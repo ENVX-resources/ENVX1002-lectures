@@ -32,14 +32,14 @@
     "href": "lectures/L12/lecture-12.html#nonlinear-relationships-exponents",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Nonlinear relationships: exponents",
-    "text": "Nonlinear relationships: exponents\n\nx^2 is the square of x.\nx^3 is the cube of x.\nx^a is x raised to the power of a.\n\n\nIn a relationship where y is a function of x^a, as y increases, x increases at a rate that is equal to x to the power of a.\n\n\n\nCode\n# Plot a simulation of above in ggplot2\nset.seed(123)\ntibble(x = seq(0, 10, by = 0.2), y = x^2) %&gt;%\n  ggplot(aes(x = x, y = y)) +\n  geom_point() +\n  labs(x = \"x\", y = \"y\") +\n  ggtitle(expression(y == x^2)) +\n  theme(plot.title = element_text(size = 40, face = \"bold\"))"
+    "text": "Nonlinear relationships: exponents\n\nx^2 is the square of x.\nx^3 is the cube of x.\nx^a is x raised to the power of a.\n\n\nIn a relationship where y is a function of x^a, as x increases, y increases nonlinearly at a rate that depends on the value of x and a (\\frac{dy}{dx} = ax^{a-1}).\n\n\n\nCode\n# Plot a simulation of above in ggplot2\nset.seed(123)\ntibble(x = seq(0, 10, by = 0.2), y = x^2) %&gt;%\n  ggplot(aes(x = x, y = y)) +\n  geom_point() +\n  labs(x = \"x\", y = \"y\") +\n  ggtitle(expression(y == x^2)) +\n  theme(plot.title = element_text(size = 40, face = \"bold\"))"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#nonlinear-relationships-logarithms",
     "href": "lectures/L12/lecture-12.html#nonlinear-relationships-logarithms",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Nonlinear relationships: logarithms",
-    "text": "Nonlinear relationships: logarithms\n\nlog_e(x) is the natural logarithm of x.\nlog_{10}(x) is the common logarithm of x.\nlog_a(x) is the logarithm of x to the base a.\n\nInterpretation:\n\nIf \\log_a(y) = x: as x increases, y increases at a rate of y = a^x.\nIf y = \\log_a(x): as y increases, x also increases, at x = a^y."
+    "text": "Nonlinear relationships: logarithms\n\nlog_e(x) is the natural logarithm of x.\nlog_{10}(x) is the common logarithm of x.\nlog_a(x) is the logarithm of x to the base a.\n\nInterpretation:\n\nIf \\log_a(y) = x: as x increases, the value of y increases by y = a^x.\nIf y = \\log_a(x): as x increases, the value of y increases by y = \\log_a(x). As y increases, the value of x increases by x = a^y."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#exponents-and-logarithms",
@@ -193,7 +193,7 @@
     "href": "lectures/L12/lecture-12.html#fitting-the-model-polydegree-10",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Fitting the model (poly(degree = 10))",
-    "text": "Fitting the model (poly(degree = 10))\n Y_i = \\beta_0 + \\beta_1 x_i + \\beta_2 x_i^2 + ... + \\beta_10 x_i^{10} + \\epsilon_i \n\n\nCode\npoly10_fit &lt;- lm(response ~ poly(predictor, 10), asymptotic)\n\n\n\n\nCode\nggplot(asymptotic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\") +\n  geom_line(aes(y = predict(lin_fit)), color = \"red\") +\n  geom_line(aes(y = predict(poly2_fit)), color = \"slateblue\") +\n  geom_line(aes(y = predict(poly3_fit)), color = \"seagreen\") +\n  geom_line(aes(y = predict(poly10_fit)), color = \"firebrick\", size = 2)\n\n\n\nCode\n# 1) Compute R^2 values\nR2_lin    &lt;- summary(lin_fit)$r.squared\nR2_poly2  &lt;- summary(poly2_fit)$adj.r.squared\nR2_poly3  &lt;- summary(poly3_fit)$adj.r.squared\nR2_poly10 &lt;- summary(poly10_fit)$adj.r.squared\n\n# 2) Create a simple table (data frame)\nmodel_r2_table &lt;- data.frame(\n  Model = c(\"Linear\", \"Poly2\", \"Poly3\", \"Poly10\"),\n  R2    = c(R2_lin, R2_poly2, R2_poly3, R2_poly10)\n)\n\n# Display the table\nknitr::kable(\n  model_r2_table, \n  digits  = 3, \n  caption = \"Comparison of R^2^ of Polynomial Models\"\n)\n\n\n\nComparison of R2 of Polynomial Models\n\n\nModel\nR2\n\n\n\n\nLinear\n0.570\n\n\nPoly2\n0.820\n\n\nPoly3\n0.872\n\n\nPoly10\n0.862\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nWe use adjusted R2 for polynomials - extra terms, extra complexity, so extra penalty."
+    "text": "Fitting the model (poly(degree = 10))\n Y_i = \\beta_0 + \\beta_1 x_i + \\beta_2 x_i^2 + ... + \\beta_10 x_i^{10} + \\epsilon_i \n\n\nCode\npoly10_fit &lt;- lm(response ~ poly(predictor, 10), asymptotic)\n\n\n\n\n\n\nComparison of R2 of Polynomial Models\n\n\nModel\nR2\n\n\n\n\nLinear\n0.570\n\n\nPoly2\n0.820\n\n\nPoly3\n0.872\n\n\nPoly10\n0.862\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nWe use adjusted R2 for polynomials - extra terms, extra complexity, so extra penalty."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#limitations",
@@ -319,7 +319,7 @@
     "href": "lectures/L12/lecture-12.html#interpretation-2",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Interpretation",
-    "text": "Interpretation\nSSlogis() guessed the parameters on the first try.\n\n\nCode\nsummary(fit_logistic)\n\n\n\nFormula: response ~ SSlogis(predictor, Asym, xmid, scal)\n\nParameters:\n      Estimate Std. Error t value Pr(&gt;|t|)    \nAsym 310.64727    4.62579   67.16   &lt;2e-16 ***\nxmid   4.92715    0.07142   68.99   &lt;2e-16 ***\nscal   1.34877    0.05418   24.90   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 10.22 on 48 degrees of freedom\n\nNumber of iterations to convergence: 1 \nAchieved convergence tolerance: 6.626e-07\n\n\n\nThe model is significant since the p-value is less than 0.05 for all parameters.\nIf the model visually fits well and relationship has reasoning but not all parameters are significant – that is fine.\nThe parameterised model is:\n\n y = \\frac{310}{1+e^{\\frac{4.93-x}{1.35}}}"
+    "text": "Interpretation\nSSlogis() guessed the parameters on the first try.\n\n\nCode\nsummary(fit_logistic)\n\n\n\nFormula: response ~ SSlogis(predictor, Asym, xmid, scal)\n\nParameters:\n      Estimate Std. Error t value Pr(&gt;|t|)    \nAsym 310.64727    4.62579   67.16   &lt;2e-16 ***\nxmid   4.92715    0.07142   68.99   &lt;2e-16 ***\nscal   1.34877    0.05418   24.90   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 10.22 on 48 degrees of freedom\n\nNumber of iterations to convergence: 1 \nAchieved convergence tolerance: 6.626e-07\n\n\n\nThe model is significant since the p-value is less than 0.05 for all parameters.\nIf the model visually fits well and relationship has reasoning (parameter significance not always important).\nThe parameterised model is:\n\n y = \\frac{310}{1+e^{\\frac{4.93-x}{1.35}}}"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#example-polynomial-regression",
@@ -441,11 +441,18 @@
     "text": "Assumptions via base R\n\n\nCode\npar(mfrow = c(2, 2)) # set up a 2 x 2 grid for plots\nplot(fit)"
   },
   {
-    "objectID": "lectures/L11/lecture-11.html#assumptions-via-ggfortify",
-    "href": "lectures/L11/lecture-11.html#assumptions-via-ggfortify",
+    "objectID": "lectures/L11/lecture-11.html#assumptions-via-ggfortify-package",
+    "href": "lectures/L11/lecture-11.html#assumptions-via-ggfortify-package",
     "title": "Topic 11 – Multiple Linear Regression",
-    "section": "Assumptions via ggfortify",
-    "text": "Assumptions via ggfortify\n\n\nCode\nlibrary(ggfortify)\nggplot2::autoplot(fit) # requires ggfortify but is a ggplot2 function"
+    "section": "Assumptions via ggfortify package",
+    "text": "Assumptions via ggfortify package\n\n\nCode\nlibrary(ggfortify)\nggplot2::autoplot(fit) # requires ggfortify but is a ggplot2 function"
+  },
+  {
+    "objectID": "lectures/L11/lecture-11.html#assumptions-via-performance-package",
+    "href": "lectures/L11/lecture-11.html#assumptions-via-performance-package",
+    "title": "Topic 11 – Multiple Linear Regression",
+    "section": "Assumptions via performance package",
+    "text": "Assumptions via performance package\n\n\nCode\nlibrary(performance)\nperformance::check_model(fit, check = c(\"linearity\", \"qq\", \"homogeneity\", \"outliers\")) # check specific assumptions"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#interpretation",
@@ -550,14 +557,21 @@
     "href": "lectures/L11/lecture-11.html#hypothesis-testing",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Hypothesis Testing",
-    "text": "Hypothesis Testing\nFor multiple linear regression, there are two hypothesis tests:\n\nIndividual predictors, where the significance of each predictor is tested via t-tests\n\nH_0: \\beta_k = 0 H_1: \\beta_k \\neq 0 - The overall model, which is tested with an F-test (to get F-stat). H_0 is an intercept-only model (i.e. the mean), so if at least one predictor is useful, the model is better than the intercept-only model.\nH_0: \\beta_1 = \\beta_2 = ... = \\beta_k = 0 H_1: \\text{At least one } \\beta_k \\neq 0 ## Interpreting coefficients\nCall:\nlm(formula = log(Ozone) ~ Solar.R + Wind + Temp, data = airquality)\n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.2621323  0.5535669  -0.474 0.636798    \nSolar.R      0.0025152  0.0005567   4.518 1.62e-05 ***\nWind        -0.0615625  0.0157130  -3.918 0.000158 ***\nTemp         0.0491711  0.0060875   8.077 1.07e-12 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\nAll three predictors are statistically significant (p &lt; .001). Holding all other variables constant:\n\nFor every 1 unit increase in Solar.R, log(Ozone) increases by a mean value of 0.0025,\nFor every 1 unit increase in Wind, log(Ozone) decreases by a mean value of 0.062,\nFor every 1 degree increase in Temp, log(Ozone) increases by a mean value of 0.049.\n\nOR\n\nFor every 1 unit increase in Solar.R, Ozone increases by approximately a mean value of 0.25%,\nFor every 1 unit increase in Wind, Ozone decreases by approximately a mean value of 6.2%,\nFor every 1 degree increase in Temp, Ozone increases by approximately a mean value of 4.9%."
+    "text": "Hypothesis Testing\nFor multiple linear regression, there are two hypothesis tests:\n\nIndividual predictors, where the significance of each predictor is tested via t-tests\n\nH_0: \\beta_k = 0 H_1: \\beta_k \\neq 0\n\nThe overall model, which is tested with an F-test (to get F-stat). H_0 is an intercept-only model (i.e. the mean), so if at least one predictor is useful, the model is better than the intercept-only model.\n\nH_0: \\beta_1 = \\beta_2 = ... = \\beta_k = 0 H_1: \\text{At least one } \\beta_k \\neq 0"
+  },
+  {
+    "objectID": "lectures/L11/lecture-11.html#interpreting-coefficients",
+    "href": "lectures/L11/lecture-11.html#interpreting-coefficients",
+    "title": "Topic 11 – Multiple Linear Regression",
+    "section": "Interpreting coefficients",
+    "text": "Interpreting coefficients\nCall:\nlm(formula = log(Ozone) ~ Solar.R + Wind + Temp, data = airquality)\n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.2621323  0.5535669  -0.474 0.636798    \nSolar.R      0.0025152  0.0005567   4.518 1.62e-05 ***\nWind        -0.0615625  0.0157130  -3.918 0.000158 ***\nTemp         0.0491711  0.0060875   8.077 1.07e-12 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\nAll three predictors are statistically significant (p &lt; .001). Holding all other variables constant:\n\nFor every 1 unit increase in Solar.R, log(Ozone) increases by a mean value of 0.0025,\nFor every 1 unit increase in Wind, log(Ozone) decreases by a mean value of 0.062,\nFor every 1 degree increase in Temp, log(Ozone) increases by a mean value of 0.049.\n\nOR\n\nFor every 1 unit increase in Solar.R, Ozone increases by approximately a mean value of 0.25%,\nFor every 1 unit increase in Wind, Ozone decreases by approximately a mean value of 6.2%,\nFor every 1 degree increase in Temp, Ozone increases by approximately a mean value of 4.9%."
   },
   {
     "objectID": "lectures/L11/lecture-11.html#model-fit",
     "href": "lectures/L11/lecture-11.html#model-fit",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Model fit",
-    "text": "Model fit\nCall:\nlm(formula = log(Ozone) ~ Solar.R + Wind + Temp, data = airquality)\n\nResidual standard error: 0.5086 on 107 degrees of freedom\n  (42 observations deleted due to missingness)\nMultiple R-squared:  0.6644,    Adjusted R-squared:  0.655 \nF-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16\nOn average, the model predicts log(Ozone) within 0.51 ppb (residual standard error) of the true value. Not bad?\n\n\n\nCode\nexp(0.51) #backtransform\n\n\n[1] 1.665291\n\n\n\nOn average, the model predicts Ozone within 1.67 ppb of the true value.\nDegrees of freedom (107) = number of observations (111) - number of predictors in the model (3) - 1\n\n\n\nIf there are &gt;1 predictors, use the adjusted R-Squared as it penalises the model for having more predictors that are not useful.\n\nThe MLR model explains 66% of variance (adjusted R2 = 0.66)"
+    "text": "Model fit\nCall:\nlm(formula = log(Ozone) ~ Solar.R + Wind + Temp, data = airquality)\n\nResidual standard error: 0.5086 on 107 degrees of freedom\n  (42 observations deleted due to missingness)\nMultiple R-squared:  0.6644,    Adjusted R-squared:  0.655 \nF-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16\nOn average, the model predicts log(Ozone) within 0.51 ppb (residual standard error) of the true value. Not bad?\n\n\n\nCode\nexp(0.51) #backtransform\n\n\n[1] 1.665291\n\n\n\nOn average, the model predicts Ozone within 1.67 ppb of the true value.\nDegrees of freedom (107) = number of observations (111) - number of parameters in the model (3 predictors and 1 intercept)\n\n\n\nIf there are &gt;1 predictors, use the adjusted R-Squared as it penalises the model for having more predictors that are not useful.\n\nThe MLR model explains 66% of variance (adjusted R2 = 0.66)"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#the-r2-value",
@@ -578,7 +592,7 @@
     "href": "lectures/L11/lecture-11.html#reporting",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Reporting",
-    "text": "Reporting\nA quick (but not complete) summary:\n\nNew York air quality data was collected in 1973 by the New York State Department of Conservation and the National Weather Service (meteorological data). There were 111 observations of 6 variables.\nThere were non-linear relationships between Ozone (the response) and Temp, Wind and Solar.R (the predictors), hence a natural log transformation was applied to Ozone.\nMultiple linear regression was conducted on these variables, and model assumptions (CLINE) were met.\nSolar radiation, wind speed and temperature are significant predictors of Ozone concentration (p &lt; 0.001) with the model accounting for 66% of the variation in weight. The model explained more variance than a one-predictor model and was found to be significantly better than the null model."
+    "text": "Reporting\nA quick (but not complete) summary:\n\nNew York air quality data was collected in 1973 by the New York State Department of Conservation and the National Weather Service (meteorological data). There were 111 observations of 6 variables.\nThere were non-linear relationships between Ozone (the response) and Temp, Wind and Solar.R (the predictors), hence a natural log transformation was applied to Ozone.\nMultiple linear regression was conducted on these variables, and model assumptions (CLINE) were met.\nSolar radiation, wind speed and temperature are significant predictors of Ozone concentration (p &lt; 0.001) with the model accounting for 66% of the variation in log(Ozone). The model explained more variance than a one-predictor model and was found to be significantly better than the null model."
   },
   {
     "objectID": "lectures/L11/lecture-11.html#context",
@@ -3341,7 +3355,14 @@
     "href": "lectures/L10/lecture-10.html#how-do-we-check-the-assumptions",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "How do we check the assumptions?",
-    "text": "How do we check the assumptions?\nRecall that the linear model is a deterministic straight line equation y = c + mx plus some random noise \\epsilon:\n Y_i = \\beta_0 + \\beta_1 x + \\epsilon \n\nIf the only source of variation in y is \\epsilon, then we can check our assumptions by just looking at the residuals \\hat{\\epsilon}.\n\n\n\n\n\n\n\n\nTip\n\n\nAll but the independence assumption can be assessed using diagnostic plots. R will not warn you if the assumptions are not met. It is up to you to check them!\n\n\n\nHow do we get the residuals?\n\nFit the model!\nResiduals need to be calculated from the model, not from the raw data.\nIn R, these values are stored automatically.\n\n \\color{firebrick}{\\hat{\\epsilon_i}} = \\color{royalblue}{y_i} - \\color{forestgreen}{\\hat{y_i}} \n\n\nCode\n# simulate example data\nset.seed(340)\nx &lt;- runif(8, 0, 30)\ny &lt;- 5 * x + rnorm(8, 0, 40)\ndf &lt;- data.frame(x, y)\n\n# fit linear model, add residual vertical lines as arrows\nmod &lt;- lm(y ~ x, data = df)\np1 &lt;- ggplot(df, aes(x, y)) +\n  geom_point() +\n  geom_segment(aes(xend = x, yend = fitted(mod)),\n    arrow = arrow(length = unit(0.2, \"cm\")),\n    color = \"royalblue\"\n  ) +\n  labs(x = \"x\", y = \"y\")\n\np1 +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"firebrick\") +\n  annotate(\"text\",\n    x = 6.3, y = -6, size = 7,\n    label = expression(hat(epsilon[i])), colour = \"royalblue\"\n  ) +\n  annotate(\"text\",\n    x = 5.6, y = 25, size = 7,\n    label = expression(hat(y[i])), colour = \"forestgreen\"\n  ) +\n  annotate(\"text\",\n    x = 5.6, y = -36, size = 7,\n    label = expression(y[i]), colour = \"firebrick\"\n  ) +\n  theme_classic()"
+    "text": "How do we check the assumptions?\nRecall that the linear model is a deterministic straight line equation y = c + mx plus some random noise \\epsilon:\n Y_i = \\beta_0 + \\beta_1 x + \\epsilon \n\nIf the only source of variation in y is \\epsilon, then we can check our assumptions by just looking at the residuals \\hat{\\epsilon}.\n\n\n\n\n\n\n\n\nTip\n\n\nAll but the independence assumption can be assessed using diagnostic plots. R will not warn you if the assumptions are not met. It is up to you to check them!"
+  },
+  {
+    "objectID": "lectures/L10/lecture-10.html#how-do-we-get-the-residuals",
+    "href": "lectures/L10/lecture-10.html#how-do-we-get-the-residuals",
+    "title": "Topic 10 – Simple Linear Regression",
+    "section": "How do we get the residuals?",
+    "text": "How do we get the residuals?\n\nFit the model!\nResiduals need to be calculated from the model, not from the raw data.\nIn R, these values are stored automatically.\n\n \\color{firebrick}{\\hat{\\epsilon_i}} = \\color{royalblue}{y_i} - \\color{forestgreen}{\\hat{y_i}} \n\n\nCode\n# simulate example data\nset.seed(340)\nx &lt;- runif(8, 0, 30)\ny &lt;- 5 * x + rnorm(8, 0, 40)\ndf &lt;- data.frame(x, y)\n\n# fit linear model, add residual vertical lines as arrows\nmod &lt;- lm(y ~ x, data = df)\np1 &lt;- ggplot(df, aes(x, y)) +\n  geom_point() +\n  geom_segment(aes(xend = x, yend = fitted(mod)),\n    arrow = arrow(length = unit(0.2, \"cm\")),\n    color = \"royalblue\"\n  ) +\n  labs(x = \"x\", y = \"y\")\n\np1 +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"firebrick\") +\n  annotate(\"text\",\n    x = 6.3, y = -6, size = 7,\n    label = expression(hat(epsilon[i])), colour = \"royalblue\"\n  ) +\n  annotate(\"text\",\n    x = 5.6, y = 25, size = 7,\n    label = expression(hat(y[i])), colour = \"forestgreen\"\n  ) +\n  annotate(\"text\",\n    x = 5.6, y = -36, size = 7,\n    label = expression(y[i]), colour = \"firebrick\"\n  ) +\n  theme_classic()"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#another-way-to-look-at-residuals",
@@ -3558,7 +3579,7 @@
     "href": "lectures/L10/lecture-10.html#interpretation",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Interpretation",
-    "text": "Interpretation\n\n\nCode\nsummary(fit)\n\n\n\nCall:\nlm(formula = log(Weight) ~ Length, data = alligator)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.289266 -0.079989  0.000933  0.102216  0.288491 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 1.335335   0.131394   10.16 5.63e-10 ***\nLength      0.035416   0.001506   23.52  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.1493 on 23 degrees of freedom\nMultiple R-squared:  0.9601,    Adjusted R-squared:  0.9583 \nF-statistic:   553 on 1 and 23 DF,  p-value: &lt; 2.2e-16\n\n\n\nLength is a statistically significant predictor of log(Weight) (p &lt; .001).\nThe model explains a statistically significant and large proportion (96%) of variance (R2 = 0.96, F(1, 23) = 553, p &lt; .001)\nFor every 1 cm increase in Length, log(Weight) increases by 0.0354, Weight increases by e^{0.0354} and Weight increases by approximately 3.54%"
+    "text": "Interpretation\n\n\nCode\nsummary(fit)\n\n\n\nCall:\nlm(formula = log(Weight) ~ Length, data = alligator)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.289266 -0.079989  0.000933  0.102216  0.288491 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 1.335335   0.131394   10.16 5.63e-10 ***\nLength      0.035416   0.001506   23.52  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.1493 on 23 degrees of freedom\nMultiple R-squared:  0.9601,    Adjusted R-squared:  0.9583 \nF-statistic:   553 on 1 and 23 DF,  p-value: &lt; 2.2e-16\n\n\n\nLength is a statistically significant predictor of log(Weight) (p &lt; .001)\nThe model explains a statistically significant and large proportion (96%) of variance (R2 = 0.96, F(1, 23) = 553, p &lt; .001)\nFor every 1 cm increase in Length, log(Weight) increases by a value of 0.0354, Weight increases by e^{0.0354} times and Weight increases by approximately 3.54%"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#percent-change-with-ln-transformation",
