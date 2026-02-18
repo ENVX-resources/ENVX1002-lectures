@@ -1,0 +1,33 @@
+color:
+  primary: "#e64626"
+  secondary: "#8f9ec9"
+  palette:
+    ochre: "#e64626"
+    lightgrey: "#f1f1f1"
+    charcoal: "#424242"
+    white: "#ffffff"
+    black: "#000000"
+    sandstone: "#fcede2"
+    heritagerose: "#daa8a2"
+    jacaranda: "#8f9ec9"
+    navy: "#1a355e"
+    eucalypt: "#71a499"
+
+typography:
+  fonts:
+    - family: Lato
+      source: google
+      weight: [100, 200, 300, 400, 500, 600, 700]
+    - family: Crimson Pro
+      source: google
+      weight: [200,300, 400, 500, 600, 700]
+      style: [normal, italic]
+    - family: JetBrains Mono
+      source: google
+      weight: [200,300, 400, 500, 600, 700]
+  base: # main text
+    family: Lato
+  headings: # headings
+    family: Crimson Pro
+  monospace: # code
+    family: JetBrains Mono

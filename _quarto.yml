@@ -83,6 +83,7 @@ website:
           href: lectures/L12/index.qmd
 format:
   html:
+    brand: false
     theme:
       light: [cosmo] # from https://github.com/sta210-s22/website/blob/main/_quarto.yml
       # dark: [cosmo, theme-dark.scss]
