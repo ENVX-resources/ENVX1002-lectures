@@ -11,7 +11,7 @@
     "href": "lectures/L12/lecture-12.html#regressions",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Regressions",
-    "text": "Regressions\nSimple linear regression\n Y_i = \\beta_0 + \\beta_1 x_i + \\epsilon_i \nIdeal for predicting a continuous response variable from a single predictor variable: “How does y change as x changes, when the relationship is linear?”\nMultiple linear regression\n Y_i = \\beta_0 + \\beta_1 x_{1i} + \\beta_2 x_{2i} + ... + \\beta_k x_{ki} + \\epsilon_i \n“How does y change as x_1, x_2, …, x_k change?”\n\nNonlinear regression\n Y_i = f(x_i, \\beta) + \\epsilon_i \n\n\nwhere f(x_i, \\beta) is a nonlinear function of the parameters \\beta: “How do we model a change in y with x when the relationship is nonlinear?”"
+    "text": "Regressions\nSimple linear regression\n\\[ Y_i = \\beta_0 + \\beta_1 x_i + \\epsilon_i \\]\nIdeal for predicting a continuous response variable from a single predictor variable: “How does \\(y\\) change as \\(x\\) changes, when the relationship is linear?”\nMultiple linear regression\n\\[ Y_i = \\beta_0 + \\beta_1 x_{1i} + \\beta_2 x_{2i} + ... + \\beta_k x_{ki} + \\epsilon_i \\]\n“How does \\(y\\) change as \\(x_1\\), \\(x_2\\), …, \\(x_k\\) change?”\n\nNonlinear regression\n\\[ Y_i = f(x_i, \\beta) + \\epsilon_i \\]\n\n\nwhere \\(f(x_i, \\beta)\\) is a nonlinear function of the parameters \\(\\beta\\): “How do we model a change in \\(y\\) with \\(x\\) when the relationship is nonlinear?”"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#nonlinear-relationships",
@@ -25,56 +25,56 @@
     "href": "lectures/L12/lecture-12.html#dealing-with-nonlinearity",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Dealing with nonlinearity",
-    "text": "Dealing with nonlinearity\nTransformations\nOften, a nonlinear relationship may be transformed into a linear relationship by applying a transformation to the response variable or the predictor variable(s).\n\nLogarithmic: y = \\log(x)\nExponential: y = e^x\nSquare-root: y = \\sqrt{x}\nInverse: y = \\frac{1}{x}\n\n\n\nUsually works when y changes monotically with x.\nMore interpretable and easier to fit."
+    "text": "Dealing with nonlinearity\nTransformations\nOften, a nonlinear relationship may be transformed into a linear relationship by applying a transformation to the response variable or the predictor variable(s).\n\nLogarithmic: \\(y = \\log(x)\\)\nExponential: \\(y = e^x\\)\nSquare-root: \\(y = \\sqrt{x}\\)\nInverse: \\(y = \\frac{1}{x}\\)\n\n\n\nUsually works when \\(y\\) changes monotically with \\(x\\).\nMore interpretable and easier to fit."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#nonlinear-relationships-exponents",
     "href": "lectures/L12/lecture-12.html#nonlinear-relationships-exponents",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Nonlinear relationships: exponents",
-    "text": "Nonlinear relationships: exponents\n\nx^2 is the square of x.\nx^3 is the cube of x.\nx^a is x raised to the power of a.\n\n\nIn a relationship where y is a function of x^a, as x increases, y increases nonlinearly at a rate that depends on the value of x and a (\\frac{dy}{dx} = ax^{a-1}).\n\n\n\nCode\n# Plot a simulation of above in ggplot2\nset.seed(123)\ntibble(x = seq(0, 10, by = 0.2), y = x^2) %&gt;%\n  ggplot(aes(x = x, y = y)) +\n  geom_point() +\n  labs(x = \"x\", y = \"y\") +\n  ggtitle(expression(y == x^2)) +\n  theme(plot.title = element_text(size = 40, face = \"bold\"))"
+    "text": "Nonlinear relationships: exponents\n\n\\(x^2\\) is the square of \\(x\\).\n\\(x^3\\) is the cube of \\(x\\).\n\\(x^a\\) is x raised to the power of \\(a\\).\n\n\nIn a relationship where \\(y\\) is a function of \\(x^a\\), as \\(x\\) increases, \\(y\\) increases nonlinearly at a rate that depends on the value of \\(x\\) and \\(a\\) (\\(\\frac{dy}{dx} = ax^{a-1}\\)).\n\n\n\nCode\n# Plot a simulation of above in ggplot2\nset.seed(123)\ntibble(x = seq(0, 10, by = 0.2), y = x^2) %&gt;%\n  ggplot(aes(x = x, y = y)) +\n  geom_point() +\n  labs(x = \"x\", y = \"y\") +\n  ggtitle(expression(y == x^2)) +\n  theme(plot.title = element_text(size = 40, face = \"bold\"))"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#nonlinear-relationships-logarithms",
     "href": "lectures/L12/lecture-12.html#nonlinear-relationships-logarithms",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Nonlinear relationships: logarithms",
-    "text": "Nonlinear relationships: logarithms\n\nlog_e(x) is the natural logarithm of x.\nlog_{10}(x) is the common logarithm of x.\nlog_a(x) is the logarithm of x to the base a.\n\nInterpretation:\n\nIf \\log_a(y) = x: as x increases, the value of y increases by y = a^x.\nIf y = \\log_a(x): as x increases, the value of y increases by y = \\log_a(x). As y increases, the value of x increases by x = a^y."
+    "text": "Nonlinear relationships: logarithms\n\n\\(log_e(x)\\) is the natural logarithm of \\(x\\).\n\\(log_{10}(x)\\) is the common logarithm of \\(x\\).\n\\(log_a(x)\\) is the logarithm of \\(x\\) to the base \\(a\\).\n\nInterpretation:\n\nIf \\(\\log_a(y) = x\\): as \\(x\\) increases, the value of \\(y\\) increases by \\(y = a^x\\).\nIf \\(y = \\log_a(x)\\): as \\(x\\) increases, the value of \\(y\\) increases by \\(y = \\log_a(x)\\). As \\(y\\) increases, the value of \\(x\\) increases by \\(x = a^y\\)."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#exponents-and-logarithms",
     "href": "lectures/L12/lecture-12.html#exponents-and-logarithms",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Exponents and logarithms",
-    "text": "Exponents and logarithms\n\n\n\n\n\n\n\n\n\nExponents\nLogarithms\n\n\n\n\nDefinition\nIf a^n = b, a is the base, n is the exponent, and b is the result.\nIf \\log_a b = n, a is the base, b is the result, and n is the logarithm (or the exponent in the equivalent exponential form).\n\n\nExample\n2^3 = 8\n\\log_2 8 = 3\n\n\nInterpretation\n2 raised to the power of 3 equals 8.\nThe power to which you must raise 2 to get 8 is 3.\n\n\nInverse\nThe logarithm is the inverse operation of exponentiation.\nThe exponentiation is the inverse operation of logarithm.\n\n\nProperties\n(a^n)^m = a^{n \\cdot m}, a^n \\cdot a^m = a^{n+m}, \\frac{a^n}{a^m} = a^{n-m}\n\\log_a(b \\cdot c) = \\log_a b + \\log_a c, \\log_a\\left(\\frac{b}{c}\\right) = \\log_a b - \\log_a c, \\log_a(b^n) = n \\cdot \\log_a b\n\n\n\n\n\n\n\n\n\nNote\n\n\nFor your understanding, not examinable."
+    "text": "Exponents and logarithms\n\n\n\n\n\n\n\n\n\nExponents\nLogarithms\n\n\n\n\nDefinition\nIf \\(a^n = b\\), \\(a\\) is the base, \\(n\\) is the exponent, and \\(b\\) is the result.\nIf \\(\\log_a b = n\\), \\(a\\) is the base, \\(b\\) is the result, and \\(n\\) is the logarithm (or the exponent in the equivalent exponential form).\n\n\nExample\n\\(2^3 = 8\\)\n\\(\\log_2 8 = 3\\)\n\n\nInterpretation\n\\(2\\) raised to the power of \\(3\\) equals \\(8\\).\nThe power to which you must raise \\(2\\) to get \\(8\\) is \\(3\\).\n\n\nInverse\nThe logarithm is the inverse operation of exponentiation.\nThe exponentiation is the inverse operation of logarithm.\n\n\nProperties\n\\((a^n)^m = a^{n \\cdot m}\\), \\(a^n \\cdot a^m = a^{n+m}\\), \\(\\frac{a^n}{a^m} = a^{n-m}\\)\n\\(\\log_a(b \\cdot c) = \\log_a b + \\log_a c\\), \\(\\log_a\\left(\\frac{b}{c}\\right) = \\log_a b - \\log_a c\\), \\(\\log_a(b^n) = n \\cdot \\log_a b\\)\n\n\n\n\n\n\n\n\n\nNote\n\n\nFor your understanding, not examinable."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#exponential-decay-relationship",
     "href": "lectures/L12/lecture-12.html#exponential-decay-relationship",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Exponential decay relationship",
-    "text": "Exponential decay relationship\nResponse variable decreases and approaches limit as predictor variable increases.\n y = a \\cdot e^{-bx} \n\n\nCode\nset.seed(429) # set seed\n# Simulate data:\ndecay &lt;- tibble(\n  predictor = seq(0,10, by = 0.2),\n  response = abs(exp(-0.5*predictor) + rnorm(length(predictor), mean = 1, sd = 0.1)))\n\nggplot(data = decay, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\nExamples: radioactive decay, population decline, chemical reactions."
+    "text": "Exponential decay relationship\nResponse variable decreases and approaches limit as predictor variable increases.\n\\[ y = a \\cdot e^{-bx} \\]\n\n\nCode\nset.seed(429) # set seed\n# Simulate data:\ndecay &lt;- tibble(\n  predictor = seq(0,10, by = 0.2),\n  response = abs(exp(-0.5*predictor) + rnorm(length(predictor), mean = 1, sd = 0.1)))\n\nggplot(data = decay, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\nExamples: radioactive decay, population decline, chemical reactions."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#asymptotic-relationship",
     "href": "lectures/L12/lecture-12.html#asymptotic-relationship",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Asymptotic relationship",
-    "text": "Asymptotic relationship\nResponse variable increases and approaches a limit as the predictor variable increases.\n y = a + b(1 - e^{-cx}) \n\n\nCode\nset.seed(442) # set seed\n# Simulate data:\nasymptotic = tibble(\n  predictor = seq(0, 10, by = 0.2),\n  response = 100*(1-exp(-0.5*predictor)) + rnorm(length(predictor), mean = 0, sd = 10))\n\nggplot(data = asymptotic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\nExamples: population growth, enzyme kinetics."
+    "text": "Asymptotic relationship\nResponse variable increases and approaches a limit as the predictor variable increases.\n\\[ y = a + b(1 - e^{-cx}) \\]\n\n\nCode\nset.seed(442) # set seed\n# Simulate data:\nasymptotic = tibble(\n  predictor = seq(0, 10, by = 0.2),\n  response = 100*(1-exp(-0.5*predictor)) + rnorm(length(predictor), mean = 0, sd = 10))\n\nggplot(data = asymptotic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\nExamples: population growth, enzyme kinetics."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#logistic-relationship",
     "href": "lectures/L12/lecture-12.html#logistic-relationship",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Logistic relationship",
-    "text": "Logistic relationship\nAn S-shaped relationship, where the response variable is at first exponential, then asymptotic.\n y = c + \\frac{d-c}{1+e^{-b(x-a)}} \n\n\nCode\nset.seed(450)\n# Simulate data:\nlogistic &lt;- tibble(predictor = seq(0, 10, by = 0.2), \n  response = 10 + abs(300 * (1 / (1 + exp(-0.8 * (predictor - 5)))) + rnorm(length(predictor), mean = 0, sd = 10)))\n\nggplot(data = logistic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\nExamples: growth of bacteria, disease spread, species growth."
+    "text": "Logistic relationship\nAn S-shaped relationship, where the response variable is at first exponential, then asymptotic.\n\\[ y = c + \\frac{d-c}{1+e^{-b(x-a)}} \\]\n\n\nCode\nset.seed(450)\n# Simulate data:\nlogistic &lt;- tibble(predictor = seq(0, 10, by = 0.2), \n  response = 10 + abs(300 * (1 / (1 + exp(-0.8 * (predictor - 5)))) + rnorm(length(predictor), mean = 0, sd = 10)))\n\nggplot(data = logistic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\nExamples: growth of bacteria, disease spread, species growth."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#polynomial-relationship",
     "href": "lectures/L12/lecture-12.html#polynomial-relationship",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Polynomial relationship",
-    "text": "Polynomial relationship\nResponse variable changes in a variety of ways as the predictor variable changes. Also known as ‘curvilinear’.\n y = a + bx + cx^2 + dx^3 + ... \n\n\nCode\n# Set seed for reproducibility\nset.seed(529)\n# Simulate data:\ncurvilinear &lt;- tibble(predictor = seq(0, 30, length.out = 50), \n  response = 50 * (1 - (predictor - 15)^2 / 225) + rnorm(length(predictor), mean = 0, sd = 5))\n\nggplot(data = curvilinear, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\nExamples: food intake, drug dosage, exercise."
+    "text": "Polynomial relationship\nResponse variable changes in a variety of ways as the predictor variable changes. Also known as ‘curvilinear’.\n\\[ y = a + bx + cx^2 + dx^3 + ... \\]\n\n\nCode\n# Set seed for reproducibility\nset.seed(529)\n# Simulate data:\ncurvilinear &lt;- tibble(predictor = seq(0, 30, length.out = 50), \n  response = 50 * (1 - (predictor - 15)^2 / 225) + rnorm(length(predictor), mean = 0, sd = 5))\n\nggplot(data = curvilinear, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\nExamples: food intake, drug dosage, exercise."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#transformations-exponential-decay",
@@ -158,7 +158,7 @@
     "href": "lectures/L12/lecture-12.html#model",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Model",
-    "text": "Model\n Y_i = \\beta_0 + \\beta_1 x_i + \\beta_2 x_i^2 + ... + \\beta_k x_i^k + \\epsilon_i \nwhere k is the degree of the polynomial.\n\nThe model is still linear in the parameters \\beta and can be fitted using least squares.\nInstead of multiple predictors, we have multiple terms of the same predictor (same x).\nOnly the highest-order term is tested for significance.\nCan still be fit using lm().\nThe more complex, the less likely it follows a true biological relationship…\n\n\n\nAdding polynomial terms\n\nLinear: y = \\beta_0 + \\beta_1 x\nQuadratic: y = \\beta_0 + \\beta_1 x + \\beta_2 x^2\nCubic: y = \\beta_0 + \\beta_1 x + \\beta_2 x^2 + \\beta_3 x^3\nEach level increases the power of the predictor by 1."
+    "text": "Model\n\\[ Y_i = \\beta_0 + \\beta_1 x_i + \\beta_2 x_i^2 + ... + \\beta_k x_i^k + \\epsilon_i \\]\nwhere \\(k\\) is the degree of the polynomial.\n\nThe model is still linear in the parameters \\(\\beta\\) and can be fitted using least squares.\nInstead of multiple predictors, we have multiple terms of the same predictor (same \\(x\\)).\nOnly the highest-order term is tested for significance.\nCan still be fit using lm().\nThe more complex, the less likely it follows a true biological relationship…\n\n\n\nAdding polynomial terms\n\nLinear: \\(y = \\beta_0 + \\beta_1 x\\)\nQuadratic: \\(y = \\beta_0 + \\beta_1 x + \\beta_2 x^2\\)\nCubic: \\(y = \\beta_0 + \\beta_1 x + \\beta_2 x^2 + \\beta_3 x^3\\)\nEach level increases the power of the predictor by 1."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#the-data",
@@ -172,28 +172,28 @@
     "href": "lectures/L12/lecture-12.html#fitting-the-model-linear",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Fitting the model (linear)",
-    "text": "Fitting the model (linear)\n Y_i = \\beta_0 + \\beta_1 x_i + \\epsilon_i \n\n\nCode\nlin_fit &lt;- lm(response ~ predictor, asymptotic)\n\n\n\n\nCode\nggplot(asymptotic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\") +\n  geom_line(aes(y = predict(lin_fit)), color = \"red\", size = 2)"
+    "text": "Fitting the model (linear)\n\\[ Y_i = \\beta_0 + \\beta_1 x_i + \\epsilon_i \\]\n\n\nCode\nlin_fit &lt;- lm(response ~ predictor, asymptotic)\n\n\n\n\nCode\nggplot(asymptotic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\") +\n  geom_line(aes(y = predict(lin_fit)), color = \"red\", size = 2)"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#fitting-the-model-polydegree-2",
     "href": "lectures/L12/lecture-12.html#fitting-the-model-polydegree-2",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Fitting the model (poly(degree = 2))",
-    "text": "Fitting the model (poly(degree = 2))\n Y_i = \\beta_0 + \\beta_1 x_i + \\beta_2 x_i^2 + \\epsilon_i \n\n\nCode\npoly2_fit &lt;- lm(response ~ poly(predictor, 2), asymptotic)\n\n\n\n\nCode\nggplot(asymptotic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\") +\n  geom_line(aes(y = predict(lin_fit)), color = \"red\") +\n  geom_line(aes(y = predict(poly2_fit)), color = \"slateblue\", size = 2)"
+    "text": "Fitting the model (poly(degree = 2))\n\\[ Y_i = \\beta_0 + \\beta_1 x_i + \\beta_2 x_i^2 + \\epsilon_i \\]\n\n\nCode\npoly2_fit &lt;- lm(response ~ poly(predictor, 2), asymptotic)\n\n\n\n\nCode\nggplot(asymptotic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\") +\n  geom_line(aes(y = predict(lin_fit)), color = \"red\") +\n  geom_line(aes(y = predict(poly2_fit)), color = \"slateblue\", size = 2)"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#fitting-the-model-polydegree-3",
     "href": "lectures/L12/lecture-12.html#fitting-the-model-polydegree-3",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Fitting the model (poly(degree = 3))",
-    "text": "Fitting the model (poly(degree = 3))\n Y_i = \\beta_0 + \\beta_1 x_i + \\beta_2 x_i^2 + \\beta_3 x_i^3 + \\epsilon_i \n\n\nCode\npoly3_fit &lt;- lm(response ~ poly(predictor, 3), asymptotic)\n\n\n\n\nCode\nggplot(asymptotic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\") +\n  geom_line(aes(y = predict(lin_fit)), color = \"red\") +\n  geom_line(aes(y = predict(poly2_fit)), color = \"slateblue\") +\n  geom_line(aes(y = predict(poly3_fit)), color = \"seagreen\", size = 2)"
+    "text": "Fitting the model (poly(degree = 3))\n\\[ Y_i = \\beta_0 + \\beta_1 x_i + \\beta_2 x_i^2 + \\beta_3 x_i^3 + \\epsilon_i \\]\n\n\nCode\npoly3_fit &lt;- lm(response ~ poly(predictor, 3), asymptotic)\n\n\n\n\nCode\nggplot(asymptotic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\") +\n  geom_line(aes(y = predict(lin_fit)), color = \"red\") +\n  geom_line(aes(y = predict(poly2_fit)), color = \"slateblue\") +\n  geom_line(aes(y = predict(poly3_fit)), color = \"seagreen\", size = 2)"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#fitting-the-model-polydegree-10",
     "href": "lectures/L12/lecture-12.html#fitting-the-model-polydegree-10",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Fitting the model (poly(degree = 10))",
-    "text": "Fitting the model (poly(degree = 10))\n Y_i = \\beta_0 + \\beta_1 x_i + \\beta_2 x_i^2 + ... + \\beta_10 x_i^{10} + \\epsilon_i \n\n\nCode\npoly10_fit &lt;- lm(response ~ poly(predictor, 10), asymptotic)\n\n\n\n\n\n\nComparison of R2 of Polynomial Models\n\n\nModel\nR2\n\n\n\n\nLinear\n0.570\n\n\nPoly2\n0.820\n\n\nPoly3\n0.872\n\n\nPoly10\n0.862\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nWe use adjusted R2 for polynomials - extra terms, extra complexity, so extra penalty."
+    "text": "Fitting the model (poly(degree = 10))\n\\[ Y_i = \\beta_0 + \\beta_1 x_i + \\beta_2 x_i^2 + ... + \\beta_10 x_i^{10} + \\epsilon_i \\]\n\n\nCode\npoly10_fit &lt;- lm(response ~ poly(predictor, 10), asymptotic)\n\n\n\n\n\n\nComparison of R2 of Polynomial Models\n\n\nModel\nR2\n\n\n\n\nLinear\n0.570\n\n\nPoly2\n0.820\n\n\nPoly3\n0.872\n\n\nPoly10\n0.862\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nWe use adjusted R2 for polynomials - extra terms, extra complexity, so extra penalty."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#limitations",
@@ -207,14 +207,14 @@
     "href": "lectures/L12/lecture-12.html#fitting-a-nonlinear-model",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Fitting a nonlinear model",
-    "text": "Fitting a nonlinear model\nIf you have some understanding of the underlying relationship (e.g. mechanistic process) between the variables, you can fit a nonlinear model. \n\nMathematical expression\n Y_i = f(x_i, \\beta) + \\epsilon_i \nwhere f(x_i, \\beta) is a nonlinear function of the parameters \\beta.\n\nY_i is the continuous response variable.\nx_i is the vector of predictor variables.\n\\beta is the vector of unknown parameters.\n\\epsilon_i is the random error term (residual error)."
+    "text": "Fitting a nonlinear model\nIf you have some understanding of the underlying relationship (e.g. mechanistic process) between the variables, you can fit a nonlinear model. \n\nMathematical expression\n\\[ Y_i = f(x_i, \\beta) + \\epsilon_i \\]\nwhere \\(f(x_i, \\beta)\\) is a nonlinear function of the parameters \\(\\beta\\).\n\n\\(Y_i\\) is the continuous response variable.\n\\(x_i\\) is the vector of predictor variables.\n\\(\\beta\\) is the vector of unknown parameters.\n\\(\\epsilon_i\\) is the random error term (residual error)."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#assumptions",
     "href": "lectures/L12/lecture-12.html#assumptions",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Assumptions",
-    "text": "Assumptions\nLike the linear model, the nonlinear model assumes INE:\n\nError terms are independent (Independence).\nError terms are normally distributed (Normality).\nError terms have equal/constant variance (Homoscedasticity).\n\nBasically:\n \\epsilon_i \\sim N(0, \\sigma^2) \n\nLike all other models we have seen, we focus on the residuals to assess the model fit, since the residuals are the only part of the model that is random."
+    "text": "Assumptions\nLike the linear model, the nonlinear model assumes INE:\n\nError terms are independent (Independence).\nError terms are normally distributed (Normality).\nError terms have equal/constant variance (Homoscedasticity).\n\nBasically:\n\\[ \\epsilon_i \\sim N(0, \\sigma^2) \\]\n\nLike all other models we have seen, we focus on the residuals to assess the model fit, since the residuals are the only part of the model that is random."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#estimating-the-model-parameters",
@@ -235,14 +235,14 @@
     "href": "lectures/L12/lecture-12.html#with-nls",
     "title": "Topic 12 – Nonlinear regression",
     "section": "With nls()",
-    "text": "With nls()\ny=y_0e^{kx}\nwhere\n\ny is the response and x is the predictor\ny_0 is the value of y when x = 0\nk is the rate of change\n\nk can be estimated with the equation slope = k = \\frac{log_e y_{max} - log_e y_{min}}{x_{max} - x_{min}}, but usually a value of 1 is a good starting point.\n\n\nCode\nset.seed(123)\ngrowth &lt;- tibble(\n  predictor = seq(0,10, by = 0.2),\n  response = abs(exp(0.5*predictor) + rnorm(length(predictor), mean = 1, sd = 5)))\n\nggplot(data = growth, aes(x = predictor, y = response)) +\n  geom_point() +\n  geom_hline(yintercept = 0, linetype = \"dashed\") +\n  labs(x = \"Predictor\", y = \"Response\")"
+    "text": "With nls()\n\\(y=y_0e^{kx}\\)\nwhere\n\n\\(y\\) is the response and \\(x\\) is the predictor\n\\(y_0\\) is the value of \\(y\\) when \\(x = 0\\)\n\\(k\\) is the rate of change\n\n\\(k\\) can be estimated with the equation \\(slope = k = \\frac{log_e y_{max} - log_e y_{min}}{x_{max} - x_{min}}\\), but usually a value of 1 is a good starting point.\n\n\nCode\nset.seed(123)\ngrowth &lt;- tibble(\n  predictor = seq(0,10, by = 0.2),\n  response = abs(exp(0.5*predictor) + rnorm(length(predictor), mean = 1, sd = 5)))\n\nggplot(data = growth, aes(x = predictor, y = response)) +\n  geom_point() +\n  geom_hline(yintercept = 0, linetype = \"dashed\") +\n  labs(x = \"Predictor\", y = \"Response\")"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#first-guess",
     "href": "lectures/L12/lecture-12.html#first-guess",
     "title": "Topic 12 – Nonlinear regression",
     "section": "First guess",
-    "text": "First guess\nBased on the plot, we can estimate y_0 ~ 0 and k = 1. Because of the equation, y=y_0e^{kx}, y_0 cannot be 0!\n\n\nCode\nfit_exponential &lt;- nls(response ~ y0*exp(k*predictor), data = growth, \n  start = list(y0 = 0.1, k = 1))\n\n\n\n\nCode\nggplot(data = growth, aes(x = predictor, y = response)) +\n  geom_point() + \n  labs(x = \"Predictor\", y = \"Response\") +\n  geom_line(aes(y = predict(fit_exponential)), color = \"red\", size = 2)"
+    "text": "First guess\nBased on the plot, we can estimate \\(y_0 ~ 0\\) and \\(k = 1\\). Because of the equation, \\(y=y_0e^{kx}\\), \\(y_0\\) cannot be 0!\n\n\nCode\nfit_exponential &lt;- nls(response ~ y0*exp(k*predictor), data = growth, \n  start = list(y0 = 0.1, k = 1))\n\n\n\n\nCode\nggplot(data = growth, aes(x = predictor, y = response)) +\n  geom_point() + \n  labs(x = \"Predictor\", y = \"Response\") +\n  geom_line(aes(y = predict(fit_exponential)), color = \"red\", size = 2)"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#check-assumptions",
@@ -256,28 +256,28 @@
     "href": "lectures/L12/lecture-12.html#interpretation",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Interpretation",
-    "text": "Interpretation\n\n\nCode\nsummary(fit_exponential)\n\n\n\nFormula: response ~ y0 * exp(k * predictor)\n\nParameters:\n   Estimate Std. Error t value Pr(&gt;|t|)    \ny0   1.1694     0.1291   9.059 4.82e-12 ***\nk    0.4847     0.0121  40.057  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.409 on 49 degrees of freedom\n\nNumber of iterations to convergence: 8 \nAchieved convergence tolerance: 1.204e-06\n\n\n\nThe model is significant since the p-value is less than 0.05 for all parameters.\nIf this were real data (e.g. population growth), the parameters themselves e.g. rate of change, are useful\nThe parameterised model is:\n\n y = 1.17 \\cdot e^{-0.484x}  The R-squared value is not reported for nonlinear models as the sum of squares is not partitioned into explained and unexplained components. You can use the residual standard error and plots instead to compare between models."
+    "text": "Interpretation\n\n\nCode\nsummary(fit_exponential)\n\n\n\nFormula: response ~ y0 * exp(k * predictor)\n\nParameters:\n   Estimate Std. Error t value Pr(&gt;|t|)    \ny0   1.1694     0.1291   9.059 4.82e-12 ***\nk    0.4847     0.0121  40.057  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.409 on 49 degrees of freedom\n\nNumber of iterations to convergence: 8 \nAchieved convergence tolerance: 1.192e-06\n\n\n\nThe model is significant since the p-value is less than 0.05 for all parameters.\nIf this were real data (e.g. population growth), the parameters themselves e.g. rate of change, are useful\nThe parameterised model is:\n\n\\[ y = 1.17 \\cdot e^{-0.484x} \\] The R-squared value is not reported for nonlinear models as the sum of squares is not partitioned into explained and unexplained components. You can use the residual standard error and plots instead to compare between models."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#a-really-bad-guess",
     "href": "lectures/L12/lecture-12.html#a-really-bad-guess",
     "title": "Topic 12 – Nonlinear regression",
     "section": "A really bad guess",
-    "text": "A really bad guess\nWhat if we don’t estimate our parameters very well? R will either give an error or get there eventually.\nNote the parameters and residual standard error are the same as the previous slide - but the Number of iterations to convergence is higher.\n\n\nCode\nfit_exponential &lt;- nls(response ~ y0*exp(k*predictor), data = growth, \n  start = list(y0 = 50, k = 1.5)) # totally bogus numbers\n\nsummary(fit_exponential)\n\n\n\nFormula: response ~ y0 * exp(k * predictor)\n\nParameters:\n   Estimate Std. Error t value Pr(&gt;|t|)    \ny0   1.1694     0.1291   9.059 4.82e-12 ***\nk    0.4847     0.0121  40.057  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.409 on 49 degrees of freedom\n\nNumber of iterations to convergence: 28 \nAchieved convergence tolerance: 1.982e-06\n\n\n\n\n\n\n\n\nTip\n\n\nIf an error pops up, try different starting values - the rate of change is most likely the problem."
+    "text": "A really bad guess\nWhat if we don’t estimate our parameters very well? R will either give an error or get there eventually.\nNote the parameters and residual standard error are the same as the previous slide - but the Number of iterations to convergence is higher.\n\n\nCode\nfit_exponential &lt;- nls(response ~ y0*exp(k*predictor), data = growth, \n  start = list(y0 = 50, k = 1.5)) # totally bogus numbers\n\nsummary(fit_exponential)\n\n\n\nFormula: response ~ y0 * exp(k * predictor)\n\nParameters:\n   Estimate Std. Error t value Pr(&gt;|t|)    \ny0   1.1694     0.1291   9.059 4.82e-12 ***\nk    0.4847     0.0121  40.057  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.409 on 49 degrees of freedom\n\nNumber of iterations to convergence: 28 \nAchieved convergence tolerance: 2.003e-06\n\n\n\n\n\n\n\n\nTip\n\n\nIf an error pops up, try different starting values - the rate of change is most likely the problem."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#fitting-the-model-with-ssexpf",
     "href": "lectures/L12/lecture-12.html#fitting-the-model-with-ssexpf",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Fitting the model with SSexpf()",
-    "text": "Fitting the model with SSexpf()\n\nSSexpf() is from the nlraa package.\nIt has the same formula as above – different names for parameters (y_0 = a, k = c) but we can re-define them to anything we want\nReaches the same result but with less effort.\n\n\n\nCode\nlibrary(nlraa)\nfit_exponential_ss &lt;- nls(response ~ SSexpf(predictor, y0, k), data = decay) \nsummary(fit_exponential_ss)\n\n\n\nFormula: response ~ SSexpf(predictor, y0, k)\n\nParameters:\n   Estimate Std. Error t value Pr(&gt;|t|)    \ny0  1.65486    0.04699   35.22  &lt; 2e-16 ***\nk  -0.06527    0.00590  -11.06 6.33e-15 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.1471 on 49 degrees of freedom\n\nNumber of iterations to convergence: 5 \nAchieved convergence tolerance: 1.048e-06"
+    "text": "Fitting the model with SSexpf()\n\nSSexpf() is from the nlraa package.\nIt has the same formula as above – different names for parameters (\\(y_0\\) = \\(a\\), \\(k\\) = \\(c\\)) but we can re-define them to anything we want\nReaches the same result but with less effort.\n\n\n\nCode\nlibrary(nlraa)\nfit_exponential_ss &lt;- nls(response ~ SSexpf(predictor, y0, k), data = decay) \nsummary(fit_exponential_ss)\n\n\n\nFormula: response ~ SSexpf(predictor, y0, k)\n\nParameters:\n   Estimate Std. Error t value Pr(&gt;|t|)    \ny0  1.65486    0.04699   35.22  &lt; 2e-16 ***\nk  -0.06527    0.00590  -11.06 6.33e-15 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.1471 on 49 degrees of freedom\n\nNumber of iterations to convergence: 5 \nAchieved convergence tolerance: 1.048e-06"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#the-equation",
     "href": "lectures/L12/lecture-12.html#the-equation",
     "title": "Topic 12 – Nonlinear regression",
     "section": "The equation",
-    "text": "The equation\n\nThere are multiple equations for asymptotic models, this is the equation that SSasymp() (base R) uses:\n\n y = Asym + (R_0-Asym) \\cdot e^{-e^{lrc} \\cdot x} \n\nR_0 is value of y when x = 0.\nAsym is the upper limit: the maximum value of y.\nlrc is the rate of change: the rate at which y approaches the upper limit.\n\n\n\n\nCode\nggplot(data = asymptotic, aes(x = predictor, y = response)) +\n  geom_point() + \n  geom_hline(yintercept = 100, linetype = \"dashed\") +\n  geom_vline(xintercept = 0, linetype = \"dashed\") +\n  ## plot the rate\n  geom_segment(aes(x = 0, y = 0, xend = 2.5, yend = 100), \n               arrow = arrow(length = unit(0.5, \"cm\")), \n               color = \"red\") +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\n\n\n\n\n\n\nSome plausible estimates – R_0 = 0, Asym = 100, lrc = 0.8."
+    "text": "The equation\n\nThere are multiple equations for asymptotic models, this is the equation that SSasymp() (base R) uses:\n\n\\[ y = Asym + (R_0-Asym) \\cdot e^{-e^{lrc} \\cdot x} \\]\n\n\\(R_0\\) is value of \\(y\\) when \\(x = 0\\).\n\\(Asym\\) is the upper limit: the maximum value of \\(y\\).\n\\(lrc\\) is the rate of change: the rate at which \\(y\\) approaches the upper limit.\n\n\n\n\nCode\nggplot(data = asymptotic, aes(x = predictor, y = response)) +\n  geom_point() + \n  geom_hline(yintercept = 100, linetype = \"dashed\") +\n  geom_vline(xintercept = 0, linetype = \"dashed\") +\n  ## plot the rate\n  geom_segment(aes(x = 0, y = 0, xend = 2.5, yend = 100), \n               arrow = arrow(length = unit(0.5, \"cm\")), \n               color = \"red\") +\n  labs(x = \"Predictor\", y = \"Response\")\n\n\n\n\n\n\n\n\n\nSome plausible estimates – \\(R_0 = 0\\), \\(Asym = 100\\), \\(lrc = 0.8\\)."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#fit-model",
@@ -298,14 +298,14 @@
     "href": "lectures/L12/lecture-12.html#interpretation-1",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Interpretation",
-    "text": "Interpretation\n\n\nCode\nsummary(fit_asymptotic)\n\n\n\nFormula: response ~ SSasymp(predictor, Asym, R0, lrc)\n\nParameters:\n     Estimate Std. Error t value Pr(&gt;|t|)    \nAsym  98.5204     2.2852  43.113  &lt; 2e-16 ***\nR0   -14.5176     6.6416  -2.186  0.03374 *  \nlrc   -0.4626     0.1134  -4.079  0.00017 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 10.21 on 48 degrees of freedom\n\nNumber of iterations to convergence: 0 \nAchieved convergence tolerance: 3.197e-07\n\n\n\nThe model is significant since the p-value is less than 0.05 for all parameters.\nIf this were real data (e.g. population growth), the parameters themselves e.g. rate of change, are useful\nThe parameterised model is:\n\n y = 98.5 + (-14.5-98.5) \\cdot e^{-e^{-0.463} \\cdot x}   # Example: fitting a logistic model"
+    "text": "Interpretation\n\n\nCode\nsummary(fit_asymptotic)\n\n\n\nFormula: response ~ SSasymp(predictor, Asym, R0, lrc)\n\nParameters:\n     Estimate Std. Error t value Pr(&gt;|t|)    \nAsym  98.5204     2.2852  43.113  &lt; 2e-16 ***\nR0   -14.5176     6.6416  -2.186  0.03374 *  \nlrc   -0.4626     0.1134  -4.079  0.00017 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 10.21 on 48 degrees of freedom\n\nNumber of iterations to convergence: 0 \nAchieved convergence tolerance: 3.341e-07\n\n\n\nThe model is significant since the p-value is less than 0.05 for all parameters.\nIf this were real data (e.g. population growth), the parameters themselves e.g. rate of change, are useful\nThe parameterised model is:\n\n\\[ y = 98.5 + (-14.5-98.5) \\cdot e^{-e^{-0.463} \\cdot x}  \\] # Example: fitting a logistic model"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#the-equation-1",
     "href": "lectures/L12/lecture-12.html#the-equation-1",
     "title": "Topic 12 – Nonlinear regression",
     "section": "The equation",
-    "text": "The equation\nThere are multiple equations for logistic models, but they all have an ‘S’ or sigmoid shape. The equation that SSlogis() (base R) assumes y is positive and uses:\n y = \\frac{Asym}{1+e^{\\frac{xmid-x}{scal}}}  where\n\nAsym is the upper limit: the maximum value of y.\nxmid is the value of x when y is halfway between the lower and upper limits.\nscal is the rate of change: the rate at which y approaches the upper limit.\n\n\n\nCode\nggplot(data = logistic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\") +\n  geom_hline(yintercept = 300, linetype = \"dashed\") +\n  geom_vline(xintercept = 5, linetype = \"dashed\") +\n  # label the lines above\n  annotate(\"text\", x = 0, y = 300, label = \"Asym\", size = 8, vjust = 1.5) +\n  annotate(\"text\", x = 5, y = 100, label = \"xmid\", size = 8, hjust = -1) +\n  ## plot the rate\n  geom_segment(aes(x = 2.5, y = 60, xend = 6, yend = 250), \n               arrow = arrow(length = unit(0.5, \"cm\")), \n               color = \"red\") +\n  # label the rate\n  annotate(\"text\", x = 4, y = 180, label = \"scal\", size = 8, colour = \"red\", hjust = -1)\n\n\n\nSome starting values would be Asym = 300, xmid = 5, scal = 1."
+    "text": "The equation\nThere are multiple equations for logistic models, but they all have an ‘S’ or sigmoid shape. The equation that SSlogis() (base R) assumes \\(y\\) is positive and uses:\n\\[ y = \\frac{Asym}{1+e^{\\frac{xmid-x}{scal}}} \\] where\n\n\\(Asym\\) is the upper limit: the maximum value of \\(y\\).\n\\(xmid\\) is the value of \\(x\\) when \\(y\\) is halfway between the lower and upper limits.\n\\(scal\\) is the rate of change: the rate at which \\(y\\) approaches the upper limit.\n\n\n\nCode\nggplot(data = logistic, aes(x = predictor, y = response)) +\n  geom_point() +\n  labs(x = \"Predictor\", y = \"Response\") +\n  geom_hline(yintercept = 300, linetype = \"dashed\") +\n  geom_vline(xintercept = 5, linetype = \"dashed\") +\n  # label the lines above\n  annotate(\"text\", x = 0, y = 300, label = \"Asym\", size = 8, vjust = 1.5) +\n  annotate(\"text\", x = 5, y = 100, label = \"xmid\", size = 8, hjust = -1) +\n  ## plot the rate\n  geom_segment(aes(x = 2.5, y = 60, xend = 6, yend = 250), \n               arrow = arrow(length = unit(0.5, \"cm\")), \n               color = \"red\") +\n  # label the rate\n  annotate(\"text\", x = 4, y = 180, label = \"scal\", size = 8, colour = \"red\", hjust = -1)\n\n\n\nSome starting values would be \\(Asym = 300\\), \\(xmid = 5\\), \\(scal = 1\\)."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#fit-model-1",
@@ -319,7 +319,7 @@
     "href": "lectures/L12/lecture-12.html#interpretation-2",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Interpretation",
-    "text": "Interpretation\nSSlogis() guessed the parameters on the first try.\n\n\nCode\nsummary(fit_logistic)\n\n\n\nFormula: response ~ SSlogis(predictor, Asym, xmid, scal)\n\nParameters:\n      Estimate Std. Error t value Pr(&gt;|t|)    \nAsym 310.64727    4.62579   67.16   &lt;2e-16 ***\nxmid   4.92715    0.07142   68.99   &lt;2e-16 ***\nscal   1.34877    0.05418   24.90   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 10.22 on 48 degrees of freedom\n\nNumber of iterations to convergence: 1 \nAchieved convergence tolerance: 6.626e-07\n\n\n\nThe model is significant since the p-value is less than 0.05 for all parameters.\nIf the model visually fits well and relationship has reasoning (parameter significance not always important).\nThe parameterised model is:\n\n y = \\frac{310}{1+e^{\\frac{4.93-x}{1.35}}}"
+    "text": "Interpretation\nSSlogis() guessed the parameters on the first try.\n\n\nCode\nsummary(fit_logistic)\n\n\n\nFormula: response ~ SSlogis(predictor, Asym, xmid, scal)\n\nParameters:\n      Estimate Std. Error t value Pr(&gt;|t|)    \nAsym 310.64727    4.62579   67.16   &lt;2e-16 ***\nxmid   4.92715    0.07142   68.99   &lt;2e-16 ***\nscal   1.34877    0.05418   24.90   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 10.22 on 48 degrees of freedom\n\nNumber of iterations to convergence: 1 \nAchieved convergence tolerance: 6.632e-07\n\n\n\nThe model is significant since the p-value is less than 0.05 for all parameters.\nIf the model visually fits well and relationship has reasoning (parameter significance not always important).\nThe parameterised model is:\n\n\\[ y = \\frac{310}{1+e^{\\frac{4.93-x}{1.35}}} \\]"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#example-polynomial-regression",
@@ -368,7 +368,7 @@
     "href": "lectures/L11/lecture-11.html#last-week-simple-linear-regression",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Last week: simple linear regression",
-    "text": "Last week: simple linear regression\n Y_i = \\beta_0 + \\beta_1 x_i + \\epsilon_i \nIdeal for predicting a continuous response variable from a single predictor variable: “How does y change as x changes?”\n\nIdentify/quantify relationships between variables\nPredict future values\n\n\nWhat if we have more than one predictor?\nWhat is the model and how do we interpret the results?"
+    "text": "Last week: simple linear regression\n\\[ Y_i = \\beta_0 + \\beta_1 x_i + \\epsilon_i \\]\nIdeal for predicting a continuous response variable from a single predictor variable: “How does \\(y\\) change as \\(x\\) changes?”\n\nIdentify/quantify relationships between variables\nPredict future values\n\n\nWhat if we have more than one predictor?\nWhat is the model and how do we interpret the results?"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#history",
@@ -389,7 +389,7 @@
     "href": "lectures/L11/lecture-11.html#example-air-quality-in-new-york-1973",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Example: Air Quality in New York (1973)",
-    "text": "Example: Air Quality in New York (1973)\n\n\nCode\ndata(airquality)\ndplyr::glimpse(airquality)\n\n\nRows: 153\nColumns: 6\n$ Ozone   &lt;int&gt; 41, 36, 12, 18, NA, 28, 23, 19, 8, NA, 7, 16, 11, 14, 18, 14, …\n$ Solar.R &lt;int&gt; 190, 118, 149, 313, NA, NA, 299, 99, 19, 194, NA, 256, 290, 27…\n$ Wind    &lt;dbl&gt; 7.4, 8.0, 12.6, 11.5, 14.3, 14.9, 8.6, 13.8, 20.1, 8.6, 6.9, 9…\n$ Temp    &lt;int&gt; 67, 72, 74, 62, 56, 66, 65, 59, 61, 69, 74, 69, 66, 68, 58, 64…\n$ Month   &lt;int&gt; 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,…\n$ Day     &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,…\n\n\n\nOzone (O_3) is a harmful air pollutant at ground level - the main component of smog:\n\nOzone: ozone concentration (ppb)\nSolar.R: solar radiation (lang, Langleys)\nWind: wind speed (mph)\nTemp: ambient temperature (degrees F)\nMonth: month (1-12)\nDay: day of the month (1-31)"
+    "text": "Example: Air Quality in New York (1973)\n\n\nCode\ndata(airquality)\ndplyr::glimpse(airquality)\n\n\nRows: 153\nColumns: 6\n$ Ozone   &lt;int&gt; 41, 36, 12, 18, NA, 28, 23, 19, 8, NA, 7, 16, 11, 14, 18, 14, …\n$ Solar.R &lt;int&gt; 190, 118, 149, 313, NA, NA, 299, 99, 19, 194, NA, 256, 290, 27…\n$ Wind    &lt;dbl&gt; 7.4, 8.0, 12.6, 11.5, 14.3, 14.9, 8.6, 13.8, 20.1, 8.6, 6.9, 9…\n$ Temp    &lt;int&gt; 67, 72, 74, 62, 56, 66, 65, 59, 61, 69, 74, 69, 66, 68, 58, 64…\n$ Month   &lt;int&gt; 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,…\n$ Day     &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,…\n\n\n\nOzone (\\(O_3\\)) is a harmful air pollutant at ground level - the main component of smog:\n\nOzone: ozone concentration (ppb)\nSolar.R: solar radiation (lang, Langleys)\nWind: wind speed (mph)\nTemp: ambient temperature (degrees F)\nMonth: month (1-12)\nDay: day of the month (1-31)"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#scatterplots",
@@ -417,14 +417,14 @@
     "href": "lectures/L11/lecture-11.html#correlations-via-psych",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Correlations via psych",
-    "text": "Correlations via psych\n\n\nCode\npsych::pairs.panels(airquality)\n\n\n\n\nWhat predictors could be useful to predict Ozone?\n\n\nTemp (r = 0.70), Wind (r = -0.60) and Solar.R (r = 0.35) are the most correlated with Ozone.\nWhat can we understand about the relationship between Ozone and Temp (r = 0.70)?"
+    "text": "Correlations via psych\n\n\nCode\npsych::pairs.panels(airquality)\n\n\n\n\nWhat predictors could be useful to predict Ozone?\n\n\nTemp (\\(r\\) = 0.70), Wind (\\(r\\) = -0.60) and Solar.R (\\(r\\) = 0.35) are the most correlated with Ozone.\nWhat can we understand about the relationship between Ozone and Temp (\\(r\\) = 0.70)?"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#relationship",
     "href": "lectures/L11/lecture-11.html#relationship",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Relationship",
-    "text": "Relationship\nWhat can we understand about the relationship between Ozone and Temp (r = 0.70)?\n\n\n\nCode\nlibrary(ggplot2)\nggplot(data = airquality, aes(x = Temp, y = Ozone)) +\n  geom_point() + \n  labs(x = expression(\"Temperature \" (degree~F)), y = \"Ozone (ppb)\") +\n  theme_classic()\n\n\n\n\n\n\n\n\n\n\n\nThe higher the temperature, the higher the ozone concentration. The relationship is almost linear."
+    "text": "Relationship\nWhat can we understand about the relationship between Ozone and Temp (\\(r\\) = 0.70)?\n\n\n\nCode\nlibrary(ggplot2)\nggplot(data = airquality, aes(x = Temp, y = Ozone)) +\n  geom_point() + \n  labs(x = expression(\"Temperature \" (degree~F)), y = \"Ozone (ppb)\") +\n  theme_classic()\n\n\n\n\n\n\n\n\n\n\n\nThe higher the temperature, the higher the ozone concentration. The relationship is almost linear."
   },
   {
     "objectID": "lectures/L11/lecture-11.html#fitting-a-simple-model",
@@ -480,7 +480,7 @@
     "href": "lectures/L11/lecture-11.html#the-multiple-linear-regression-model",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "The multiple linear regression model",
-    "text": "The multiple linear regression model\nAn extension of simple linear regression to include more than one predictor variable: “How does y change as x_1, x_2, …, x_k change?”\n Y_i = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + ... + \\beta_k x_k + \\epsilon_i \n\nTherefore, estimating the model involves estimating the values of \\beta_0, \\beta_1, \\beta_2, …, \\beta_k.\n\n\\beta_0 is the intercept\n\\beta_1 to \\beta_k are the partial regression coefficients\n\\epsilon is the error (residual) term\n\n\n\nFit MLR model to Air Quality data\nThe variables Month and Day are not useful predictors, so we will exclude them from the model.\n\n\nCode\nfit_multi &lt;- lm(formula = Ozone ~ Solar.R + Wind + Temp, data = airquality)\n# fit_multi &lt;- lm(formula = Ozone ~ .-Month -Day, data = airquality) # all variables excluding Month and Day"
+    "text": "The multiple linear regression model\nAn extension of simple linear regression to include more than one predictor variable: “How does \\(y\\) change as \\(x_1\\), \\(x_2\\), …, \\(x_k\\) change?”\n\\[ Y_i = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + ... + \\beta_k x_k + \\epsilon_i \\]\n\nTherefore, estimating the model involves estimating the values of \\(\\beta_0\\), \\(\\beta_1\\), \\(\\beta_2\\), …, \\(\\beta_k\\).\n\n\\(\\beta_0\\) is the intercept\n\\(\\beta_1\\) to \\(\\beta_k\\) are the partial regression coefficients\n\\(\\epsilon\\) is the error (residual) term\n\n\n\nFit MLR model to Air Quality data\nThe variables Month and Day are not useful predictors, so we will exclude them from the model.\n\n\nCode\nfit_multi &lt;- lm(formula = Ozone ~ Solar.R + Wind + Temp, data = airquality)\n# fit_multi &lt;- lm(formula = Ozone ~ .-Month -Day, data = airquality) # all variables excluding Month and Day"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#visualisation-not-easy",
@@ -501,7 +501,7 @@
     "href": "lectures/L11/lecture-11.html#partial-regression-coefficients",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Partial regression coefficients",
-    "text": "Partial regression coefficients\nGiven the multiple linear model:  Y_i = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + ... + \\beta_k x_k + \\epsilon_i \nThe partial regression coefficient for a predictor x_i is the amount by which the response variable Y changes when x_k is increased by one unit, while all other predictors are held constant.\n \\beta_k = \\frac{\\Delta Y}{\\Delta x_k} \n\n\n\nCode\nequatiomatic::extract_eq(fit_multi)\n\n\n\n\\operatorname{Ozone} = \\alpha + \\beta_{1}(\\operatorname{Solar.R}) + \\beta_{2}(\\operatorname{Wind}) + \\beta_{3}(\\operatorname{Temp}) + \\epsilon\n\n\n\n\nWith Wind and Solar.R held constant, how does Temp affect Ozone?"
+    "text": "Partial regression coefficients\nGiven the multiple linear model: \\[ Y_i = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + ... + \\beta_k x_k + \\epsilon_i \\]\nThe partial regression coefficient for a predictor \\(x_i\\) is the amount by which the response variable \\(Y\\) changes when \\(x_k\\) is increased by one unit, while all other predictors are held constant.\n\\[ \\beta_k = \\frac{\\Delta Y}{\\Delta x_k} \\]\n\n\n\nCode\nequatiomatic::extract_eq(fit_multi)\n\n\n\\[\n\\operatorname{Ozone} = \\alpha + \\beta_{1}(\\operatorname{Solar.R}) + \\beta_{2}(\\operatorname{Wind}) + \\beta_{3}(\\operatorname{Temp}) + \\epsilon\n\\]\n\n\n\nWith Wind and Solar.R held constant, how does Temp affect Ozone?"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#partial-regression-coefficients-visualisation",
@@ -522,14 +522,14 @@
     "href": "lectures/L11/lecture-11.html#assumptions",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Assumptions",
-    "text": "Assumptions\nIn SLR, the model is made up of the deterministic component (the line) and the random component (the error term).\n Y_i = \\color{seagreen}{\\beta_0 + \\beta_1 x_i} + \\color{firebrick}\\epsilon_i \n\nThis is the same for MLR:  Y_i = \\color{seagreen}{\\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + ... + \\beta_k x_k} + \\color{firebrick}{\\epsilon_i} \nSince only the error term is random, the assumptions are still about the error term (residuals), \\hat\\epsilon, which is simple to assess!"
+    "text": "Assumptions\nIn SLR, the model is made up of the deterministic component (the line) and the random component (the error term).\n\\[ Y_i = \\color{seagreen}{\\beta_0 + \\beta_1 x_i} + \\color{firebrick}\\epsilon_i \\]\n\nThis is the same for MLR: \\[ Y_i = \\color{seagreen}{\\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + ... + \\beta_k x_k} + \\color{firebrick}{\\epsilon_i} \\]\nSince only the error term is random, the assumptions are still about the error term (residuals), \\(\\hat\\epsilon\\), which is simple to assess!"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#assumptions---cline",
     "href": "lectures/L11/lecture-11.html#assumptions---cline",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Assumptions - CLINE",
-    "text": "Assumptions - CLINE\nAs with Simple Linear Regression, we need to check the assumptions of the model (LINE):\n\nLinearity: the relationships between the response and the predictors are all linear.\nIndependence: the observations are independent of each other.\nNormality: the residuals are normally distributed.\nEqual variance: the variance of the residuals is constant.\n\nWith one extra assumption!\n\nCollinearity: there is no perfect linearity between predictors\n\nTwo predictors that have a perfect linear relationship (i.e. r = 1 or -1) breaks the assumption of collinearity. High (but not perfect) collinearity (e.g. strong/very strong r) does not break the assumption but can lead to unstable estimates and large standard errors.\n\nThe largest correlation between the predictors is between Temp and Wind (r = -0.5). This is not a problem."
+    "text": "Assumptions - CLINE\nAs with Simple Linear Regression, we need to check the assumptions of the model (LINE):\n\nLinearity: the relationships between the response and the predictors are all linear.\nIndependence: the observations are independent of each other.\nNormality: the residuals are normally distributed.\nEqual variance: the variance of the residuals is constant.\n\nWith one extra assumption!\n\nCollinearity: there is no perfect linearity between predictors\n\nTwo predictors that have a perfect linear relationship (i.e. \\(r\\) = 1 or -1) breaks the assumption of collinearity. High (but not perfect) collinearity (e.g. strong/very strong \\(r\\)) does not break the assumption but can lead to unstable estimates and large standard errors.\n\nThe largest correlation between the predictors is between Temp and Wind (\\(r\\) = -0.5). This is not a problem."
   },
   {
     "objectID": "lectures/L11/lecture-11.html#assumptions-of-mlr",
@@ -557,7 +557,7 @@
     "href": "lectures/L11/lecture-11.html#hypothesis-testing",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Hypothesis Testing",
-    "text": "Hypothesis Testing\nFor multiple linear regression, there are two hypothesis tests:\n\nIndividual predictors, where the significance of each predictor is tested via t-tests\n\nH_0: \\beta_k = 0 H_1: \\beta_k \\neq 0\n\nThe overall model, which is tested with an F-test (to get F-stat). H_0 is an intercept-only model (i.e. the mean), so if at least one predictor is useful, the model is better than the intercept-only model.\n\nH_0: \\beta_1 = \\beta_2 = ... = \\beta_k = 0 H_1: \\text{At least one } \\beta_k \\neq 0"
+    "text": "Hypothesis Testing\nFor multiple linear regression, there are two hypothesis tests:\n\nIndividual predictors, where the significance of each predictor is tested via t-tests\n\n\\[H_0: \\beta_k = 0\\] \\[H_1: \\beta_k \\neq 0\\]\n\nThe overall model, which is tested with an F-test (to get F-stat). \\(H_0\\) is an intercept-only model (i.e. the mean), so if at least one predictor is useful, the model is better than the intercept-only model.\n\n\\[H_0: \\beta_1 = \\beta_2 = ... = \\beta_k = 0\\] \\[H_1: \\text{At least one } \\beta_k \\neq 0\\]"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#interpreting-coefficients",
@@ -578,14 +578,14 @@
     "href": "lectures/L11/lecture-11.html#the-r2-value",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "The R2 value",
-    "text": "The R2 value\nThe R-squared value is the proportion of variance explained by the model.\n R^2 = \\frac{SS_{reg}}{SS_{tot}} = 1 - \\frac{SS_{res}}{SS_{tot}} \nThe adjusted R-squared value is the proportion of variance explained by the model, adjusted for the number of predictors.\n R^2_{adj} = 1 - \\frac{SS_{res}}{SS_{tot}} \\frac{n-1}{n-p-1} \nwhere n is the number of observations and p is the number of predictors."
+    "text": "The R2 value\nThe R-squared value is the proportion of variance explained by the model.\n\\[ R^2 = \\frac{SS_{reg}}{SS_{tot}} = 1 - \\frac{SS_{res}}{SS_{tot}} \\]\nThe adjusted R-squared value is the proportion of variance explained by the model, adjusted for the number of predictors.\n\\[ R^2_{adj} = 1 - \\frac{SS_{res}}{SS_{tot}} \\frac{n-1}{n-p-1} \\]\nwhere \\(n\\) is the number of observations and \\(p\\) is the number of predictors."
   },
   {
     "objectID": "lectures/L11/lecture-11.html#f-stat",
     "href": "lectures/L11/lecture-11.html#f-stat",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "F-stat",
-    "text": "F-stat\nCall:\nlm(formula = log(Ozone) ~ Solar.R + Wind + Temp, data = airquality)\n\nMultiple R-squared:  0.6644,    Adjusted R-squared:  0.655 \nF-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16\n\nThe F-statistic tests the null hypothesis that all the regression coefficients are equal to zero, i.e. H_0: \\beta_1 = \\beta_2 = ... = \\beta_k = 0.\nAs a ratio, it tells us how much better the model is than the null model (i.e. a model with no predictors, the mean).\nIf the p-value is less than our specified critical value (e.g. 0.05), we reject the null hypothesis and conclude that the current model is better than the null model."
+    "text": "F-stat\nCall:\nlm(formula = log(Ozone) ~ Solar.R + Wind + Temp, data = airquality)\n\nMultiple R-squared:  0.6644,    Adjusted R-squared:  0.655 \nF-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16\n\nThe F-statistic tests the null hypothesis that all the regression coefficients are equal to zero, i.e. \\(H_0: \\beta_1 = \\beta_2 = ... = \\beta_k = 0\\).\nAs a ratio, it tells us how much better the model is than the null model (i.e. a model with no predictors, the mean).\nIf the p-value is less than our specified critical value (e.g. 0.05), we reject the null hypothesis and conclude that the current model is better than the null model."
   },
   {
     "objectID": "lectures/L11/lecture-11.html#reporting",
@@ -683,7 +683,7 @@
     "href": "lectures/L11/abalone-quiz.html#the-problem-with-using-too-many-predictors",
     "title": "L11 MLR – Abalone Quiz",
     "section": "The problem with using too many predictors",
-    "text": "The problem with using too many predictors\nHere, the model is fit with all predictors, then the least significant predictor is removed. This process is repeated until only one predictor remains.\n\n\nCode\nlibrary(broom)\n\nfull7 &lt;- lm(log(rings) ~ ., data = abalone)\npart6 &lt;- update(full7, . ~ . - whole)\npart5 &lt;- update(part6, . ~ . - viscera)\npart4 &lt;- update(part5, . ~ . - length)\npart3 &lt;- update(part4, . ~ . - height)\npart2 &lt;- update(part3, . ~ . - diameter)\npart1 &lt;- update(part2, . ~ . - shucked)\n\nformulas &lt;- c(part1$call$formula, \n              part2$call$formula, \n              part3$call$formula, \n              part4$call$formula, \n              part5$call$formula, \n              part6$call$formula, \n              full7$call$formula)\n\nrs &lt;- bind_rows(glance(part1),\n                glance(part2),\n                glance(part3),\n                glance(part4),\n                glance(part5),\n                glance(part6),\n                glance(full7)) %&gt;%\n  mutate(Model = formulas, n = 1:7) %&gt;%\n  select(Model, n, r.squared, adj.r.squared) %&gt;%\n  mutate_if(is.numeric, round, 3)\n\nknitr::kable(rs)\n\n\n\n\n\n\n\n\n\n\n\nModel\nn\nr.squared\nadj.r.squared\n\n\n\n\nlog(rings) ~ shell\n1\n0.445\n0.439\n\n\nlog(rings) ~ shucked + shell\n2\n0.557\n0.548\n\n\nlog(rings) ~ diameter + shucked + shell\n3\n0.604\n0.591\n\n\nlog(rings) ~ diameter + height + shucked + shell\n4\n0.614\n0.598\n\n\nlog(rings) ~ length + diameter + height + shucked + shell\n5\n0.618\n0.597\n\n\nlog(rings) ~ length + diameter + height + shucked + viscera + , shell\n6\n0.619\n0.594\n\n\nlog(rings) ~ .\n7\n0.619\n0.590\n\n\n\n\n\n\n\nConsidering only R^2, which model would we choose?\n\nModel with 1 predictor\nModel with 3 predictors\nModel with 4 predictors\nModel with 7 predictors\n\n\n\n\nThe 1-predictor model sacrifices 14.5% of variation in the response (too much). The 7-predictor model is overfitted (worse than 4-predictor model). Between 3 and 4-predictor models - is a 0.7% improvement worth having to measure height? Realistically, the models with 2 or 3 predictors are justifiable."
+    "text": "The problem with using too many predictors\nHere, the model is fit with all predictors, then the least significant predictor is removed. This process is repeated until only one predictor remains.\n\n\nCode\nlibrary(broom)\n\nfull7 &lt;- lm(log(rings) ~ ., data = abalone)\npart6 &lt;- update(full7, . ~ . - whole)\npart5 &lt;- update(part6, . ~ . - viscera)\npart4 &lt;- update(part5, . ~ . - length)\npart3 &lt;- update(part4, . ~ . - height)\npart2 &lt;- update(part3, . ~ . - diameter)\npart1 &lt;- update(part2, . ~ . - shucked)\n\nformulas &lt;- c(part1$call$formula, \n              part2$call$formula, \n              part3$call$formula, \n              part4$call$formula, \n              part5$call$formula, \n              part6$call$formula, \n              full7$call$formula)\n\nrs &lt;- bind_rows(glance(part1),\n                glance(part2),\n                glance(part3),\n                glance(part4),\n                glance(part5),\n                glance(part6),\n                glance(full7)) %&gt;%\n  mutate(Model = formulas, n = 1:7) %&gt;%\n  select(Model, n, r.squared, adj.r.squared) %&gt;%\n  mutate_if(is.numeric, round, 3)\n\nknitr::kable(rs)\n\n\n\n\n\n\n\n\n\n\n\nModel\nn\nr.squared\nadj.r.squared\n\n\n\n\nlog(rings) ~ shell\n1\n0.445\n0.439\n\n\nlog(rings) ~ shucked + shell\n2\n0.557\n0.548\n\n\nlog(rings) ~ diameter + shucked + shell\n3\n0.604\n0.591\n\n\nlog(rings) ~ diameter + height + shucked + shell\n4\n0.614\n0.598\n\n\nlog(rings) ~ length + diameter + height + shucked + shell\n5\n0.618\n0.597\n\n\nlog(rings) ~ length + diameter + height + shucked + viscera + , shell\n6\n0.619\n0.594\n\n\nlog(rings) ~ .\n7\n0.619\n0.590\n\n\n\n\n\n\n\nConsidering only \\(R^2\\), which model would we choose?\n\nModel with 1 predictor\nModel with 3 predictors\nModel with 4 predictors\nModel with 7 predictors\n\n\n\n\nThe 1-predictor model sacrifices 14.5% of variation in the response (too much). The 7-predictor model is overfitted (worse than 4-predictor model). Between 3 and 4-predictor models - is a 0.7% improvement worth having to measure height? Realistically, the models with 2 or 3 predictors are justifiable."
   },
   {
     "objectID": "lectures/L11/abalone-quiz.html#interpretation",
@@ -697,7 +697,7 @@
     "href": "lectures/L11/abalone-quiz.html#interpretation-1",
     "title": "L11 MLR – Abalone Quiz",
     "section": "Interpretation",
-    "text": "Interpretation\nThe equation of our model is:\nlog(rings) = 1.41 + 2.03 x diameter + -1.33 x shucked + 2.05 x shell\nBelow are three statements. Given all other predictors are held constant:\n\nrings changes by e^{-1.33} for every percent increase in shucked (weight)\nlog(rings) changes by 1.33 for every unit increase in shucked (weight)\nlog(rings) changes by approximately 1.33% for every percent increase in shucked (weight)\n\n\n\nHow many statements are correct?\n\nnone\n1 statement\n2 statements\nall of them\n\n\n\n\nThe first two are correct, the third is not. The natural log percent change appoximation only applies to small \\beta values below |0.25|."
+    "text": "Interpretation\nThe equation of our model is:\nlog(rings) = 1.41 + 2.03 x diameter + -1.33 x shucked + 2.05 x shell\nBelow are three statements. Given all other predictors are held constant:\n\nrings changes by \\(e^{-1.33}\\) for every percent increase in shucked (weight)\nlog(rings) changes by 1.33 for every unit increase in shucked (weight)\nlog(rings) changes by approximately 1.33% for every percent increase in shucked (weight)\n\n\n\nHow many statements are correct?\n\nnone\n1 statement\n2 statements\nall of them\n\n\n\n\nThe first two are correct, the third is not. The natural log percent change appoximation only applies to small \\(\\beta\\) values below |0.25|."
   },
   {
     "objectID": "lectures/L11/abalone-quiz.html#the-most-important-question",
@@ -875,7 +875,7 @@
     "href": "lectures/L01/lecture-01a.html#assessments",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Assessments",
-    "text": "Assessments\n\n\nCode\n# calculate this year's year number\nlibrary(lubridate)\nyear &lt;- year(Sys.Date())\naddress &lt;- paste0(\n  \"https://www.sydney.edu.au/units/ENVX1002/\",\n  year,\n  \"-S1C-ND-CC\"\n)\n\n\nThe most up to date (and slightly more comprehensive) information for 2025 is here. In a nutshell:\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Week\n                Assessment\n                Description\n              \n        \n        \n        \n                \n                  3\n                  Early Feedback Quiz (individual 5%)\n                  In-person - 15 minutes\n                \n                \n                  5\n                  Project 1: Exploring data (individual 10%)\n                  Written report, 500 words\n                \n                \n                  8\n                  Coding and data skills evaluation (individual 15%)\n                  In-person - 50 minutes\n                \n                \n                  13\n                  Project 2: Modelling (10% + Peer assessment 5%)\n                  Group presentation - 5 minutes\n                \n                \n                  Exam\n                  Final exam (individual 45%)\n                  MCQ + SAQ Questions - 2 hours\n                \n        \n      \n    \n\n\n\n\nWeek 3: The early feedback quiz is a chance for us to gauge your understanding and provide feedback\nWeek 8: Coding and data skills evaluation covers R data manipulation and analysis\nFinal exam will NOT require you to write or interpret code – focus on understanding concepts and interpreting results"
+    "text": "Assessments\n\n\nCode\n# calculate this year's year number\nlibrary(lubridate)\nyear &lt;- year(Sys.Date())\naddress &lt;- paste0(\n  \"https://www.sydney.edu.au/units/ENVX1002/\",\n  year,\n  \"-S1C-ND-CC\"\n)\n\n\nThe most up to date (and slightly more comprehensive) information for 2026 is here. In a nutshell:\n\n\n\n\n    \n\n    \n\n    \n    \n    \n      \n        \n        \n              \n                Week\n                Assessment\n                Description\n              \n        \n        \n        \n                \n                  3\n                  Early Feedback Quiz (individual 5%)\n                  In-person - 15 minutes\n                \n                \n                  5\n                  Project 1: Exploring data (individual 10%)\n                  Written report, 500 words\n                \n                \n                  8\n                  Coding and data skills evaluation (individual 15%)\n                  In-person - 50 minutes\n                \n                \n                  13\n                  Project 2: Modelling (10% + Peer assessment 5%)\n                  Group presentation - 5 minutes\n                \n                \n                  Exam\n                  Final exam (individual 45%)\n                  MCQ + SAQ Questions - 2 hours\n                \n        \n      \n    \n\n\n\n\nWeek 3: The early feedback quiz is a chance for us to gauge your understanding and provide feedback\nWeek 8: Coding and data skills evaluation covers R data manipulation and analysis\nFinal exam will NOT require you to write or interpret code – focus on understanding concepts and interpreting results"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#baby-steps",
@@ -1220,7 +1220,7 @@
     "href": "lectures/L02/lecture-02.html#mean-also-known-as-the-average",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Mean – also known as the average",
-    "text": "Mean – also known as the average\n\nAdd up all your numbers\nDivide by how many numbers you have\n\n\n\n\n\n\n\nMathematical notation\n\n\n\nPopulation mean: \\mu = \\frac{\\sum_{i=1}^{N} x_i}{N}\nSample mean: \\bar{x} = \\frac{\\sum_{i=1}^{n} x_i}{n}\n\nWhere x_i is each individual value, N is population size, and n is sample size."
+    "text": "Mean – also known as the average\n\nAdd up all your numbers\nDivide by how many numbers you have\n\n\n\n\n\n\n\nMathematical notation\n\n\n\nPopulation mean: \\(\\mu = \\frac{\\sum_{i=1}^{N} x_i}{N}\\)\nSample mean: \\(\\bar{x} = \\frac{\\sum_{i=1}^{n} x_i}{n}\\)\n\nWhere \\(x_i\\) is each individual value, \\(N\\) is population size, and \\(n\\) is sample size."
   },
   {
     "objectID": "lectures/L02/lecture-02.html#mean-in-excel",
@@ -1339,7 +1339,7 @@
     "href": "lectures/L02/lecture-02.html#standard-deviation-a-more-interpretable-measure",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Standard deviation: a more interpretable measure",
-    "text": "Standard deviation: a more interpretable measure\nStandard deviation (SD, or \\sigma for population, s for sample) is the square root of variance:\n\nTells us the “typical distance” from the mean\nEasy to understand - similar to saying “± value” after a mean\nSmall SD means values cluster closely around mean\nLarge SD means values are more spread out\n\nWhen and why to use it\n\nValues are in the same units as your data (unlike variance)\nPerfect for describing natural variation (height, weight, temperature)\nUsed in many statistical tests\nGreat for comparing different groups or datasets"
+    "text": "Standard deviation: a more interpretable measure\nStandard deviation (SD, or \\(\\sigma\\) for population, \\(s\\) for sample) is the square root of variance:\n\nTells us the “typical distance” from the mean\nEasy to understand - similar to saying “± value” after a mean\nSmall SD means values cluster closely around mean\nLarge SD means values are more spread out\n\nWhen and why to use it\n\nValues are in the same units as your data (unlike variance)\nPerfect for describing natural variation (height, weight, temperature)\nUsed in many statistical tests\nGreat for comparing different groups or datasets"
   },
   {
     "objectID": "lectures/L02/lecture-02.html#interpreting-standard-deviation-with-r",
@@ -1423,7 +1423,7 @@
     "href": "lectures/L03/lecture-03.html#normal-distribution-introduction",
     "title": "Lecture 03: Exploring and visualising data",
     "section": "Normal distribution: Introduction",
-    "text": "Normal distribution: Introduction\n\nBell-shaped, symmetric curve\nDefined by mean (μ) and standard deviation (\\sigma)\nMany natural phenomena follow this distribution\n\nHeights of individuals in a population\nMeasurement errors\nMany physiological traits\n\n\nX \\sim N(\\mu, \\sigma^2)\n\nThe random variable X follows a normal distribution with mean \\mu and variance \\sigma^2"
+    "text": "Normal distribution: Introduction\n\nBell-shaped, symmetric curve\nDefined by mean (μ) and standard deviation (\\(\\sigma\\))\nMany natural phenomena follow this distribution\n\nHeights of individuals in a population\nMeasurement errors\nMany physiological traits\n\n\n\\[X \\sim N(\\mu, \\sigma^2)\\]\n\nThe random variable X follows a normal distribution with mean \\(\\mu\\) and variance \\(\\sigma^2\\)"
   },
   {
     "objectID": "lectures/L03/lecture-03.html#what-does-a-normal-distribution-look-like",
@@ -1437,7 +1437,7 @@
     "href": "lectures/L03/lecture-03.html#properties-of-normal-distribution-the-empirical-rule",
     "title": "Lecture 03: Exploring and visualising data",
     "section": "Properties of normal distribution: The empirical rule",
-    "text": "Properties of normal distribution: The empirical rule\n\nMean = median = mode\n~68% of data within 1\\sigma of mean\n~95% of data within 2\\sigma of mean\n~99.7% of data within 3\\sigma of mean"
+    "text": "Properties of normal distribution: The empirical rule\n\nMean = median = mode\n~68% of data within 1\\(\\sigma\\) of mean\n~95% of data within 2\\(\\sigma\\) of mean\n~99.7% of data within 3\\(\\sigma\\) of mean"
   },
   {
     "objectID": "lectures/L03/lecture-03.html#the-empirical-rule-visualised",
@@ -1731,7 +1731,7 @@
     "href": "lectures/L04/lecture-04.html#probability-distribution",
     "title": "Lecture 04 – The central limit theorem",
     "section": "Probability distribution?",
-    "text": "Probability distribution?\nA probability distribution is a function or equation that tells us:\n\nHow likely different values are to occur\nThe pattern of variation in our measurements\nThe range and spread of possible values\n\nIt is like a mathematical recipe for how values are distributed.\n\nDifferent types of distributions\nDepending on the data, distributions can be:\n\nDiscrete (e.g. number of trees in 100m2 of forest) – probability distribution function P = f(x)\n\nWhat is the probability that 100m2 of forest contains 50 trees?\n\nContinuous (e.g. rainfall amounts over a period) – probability density function f(x)\n\nWhat is the probability of rainfall between 10-20mm a day?\n\nBoth discrete and continuous (e.g. age of trees) F(x) = P(X \\leq x)\n\nWhat is the probability that a tree is older than 50 years?"
+    "text": "Probability distribution?\nA probability distribution is a function or equation that tells us:\n\nHow likely different values are to occur\nThe pattern of variation in our measurements\nThe range and spread of possible values\n\nIt is like a mathematical recipe for how values are distributed.\n\nDifferent types of distributions\nDepending on the data, distributions can be:\n\nDiscrete (e.g. number of trees in 100m2 of forest) – probability distribution function \\(P = f(x)\\)\n\nWhat is the probability that 100m2 of forest contains 50 trees?\n\nContinuous (e.g. rainfall amounts over a period) – probability density function \\(f(x)\\)\n\nWhat is the probability of rainfall between 10-20mm a day?\n\nBoth discrete and continuous (e.g. age of trees) \\(F(x) = P(X \\leq x)\\)\n\nWhat is the probability that a tree is older than 50 years?"
   },
   {
     "objectID": "lectures/L04/lecture-04.html#properties-of-distributions",
@@ -1745,7 +1745,7 @@
     "href": "lectures/L04/lecture-04.html#tree-heights",
     "title": "Lecture 04 – The central limit theorem",
     "section": "Tree heights",
-    "text": "Tree heights\nTree heights in a forest often follow a normal distribution:\n\nMost trees cluster around the average height\nFewer trees are very short or very tall\nThe pattern is symmetrical – a bell-shaped curve with two parameters (mean \\mu and standard deviation \\sigma) such that X \\sim N(\\mu, \\sigma^2)"
+    "text": "Tree heights\nTree heights in a forest often follow a normal distribution:\n\nMost trees cluster around the average height\nFewer trees are very short or very tall\nThe pattern is symmetrical – a bell-shaped curve with two parameters (mean \\(\\mu\\) and standard deviation \\(\\sigma\\)) such that \\[X \\sim N(\\mu, \\sigma^2)\\]"
   },
   {
     "objectID": "lectures/L04/lecture-04.html#comparing-distributions",
@@ -1836,14 +1836,14 @@
     "href": "lectures/L04/lecture-04.html#practical-uses-of-normal-distribution-functions",
     "title": "Lecture 04 – The central limit theorem",
     "section": "Practical uses of normal distribution functions",
-    "text": "Practical uses of normal distribution functions\nThese functions help us answer questions like:\n\nWhat proportion of trees are between 18m and 22m tall?\n\n\n# Probability between 18m and 22m - calculate the difference\nprob_between &lt;- pnorm(22, 20, 3) - pnorm(18, 20, 3)\nprob_between\n\n[1] 0.4950149\n\n\n\nHow tall are the top 5% of trees?\n\n\n# Height of tallest 5% of trees\ntall_threshold &lt;- qnorm(0.95, 20, 3)\ntall_threshold\n\n[1] 24.93456\n\n\n\nWhat are the height thresholds for “extreme” trees (top 1% and bottom 1%)?\n\n\n# Height thresholds for \"extreme\" trees\nextreme_thresholds &lt;- qnorm(c(0.01, 0.99), 20, 3)\nextreme_thresholds\n\n[1] 13.02096 26.97904"
+    "text": "Practical uses of normal distribution functions\nThese functions help us answer questions like:\n\nWhat proportion of trees are between 18m and 22m tall? ::: {.cell}\n\n# Probability between 18m and 22m - calculate the difference\nprob_between &lt;- pnorm(22, 20, 3) - pnorm(18, 20, 3)\nprob_between\n\n[1] 0.4950149\n\n:::\n\nHow tall are the top 5% of trees? ::: {.cell}\n\n# Height of tallest 5% of trees\ntall_threshold &lt;- qnorm(0.95, 20, 3)\ntall_threshold\n\n[1] 24.93456\n\n:::\n\nWhat are the height thresholds for “extreme” trees (top 1% and bottom 1%)?\n\n\n# Height thresholds for \"extreme\" trees\nextreme_thresholds &lt;- qnorm(c(0.01, 0.99), 20, 3)\nextreme_thresholds\n\n[1] 13.02096 26.97904"
   },
   {
     "objectID": "lectures/L04/lecture-04.html#standardising-variables",
     "href": "lectures/L04/lecture-04.html#standardising-variables",
     "title": "Lecture 04 – The central limit theorem",
     "section": "Standardising variables",
-    "text": "Standardising variables\nWe can convert any normal distribution to a standard form where:\n X \\sim N(\\mu, \\sigma^2) \\rightarrow Z \\sim N(0, 1) \nWhy standardise?\nStandardising helps us:\n\nCompare measurements on different scales\nIdentify unusual values (e.g., z &gt; 2 is unusual)\nCalculate probabilities using standard normal tables\n\nFormula: z = \\frac{x - \\mu}{\\sigma} (subtract mean, divide by SD)"
+    "text": "Standardising variables\nWe can convert any normal distribution to a standard form where:\n\\[ X \\sim N(\\mu, \\sigma^2) \\rightarrow Z \\sim N(0, 1) \\]\nWhy standardise?\nStandardising helps us:\n\nCompare measurements on different scales\nIdentify unusual values (e.g., z &gt; 2 is unusual)\nCalculate probabilities using standard normal tables\n\nFormula: \\[z = \\frac{x - \\mu}{\\sigma}\\] (subtract mean, divide by SD)"
   },
   {
     "objectID": "lectures/L04/lecture-04.html#comparing-different-species",
@@ -1948,7 +1948,7 @@
     "href": "lectures/L04/lecture-04.html#what-is-the-clt",
     "title": "Lecture 04 – The central limit theorem",
     "section": "What is the CLT?",
-    "text": "What is the CLT?\nThe Central Limit Theorem (CLT) states that:\nWhen we take sufficiently large random samples from any population:\n\nThe distribution of sample means will be approximately normal\nThe mean of the sample means will equal the population mean\nThe standard deviation of sample means (standard error) equals \\frac{\\sigma}{\\sqrt{n}}\n\nThis is true regardless of the shape of the original population distribution."
+    "text": "What is the CLT?\nThe Central Limit Theorem (CLT) states that:\nWhen we take sufficiently large random samples from any population:\n\nThe distribution of sample means will be approximately normal\nThe mean of the sample means will equal the population mean\nThe standard deviation of sample means (standard error) equals \\(\\frac{\\sigma}{\\sqrt{n}}\\)\n\nThis is true regardless of the shape of the original population distribution."
   },
   {
     "objectID": "lectures/L04/lecture-04.html#comparing-original-data-with-sampling-distribution",
@@ -1990,7 +1990,7 @@
     "href": "lectures/L04/lecture-04.html#standard-error-measuring-the-precision-of-sample-means",
     "title": "Lecture 04 – The central limit theorem",
     "section": "Standard error: Measuring the precision of sample means",
-    "text": "Standard error: Measuring the precision of sample means\nThe standard error (SE) tells us how much sample means typically vary:\nSE = \\frac{\\sigma}{\\sqrt{n}}\nWhere: - \\sigma is the population standard deviation - n is the sample size\n\n# Calculate theoretical standard errors\npop_sd &lt;- sd(rainfall_population)\nse_n5 &lt;- pop_sd / sqrt(5)\nse_n15 &lt;- pop_sd / sqrt(15)\nse_n30 &lt;- pop_sd / sqrt(30)\n\n# Compare standard errors\nse_n5\n\n[1] 2.89159\n\nse_n15\n\n[1] 1.66946\n\nse_n30\n\n[1] 1.180487\n\n\nAs sample size increases, standard error decreases, making our estimates more precise."
+    "text": "Standard error: Measuring the precision of sample means\nThe standard error (SE) tells us how much sample means typically vary:\n\\[SE = \\frac{\\sigma}{\\sqrt{n}}\\]\nWhere: - \\(\\sigma\\) is the population standard deviation - \\(n\\) is the sample size\n\n# Calculate theoretical standard errors\npop_sd &lt;- sd(rainfall_population)\nse_n5 &lt;- pop_sd / sqrt(5)\nse_n15 &lt;- pop_sd / sqrt(15)\nse_n30 &lt;- pop_sd / sqrt(30)\n\n# Compare standard errors\nse_n5\n\n[1] 2.89159\n\nse_n15\n\n[1] 1.66946\n\nse_n30\n\n[1] 1.180487\n\n\nAs sample size increases, standard error decreases, making our estimates more precise."
   },
   {
     "objectID": "lectures/L04/lecture-04.html#standard-error-vs.-standard-deviation",
@@ -2046,7 +2046,7 @@
     "href": "lectures/L06/lecture-06.html#hypothesis",
     "title": "Topic 6 – Two-sample t-tests",
     "section": "Hypothesis",
-    "text": "Hypothesis\nFor a two-sample t-test, the null hypothesis is that the means of the two groups are equal, and the alternative hypothesis is that the means are different.\nH_0: \\mu_{\\text{redbull}} = \\mu_{\\text{control}} H_1: \\mu_{\\text{redbull}} \\neq \\mu_{\\text{control}}\n\nCompare this to the one-sample t-test, where the null hypothesis is that the sample mean is equal to a fixed value: H_0: \\mu = \\mu_0 H_1: \\mu \\neq \\mu_0"
+    "text": "Hypothesis\nFor a two-sample t-test, the null hypothesis is that the means of the two groups are equal, and the alternative hypothesis is that the means are different.\n\\[H_0: \\mu_{\\text{redbull}} = \\mu_{\\text{control}}\\] \\[H_1: \\mu_{\\text{redbull}} \\neq \\mu_{\\text{control}}\\]\n\nCompare this to the one-sample t-test, where the null hypothesis is that the sample mean is equal to a fixed value: \\[H_0: \\mu = \\mu_0\\] \\[H_1: \\mu \\neq \\mu_0\\]"
   },
   {
     "objectID": "lectures/L06/lecture-06.html#assumptions",
@@ -2116,7 +2116,7 @@
     "href": "lectures/L06/lecture-06.html#are-the-assumptions-of-normality-and-homogeneity-of-variance-met",
     "title": "Topic 6 – Two-sample t-tests",
     "section": "Are the assumptions of normality and homogeneity of variance met?",
-    "text": "Are the assumptions of normality and homogeneity of variance met?\nWhen reporting in journals, it is common to simply state that the assumptions were met and what tests were used to confirm them, without showing the exact results of the tests!\n\nExample 1\n\nThe assumptions of normality and homogeneity of variance were met for the data (Shapiro-Wilk test, p &gt; 0.05; Levene’s test, p &gt; 0.05). Thus, we performed a two-sample t-test…\n\n\n\nExample 2\n\nVisual inspection of the histograms, QQ-plots, and boxplots showed that the data met the assumptions of both normality and homogeneity of variance. Thus, we performed a two-sample t-test..\n\n\n\nFor your lab reports, you should show the results of the tests (because we want to check your work!)"
+    "text": "Are the assumptions of normality and homogeneity of variance met?\nWhen reporting in journals, it is common to simply state that the assumptions were met and what tests were used to confirm them, without showing the exact results of the tests!\n\nExample 1\n\nThe assumptions of normality and homogeneity of variance were met for the data (Shapiro-Wilk test, \\(p &gt; 0.05\\); Levene’s test, \\(p &gt; 0.05\\)). Thus, we performed a two-sample t-test…\n\n\n\nExample 2\n\nVisual inspection of the histograms, QQ-plots, and boxplots showed that the data met the assumptions of both normality and homogeneity of variance. Thus, we performed a two-sample t-test..\n\n\n\nFor your lab reports, you should show the results of the tests (because we want to check your work!)"
   },
   {
     "objectID": "lectures/L06/lecture-06.html#performing-the-t-test",
@@ -2151,7 +2151,7 @@
     "href": "lectures/L06/lecture-06.html#hypothesis-1",
     "title": "Topic 6 – Two-sample t-tests",
     "section": "Hypothesis",
-    "text": "Hypothesis\nFor a paired t-test, the null hypothesis is that the mean difference between the two groups is zero, and the alternative hypothesis is that the mean difference is different from zero.\nH_0: \\mu_{\\text{diff}} = 0 H_1: \\mu_{\\text{diff}} \\neq 0\n\nCompare this to the two-sample t-test, where the null hypothesis is that the means of the two groups are equal: H_0: \\mu_{\\text{redbull}} = \\mu_{\\text{control}} H_1: \\mu_{\\text{redbull}} \\neq \\mu_{\\text{control}}"
+    "text": "Hypothesis\nFor a paired t-test, the null hypothesis is that the mean difference between the two groups is zero, and the alternative hypothesis is that the mean difference is different from zero.\n\\[H_0: \\mu_{\\text{diff}} = 0\\] \\[H_1: \\mu_{\\text{diff}} \\neq 0\\]\n\nCompare this to the two-sample t-test, where the null hypothesis is that the means of the two groups are equal: \\[H_0: \\mu_{\\text{redbull}} = \\mu_{\\text{control}}\\] \\[H_1: \\mu_{\\text{redbull}} \\neq \\mu_{\\text{control}}\\]"
   },
   {
     "objectID": "lectures/L06/lecture-06.html#assumptions-of-the-paired-t-test",
@@ -2221,7 +2221,7 @@
     "href": "lectures/L06/lecture-06.html#skewness",
     "title": "Topic 6 – Two-sample t-tests",
     "section": "Skewness",
-    "text": "Skewness\nThe degree of asymmetry in the data distribution when compared to a normal distribution.\n\n\nRepresented by the skewness coefficient (\\gamma_1) and can be positive, negative, or zero.\nSkewness values between -0.5 and 0.5 are considered acceptable (fairly symmetrical).\nNegative skewness indicates a left-skewed distribution, while positive skewness indicates a right-skewed distribution.\nAbove 1 or below -1, the distribution is considered highly skewed."
+    "text": "Skewness\nThe degree of asymmetry in the data distribution when compared to a normal distribution.\n\n\nRepresented by the skewness coefficient (\\(\\gamma_1\\)) and can be positive, negative, or zero.\nSkewness values between -0.5 and 0.5 are considered acceptable (fairly symmetrical).\nNegative skewness indicates a left-skewed distribution, while positive skewness indicates a right-skewed distribution.\nAbove 1 or below -1, the distribution is considered highly skewed."
   },
   {
     "objectID": "lectures/L06/lecture-06.html#example-skewness",
@@ -2263,7 +2263,7 @@
     "href": "lectures/L06/lecture-06.html#picking-a-transformation-1",
     "title": "Topic 6 – Two-sample t-tests",
     "section": "Picking a transformation",
-    "text": "Picking a transformation\n\nFor positive skewness\n\nSquare root transformation: \\sqrt{x} for skewness between 0.5 and 1 and kurtosis &lt; 3.\nLogarithmic transformation: \\log(x) for skewness &gt; 1 and kurtosis &lt; 3.\nReciprocal transformation: \\frac{1}{x} for skewness &gt; 1 and kurtosis &gt; 3 (quite extreme).\n\n\n\nFor negative skewness\n\nThis is rare as most biological data are positively skewed. However, you can try the square x^2 or cube x^3 transformation.\nIf negatively skewed data contains zeros, consider using the log transform and adding a constant to the data before transformation e.g. \\log(x + 1).\n\n\n\n\n\n\n\n\n\nNote\n\n\nThere is also the Box-Cox transformation which informs us of the best transformation to apply to the data without the need to check skewness and kurtosis. This method is not covered in this unit, but you can read more about it here (the simple R version) or here (more detailed mathematical explanation)."
+    "text": "Picking a transformation\n\nFor positive skewness\n\nSquare root transformation: \\(\\sqrt{x}\\) for skewness between 0.5 and 1 and kurtosis &lt; 3.\nLogarithmic transformation: \\(\\log(x)\\) for skewness &gt; 1 and kurtosis &lt; 3.\nReciprocal transformation: \\(\\frac{1}{x}\\) for skewness &gt; 1 and kurtosis &gt; 3 (quite extreme).\n\n\n\nFor negative skewness\n\nThis is rare as most biological data are positively skewed. However, you can try the square \\(x^2\\) or cube \\(x^3\\) transformation.\nIf negatively skewed data contains zeros, consider using the log transform and adding a constant to the data before transformation e.g. \\(\\log(x + 1)\\).\n\n\n\n\n\n\n\n\n\nNote\n\n\nThere is also the Box-Cox transformation which informs us of the best transformation to apply to the data without the need to check skewness and kurtosis. This method is not covered in this unit, but you can read more about it here (the simple R version) or here (more detailed mathematical explanation)."
   },
   {
     "objectID": "lectures/L06/lecture-06.html#how-do-we-check-if-the-transformation-worked",
@@ -2291,7 +2291,7 @@
     "href": "lectures/L06/lecture-06.html#back-transforming-the-results",
     "title": "Topic 6 – Two-sample t-tests",
     "section": "Back-transforming the results",
-    "text": "Back-transforming the results\n\nFor power transformations, we can back-transform the results to the original scale using the inverse function.\nLog transformations are a bit tricky as the inverse function is the exponential function.\n\nFor the natural log transformation which is log() in R, the inverse function is the exponential function: e^x.\nFor the base 10 log transformation which is log10() in R, the inverse function is 10^x."
+    "text": "Back-transforming the results\n\nFor power transformations, we can back-transform the results to the original scale using the inverse function.\nLog transformations are a bit tricky as the inverse function is the exponential function.\n\nFor the natural log transformation which is log() in R, the inverse function is the exponential function: \\(e^x\\).\nFor the base 10 log transformation which is log10() in R, the inverse function is \\(10^x\\)."
   },
   {
     "objectID": "lectures/L06/lecture-06.html#interpretation",
@@ -2326,7 +2326,7 @@
     "href": "lectures/L07/lecture-07.html#overview",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Overview",
-    "text": "Overview\nParametric methods\nDepends on the assumption that the data is normally distributed with mean \\mu and standard deviation \\sigma ,e.g. t-test, ANOVA, linear regression.\n\nNon-parametric methods\nDo not make any assumptions about the distribution of the data.\nUses other properties e.g. ranking of the data, e.g. Wilcoxon signed-rank test, Mann-Whitney U test, Kruskal-Wallis test."
+    "text": "Overview\nParametric methods\nDepends on the assumption that the data is normally distributed with mean \\(\\mu\\) and standard deviation \\(\\sigma\\) ,e.g. \\(t\\)-test, ANOVA, linear regression.\n\nNon-parametric methods\nDo not make any assumptions about the distribution of the data.\nUses other properties e.g. ranking of the data, e.g. Wilcoxon signed-rank test, Mann-Whitney U test, Kruskal-Wallis test."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#rank-based-tests",
@@ -2346,8 +2346,8 @@
     "objectID": "lectures/L07/lecture-07.html#two-sample-t-test",
     "href": "lectures/L07/lecture-07.html#two-sample-t-test",
     "title": "Topic 7 – Non-parametric tests",
-    "section": "Two-sample t-test",
-    "text": "Two-sample t-test\nConsider two sets of identical data that compares between a group A and B, where one contains an outlier.\n\n\nData:\n\n\nCode\nlibrary(tidyverse)\n\n# for display only\ndata.frame(A = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),\n           B = c(7, 8, 9, 10, 11, 12, 13, 14, 15, 16)) %&gt;%\n  gt()\n\n\n\n\n\n\n\n\nA\nB\n\n\n\n\n1\n7\n\n\n2\n8\n\n\n3\n9\n\n\n4\n10\n\n\n5\n11\n\n\n6\n12\n\n\n7\n13\n\n\n8\n14\n\n\n9\n15\n\n\n10\n16\n\n\n\n\n\n\n\n\nData with outlier:\n\n\nCode\ndata.frame(A = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),\n           B = c(7, 8, 9, 10, 11, 12, 13, 14, 15, 200)) %&gt;%\n  gt()\n\n\n\n\n\n\n\n\nA\nB\n\n\n\n\n1\n7\n\n\n2\n8\n\n\n3\n9\n\n\n4\n10\n\n\n5\n11\n\n\n6\n12\n\n\n7\n13\n\n\n8\n14\n\n\n9\n15\n\n\n10\n200"
+    "section": "Two-sample \\(t\\)-test",
+    "text": "Two-sample \\(t\\)-test\nConsider two sets of identical data that compares between a group A and B, where one contains an outlier.\n\n\nData:\n\n\nCode\nlibrary(tidyverse)\n\n# for display only\ndata.frame(A = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),\n           B = c(7, 8, 9, 10, 11, 12, 13, 14, 15, 16)) %&gt;%\n  gt()\n\n\n\n\n\n\n\n\nA\nB\n\n\n\n\n1\n7\n\n\n2\n8\n\n\n3\n9\n\n\n4\n10\n\n\n5\n11\n\n\n6\n12\n\n\n7\n13\n\n\n8\n14\n\n\n9\n15\n\n\n10\n16\n\n\n\n\n\n\n\n\nData with outlier:\n\n\nCode\ndata.frame(A = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),\n           B = c(7, 8, 9, 10, 11, 12, 13, 14, 15, 200)) %&gt;%\n  gt()\n\n\n\n\n\n\n\n\nA\nB\n\n\n\n\n1\n7\n\n\n2\n8\n\n\n3\n9\n\n\n4\n10\n\n\n5\n11\n\n\n6\n12\n\n\n7\n13\n\n\n8\n14\n\n\n9\n15\n\n\n10\n200"
   },
   {
     "objectID": "lectures/L07/lecture-07.html#should-there-be-a-difference",
@@ -2368,7 +2368,7 @@
     "href": "lectures/L07/lecture-07.html#analysis",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Analysis",
-    "text": "Analysis\nIf we perform t-tests on both data sets, we get the following results:\n\n\n\n\nCode\nfit &lt;- t.test(response ~ group, data = df)\nfit\n\n\n\n    Welch Two Sample t-test\n\ndata:  response by group\nt = -4.4313, df = 18, p-value = 0.0003224\nalternative hypothesis: true difference in means between group A and group B is not equal to 0\n95 percent confidence interval:\n -8.844662 -3.155338\nsample estimates:\nmean in group A mean in group B \n            5.5            11.5 \n\n\nResults indicate that there is a statistically significant difference between the two groups (t18 = -4.4, p &lt; 0.05).\n\n\n\nCode\nfit2 &lt;- t.test(response ~ group, data = df_with_outlier)\nfit2\n\n\n\n    Welch Two Sample t-test\n\ndata:  response by group\nt = -1.2882, df = 9.0461, p-value = 0.2297\nalternative hypothesis: true difference in means between group A and group B is not equal to 0\n95 percent confidence interval:\n -67.21615  18.41615\nsample estimates:\nmean in group A mean in group B \n            5.5            29.9 \n\n\nResults indicate that the two groups are not significantly different (t18 = -2.1, p = 0.23).\n\n\nThe real difference between the two groups is obscured by the outlier. Type II error (false negative)?"
+    "text": "Analysis\nIf we perform \\(t\\)-tests on both data sets, we get the following results:\n\n\n\n\nCode\nfit &lt;- t.test(response ~ group, data = df)\nfit\n\n\n\n    Welch Two Sample t-test\n\ndata:  response by group\nt = -4.4313, df = 18, p-value = 0.0003224\nalternative hypothesis: true difference in means between group A and group B is not equal to 0\n95 percent confidence interval:\n -8.844662 -3.155338\nsample estimates:\nmean in group A mean in group B \n            5.5            11.5 \n\n\nResults indicate that there is a statistically significant difference between the two groups (t18 = -4.4, p &lt; 0.05).\n\n\n\nCode\nfit2 &lt;- t.test(response ~ group, data = df_with_outlier)\nfit2\n\n\n\n    Welch Two Sample t-test\n\ndata:  response by group\nt = -1.2882, df = 9.0461, p-value = 0.2297\nalternative hypothesis: true difference in means between group A and group B is not equal to 0\n95 percent confidence interval:\n -67.21615  18.41615\nsample estimates:\nmean in group A mean in group B \n            5.5            29.9 \n\n\nResults indicate that the two groups are not significantly different (t18 = -2.1, p = 0.23).\n\n\nThe real difference between the two groups is obscured by the outlier. Type II error (false negative)?"
   },
   {
     "objectID": "lectures/L07/lecture-07.html#when-to-use",
@@ -2389,21 +2389,21 @@
     "href": "lectures/L07/lecture-07.html#overview-1",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Overview",
-    "text": "Overview\nThe Wilcoxon signed-rank test is a non-parametric test used to compare two related samples, matched pairs, or repeated measures on a single sample.\n\nIs an alternative to:\n\nOne-sample t-test\nPaired t-test"
+    "text": "Overview\nThe Wilcoxon signed-rank test is a non-parametric test used to compare two related samples, matched pairs, or repeated measures on a single sample.\n\nIs an alternative to:\n\nOne-sample \\(t\\)-test\nPaired \\(t\\)-test"
   },
   {
     "objectID": "lectures/L07/lecture-07.html#assumptions",
     "href": "lectures/L07/lecture-07.html#assumptions",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Assumptions",
-    "text": "Assumptions\n\n\nData comes from the same population\nData are randomly and independently sampled\n\n\n\nBasically, used in same situations as the one-sample or paired t-test, but when the data is not normally distributed but still symmetric."
+    "text": "Assumptions\n\n\nData comes from the same population\nData are randomly and independently sampled\n\n\n\nBasically, used in same situations as the one-sample or paired \\(t\\)-test, but when the data is not normally distributed but still symmetric."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#calculating-ranks",
     "href": "lectures/L07/lecture-07.html#calculating-ranks",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Calculating ranks",
-    "text": "Calculating ranks\nIf comparing two groups, the ranks are calculated as follows:\n\nCalculate the difference D between the two groups.\nRank the absolute values of the differences in ascending order.\nAssign the sign of the difference to the rank.\nSum the ranks for each group – zero differences are ignored.\n\n\n\n\n\n\n\n\nNote\n\n\nSee Slide 5 to recall how ranks are calculated, but we will show another example in the next slide."
+    "text": "Calculating ranks\nIf comparing two groups, the ranks are calculated as follows:\n\nCalculate the difference \\(D\\) between the two groups.\nRank the absolute values of the differences in ascending order.\nAssign the sign of the difference to the rank.\nSum the ranks for each group – zero differences are ignored.\n\n\n\n\n\n\n\n\nNote\n\n\nSee Slide 5 to recall how ranks are calculated, but we will show another example in the next slide."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#weight-gain",
@@ -2424,7 +2424,7 @@
     "href": "lectures/L07/lecture-07.html#hypothesis",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Hypothesis",
-    "text": "Hypothesis\n\nIs there a significant increase in weight gain after the diet?\n\nH_0: \\mu_{\\text{before}} = \\mu_{\\text{after}} H_1: \\mu_{\\text{before}} &lt; \\mu_{\\text{after}}\n\nIn words:\n\nH_0: There is no difference in weight gain before and after the diet.\nH_1: There is an increase in weight gain after the diet."
+    "text": "Hypothesis\n\nIs there a significant increase in weight gain after the diet?\n\n\\[H_0: \\mu_{\\text{before}} = \\mu_{\\text{after}}\\] \\[H_1: \\mu_{\\text{before}} &lt; \\mu_{\\text{after}}\\]\n\nIn words:\n\n\\(H_0\\): There is no difference in weight gain before and after the diet.\n\\(H_1\\): There is an increase in weight gain after the diet."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#assumptions-1",
@@ -2459,7 +2459,7 @@
     "href": "lectures/L07/lecture-07.html#hypothesis-1",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Hypothesis",
-    "text": "Hypothesis\nDoes the average smaller size class lizard eat about 100 beetles per day?\nH_0: \\mu = 100 H_1: \\mu \\neq 100\nDataset Download\n\n\nCode\nbeetle &lt;- read_csv(\"data/beetle.csv\")\nglimpse(beetle)\n\n\nRows: 45\nColumns: 2\n$ SIZE    &lt;chr&gt; \"small\", \"small\", \"small\", \"small\", \"small\", \"small\", \"small\",…\n$ BEETLES &lt;dbl&gt; 256, 209, 0, 0, 0, 44, 49, 117, 6, 0, 0, 75, 34, 13, 0, 90, 0,…"
+    "text": "Hypothesis\nDoes the average smaller size class lizard eat about 100 beetles per day?\n\\[H_0: \\mu = 100\\] \\[H_1: \\mu \\neq 100\\]\nDataset Download\n\n\nCode\nbeetle &lt;- read_csv(\"data/beetle.csv\")\nglimpse(beetle)\n\n\nRows: 45\nColumns: 2\n$ SIZE    &lt;chr&gt; \"small\", \"small\", \"small\", \"small\", \"small\", \"small\", \"small\",…\n$ BEETLES &lt;dbl&gt; 256, 209, 0, 0, 0, 44, 49, 117, 6, 0, 0, 75, 34, 13, 0, 90, 0,…"
   },
   {
     "objectID": "lectures/L07/lecture-07.html#first-check-assumptions",
@@ -2480,7 +2480,7 @@
     "href": "lectures/L07/lecture-07.html#about",
     "title": "Topic 7 – Non-parametric tests",
     "section": "About",
-    "text": "About\n\nA non-parametric test used to compare two independent samples similar to the two-sample t-test.\nLike the Wilcoxon signed-rank test, it uses ranks to perform the test and does not assume normality.\nIt is also more relaxed in that it does not assume symmetry in the distribution of the data – instead, it assumes that the two groups have the same shape/distribution."
+    "text": "About\n\nA non-parametric test used to compare two independent samples similar to the two-sample \\(t\\)-test.\nLike the Wilcoxon signed-rank test, it uses ranks to perform the test and does not assume normality.\nIt is also more relaxed in that it does not assume symmetry in the distribution of the data – instead, it assumes that the two groups have the same shape/distribution."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#beetle-consumption-in-lizards-1",
@@ -2494,7 +2494,7 @@
     "href": "lectures/L07/lecture-07.html#hypotheses",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Hypotheses",
-    "text": "Hypotheses\n\nAre the number of beetles consumed by the larger and smaller size classes of lizards different?\n\nLoosely speaking, because we are not assuming symmetry, the most appropriate summary statistic to use when comparing the two groups is the median.\nH_0: median_{\\text{larger}} = median_{\\text{smaller}} H_1: median_{\\text{larger}} \\neq median_{\\text{smaller}}\nMore accurately, we are testing for a difference in the distribution of the two groups."
+    "text": "Hypotheses\n\nAre the number of beetles consumed by the larger and smaller size classes of lizards different?\n\nLoosely speaking, because we are not assuming symmetry, the most appropriate summary statistic to use when comparing the two groups is the median.\n\\[H_0: median_{\\text{larger}} = median_{\\text{smaller}}\\] \\[H_1: median_{\\text{larger}} \\neq median_{\\text{smaller}}\\]\nMore accurately, we are testing for a difference in the distribution of the two groups."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#assumptions-3",
@@ -2522,7 +2522,7 @@
     "href": "lectures/L07/lecture-07.html#summary",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Summary",
-    "text": "Summary\n\nWilcoxon signed-rank test: alternative to the one-sample t-test and paired t-test.\nMann-Whitney U test: alternative to the two-sample t-test.\nAdvantages: Robust to outliers, skewness, and non-normality.\nDrawbacks: Less powerful than parametric tests when assumptions are met, provide no insight into the size of the effect."
+    "text": "Summary\n\nWilcoxon signed-rank test: alternative to the one-sample \\(t\\)-test and paired \\(t\\)-test.\nMann-Whitney U test: alternative to the two-sample \\(t\\)-test.\nAdvantages: Robust to outliers, skewness, and non-normality.\nDrawbacks: Less powerful than parametric tests when assumptions are met, provide no insight into the size of the effect."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#parametric-and-non-parametric-alternatives",
@@ -2564,7 +2564,7 @@
     "href": "lectures/L07/lecture-07.html#the-chi-squared-test",
     "title": "Topic 7 – Non-parametric tests",
     "section": "The chi-squared test",
-    "text": "The chi-squared test\n\nThe chi-squared test is perhaps one of the most prominent examples of non-parametric tests.\nDeveloped by Karl Pearson in 1900, pronounced “ki” as in “kite”, uses the Greek letter \\chi.\nActually derived from the normal distribution: a chi-squared distribution is the sum of squared standard normal deviates – essentially a folded-over and stretched out normal."
+    "text": "The chi-squared test\n\nThe chi-squared test is perhaps one of the most prominent examples of non-parametric tests.\nDeveloped by Karl Pearson in 1900, pronounced “ki” as in “kite”, uses the Greek letter \\(\\chi\\).\nActually derived from the normal distribution: a chi-squared distribution is the sum of squared standard normal deviates – essentially a folded-over and stretched out normal."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#chi-squared-distribution-vs-normal-distribution",
@@ -2585,14 +2585,14 @@
     "href": "lectures/L07/lecture-07.html#testing-the-claim",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Testing the claim",
-    "text": "Testing the claim\n\nIf the biologist’s claim is true, we would expect the number of butterflies of each colour to be equal.\nIf 200 butterflies were sampled, we would expect 50 of each colour, as the expected frequency of each colour is 200 \\times 0.25 = 50.\n\nTherefore:\n\n\nCode\ndf &lt;- butterfly_data %&gt;%\n  mutate(expected = 200 * 0.25)\nknitr::kable(df)\n\n\n\n\n\ncolor\ncount\nexpected\n\n\n\n\nred\n48\n50\n\n\nblue\n62\n50\n\n\ngreen\n56\n50\n\n\nyellow\n34\n50"
+    "text": "Testing the claim\n\nIf the biologist’s claim is true, we would expect the number of butterflies of each colour to be equal.\nIf 200 butterflies were sampled, we would expect 50 of each colour, as the expected frequency of each colour is 200 \\(\\times\\) 0.25 = 50.\n\nTherefore:\n\n\nCode\ndf &lt;- butterfly_data %&gt;%\n  mutate(expected = 200 * 0.25)\nknitr::kable(df)\n\n\n\n\n\ncolor\ncount\nexpected\n\n\n\n\nred\n48\n50\n\n\nblue\n62\n50\n\n\ngreen\n56\n50\n\n\nyellow\n34\n50"
   },
   {
     "objectID": "lectures/L07/lecture-07.html#test-statistic-1",
     "href": "lectures/L07/lecture-07.html#test-statistic-1",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Test statistic",
-    "text": "Test statistic\nThe test statistic for the chi-squared test is calculated as:\n \\chi^2 = \\sum \\frac{(O - E)^2}{E} \nwhere O is the observed frequency and E is the expected frequency.\n\nSo for the butterfly data:\n\nchi_squared &lt;- sum((df$count - df$expected)^2 / df$expected)\nchi_squared\n\n[1] 8.8\n\n\nThis is the test statistic for one sample. How do we interpret this value?"
+    "text": "Test statistic\nThe test statistic for the chi-squared test is calculated as:\n\\[ \\chi^2 = \\sum \\frac{(O - E)^2}{E} \\]\nwhere \\(O\\) is the observed frequency and \\(E\\) is the expected frequency.\n\nSo for the butterfly data:\n\nchi_squared &lt;- sum((df$count - df$expected)^2 / df$expected)\nchi_squared\n\n[1] 8.8\n\n\nThis is the test statistic for one sample. How do we interpret this value?"
   },
   {
     "objectID": "lectures/L07/lecture-07.html#simulate-the-null-distribution",
@@ -2612,8 +2612,8 @@
     "objectID": "lectures/L07/lecture-07.html#a-chi2-test",
     "href": "lectures/L07/lecture-07.html#a-chi2-test",
     "title": "Topic 7 – Non-parametric tests",
-    "section": "A \\chi^2 test",
-    "text": "A \\chi^2 test\nA chi-squared distribution allows us to perform the same hypothesis test without the need for simulation.\n\n\n\nCode\nggplot(data.frame(test_statistic), aes(x = test_statistic)) +\n  geom_histogram(aes(y = ..density..), bins = 20, fill = \"blue\", colour = \"black\", alpha = 0.3) +\n  ylim(0, 0.3) +\n  stat_function(fun = dchisq, args = list(df = 3), color = \"red\", size = 1) +\n  labs(title = \"Simulated distribution of chi-squared values under the null hypothesis\") +\n  xlab(\"Chi-squared value\") +\n  ylab(\"Frequency\")"
+    "section": "A \\(\\chi^2\\) test",
+    "text": "A \\(\\chi^2\\) test\nA chi-squared distribution allows us to perform the same hypothesis test without the need for simulation.\n\n\n\nCode\nggplot(data.frame(test_statistic), aes(x = test_statistic)) +\n  geom_histogram(aes(y = ..density..), bins = 20, fill = \"blue\", colour = \"black\", alpha = 0.3) +\n  ylim(0, 0.3) +\n  stat_function(fun = dchisq, args = list(df = 3), color = \"red\", size = 1) +\n  labs(title = \"Simulated distribution of chi-squared values under the null hypothesis\") +\n  xlab(\"Chi-squared value\") +\n  ylab(\"Frequency\")"
   },
   {
     "objectID": "lectures/L07/lecture-07.html#conclusion",
@@ -2655,7 +2655,7 @@
     "href": "lectures/L07/lecture-07.html#hypothesis-2",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Hypothesis",
-    "text": "Hypothesis\n\nNull hypothesis: the observed proportion of butterfly colours are equal to the expected proportions of 0.25 each.\nAlternative hypothesis: the observed proportions are not equal.\n\n H_0: p_1 = p_2 = p_3 = p_4 = 0.25   H_1: \\text{at least one } p_i \\neq 0.25"
+    "text": "Hypothesis\n\nNull hypothesis: the observed proportion of butterfly colours are equal to the expected proportions of 0.25 each.\nAlternative hypothesis: the observed proportions are not equal.\n\n\\[ H_0: p_1 = p_2 = p_3 = p_4 = 0.25 \\] \\[ H_1: \\text{at least one } p_i \\neq 0.25 \\]"
   },
   {
     "objectID": "lectures/L07/lecture-07.html#test-statistic-and-check-assumptions-in-r",
@@ -2669,14 +2669,14 @@
     "href": "lectures/L07/lecture-07.html#conclusion-1",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Conclusion",
-    "text": "Conclusion\nThe results of the chi-squared test suggest that the observed frequencies of butterfly colours are significantly different from the expected frequencies (\\chi^2 = 8.8, df = 3, p &lt; 0.001). We can reject the null hypothesis and conclude that the biologist’s claim is not true.\n\n\n\n\n\n\nNote\n\n\nIf you’re interested, compare this result to the simulation we performed earlier."
+    "text": "Conclusion\nThe results of the chi-squared test suggest that the observed frequencies of butterfly colours are significantly different from the expected frequencies (\\(\\chi^2 = 8.8\\), \\(df = 3\\), \\(p &lt; 0.001\\)). We can reject the null hypothesis and conclude that the biologist’s claim is not true.\n\n\n\n\n\n\nNote\n\n\nIf you’re interested, compare this result to the simulation we performed earlier."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#hypothesis-3",
     "href": "lectures/L07/lecture-07.html#hypothesis-3",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Hypothesis",
-    "text": "Hypothesis\n\nNull hypothesis: the age group of the deer is independent of their vegetation preference.\nAlternative hypothesis: the age group of the deer is not independent of their vegetation preference.\n\n H_0: \\text{Age group is independent of vegetation preference} \n\nNo relationship between the two variables\n\n H_1: \\text{Age group is not independent of vegetation preference} \n\nThere is a relationship between the two variables"
+    "text": "Hypothesis\n\nNull hypothesis: the age group of the deer is independent of their vegetation preference.\nAlternative hypothesis: the age group of the deer is not independent of their vegetation preference.\n\n\\[ H_0: \\text{Age group is independent of vegetation preference} \\]\n\nNo relationship between the two variables\n\n\\[ H_1: \\text{Age group is not independent of vegetation preference} \\]\n\nThere is a relationship between the two variables"
   },
   {
     "objectID": "lectures/L07/lecture-07.html#data",
@@ -2697,7 +2697,7 @@
     "href": "lectures/L07/lecture-07.html#conclusion-2",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Conclusion",
-    "text": "Conclusion\nThe results of the chi-squared test suggest that the age group of the deer is not independent of their vegetation preference (\\chi^2 = 12.4, df = 4, p &lt; 0.001). We can reject the null hypothesis and conclude that there is a relationship between the age group of the deer and their vegetation preference."
+    "text": "Conclusion\nThe results of the chi-squared test suggest that the age group of the deer is not independent of their vegetation preference (\\(\\chi^2 = 12.4\\), \\(df = 4\\), \\(p &lt; 0.001\\)). We can reject the null hypothesis and conclude that there is a relationship between the age group of the deer and their vegetation preference."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#mosaic-plots",
@@ -2732,7 +2732,7 @@
     "href": "lectures/L07/lecture-07.html#test-of-homogeneity-vs.-test-of-independence",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Test of homogeneity vs. test of independence",
-    "text": "Test of homogeneity vs. test of independence\n\nThe test of homogeneity is similar to the test of independence, but is used when we have two or more groups and we want to determine whether the distribution of a categorical variable is the same across different groups.\nIn general, this means that the null hypothesis is stated differently, and the test statistic is calculated in a slightly different way with different degrees of freedom.\nHomogeneity\n\nH_0: The distribution of the categorical variable is the same across different groups.\nH_1: The distribution of the categorical variable is not the same across different groups.\n\nIndependence\n\nH_0: The variables of interest are independent.\nH_1: The variables of interest are not independent."
+    "text": "Test of homogeneity vs. test of independence\n\nThe test of homogeneity is similar to the test of independence, but is used when we have two or more groups and we want to determine whether the distribution of a categorical variable is the same across different groups.\nIn general, this means that the null hypothesis is stated differently, and the test statistic is calculated in a slightly different way with different degrees of freedom.\nHomogeneity\n\n\\(H_0\\): The distribution of the categorical variable is the same across different groups.\n\\(H_1\\): The distribution of the categorical variable is not the same across different groups.\n\nIndependence\n\n\\(H_0\\): The variables of interest are independent.\n\\(H_1\\): The variables of interest are not independent."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#differences-are-subtle",
@@ -2830,7 +2830,7 @@
     "href": "lectures/L08/lecture-08.html#calculating-the-t-test-statistic",
     "title": "Topic 8 – Permutation tests and bootstrap",
     "section": "Calculating the t-test statistic",
-    "text": "Calculating the t-test statistic\nRecall that the test statistic for the two-sample t-test is:\n t = \\frac{Difference\\ in\\ the\\ means}{Standard\\ error\\ of\\ the\\ difference} \nWe could calculate it manually, but let’s just use the t.test() function in R since the function calculates the test statistic for us. For example, the observed test statistic for the sleep data is:\n\nt.test(extra ~ group, data = sleep)$statistic\n\n        t \n-1.860813"
+    "text": "Calculating the t-test statistic\nRecall that the test statistic for the two-sample t-test is:\n\\[ t = \\frac{Difference\\ in\\ the\\ means}{Standard\\ error\\ of\\ the\\ difference} \\]\nWe could calculate it manually, but let’s just use the t.test() function in R since the function calculates the test statistic for us. For example, the observed test statistic for the sleep data is:\n\nt.test(extra ~ group, data = sleep)$statistic\n\n        t \n-1.860813"
   },
   {
     "objectID": "lectures/L08/lecture-08.html#step-1-pool-the-scores",
@@ -2900,7 +2900,7 @@
     "href": "lectures/L08/lecture-08.html#steps-1",
     "title": "Topic 8 – Permutation tests and bootstrap",
     "section": "Steps",
-    "text": "Steps\n\nResample the data with replacement.\nCalculate the parameter of interest (e.g. mean) for each resample.\nRepeat steps 1 and 2 many times (N) to generate a distribution of the parameter of interest.\nCalculate the 95% confidence interval from the simulated distribution:\n\nThe mean of the distribution is the point estimate.\nThe 0.025 \\times Nth smallest mean is the lower bound of the 95% CI.\nThe 0.975\\times Nth smallest mean is the upper bound of the 95% CI."
+    "text": "Steps\n\nResample the data with replacement.\nCalculate the parameter of interest (e.g. mean) for each resample.\nRepeat steps 1 and 2 many times (\\(N\\)) to generate a distribution of the parameter of interest.\nCalculate the 95% confidence interval from the simulated distribution:\n\nThe mean of the distribution is the point estimate.\nThe \\(0.025 \\times N\\)th smallest mean is the lower bound of the 95% CI.\nThe \\(0.975\\times N\\)th smallest mean is the upper bound of the 95% CI."
   },
   {
     "objectID": "lectures/L08/lecture-08.html#data-1",
@@ -3068,7 +3068,7 @@
     "href": "lectures/L09/lecture-09.html#correlation-2",
     "title": "Topic 9 – Describing relationships",
     "section": "Correlation",
-    "text": "Correlation\n\n\nPearson’s Correlation (r) Formula:\n r = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum_{i=1}^n (x_i - \\bar{x})^2 \\sum_{i=1}^n (y_i - \\bar{y})^2}} \nCovariance divided by the product of the standard deviations.\n\nKarl Pearson developed the correlation coefficient in 1800s (based on the work by Francis Galton)\n\n\n\n\nPearson’s r is:\n\nThe most commonly used correlation coefficient\nFor normally distributed data only (parametric)\nFor linear relationships only (i.e. a straight line)"
+    "text": "Correlation\n\n\nPearson’s Correlation (r) Formula:\n\\[ r = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum_{i=1}^n (x_i - \\bar{x})^2 \\sum_{i=1}^n (y_i - \\bar{y})^2}} \\]\nCovariance divided by the product of the standard deviations.\n\nKarl Pearson developed the correlation coefficient in 1800s (based on the work by Francis Galton)\n\n\n\n\nPearson’s r is:\n\nThe most commonly used correlation coefficient\nFor normally distributed data only (parametric)\nFor linear relationships only (i.e. a straight line)"
   },
   {
     "objectID": "lectures/L09/lecture-09.html#luckily-we-have-excel-and-r",
@@ -3130,8 +3130,8 @@
     "objectID": "lectures/L09/lecture-09.html#correlation-neq-causation",
     "href": "lectures/L09/lecture-09.html#correlation-neq-causation",
     "title": "Topic 9 – Describing relationships",
-    "section": "Correlation \\neq causation",
-    "text": "Correlation \\neq causation\nSpurious correlations: a relationship between two variables does not imply that one causes the other."
+    "section": "Correlation \\(\\neq\\) causation",
+    "text": "Correlation \\(\\neq\\) causation\nSpurious correlations: a relationship between two variables does not imply that one causes the other."
   },
   {
     "objectID": "lectures/L09/lecture-09.html#what-comes-after-correlation",
@@ -3145,14 +3145,14 @@
     "href": "lectures/L09/lecture-09.html#why-regression",
     "title": "Topic 9 – Describing relationships",
     "section": "Why regression?",
-    "text": "Why regression?\nDescribe the relationship between two variables\nWhat is the relationship between a response variable Y and a predictor variable x?\nCommon Terms: Y = response, independent variable, target, outcome etc. x = predictor, dependent variable, feature, input etc.\nExplain the relationship between two variables\nHow much variation in Y can be explained by a relationship with x?\nPredict the value of a response variable\nWhat is the value of Y for a given value of x?\nOften we can easily measure/obtain x but not Y, so we need to predict Y from x."
+    "text": "Why regression?\nDescribe the relationship between two variables\nWhat is the relationship between a response variable \\(Y\\) and a predictor variable \\(x\\)?\nCommon Terms: \\(Y\\) = response, independent variable, target, outcome etc. \\(x\\) = predictor, dependent variable, feature, input etc.\nExplain the relationship between two variables\nHow much variation in \\(Y\\) can be explained by a relationship with \\(x\\)?\nPredict the value of a response variable\nWhat is the value of \\(Y\\) for a given value of \\(x\\)?\nOften we can easily measure/obtain \\(x\\) but not \\(Y\\), so we need to predict \\(Y\\) from \\(x\\)."
   },
   {
     "objectID": "lectures/L09/lecture-09.html#a-gateway-to-the-world-of-modelling",
     "href": "lectures/L09/lecture-09.html#a-gateway-to-the-world-of-modelling",
     "title": "Topic 9 – Describing relationships",
     "section": "A gateway to the world of modelling",
-    "text": "A gateway to the world of modelling\nMany types of regression models exist:\n\nSimple linear regression (one predictor i.e. x)\nMultiple linear regression (more than one predictor)\nNon-linear regression, using functions such as polynomials, exponentials, logarithms, etc.\n\n\nAsking ChatGPT for help with the next slide:\n\nUsing R code, can you generate some data that is useful to demonstrate simple linear regression, multiple linear regression, polynomial, exponential and logarithmic regressions in ggplot2?\n\n\nSure! Here’s an example code that generates a sample dataset and visualizes it using ggplot2 library in R."
+    "text": "A gateway to the world of modelling\nMany types of regression models exist:\n\nSimple linear regression (one predictor i.e. \\(x\\))\nMultiple linear regression (more than one predictor)\nNon-linear regression, using functions such as polynomials, exponentials, logarithms, etc.\n\n\nAsking ChatGPT for help with the next slide:\n\nUsing R code, can you generate some data that is useful to demonstrate simple linear regression, multiple linear regression, polynomial, exponential and logarithmic regressions in ggplot2?\n\n\nSure! Here’s an example code that generates a sample dataset and visualizes it using ggplot2 library in R."
   },
   {
     "objectID": "lectures/L09/lecture-09.html#visualising-regression-models",
@@ -3201,7 +3201,7 @@
     "href": "lectures/L09/lecture-09.html#least-squares",
     "title": "Topic 9 – Describing relationships",
     "section": "Least squares",
-    "text": "Least squares\n\n\nWhen we fit a line, there is error between the observed and predicted values.\n \\color{firebrick}{\\hat{\\epsilon_i}} = \\color{royalblue}{y_i} - \\color{forestgreen}{\\hat{y_i}}  The method of least squares fits a line of best fit by minimising the sum of the squared errors.\n\\color{firebrick} \\sum_{i=1}^n ({\\hat{\\epsilon_i}})^2\n\n\n\nCode\n# simulate example data\n\nset.seed(340)\nx &lt;- runif(8, 0, 30)\ny &lt;- 5 * x + rnorm(8, 0, 40)\ndf &lt;- data.frame(x, y)\n\n# fit linear model, add residual vertical lines as arrows\nmod &lt;- lm(y ~ x, data = df)\np1 &lt;- ggplot(df, aes(x, y)) +\n  geom_point() +\n  geom_segment(aes(xend = x, yend = fitted(mod)),\n    arrow = arrow(length = unit(0.2, \"cm\")),\n    color = \"royalblue\"\n  ) +\n  labs(x = \"x\", y = \"y\")\n\np1 +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"firebrick\") +\n  annotate(\"text\",\n    x = 6.3, y = -6, size = 7,\n    label = expression(hat(epsilon[i])), colour = \"royalblue\"\n  ) +\n  annotate(\"text\",\n    x = 5.6, y = 25, size = 7,\n    label = expression(hat(y[i])), colour = \"forestgreen\"\n  ) +\n  annotate(\"text\",\n    x = 5.6, y = -36, size = 7,\n    label = expression(y[i]), colour = \"firebrick\"\n  ) +\n  theme_classic()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nThe error is squared so positive and negative errors do not cancel each other out."
+    "text": "Least squares\n\n\nWhen we fit a line, there is error between the observed and predicted values.\n\\[ \\color{firebrick}{\\hat{\\epsilon_i}} = \\color{royalblue}{y_i} - \\color{forestgreen}{\\hat{y_i}} \\] The method of least squares fits a line of best fit by minimising the sum of the squared errors.\n\\[\\color{firebrick} \\sum_{i=1}^n ({\\hat{\\epsilon_i}})^2\\]\n\n\n\nCode\n# simulate example data\n\nset.seed(340)\nx &lt;- runif(8, 0, 30)\ny &lt;- 5 * x + rnorm(8, 0, 40)\ndf &lt;- data.frame(x, y)\n\n# fit linear model, add residual vertical lines as arrows\nmod &lt;- lm(y ~ x, data = df)\np1 &lt;- ggplot(df, aes(x, y)) +\n  geom_point() +\n  geom_segment(aes(xend = x, yend = fitted(mod)),\n    arrow = arrow(length = unit(0.2, \"cm\")),\n    color = \"royalblue\"\n  ) +\n  labs(x = \"x\", y = \"y\")\n\np1 +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"firebrick\") +\n  annotate(\"text\",\n    x = 6.3, y = -6, size = 7,\n    label = expression(hat(epsilon[i])), colour = \"royalblue\"\n  ) +\n  annotate(\"text\",\n    x = 5.6, y = 25, size = 7,\n    label = expression(hat(y[i])), colour = \"forestgreen\"\n  ) +\n  annotate(\"text\",\n    x = 5.6, y = -36, size = 7,\n    label = expression(y[i]), colour = \"firebrick\"\n  ) +\n  theme_classic()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nThe error is squared so positive and negative errors do not cancel each other out."
   },
   {
     "objectID": "lectures/L09/lecture-09.html#least-squares-1",
@@ -3222,7 +3222,7 @@
     "href": "lectures/L09/lecture-09.html#simple-linear-regression-model",
     "title": "Topic 9 – Describing relationships",
     "section": "Simple linear regression model",
-    "text": "Simple linear regression model\nWe want to relate the response Y to a predictor x for i number of observations:\nY_i = \\color{royalblue}{\\beta_0 + \\beta_1 x_i} +\\color{red}{\\epsilon_i}\nwhere\n\\epsilon_i \\sim N(0, \\sigma^2)\n\nY_i, the response, is an observed value of the dependent variable.\n\\beta_0, the constant, is the y-intercept and is fixed.\n\\beta_1 is the population slope parameter, and like \\beta_0, is also fixed.\n\\epsilon_i is the error associated with predictions of y_i, and unlike \\beta_0 or \\beta_1, it is not fixed.\n\n\n\n\n\n\n\nNote\n\n\n\\epsilon_i is generally associated with the residual (observed - predicted). True error occurs during data collection (e.g. faulty instruments, selection bias, etc.) and often immeasurable."
+    "text": "Simple linear regression model\nWe want to relate the response \\(Y\\) to a predictor \\(x\\) for \\(i\\) number of observations:\n\\[Y_i = \\color{royalblue}{\\beta_0 + \\beta_1 x_i} +\\color{red}{\\epsilon_i}\\]\nwhere\n\\[\\epsilon_i \\sim N(0, \\sigma^2)\\]\n\n\\(Y_i\\), the response, is an observed value of the dependent variable.\n\\(\\beta_0\\), the constant, is the y-intercept and is fixed.\n\\(\\beta_1\\) is the population slope parameter, and like \\(\\beta_0\\), is also fixed.\n\\(\\epsilon_i\\) is the error associated with predictions of \\(y_i\\), and unlike \\(\\beta_0\\) or \\(\\beta_1\\), it is not fixed.\n\n\n\n\n\n\n\nNote\n\n\n\\(\\epsilon_i\\) is generally associated with the residual (\\(observed - predicted\\)). True error occurs during data collection (e.g. faulty instruments, selection bias, etc.) and often immeasurable."
   },
   {
     "objectID": "lectures/L09/lecture-09.html#different-wordings",
@@ -3242,15 +3242,15 @@
     "objectID": "lectures/L09/lecture-09.html#analytical-slope-beta_1",
     "href": "lectures/L09/lecture-09.html#analytical-slope-beta_1",
     "title": "Topic 9 – Describing relationships",
-    "section": "Analytical: Slope, \\beta_1",
-    "text": "Analytical: Slope, \\beta_1\n\n \\beta_1 = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum_{i=1}^n (x_i - \\bar{x})^2} =  \\frac{Cov(x,y)}{Var(x)} = \\frac{SS_{xy}}{SS_{xx}} \n\n\nCode\n# Calculate slope from df\nbeta1 &lt;- sum((df$x - mean(df$x)) * (df$y - mean(df$y))) /\n  sum((df$x - mean(df$x))^2)\n# beta0 &lt;- mean(df$y) - beta1 * mean(df$x)\n\np1 +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"firebrick\", linetype = 2) +\n  # label the line\n  annotate(\"text\",\n    x = 15, y = 65, size = 7,\n    label = expression(beta[1]), colour = \"firebrick\"\n  ) +\n  theme_classic()"
+    "section": "Analytical: Slope, \\(\\beta_1\\)",
+    "text": "Analytical: Slope, \\(\\beta_1\\)\n\n\\[ \\beta_1 = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum_{i=1}^n (x_i - \\bar{x})^2} =  \\frac{Cov(x,y)}{Var(x)} = \\frac{SS_{xy}}{SS_{xx}} \\]\n\n\nCode\n# Calculate slope from df\nbeta1 &lt;- sum((df$x - mean(df$x)) * (df$y - mean(df$y))) /\n  sum((df$x - mean(df$x))^2)\n# beta0 &lt;- mean(df$y) - beta1 * mean(df$x)\n\np1 +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"firebrick\", linetype = 2) +\n  # label the line\n  annotate(\"text\",\n    x = 15, y = 65, size = 7,\n    label = expression(beta[1]), colour = \"firebrick\"\n  ) +\n  theme_classic()"
   },
   {
     "objectID": "lectures/L09/lecture-09.html#analytical-intercept",
     "href": "lectures/L09/lecture-09.html#analytical-intercept",
     "title": "Topic 9 – Describing relationships",
     "section": "Analytical: Intercept",
-    "text": "Analytical: Intercept\n \\beta_0 = \\bar{y} - \\beta_1 \\bar{x} \n\n\nCode\n# calculate mean y from df\nybar &lt;- mean(df$y)\nxbar &lt;- mean(df$x)\nbeta0 &lt;- ybar - beta1 * xbar\n\np1 + geom_vline(xintercept = xbar, linetype = \"dashed\", color = \"slateblue\") +\n  geom_hline(yintercept = ybar, linetype = \"dashed\", color = \"slateblue\") +\n  # label the lines\n  annotate(\"text\",\n    x = 25, y = ybar * 0.8, size = 7,\n    label = expression(bar(y)), colour = \"slateblue\"\n  ) +\n  annotate(\"text\",\n    x = xbar * 1.05, y = 150, size = 7,\n    label = expression(bar(x)), colour = \"slateblue\"\n  ) +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"firebrick\", linetype = 2) +\n  # extend the geom_smooth line to intercept x=0\n  geom_segment(aes(x = xbar, y = ybar, xend = 0, yend = beta0),\n    color = \"firebrick\", linetype = 2\n  ) +\n  # label the slope line\n  annotate(\"text\",\n    x = 15, y = 65, size = 7,\n    label = expression(beta[1]), colour = \"firebrick\"\n  ) +\n  # add a dot at the intercept\n  geom_point(aes(x = 0, y = beta0), color = \"seagreen\", size = 3) +\n  # label the intercept\n  annotate(\"text\",\n    x = 0, y = beta0 * 1.4, size = 7,\n    label = expression(beta[0]), colour = \"seagreen\"\n  ) +\n  theme_classic()"
+    "text": "Analytical: Intercept\n\\[ \\beta_0 = \\bar{y} - \\beta_1 \\bar{x} \\]\n\n\nCode\n# calculate mean y from df\nybar &lt;- mean(df$y)\nxbar &lt;- mean(df$x)\nbeta0 &lt;- ybar - beta1 * xbar\n\np1 + geom_vline(xintercept = xbar, linetype = \"dashed\", color = \"slateblue\") +\n  geom_hline(yintercept = ybar, linetype = \"dashed\", color = \"slateblue\") +\n  # label the lines\n  annotate(\"text\",\n    x = 25, y = ybar * 0.8, size = 7,\n    label = expression(bar(y)), colour = \"slateblue\"\n  ) +\n  annotate(\"text\",\n    x = xbar * 1.05, y = 150, size = 7,\n    label = expression(bar(x)), colour = \"slateblue\"\n  ) +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"firebrick\", linetype = 2) +\n  # extend the geom_smooth line to intercept x=0\n  geom_segment(aes(x = xbar, y = ybar, xend = 0, yend = beta0),\n    color = \"firebrick\", linetype = 2\n  ) +\n  # label the slope line\n  annotate(\"text\",\n    x = 15, y = 65, size = 7,\n    label = expression(beta[1]), colour = \"firebrick\"\n  ) +\n  # add a dot at the intercept\n  geom_point(aes(x = 0, y = beta0), color = \"seagreen\", size = 3) +\n  # label the intercept\n  annotate(\"text\",\n    x = 0, y = beta0 * 1.4, size = 7,\n    label = expression(beta[0]), colour = \"seagreen\"\n  ) +\n  theme_classic()"
   },
   {
     "objectID": "lectures/L09/lecture-09.html#linearity-check",
@@ -3264,7 +3264,7 @@
     "href": "lectures/L09/lecture-09.html#hypothesis-testing",
     "title": "Topic 9 – Describing relationships",
     "section": "Hypothesis testing",
-    "text": "Hypothesis testing\n\nThe null hypothesis for a linear model: H_0: \\beta_1=0\n\nIf there is no slope (\\beta_1=0) then y = \\beta_0 (the mean)\ni.e. is the mean (\\bar{y}) a better fit than a linear model?\n\nThe alternative hypothesis for a linear model: H_0: \\beta_1 \\neq 0\n\ni.e. the estimate from the linear model (\\hat{y}) fits the data better than the mean (\\bar{y})\n\n\n\n\nCode\nnull_model &lt;- Galton %&gt;%\n  lm(child ~ 1, data = .) %&gt;%\n  broom::augment(Galton)\nlin_model &lt;- Galton %&gt;%\n  lm(child ~ parent, data = .) %&gt;%\n  broom::augment(Galton)\nmodels &lt;- bind_rows(null_model, lin_model) %&gt;%\n  mutate(model = rep(c(\"Null Model\", \"SLR model\"), each = nrow(Galton)))\n\nggplot(data = models, aes(x = parent, y = child)) +\n  geom_smooth(\n    data = filter(models, model == \"Null Model\"),\n    method = \"lm\", se = FALSE, formula = y ~ 1, size = 0.5\n  ) +\n  geom_smooth(\n    data = filter(models, model == \"SLR Model\"),\n    method = \"lm\", se = FALSE, formula = y ~ x, size = 0.5\n  ) +\n  geom_segment(\n    aes(xend = parent, yend = .fitted),\n    arrow = arrow(length = unit(0.1, \"cm\")),\n    size = 0.3, color = \"darkgray\"\n  ) +\n  geom_point(alpha = .2) +\n  facet_wrap(~model) +\n  xlab(\"Parent height (in)\") +\n  ylab(\"Child height (in)\")"
+    "text": "Hypothesis testing\n\nThe null hypothesis for a linear model: \\(H_0: \\beta_1=0\\)\n\nIf there is no slope (\\(\\beta_1=0\\)) then \\(y = \\beta_0\\) (the mean)\ni.e. is the mean (\\(\\bar{y}\\)) a better fit than a linear model?\n\nThe alternative hypothesis for a linear model: \\(H_0: \\beta_1 \\neq 0\\)\n\ni.e. the estimate from the linear model (\\(\\hat{y}\\)) fits the data better than the mean (\\(\\bar{y}\\))\n\n\n\n\nCode\nnull_model &lt;- Galton %&gt;%\n  lm(child ~ 1, data = .) %&gt;%\n  broom::augment(Galton)\nlin_model &lt;- Galton %&gt;%\n  lm(child ~ parent, data = .) %&gt;%\n  broom::augment(Galton)\nmodels &lt;- bind_rows(null_model, lin_model) %&gt;%\n  mutate(model = rep(c(\"Null Model\", \"SLR model\"), each = nrow(Galton)))\n\nggplot(data = models, aes(x = parent, y = child)) +\n  geom_smooth(\n    data = filter(models, model == \"Null Model\"),\n    method = \"lm\", se = FALSE, formula = y ~ 1, size = 0.5\n  ) +\n  geom_smooth(\n    data = filter(models, model == \"SLR Model\"),\n    method = \"lm\", se = FALSE, formula = y ~ x, size = 0.5\n  ) +\n  geom_segment(\n    aes(xend = parent, yend = .fitted),\n    arrow = arrow(length = unit(0.1, \"cm\")),\n    size = 0.3, color = \"darkgray\"\n  ) +\n  geom_point(alpha = .2) +\n  facet_wrap(~model) +\n  xlab(\"Parent height (in)\") +\n  ylab(\"Child height (in)\")"
   },
   {
     "objectID": "lectures/L09/lecture-09.html#simple-linear-regression-1",
@@ -3278,7 +3278,7 @@
     "href": "lectures/L09/lecture-09.html#summary",
     "title": "Topic 9 – Describing relationships",
     "section": "Summary",
-    "text": "Summary\nCorrelation is a measure of the relationship between two numerical variables between -1 and 1.\n\nA correlation coefficient measures the strength and direction of the relationship.\nPearson’s correlation is for linear relationships, Spearman’s/Kendall’s correlation is for monotonic relationships.\nCorrelation \\neq causation.\n\nRegression is an analysis that models the relationship between a dependent variable and independent variable(s).\n\nThe most common method for regression is least squares, which minimises the sum of the squared residuals.\nSimple linear regression fits a straight line between two variables.\n\n\nNext week: interpreting results and assumptions for simple linear regression."
+    "text": "Summary\nCorrelation is a measure of the relationship between two numerical variables between -1 and 1.\n\nA correlation coefficient measures the strength and direction of the relationship.\nPearson’s correlation is for linear relationships, Spearman’s/Kendall’s correlation is for monotonic relationships.\nCorrelation \\(\\neq\\) causation.\n\nRegression is an analysis that models the relationship between a dependent variable and independent variable(s).\n\nThe most common method for regression is least squares, which minimises the sum of the squared residuals.\nSimple linear regression fits a straight line between two variables.\n\n\nNext week: interpreting results and assumptions for simple linear regression."
   },
   {
     "objectID": "lectures/L10/lecture-10.html#module-overview",
@@ -3292,14 +3292,14 @@
     "href": "lectures/L10/lecture-10.html#last-week",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Last week…",
-    "text": "Last week…\n\nCorrelation r: a measure of the strength and direction of the linear relationship between two variables\nIs there a moderate to strong causal relationship?\n\n\nSimple linear regression modelling\n Y_i = \\beta_0 + \\beta_1 x_i + \\epsilon_i \n\nBasically, a deterministic straight line equation y=c+mx, with added random variation that is normally distributed\n\n Y = c + mx + \\epsilon"
+    "text": "Last week…\n\nCorrelation \\(r\\): a measure of the strength and direction of the linear relationship between two variables\nIs there a moderate to strong causal relationship?\n\n\nSimple linear regression modelling\n\\[ Y_i = \\beta_0 + \\beta_1 x_i + \\epsilon_i \\]\n\nBasically, a deterministic straight line equation \\(y=c+mx\\), with added random variation that is normally distributed\n\n\\[ Y = c + mx + \\epsilon \\]"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#fitting-the-line",
     "href": "lectures/L10/lecture-10.html#fitting-the-line",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Fitting the line",
-    "text": "Fitting the line\n Y_i = \\beta_0 + \\beta_1 x_i + \\epsilon_i \n Y = c + mx + \\epsilon \nHow do we fit a line to data if data are “noisy”?\n\n\nCode\nx &lt;- 1:10\ny &lt;- 2 * x + rnorm(10, 0, 2)\n# generate y with predicted values\ny_pred &lt;- 2 * x\ndf &lt;- data.frame(x, y)\n\np1 &lt;- ggplot(df, aes(x, y_pred)) +\n  geom_point(size = 2) +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"firebrick\") +\n  labs(x = \"x\", y = \"y\", title = \"A\")\n\np2 &lt;- ggplot(df, aes(x, y)) +\n  geom_point(size = 2) +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"royalblue\") +\n  labs(x = \"x\", y = \"y\", title = \"B (How do we fit this?)\")\n\nlibrary(patchwork)\np1 + p2 + plot_layout(ncol = 2)"
+    "text": "Fitting the line\n\\[ Y_i = \\beta_0 + \\beta_1 x_i + \\epsilon_i \\]\n\\[ Y = c + mx + \\epsilon \\]\nHow do we fit a line to data if data are “noisy”?\n\n\nCode\nx &lt;- 1:10\ny &lt;- 2 * x + rnorm(10, 0, 2)\n# generate y with predicted values\ny_pred &lt;- 2 * x\ndf &lt;- data.frame(x, y)\n\np1 &lt;- ggplot(df, aes(x, y_pred)) +\n  geom_point(size = 2) +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"firebrick\") +\n  labs(x = \"x\", y = \"y\", title = \"A\")\n\np2 &lt;- ggplot(df, aes(x, y)) +\n  geom_point(size = 2) +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"royalblue\") +\n  labs(x = \"x\", y = \"y\", title = \"B (How do we fit this?)\")\n\nlibrary(patchwork)\np1 + p2 + plot_layout(ncol = 2)"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#usage-of-least-squares",
@@ -3320,21 +3320,21 @@
     "href": "lectures/L10/lecture-10.html#how-do-we-analytically-fit-a-line",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "How do we analytically fit a line?",
-    "text": "How do we analytically fit a line?\nWe calculate slope (\\beta_1):\n \\beta_1 = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum_{i=1}^n (x_i - \\bar{x})^2} =  \\frac{Cov(x,y)}{Var(x)} = \\frac{SS_{xy}}{SS_{xx}}  Then substitute below to get the intercept (\\beta_0):\n \\beta_0 = \\bar{y} - \\beta_1 \\bar{x}  Imagine a dataset with a million points - this would be computationally taxing."
+    "text": "How do we analytically fit a line?\nWe calculate slope (\\(\\beta_1\\)):\n\\[ \\beta_1 = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum_{i=1}^n (x_i - \\bar{x})^2} =  \\frac{Cov(x,y)}{Var(x)} = \\frac{SS_{xy}}{SS_{xx}} \\] Then substitute below to get the intercept (\\(\\beta_0\\)):\n\\[ \\beta_0 = \\bar{y} - \\beta_1 \\bar{x} \\] Imagine a dataset with a million points - this would be computationally taxing."
   },
   {
     "objectID": "lectures/L10/lecture-10.html#how-do-we-numerically-fit-a-line",
     "href": "lectures/L10/lecture-10.html#how-do-we-numerically-fit-a-line",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "How do we numerically fit a line?",
-    "text": "How do we numerically fit a line?\n\nMinimise the sum of the squared residuals via trial and error\nMost common method used via computers (gradient-descent)\nCan be done by hand (but not recommended)\n\n\\color{firebrick}{argmin_{\\beta_0, \\beta_1}} \\sum_{i=1}^n (y_i - \\color{royalblue}{(\\beta_0 + \\beta_1 x_i)}\\color{black})^2\n\nSource"
+    "text": "How do we numerically fit a line?\n\nMinimise the sum of the squared residuals via trial and error\nMost common method used via computers (gradient-descent)\nCan be done by hand (but not recommended)\n\n\\[\\color{firebrick}{argmin_{\\beta_0, \\beta_1}} \\sum_{i=1}^n (y_i - \\color{royalblue}{(\\beta_0 + \\beta_1 x_i)}\\color{black})^2\\]\n\nSource"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#fitting-a-linear-model-in-r",
     "href": "lectures/L10/lecture-10.html#fitting-a-linear-model-in-r",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Fitting a linear model in R",
-    "text": "Fitting a linear model in R\nIs there a relationship between the heights of parents and their children?\n\n\nCode\nfit &lt;- lm(child ~ parent, data = Galton)\nfit\n\n\n\nCall:\nlm(formula = child ~ parent, data = Galton)\n\nCoefficients:\n(Intercept)       parent  \n    23.9415       0.6463  \n\n\n \\widehat{child} = 23.9 + 0.646 \\cdot parent\n\nDo we trust our model? How good is the model? How can we interpret the results?"
+    "text": "Fitting a linear model in R\nIs there a relationship between the heights of parents and their children?\n\n\nCode\nfit &lt;- lm(child ~ parent, data = Galton)\nfit\n\n\n\nCall:\nlm(formula = child ~ parent, data = Galton)\n\nCoefficients:\n(Intercept)       parent  \n    23.9415       0.6463  \n\n\n\\[ \\widehat{child} = 23.9 + 0.646 \\cdot parent\\]\n\nDo we trust our model? How good is the model? How can we interpret the results?"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#steps-for-regression",
@@ -3348,21 +3348,21 @@
     "href": "lectures/L10/lecture-10.html#assumptions---line",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Assumptions - LINE",
-    "text": "Assumptions - LINE\n\nLinearity. The relationship between y and x is linear.\nIndependence. The errors \\epsilon are independent.\nNormal. The errors \\epsilon are normally distributed.\nEqual Variance of errors \\epsilon. At each value of x, the variance of y is the same i.e. homoskedasticity, or constant variance.\n\n\nWhy do we care?\n\nIf the assumptions are met, then we can be confident that the model is a good representation of the data.\nIf they are not met, the results are still presented, but our interpretation of the model is likely to be flawed.\n\nHypothesis test results are unreliable\nStandard error is unreliable\nPoor estimates of coefficients = poor predictions"
+    "text": "Assumptions - LINE\n\nLinearity. The relationship between \\(y\\) and \\(x\\) is linear.\nIndependence. The errors \\(\\epsilon\\) are independent.\nNormal. The errors \\(\\epsilon\\) are normally distributed.\nEqual Variance of errors \\(\\epsilon\\). At each value of \\(x\\), the variance of \\(y\\) is the same i.e. homoskedasticity, or constant variance.\n\n\nWhy do we care?\n\nIf the assumptions are met, then we can be confident that the model is a good representation of the data.\nIf they are not met, the results are still presented, but our interpretation of the model is likely to be flawed.\n\nHypothesis test results are unreliable\nStandard error is unreliable\nPoor estimates of coefficients = poor predictions"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#how-do-we-check-the-assumptions",
     "href": "lectures/L10/lecture-10.html#how-do-we-check-the-assumptions",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "How do we check the assumptions?",
-    "text": "How do we check the assumptions?\nRecall that the linear model is a deterministic straight line equation y = c + mx plus some random noise \\epsilon:\n Y_i = \\beta_0 + \\beta_1 x + \\epsilon \n\nIf the only source of variation in y is \\epsilon, then we can check our assumptions by just looking at the residuals \\hat{\\epsilon}.\n\n\n\n\n\n\n\n\nTip\n\n\nAll but the independence assumption can be assessed using diagnostic plots. R will not warn you if the assumptions are not met. It is up to you to check them!"
+    "text": "How do we check the assumptions?\nRecall that the linear model is a deterministic straight line equation \\(y = c + mx\\) plus some random noise \\(\\epsilon\\):\n\\[ Y_i = \\beta_0 + \\beta_1 x + \\epsilon \\]\n\nIf the only source of variation in \\(y\\) is \\(\\epsilon\\), then we can check our assumptions by just looking at the residuals \\(\\hat{\\epsilon}\\).\n\n\n\n\n\n\n\n\nTip\n\n\nAll but the independence assumption can be assessed using diagnostic plots. R will not warn you if the assumptions are not met. It is up to you to check them!"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#how-do-we-get-the-residuals",
     "href": "lectures/L10/lecture-10.html#how-do-we-get-the-residuals",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "How do we get the residuals?",
-    "text": "How do we get the residuals?\n\nFit the model!\nResiduals need to be calculated from the model, not from the raw data.\nIn R, these values are stored automatically.\n\n \\color{firebrick}{\\hat{\\epsilon_i}} = \\color{royalblue}{y_i} - \\color{forestgreen}{\\hat{y_i}} \n\n\nCode\n# simulate example data\nset.seed(340)\nx &lt;- runif(8, 0, 30)\ny &lt;- 5 * x + rnorm(8, 0, 40)\ndf &lt;- data.frame(x, y)\n\n# fit linear model, add residual vertical lines as arrows\nmod &lt;- lm(y ~ x, data = df)\np1 &lt;- ggplot(df, aes(x, y)) +\n  geom_point() +\n  geom_segment(aes(xend = x, yend = fitted(mod)),\n    arrow = arrow(length = unit(0.2, \"cm\")),\n    color = \"royalblue\"\n  ) +\n  labs(x = \"x\", y = \"y\")\n\np1 +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"firebrick\") +\n  annotate(\"text\",\n    x = 6.3, y = -6, size = 7,\n    label = expression(hat(epsilon[i])), colour = \"royalblue\"\n  ) +\n  annotate(\"text\",\n    x = 5.6, y = 25, size = 7,\n    label = expression(hat(y[i])), colour = \"forestgreen\"\n  ) +\n  annotate(\"text\",\n    x = 5.6, y = -36, size = 7,\n    label = expression(y[i]), colour = \"firebrick\"\n  ) +\n  theme_classic()"
+    "text": "How do we get the residuals?\n\nFit the model!\nResiduals need to be calculated from the model, not from the raw data.\nIn R, these values are stored automatically.\n\n\\[ \\color{firebrick}{\\hat{\\epsilon_i}} = \\color{royalblue}{y_i} - \\color{forestgreen}{\\hat{y_i}} \\]\n\n\nCode\n# simulate example data\nset.seed(340)\nx &lt;- runif(8, 0, 30)\ny &lt;- 5 * x + rnorm(8, 0, 40)\ndf &lt;- data.frame(x, y)\n\n# fit linear model, add residual vertical lines as arrows\nmod &lt;- lm(y ~ x, data = df)\np1 &lt;- ggplot(df, aes(x, y)) +\n  geom_point() +\n  geom_segment(aes(xend = x, yend = fitted(mod)),\n    arrow = arrow(length = unit(0.2, \"cm\")),\n    color = \"royalblue\"\n  ) +\n  labs(x = \"x\", y = \"y\")\n\np1 +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"firebrick\") +\n  annotate(\"text\",\n    x = 6.3, y = -6, size = 7,\n    label = expression(hat(epsilon[i])), colour = \"royalblue\"\n  ) +\n  annotate(\"text\",\n    x = 5.6, y = 25, size = 7,\n    label = expression(hat(y[i])), colour = \"forestgreen\"\n  ) +\n  annotate(\"text\",\n    x = 5.6, y = -36, size = 7,\n    label = expression(y[i]), colour = \"firebrick\"\n  ) +\n  theme_classic()"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#another-way-to-look-at-residuals",
@@ -3439,7 +3439,7 @@
     "href": "lectures/L10/lecture-10.html#what-can-we-do-if-the-assumptions-arent-met",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "What can we do if the assumptions aren’t met?",
-    "text": "What can we do if the assumptions aren’t met?\nIt depends…\n…which assumption is not met and the type of data i.e. circumstances.\n\nIf data is non-linear, try a transformation of the response variable y, from light to extreme:\n\nroot: \\sqrt{y} or \\sqrt{y+1} if y contains zeros\nlog: \\log(y) or \\log(y+1) if y contains zeros\ninverse: \\frac{1}{y} or \\frac{1}{y+1} if y contains zeros\n\nIf residuals are not normally distributed, try a transformation of the response variable y first, otherwise transform the predictor variable x. Both can be done at the same time.\nIf equal variances assumption is not met, same as above.\nIf outliers are present, try removing them, or transforming the response variable y."
+    "text": "What can we do if the assumptions aren’t met?\nIt depends…\n…which assumption is not met and the type of data i.e. circumstances.\n\nIf data is non-linear, try a transformation of the response variable \\(y\\), from light to extreme:\n\nroot: \\(\\sqrt{y}\\) or \\(\\sqrt{y+1}\\) if \\(y\\) contains zeros\nlog: \\(\\log(y)\\) or \\(\\log(y+1)\\) if \\(y\\) contains zeros\ninverse: \\(\\frac{1}{y}\\) or \\(\\frac{1}{y+1}\\) if \\(y\\) contains zeros\n\nIf residuals are not normally distributed, try a transformation of the response variable \\(y\\) first, otherwise transform the predictor variable \\(x\\). Both can be done at the same time.\nIf equal variances assumption is not met, same as above.\nIf outliers are present, try removing them, or transforming the response variable \\(y\\)."
   },
   {
     "objectID": "lectures/L10/lecture-10.html#what-if-transformation-doesnt-work",
@@ -3481,7 +3481,7 @@
     "href": "lectures/L10/lecture-10.html#interpreting-the-output-3",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Interpreting the output",
-    "text": "Interpreting the output\n\nCall:\nlm(formula = child ~ parent, data = Galton)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-7.8050 -1.3661  0.0487  1.6339  5.9264 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 23.94153    2.81088   8.517   &lt;2e-16 ***\nparent       0.64629    0.04114  15.711   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.239 on 926 degrees of freedom\nMultiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 \nF-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16\n\n\nWe can also use the Estimate values to write the equation of the regression line:  \\widehat{child} = 23.94153 + 0.64629 \\cdot parent\nFor every one-inch increase in the parent height, the child height is predicted to increase by 0.64629 inches.\ne.g. if a parent is 70 inches, how tall will the child be? 23.94153 + 0.64629 \\cdot 70 = 68.5 inches (174 cm)."
+    "text": "Interpreting the output\n\nCall:\nlm(formula = child ~ parent, data = Galton)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-7.8050 -1.3661  0.0487  1.6339  5.9264 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 23.94153    2.81088   8.517   &lt;2e-16 ***\nparent       0.64629    0.04114  15.711   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.239 on 926 degrees of freedom\nMultiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 \nF-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16\n\n\nWe can also use the Estimate values to write the equation of the regression line: \\[ \\widehat{child} = 23.94153 + 0.64629 \\cdot parent\\]\nFor every one-inch increase in the parent height, the child height is predicted to increase by 0.64629 inches.\ne.g. if a parent is 70 inches, how tall will the child be? \\(23.94153 + 0.64629 \\cdot 70 = 68.5\\) inches (174 cm)."
   },
   {
     "objectID": "lectures/L10/lecture-10.html#interpreting-the-output-4",
@@ -3509,28 +3509,28 @@
     "href": "lectures/L10/lecture-10.html#hypothesis-testing",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Hypothesis testing",
-    "text": "Hypothesis testing\nHow does our null (H_0: \\beta_1=0) model compare to the linear (H_0: \\beta_1 \\neq 0) model?\n\nIn simple linear regression, the p-value for the slope coefficient is the same as the p-value for the F-statistic.\n\n\n\nCode\nnull_model &lt;- Galton %&gt;%\n  lm(child ~ 1, data = .) %&gt;%\n  augment(Galton)\nlin_model &lt;- Galton %&gt;%\n  lm(child ~ parent, data = .) %&gt;%\n  augment(Galton)\nmodels &lt;- bind_rows(null_model, lin_model) %&gt;%\n  mutate(model = rep(c(\"Null model\", \"SLR model\"), each = nrow(Galton)))\n\nggplot(data = models, aes(x = parent, y = child)) +\n  geom_smooth(\n    data = filter(models, model == \"Null model\"),\n    method = \"lm\", se = FALSE, formula = y ~ 1, size = 0.5\n  ) +\n  geom_smooth(\n    data = filter(models, model == \"SLR model\"),\n    method = \"lm\", se = FALSE, formula = y ~ x, size = 0.5\n  ) +\n  geom_segment(\n    aes(xend = parent, yend = .fitted),\n    arrow = arrow(length = unit(0.1, \"cm\")),\n    size = 0.3, color = \"darkgray\"\n  ) +\n  geom_point(alpha = .2) +\n  facet_wrap(~model) +\n  xlab(\"Parent height (in)\") +\n  ylab(\"Child height (in)\")"
+    "text": "Hypothesis testing\nHow does our null (\\(H_0: \\beta_1=0\\)) model compare to the linear (\\(H_0: \\beta_1 \\neq 0\\)) model?\n\nIn simple linear regression, the p-value for the slope coefficient is the same as the p-value for the F-statistic.\n\n\n\nCode\nnull_model &lt;- Galton %&gt;%\n  lm(child ~ 1, data = .) %&gt;%\n  augment(Galton)\nlin_model &lt;- Galton %&gt;%\n  lm(child ~ parent, data = .) %&gt;%\n  augment(Galton)\nmodels &lt;- bind_rows(null_model, lin_model) %&gt;%\n  mutate(model = rep(c(\"Null model\", \"SLR model\"), each = nrow(Galton)))\n\nggplot(data = models, aes(x = parent, y = child)) +\n  geom_smooth(\n    data = filter(models, model == \"Null model\"),\n    method = \"lm\", se = FALSE, formula = y ~ 1, size = 0.5\n  ) +\n  geom_smooth(\n    data = filter(models, model == \"SLR model\"),\n    method = \"lm\", se = FALSE, formula = y ~ x, size = 0.5\n  ) +\n  geom_segment(\n    aes(xend = parent, yend = .fitted),\n    arrow = arrow(length = unit(0.1, \"cm\")),\n    size = 0.3, color = \"darkgray\"\n  ) +\n  geom_point(alpha = .2) +\n  facet_wrap(~model) +\n  xlab(\"Parent height (in)\") +\n  ylab(\"Child height (in)\")"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#what-are-we-testing",
     "href": "lectures/L10/lecture-10.html#what-are-we-testing",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "What are we testing?",
-    "text": "What are we testing?\n\nThe null model is a model with no predictors, i.e. y = \\beta_0 + \\epsilon\nThe alternative model is a linear model with one predictor, i.e. y = \\beta_0 + \\beta_1 x + \\epsilon\nWe use the t-test to compare the two models:\n\n t = \\frac{estimate - 0}{Standard\\ error} = \\frac{\\hat{\\beta}_1 - 0}{SE(\\hat{\\beta}_1)}  where SE(\\hat{\\beta}_1) is the standard error of the slope estimate:\n SE(\\hat{\\beta}_1) = \\frac{\\hat{\\sigma}}{\\sqrt{\\sum_{i=1}^n (x_i - \\bar{x})^2}} \n\n\n\n\n\n\nNote\n\n\nIf the model is not significant, then the null model (i.e. mean) is better. If the model is significant, then the linear model is better."
+    "text": "What are we testing?\n\nThe null model is a model with no predictors, i.e. \\(y = \\beta_0 + \\epsilon\\)\nThe alternative model is a linear model with one predictor, i.e. \\(y = \\beta_0 + \\beta_1 x + \\epsilon\\)\nWe use the t-test to compare the two models:\n\n\\[ t = \\frac{estimate - 0}{Standard\\ error} = \\frac{\\hat{\\beta}_1 - 0}{SE(\\hat{\\beta}_1)} \\] where \\(SE(\\hat{\\beta}_1)\\) is the standard error of the slope estimate:\n\\[ SE(\\hat{\\beta}_1) = \\frac{\\hat{\\sigma}}{\\sqrt{\\sum_{i=1}^n (x_i - \\bar{x})^2}} \\]\n\n\n\n\n\n\nNote\n\n\nIf the model is not significant, then the null model (i.e. mean) is better. If the model is significant, then the linear model is better."
   },
   {
     "objectID": "lectures/L10/lecture-10.html#reporting",
     "href": "lectures/L10/lecture-10.html#reporting",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Reporting",
-    "text": "Reporting\n\nRefresher on earlier steps\n\nGalton collected data on the average height of both parents and their children. There wasa moderate, positive, linear relationship (r = 0.46) between parent and child height.\n\nCan we rely on our model results? Assumptions and hypothesis?\n\nWe fitted a linear model to predict child height from parent height, and model assumptions were met. The model was statistically significant (R2 = 0.21, F(1, 926) = 246.84, p &lt; .001), hence the null hypothesis was rejected in favour of the linear model. The effect of parent height is statistically significant and positive (\\beta = 0.65, t(926) = 15.71, p &lt; .001).\n\nEquation? Inference?\n\nFor every one-inch increase in parent height, child height is predicted to increase by 0.65 inches ($ = 23.94 + 0.65 parent$). The average height of both parents explains 21.05% of the variance in child height – there is an effect but there are clearly more factors at play."
+    "text": "Reporting\n\nRefresher on earlier steps\n\nGalton collected data on the average height of both parents and their children. There wasa moderate, positive, linear relationship (\\(r\\) = 0.46) between parent and child height.\n\nCan we rely on our model results? Assumptions and hypothesis?\n\nWe fitted a linear model to predict child height from parent height, and model assumptions were met. The model was statistically significant (R2 = 0.21, F(1, 926) = 246.84, p &lt; .001), hence the null hypothesis was rejected in favour of the linear model. The effect of parent height is statistically significant and positive (\\(\\beta\\) = 0.65, t(926) = 15.71, p &lt; .001).\n\nEquation? Inference?\n\nFor every one-inch increase in parent height, child height is predicted to increase by 0.65 inches ($ = 23.94 + 0.65 parent$). The average height of both parents explains 21.05% of the variance in child height – there is an effect but there are clearly more factors at play."
   },
   {
     "objectID": "lectures/L10/lecture-10.html#fun-fact",
     "href": "lectures/L10/lecture-10.html#fun-fact",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Fun fact",
-    "text": "Fun fact\n\nGalton’s key finding was that children of tall parents are not as tall, children of short parents are not as short.\n\n \\widehat{child} = 23.94153 + 0.64629 \\cdot parent\n\ne.g. if average parent height is 60 inches (152 cm), how tall will the child be? 23.94153 + 0.64629 \\cdot 60 = 62.7 inches (159 cm).\ne.g. if average parent height is 75 inches (191 cm), how tall will the child be? 23.94153 + 0.64629 \\cdot 75 = 72.4 inches (184 cm).\nThe height of children appeared to regress towards the population mean, i.e. the concept of regression to the mean\nHence the Galton is credited with coining the term regression (and also correlation, percentile, median, etc.)"
+    "text": "Fun fact\n\nGalton’s key finding was that children of tall parents are not as tall, children of short parents are not as short.\n\n\\[ \\widehat{child} = 23.94153 + 0.64629 \\cdot parent\\]\n\ne.g. if average parent height is 60 inches (152 cm), how tall will the child be? \\(23.94153 + 0.64629 \\cdot 60 = 62.7\\) inches (159 cm).\ne.g. if average parent height is 75 inches (191 cm), how tall will the child be? \\(23.94153 + 0.64629 \\cdot 75 = 72.4\\) inches (184 cm).\nThe height of children appeared to regress towards the population mean, i.e. the concept of regression to the mean\nHence the Galton is credited with coining the term regression (and also correlation, percentile, median, etc.)"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#explore",
@@ -3579,21 +3579,21 @@
     "href": "lectures/L10/lecture-10.html#interpretation",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Interpretation",
-    "text": "Interpretation\n\n\nCode\nsummary(fit)\n\n\n\nCall:\nlm(formula = log(Weight) ~ Length, data = alligator)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.289266 -0.079989  0.000933  0.102216  0.288491 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 1.335335   0.131394   10.16 5.63e-10 ***\nLength      0.035416   0.001506   23.52  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.1493 on 23 degrees of freedom\nMultiple R-squared:  0.9601,    Adjusted R-squared:  0.9583 \nF-statistic:   553 on 1 and 23 DF,  p-value: &lt; 2.2e-16\n\n\n\nLength is a statistically significant predictor of log(Weight) (p &lt; .001)\nThe model explains a statistically significant and large proportion (96%) of variance (R2 = 0.96, F(1, 23) = 553, p &lt; .001)\nFor every 1 cm increase in Length, log(Weight) increases by a value of 0.0354, Weight increases by e^{0.0354} times and Weight increases by approximately 3.54%"
+    "text": "Interpretation\n\n\nCode\nsummary(fit)\n\n\n\nCall:\nlm(formula = log(Weight) ~ Length, data = alligator)\n\nResiduals:\n      Min        1Q    Median        3Q       Max \n-0.289266 -0.079989  0.000933  0.102216  0.288491 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 1.335335   0.131394   10.16 5.63e-10 ***\nLength      0.035416   0.001506   23.52  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.1493 on 23 degrees of freedom\nMultiple R-squared:  0.9601,    Adjusted R-squared:  0.9583 \nF-statistic:   553 on 1 and 23 DF,  p-value: &lt; 2.2e-16\n\n\n\nLength is a statistically significant predictor of log(Weight) (p &lt; .001)\nThe model explains a statistically significant and large proportion (96%) of variance (R2 = 0.96, F(1, 23) = 553, p &lt; .001)\nFor every 1 cm increase in Length, log(Weight) increases by a value of 0.0354, Weight increases by \\(e^{0.0354}\\) times and Weight increases by approximately 3.54%"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#percent-change-with-ln-transformation",
     "href": "lectures/L10/lecture-10.html#percent-change-with-ln-transformation",
     "title": "Topic 10 – Simple Linear Regression",
-    "section": "Percent change with ln transformation",
-    "text": "Percent change with ln transformation\nInterpreting as a percent change can be more meaningful - it can be done with any log transformation (substitute e below for 10 or any other base), but the quick approximation only works with natural log transformations.\nIf y has been transformed with a natural log (log(y)), for a one-unit increase in x the percent change in y (not log(y)) is calculated with:\n\\Delta y \\% = 100 \\cdot (e^{\\beta_1}-1)\nIf \\beta_1 is small (i.e. -0.25 &lt; \\beta_1 &lt; 0.25), then: e^{\\beta_1} \\approx 1 + \\beta_1. So \\Delta y \\% \\approx 100 \\cdot \\beta_1.\n\n\n\n\n\n\n\n\n\n\nβ\nExact (e^{\\beta} - 1)%\nApproximate 100 \\cdot \\beta\n\n\n\n\n-0.25\n-22.13\n-25\n\n\n-0.1\n-9.52\n-10\n\n\n0.01\n1.01\n1\n\n\n0.1\n10.52\n10\n\n\n0.25\n28.41\n25\n\n\n0.5\n64.87\n50\n\n\n2\n638.91\n200\n\n\n\n\n\ny transformed: a one-unit increase in x is approximately a \\beta_1% change in y.\nx transformed: a 1% increase in x is approximately a 0.01 \\cdot \\beta_1 change in y.\nBoth x and y transformed: a 1% increase in x is approximately a \\beta_1% change in y."
+    "section": "Percent change with \\(ln\\) transformation",
+    "text": "Percent change with \\(ln\\) transformation\nInterpreting as a percent change can be more meaningful - it can be done with any log transformation (substitute \\(e\\) below for 10 or any other base), but the quick approximation only works with natural log transformations.\nIf \\(y\\) has been transformed with a natural log (log(y)), for a one-unit increase in \\(x\\) the percent change in \\(y\\) (not log(y)) is calculated with:\n\\[\\Delta y \\% = 100 \\cdot (e^{\\beta_1}-1)\\]\nIf \\(\\beta_1\\) is small (i.e. \\(-0.25 &lt; \\beta_1 &lt; 0.25\\)), then: \\(e^{\\beta_1} \\approx 1 + \\beta_1\\). So \\(\\Delta y \\% \\approx 100 \\cdot \\beta_1\\).\n\n\n\n\n\n\n\n\n\n\nβ\nExact \\((e^{\\beta} - 1)\\)%\nApproximate \\(100 \\cdot \\beta\\)\n\n\n\n\n-0.25\n-22.13\n-25\n\n\n-0.1\n-9.52\n-10\n\n\n0.01\n1.01\n1\n\n\n0.1\n10.52\n10\n\n\n0.25\n28.41\n25\n\n\n0.5\n64.87\n50\n\n\n2\n638.91\n200\n\n\n\n\n\n\\(y\\) transformed: a one-unit increase in \\(x\\) is approximately a \\(\\beta_1\\)% change in \\(y\\).\n\\(x\\) transformed: a 1% increase in \\(x\\) is approximately a \\(0.01 \\cdot \\beta_1\\) change in \\(y\\).\nBoth \\(x\\) and \\(y\\) transformed: a 1% increase in x is approximately a \\(\\beta_1\\)% change in y."
   },
   {
     "objectID": "lectures/L10/lecture-10.html#summary",
     "href": "lectures/L10/lecture-10.html#summary",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Summary",
-    "text": "Summary\nWorkflow\n\nUnderstand the variables: Which is the response variable? Is there a reason to believe a causal relationship?\nExplore data: How many observations? Summary statistics? Scatterplot and correlation?\nFit model\nCheck assumptions: Remember - it’s about the residuals! If assumptions fail, try transforming and return to Step 3. If assumptions still fail, consider another model and return to Step 3.\nAssess model fit: Hypothesis test, significance, F-statistic, p-value. R2, how much model variation was explained by the model.\nInterpret output: ‘For every one-unit increase in x, y increases by \\beta_1 units…’ and any additional research/insight."
+    "text": "Summary\nWorkflow\n\nUnderstand the variables: Which is the response variable? Is there a reason to believe a causal relationship?\nExplore data: How many observations? Summary statistics? Scatterplot and correlation?\nFit model\nCheck assumptions: Remember - it’s about the residuals! If assumptions fail, try transforming and return to Step 3. If assumptions still fail, consider another model and return to Step 3.\nAssess model fit: Hypothesis test, significance, F-statistic, p-value. R2, how much model variation was explained by the model.\nInterpret output: ‘For every one-unit increase in x, y increases by \\(\\beta_1\\) units…’ and any additional research/insight."
   },
   {
     "objectID": "lectures/L11/index.html",
