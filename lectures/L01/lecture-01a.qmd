@@ -4,7 +4,6 @@ author: Januar Harianto
 format: soles-revealjs
 # format: revealjs
 # fontsize: 16pt
-embed-resources: true
 ---
 
 

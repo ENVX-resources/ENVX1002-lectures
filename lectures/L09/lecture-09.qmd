@@ -2,7 +2,6 @@
 title: Topic 9 -- Describing relationships
 author: Si Yang Han
 format: soles-revealjs
-embed-resources: true
 ---
 
 ## About me

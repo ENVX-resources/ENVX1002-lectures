@@ -2,7 +2,6 @@
 title: "L11 MLR -- Abalone Quiz"
 author: Si Yang Han
 format: soles-revealjs
-embed-resources: true
 ---
 
 ```{r setup, include=FALSE}

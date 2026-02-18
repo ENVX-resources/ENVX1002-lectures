@@ -2,7 +2,6 @@
 title: "Lecture 04 -- The central limit theorem"
 author: Januar Harianto
 format: soles-revealjs
-embed-resources: true
 execute:
   cache: true
 ---

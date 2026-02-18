@@ -2,7 +2,6 @@
 title: Topic 6 -- Two-sample *t*-tests
 author: Floris van Ogtrop
 format: soles-revealjs
-embed-resources: true
 ---
 
 # Testing differences in means

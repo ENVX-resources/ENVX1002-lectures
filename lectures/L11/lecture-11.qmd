@@ -5,7 +5,6 @@ format:
   soles-revealjs:
     logo: ../muddyqr.png
     # footer: "Scan the QR code to provide feedback on this lecture"
-embed-resources: true
 scrollable: true
 ---
 
