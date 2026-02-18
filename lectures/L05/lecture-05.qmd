@@ -1,7 +1,7 @@
 ---
 title: Topic 5 -- Introduction to hypothesis testing
 author: Floris van Ogtrop
-format: soles-revealjs
+format: ochre-revealjs
 ---
 
 # Outline

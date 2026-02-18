@@ -2,7 +2,7 @@
 title: Topic 12 -- Nonlinear regression
 author: Si Yang Han
 format:
-  soles-revealjs:
+  ochre-revealjs:
     logo: ../muddyqr.png
     # footer: "Scan the QR code to provide feedback on this lecture"
 scrollable: true

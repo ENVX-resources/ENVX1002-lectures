@@ -1,0 +1,433 @@
+/*-- scss:defaults --*/
+
+/* Variables */
+$brand-ochre: #e64626;
+$brand-charcoal: #424242;
+$brand-lightgrey: #f1f1f1;
+$brand-white: #ffffff;
+$brand-black: #000000;
+$brand-sandstone: #fcede2;
+$brand-heritagerose: #daa8a2;
+$brand-jacaranda: #8f9ec9;
+$brand-navy: #1a355e;
+$brand-eucalypt: #71a499;
+
+/* Quarto Defaults */
+$body-bg: $brand-white;
+$body-color: $brand-charcoal;
+$text-muted: lighten($brand-charcoal, 30%);
+$link-color: $brand-ochre;
+$link-color-hover: darken($brand-ochre, 15%);
+$selection-bg: rgba($brand-ochre, 0.2);
+$selection-color: $brand-charcoal;
+
+/* Typography */
+$font-family-sans-serif: "Lato", sans-serif;
+$font-family-serif: "Crimson Pro", serif;
+$font-family-monospace: "JetBrains Mono", monospace;
+$presentation-font-size-root: 30px;
+$presentation-font-smaller: 0.7;
+$presentation-line-height: 1.3;
+
+$presentation-h1-font-size: 2.5em;
+$presentation-h2-font-size: 1.6em;
+$presentation-h3-font-size: 1.3em;
+$presentation-h4-font-size: 1em;
+
+$presentation-heading-font: $font-family-serif;
+$presentation-heading-color: $brand-ochre;
+$presentation-heading-line-height: 1.2;
+$presentation-heading-letter-spacing: normal;
+$presentation-heading-text-transform: none;
+$presentation-heading-text-shadow: none;
+$presentation-heading-font-weight: 700;
+
+/* Components */
+$code-block-bg: $brand-lightgrey;
+$code-block-border-color: darken($brand-lightgrey, 10%);
+$code-block-font-size: 0.65em;
+
+$code-color: $brand-navy;
+$code-bg: rgba($brand-lightgrey, 0.5);
+
+$tabset-border-color: $brand-lightgrey;
+
+/* Layout */
+$presentation-slide-text-align: left;
+$presentation-title-slide-text-align: center;
+$presentation-block-margin: 1rem;
+
+
+
+/* Callouts */
+$callout-border-width: 0px;
+$callout-border-scale: 0;
+$callout-icon-scale: 10%;
+$callout-margin-top: 1rem;
+$callout-margin-bottom: 1rem;
+
+$callout-color-note: $brand-navy;
+$callout-color-tip: $brand-eucalypt;
+$callout-color-caution: $brand-ochre;
+$callout-color-warning: $brand-ochre;
+$callout-color-important: $brand-heritagerose;
+
+/*-- scss:rules --*/
+
+
+/* Title Slide */
+#title-slide {
+    text-align: center;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    font-family: $font-family-serif;
+
+    .title {
+        font-family: $font-family-serif;
+        font-size: 2.8em;
+        font-weight: 700;
+        color: $brand-ochre;
+        margin-bottom: 0em;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+        font-family: $font-family-serif;
+        font-size: 1.4em;
+        font-weight: 400;
+        color: $brand-ochre;
+        margin-top: 0;
+        margin-bottom: 1em;
+    }
+
+    .quarto-title-authors {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        margin-bottom: 1em;
+    }
+
+    .quarto-title-author {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: center;
+        gap: 0.5em;
+        font-size: 1em;
+        color: $brand-charcoal;
+        line-height: 0;
+        margin: 0;
+        padding: 0;
+
+        .quarto-title-author-name {
+            display: inline;
+            font-weight: 400;
+
+            a {
+                color: $brand-charcoal;
+                text-decoration: none;
+                pointer-events: none;
+            }
+        }
+
+        .quarto-title-affiliation {
+            display: inline;
+            font-size: 0.75em;
+            color: $brand-charcoal;
+            opacity: 0.6;
+
+            a {
+                color: $brand-charcoal;
+                text-decoration: none;
+                pointer-events: none;
+            }
+        }
+
+        .quarto-title-author-email,
+        .quarto-title-author-orcid {
+            display: none;
+        }
+    }
+
+    .date {
+        font-size: 0.9em;
+        font-weight: 400;
+        color: $brand-black;
+        margin-top: 1em;
+        margin-bottom: 2em;
+    }
+
+    .institute {
+        display: none;
+    }
+}
+
+/* Sections */
+.title-slide.level1 {
+    background-color: $brand-ochre !important;
+    text-align: center;
+
+    h1 {
+        font-family: $font-family-serif;
+        color: $brand-white;
+        font-size: 2.2em;
+        font-weight: 700;
+    }
+}
+
+/* Typography */
+.reveal {
+
+    .slides section {
+
+        // h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: $brand-ochre;
+            font-family: $font-family-serif;
+        }
+
+        h2 {
+            font-size: 1.6em;
+        }
+
+        h3 {
+            font-size: 1.3em;
+            font-weight: 700;
+        }
+
+        h4 {
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        h5 {
+            font-size: 0.95em;
+            font-style: italic;
+        }
+
+        h6 {
+            font-size: 0.9em;
+            font-weight: 400;
+            font-variant: small-caps;
+        }
+    }
+
+    blockquote {
+        color: $brand-black;
+        border-left: 4px solid $brand-ochre;
+        background: none;
+        font-weight: 300;
+        font-style: normal;
+        padding-left: 1em;
+        width: 90%;
+        margin: 1.5em auto;
+        box-shadow: none;
+    }
+}
+
+/* Tables */
+.reveal table {
+    margin: auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 0.9em;
+    width: auto;
+
+    th,
+    td {
+        border: none;
+        padding: 0em 1em;
+        text-align: left;
+    }
+
+    thead th {
+        border-bottom: 1px solid $brand-charcoal;
+        border-top: 2px solid $brand-charcoal;
+        font-weight: 700;
+        vertical-align: bottom;
+    }
+
+    tbody {
+        border-bottom: 2px solid $brand-charcoal;
+    }
+
+    caption {
+        caption-side: top;
+        text-align: left;
+        font-weight: 700;
+        margin-bottom: 0.5em;
+        color: $brand-charcoal;
+    }
+}
+
+/* Code Block Containers */
+.reveal {
+
+    // Input code blocks: ochre accent with subtle jacaranda background
+    div.sourceCode {
+        border-left: 6px solid $brand-ochre;
+        border-radius: 0;
+        background-color: rgba($brand-jacaranda, 0.1) !important;
+
+        pre {
+            background-color: transparent !important;
+        }
+    }
+
+    // Output blocks: charcoal border with white background
+    .cell-output {
+        border: 1px solid $brand-charcoal;
+        border-left: 6px solid $brand-charcoal;
+        background-color: $brand-white;
+        padding: 0.5em 1em;
+        margin-top: 0.5em;
+        font-family: $font-family-monospace;
+        font-size: 0.9em;
+
+        pre {
+            margin: 0;
+            background: none;
+            border: none;
+        }
+    }
+}
+
+/* Utilities */
+.brand-ochre {
+    color: $brand-ochre;
+}
+
+.brand-charcoal {
+    color: $brand-charcoal;
+}
+
+.brand-lightgrey {
+    color: $brand-lightgrey;
+}
+
+.brand-sandstone {
+    color: $brand-sandstone;
+}
+
+.brand-heritage-rose,
+.brand-heritagerose {
+    color: $brand-heritagerose;
+}
+
+.brand-jacaranda {
+    color: $brand-jacaranda;
+}
+
+.brand-navy {
+    color: $brand-navy;
+}
+
+.brand-eucalypt {
+    color: $brand-eucalypt;
+}
+
+/* Layout Utilities */
+/* Layout Utilities */
+.bordered-columns {
+    display: flex;
+    width: 100%;
+
+    .column {
+        flex: 1;
+        margin: 0;
+        padding: 0 1.5em;
+        box-sizing: border-box;
+
+        &:not(:first-child) {
+            border-left: 1px solid $brand-charcoal;
+        }
+    }
+}
+
+/* Quote Slide */
+.brand-slide-quote {
+    // Flexbox centering
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    li,
+    span,
+    div {
+        color: $brand-ochre !important;
+        font-weight: 400 !important;
+    }
+
+    // Increase font size
+    h2 {
+        font-size: 2.5em !important;
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    // Style blockquote if present
+    blockquote {
+        font-size: 2em;
+        line-height: 1.3;
+        border-left: none;
+        padding: 0;
+        margin: 0 auto;
+        font-family: $font-family-serif;
+        font-weight: 400;
+        color: $brand-ochre !important;
+        width: 80%;
+        text-align: center;
+    }
+}
+
+/* Black Slide */
+.brand-slide-black {
+    background-color: $brand-black !important;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    li,
+    span,
+    a {
+        color: $brand-white !important;
+    }
+
+    // Keep code styling visible
+    code {
+        color: $brand-lightgrey !important;
+        background-color: rgba($brand-white, 0.1);
+    }
+}
+
+// Override for level1 section slides (# headings)
+.title-slide.level1.brand-slide-black {
+    background-color: $brand-black !important;
+
+    h1 {
+        color: $brand-white !important;
+    }
+}

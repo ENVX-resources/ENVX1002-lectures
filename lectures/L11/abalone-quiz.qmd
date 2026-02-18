@@ -1,7 +1,7 @@
 ---
 title: "L11 MLR -- Abalone Quiz"
 author: Si Yang Han
-format: soles-revealjs
+format: ochre-revealjs
 ---
 
 ```{r setup, include=FALSE}

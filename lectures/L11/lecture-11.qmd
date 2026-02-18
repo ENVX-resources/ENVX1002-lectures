@@ -2,7 +2,7 @@
 title: Topic 11 -- Multiple Linear Regression
 author: Si Yang Han
 format:
-  soles-revealjs:
+  ochre-revealjs:
     logo: ../muddyqr.png
     # footer: "Scan the QR code to provide feedback on this lecture"
 scrollable: true

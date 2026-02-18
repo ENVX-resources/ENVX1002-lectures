@@ -1,0 +1,26 @@
+title: Ochre for USYD
+author: Januar Harianto
+version: 2.0.0
+quarto-required: ">=1.8.0"
+contributes:
+  formats:
+    common:
+      filters:
+        - brand-colors.lua
+        - brand-slides.lua
+    revealjs:
+      theme: [default, usyd.scss]
+      width: 1280
+      height: 720
+      title-slide-attributes:
+        data-background-image: logo_charcoal.svg
+        data-background-size: 10%
+        data-background-position: bottom 4em center
+    typst:
+      aspect-ratio: "16-9"
+      mainfont: "Crimson Pro"
+      filters:
+        - typst-utils.lua
+      template-partials:
+        - typst-template.typ
+        - typst-show.typ
