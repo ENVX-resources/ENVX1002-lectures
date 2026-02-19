@@ -817,140 +817,140 @@
   {
     "objectID": "lectures/L01/lecture-01a.html#about-us",
     "href": "lectures/L01/lecture-01a.html#about-us",
-    "title": "Lecture 01a – This is ENVX1002",
+    "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "About us…",
-    "text": "About us…\nLiana Pozza - Unit Coordinator\n\nRoom 303, Level 3, Biomedical Building C81, Australian Technology Park, Eveleigh\nPh: 02 8627 1012\nEmail: liana.pozza@sydney.edu.au\n\n\nTeaching schedule\n\n\n\nJanuar Harianto\nWeeks 1 – 4  Lecturer\n\n\nFloris van Ogtrop\nWeeks 5 – 8  Lecturer, deputy unit coordinator\n\n\nLiana Pozza\nWeeks 9 – 12  Unit coordinator, Lecturer"
+    "text": "About us…\nLiana Pozza - Unit Coordinator\n\nRoom 303, Level 3, Biomedical Building C81, Australian Technology Park, Eveleigh\nPh: 02 8627 1012\nEmail: liana.pozza@sydney.edu.au\n\n\nYour Lecturers\n\n\n\nJanuar Harianto\nWeeks 1 – 4\n\n\nFloris van Ogtrop\nWeeks 5 – 8\n\n\nLiana Pozza\nWeeks 9 – 12"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#about-envx1002",
     "href": "lectures/L01/lecture-01a.html#about-envx1002",
-    "title": "Lecture 01a – This is ENVX1002",
+    "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "About ENVX1002",
     "text": "About ENVX1002\n\nLearning outcomes\n\nLO1. Implement basic reproducible research practices – including consistent data organisation, documented code, and version-controlled workflows so that statistical analyses and results can be readily replicated and validated by others.\nLO2. Demonstrate proficiency in utilising R and Excel to effectively explore and describe life science datasets.\nLO3. Apply parametric and non-parametric statistical inference methods to experimental and observational data using RStudio and effectively interpret and communicate the results in the context of the data.\nLO4. Be able to put into practice both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.\nLO5. Be able to articulate statistical and modelling results clearly and convincingly in both written reports and oral presentations, working effectively as an individual and collaboratively in a team, showcasing the ability to convey complex information to varied audiences."
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#delivery-format",
     "href": "lectures/L01/lecture-01a.html#delivery-format",
-    "title": "Lecture 01a – This is ENVX1002",
+    "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "Delivery format",
     "text": "Delivery format\nAll lectures are held in ABS Lecture Theatre 1130.\nLab sessions are held in the Biomedical Building C81, Australian Technology Park, Eveleigh.\n\nLectures (recorded): deliver content, provide context, and introduce new concepts, applying concepts\nLabs: hands-on practice with R and data analysis, with demonstrators to help you\n\n\nThe following are optional (but highly recommended):\n\nDrop-in sessions: additional help and support, mostly on Zoom\nEd discussion: online forum for questions and discussions"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#timetable",
     "href": "lectures/L01/lecture-01a.html#timetable",
-    "title": "Lecture 01a – This is ENVX1002",
+    "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "Timetable",
     "text": "Timetable\n\nLectures (recorded)\n\nMonday 12pm–1pm, ABS Lecture Theatre 1130\nTuesday 9am–11am, ABS Lecture Theatre 1130\n\n\n\nComputer Labs\n\n2-hour in-person lab session with tutors and demonstrators\nBiomedical Building C81, Australian Technology Park, Eveleigh\nSee timetable for your allocated time"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#schedule-at-a-glance",
     "href": "lectures/L01/lecture-01a.html#schedule-at-a-glance",
-    "title": "Lecture 01a – This is ENVX1002",
+    "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "Schedule at a glance…",
     "text": "Schedule at a glance…\n\n\nCode\nsequenceDiagram\n  participant M as Mon\n  participant T as Tue\n  participant W as Wed\n  participant Th as Thu\n  participant F as Fri\n  participant S as Sat\n  participant Su as Sun\n\n  Note over M,2: Lectures (recorded) - ABS LT 1130\n  Note over T,Th: Lab Sessions - Biomedical Building\n  Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)\n\n\n\n\n\nsequenceDiagram\n  participant M as Mon\n  participant T as Tue\n  participant W as Wed\n  participant Th as Thu\n  participant F as Fri\n  participant S as Sat\n  participant Su as Sun\n\n  Note over M,2: Lectures (recorded) - ABS LT 1130\n  Note over T,Th: Lab Sessions - Biomedical Building\n  Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#resources",
     "href": "lectures/L01/lecture-01a.html#resources",
-    "title": "Lecture 01a – This is ENVX1002",
+    "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "Resources",
     "text": "Resources\n\nCanvas (of course)\nENVX-resources – GitHub repository for our open-source materials\nEd Discussion – main platform for ANNOUNCEMENTS and Q&A"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#where-are-the-labs",
     "href": "lectures/L01/lecture-01a.html#where-are-the-labs",
-    "title": "Lecture 01a – This is ENVX1002",
+    "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "Where are the Labs?",
     "text": "Where are the Labs?\n\nLab sessions include extra time (30 minutes) for travel – already programmed in the timetable (so clashes are avoided)\nWe are working on securing a free shuttle service between campus and the labs - stay tuned!\nTake advantage of the new community access gates at Redfern Station: saves 5 minutes"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#topic-outline",
     "href": "lectures/L01/lecture-01a.html#topic-outline",
-    "title": "Lecture 01a – This is ENVX1002",
+    "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "Topic outline",
     "text": "Topic outline\n\nWeek 01 - Data: Reproducible science\nWeek 02 - Data: Introduction to statistical programming\nWeek 03 - Data: Exploring and visualising data\nWeek 04 - Data: The Central Limit Theorem\n\n\n\nWeek 05 - Inference: 1-sample tests\nWeek 06 - Inference: 2-sample tests\nWeek 07 - Inference: Non-parametric tests 1\nWeek 08 - Inference: Non-parametric tests 2\n\n\n\n\nWeek 09 - Modelling: Describing relationships\nWeek 10 - Modelling: Linear functions\nWeek 11 - Modelling: Linear functions – multiple predictors\nWeek 12 - Modelling: Non-linear functions\n\n\n\n\nWeek 13 - Revision: Past exam questions and review"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#assessments",
     "href": "lectures/L01/lecture-01a.html#assessments",
-    "title": "Lecture 01a – This is ENVX1002",
+    "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "Assessments",
     "text": "Assessments\n\n\nCode\n# calculate this year's year number\nlibrary(lubridate)\nyear &lt;- year(Sys.Date())\naddress &lt;- paste0(\n  \"https://www.sydney.edu.au/units/ENVX1002/\",\n  year,\n  \"-S1C-ND-CC\"\n)\n\n\nThe most up to date (and slightly more comprehensive) information for 2026 is here. In a nutshell:\n\n\n\n\n    \n\n    \n\n    \n    \n    \n      \n        \n        \n              \n                Week\n                Assessment\n                Description\n              \n        \n        \n        \n                \n                  3\n                  Early Feedback Quiz (individual 5%)\n                  In-person - 15 minutes\n                \n                \n                  5\n                  Project 1: Exploring data (individual 10%)\n                  Written report, 500 words\n                \n                \n                  8\n                  Coding and data skills evaluation (individual 15%)\n                  In-person - 50 minutes\n                \n                \n                  13\n                  Project 2: Modelling (10% + Peer assessment 5%)\n                  Group presentation - 5 minutes\n                \n                \n                  Exam\n                  Final exam (individual 45%)\n                  MCQ + SAQ Questions - 2 hours\n                \n        \n      \n    \n\n\n\n\nWeek 3: The early feedback quiz is a chance for us to gauge your understanding and provide feedback\nWeek 8: Coding and data skills evaluation covers R data manipulation and analysis\nFinal exam will NOT require you to write or interpret code – focus on understanding concepts and interpreting results"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#baby-steps",
     "href": "lectures/L01/lecture-01a.html#baby-steps",
-    "title": "Lecture 01a – This is ENVX1002",
+    "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "Baby steps…",
     "text": "Baby steps…\n\nThis unit is designed for beginners - no prior statistics or programming required\nWe start with basics – pace increases after week 4\nFocus on understanding concepts first, then tools\nWe provide plenty of support – more on this later"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#our-tech-stack",
     "href": "lectures/L01/lecture-01a.html#our-tech-stack",
-    "title": "Lecture 01a – This is ENVX1002",
+    "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "Our tech stack",
     "text": "Our tech stack\n\nMS Excel – for data entry and basic analysis\nR – a programming language for data analysis\nRStudio – an integrated development environment (IDE) for R\nQuarto (Markdown) – a key platform for reproducible reports and documents\nGitHub Copilot – AI-powered code completion tool. Optional, but highly recommended"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#ms-excel",
     "href": "lectures/L01/lecture-01a.html#ms-excel",
-    "title": "Lecture 01a – This is ENVX1002",
+    "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "MS Excel",
     "text": "MS Excel\n\nWidely used for data entry and basic analysis\nA standard tool in many industries, including science, often to store data\nCan be a useful complement to R for data cleaning and simple calculations\nA stepping stone to more advanced tools?"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#r",
     "href": "lectures/L01/lecture-01a.html#r",
-    "title": "Lecture 01a – This is ENVX1002",
+    "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "R",
     "text": "R\n\n\n\n\n  \n\nA free, open-source programming language\nWidely used for data analysis and statistics\nStandard tool in scientific research\nExtensive collection of packages for data science\nStrong support for creating publication-quality graphics\nLarge, active community for help and resources"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#why-r",
     "href": "lectures/L01/lecture-01a.html#why-r",
-    "title": "Lecture 01a – This is ENVX1002",
+    "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "Why R?",
     "text": "Why R?\n\nBuilt for beginners\nMakes your work reproducible\nPowerful yet accessible\n\n\nImportantly – the skills you learn are highly transferable to other tools and languages.\nMost easily integrated with generative AI tools – more on this soon\nWell-documented and discussed online (so you can find help easily)"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#rstudio",
     "href": "lectures/L01/lecture-01a.html#rstudio",
-    "title": "Lecture 01a – This is ENVX1002",
+    "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "RStudio",
     "text": "RStudio\n\nNOT the same as R – it’s an integrated development environment (IDE)\nRuns R (…and Python, and SQL, and more)\nMakes it easier to write and run R code by providing a significantly more user-friendly interface"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#starting-with-r",
     "href": "lectures/L01/lecture-01a.html#starting-with-r",
-    "title": "Lecture 01a – This is ENVX1002",
+    "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "Starting with R",
     "text": "Starting with R\n\nIt’s normal to feel overwhelmed at first\nWe’ll learn step by step\nPractice is key - a little bit each day helps\nDon’t hesitate to ask questions!"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#satisfying-when-it-works",
     "href": "lectures/L01/lecture-01a.html#satisfying-when-it-works",
-    "title": "Lecture 01a – This is ENVX1002",
+    "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "Satisfying when it works",
     "text": "Satisfying when it works\n\n\nClick to see the code for this animation\n# Load required packages\nlibrary(gapminder) # Dataset of country statistics over time\nlibrary(gganimate) # For creating animations in ggplot\nlibrary(tidyverse) # Collection of data science packages\n\n# Create an animated plot showing how life expectancy relates to GDP\n# across different continents over time\nggplot(\n  gapminder,\n  aes(gdpPercap, lifeExp, # GDP per capita vs life expectancy\n    size = pop, # Point size represents population\n    colour = country\n  )\n) + # Each country gets its own color\n  geom_point(\n    alpha = 0.7, # Semi-transparent points\n    show.legend = FALSE\n  ) + # Hide legend for cleaner look\n  scale_colour_manual(values = country_colors) +\n  scale_size(range = c(2, 12)) + # Set min/max point sizes\n  scale_x_log10() + # Log scale for GDP (wide range)\n  facet_wrap(~continent) + # Separate plot for each continent\n  labs(\n    title = \"Year: {frame_time}\",\n    x = \"GDP per capita\",\n    y = \"Life expectancy\"\n  ) +\n  transition_time(year) + # Animate through years\n  ease_aes(\"linear\") # Smooth transitions"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#quarto",
     "href": "lectures/L01/lecture-01a.html#quarto",
-    "title": "Lecture 01a – This is ENVX1002",
+    "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "Quarto",
     "text": "Quarto\n\nMarjority of our resources are built using Quarto – a markdown-based document format that you will learn to use in this unit\n\nLecture slides\nTutorials\nLab exercises\n\nQuarto makes everything reproducible - what does it mean?\nFree and open source, available on the ENVX resources GitHub repository – re-use and modify as you wish (but follow CC BY 4.0)\n\n\n## Quarto\n\n- Marjority of our resources are built using [**Quarto**](https://quarto.org/) -- a markdown-based document format that **you will learn to use** in this unit\n  - Lecture slides\n  - Tutorials\n  - Lab exercises\n- Quarto  makes everything **reproducible** - what does it mean?\n- Free and open source, available on the [ENVX resources](https://github.com/ENVX-resources) GitHub repository -- re-use and modify as you wish (but follow [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/))"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#r-rstudio-quarto",
     "href": "lectures/L01/lecture-01a.html#r-rstudio-quarto",
-    "title": "Lecture 01a – This is ENVX1002",
+    "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "R, RStudio, Quarto!?",
     "text": "R, RStudio, Quarto!?\n\nAgain, it’s normal to feel overwhelmed at first\nThese technologies are complementary – everything is implemented in RStudio\nThe tutorials and labs will guide you through the process"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#github-copilot",
     "href": "lectures/L01/lecture-01a.html#github-copilot",
-    "title": "Lecture 01a – This is ENVX1002",
+    "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "GitHub Copilot",
     "text": "GitHub Copilot"
   },
@@ -977,7 +977,7 @@
     "href": "lectures/L01/index.html",
     "title": "Lecture 01 – Reproducible science",
     "section": "",
-    "text": "Lecture 01a – This is ENVX1002 Full Screen | PDF\n\nLecture 01b – Reproducible science Full Screen | PDF",
+    "text": "Lecture 01a – Welcome to ENVX1002 Full Screen | PDF\n\nLecture 01b – Reproducible science Full Screen | PDF",
     "crumbs": [
       "{{< fa house-chimney >}}",
       "**Module 1 describing data**",
