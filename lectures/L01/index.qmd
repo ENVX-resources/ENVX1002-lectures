@@ -2,7 +2,7 @@
 title: "Lecture 01 -- Reproducible science"
 ---
 
-**Lecture 01a -- This is ENVX1002** [Full Screen](lecture-01a.qmd) | [PDF](lecture-01a.pdf) 
+**Lecture 01a -- Welcome to ENVX1002** [Full Screen](lecture-01a.qmd) | [PDF](lecture-01a.pdf) 
 
 ```{=html}
 <iframe class="slide-deck" src="lecture-01a.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>

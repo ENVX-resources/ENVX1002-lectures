@@ -1,5 +1,5 @@
 ---
-title: Lecture 01a -- This is ENVX1002
+title: Lecture 01a -- Welcome to ENVX1002
 author: Liana Pozza
 format: ochre-revealjs
 # format: revealjs
@@ -19,7 +19,7 @@ format: ochre-revealjs
 
 ::: fragment
 
-### Teaching schedule
+### Your Lecturers
 
 ::: {.columns}
 
@@ -27,24 +27,22 @@ format: ochre-revealjs
 ![](images/januar.jpeg){width="55%"}
 
 **Januar Harianto**   
-Weeks 1 -- 4 <br>
-Lecturer
+Weeks 1 -- 4 
 :::
 
 ::: {.column width="33%"}
 ![](images/floris.png){width="55%"}
 
 **Floris van Ogtrop**  
-Weeks 5 -- 8 <br>
-Lecturer, deputy unit coordinator
+Weeks 5 -- 8 
 :::
 
 ::: {.column width="33%"}
 ![](images/liana.jpg){width="55%"}
 
 **Liana Pozza**   
-Weeks 9 -- 12 <br>
-Unit coordinator, Lecturer
+Weeks 9 -- 12 
+
 :::
 
 :::
