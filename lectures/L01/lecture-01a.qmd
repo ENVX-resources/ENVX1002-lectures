@@ -66,10 +66,10 @@ Weeks 9 -- 12
 
 All lectures are held in [ABS Lecture Theatre 1130](https://venueweb.sydney.edu.au/H70.01.1130).  
 
-Lab sessions are held in the Biomedical Building C81, Australian Technology Park, Eveleigh.
+Lab sessions are held in the Biomedical Building C81, 1 Central Avenue, Eveleigh.
 
 
-- **Lectures (recorded)**: deliver content, provide context, and introduce new concepts, applying concepts
+- **Lectures (hybrid)**: deliver content, provide context, and introduce new concepts, applying concepts
 - **Labs**: hands-on practice with R and data analysis, with demonstrators to help you
 
 ::: fragment
@@ -82,7 +82,7 @@ The following are optional (but highly recommended):
 ## Timetable
 
 ::: fragment
-**Lectures** *(recorded)*
+**Lectures** *(hybrid)*
 
 - Monday 12pm--1pm, ABS Lecture Theatre 1130
 - Tuesday 9am--11am, ABS Lecture Theatre 1130
@@ -109,7 +109,7 @@ sequenceDiagram
   participant S as Sat
   participant Su as Sun
 
-  Note over M,2: Lectures (recorded) - ABS LT 1130
+  Note over M,T: Lectures (hybrid) - ABS LT 1130
   Note over T,Th: Lab Sessions - Biomedical Building
   Th->>+Su: Self-revision, pick ONE day (encouraged)
 
@@ -152,32 +152,43 @@ sequenceDiagram
 
 :::
 
+## Campus bus
+
+There is currently a bus that goes to Redfern Station, but nothing out to C81 yet. You can find the timetable here: [Campus Bus Timetables](https://www.sydney.edu.au/about-us/campuses/getting-to-campus/campus-bus-timetables.html)
+
+We are looking to secure a bus service to C81, but need an idea of numbers first. 
+
+If you are interested in catching a shuttle bus to C81, please fill out this short survey:
+
+![](images/QRCode%20for%20Connecting%20Campuses%20-%20Redfern%20(ATP).png){fig-align="center"}
+
+
 # Content & assessments
 
 
 ## Topic outline
 
-- Week 01 - **Data:** Reproducible science
-- Week 02 - **Data:** Introduction to statistical programming
-- Week 03 - **Data:** Exploring and visualising data
+- Week 01 - **Data:** Reproducible Science
+- Week 02 - **Data:** Statistical Programming Basics
+- Week 03 - **Data:** Exploring and Visualising Data
 - Week 04 - **Data:** The Central Limit Theorem
 
 ::: fragment
-- Week 05 - **Inference:** 1-sample tests
-- Week 06 - **Inference:** 2-sample tests
-- Week 07 - **Inference:** Non-parametric tests 1
-- Week 08 - **Inference:** Non-parametric tests 2
+- Week 05 - **Inference:** Introduction to Inference
+- Week 06 - **Inference:** Comparing Two Samples
+- Week 07 - **Inference:** Non-parametric Methods
+- Week 08 - **Inference:** Building Statistical Confidence
 :::
 
 ::: fragment
-- Week 09 - **Modelling:** Describing relationships
-- Week 10 - **Modelling:** Linear functions
-- Week 11 - **Modelling:** Linear functions -- multiple predictors
-- Week 12 - **Modelling:** Non-linear functions
+- Week 09 - **Modelling:** Describing Relationships
+- Week 10 - **Modelling:** Simple Linear Regression
+- Week 11 - **Modelling:** Multiple Linear Regression
+- Week 12 - **Modelling:** Non-linear Regression
 :::
 
 ::: fragment
-- Week 13 - **Revision:** Past exam questions and review
+- Week 13 - **Revision:** Course revision and past exam questions
 :::
 
 
@@ -208,11 +219,11 @@ library(tibble)
 assessment_df <- tibble(
   Week = factor(c("3", "5", "8", "13", "Exam")),
   Assessment = factor(c(
-    "Early Feedback Quiz (individual 5%)",
-    "Project 1: Exploring data (individual 10%)",
+    "Early Feedback Task (individual 5%)",
+    "Describing Data Report (individual 15%)",
     "Coding and data skills evaluation (individual 15%)",
-    "Project 2: Modelling (10% + Peer assessment 5%)",
-    "Final exam (individual 45%)"
+    "Group presentation: Modelling relationships in data (10% + Peer assessment 5%)",
+    "Final exam (individual 50%)"
   )),
   Description = factor(c(
     "In-person - 15 minutes",
@@ -229,7 +240,20 @@ tt(assessment_df)
 
 - **Week 3**: The **early feedback quiz** is a chance for us to gauge your understanding and provide feedback
 - **Week 8**: Coding and data skills evaluation covers R data manipulation and analysis
-- Final exam will NOT require you to write or interpret code -- focus on understanding concepts and interpreting results
+- **Final exam** will NOT require you to write or interpret code -- focus on understanding concepts and interpreting results
+
+
+## Final exam hurdle
+
+The final exam is a hurdle assessment for this unit. This means: 
+
+- You must attempt the exam and achieve a minimum score of 40% to pass the unit. 
+
+- Students who do not meet this requirement will not be able to pass the unit, regardless of their overall mark.
+
+This hurdle can be quite daunting, but we will are here to work with you and help you succeed. 
+
+We will provide the learning materials, guidance, and any support you need, and it is your responsibility to keep up with the content each week and ask us questions if there is something that isn't quite making sense yet. 
 
 
 # Software and tools
