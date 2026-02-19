@@ -1,10 +1,10 @@
 ---
-title: ENVX1002 -- Introduction to statistical methods
+title: ENVX1002 -- Statistics in Life and Environmental Sciences
 author: 
   - Januar Harianto
-  - Liana Pozza
+  - Liana Pozza (coordinator)
   - Si Yang Han
-  - Floris Van Ogtrop (coordinator)
+  - Floris Van Ogtrop 
 anchor-sections: false
 section-divs: false
 ---
@@ -15,20 +15,20 @@ section-divs: false
 
 
 ### Module 1 -- describing data
-- [Lecture 01](lectures/L01/index.qmd) -- Reproducible science
-- [Lecture 02](lectures/L02/index.qmd) -- Introduction to statistical programming
+- [Lecture 01](lectures/L01/index.qmd) -- Reproducible Science
+- [Lecture 02](lectures/L02/index.qmd) -- Statistical Programming Basics
 - [Lecture 03](lectures/L03/index.qmd) -- Exploring and visualising data
-- [Lecture 04](lectures/L04/index.qmd) -- The central limit theorem
+- [Lecture 04](lectures/L04/index.qmd) -- The Central Limit Theorem
 
 ### Module 2 -- inference
-- [Lecture 05](lectures/L05/index.qmd) -- Hypothesis testing & one-sample *t*-tests
-- [Lecture 06](lectures/L06/index.qmd) -- Two-sample *t*-tests
-- [Lecture 07](lectures/L07/index.qmd) -- Non-parametric tests
-- [Lecture 08](lectures/L08/index.qmd) -- Bootstrapping | Revision
+- [Lecture 05](lectures/L05/index.qmd) -- Introduction to Inference
+- [Lecture 06](lectures/L06/index.qmd) -- Comparing Two Samples
+- [Lecture 07](lectures/L07/index.qmd) -- Non-parametric Methods
+- [Lecture 08](lectures/L08/index.qmd) -- Building Statistical Confidence
 
 ### Module 3 -- modelling
-- [Lecture 09](lectures/L09/index.qmd) -- Describing relationships
-- [Lecture 10](lectures/L10/index.qmd) -- Linear functions
-- [Lecture 11](lectures/L11/index.qmd) -- Linear functions - multiple predictors
-- [Lecture 12](lectures/L12/index.qmd) -- Non-linear functions
+- [Lecture 09](lectures/L09/index.qmd) -- Describing Relationships
+- [Lecture 10](lectures/L10/index.qmd) -- Simple Linear Regression
+- [Lecture 11](lectures/L11/index.qmd) -- Multiple Linear Regression
+- [Lecture 12](lectures/L12/index.qmd) -- Non-linear Regression
 
