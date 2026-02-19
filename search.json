@@ -847,7 +847,7 @@
     "href": "lectures/L01/lecture-01a.html#schedule-at-a-glance",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "Schedule at a glance…",
-    "text": "Schedule at a glance…\n\n\nCode\nsequenceDiagram\n  participant M as Mon\n  participant T as Tue\n  participant W as Wed\n  participant Th as Thu\n  participant F as Fri\n  participant S as Sat\n  participant Su as Sun\n\n  Note over M,T: Lectures (recorded) - ABS LT 1130\n  Note over T: Tutorial (recorded) - ABS LT 1130\n  Note over T,Th: Lab Sessions - Biomedical Building\n  Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)\n\n\n\n\n\nsequenceDiagram\n  participant M as Mon\n  participant T as Tue\n  participant W as Wed\n  participant Th as Thu\n  participant F as Fri\n  participant S as Sat\n  participant Su as Sun\n\n  Note over M,T: Lectures (recorded) - ABS LT 1130\n  Note over T: Tutorial (recorded) - ABS LT 1130\n  Note over T,Th: Lab Sessions - Biomedical Building\n  Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)"
+    "text": "Schedule at a glance…\n\n\nCode\nsequenceDiagram\n  participant M as Mon\n  participant T as Tue\n  participant W as Wed\n  participant Th as Thu\n  participant F as Fri\n  participant S as Sat\n  participant Su as Sun\n\n  Note over M,T: Lectures (recorded) - ABS LT 1130\n  Note over T,Th: Lab Sessions - Biomedical Building\n  Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)\n\n\n\n\n\nsequenceDiagram\n  participant M as Mon\n  participant T as Tue\n  participant W as Wed\n  participant Th as Thu\n  participant F as Fri\n  participant S as Sat\n  participant Su as Sun\n\n  Note over M,T: Lectures (recorded) - ABS LT 1130\n  Note over T,Th: Lab Sessions - Biomedical Building\n  Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#resources",
@@ -952,14 +952,7 @@
     "href": "lectures/L01/lecture-01a.html#github-copilot",
     "title": "Lecture 01a – This is ENVX1002",
     "section": "GitHub Copilot",
-    "text": "GitHub Copilot\n\n\nSlightly different from your usual AI tools\nActs as a pair programmer – suggests code as you type, based on context\nDouble-edged sword – can be a crutch if you rely on it too much\nWe will start using this tool in Week 4"
-  },
-  {
-    "objectID": "lectures/L01/lecture-01a.html#seek-help-early",
-    "href": "lectures/L01/lecture-01a.html#seek-help-early",
-    "title": "Lecture 01a – This is ENVX1002",
-    "section": "Seek help early",
-    "text": "Seek help early\n\nYou are not alone, and you need to learn to ask for help\nWe provide a LOT of support in various forms:\n\nFace-to-face (in a group setting): tutorials, labs\nFace-to-face (one-on-one): consultations – book a time with us (email)\nOnline (collaborative): Ed for general questions\nOnline (private): use private posts on Ed\n\nFrom time to time, we will organise drop-in sessions for additional help\n\nNOTE: We cannot help you if you don’t ask!"
+    "text": "GitHub Copilot"
   },
   {
     "objectID": "index.html",
