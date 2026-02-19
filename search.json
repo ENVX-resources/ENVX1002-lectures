@@ -833,21 +833,21 @@
     "href": "lectures/L01/lecture-01a.html#delivery-format",
     "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "Delivery format",
-    "text": "Delivery format\nAll lectures are held in ABS Lecture Theatre 1130.\nLab sessions are held in the Biomedical Building C81, Australian Technology Park, Eveleigh.\n\nLectures (recorded): deliver content, provide context, and introduce new concepts, applying concepts\nLabs: hands-on practice with R and data analysis, with demonstrators to help you\n\n\nThe following are optional (but highly recommended):\n\nDrop-in sessions: additional help and support, mostly on Zoom\nEd discussion: online forum for questions and discussions"
+    "text": "Delivery format\nAll lectures are held in ABS Lecture Theatre 1130.\nLab sessions are held in the Biomedical Building C81, 1 Central Avenue, Eveleigh.\n\nLectures (hybrid): deliver content, provide context, and introduce new concepts, applying concepts\nLabs: hands-on practice with R and data analysis, with demonstrators to help you\n\n\nThe following are optional (but highly recommended):\n\nDrop-in sessions: additional help and support, mostly on Zoom\nEd discussion: online forum for questions and discussions"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#timetable",
     "href": "lectures/L01/lecture-01a.html#timetable",
     "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "Timetable",
-    "text": "Timetable\n\nLectures (recorded)\n\nMonday 12pm–1pm, ABS Lecture Theatre 1130\nTuesday 9am–11am, ABS Lecture Theatre 1130\n\n\n\nComputer Labs\n\n2-hour in-person lab session with tutors and demonstrators\nBiomedical Building C81, Australian Technology Park, Eveleigh\nSee timetable for your allocated time"
+    "text": "Timetable\n\nLectures (hybrid)\n\nMonday 12pm–1pm, ABS Lecture Theatre 1130\nTuesday 9am–11am, ABS Lecture Theatre 1130\n\n\n\nComputer Labs\n\n2-hour in-person lab session with tutors and demonstrators\nBiomedical Building C81, Australian Technology Park, Eveleigh\nSee timetable for your allocated time"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#schedule-at-a-glance",
     "href": "lectures/L01/lecture-01a.html#schedule-at-a-glance",
     "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "Schedule at a glance…",
-    "text": "Schedule at a glance…\n\n\nCode\nsequenceDiagram\n  participant M as Mon\n  participant T as Tue\n  participant W as Wed\n  participant Th as Thu\n  participant F as Fri\n  participant S as Sat\n  participant Su as Sun\n\n  Note over M,2: Lectures (recorded) - ABS LT 1130\n  Note over T,Th: Lab Sessions - Biomedical Building\n  Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)\n\n\n\n\n\nsequenceDiagram\n  participant M as Mon\n  participant T as Tue\n  participant W as Wed\n  participant Th as Thu\n  participant F as Fri\n  participant S as Sat\n  participant Su as Sun\n\n  Note over M,2: Lectures (recorded) - ABS LT 1130\n  Note over T,Th: Lab Sessions - Biomedical Building\n  Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)"
+    "text": "Schedule at a glance…\n\n\nCode\nsequenceDiagram\n  participant M as Mon\n  participant T as Tue\n  participant W as Wed\n  participant Th as Thu\n  participant F as Fri\n  participant S as Sat\n  participant Su as Sun\n\n  Note over M,T: Lectures (hybrid) - ABS LT 1130\n  Note over T,Th: Lab Sessions - Biomedical Building\n  Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)\n\n\n\n\n\nsequenceDiagram\n  participant M as Mon\n  participant T as Tue\n  participant W as Wed\n  participant Th as Thu\n  participant F as Fri\n  participant S as Sat\n  participant Su as Sun\n\n  Note over M,T: Lectures (hybrid) - ABS LT 1130\n  Note over T,Th: Lab Sessions - Biomedical Building\n  Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#resources",
@@ -864,18 +864,32 @@
     "text": "Where are the Labs?\n\nLab sessions include extra time (30 minutes) for travel – already programmed in the timetable (so clashes are avoided)\nWe are working on securing a free shuttle service between campus and the labs - stay tuned!\nTake advantage of the new community access gates at Redfern Station: saves 5 minutes"
   },
   {
+    "objectID": "lectures/L01/lecture-01a.html#campus-bus",
+    "href": "lectures/L01/lecture-01a.html#campus-bus",
+    "title": "Lecture 01a – Welcome to ENVX1002",
+    "section": "Campus bus",
+    "text": "Campus bus\nThere is currently a bus that goes to Redfern Station, but nothing out to C81 yet. You can find the timetable here: Campus Bus Timetables\nWe are looking to secure a bus service to C81, but need an idea of numbers first.\nIf you are interested in catching a shuttle bus to C81, please fill out this short survey:"
+  },
+  {
     "objectID": "lectures/L01/lecture-01a.html#topic-outline",
     "href": "lectures/L01/lecture-01a.html#topic-outline",
     "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "Topic outline",
-    "text": "Topic outline\n\nWeek 01 - Data: Reproducible science\nWeek 02 - Data: Introduction to statistical programming\nWeek 03 - Data: Exploring and visualising data\nWeek 04 - Data: The Central Limit Theorem\n\n\n\nWeek 05 - Inference: 1-sample tests\nWeek 06 - Inference: 2-sample tests\nWeek 07 - Inference: Non-parametric tests 1\nWeek 08 - Inference: Non-parametric tests 2\n\n\n\n\nWeek 09 - Modelling: Describing relationships\nWeek 10 - Modelling: Linear functions\nWeek 11 - Modelling: Linear functions – multiple predictors\nWeek 12 - Modelling: Non-linear functions\n\n\n\n\nWeek 13 - Revision: Past exam questions and review"
+    "text": "Topic outline\n\nWeek 01 - Data: Reproducible Science\nWeek 02 - Data: Statistical Programming Basics\nWeek 03 - Data: Exploring and Visualising Data\nWeek 04 - Data: The Central Limit Theorem\n\n\n\nWeek 05 - Inference: Introduction to Inference\nWeek 06 - Inference: Comparing Two Samples\nWeek 07 - Inference: Non-parametric Methods\nWeek 08 - Inference: Building Statistical Confidence\n\n\n\n\nWeek 09 - Modelling: Describing Relationships\nWeek 10 - Modelling: Simple Linear Regression\nWeek 11 - Modelling: Multiple Linear Regression\nWeek 12 - Modelling: Non-linear Regression\n\n\n\n\nWeek 13 - Revision: Course revision and past exam questions"
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#assessments",
     "href": "lectures/L01/lecture-01a.html#assessments",
     "title": "Lecture 01a – Welcome to ENVX1002",
     "section": "Assessments",
-    "text": "Assessments\n\n\nCode\n# calculate this year's year number\nlibrary(lubridate)\nyear &lt;- year(Sys.Date())\naddress &lt;- paste0(\n  \"https://www.sydney.edu.au/units/ENVX1002/\",\n  year,\n  \"-S1C-ND-CC\"\n)\n\n\nThe most up to date (and slightly more comprehensive) information for 2026 is here. In a nutshell:\n\n\n\n\n    \n\n    \n\n    \n    \n    \n      \n        \n        \n              \n                Week\n                Assessment\n                Description\n              \n        \n        \n        \n                \n                  3\n                  Early Feedback Quiz (individual 5%)\n                  In-person - 15 minutes\n                \n                \n                  5\n                  Project 1: Exploring data (individual 10%)\n                  Written report, 500 words\n                \n                \n                  8\n                  Coding and data skills evaluation (individual 15%)\n                  In-person - 50 minutes\n                \n                \n                  13\n                  Project 2: Modelling (10% + Peer assessment 5%)\n                  Group presentation - 5 minutes\n                \n                \n                  Exam\n                  Final exam (individual 45%)\n                  MCQ + SAQ Questions - 2 hours\n                \n        \n      \n    \n\n\n\n\nWeek 3: The early feedback quiz is a chance for us to gauge your understanding and provide feedback\nWeek 8: Coding and data skills evaluation covers R data manipulation and analysis\nFinal exam will NOT require you to write or interpret code – focus on understanding concepts and interpreting results"
+    "text": "Assessments\n\n\nCode\n# calculate this year's year number\nlibrary(lubridate)\nyear &lt;- year(Sys.Date())\naddress &lt;- paste0(\n  \"https://www.sydney.edu.au/units/ENVX1002/\",\n  year,\n  \"-S1C-ND-CC\"\n)\n\n\nThe most up to date (and slightly more comprehensive) information for 2026 is here. In a nutshell:\n\n\n\n\n    \n\n    \n\n    \n    \n    \n      \n        \n        \n              \n                Week\n                Assessment\n                Description\n              \n        \n        \n        \n                \n                  3\n                  Early Feedback Task (individual 5%)\n                  In-person - 15 minutes\n                \n                \n                  5\n                  Describing Data Report (individual 15%)\n                  Written report, 500 words\n                \n                \n                  8\n                  Coding and data skills evaluation (individual 15%)\n                  In-person - 50 minutes\n                \n                \n                  13\n                  Group presentation: Modelling relationships in data (10% + Peer assessment 5%)\n                  Group presentation - 5 minutes\n                \n                \n                  Exam\n                  Final exam (individual 50%)\n                  MCQ + SAQ Questions - 2 hours\n                \n        \n      \n    \n\n\n\n\nWeek 3: The early feedback quiz is a chance for us to gauge your understanding and provide feedback\nWeek 8: Coding and data skills evaluation covers R data manipulation and analysis\nFinal exam will NOT require you to write or interpret code – focus on understanding concepts and interpreting results"
+  },
+  {
+    "objectID": "lectures/L01/lecture-01a.html#final-exam-hurdle",
+    "href": "lectures/L01/lecture-01a.html#final-exam-hurdle",
+    "title": "Lecture 01a – Welcome to ENVX1002",
+    "section": "Final exam hurdle",
+    "text": "Final exam hurdle\nThe final exam is a hurdle assessment for this unit. This means:\n\nYou must attempt the exam and achieve a minimum score of 40% to pass the unit.\nStudents who do not meet this requirement will not be able to pass the unit, regardless of their overall mark.\n\nThis hurdle can be quite daunting, but we will are here to work with you and help you succeed.\nWe will provide the learning materials, guidance, and any support you need, and it is your responsibility to keep up with the content each week and ask us questions if there is something that isn’t quite making sense yet."
   },
   {
     "objectID": "lectures/L01/lecture-01a.html#baby-steps",
