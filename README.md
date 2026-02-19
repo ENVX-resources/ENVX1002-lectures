@@ -4,7 +4,7 @@ This repository contains lecture materials for the ENVX1002 unit at the Universi
 
 ## 📚 Course Overview
 
-ENVX1002 is an introductory unit focused on data analysis and statistics in environmental science. The course covers:
+ENVX1002 (Statistics in Life and Environmental Sciences) is a unit focused on data analysis and statistics in environmental science. The course covers:
 
 - Introduction to R programming
 - Data visualisation and analysis
