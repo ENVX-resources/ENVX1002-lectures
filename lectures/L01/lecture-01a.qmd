@@ -1,6 +1,6 @@
 ---
 title: Lecture 01a -- This is ENVX1002
-author: Januar Harianto
+author: Liana Pozza
 format: ochre-revealjs
 # format: revealjs
 # fontsize: 16pt
@@ -114,7 +114,6 @@ sequenceDiagram
   participant Su as Sun
 
   Note over M,T: Lectures (recorded) - ABS LT 1130
-  Note over T: Tutorial (recorded) - ABS LT 1130
   Note over T,Th: Lab Sessions - Biomedical Building
   Th->>+Su: Self-revision, pick ONE day (encouraged)
 
@@ -399,27 +398,6 @@ ggplot(
 ![](images/adventuretime.gif)
 
 ## GitHub Copilot
-
-![](images/copilot-logo.png)
-
-- Slightly different from your usual AI tools
-- Acts as a *pair programmer* -- suggests code as you type, based on context
-- **Double-edged sword -- can be a crutch if you rely on it too much**
-- We will start using this tool in **Week 4**
-
-# If you need help...
-
-## Seek help early
-
-- You are not alone, and **you need to learn to ask for help**
-- We provide a LOT of support in various forms:
-  - Face-to-face (in a group setting): tutorials, labs
-  - Face-to-face (one-on-one): consultations -- book a time with us (email)
-  - Online (collaborative): Ed for general questions
-  - Online (private): use **private posts** on Ed
-- From time to time, we will organise **drop-in sessions** for additional help
-
-NOTE: **We cannot help you if you don't ask!**
 
 
 # Thanks!

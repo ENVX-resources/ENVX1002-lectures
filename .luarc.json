@@ -10,9 +10,9 @@
   "Lua.runtime.version": "Lua 5.3",
   "Lua.workspace.checkThirdParty": false,
   "Lua.workspace.library": [
-    "/Applications/quarto/share/lua-types"
+    "/Applications/Positron.app/Contents/Resources/app/quarto/share/lua-types"
   ],
-  "Lua.runtime.plugin": "/Applications/quarto/share/lua-plugin/plugin.lua",
+  "Lua.runtime.plugin": "/Applications/Positron.app/Contents/Resources/app/quarto/share/lua-plugin/plugin.lua",
   "Lua.completion.showWord": "Disable",
   "Lua.completion.keywordSnippet": "Both",
   "Lua.diagnostics.disable": [

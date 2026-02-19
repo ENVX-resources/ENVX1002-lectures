@@ -48,3 +48,5 @@ vignettes/*.pdf
 .luarc.json
 
 **/*.quarto_ipynb
+
+/.luarc.json
