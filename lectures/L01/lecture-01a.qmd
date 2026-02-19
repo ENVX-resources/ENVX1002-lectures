@@ -11,11 +11,11 @@ format: ochre-revealjs
 
 ## About us...
 
-### Floris van Ogtrop - Unit Coordinator
+### Liana Pozza - Unit Coordinator
 
-- Room 306, Level 3, Biomedical Building, Australian Technology Park, Eveleigh
-- Ph: 02 8627 1024
-- Email: floris.vanogtrop@sydney.edu.au
+- Room 303, Level 3, Biomedical Building C81, Australian Technology Park, Eveleigh
+- Ph: 02 8627 1012
+- Email: liana.pozza@sydney.edu.au
 
 ::: fragment
 
@@ -27,21 +27,24 @@ format: ochre-revealjs
 ![](images/januar.jpeg){width="55%"}
 
 **Januar Harianto**   
-Weeks 1 -- 4, Lecturer
+Weeks 1 -- 4 <br>
+Lecturer
 :::
 
 ::: {.column width="33%"}
 ![](images/floris.png){width="55%"}
 
 **Floris van Ogtrop**  
-Weeks 5 -- 8, Unit Coordinator
+Weeks 5 -- 8 <br>
+Lecturer, deputy unit coordinator
 :::
 
 ::: {.column width="33%"}
-![](images/siyang.png){width="55%"}
+![](images/liana.jpg){width="55%"}
 
-**Si Yang Han**   
-Weeks 9 -- 12, Lecturer
+**Liana Pozza**   
+Weeks 9 -- 12 <br>
+Unit coordinator, Lecturer
 :::
 
 :::
@@ -63,10 +66,12 @@ Weeks 9 -- 12, Lecturer
 
 ## Delivery format
 
-All lectures and tutorials are held in [ABS Lecture Theatre 1130](https://venueweb.sydney.edu.au/H70.01.1130). Lab sessions are held in the Biomedical Building, Australian Technology Park, Eveleigh.
+All lectures are held in [ABS Lecture Theatre 1130](https://venueweb.sydney.edu.au/H70.01.1130).  
 
-- **Lectures (recorded)**: deliver content, provide context, and introduce new concepts
-- **Tutorials (recorded)**: practice and apply concepts from lectures, prep for labs
+Lab sessions are held in the Biomedical Building C81, Australian Technology Park, Eveleigh.
+
+
+- **Lectures (recorded)**: deliver content, provide context, and introduce new concepts, applying concepts
 - **Labs**: hands-on practice with R and data analysis, with demonstrators to help you
 
 ::: fragment
@@ -82,21 +87,14 @@ The following are optional (but highly recommended):
 **Lectures** *(recorded)*
 
 - Monday 12pm--1pm, ABS Lecture Theatre 1130
-- Tuesday 9am--10am, ABS Lecture Theatre 1130
-:::
-
-::: fragment
-**Tutorials** *(recorded)*
-
-- Tuesday 10am--11am, ABS Lecture Theatre 1130
-- 1-hour tutorial directly following your lecture
+- Tuesday 9am--11am, ABS Lecture Theatre 1130
 :::
 
 ::: fragment
 **Computer Labs**
 
-- 2-hour in-person lab session with demonstrators
-- Biomedical Building, Australian Technology Park, Eveleigh
+- 2-hour in-person lab session with tutors and demonstrators
+- Biomedical Building C81, Australian Technology Park, Eveleigh
 - See timetable for your allocated time
 :::
 
@@ -113,7 +111,7 @@ sequenceDiagram
   participant S as Sat
   participant Su as Sun
 
-  Note over M,T: Lectures (recorded) - ABS LT 1130
+  Note over M,2: Lectures (recorded) - ABS LT 1130
   Note over T,Th: Lab Sessions - Biomedical Building
   Th->>+Su: Self-revision, pick ONE day (encouraged)
 
@@ -121,7 +119,7 @@ sequenceDiagram
 
 ## Resources
 
-- [Canvas](https://canvas.sydney.edu.au/courses/64771) (of course)
+- [Canvas](https://canvas.sydney.edu.au/courses/71839) (of course)
 - [ENVX-resources](https://github.com/ENVX-resources) -- GitHub repository for our open-source materials
 - [Ed Discussion](https://edstem.org/au/dashboard) -- main platform for **ANNOUNCEMENTS** and Q&A
 
@@ -130,7 +128,7 @@ sequenceDiagram
 ## Where are the Labs?
 
 - Lab sessions include extra time (30 minutes) for travel -- already programmed in the timetable (so clashes are avoided)
-- A free shuttle service is available between campus and the labs, but the schedule is very limited
+- We are working on securing a free shuttle service between campus and the labs - stay tuned!
 - Take advantage of the **new community access gates at Redfern Station**: saves 5 minutes
 
 ::: {.columns}
