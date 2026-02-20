@@ -2676,7 +2676,7 @@
     "href": "lectures/L07/lecture-07.html#conclusion-1",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Conclusion",
-    "text": "Conclusion\nThe results of the chi-squared test suggest that the observed frequencies of butterfly colours are significantly different from the expected frequencies (\\(\\chi^2 = 8.8\\), \\(df = 3\\), \\(p &lt; 0.001\\)). We can reject the null hypothesis and conclude that the biologist’s claim is not true.\n\n\n\n\n\n\nNote\n\n\nIf you’re interested, compare this result to the simulation we performed earlier."
+    "text": "Conclusion\nThe results of the chi-squared test suggest that the observed frequencies of butterfly colours are significantly different from the expected frequencies (\\(\\chi^2 = 8.8\\), \\(df = 3\\), \\(p = 0.032\\)). We can reject the null hypothesis and conclude that the biologist’s claim is not true.\n\n\n\n\n\n\nNote\n\n\nIf you’re interested, compare this result to the simulation we performed earlier."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#hypothesis-3",
