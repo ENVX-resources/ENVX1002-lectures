@@ -1,7 +1,9 @@
 ---
 title: Lecture 01a -- Welcome to ENVX1002
 author: Liana Pozza
-format: ochre-revealjs
+format: 
+  ochre-revealjs: default
+  ochre-typst: default
 # format: revealjs
 # fontsize: 16pt
 ---
@@ -125,7 +127,7 @@ sequenceDiagram
 
 ## Where are the Labs?
 
-- Lab sessions include extra time (30 minutes) for travel -- already programmed in the timetable (so clashes are avoided)
+- Lab sessions include extra time (~30 minutes) for travel -- already programmed in the timetable (so clashes are avoided)
 - We are working on securing a free shuttle service between campus and the labs - stay tuned!
 - Take advantage of the **new community access gates at Redfern Station**: saves 5 minutes
 
