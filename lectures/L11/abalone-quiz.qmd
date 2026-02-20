@@ -1,9 +1,6 @@
 ---
 title: "L11 MLR -- Abalone Quiz"
 author: Si Yang Han
-format:
-  ochre-revealjs: default
-  ochre-typst: default
 ---
 
 ```{r setup, include=FALSE}

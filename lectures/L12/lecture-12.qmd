@@ -1,9 +1,6 @@
 ---
 title: Topic 12 -- Nonlinear regression
 author: Si Yang Han
-format:
-  ochre-revealjs: default
-  ochre-typst: default
 scrollable: true
 ---
 ## Module overview

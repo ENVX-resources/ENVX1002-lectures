@@ -1,9 +1,6 @@
 ---
 title: Topic 10 -- Simple Linear Regression
 author: Si Yang Han
-format:
-  ochre-revealjs: default
-  ochre-typst: default
 scrollable: true
 ---
 

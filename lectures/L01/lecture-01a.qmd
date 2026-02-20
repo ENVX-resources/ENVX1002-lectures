@@ -1,11 +1,6 @@
 ---
 title: Lecture 01a -- Welcome to ENVX1002
 author: Liana Pozza
-format: 
-  ochre-revealjs: default
-  ochre-typst: default
-# format: revealjs
-# fontsize: 16pt
 ---
 
 

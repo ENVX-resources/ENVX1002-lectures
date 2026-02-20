@@ -1,9 +1,6 @@
 ---
 title: Lecture 01b -- Reproducible Science
 author: Januar Harianto
-format:
-  ochre-revealjs: default
-  ochre-typst: default
 # format: revealjs
 # fontsize: 16pt
 ---

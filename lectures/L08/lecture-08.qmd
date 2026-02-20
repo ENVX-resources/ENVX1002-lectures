@@ -1,9 +1,6 @@
 ---
 title: Topic 8 -- Permutation tests and bootstrap
-author: Floris van Ogtrop 
-format:
-  ochre-revealjs: default
-  ochre-typst: default
+author: Floris van Ogtrop
 ---
 
 ## Announcement

@@ -1,9 +1,6 @@
 ---
 title: Topic 6 -- Two-sample *t*-tests
 author: Floris van Ogtrop
-format:
-  ochre-revealjs: default
-  ochre-typst: default
 ---
 
 # Testing differences in means
