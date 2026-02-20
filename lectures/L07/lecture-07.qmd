@@ -113,7 +113,8 @@ library(tidyverse)
 # for display only
 data.frame(A = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
            B = c(7, 8, 9, 10, 11, 12, 13, 14, 15, 16)) %>%
-  gt()
+  gt() %>%
+  opt_table_font(font = "Crimson Pro", add = FALSE)
 ```
 :::
 
@@ -125,7 +126,8 @@ data.frame(A = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
 
 data.frame(A = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
            B = c(7, 8, 9, 10, 11, 12, 13, 14, 15, 200)) %>%
-  gt()
+  gt() %>%
+  opt_table_font(font = "Crimson Pro", add = FALSE)
 ```
 :::
 ::::
@@ -212,6 +214,7 @@ df <- tibble(
   non_parametric = c("Wilcoxon signed-rank test", "Mann-Whitney U test", "Kruskal-Wallis test", "Spearman's rank correlation"))
 
 gt(df) %>%
+  opt_table_font(font = "Crimson Pro", add = FALSE) %>%
   cols_label(parametric = "Parametric tests", non_parametric = "Non-parametric counterpart") %>%
   tab_options(
     table.font.size = px(24),
@@ -290,6 +293,7 @@ df <- tibble(
   weight_after = weight_after)
 
 gt(df) %>%
+  opt_table_font(font = "Crimson Pro", add = FALSE) %>%
   tab_options(
     table.font.size = px(24),
     column_labels.font.weight = "bold")
@@ -308,6 +312,7 @@ df %>%
   mutate(rank = rank(abs(D))) %>%
   mutate("Signed rank" = ifelse(D > 0, rank, -rank)) %>%
   gt() %>%
+  opt_table_font(font = "Crimson Pro", add = FALSE) %>%
   tab_options(
     table.font.size = px(24),
     column_labels.font.weight = "bold")
