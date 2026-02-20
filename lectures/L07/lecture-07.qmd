@@ -1,9 +1,7 @@
 ---
 title: Topic 7 -- Non-parametric tests
 author: Floris van Ogtrop
-format:
-  ochre-revealjs: default
-  ochre-typst: default
+format: ochre-revealjs
 ---
 
 ```{r setup}

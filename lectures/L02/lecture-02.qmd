@@ -3,9 +3,7 @@ title: "Lecture 02: Introduction to statistical programming"
 author: Januar Harianto
 # format: revealjs
 # fontsize: 16px
-format:
-  ochre-revealjs: default
-  ochre-typst: default
+format: ochre-revealjs
 ---
 
 
