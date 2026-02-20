@@ -58,18 +58,18 @@ In your own time: [The best stats you've ever seen](https://www.ted.com/talks/ha
 > 
 > **But Messi does all of this and more.**
 
-![Messi playing for Argentina](https://upload.wikimedia.org/wikipedia/commons/0/0e/Argentina_team_in_St._Petersburg_%28cropped%29_Messi.jpg){fig-align="left"}
+![Messi playing for Argentina](images/Argentina_team_Messi.jpg){fig-align="left"}
 
 *Image credit: [Кирилл Венедиктов](https://commons.wikimedia.org/wiki/File:Argentina_team_in_St._Petersburg_(cropped)_Messi.jpg), CC BY-SA 3.0 GFDL, via Wikimedia Commons*
 
 ## Lionel Messi is impossible
 
-![Source: [fivethirtyeight](https://fivethirtyeight.com/features/lionel-messi-is-impossible/)](images/messi-scoring-production.webp)
+![Source: [fivethirtyeight](https://fivethirtyeight.com/features/lionel-messi-is-impossible/)](images/messi-scoring-production.png)
 
 
 ## Lionel Messi is impossible
 
-![Source: [fivethirtyeight](https://fivethirtyeight.com/features/lionel-messi-is-impossible/)](images/messi-shooting-ratio.webp)
+![Source: [fivethirtyeight](https://fivethirtyeight.com/features/lionel-messi-is-impossible/)](images/messi-shooting-ratio.png)
 
 ## Serious stats
 
@@ -126,7 +126,7 @@ rstatix::anova_summary(model) |>
 :::
 ::: {.column width="40%"}
 
-![Source: ["Guys where do you pee?"](https://www.reddit.com/r/dataisbeautiful/comments/1i3f1m8/oc_guys_where_do_you_pee_reddit_comments)](images/wherepee.webp){fig-align="left"} 
+![Source: ["Guys where do you pee?"](https://www.reddit.com/r/dataisbeautiful/comments/1i3f1m8/oc_guys_where_do_you_pee_reddit_comments)](images/wherepee.png){fig-align="left"} 
 
 :::
 ::::
@@ -203,11 +203,11 @@ From [Nature](https://www.nature.com/news/1-500-scientists-lift-the-lid-on-repro
 
 :::: {.columns}
 ::: {.column width="30%"}
-![](images/reproduce-exp.webp)
+![](images/reproduce-exp.png)
 :::
 
 ::: {.column width="50%"}
-![](images/factors-reproducibility.webp)
+![](images/factors-reproducibility.png)
 
 Statistical analysis, experimental design and data issues are the main factors affecting research reproducibility.
 :::

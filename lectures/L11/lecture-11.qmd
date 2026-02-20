@@ -6,6 +6,7 @@ format:
     logo: ../muddyqr.png
     # footer: "Scan the QR code to provide feedback on this lecture"
 scrollable: true
+prefer-html: true
 ---
 
 ## Module overview

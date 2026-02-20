@@ -44,7 +44,7 @@ By now you should have...
 
 ::: {layout-ncol=2}
 
-![1970s: SAS (Statistical Analysis System) [Source](https://data-flair.training/blogs/sas-software/)](images/sas-stat.webp){height=300 fig-align="left"}
+![1970s: SAS (Statistical Analysis System) [Source](https://data-flair.training/blogs/sas-software/)](images/sas-stat.png){height=300 fig-align="left"}
 
 ![1976: Birth of S at Bell Labs. S-PLUS debuts in 1988. [Source](https://solutionmetrics.com.au/splus/)](images/splus.png){height=300}
 

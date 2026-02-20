@@ -870,7 +870,7 @@ For right (positive) skewed data, we can use a
 
 - $1/x$ inverse transformation for highly skewed data.
 - $\log_{10}$ or $\log_e$ transformation for very skewed data. 
-- $\sqrt{}$ square root transformation for moderately skewed data.
+- $\sqrt{x}$ square root transformation for moderately skewed data.
   
 For left (negative) skewed data (which is rare to find), we can "try" a
 
