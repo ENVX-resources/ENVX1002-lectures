@@ -13,7 +13,7 @@ format: ochre-revealjs
 
 ### Liana Pozza - Unit Coordinator
 
-- Room 303, Level 3, Biomedical Building C81, Australian Technology Park, Eveleigh
+- Room 303, Level 3, Biomedical Building C81, 1 Central Ave, Eveleigh
 - Ph: 02 8627 1012
 - Email: liana.pozza@sydney.edu.au
 
@@ -92,7 +92,7 @@ The following are optional (but highly recommended):
 **Computer Labs**
 
 - 2-hour in-person lab session with tutors and demonstrators
-- Biomedical Building C81, Australian Technology Park, Eveleigh
+- Biomedical Building C81, 1 Central Ave, Eveleigh
 - See timetable for your allocated time
 :::
 
@@ -136,7 +136,7 @@ sequenceDiagram
 <iframe 
   src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d6623.816347572!2d151.18975431930576!3d-33.89201869242399!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x6b12b1d46683b08b%3A0x16d4584b9e392df3!2sCarslaw%20Building%2C%20The%20University%20of%20Sydney%2C%20Camperdown%20NSW!3m2!1d-33.8885751!2d151.1903621!4m5!1s0x6b12b1d028a9f8b3%3A0x63baccfd62f322e5!2sBiomedical%20Building%2C%201%20Central%20Ave%2C%20Eveleigh%20NSW%202015!3m2!1d-33.8961182!2d151.1963471!5e0!3m2!1sen!2sau!4v1736997049585!5m2!1sen!2sau" 
   width="100%" 
-  height="480" 
+  height="400" 
   style="border:0;" 
   title="Walking directions from Carslaw Building to Biomedical Building"
   allowfullscreen="" 
@@ -147,16 +147,17 @@ sequenceDiagram
 :::
 
 ::: {.column width="30%"}
-![](images/redfern_ca.png)
+![](images/redfern_ca.png){width="80%"}
 :::
 
 :::
+<!---# --->
 
 ## Campus bus
 
-There is currently a bus that goes to Redfern Station, but nothing out to C81 yet. You can find the timetable here: [Campus Bus Timetables](https://www.sydney.edu.au/about-us/campuses/getting-to-campus/campus-bus-timetables.html)
+There is currently a bus that goes to Redfern Station. You can find the timetable here: [Campus Bus Timetables](https://www.sydney.edu.au/about-us/campuses/getting-to-campus/campus-bus-timetables.html)
 
-We are looking to secure a bus service to C81, but need an idea of numbers first. 
+We are looking to secure a bus service from main campus to C81, but need an idea of numbers first. 
 
 If you are interested in catching a shuttle bus to C81, please fill out this short survey:
 
@@ -199,9 +200,9 @@ If you are interested in catching a shuttle bus to C81, please fill out this sho
 library(lubridate)
 year <- year(Sys.Date())
 address <- paste0(
-  "https://www.sydney.edu.au/units/ENVX1002/",
-  year,
-  "-S1C-ND-CC"
+    "https://www.sydney.edu.au/units/ENVX1002/",
+    year,
+    "-S1C-ND-CC"
 )
 ```
 
@@ -217,28 +218,28 @@ library(tibble)
 
 # Create assessment table with explicit column types
 assessment_df <- tibble(
-  Week = factor(c("3", "5", "8", "13", "Exam")),
-  Assessment = factor(c(
-    "Early Feedback Task (individual 5%)",
-    "Describing Data Report (individual 15%)",
-    "Coding and data skills evaluation (individual 15%)",
-    "Group presentation: Modelling relationships in data (10% + Peer assessment 5%)",
-    "Final exam (individual 50%)"
-  )),
-  Description = factor(c(
-    "In-person - 15 minutes",
-    "Written report, 500 words",
-    "In-person - 50 minutes",
-    "Group presentation - 5 minutes",
-    "MCQ + SAQ Questions - 2 hours"
-  ))
+    Week = factor(c("3", "5", "8", "13", "Exam")),
+    Assessment = factor(c(
+        "Early Feedback Task (individual 5%)",
+        "Describing Data Report (individual 15%)",
+        "Coding and data skills evaluation (individual 15%)",
+        "Group presentation: Modelling relationships in data (10% + Peer assessment 5%)",
+        "Final exam (individual 50%)"
+    )),
+    Description = factor(c(
+        "In-person - 15 minutes",
+        "Written report, 500 words",
+        "In-person - 50 minutes",
+        "Group presentation - 15 minutes",
+        "MCQ + SAQ Questions - 2 hours"
+    ))
 )
 
 # Create table with minimal styling
 tt(assessment_df)
 ```
 
-- **Week 3**: The **early feedback quiz** is a chance for us to gauge your understanding and provide feedback
+- **Week 3**: The **early feedback task** is a chance for us to gauge your understanding and provide feedback
 - **Week 8**: Coding and data skills evaluation covers R data manipulation and analysis
 - **Final exam** will NOT require you to write or interpret code -- focus on understanding concepts and interpreting results
 
@@ -256,7 +257,7 @@ This hurdle can be quite daunting, but we will are here to work with you and hel
 We will provide the learning materials, guidance, and any support you need, and it is your responsibility to keep up with the content each week and ask us questions if there is something that isn't quite making sense yet. 
 
 
-# Software and tools
+# Software, tools and resources
 
 > The combination of some data and an aching desire for an answer does not ensure that a reasonable answer can be extracted from a given body of data.
 
@@ -276,7 +277,7 @@ We will provide the learning materials, guidance, and any support you need, and 
 2. **R** -- a programming language for data analysis
 3. **RStudio** -- an integrated development environment (IDE) for R
 4. Quarto (**Markdown**) -- a key platform for reproducible reports and documents
-5. **GitHub Copilot** -- AI-powered code completion tool. *Optional, but highly recommended*
+5. **GitHub Copilot** -- AI-powered code completion tool. *Optional, we will introduce you to this later in the semester*
 :::
 
 
@@ -356,27 +357,27 @@ library(tidyverse) # Collection of data science packages
 # Create an animated plot showing how life expectancy relates to GDP
 # across different continents over time
 ggplot(
-  gapminder,
-  aes(gdpPercap, lifeExp, # GDP per capita vs life expectancy
-    size = pop, # Point size represents population
-    colour = country
-  )
+    gapminder,
+    aes(gdpPercap, lifeExp, # GDP per capita vs life expectancy
+        size = pop, # Point size represents population
+        colour = country
+    )
 ) + # Each country gets its own color
-  geom_point(
-    alpha = 0.7, # Semi-transparent points
-    show.legend = FALSE
-  ) + # Hide legend for cleaner look
-  scale_colour_manual(values = country_colors) +
-  scale_size(range = c(2, 12)) + # Set min/max point sizes
-  scale_x_log10() + # Log scale for GDP (wide range)
-  facet_wrap(~continent) + # Separate plot for each continent
-  labs(
-    title = "Year: {frame_time}",
-    x = "GDP per capita",
-    y = "Life expectancy"
-  ) +
-  transition_time(year) + # Animate through years
-  ease_aes("linear") # Smooth transitions
+    geom_point(
+        alpha = 0.7, # Semi-transparent points
+        show.legend = FALSE
+    ) + # Hide legend for cleaner look
+    scale_colour_manual(values = country_colors) +
+    scale_size(range = c(2, 12)) + # Set min/max point sizes
+    scale_x_log10() + # Log scale for GDP (wide range)
+    facet_wrap(~continent) + # Separate plot for each continent
+    labs(
+        title = "Year: {frame_time}",
+        x = "GDP per capita",
+        y = "Life expectancy"
+    ) +
+    transition_time(year) + # Animate through years
+    ease_aes("linear") # Smooth transitions
 ```
 
 
@@ -400,7 +401,6 @@ ggplot(
 
 - Marjority of our resources are built using [**Quarto**](https://quarto.org/) -- a markdown-based document format that **you will learn to use** in this unit
   - Lecture slides
-  - Tutorials
   - Lab exercises
 - Quarto  makes everything **reproducible** - what does it mean?
 - Free and open source, available on the [ENVX resources](https://github.com/ENVX-resources) GitHub repository -- re-use and modify as you wish (but follow [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/))
@@ -413,16 +413,36 @@ ggplot(
 
 - Again, it's normal to feel overwhelmed at first
 - **These technologies are complementary -- everything is implemented in RStudio**
-- The **tutorials** and **labs** will guide you through the process
+- The **lectures** and **practical classes** will guide you through the process
 
 ![](images/adventuretime.gif)
 
-## GitHub Copilot
 
+## Textbooks
+
+This unit does not have a required textbook, but we do draw from a range of resources, including: 
+
+- Quinn, G. P., & Keough, M. J. (2002). *Experimental design and data analysis for biologists*. Cambridge University Press.
+
+*There is an updated edition of this book, but we will mostly be drawing from the 2002 edition this year.* 
+
+- Mead, R. (2017). *Statistical methods in agriculture and experimental biology* (CRC Press., Ed.; Third edition.). CRC Press, an imprint of Chapman and Hall/CRC. https://doi.org/10.1201/9780203738559
+
+These texts are available through the library, or in Canvas via the [Reading List](https://canvas.sydney.edu.au/courses/71839/external_tools/45015?display=borderless), which can be found on the left hand navigation bar in Canvas. 
+
+## Statbot
+
+**Statbot** is an AI-powered chatbot designed to assist you with any questions you may have about coding, statistical concepts, or even provide practice exam questions.  
+
+Access the bot here or in Canvas: [Statbot](https://canvas.sydney.edu.au/courses/71839/pages/statbot)
+
+- The bot is tailored to ENVX1002 and hosted on a secure server, ensuring your data and interactions are protected. 
+- Statbot is available 24/7 to support your learning journey.
+- Input and conversations are de-identified, recorded, and monitored to ensure the bot is providing accurate and helpful responses, and to help us improve our teaching material week to week.
 
 # Thanks!
 
-**Tomorrow**: Lecture (1h) and then Tutorial (1h) -- see you there!
+**Tomorrow**: Lecture (2h) -- see you there!
 
 This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
 
