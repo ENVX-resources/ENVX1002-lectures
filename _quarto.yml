@@ -6,7 +6,7 @@ project:
 editor:
   render-on-save: true
 execute:
-  freeze: auto # re-render only when source changes
+  freeze: true # always use cached results; render locally before pushing
 
 website:
   page-navigation: true
