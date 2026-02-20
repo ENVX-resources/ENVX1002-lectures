@@ -58,25 +58,25 @@ In your own time: [The best stats you've ever seen](https://www.ted.com/talks/ha
 > 
 > **But Messi does all of this and more.**
 
-![Messi playing for Argentina](images/Argentina_team_Messi.jpg){fig-align="left"}
+![Messi playing for Argentina](images/Argentina_team_Messi.jpg){fig-align="left" fig-alt="Lionel Messi standing with the Argentina national football team on the pitch"}
 
 *Image credit: [Кирилл Венедиктов](https://commons.wikimedia.org/wiki/File:Argentina_team_in_St._Petersburg_(cropped)_Messi.jpg), CC BY-SA 3.0 GFDL, via Wikimedia Commons*
 
 ## Lionel Messi is impossible
 
-![Source: [fivethirtyeight](https://fivethirtyeight.com/features/lionel-messi-is-impossible/)](images/messi-scoring-production.png)
+![Source: [fivethirtyeight](https://fivethirtyeight.com/features/lionel-messi-is-impossible/)](images/messi-scoring-production.png){fig-alt="Chart comparing Messi's scoring production to other top football players, showing Messi as a statistical outlier"}
 
 
 ## Lionel Messi is impossible
 
-![Source: [fivethirtyeight](https://fivethirtyeight.com/features/lionel-messi-is-impossible/)](images/messi-shooting-ratio.png)
+![Source: [fivethirtyeight](https://fivethirtyeight.com/features/lionel-messi-is-impossible/)](images/messi-shooting-ratio.png){fig-alt="Chart comparing Messi's shooting ratio to other top football players, highlighting his exceptional efficiency"}
 
 ## Serious stats
 
 
 ### Which sepal length is longer?
 
-![Source: [Embedded Robotics](https://www.embedded-robotics.com/iris-dataset-classification/)](images/iris.png)
+![Source: [Embedded Robotics](https://www.embedded-robotics.com/iris-dataset-classification/)](images/iris.png){fig-alt="Photographs of three iris species -- setosa, versicolor, and virginica -- showing differences in sepal and petal shape"}
 
 *Note: common dataset used in statistics and machine learning.*
 
@@ -84,6 +84,8 @@ In your own time: [The best stats you've ever seen](https://www.ted.com/talks/ha
 ## Serious stats
 ### Visualise
 ```{r}
+#| warning: false
+#| message: false
 # load libraries
 pacman::p_load(ggplot2, rstatix, gt)
 
@@ -100,6 +102,8 @@ ggplot(iris, aes(x = Species, y = Sepal.Length)) +
 We use formal statistical tests to determine if differences are **statistically significant** so that we can make **inferences** about the population based on the sample data -- part of the **scientific method**.
 
 ```{r}
+#| warning: false
+#| message: false
 # run ANOVA
 model <- aov(Sepal.Length ~ Species, data = iris)
 f_stat <- summary(model)[[1]]$`F value`[1]
@@ -120,13 +124,13 @@ rstatix::anova_summary(model) |>
 
 :::: {.columns}
 ::: {.column width="25%"}
-![Source: [You scrolled 69,420 bananas this year](https://www.reddit.com/r/recap/comments/1h0igae/i_think_i_win_best_number_of_bananas/?ref=share&ref_source=link)](images/bananas_scrolled.jpeg){fig-align="left"} 
+![Source: [You scrolled 69,420 bananas this year](https://www.reddit.com/r/recap/comments/1h0igae/i_think_i_win_best_number_of_bananas/?ref=share&ref_source=link)](images/bananas_scrolled.jpeg){fig-align="left" fig-alt="Reddit Recap screenshot showing scroll distance measured in bananas"} 
 
 
 :::
 ::: {.column width="40%"}
 
-![Source: ["Guys where do you pee?"](https://www.reddit.com/r/dataisbeautiful/comments/1i3f1m8/oc_guys_where_do_you_pee_reddit_comments)](images/wherepee.png){fig-align="left"} 
+![Source: ["Guys where do you pee?"](https://www.reddit.com/r/dataisbeautiful/comments/1i3f1m8/oc_guys_where_do_you_pee_reddit_comments)](images/wherepee.png){fig-align="left" fig-alt="Data visualisation from Reddit showing a heatmap of survey responses about where guys pee in the toilet bowl"} 
 
 :::
 ::::
@@ -148,14 +152,14 @@ The *beauty* of statistics -- formal hypothesis testing is not always required t
 - If you discover something (**or not**), it should be possible for others to verify your findings independently
 - Your findings should be **reproducible** and **replicable**
 
-![The logical framework by Underwood (1997)](images/logical_framework.png)
+![The logical framework by Underwood (1997)](images/logical_framework.png){fig-alt="Diagram of the logical framework for scientific inquiry as described by Underwood (1997)"}
 
 ## No single method
 
-Variation of the scientific method exist-- it is a **framework** that guides the process of scientific inquiry
+Variations of the scientific method exist -- it is a **framework** that guides the process of scientific inquiry
 
 ::: fragment
-![](images/workflow.png)
+![](images/workflow.png){fig-alt="Flowchart showing variations of the scientific method as a cyclical workflow"}
 :::
 
 ## No single method
@@ -168,7 +172,7 @@ Variation of the scientific method exist-- it is a **framework** that guides the
 
 :::: {.columns}
 ::: {.column width="50%"}
-![](images/hatpc.png){width=50%}
+![](images/hatpc.png){width="50%" fig-alt="Diagram of the HATPC framework: Hypothesis, Assumptions, Test statistic, P-value, Conclusion"}
 :::
 
 ::: {.column width="50%"}
@@ -182,14 +186,17 @@ You will see some variation of the HATPC in your first-year units -- a common fr
 ::::
 :::
 
-## Key principles
+## Key principles (1/2)
 
 1. **Observation**: Identify a phenomenon of interest that can be measured
 2. **Question**: Formulate a question that can be answered by collecting data
 3. **Research**: Review the literature to understand what is already known -- your question may already have been asked by someone else. This step helps in understanding what is already known and what gaps in knowledge may exist.
 4. **Hypothesis**: Formulate a **testable** hypothesis -- something that can be assessed using data collection and analysis
+
+## Key principles (2/2)
+
 5. **Experiment**: Design an experiment to test the hypothesis
-6. **Data collection**: Collect data 
+6. **Data collection**: Collect data
 7. **Analysis**: use statistical methods to analyse the data and determine if results are statistically significant or demonstrate a pattern
 8. **Conclusion**: Interpret the results and draw conclusions. If the results are not significant, this is still a valid conclusion!
 
@@ -202,12 +209,12 @@ From [Nature](https://www.nature.com/news/1-500-scientists-lift-the-lid-on-repro
 > More than 70% of researchers have tried and failed to reproduce another scientist's experiments, and more than half have failed to reproduce their own experiments. 
 
 :::: {.columns}
-::: {.column width="30%"}
-![](images/reproduce-exp.png)
+::: {.column width="35%"}
+![](images/reproduce-exp.png){fig-alt="Bar chart from Nature survey showing the percentage of researchers who failed to reproduce experiments"}
 :::
 
-::: {.column width="50%"}
-![](images/factors-reproducibility.png)
+::: {.column width="65%"}
+![](images/factors-reproducibility.png){fig-alt="Bar chart from Nature survey showing factors that contribute to irreproducible research, with statistical analysis and experimental design among the top causes"}
 
 Statistical analysis, experimental design and data issues are the main factors affecting research reproducibility.
 :::
@@ -233,6 +240,8 @@ How would you explain to someone how to reproduce this plot...
 
 ### 
 ```{r}
+#| warning: false
+#| message: false
 library(palmerpenguins)
 boxplot(bill_length_mm ~ species, data = penguins)
 ```
@@ -242,14 +251,17 @@ boxplot(bill_length_mm ~ species, data = penguins)
 
 Those without programming knowledge will *still* struggle to understand and use the two lines of R code shown above.
 
-### Pre-requisites
+### What you'll learn
 
-- Understanding of the R programming language
-- Knowing how to debug (i.e. read error messages or "play" with code)
-- It takes time, but the payoff is worth it -- all programming languages follow similar principles and you will find others easier to learn, even if not for statistics...
+- How to read and write basic R code for data analysis
+- How to debug by reading error messages and experimenting with code
+- Transferable programming skills -- all programming languages follow similar principles and you will find others easier to learn, even if not for statistics...
 
 # Demonstration
 
+::: {.notes}
+Live demo: walk through a short reproducible analysis in RStudio using Quarto — load data, create a plot, and render the document to show the full workflow from code to output.
+:::
 
 # References
 
