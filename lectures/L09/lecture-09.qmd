@@ -1,6 +1,9 @@
 ---
 title: Topic 9 -- Describing relationships
 author: Si Yang Han
+format:
+  ochre-revealjs: default
+  ochre-typst: default
 ---
 
 ## About me

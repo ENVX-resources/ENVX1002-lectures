@@ -1,6 +1,9 @@
 ---
 title: "Lecture 04 -- The central limit theorem"
 author: Januar Harianto
+format:
+  ochre-revealjs: default
+  ochre-typst: default
 execute:
   cache: true
 ---
