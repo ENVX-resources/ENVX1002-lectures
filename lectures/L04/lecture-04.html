@@ -703,25 +703,27 @@ Januar Harianto
 <h2>Practical uses of normal distribution functions</h2>
 <p>These functions help us answer questions like:</p>
 <ul>
-<li>What proportion of trees are between 18m and 22m tall? ::: {.cell}</li>
+<li>What proportion of trees are between 18m and 22m tall?</li>
 </ul>
+<div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="co"># Probability between 18m and 22m - calculate the difference</span></span>
 <span id="cb16-2"><a></a>prob_between <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="dv">22</span>, <span class="dv">20</span>, <span class="dv">3</span>) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">18</span>, <span class="dv">20</span>, <span class="dv">3</span>)</span>
 <span id="cb16-3"><a></a>prob_between</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.4950149</code></pre>
 </div>
-<p>:::</p>
+</div>
 <ul>
-<li>How tall are the top 5% of trees? ::: {.cell}</li>
+<li>How tall are the top 5% of trees?</li>
 </ul>
+<div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="co"># Height of tallest 5% of trees</span></span>
 <span id="cb18-2"><a></a>tall_threshold <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.95</span>, <span class="dv">20</span>, <span class="dv">3</span>)</span>
 <span id="cb18-3"><a></a>tall_threshold</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 24.93456</code></pre>
 </div>
-<p>:::</p>
+</div>
 <ul>
 <li>What are the height thresholds for “extreme” trees (top 1% and bottom 1%)?</li>
 </ul>
