@@ -707,114 +707,6 @@
     "text": "The most important question\nHow do you feel about regression so far?\n\nEasy\nOK\nHard\nSOS"
   },
   {
-    "objectID": "lectures/L10/index.html",
-    "href": "lectures/L10/index.html",
-    "title": "Lecture 10",
-    "section": "",
-    "text": "Full Screen | PDF",
-    "crumbs": [
-      "{{< fa house-chimney >}}",
-      "**Module 3 modelling**",
-      "L10 -- Linear functions"
-    ]
-  },
-  {
-    "objectID": "lectures/L09/index.html",
-    "href": "lectures/L09/index.html",
-    "title": "Lecture 09",
-    "section": "",
-    "text": "Full Screen | PDF",
-    "crumbs": [
-      "{{< fa house-chimney >}}",
-      "**Module 3 modelling**",
-      "L09 -- Describing relationships"
-    ]
-  },
-  {
-    "objectID": "lectures/L08/index.html",
-    "href": "lectures/L08/index.html",
-    "title": "Lecture 08",
-    "section": "",
-    "text": "Full Screen | PDF",
-    "crumbs": [
-      "{{< fa house-chimney >}}",
-      "**Module 2 inference**",
-      "L08 -- Bootstrapping"
-    ]
-  },
-  {
-    "objectID": "lectures/L07/index.html",
-    "href": "lectures/L07/index.html",
-    "title": "Lecture 07",
-    "section": "",
-    "text": "Lecture 07\nFull Screen | PDF",
-    "crumbs": [
-      "{{< fa house-chimney >}}",
-      "**Module 2 inference**",
-      "L07 -- Non-parametric tests"
-    ]
-  },
-  {
-    "objectID": "lectures/L06/index.html",
-    "href": "lectures/L06/index.html",
-    "title": "Lecture 06",
-    "section": "",
-    "text": "Lecture 06a\nFull Screen | PDF",
-    "crumbs": [
-      "{{< fa house-chimney >}}",
-      "**Module 2 inference**",
-      "L06 -- Two-sample *t*-tests"
-    ]
-  },
-  {
-    "objectID": "lectures/L05/index.html",
-    "href": "lectures/L05/index.html",
-    "title": "Lecture 05",
-    "section": "",
-    "text": "Full Screen | PDF",
-    "crumbs": [
-      "{{< fa house-chimney >}}",
-      "**Module 2 inference**",
-      "L05 -- Hypothesis testing"
-    ]
-  },
-  {
-    "objectID": "lectures/L04/index.html",
-    "href": "lectures/L04/index.html",
-    "title": "Lecture 04",
-    "section": "",
-    "text": "Full Screen | PDF",
-    "crumbs": [
-      "{{< fa house-chimney >}}",
-      "**Module 1 describing data**",
-      "L04 -- The central limit theorem"
-    ]
-  },
-  {
-    "objectID": "lectures/L03/index.html",
-    "href": "lectures/L03/index.html",
-    "title": "Lecture 03",
-    "section": "",
-    "text": "Full Screen | PDF",
-    "crumbs": [
-      "{{< fa house-chimney >}}",
-      "**Module 1 describing data**",
-      "L03 -- Exploring and visualising data"
-    ]
-  },
-  {
-    "objectID": "lectures/L02/index.html",
-    "href": "lectures/L02/index.html",
-    "title": "Lecture 02",
-    "section": "",
-    "text": "Full Screen | PDF",
-    "crumbs": [
-      "{{< fa house-chimney >}}",
-      "**Module 1 describing data**",
-      "L02 -- Introduction to statistical programming"
-    ]
-  },
-  {
     "objectID": "lectures/L01/lecture-01a.html#about-us",
     "href": "lectures/L01/lecture-01a.html#about-us",
     "title": "Lecture 01a – Welcome to ENVX1002",
@@ -992,18 +884,6 @@
     "title": "About",
     "section": "",
     "text": "About this site"
-  },
-  {
-    "objectID": "lectures/L01/index.html",
-    "href": "lectures/L01/index.html",
-    "title": "Lecture 01 – Reproducible science",
-    "section": "",
-    "text": "Lecture 01a – Welcome to ENVX1002 Full Screen | PDF\n\nLecture 01b – Reproducible science Full Screen | PDF",
-    "crumbs": [
-      "{{< fa house-chimney >}}",
-      "**Module 1 describing data**",
-      "L01 -- Introduction"
-    ]
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#why-learn-statistics",
@@ -1297,7 +1177,7 @@
     "href": "lectures/L02/lecture-02.html#mode-in-r",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Mode in R",
-    "text": "Mode in R\nThere is no built-in function to calculate the mode, so we use the modeest package:\n\nif(!require(\"modeest\")) install.packages(\"modeest\")\n\nLoading required package: modeest\n\nlibrary(modeest)\n\ndf &lt;- c(1, 2, 3, 3, 4, 5, 5, 5, 6)\nmlv(df, method = \"mfv\")  # most frequent value\n\n[1] 5\n\n\n\nIf you were to do it yourself, how would you do it in R?\n\n\n\nUsing frequenciesUsing run-length encodingUsing loops\n\n\nUse the table() function to count frequencies:\n\nfreq_table &lt;- table(df) # Count frequencies of each value\n# Find which value(s) appear most often\nmodes &lt;- as.numeric(names(freq_table[freq_table == max(freq_table)]))\nmodes\n\n[1] 5\n\n\n\n\nUse run-length encoding after sorting:\n\nsorted_df &lt;- sort(df) # Sort the vector first\nruns &lt;- rle(sorted_df) # Use run-length encoding to find sequences\nmodes &lt;- runs$values[runs$lengths == max(runs$lengths)] # Find the value(s) with max length\nmodes\n\n[1] 5\n\n\n\n\nLoop through the vector and count occurrences:\n\nunique_vals &lt;- factor(df) # Create a factor of unique values\ncounts &lt;- tapply(df, unique_vals, length) # Count occurrences using tapply\nmodes &lt;- as.numeric(names(counts[counts == max(counts)])) # Find which values have the maximum count\nmodes\n\n[1] 5\n\n\n\n\n\n\n\nThe point is that it doesn’t matter how you calculate the mode, as long as you are able to do it. Also – if you needed this – aren’t you glad R has a package for it?"
+    "text": "Mode in R\nThere is no built-in function to calculate the mode, so we use the modeest package:\n\nif(!require(\"modeest\")) install.packages(\"modeest\")\nlibrary(modeest)\n\ndf &lt;- c(1, 2, 3, 3, 4, 5, 5, 5, 6)\nmlv(df, method = \"mfv\")  # most frequent value\n\n[1] 5\n\n\n\nIf you were to do it yourself, how would you do it in R?\n\n\n\nUsing frequenciesUsing run-length encodingUsing loops\n\n\nUse the table() function to count frequencies:\n\nfreq_table &lt;- table(df) # Count frequencies of each value\n# Find which value(s) appear most often\nmodes &lt;- as.numeric(names(freq_table[freq_table == max(freq_table)]))\nmodes\n\n[1] 5\n\n\n\n\nUse run-length encoding after sorting:\n\nsorted_df &lt;- sort(df) # Sort the vector first\nruns &lt;- rle(sorted_df) # Use run-length encoding to find sequences\nmodes &lt;- runs$values[runs$lengths == max(runs$lengths)] # Find the value(s) with max length\nmodes\n\n[1] 5\n\n\n\n\nLoop through the vector and count occurrences:\n\nunique_vals &lt;- factor(df) # Create a factor of unique values\ncounts &lt;- tapply(df, unique_vals, length) # Count occurrences using tapply\nmodes &lt;- as.numeric(names(counts[counts == max(counts)])) # Find which values have the maximum count\nmodes\n\n[1] 5\n\n\n\n\n\n\n\nThe point is that it doesn’t matter how you calculate the mode, as long as you are able to do it. Also – if you needed this – aren’t you glad R has a package for it?"
   },
   {
     "objectID": "lectures/L02/lecture-02.html#a-biological-example",
@@ -3615,29 +3495,5 @@
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Summary",
     "text": "Summary\nWorkflow\n\nUnderstand the variables: Which is the response variable? Is there a reason to believe a causal relationship?\nExplore data: How many observations? Summary statistics? Scatterplot and correlation?\nFit model\nCheck assumptions: Remember - it’s about the residuals! If assumptions fail, try transforming and return to Step 3. If assumptions still fail, consider another model and return to Step 3.\nAssess model fit: Hypothesis test, significance, F-statistic, p-value. R2, how much model variation was explained by the model.\nInterpret output: ‘For every one-unit increase in x, y increases by \\(\\beta_1\\) units…’ and any additional research/insight."
-  },
-  {
-    "objectID": "lectures/L11/index.html",
-    "href": "lectures/L11/index.html",
-    "title": "Lecture 11",
-    "section": "",
-    "text": "Full Screen | PDF",
-    "crumbs": [
-      "{{< fa house-chimney >}}",
-      "**Module 3 modelling**",
-      "L11 -- Multiple predictors"
-    ]
-  },
-  {
-    "objectID": "lectures/L12/index.html",
-    "href": "lectures/L12/index.html",
-    "title": "Lecture 12",
-    "section": "",
-    "text": "Full Screen | PDF",
-    "crumbs": [
-      "{{< fa house-chimney >}}",
-      "**Module 3 modelling**",
-      "L12 -- Non-linear functions"
-    ]
   }
 ]

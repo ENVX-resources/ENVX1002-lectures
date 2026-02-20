@@ -6,8 +6,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-4279360f14831a022364d2ef6b4efa56.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.26">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.27">
 
   <meta name="author" content="Januar Harianto">
   <title>Lecture 02: Introduction to statistical programming</title>
@@ -670,14 +670,11 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 <h2>Mode in R</h2>
 <p>There is no built-in function to calculate the mode, so we use the <code>modeest</code> package:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">"modeest"</span>)) <span class="fu">install.packages</span>(<span class="st">"modeest"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: modeest</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">library</span>(modeest)</span>
-<span id="cb18-2"><a></a></span>
-<span id="cb18-3"><a></a>df <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
-<span id="cb18-4"><a></a><span class="fu">mlv</span>(df, <span class="at">method =</span> <span class="st">"mfv"</span>)  <span class="co"># most frequent value</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">"modeest"</span>)) <span class="fu">install.packages</span>(<span class="st">"modeest"</span>)</span>
+<span id="cb16-2"><a></a><span class="fu">library</span>(modeest)</span>
+<span id="cb16-3"><a></a></span>
+<span id="cb16-4"><a></a>df <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="cb16-5"><a></a><span class="fu">mlv</span>(df, <span class="at">method =</span> <span class="st">"mfv"</span>)  <span class="co"># most frequent value</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
 </div>
@@ -692,10 +689,10 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 <div id="tabset-1-1">
 <p>Use the <code>table()</code> function to count frequencies:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>freq_table <span class="ot">&lt;-</span> <span class="fu">table</span>(df) <span class="co"># Count frequencies of each value</span></span>
-<span id="cb20-2"><a></a><span class="co"># Find which value(s) appear most often</span></span>
-<span id="cb20-3"><a></a>modes <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">names</span>(freq_table[freq_table <span class="sc">==</span> <span class="fu">max</span>(freq_table)]))</span>
-<span id="cb20-4"><a></a>modes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>freq_table <span class="ot">&lt;-</span> <span class="fu">table</span>(df) <span class="co"># Count frequencies of each value</span></span>
+<span id="cb18-2"><a></a><span class="co"># Find which value(s) appear most often</span></span>
+<span id="cb18-3"><a></a>modes <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">names</span>(freq_table[freq_table <span class="sc">==</span> <span class="fu">max</span>(freq_table)]))</span>
+<span id="cb18-4"><a></a>modes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
 </div>
@@ -704,10 +701,10 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 <div id="tabset-1-2">
 <p>Use run-length encoding after sorting:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>sorted_df <span class="ot">&lt;-</span> <span class="fu">sort</span>(df) <span class="co"># Sort the vector first</span></span>
-<span id="cb22-2"><a></a>runs <span class="ot">&lt;-</span> <span class="fu">rle</span>(sorted_df) <span class="co"># Use run-length encoding to find sequences</span></span>
-<span id="cb22-3"><a></a>modes <span class="ot">&lt;-</span> runs<span class="sc">$</span>values[runs<span class="sc">$</span>lengths <span class="sc">==</span> <span class="fu">max</span>(runs<span class="sc">$</span>lengths)] <span class="co"># Find the value(s) with max length</span></span>
-<span id="cb22-4"><a></a>modes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>sorted_df <span class="ot">&lt;-</span> <span class="fu">sort</span>(df) <span class="co"># Sort the vector first</span></span>
+<span id="cb20-2"><a></a>runs <span class="ot">&lt;-</span> <span class="fu">rle</span>(sorted_df) <span class="co"># Use run-length encoding to find sequences</span></span>
+<span id="cb20-3"><a></a>modes <span class="ot">&lt;-</span> runs<span class="sc">$</span>values[runs<span class="sc">$</span>lengths <span class="sc">==</span> <span class="fu">max</span>(runs<span class="sc">$</span>lengths)] <span class="co"># Find the value(s) with max length</span></span>
+<span id="cb20-4"><a></a>modes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
 </div>
@@ -716,10 +713,10 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 <div id="tabset-1-3">
 <p>Loop through the vector and count occurrences:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>unique_vals <span class="ot">&lt;-</span> <span class="fu">factor</span>(df) <span class="co"># Create a factor of unique values</span></span>
-<span id="cb24-2"><a></a>counts <span class="ot">&lt;-</span> <span class="fu">tapply</span>(df, unique_vals, length) <span class="co"># Count occurrences using tapply</span></span>
-<span id="cb24-3"><a></a>modes <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">names</span>(counts[counts <span class="sc">==</span> <span class="fu">max</span>(counts)])) <span class="co"># Find which values have the maximum count</span></span>
-<span id="cb24-4"><a></a>modes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>unique_vals <span class="ot">&lt;-</span> <span class="fu">factor</span>(df) <span class="co"># Create a factor of unique values</span></span>
+<span id="cb22-2"><a></a>counts <span class="ot">&lt;-</span> <span class="fu">tapply</span>(df, unique_vals, length) <span class="co"># Count occurrences using tapply</span></span>
+<span id="cb22-3"><a></a>modes <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">names</span>(counts[counts <span class="sc">==</span> <span class="fu">max</span>(counts)])) <span class="co"># Find which values have the maximum count</span></span>
+<span id="cb22-4"><a></a>modes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
 </div>
@@ -753,32 +750,32 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="co"># Plot seagrass lengths</span></span>
-<span id="cb26-2"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb26-3"><a></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb26-4"><a></a></span>
-<span id="cb26-5"><a></a>seagrass_protected <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">15.2</span>, <span class="fl">15.0</span>, <span class="fl">15.3</span>, <span class="fl">15.1</span>, <span class="fl">15.2</span>)</span>
-<span id="cb26-6"><a></a>seagrass_exposed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">12.0</span>, <span class="fl">18.0</span>, <span class="fl">14.5</span>, <span class="fl">16.5</span>, <span class="fl">15.0</span>)</span>
-<span id="cb26-7"><a></a></span>
-<span id="cb26-8"><a></a><span class="co"># Create plots for both sites</span></span>
-<span id="cb26-9"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb26-10"><a></a>   <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">y =</span> seagrass_protected), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb26-11"><a></a>   <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(seagrass_protected), <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb26-12"><a></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Site A: Protected Bay"</span>, <span class="at">x =</span> <span class="st">"Measurement"</span>, <span class="at">y =</span> <span class="st">"Length (cm)"</span>) <span class="sc">+</span></span>
-<span id="cb26-13"><a></a>   <span class="fu">ylim</span>(<span class="dv">10</span>, <span class="dv">20</span>)</span>
-<span id="cb26-14"><a></a></span>
-<span id="cb26-15"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb26-16"><a></a>   <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">y =</span> seagrass_exposed), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb26-17"><a></a>   <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(seagrass_exposed), <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb26-18"><a></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Site B: Wave-exposed Coast"</span>, <span class="at">x =</span> <span class="st">"Measurement"</span>, <span class="at">y =</span> <span class="st">"Length (cm)"</span>) <span class="sc">+</span></span>
-<span id="cb26-19"><a></a>   <span class="fu">ylim</span>(<span class="dv">10</span>, <span class="dv">20</span>)</span>
-<span id="cb26-20"><a></a></span>
-<span id="cb26-21"><a></a><span class="co"># Combine plots side by side</span></span>
-<span id="cb26-22"><a></a>p1 <span class="sc">+</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="co"># Plot seagrass lengths</span></span>
+<span id="cb24-2"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb24-3"><a></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb24-4"><a></a></span>
+<span id="cb24-5"><a></a>seagrass_protected <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">15.2</span>, <span class="fl">15.0</span>, <span class="fl">15.3</span>, <span class="fl">15.1</span>, <span class="fl">15.2</span>)</span>
+<span id="cb24-6"><a></a>seagrass_exposed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">12.0</span>, <span class="fl">18.0</span>, <span class="fl">14.5</span>, <span class="fl">16.5</span>, <span class="fl">15.0</span>)</span>
+<span id="cb24-7"><a></a></span>
+<span id="cb24-8"><a></a><span class="co"># Create plots for both sites</span></span>
+<span id="cb24-9"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb24-10"><a></a>   <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">y =</span> seagrass_protected), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb24-11"><a></a>   <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(seagrass_protected), <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb24-12"><a></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Site A: Protected Bay"</span>, <span class="at">x =</span> <span class="st">"Measurement"</span>, <span class="at">y =</span> <span class="st">"Length (cm)"</span>) <span class="sc">+</span></span>
+<span id="cb24-13"><a></a>   <span class="fu">ylim</span>(<span class="dv">10</span>, <span class="dv">20</span>)</span>
+<span id="cb24-14"><a></a></span>
+<span id="cb24-15"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb24-16"><a></a>   <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">y =</span> seagrass_exposed), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb24-17"><a></a>   <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(seagrass_exposed), <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb24-18"><a></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Site B: Wave-exposed Coast"</span>, <span class="at">x =</span> <span class="st">"Measurement"</span>, <span class="at">y =</span> <span class="st">"Length (cm)"</span>) <span class="sc">+</span></span>
+<span id="cb24-19"><a></a>   <span class="fu">ylim</span>(<span class="dv">10</span>, <span class="dv">20</span>)</span>
+<span id="cb24-20"><a></a></span>
+<span id="cb24-21"><a></a><span class="co"># Combine plots side by side</span></span>
+<span id="cb24-22"><a></a>p1 <span class="sc">+</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="lecture-02_files/figure-html/unnamed-chunk-11-1.png" width="672" class="r-stretch"></section>
+<img data-src="lecture-02_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
 <section id="why-do-we-need-measures-of-spread" class="slide level2">
 <h2>Why do we need measures of spread?</h2>
 <ul>
@@ -796,16 +793,16 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 <section id="range-the-simplest-measure-of-spread" class="slide level2">
 <h2>Range – The simplest measure of spread</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="co"># Create our seagrass data</span></span>
-<span id="cb27-2"><a></a>seagrass_protected <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">15.2</span>, <span class="fl">15.0</span>, <span class="fl">15.3</span>, <span class="fl">15.1</span>, <span class="fl">15.2</span>)  <span class="co"># Protected bay</span></span>
-<span id="cb27-3"><a></a>seagrass_exposed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">12.0</span>, <span class="fl">18.0</span>, <span class="fl">14.5</span>, <span class="fl">16.5</span>, <span class="fl">15.0</span>)    <span class="co"># Wave-exposed coast</span></span>
-<span id="cb27-4"><a></a></span>
-<span id="cb27-5"><a></a><span class="co"># Calculate ranges</span></span>
-<span id="cb27-6"><a></a><span class="fu">cat</span>(<span class="st">"Protected bay range:"</span>, <span class="fu">diff</span>(<span class="fu">range</span>(seagrass_protected)), <span class="st">"cm</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="co"># Create our seagrass data</span></span>
+<span id="cb25-2"><a></a>seagrass_protected <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">15.2</span>, <span class="fl">15.0</span>, <span class="fl">15.3</span>, <span class="fl">15.1</span>, <span class="fl">15.2</span>)  <span class="co"># Protected bay</span></span>
+<span id="cb25-3"><a></a>seagrass_exposed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">12.0</span>, <span class="fl">18.0</span>, <span class="fl">14.5</span>, <span class="fl">16.5</span>, <span class="fl">15.0</span>)    <span class="co"># Wave-exposed coast</span></span>
+<span id="cb25-4"><a></a></span>
+<span id="cb25-5"><a></a><span class="co"># Calculate ranges</span></span>
+<span id="cb25-6"><a></a><span class="fu">cat</span>(<span class="st">"Protected bay range:"</span>, <span class="fu">diff</span>(<span class="fu">range</span>(seagrass_protected)), <span class="st">"cm</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Protected bay range: 0.3 cm</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">cat</span>(<span class="st">"Wave-exposed range:"</span>, <span class="fu">diff</span>(<span class="fu">range</span>(seagrass_exposed)), <span class="st">"cm</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">cat</span>(<span class="st">"Wave-exposed range:"</span>, <span class="fu">diff</span>(<span class="fu">range</span>(seagrass_exposed)), <span class="st">"cm</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Wave-exposed range: 6 cm</code></pre>
 </div>
@@ -828,8 +825,8 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 <h2>Interquartile range (IQR): The middle 50%</h2>
 <p>The IQR tells us how spread out the middle 50% of our data is:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="co"># Get quartiles for protected bay</span></span>
-<span id="cb31-2"><a></a><span class="fu">quantile</span>(seagrass_protected)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="co"># Get quartiles for protected bay</span></span>
+<span id="cb29-2"><a></a><span class="fu">quantile</span>(seagrass_protected)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  0%  25%  50%  75% 100% 
 15.0 15.1 15.2 15.2 15.3 </code></pre>
@@ -850,14 +847,14 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 <section id="comparing-sites-using-iqr" class="slide level2">
 <h2>Comparing Sites Using IQR</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="co"># Compare IQRs</span></span>
-<span id="cb33-2"><a></a>pbay <span class="ot">&lt;-</span> <span class="fu">IQR</span>(seagrass_protected)</span>
-<span id="cb33-3"><a></a>pbay</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="co"># Compare IQRs</span></span>
+<span id="cb31-2"><a></a>pbay <span class="ot">&lt;-</span> <span class="fu">IQR</span>(seagrass_protected)</span>
+<span id="cb31-3"><a></a>pbay</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>exbay <span class="ot">&lt;-</span> <span class="fu">IQR</span>(seagrass_exposed)</span>
-<span id="cb35-2"><a></a>exbay</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>exbay <span class="ot">&lt;-</span> <span class="fu">IQR</span>(seagrass_exposed)</span>
+<span id="cb33-2"><a></a>exbay</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
@@ -907,15 +904,15 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="co"># Calculate variance for both sites</span></span>
-<span id="cb37-2"><a></a><span class="fu">cat</span>(<span class="st">"Protected bay variance:"</span>, <span class="fu">var</span>(seagrass_protected), <span class="st">"cm²</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="co"># Calculate variance for both sites</span></span>
+<span id="cb35-2"><a></a><span class="fu">cat</span>(<span class="st">"Protected bay variance:"</span>, <span class="fu">var</span>(seagrass_protected), <span class="st">"cm²</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Protected bay variance: 0.013 cm²</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="fu">cat</span>(<span class="st">"Wave-exposed variance:"</span>, <span class="fu">var</span>(seagrass_exposed), <span class="st">"cm²</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="fu">cat</span>(<span class="st">"Wave-exposed variance:"</span>, <span class="fu">var</span>(seagrass_exposed), <span class="st">"cm²</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Wave-exposed variance: 5.075 cm²</code></pre>
@@ -956,17 +953,17 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 <h2>Interpreting standard deviation (with R)</h2>
 <p>We can describe our seagrass lengths using mean ± standard deviation:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="co"># Protected bay</span></span>
-<span id="cb41-2"><a></a>mean_p <span class="ot">&lt;-</span> <span class="fu">mean</span>(seagrass_protected)</span>
-<span id="cb41-3"><a></a>sd_p <span class="ot">&lt;-</span> <span class="fu">sd</span>(seagrass_protected)</span>
-<span id="cb41-4"><a></a><span class="fu">cat</span>(<span class="st">"Protected bay:"</span>, <span class="fu">round</span>(mean_p, <span class="dv">1</span>), <span class="st">"±"</span>, <span class="fu">round</span>(sd_p, <span class="dv">2</span>), <span class="st">"cm</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="co"># Protected bay</span></span>
+<span id="cb39-2"><a></a>mean_p <span class="ot">&lt;-</span> <span class="fu">mean</span>(seagrass_protected)</span>
+<span id="cb39-3"><a></a>sd_p <span class="ot">&lt;-</span> <span class="fu">sd</span>(seagrass_protected)</span>
+<span id="cb39-4"><a></a><span class="fu">cat</span>(<span class="st">"Protected bay:"</span>, <span class="fu">round</span>(mean_p, <span class="dv">1</span>), <span class="st">"±"</span>, <span class="fu">round</span>(sd_p, <span class="dv">2</span>), <span class="st">"cm</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Protected bay: 15.2 ± 0.11 cm</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a><span class="co"># Wave-exposed</span></span>
-<span id="cb43-2"><a></a>mean_e <span class="ot">&lt;-</span> <span class="fu">mean</span>(seagrass_exposed)</span>
-<span id="cb43-3"><a></a>sd_e <span class="ot">&lt;-</span> <span class="fu">sd</span>(seagrass_exposed)</span>
-<span id="cb43-4"><a></a><span class="fu">cat</span>(<span class="st">"Wave-exposed:"</span>, <span class="fu">round</span>(mean_e, <span class="dv">1</span>), <span class="st">"±"</span>, <span class="fu">round</span>(sd_e, <span class="dv">2</span>), <span class="st">"cm</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="co"># Wave-exposed</span></span>
+<span id="cb41-2"><a></a>mean_e <span class="ot">&lt;-</span> <span class="fu">mean</span>(seagrass_exposed)</span>
+<span id="cb41-3"><a></a>sd_e <span class="ot">&lt;-</span> <span class="fu">sd</span>(seagrass_exposed)</span>
+<span id="cb41-4"><a></a><span class="fu">cat</span>(<span class="st">"Wave-exposed:"</span>, <span class="fu">round</span>(mean_e, <span class="dv">1</span>), <span class="st">"±"</span>, <span class="fu">round</span>(sd_e, <span class="dv">2</span>), <span class="st">"cm</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Wave-exposed: 15.2 ± 2.25 cm</code></pre>
 </div>
@@ -1314,6 +1311,44 @@ For IQR: =QUARTILE.INC(A1:A10, 3) - QUARTILE.INC(A1:A10, 1)</code></pre>
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
