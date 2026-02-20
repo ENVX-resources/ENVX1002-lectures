@@ -1,10 +1,7 @@
 ---
 title: Topic 10 -- Simple Linear Regression
 author: Si Yang Han
-format:
-  ochre-revealjs:
-    logo: ../muddyqr.png
-    # footer: "Scan the QR code to provide feedback on this lecture"
+format: ochre-revealjs
 scrollable: true
 ---
 
