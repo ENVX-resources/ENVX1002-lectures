@@ -854,7 +854,7 @@ fit
 
 ## Conclusion
 
-The results of the chi-squared test suggest that the observed frequencies of butterfly colours are **significantly different** from the expected frequencies ($\chi^2 = 8.8$, $df = 3$, $p < 0.001$). We can reject the null hypothesis and conclude that the biologist's claim is not true.
+The results of the chi-squared test suggest that the observed frequencies of butterfly colours are **significantly different** from the expected frequencies ($\chi^2 = 8.8$, $df = 3$, $p = 0.032$). We can reject the null hypothesis and conclude that the biologist's claim is not true.
 
 ::: callout-note
 If you're interested, compare this result to the simulation we performed earlier.
