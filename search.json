@@ -707,6 +707,114 @@
     "text": "The most important question\nHow do you feel about regression so far?\n\nEasy\nOK\nHard\nSOS"
   },
   {
+    "objectID": "lectures/L10/index.html",
+    "href": "lectures/L10/index.html",
+    "title": "Lecture 10",
+    "section": "",
+    "text": "Full Screen | PDF",
+    "crumbs": [
+      "{{< fa house-chimney >}}",
+      "**Module 3 modelling**",
+      "L10 -- Linear functions"
+    ]
+  },
+  {
+    "objectID": "lectures/L09/index.html",
+    "href": "lectures/L09/index.html",
+    "title": "Lecture 09",
+    "section": "",
+    "text": "Full Screen | PDF",
+    "crumbs": [
+      "{{< fa house-chimney >}}",
+      "**Module 3 modelling**",
+      "L09 -- Describing relationships"
+    ]
+  },
+  {
+    "objectID": "lectures/L08/index.html",
+    "href": "lectures/L08/index.html",
+    "title": "Lecture 08",
+    "section": "",
+    "text": "Full Screen | PDF",
+    "crumbs": [
+      "{{< fa house-chimney >}}",
+      "**Module 2 inference**",
+      "L08 -- Bootstrapping"
+    ]
+  },
+  {
+    "objectID": "lectures/L07/index.html",
+    "href": "lectures/L07/index.html",
+    "title": "Lecture 07",
+    "section": "",
+    "text": "Lecture 07\nFull Screen | PDF",
+    "crumbs": [
+      "{{< fa house-chimney >}}",
+      "**Module 2 inference**",
+      "L07 -- Non-parametric tests"
+    ]
+  },
+  {
+    "objectID": "lectures/L06/index.html",
+    "href": "lectures/L06/index.html",
+    "title": "Lecture 06",
+    "section": "",
+    "text": "Lecture 06a\nFull Screen | PDF",
+    "crumbs": [
+      "{{< fa house-chimney >}}",
+      "**Module 2 inference**",
+      "L06 -- Two-sample *t*-tests"
+    ]
+  },
+  {
+    "objectID": "lectures/L05/index.html",
+    "href": "lectures/L05/index.html",
+    "title": "Lecture 05",
+    "section": "",
+    "text": "Full Screen | PDF",
+    "crumbs": [
+      "{{< fa house-chimney >}}",
+      "**Module 2 inference**",
+      "L05 -- Hypothesis testing"
+    ]
+  },
+  {
+    "objectID": "lectures/L04/index.html",
+    "href": "lectures/L04/index.html",
+    "title": "Lecture 04",
+    "section": "",
+    "text": "Full Screen | PDF",
+    "crumbs": [
+      "{{< fa house-chimney >}}",
+      "**Module 1 describing data**",
+      "L04 -- The central limit theorem"
+    ]
+  },
+  {
+    "objectID": "lectures/L03/index.html",
+    "href": "lectures/L03/index.html",
+    "title": "Lecture 03",
+    "section": "",
+    "text": "Full Screen | PDF",
+    "crumbs": [
+      "{{< fa house-chimney >}}",
+      "**Module 1 describing data**",
+      "L03 -- Exploring and visualising data"
+    ]
+  },
+  {
+    "objectID": "lectures/L02/index.html",
+    "href": "lectures/L02/index.html",
+    "title": "Lecture 02",
+    "section": "",
+    "text": "Full Screen | PDF",
+    "crumbs": [
+      "{{< fa house-chimney >}}",
+      "**Module 1 describing data**",
+      "L02 -- Introduction to statistical programming"
+    ]
+  },
+  {
     "objectID": "lectures/L01/lecture-01a.html#about-us",
     "href": "lectures/L01/lecture-01a.html#about-us",
     "title": "Lecture 01a – Welcome to ENVX1002",
@@ -886,6 +994,18 @@
     "text": "About this site"
   },
   {
+    "objectID": "lectures/L01/index.html",
+    "href": "lectures/L01/index.html",
+    "title": "Lecture 01 – Reproducible science",
+    "section": "",
+    "text": "Lecture 01a – Welcome to ENVX1002 Full Screen | PDF\n\nLecture 01b – Reproducible science Full Screen | PDF",
+    "crumbs": [
+      "{{< fa house-chimney >}}",
+      "**Module 1 describing data**",
+      "L01 -- Introduction"
+    ]
+  },
+  {
     "objectID": "lectures/L01/lecture-01b.html#why-learn-statistics",
     "href": "lectures/L01/lecture-01b.html#why-learn-statistics",
     "title": "Lecture 01b – Reproducible Science",
@@ -946,7 +1066,7 @@
     "href": "lectures/L01/lecture-01b.html#serious-stats-2",
     "title": "Lecture 01b – Reproducible Science",
     "section": "Serious stats",
-    "text": "Serious stats\nInfer\nWe use formal statistical tests to determine if differences are statistically significant so that we can make inferences about the population based on the sample data – part of the scientific method.\n\n\nCode\n# run ANOVA\nmodel &lt;- aov(Sepal.Length ~ Species, data = iris)\nf_stat &lt;- summary(model)[[1]]$`F value`[1]\np_val &lt;- summary(model)[[1]]$`Pr(&gt;F)`[1]\nrstatix::anova_summary(model) |&gt;\n  gt() |&gt;\n  tab_caption(\n    caption = \"Table 1: One-way ANOVA results comparing sepal length between iris species\"\n  )\n\n\n\n\n\n\nTable 1: One-way ANOVA results comparing sepal length between iris species\n\n\nEffect\nDFn\nDFd\nF\np\np&lt;.05\nges\n\n\n\n\nSpecies\n2\n147\n119.265\n1.67e-31\n*\n0.619\n\n\n\n\n\n\n\nScientific reporting\n\nA one-way ANOVA revealed significant differences in sepal length between species (ANOVA, F(2, 147) = 119.26, p &lt; .001)."
+    "text": "Serious stats\nInfer\nWe use formal statistical tests to determine if differences are statistically significant so that we can make inferences about the population based on the sample data – part of the scientific method.\n\n\nCode\n# run ANOVA\nmodel &lt;- aov(Sepal.Length ~ Species, data = iris)\nf_stat &lt;- summary(model)[[1]]$`F value`[1]\np_val &lt;- summary(model)[[1]]$`Pr(&gt;F)`[1]\nrstatix::anova_summary(model) |&gt;\n  gt() |&gt;\n  opt_table_font(font = \"Crimson Pro\", add = FALSE) |&gt;\n  tab_caption(\n    caption = \"Table 1: One-way ANOVA results comparing sepal length between iris species\"\n  )\n\n\n\n\n\n\nTable 1: One-way ANOVA results comparing sepal length between iris species\n\n\nEffect\nDFn\nDFd\nF\np\np&lt;.05\nges\n\n\n\n\nSpecies\n2\n147\n119.265\n1.67e-31\n*\n0.619\n\n\n\n\n\n\n\nScientific reporting\n\nA one-way ANOVA revealed significant differences in sepal length between species (ANOVA, F(2, 147) = 119.26, p &lt; .001)."
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#not-always-formal",
@@ -2248,7 +2368,7 @@
     "href": "lectures/L07/lecture-07.html#two-sample-t-test",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Two-sample \\(t\\)-test",
-    "text": "Two-sample \\(t\\)-test\nConsider two sets of identical data that compares between a group A and B, where one contains an outlier.\n\n\nData:\n\n\nCode\nlibrary(tidyverse)\n\n# for display only\ndata.frame(A = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),\n           B = c(7, 8, 9, 10, 11, 12, 13, 14, 15, 16)) %&gt;%\n  gt()\n\n\n\n\n\n\n\n\nA\nB\n\n\n\n\n1\n7\n\n\n2\n8\n\n\n3\n9\n\n\n4\n10\n\n\n5\n11\n\n\n6\n12\n\n\n7\n13\n\n\n8\n14\n\n\n9\n15\n\n\n10\n16\n\n\n\n\n\n\n\n\nData with outlier:\n\n\nCode\ndata.frame(A = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),\n           B = c(7, 8, 9, 10, 11, 12, 13, 14, 15, 200)) %&gt;%\n  gt()\n\n\n\n\n\n\n\n\nA\nB\n\n\n\n\n1\n7\n\n\n2\n8\n\n\n3\n9\n\n\n4\n10\n\n\n5\n11\n\n\n6\n12\n\n\n7\n13\n\n\n8\n14\n\n\n9\n15\n\n\n10\n200"
+    "text": "Two-sample \\(t\\)-test\nConsider two sets of identical data that compares between a group A and B, where one contains an outlier.\n\n\nData:\n\n\nCode\nlibrary(tidyverse)\n\n# for display only\ndata.frame(A = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),\n           B = c(7, 8, 9, 10, 11, 12, 13, 14, 15, 16)) %&gt;%\n  gt() %&gt;%\n  opt_table_font(font = \"Crimson Pro\", add = FALSE)\n\n\n\n\n\n\n\n\nA\nB\n\n\n\n\n1\n7\n\n\n2\n8\n\n\n3\n9\n\n\n4\n10\n\n\n5\n11\n\n\n6\n12\n\n\n7\n13\n\n\n8\n14\n\n\n9\n15\n\n\n10\n16\n\n\n\n\n\n\n\n\nData with outlier:\n\n\nCode\ndata.frame(A = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),\n           B = c(7, 8, 9, 10, 11, 12, 13, 14, 15, 200)) %&gt;%\n  gt() %&gt;%\n  opt_table_font(font = \"Crimson Pro\", add = FALSE)\n\n\n\n\n\n\n\n\nA\nB\n\n\n\n\n1\n7\n\n\n2\n8\n\n\n3\n9\n\n\n4\n10\n\n\n5\n11\n\n\n6\n12\n\n\n7\n13\n\n\n8\n14\n\n\n9\n15\n\n\n10\n200"
   },
   {
     "objectID": "lectures/L07/lecture-07.html#should-there-be-a-difference",
@@ -2283,7 +2403,7 @@
     "href": "lectures/L07/lecture-07.html#what-to-use",
     "title": "Topic 7 – Non-parametric tests",
     "section": "What to use",
-    "text": "What to use\n\n\nCode\nlibrary(tidyverse)\nlibrary(gt)\n\ndf &lt;- tibble(\n  parametric = c(\"One-sample t-test\", \"Two-sample t-test\", \"ANOVA\", \"Pearson's correlation\"),\n  non_parametric = c(\"Wilcoxon signed-rank test\", \"Mann-Whitney U test\", \"Kruskal-Wallis test\", \"Spearman's rank correlation\"))\n\ngt(df) %&gt;%\n  cols_label(parametric = \"Parametric tests\", non_parametric = \"Non-parametric counterpart\") %&gt;%\n  tab_options(\n    table.font.size = px(24),\n    column_labels.font.weight = \"bold\")\n\n\n\n\n\n\n\n\nParametric tests\nNon-parametric counterpart\n\n\n\n\nOne-sample t-test\nWilcoxon signed-rank test\n\n\nTwo-sample t-test\nMann-Whitney U test\n\n\nANOVA\nKruskal-Wallis test\n\n\nPearson's correlation\nSpearman's rank correlation\n\n\n\n\n\n\n\nAll of the non-parametric techniques above convert the data into ranks before performing the test.\n\n\n\n\n\n\n\nNote\n\n\nWe will focus on the Wilcoxon signed-rank test and the Mann-Whitney U test."
+    "text": "What to use\n\n\nCode\nlibrary(tidyverse)\nlibrary(gt)\n\ndf &lt;- tibble(\n  parametric = c(\"One-sample t-test\", \"Two-sample t-test\", \"ANOVA\", \"Pearson's correlation\"),\n  non_parametric = c(\"Wilcoxon signed-rank test\", \"Mann-Whitney U test\", \"Kruskal-Wallis test\", \"Spearman's rank correlation\"))\n\ngt(df) %&gt;%\n  opt_table_font(font = \"Crimson Pro\", add = FALSE) %&gt;%\n  cols_label(parametric = \"Parametric tests\", non_parametric = \"Non-parametric counterpart\") %&gt;%\n  tab_options(\n    table.font.size = px(24),\n    column_labels.font.weight = \"bold\")\n\n\n\n\n\n\n\n\nParametric tests\nNon-parametric counterpart\n\n\n\n\nOne-sample t-test\nWilcoxon signed-rank test\n\n\nTwo-sample t-test\nMann-Whitney U test\n\n\nANOVA\nKruskal-Wallis test\n\n\nPearson's correlation\nSpearman's rank correlation\n\n\n\n\n\n\n\nAll of the non-parametric techniques above convert the data into ranks before performing the test.\n\n\n\n\n\n\n\nNote\n\n\nWe will focus on the Wilcoxon signed-rank test and the Mann-Whitney U test."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#overview-1",
@@ -2311,14 +2431,14 @@
     "href": "lectures/L07/lecture-07.html#weight-gain",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Weight gain",
-    "text": "Weight gain\nWe measured weight gain in chickens before and after a diet.\n\n\nCode\nweight &lt;- c(2.5, 3.5, 3.5, 3.4)\nweight_after &lt;- c(4, 5, 5, 4.6)\n\ndf &lt;- tibble(\n  chicken = 1:4,\n  weight = weight,\n  weight_after = weight_after)\n\ngt(df) %&gt;%\n  tab_options(\n    table.font.size = px(24),\n    column_labels.font.weight = \"bold\")\n\n\n\n\n\n\n\n\nchicken\nweight\nweight_after\n\n\n\n\n1\n2.5\n4.0\n\n\n2\n3.5\n5.0\n\n\n3\n3.5\n5.0\n\n\n4\n3.4\n4.6\n\n\n\n\n\n\n\nIs there a significant increase in weight gain after the diet?"
+    "text": "Weight gain\nWe measured weight gain in chickens before and after a diet.\n\n\nCode\nweight &lt;- c(2.5, 3.5, 3.5, 3.4)\nweight_after &lt;- c(4, 5, 5, 4.6)\n\ndf &lt;- tibble(\n  chicken = 1:4,\n  weight = weight,\n  weight_after = weight_after)\n\ngt(df) %&gt;%\n  opt_table_font(font = \"Crimson Pro\", add = FALSE) %&gt;%\n  tab_options(\n    table.font.size = px(24),\n    column_labels.font.weight = \"bold\")\n\n\n\n\n\n\n\n\nchicken\nweight\nweight_after\n\n\n\n\n1\n2.5\n4.0\n\n\n2\n3.5\n5.0\n\n\n3\n3.5\n5.0\n\n\n4\n3.4\n4.6\n\n\n\n\n\n\n\nIs there a significant increase in weight gain after the diet?"
   },
   {
     "objectID": "lectures/L07/lecture-07.html#rank-values",
     "href": "lectures/L07/lecture-07.html#rank-values",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Rank values",
-    "text": "Rank values\n\n\nCode\ndf %&gt;%\n  mutate(D = weight_after - weight) %&gt;%\n  mutate(Sign = ifelse(D &gt; 0, \"+\", \"-\")) %&gt;%\n  mutate(rank = rank(abs(D))) %&gt;%\n  mutate(\"Signed rank\" = ifelse(D &gt; 0, rank, -rank)) %&gt;%\n  gt() %&gt;%\n  tab_options(\n    table.font.size = px(24),\n    column_labels.font.weight = \"bold\")\n\n\n\n\n\n\n\n\nchicken\nweight\nweight_after\nD\nSign\nrank\nSigned rank\n\n\n\n\n1\n2.5\n4.0\n1.5\n+\n3\n3\n\n\n2\n3.5\n5.0\n1.5\n+\n3\n3\n\n\n3\n3.5\n5.0\n1.5\n+\n3\n3\n\n\n4\n3.4\n4.6\n1.2\n+\n1\n1\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nThe order of the ranks is based on the absolute values of the differences; the signs are assigned afterward."
+    "text": "Rank values\n\n\nCode\ndf %&gt;%\n  mutate(D = weight_after - weight) %&gt;%\n  mutate(Sign = ifelse(D &gt; 0, \"+\", \"-\")) %&gt;%\n  mutate(rank = rank(abs(D))) %&gt;%\n  mutate(\"Signed rank\" = ifelse(D &gt; 0, rank, -rank)) %&gt;%\n  gt() %&gt;%\n  opt_table_font(font = \"Crimson Pro\", add = FALSE) %&gt;%\n  tab_options(\n    table.font.size = px(24),\n    column_labels.font.weight = \"bold\")\n\n\n\n\n\n\n\n\nchicken\nweight\nweight_after\nD\nSign\nrank\nSigned rank\n\n\n\n\n1\n2.5\n4.0\n1.5\n+\n3\n3\n\n\n2\n3.5\n5.0\n1.5\n+\n3\n3\n\n\n3\n3.5\n5.0\n1.5\n+\n3\n3\n\n\n4\n3.4\n4.6\n1.2\n+\n1\n1\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nThe order of the ranks is based on the absolute values of the differences; the signs are assigned afterward."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#hypothesis",
@@ -3495,5 +3615,29 @@
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Summary",
     "text": "Summary\nWorkflow\n\nUnderstand the variables: Which is the response variable? Is there a reason to believe a causal relationship?\nExplore data: How many observations? Summary statistics? Scatterplot and correlation?\nFit model\nCheck assumptions: Remember - it’s about the residuals! If assumptions fail, try transforming and return to Step 3. If assumptions still fail, consider another model and return to Step 3.\nAssess model fit: Hypothesis test, significance, F-statistic, p-value. R2, how much model variation was explained by the model.\nInterpret output: ‘For every one-unit increase in x, y increases by \\(\\beta_1\\) units…’ and any additional research/insight."
+  },
+  {
+    "objectID": "lectures/L11/index.html",
+    "href": "lectures/L11/index.html",
+    "title": "Lecture 11",
+    "section": "",
+    "text": "Full Screen | PDF",
+    "crumbs": [
+      "{{< fa house-chimney >}}",
+      "**Module 3 modelling**",
+      "L11 -- Multiple predictors"
+    ]
+  },
+  {
+    "objectID": "lectures/L12/index.html",
+    "href": "lectures/L12/index.html",
+    "title": "Lecture 12",
+    "section": "",
+    "text": "Full Screen | PDF",
+    "crumbs": [
+      "{{< fa house-chimney >}}",
+      "**Module 3 modelling**",
+      "L12 -- Non-linear functions"
+    ]
   }
 ]

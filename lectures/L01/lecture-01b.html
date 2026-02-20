@@ -6,8 +6,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.27">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.26">
 
   <meta name="author" content="Januar Harianto">
   <title>Lecture 01b – Reproducible Science</title>
@@ -318,28 +318,29 @@ Januar Harianto
 <span id="cb2-4"><a></a>p_val <span class="ot">&lt;-</span> <span class="fu">summary</span>(model)[[<span class="dv">1</span>]]<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>]</span>
 <span id="cb2-5"><a></a>rstatix<span class="sc">::</span><span class="fu">anova_summary</span>(model) <span class="sc">|&gt;</span></span>
 <span id="cb2-6"><a></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb2-7"><a></a>  <span class="fu">tab_caption</span>(</span>
-<span id="cb2-8"><a></a>    <span class="at">caption =</span> <span class="st">"Table 1: One-way ANOVA results comparing sepal length between iris species"</span></span>
-<span id="cb2-9"><a></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-7"><a></a>  <span class="fu">opt_table_font</span>(<span class="at">font =</span> <span class="st">"Crimson Pro"</span>, <span class="at">add =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a></a>  <span class="fu">tab_caption</span>(</span>
+<span id="cb2-9"><a></a>    <span class="at">caption =</span> <span class="st">"Table 1: One-way ANOVA results comparing sepal length between iris species"</span></span>
+<span id="cb2-10"><a></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="zevshvyqlw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zevshvyqlw table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+<div id="mrzpmpcgdg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mrzpmpcgdg table {
+  font-family: 'Crimson Pro';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zevshvyqlw thead, #zevshvyqlw tbody, #zevshvyqlw tfoot, #zevshvyqlw tr, #zevshvyqlw td, #zevshvyqlw th {
+#mrzpmpcgdg thead, #mrzpmpcgdg tbody, #mrzpmpcgdg tfoot, #mrzpmpcgdg tr, #mrzpmpcgdg td, #mrzpmpcgdg th {
   border-style: none;
 }
 
-#zevshvyqlw p {
+#mrzpmpcgdg p {
   margin: 0;
   padding: 0;
 }
 
-#zevshvyqlw .gt_table {
+#mrzpmpcgdg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -365,12 +366,12 @@ Januar Harianto
   border-left-color: #D3D3D3;
 }
 
-#zevshvyqlw .gt_caption {
+#mrzpmpcgdg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zevshvyqlw .gt_title {
+#mrzpmpcgdg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -382,7 +383,7 @@ Januar Harianto
   border-bottom-width: 0;
 }
 
-#zevshvyqlw .gt_subtitle {
+#mrzpmpcgdg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -394,7 +395,7 @@ Januar Harianto
   border-top-width: 0;
 }
 
-#zevshvyqlw .gt_heading {
+#mrzpmpcgdg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -406,13 +407,13 @@ Januar Harianto
   border-right-color: #D3D3D3;
 }
 
-#zevshvyqlw .gt_bottom_border {
+#mrzpmpcgdg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zevshvyqlw .gt_col_headings {
+#mrzpmpcgdg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -427,7 +428,7 @@ Januar Harianto
   border-right-color: #D3D3D3;
 }
 
-#zevshvyqlw .gt_col_heading {
+#mrzpmpcgdg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -447,7 +448,7 @@ Januar Harianto
   overflow-x: hidden;
 }
 
-#zevshvyqlw .gt_column_spanner_outer {
+#mrzpmpcgdg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -459,15 +460,15 @@ Januar Harianto
   padding-right: 4px;
 }
 
-#zevshvyqlw .gt_column_spanner_outer:first-child {
+#mrzpmpcgdg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zevshvyqlw .gt_column_spanner_outer:last-child {
+#mrzpmpcgdg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zevshvyqlw .gt_column_spanner {
+#mrzpmpcgdg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -479,11 +480,11 @@ Januar Harianto
   width: 100%;
 }
 
-#zevshvyqlw .gt_spanner_row {
+#mrzpmpcgdg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zevshvyqlw .gt_group_heading {
+#mrzpmpcgdg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -509,7 +510,7 @@ Januar Harianto
   text-align: left;
 }
 
-#zevshvyqlw .gt_empty_group_heading {
+#mrzpmpcgdg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -524,15 +525,15 @@ Januar Harianto
   vertical-align: middle;
 }
 
-#zevshvyqlw .gt_from_md > :first-child {
+#mrzpmpcgdg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zevshvyqlw .gt_from_md > :last-child {
+#mrzpmpcgdg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zevshvyqlw .gt_row {
+#mrzpmpcgdg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -551,7 +552,7 @@ Januar Harianto
   overflow-x: hidden;
 }
 
-#zevshvyqlw .gt_stub {
+#mrzpmpcgdg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -564,7 +565,7 @@ Januar Harianto
   padding-right: 5px;
 }
 
-#zevshvyqlw .gt_stub_row_group {
+#mrzpmpcgdg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -578,15 +579,15 @@ Januar Harianto
   vertical-align: top;
 }
 
-#zevshvyqlw .gt_row_group_first td {
+#mrzpmpcgdg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zevshvyqlw .gt_row_group_first th {
+#mrzpmpcgdg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zevshvyqlw .gt_summary_row {
+#mrzpmpcgdg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -596,16 +597,16 @@ Januar Harianto
   padding-right: 5px;
 }
 
-#zevshvyqlw .gt_first_summary_row {
+#mrzpmpcgdg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zevshvyqlw .gt_first_summary_row.thick {
+#mrzpmpcgdg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zevshvyqlw .gt_last_summary_row {
+#mrzpmpcgdg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -615,7 +616,7 @@ Januar Harianto
   border-bottom-color: #D3D3D3;
 }
 
-#zevshvyqlw .gt_grand_summary_row {
+#mrzpmpcgdg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -625,7 +626,7 @@ Januar Harianto
   padding-right: 5px;
 }
 
-#zevshvyqlw .gt_first_grand_summary_row {
+#mrzpmpcgdg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -635,7 +636,7 @@ Januar Harianto
   border-top-color: #D3D3D3;
 }
 
-#zevshvyqlw .gt_last_grand_summary_row_top {
+#mrzpmpcgdg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -645,11 +646,11 @@ Januar Harianto
   border-bottom-color: #D3D3D3;
 }
 
-#zevshvyqlw .gt_striped {
+#mrzpmpcgdg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zevshvyqlw .gt_table_body {
+#mrzpmpcgdg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -658,7 +659,7 @@ Januar Harianto
   border-bottom-color: #D3D3D3;
 }
 
-#zevshvyqlw .gt_footnotes {
+#mrzpmpcgdg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -672,7 +673,7 @@ Januar Harianto
   border-right-color: #D3D3D3;
 }
 
-#zevshvyqlw .gt_footnote {
+#mrzpmpcgdg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -681,7 +682,7 @@ Januar Harianto
   padding-right: 5px;
 }
 
-#zevshvyqlw .gt_sourcenotes {
+#mrzpmpcgdg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -695,7 +696,7 @@ Januar Harianto
   border-right-color: #D3D3D3;
 }
 
-#zevshvyqlw .gt_sourcenote {
+#mrzpmpcgdg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -703,72 +704,72 @@ Januar Harianto
   padding-right: 5px;
 }
 
-#zevshvyqlw .gt_left {
+#mrzpmpcgdg .gt_left {
   text-align: left;
 }
 
-#zevshvyqlw .gt_center {
+#mrzpmpcgdg .gt_center {
   text-align: center;
 }
 
-#zevshvyqlw .gt_right {
+#mrzpmpcgdg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zevshvyqlw .gt_font_normal {
+#mrzpmpcgdg .gt_font_normal {
   font-weight: normal;
 }
 
-#zevshvyqlw .gt_font_bold {
+#mrzpmpcgdg .gt_font_bold {
   font-weight: bold;
 }
 
-#zevshvyqlw .gt_font_italic {
+#mrzpmpcgdg .gt_font_italic {
   font-style: italic;
 }
 
-#zevshvyqlw .gt_super {
+#mrzpmpcgdg .gt_super {
   font-size: 65%;
 }
 
-#zevshvyqlw .gt_footnote_marks {
+#mrzpmpcgdg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zevshvyqlw .gt_asterisk {
+#mrzpmpcgdg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zevshvyqlw .gt_indent_1 {
+#mrzpmpcgdg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zevshvyqlw .gt_indent_2 {
+#mrzpmpcgdg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zevshvyqlw .gt_indent_3 {
+#mrzpmpcgdg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zevshvyqlw .gt_indent_4 {
+#mrzpmpcgdg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zevshvyqlw .gt_indent_5 {
+#mrzpmpcgdg .gt_indent_5 {
   text-indent: 25px;
 }
 
-#zevshvyqlw .katex-display {
+#mrzpmpcgdg .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#zevshvyqlw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#mrzpmpcgdg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
