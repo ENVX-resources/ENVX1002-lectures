@@ -112,6 +112,7 @@ f_stat <- summary(model)[[1]]$`F value`[1]
 p_val <- summary(model)[[1]]$`Pr(>F)`[1]
 rstatix::anova_summary(model) |>
   gt() |>
+  opt_table_font(font = "Crimson Pro", add = FALSE) |>
   tab_caption(
     caption = "Table 1: One-way ANOVA results comparing sepal length between iris species"
   )
