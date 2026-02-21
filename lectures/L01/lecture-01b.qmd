@@ -1,5 +1,5 @@
 ---
-title: Lecture 01b -- Reproducible Science
+title: Lecture 01b -- Reproducible science
 author: Januar Harianto
 format:
   ochre-revealjs: default
@@ -10,40 +10,32 @@ format:
 
 # Importance of statistics
 
+##
+
 > Never leave a number all by itself. Never believe that one number on its own can be meaningful. If you are offered one number, always ask for at least one more. Something to compare it with.
 
 -- Hans Rosling (1948-2017)
 
 ## Why learn statistics?
 
-All of science (and industry) are increasingly data-driven and computational:
+All of science (and industry) are increasingly data-driven and computational
 
-- **Research** papers are filled with statistical analyses
-- **Business** and **policy** decisions are based on data analytics
-- Environmental **policies** are guided by statistical models
-- **Medical** treatments are evaluated using statistical methods
+::: {.fragment}
+> I don't think it is relevant to my degree or future career
+:::
 
-Most of you are majoring in a field that will require you to understand and use statistics in some form.
+::: {.fragment}
+Does it matter? Statistics is everywhere and can be applied in almost any field -- a multi-disciplinary problem-solving tool.
+:::
 
 ## Benefits
 
 Even if you don't become a data scientist, statistics will help you to:
 
-::: fragment
-1. **Evaluate claims critically**
-   - Understand and analyse data in your field
-   - Make informed decisions based on evidence
-:::
-::: fragment
-2. **Communicate effectively**
-   - Create compelling data visualisations and reports
-   - Present findings clearly to different audiences
-:::
-::: fragment
-3. **Solve real-world problems**
-   - Design and analyse experiments properly
-   - Make evidence-based predictions and identify trends
-:::
+1. **Evaluate claims critically** - isn't that important for... everyone?
+2. **Communicate effectively** - statistics is NOT an exclusive language
+3. **Solve real-world problems** - wouldn't it be great to understand the statistics behind the large decisions that affect our lives (e.g. budgeting, mortgage rates, etc.)?
+
 
 ## The joy of stats
 
@@ -52,17 +44,28 @@ Even if you don't become a data scientist, statistics will help you to:
 
 In your own time: [The best stats you've ever seen](https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen)
 
+::: {.fragment}
 
+![](images/gap-gdplife.gif)
 
-## [Lionel Messi is impossible](https://fivethirtyeight.com/features/lionel-messi-is-impossible/)
+:::
 
+## Lionel Messi is impossible
+
+:::: {.columns}
+::: {.column width="70%"}
 > It’s not possible to shoot more efficiently from outside the penalty area than many players shoot inside it. It’s not possible to lead the world in weak-kick goals and long-range goals. It’s not possible to score on unassisted plays as well as the best players in the world score on assisted ones. It’s not possible to lead the world’s forwards both in taking on defenders and in dishing the ball to others. And it’s certainly not possible to do most of these things by insanely wide margins.
 > 
-> **But Messi does all of this and more.**
+> [**But Messi does all of this and more.**]((https://fivethirtyeight.com/features/lionel-messi-is-impossible/))
 
-![Messi playing for Argentina](images/Argentina_team_Messi.jpg){fig-align="left" fig-alt="Lionel Messi standing with the Argentina national football team on the pitch"}
+:::
 
-*Image credit: [Кирилл Венедиктов](https://commons.wikimedia.org/wiki/File:Argentina_team_in_St._Petersburg_(cropped)_Messi.jpg), CC BY-SA 3.0 GFDL, via Wikimedia Commons*
+::: {.column width="30%"}
+![Messi playing for Argentina. Image credit: [Кирилл Венедиктов](https://commons.wikimedia.org/wiki/File:Argentina_team_in_St._Petersburg_(cropped)_Messi.jpg), CC BY-SA 3.0 GFDL, via Wikimedia Commons](images/Argentina_team_Messi.jpg){fig-align="left" fig-alt="Lionel Messi standing with the Argentina national football team on the pitch"}
+
+
+:::
+::::
 
 ## Lionel Messi is impossible
 
@@ -99,9 +102,10 @@ ggplot(iris, aes(x = Species, y = Sepal.Length)) +
 ```
 
 ## Serious stats
-### Infer
+### Infer - the scientific method
 
-We use formal statistical tests to determine if differences are **statistically significant** so that we can make **inferences** about the population based on the sample data -- part of the **scientific method**.
+We use formal statistical tests to determine if differences are **statistically significant** so that we can make **inferences** about the population based on the sample data.
+
 
 ```{r}
 #| warning: false
@@ -113,13 +117,13 @@ p_val <- summary(model)[[1]]$`Pr(>F)`[1]
 rstatix::anova_summary(model) |>
   gt() |>
   opt_table_font(font = "Crimson Pro", add = FALSE) |>
+  tab_options(table.font.size = px(28)) |>
   tab_caption(
     caption = "Table 1: One-way ANOVA results comparing sepal length between iris species"
   )
 ```
 
 
-### Scientific reporting
 > A one-way ANOVA revealed significant differences in sepal length between species (ANOVA, F(2, 147) = `r sprintf("%.2f", f_stat)`, p < .001). 
 
 
@@ -127,8 +131,7 @@ rstatix::anova_summary(model) |>
 
 :::: {.columns}
 ::: {.column width="25%"}
-![Source: [You scrolled 69,420 bananas this year](https://www.reddit.com/r/recap/comments/1h0igae/i_think_i_win_best_number_of_bananas/?ref=share&ref_source=link)](images/bananas_scrolled.jpeg){fig-align="left" fig-alt="Reddit Recap screenshot showing scroll distance measured in bananas"} 
-
+![Source: [You scrolled 69,420 bananas this year](https://www.reddit.com/r/recap/comments/1h0igae/i_think_i_win_best_number_of_bananas/?ref=share&ref_source=link)](images/bananas_scrolled.jpeg){fig-align="left" fig-alt="Reddit Recap screenshot showing scroll distance measured in bananas" height="500px"} 
 
 :::
 ::: {.column width="40%"}
@@ -139,12 +142,11 @@ rstatix::anova_summary(model) |>
 ::::
 
 
-The *beauty* of statistics -- formal hypothesis testing is not always required to make a point!
-
-
 # The scientific method
 
-> *The man of science has learned to believe in justification, not by faith, but by verification.*
+##
+
+> The man of science has learned to believe in justification, not by faith, but by verification.
 
 -- [Thomas Huxley (1825-1895)](https://en.wikipedia.org/wiki/Thomas_Henry_Huxley)
 
@@ -155,61 +157,57 @@ The *beauty* of statistics -- formal hypothesis testing is not always required t
 - If you discover something (**or not**), it should be possible for others to verify your findings independently
 - Your findings should be **reproducible** and **replicable**
 
+## No single method
+
 ![The logical framework by Underwood (1997)](images/logical_framework.png){fig-alt="Diagram of the logical framework for scientific inquiry as described by Underwood (1997)"}
 
 ## No single method
 
-Variations of the scientific method exist -- it is a **framework** that guides the process of scientific inquiry
 
-::: fragment
 ![](images/workflow.png){fig-alt="Flowchart showing variations of the scientific method as a cyclical workflow"}
-:::
+
 
 ## No single method
 
-### HATPC
-**H**ypothesis -- **A**ssumptions -- **T**est statistic -- **P**-value -- **C**onclusion
-
-
-::: fragment
-
 :::: {.columns}
 ::: {.column width="50%"}
+### HATPC
+- **H**ypothesis
+- **A**ssumptions 
+- **T**est statistic 
+- **P**-value 
+- **C**onclusion
+:::
+
+::: {.column width="50%"}
+
 ![](images/hatpc.png){width="50%" fig-alt="Diagram of the HATPC framework: Hypothesis, Assumptions, Test statistic, P-value, Conclusion"}
 :::
 
-::: {.column width="50%"}
-::: fragment
-### 
-
-You will see some variation of the HATPC in your first-year units -- a common framework for **report writing**
-:::
-:::
-
 ::::
-:::
-
-## Key principles (1/2)
-
-1. **Observation**: Identify a phenomenon of interest that can be measured
-2. **Question**: Formulate a question that can be answered by collecting data
-3. **Research**: Review the literature to understand what is already known -- your question may already have been asked by someone else. This step helps in understanding what is already known and what gaps in knowledge may exist.
-4. **Hypothesis**: Formulate a **testable** hypothesis -- something that can be assessed using data collection and analysis
-
-## Key principles (2/2)
-
-5. **Experiment**: Design an experiment to test the hypothesis
-6. **Data collection**: Collect data
-7. **Analysis**: use statistical methods to analyse the data and determine if results are statistically significant or demonstrate a pattern
-8. **Conclusion**: Interpret the results and draw conclusions. If the results are not significant, this is still a valid conclusion!
 
 
 
-## Reproducibility crisis despite the scientific method
+## Key principles
+
+1. **Ask a question** — What do you want to know?
+2. **Make a prediction** — What do you think will happen?
+3. **Do an experiment** — Collect data to test your prediction
+4. **Analyse the data** — Look for patterns or differences
+5. **Draw a conclusion** — What did you learn? Was your prediction right?
+
+
+# Why R? Why statistical programming?
+
+## Reproducibility crisis 
+
+Despite the scientific method, many scientific findings are often based on research that cannot be repeated by others due to various issues.
 
 From [Nature](https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970) (including image sources):
 
 > More than 70% of researchers have tried and failed to reproduce another scientist's experiments, and more than half have failed to reproduce their own experiments. 
+
+## Reproducibility crisis 
 
 :::: {.columns}
 ::: {.column width="35%"}
@@ -217,11 +215,12 @@ From [Nature](https://www.nature.com/news/1-500-scientists-lift-the-lid-on-repro
 :::
 
 ::: {.column width="65%"}
-![](images/factors-reproducibility.png){fig-alt="Bar chart from Nature survey showing factors that contribute to irreproducible research, with statistical analysis and experimental design among the top causes"}
+![](images/factors-reproducibility.png){fig-alt="Bar chart from Nature survey showing factors that contribute to irreproducible research, with statistical analysis and experimental design among the top causes" height="600px"}
 
-Statistical analysis, experimental design and data issues are the main factors affecting research reproducibility.
+
 :::
 ::::
+
 
 # Reproducibility and replicability
 
@@ -237,28 +236,42 @@ Scientific findings should be **both** reproducible and replicable -- the tools 
 
 How would you explain to someone how to reproduce this plot...
 
-- in Excel? Check the [guide](https://support.microsoft.com/en-au/office/create-a-box-plot-10204530-8cdf-40fe-a711-2eb9785e510f)
-- In SPSS? Check the [guide](https://www.ibm.com/docs/en/spss-statistics/30.0.0?topic=types-boxplots)
-- In R?
-
-### 
 ```{r}
 #| warning: false
 #| message: false
+#| echo: false
 library(palmerpenguins)
 boxplot(bill_length_mm ~ species, data = penguins)
 ```
+
+in Excel? Check the [guide](https://support.microsoft.com/en-au/office/create-a-box-plot-10204530-8cdf-40fe-a711-2eb9785e510f)
+
+In SPSS? Check the [guide](https://www.ibm.com/docs/en/spss-statistics/30.0.0?topic=types-boxplots)
+
+
+
+## In R
+
+```{r}
+#| warning: false
+#| message: false
+#| code-fold: false
+library(palmerpenguins)
+boxplot(bill_length_mm ~ species, data = penguins)
+```
+
 
 
 ## An over-simplification
 
 Those without programming knowledge will *still* struggle to understand and use the two lines of R code shown above.
 
-### What you'll learn
 
-- How to read and write basic R code for data analysis
-- How to debug by reading error messages and experimenting with code
-- Transferable programming skills -- all programming languages follow similar principles and you will find others easier to learn, even if not for statistics...
+### Learn as MUCH as you can NOW
+
+- AI tools interface with code -- you're setting yourself up for success
+- Reproducible reporting is fundamental to ALL professions (think weekly reports, presentations, etc.)
+
 
 # Demonstration
 
@@ -266,10 +279,6 @@ Those without programming knowledge will *still* struggle to understand and use 
 Live demo: walk through a short reproducible analysis in RStudio using Quarto — load data, create a plot, and render the document to show the full workflow from code to output.
 :::
 
-# References
-
-- Quinn & Keough (2002). Sections 1.1-1.2, pages 1-7.
-- Underwood AJ (1997) Experiments in Ecology: Their Logical Design and Interpretation using Analysis of Variance. Cambridge University Press, Cambridge.
 
 # Thanks!
 
@@ -277,3 +286,8 @@ This presentation is based on the [SOLES Quarto reveal.js template](https://gith
 
 <!-- Links -->
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
+
+## References
+
+- Quinn & Keough (2002). Sections 1.1-1.2, pages 1-7.
+- Underwood AJ (1997) Experiments in Ecology: Their Logical Design and Interpretation using Analysis of Variance. Cambridge University Press, Cambridge.
