@@ -1,7 +1,9 @@
 ---
 title: "Lecture 03: Exploring and visualising data"
 author: Januar Harianto
-format: ochre-revealjs
+format:
+  ochre-revealjs: default
+  ochre-typst: default
 execute:
   cache: true
 ---
