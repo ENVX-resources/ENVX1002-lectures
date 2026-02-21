@@ -1,8 +1,12 @@
 project:
   type: website
-  render: 
+  render:
     - "*.qmd"
     - "!*.md"
+  resources:
+    - "lectures/**/*.pdf"
+  post-render:
+    - scripts/copy-pdfs.sh
 editor:
   render-on-save: true
 execute:
