@@ -5,6 +5,8 @@ project:
     - "!*.md"
   resources:
     - "lectures/**/*.pdf"
+  pre-render:
+    - scripts/pre-render.sh
   post-render:
     - scripts/copy-pdfs.sh
 editor:
