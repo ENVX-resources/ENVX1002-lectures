@@ -1006,137 +1006,172 @@
     ]
   },
   {
+    "objectID": "lectures/L01/lecture-01b.html#section",
+    "href": "lectures/L01/lecture-01b.html#section",
+    "title": "Lecture 01b – Reproducible science",
+    "section": "",
+    "text": "Never leave a number all by itself. Never believe that one number on its own can be meaningful. If you are offered one number, always ask for at least one more. Something to compare it with.\n\n– Hans Rosling (1948-2017)"
+  },
+  {
     "objectID": "lectures/L01/lecture-01b.html#why-learn-statistics",
     "href": "lectures/L01/lecture-01b.html#why-learn-statistics",
-    "title": "Lecture 01b – Reproducible Science",
+    "title": "Lecture 01b – Reproducible science",
     "section": "Why learn statistics?",
-    "text": "Why learn statistics?\nAll of science (and industry) are increasingly data-driven and computational:\n\nResearch papers are filled with statistical analyses\nBusiness and policy decisions are based on data analytics\nEnvironmental policies are guided by statistical models\nMedical treatments are evaluated using statistical methods\n\nMost of you are majoring in a field that will require you to understand and use statistics in some form."
+    "text": "Why learn statistics?\nAll of science (and industry) are increasingly data-driven and computational\n\n\nI don’t think it is relevant to my degree or future career\n\n\n\nDoes it matter? Statistics is everywhere and can be applied in almost any field – a multi-disciplinary problem-solving tool."
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#benefits",
     "href": "lectures/L01/lecture-01b.html#benefits",
-    "title": "Lecture 01b – Reproducible Science",
+    "title": "Lecture 01b – Reproducible science",
     "section": "Benefits",
-    "text": "Benefits\nEven if you don’t become a data scientist, statistics will help you to:\n\n\nEvaluate claims critically\n\nUnderstand and analyse data in your field\nMake informed decisions based on evidence\n\n\n\n\n\nCommunicate effectively\n\nCreate compelling data visualisations and reports\nPresent findings clearly to different audiences\n\n\n\n\n\nSolve real-world problems\n\nDesign and analyse experiments properly\nMake evidence-based predictions and identify trends"
+    "text": "Benefits\nEven if you don’t become a data scientist, statistics will help you to:\n\nEvaluate claims critically - isn’t that important for… everyone?\nCommunicate effectively - statistics is NOT an exclusive language\nSolve real-world problems - wouldn’t it be great to understand the statistics behind the large decisions that affect our lives (e.g. budgeting, mortgage rates, etc.)?"
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#the-joy-of-stats",
     "href": "lectures/L01/lecture-01b.html#the-joy-of-stats",
-    "title": "Lecture 01b – Reproducible Science",
+    "title": "Lecture 01b – Reproducible science",
     "section": "The joy of stats",
     "text": "The joy of stats\n200 countries, 200 years, 4 minutes\nIn your own time: The best stats you’ve ever seen"
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#lionel-messi-is-impossible",
     "href": "lectures/L01/lecture-01b.html#lionel-messi-is-impossible",
-    "title": "Lecture 01b – Reproducible Science",
+    "title": "Lecture 01b – Reproducible science",
     "section": "Lionel Messi is impossible",
-    "text": "Lionel Messi is impossible\n\nIt’s not possible to shoot more efficiently from outside the penalty area than many players shoot inside it. It’s not possible to lead the world in weak-kick goals and long-range goals. It’s not possible to score on unassisted plays as well as the best players in the world score on assisted ones. It’s not possible to lead the world’s forwards both in taking on defenders and in dishing the ball to others. And it’s certainly not possible to do most of these things by insanely wide margins.\nBut Messi does all of this and more.\n\n\nMessi playing for ArgentinaImage credit: Кирилл Венедиктов, CC BY-SA 3.0 GFDL, via Wikimedia Commons"
+    "text": "Lionel Messi is impossible\n\n\n\nIt’s not possible to shoot more efficiently from outside the penalty area than many players shoot inside it. It’s not possible to lead the world in weak-kick goals and long-range goals. It’s not possible to score on unassisted plays as well as the best players in the world score on assisted ones. It’s not possible to lead the world’s forwards both in taking on defenders and in dishing the ball to others. And it’s certainly not possible to do most of these things by insanely wide margins.\nBut Messi does all of this and more.\n\n\n\n\n\nMessi playing for Argentina. Image credit: Кирилл Венедиктов, CC BY-SA 3.0 GFDL, via Wikimedia Commons"
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#lionel-messi-is-impossible-1",
     "href": "lectures/L01/lecture-01b.html#lionel-messi-is-impossible-1",
-    "title": "Lecture 01b – Reproducible Science",
+    "title": "Lecture 01b – Reproducible science",
     "section": "Lionel Messi is impossible",
     "text": "Lionel Messi is impossible\n\nSource: fivethirtyeight"
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#lionel-messi-is-impossible-2",
     "href": "lectures/L01/lecture-01b.html#lionel-messi-is-impossible-2",
-    "title": "Lecture 01b – Reproducible Science",
+    "title": "Lecture 01b – Reproducible science",
     "section": "Lionel Messi is impossible",
     "text": "Lionel Messi is impossible\n\nSource: fivethirtyeight"
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#serious-stats",
     "href": "lectures/L01/lecture-01b.html#serious-stats",
-    "title": "Lecture 01b – Reproducible Science",
+    "title": "Lecture 01b – Reproducible science",
     "section": "Serious stats",
     "text": "Serious stats\nWhich sepal length is longer?\n\nSource: Embedded RoboticsNote: common dataset used in statistics and machine learning."
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#serious-stats-1",
     "href": "lectures/L01/lecture-01b.html#serious-stats-1",
-    "title": "Lecture 01b – Reproducible Science",
+    "title": "Lecture 01b – Reproducible science",
     "section": "Serious stats",
     "text": "Serious stats\nVisualise\n\n\nCode\n# load libraries\npacman::p_load(ggplot2, rstatix, gt)\n\n# create boxplot\nggplot(iris, aes(x = Species, y = Sepal.Length)) +\n  geom_boxplot() +\n  theme_classic() +\n  labs(y = \"Sepal Length (cm)\", title = \"Sepal Length by Species\")"
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#serious-stats-2",
     "href": "lectures/L01/lecture-01b.html#serious-stats-2",
-    "title": "Lecture 01b – Reproducible Science",
+    "title": "Lecture 01b – Reproducible science",
     "section": "Serious stats",
-    "text": "Serious stats\nInfer\nWe use formal statistical tests to determine if differences are statistically significant so that we can make inferences about the population based on the sample data – part of the scientific method.\n\n\nCode\n# run ANOVA\nmodel &lt;- aov(Sepal.Length ~ Species, data = iris)\nf_stat &lt;- summary(model)[[1]]$`F value`[1]\np_val &lt;- summary(model)[[1]]$`Pr(&gt;F)`[1]\nrstatix::anova_summary(model) |&gt;\n  gt() |&gt;\n  opt_table_font(font = \"Crimson Pro\", add = FALSE) |&gt;\n  tab_caption(\n    caption = \"Table 1: One-way ANOVA results comparing sepal length between iris species\"\n  )\n\n\n\n\n\n\nTable 1: One-way ANOVA results comparing sepal length between iris species\n\n\nEffect\nDFn\nDFd\nF\np\np&lt;.05\nges\n\n\n\n\nSpecies\n2\n147\n119.265\n1.67e-31\n*\n0.619\n\n\n\n\n\n\n\nScientific reporting\n\nA one-way ANOVA revealed significant differences in sepal length between species (ANOVA, F(2, 147) = 119.26, p &lt; .001)."
+    "text": "Serious stats\nInfer - the scientific method\nWe use formal statistical tests to determine if differences are statistically significant so that we can make inferences about the population based on the sample data.\n\n\nCode\n# run ANOVA\nmodel &lt;- aov(Sepal.Length ~ Species, data = iris)\nf_stat &lt;- summary(model)[[1]]$`F value`[1]\np_val &lt;- summary(model)[[1]]$`Pr(&gt;F)`[1]\nrstatix::anova_summary(model) |&gt;\n  gt() |&gt;\n  opt_table_font(font = \"Crimson Pro\", add = FALSE) |&gt;\n  tab_options(table.font.size = px(28)) |&gt;\n  tab_caption(\n    caption = \"Table 1: One-way ANOVA results comparing sepal length between iris species\"\n  )\n\n\n\n\n\n\nTable 1: One-way ANOVA results comparing sepal length between iris species\n\n\nEffect\nDFn\nDFd\nF\np\np&lt;.05\nges\n\n\n\n\nSpecies\n2\n147\n119.265\n1.67e-31\n*\n0.619\n\n\n\n\n\n\n\n\nA one-way ANOVA revealed significant differences in sepal length between species (ANOVA, F(2, 147) = 119.26, p &lt; .001)."
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#not-always-formal",
     "href": "lectures/L01/lecture-01b.html#not-always-formal",
-    "title": "Lecture 01b – Reproducible Science",
+    "title": "Lecture 01b – Reproducible science",
     "section": "Not always formal",
-    "text": "Not always formal\n\n\n\n\n\nSource: You scrolled 69,420 bananas this year\n\n\n\n\n\n\nSource: “Guys where do you pee?”\n\n\n\nThe beauty of statistics – formal hypothesis testing is not always required to make a point!"
+    "text": "Not always formal\n\n\n\n\n\nSource: You scrolled 69,420 bananas this year\n\n\n\n\n\n\nSource: “Guys where do you pee?”"
+  },
+  {
+    "objectID": "lectures/L01/lecture-01b.html#section-1",
+    "href": "lectures/L01/lecture-01b.html#section-1",
+    "title": "Lecture 01b – Reproducible science",
+    "section": "",
+    "text": "The man of science has learned to believe in justification, not by faith, but by verification.\n\n– Thomas Huxley (1825-1895)"
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#science-as-an-enterprise",
     "href": "lectures/L01/lecture-01b.html#science-as-an-enterprise",
-    "title": "Lecture 01b – Reproducible Science",
+    "title": "Lecture 01b – Reproducible science",
     "section": "Science as an enterprise",
-    "text": "Science as an enterprise\n\nThe scientific method – fundamental to centuries of scientific progress\nIf you discover something (or not), it should be possible for others to verify your findings independently\nYour findings should be reproducible and replicable\n\n\nThe logical framework by Underwood (1997)"
+    "text": "Science as an enterprise\n\nThe scientific method – fundamental to centuries of scientific progress\nIf you discover something (or not), it should be possible for others to verify your findings independently\nYour findings should be reproducible and replicable"
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#no-single-method",
     "href": "lectures/L01/lecture-01b.html#no-single-method",
-    "title": "Lecture 01b – Reproducible Science",
+    "title": "Lecture 01b – Reproducible science",
     "section": "No single method",
-    "text": "No single method\nVariations of the scientific method exist – it is a framework that guides the process of scientific inquiry"
+    "text": "No single method\n\nThe logical framework by Underwood (1997)"
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#no-single-method-1",
     "href": "lectures/L01/lecture-01b.html#no-single-method-1",
-    "title": "Lecture 01b – Reproducible Science",
+    "title": "Lecture 01b – Reproducible science",
     "section": "No single method",
-    "text": "No single method\nHATPC\nHypothesis – Assumptions – Test statistic – P-value – Conclusion\n\n\n\n\n\n\n\nYou will see some variation of the HATPC in your first-year units – a common framework for report writing"
+    "text": "No single method"
   },
   {
-    "objectID": "lectures/L01/lecture-01b.html#key-principles-12",
-    "href": "lectures/L01/lecture-01b.html#key-principles-12",
-    "title": "Lecture 01b – Reproducible Science",
-    "section": "Key principles (1/2)",
-    "text": "Key principles (1/2)\n\nObservation: Identify a phenomenon of interest that can be measured\nQuestion: Formulate a question that can be answered by collecting data\nResearch: Review the literature to understand what is already known – your question may already have been asked by someone else. This step helps in understanding what is already known and what gaps in knowledge may exist.\nHypothesis: Formulate a testable hypothesis – something that can be assessed using data collection and analysis"
+    "objectID": "lectures/L01/lecture-01b.html#no-single-method-2",
+    "href": "lectures/L01/lecture-01b.html#no-single-method-2",
+    "title": "Lecture 01b – Reproducible science",
+    "section": "No single method",
+    "text": "No single method\n\n\nHATPC\n\nHypothesis\nAssumptions\nTest statistic\nP-value\nConclusion"
   },
   {
-    "objectID": "lectures/L01/lecture-01b.html#key-principles-22",
-    "href": "lectures/L01/lecture-01b.html#key-principles-22",
-    "title": "Lecture 01b – Reproducible Science",
-    "section": "Key principles (2/2)",
-    "text": "Key principles (2/2)\n\nExperiment: Design an experiment to test the hypothesis\nData collection: Collect data\nAnalysis: use statistical methods to analyse the data and determine if results are statistically significant or demonstrate a pattern\nConclusion: Interpret the results and draw conclusions. If the results are not significant, this is still a valid conclusion!"
+    "objectID": "lectures/L01/lecture-01b.html#key-principles",
+    "href": "lectures/L01/lecture-01b.html#key-principles",
+    "title": "Lecture 01b – Reproducible science",
+    "section": "Key principles",
+    "text": "Key principles\n\nAsk a question — What do you want to know?\nMake a prediction — What do you think will happen?\nDo an experiment — Collect data to test your prediction\nAnalyse the data — Look for patterns or differences\nDraw a conclusion — What did you learn? Was your prediction right?"
   },
   {
-    "objectID": "lectures/L01/lecture-01b.html#reproducibility-crisis-despite-the-scientific-method",
-    "href": "lectures/L01/lecture-01b.html#reproducibility-crisis-despite-the-scientific-method",
-    "title": "Lecture 01b – Reproducible Science",
-    "section": "Reproducibility crisis despite the scientific method",
-    "text": "Reproducibility crisis despite the scientific method\nFrom Nature (including image sources):\n\nMore than 70% of researchers have tried and failed to reproduce another scientist’s experiments, and more than half have failed to reproduce their own experiments.\n\n\n\n\n\n\nStatistical analysis, experimental design and data issues are the main factors affecting research reproducibility."
+    "objectID": "lectures/L01/lecture-01b.html#reproducibility-crisis",
+    "href": "lectures/L01/lecture-01b.html#reproducibility-crisis",
+    "title": "Lecture 01b – Reproducible science",
+    "section": "Reproducibility crisis",
+    "text": "Reproducibility crisis\nDespite the scientific method, many scientific findings are often based on research that cannot be repeated by others due to various issues.\nFrom Nature (including image sources):\n\nMore than 70% of researchers have tried and failed to reproduce another scientist’s experiments, and more than half have failed to reproduce their own experiments."
+  },
+  {
+    "objectID": "lectures/L01/lecture-01b.html#reproducibility-crisis-1",
+    "href": "lectures/L01/lecture-01b.html#reproducibility-crisis-1",
+    "title": "Lecture 01b – Reproducible science",
+    "section": "Reproducibility crisis",
+    "text": "Reproducibility crisis"
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#key-definitions",
     "href": "lectures/L01/lecture-01b.html#key-definitions",
-    "title": "Lecture 01b – Reproducible Science",
+    "title": "Lecture 01b – Reproducible science",
     "section": "Key definitions",
     "text": "Key definitions\n\nReproducibility: the ability to re-run an analysis and obtain the same results\nReplicability: the ability to obtain the same conclusions using a different dataset or study population\n\nScientific findings should be both reproducible and replicable – the tools that we use should facilitate this in the most efficient way possible."
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#reproducibility",
     "href": "lectures/L01/lecture-01b.html#reproducibility",
-    "title": "Lecture 01b – Reproducible Science",
+    "title": "Lecture 01b – Reproducible science",
     "section": "Reproducibility",
-    "text": "Reproducibility\nHow would you explain to someone how to reproduce this plot…\n\nin Excel? Check the guide\nIn SPSS? Check the guide\nIn R?\n\n\n\n\nCode\nlibrary(palmerpenguins)\nboxplot(bill_length_mm ~ species, data = penguins)"
+    "text": "Reproducibility\nHow would you explain to someone how to reproduce this plot…\n\nin Excel? Check the guide\nIn SPSS? Check the guide"
+  },
+  {
+    "objectID": "lectures/L01/lecture-01b.html#in-r",
+    "href": "lectures/L01/lecture-01b.html#in-r",
+    "title": "Lecture 01b – Reproducible science",
+    "section": "In R",
+    "text": "In R\n\nlibrary(palmerpenguins)\nboxplot(bill_length_mm ~ species, data = penguins)"
   },
   {
     "objectID": "lectures/L01/lecture-01b.html#an-over-simplification",
     "href": "lectures/L01/lecture-01b.html#an-over-simplification",
-    "title": "Lecture 01b – Reproducible Science",
+    "title": "Lecture 01b – Reproducible science",
     "section": "An over-simplification",
-    "text": "An over-simplification\nThose without programming knowledge will still struggle to understand and use the two lines of R code shown above.\nWhat you’ll learn\n\nHow to read and write basic R code for data analysis\nHow to debug by reading error messages and experimenting with code\nTransferable programming skills – all programming languages follow similar principles and you will find others easier to learn, even if not for statistics…"
+    "text": "An over-simplification\nThose without programming knowledge will still struggle to understand and use the two lines of R code shown above.\nLearn as MUCH as you can NOW\n\nAI tools interface with code – you’re setting yourself up for success\nReproducible reporting is fundamental to ALL professions (think weekly reports, presentations, etc.)"
+  },
+  {
+    "objectID": "lectures/L01/lecture-01b.html#references",
+    "href": "lectures/L01/lecture-01b.html#references",
+    "title": "Lecture 01b – Reproducible science",
+    "section": "References",
+    "text": "References\n\nQuinn & Keough (2002). Sections 1.1-1.2, pages 1-7.\nUnderwood AJ (1997) Experiments in Ecology: Their Logical Design and Interpretation using Analysis of Variance. Cambridge University Press, Cambridge."
   },
   {
     "objectID": "lectures/L02/lecture-02.html#after-this-week-you-will-be-able-to",
