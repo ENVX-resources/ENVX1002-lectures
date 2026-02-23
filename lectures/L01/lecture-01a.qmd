@@ -161,7 +161,7 @@ We are looking to secure a bus service from main campus to C81, but need an idea
 
 If you are interested in catching a shuttle bus to C81, please fill out this short survey:
 
-![](images/QRCode%20for%20Connecting%20Campuses%20-%20Redfern%20(ATP).png){fig-align="center"}
+![](images/qrbus.png){fig-align="center"}
 
 
 # Content & assessments
