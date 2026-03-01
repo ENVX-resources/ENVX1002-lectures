@@ -3,8 +3,10 @@ title: "Lecture 02: Introduction to statistical programming"
 author: Januar Harianto
 # format: revealjs
 # fontsize: 16px
+lightbox: true
 format:
-  ochre-revealjs: default
+  ochre-revealjs:
+    slide-number: true
   ochre-typst: default
 ---
 
@@ -16,11 +18,9 @@ format:
 
 1. Navigate and use the RStudio interface effectively
 2. Execute basic R functions and understand their syntax
-3. Feel confident explaining basic statistical concepts like **samples** and **populations**
-4. Understand and explain measures of **central tendency** (mean, median, mode) clearly and without mathematical jargon
-5. Master different measures of **spread** (range, IQR, variance, standard deviation) through practical examples
-6. Calculate statistical measures using **both R and Excel**
-7. Choose appropriate statistical measures for your biological data and explain your choices
+3. Describe measures of **central tendency** (mean, median, mode) clearly and without mathematical jargon
+4. Describe measures of **spread** (range, IQR, variance, standard deviation) through practical examples
+5. Calculate and compare statistical measures using **R and Excel** for biological data
 
 ## Quick checklist
 
@@ -29,77 +29,63 @@ By now you should have...
 - [ ] Installed [**R**](https://cran.r-project.org/)
 - [ ] Installed [**RStudio**](https://posit.co/download/rstudio-desktop/)
 - [ ] Created one (or two) documents in [Markdown](https://quarto.org/docs/authoring/markdown-basics.html) using Quarto
+- [ ] Read the ENVX1002 R guide (Canvas > Tool Kit)
 
 # History of statistical programming
 
 ## From calculators to computers
 
-::: {layout-ncol=2}
+::: {layout-ncol=4}
 
-![1800s: Mechanical calculators. [Source](https://upload.wikimedia.org/wikipedia/commons/5/57/Mechanical_calculators_Keyboards.png)](images/calculator1800s.png){height=400 fig-align="left"}
+![1800s: Mechanical calculators. [Source](https://upload.wikimedia.org/wikipedia/commons/5/57/Mechanical_calculators_Keyboards.png)](images/calculator1800s.png){height=250}
 
-![1960s: Statistical software BMDP and SPSS (not in image). [Source](https://economicsnetwork.ac.uk/cheer/ch10_3/ch10_3p21.htm)](images/bmdp.gif){height=400}
+![1960s: Statistical software BMDP and SPSS (not in image). [Source](https://economicsnetwork.ac.uk/cheer/ch10_3/ch10_3p21.htm)](images/bmdp.gif){height=250}
 
-:::
+![1970s: SAS (Statistical Analysis System) [Source](https://data-flair.training/blogs/sas-software/)](images/sas-stat.png){height=250}
 
-## Statistical software in the 1970s
-
-::: {layout-ncol=2}
-
-![1970s: SAS (Statistical Analysis System) [Source](https://data-flair.training/blogs/sas-software/)](images/sas-stat.png){height=300 fig-align="left"}
-
-![1976: Birth of S at Bell Labs. S-PLUS debuts in 1988. [Source](https://solutionmetrics.com.au/splus/)](images/splus.png){height=300}
+![1976: Birth of S at Bell Labs. S-PLUS debuts in 1988. [Source](https://solutionmetrics.com.au/splus/)](images/splus.png){height=250}
 
 :::
 
-# The R story
+## The R story
 - Created at University of Auckland, New Zealand in 1993
 - Named after creators (Ross & Robert) -- and inspired by S programming language
-- Developed rapidly in the 2000s
-- Designed specifically for statistical computing and graphics, but now used in many fields
-
-![The R graphical user interface. [Source](https://users.ssc.wisc.edu/~hemken/Rworkshops/interface/RConsole.html)](images/rgui.jpeg){fig-align="left"}
-
-## R in today's world
-- Leading tool in data science and statistics (although Python leads in majority of machine learning workflows)
+- Designed specifically for statistical computing and graphics, now used in many fields
 - Over 22,000 [packages on CRAN](https://cran.r-project.org/web/packages/index.html) -- extensive statistical capabilities
-- Integration with other modern tools: Python, HTML, Javascript, Excel, AJAX...
-- **Meets modern academic standards of reproducibility and increasingly preferred by statisticians**
+- **Supports reproducible research** -- a key theme in modern science (remember Lecture 01?)
 
-![RStudio IDE. Source: Januar Harianto](images/rstudio.png){fig-align="left"}
+## The R story
+
+![RStudio IDE. Source: Januar Harianto](images/rstudio.png)
 
 
 # Getting Started with R
 
-## Your RStudio workspace
+## Your RStudio workspace (5 min)
 
 ![](images/rstudio-interface.png)
 
 **Left**: all input, **Right**: all output
 
-## We will always work in Quarto
+## Working in Quarto
 
-- A **Markdown-based** authoring tool
-- Allows you to write **reproducible documents** with code and text
-- Outputs to various formats: HTML, PDF, Word, and more
+
+- A **Markdown-based** authoring tool for **reproducible documents**
+- Write code and text together, output to HTML, PDF, Word and more
 - [Quarto gallery](https://quarto.org/docs/gallery/)
-
-## How Quarto works
-
-- Write your content in **Markdown** (left panel)
-- View the output in **Preview** (right panel) 
-- Quick demo (only available in the live lecture)
+- Quick demo (5 min)
 
 ![](images/quarto-connection.jpeg)
 
 
 
-## Essential Resources
+
+## Where to find help
 
 - Read "A brief R guide for surviving ENVX1002" by Dr. Geoffrey Mazue
   - Available in the Tool Kit section on Canvas
   - Contains essential R programming tips and best practices for this unit
-- Use the Help panel in RStudio
+- Use the **Help** panel in RStudio (bottom-right) -- type `?function_name` to look up any function
 
 # Key statistical concepts
 
@@ -125,7 +111,9 @@ By now you should have...
 - What we *actually* measure
 - Example: 100 trees measured in a forest
 
-**Most (if not all) statistical analyses are based on samples, not populations.**
+::: {style="background-color: var(--ochre-bg-light, #f0f0f0); padding: 0.5em 1em; border-radius: 4px; margin-top: 0.5em;"}
+**Most (if not all) statistical analyses are based on samples, not populations.** This is why we need descriptive statistics -- to summarise what our sample tells us.
+:::
 :::
 :::
 
@@ -140,27 +128,30 @@ By now you should have...
 | All soil bacteria in a forest | Bacteria from 50 soil cores |
 | All cookies in a bakery | Tasting 3 cookies to judge quality |
 | All students at the university | The 200 students in this course |
-| Water quality in the entire ocean | Water samples from specific locations |
-| All trees in a national park | 75 trees measured in random plots |
-| All possible blood test results | Blood samples from 100 patients |
 
-*Disclaimer: use of GenAI for content generation in this slide.*
+::: fragment
+*Each sample is a small piece of a much larger picture.*
+:::
 
 ## How well does a sample represent the population?
 
 It depends:
 
+::: incremental
 - **Sample size**: Larger samples are more likely to represent the population
 - **Sampling method**: Random samples are more likely to be representative
 - **Population variability**: More variability means larger samples are needed
+:::
 
-In reality, we often have to balance these factors due to time, cost, and practical constraints.
+::: fragment
+We often balance these factors due to time, cost, and practical constraints. We will learn tools for this later -- **confidence intervals** and **hypothesis testing**.
+:::
 
 ## Samples vary
 
 Different samples give different results -- suppose we have a population of **1000 trees** and we randomly sample 6 tree heights. If this is done 3 times, it is likely that the samples will be different.
 
-We have code to demonstrate this but just focus on the results for now:
+The code below demonstrates this -- focus on the results for now:
 
 ```{r}
 #| echo: true
@@ -179,21 +170,66 @@ for (i in 1:3) {
 }
 ```
 
-Are the samples different? *How* different are they?
+Are the samples different? *How* different are they? This is where **descriptive statistics** come in.
 
 
 ## Descriptive statistics
 
 We use **descriptive statistics** to summarise and describe data, helping us compare and contrast.
 
+::: fragment
 1. **Measures of central tendency** -- describe the "typical" value in a sample
    - mean, median, mode
+:::
+::: fragment
 2. **Measures of spread** -- describe how much the data varies
    - standard deviation, variance (commonly used)
    - range, quartiles, IQR (for unique cases)
-3. **Measures of uncertainty** -- describe how confident we are in our estimates
-   - standard error 
-   - confidence intervals
+:::
+
+
+## Data types
+
+Before we calculate any statistics, it helps to know what kind of data we are working with.
+
+::: {.columns}
+::: {.column width="50%"}
+**Categorical** (qualitative)
+
+- Data that falls into groups or categories
+- Examples: blood type (A, B, AB, O), eye colour, species name
+- Summarised by **counts** or **proportions**
+- The **mode** is the main measure of central tendency
+:::
+
+::: {.column width="50%"}
+**Continuous** (quantitative)
+
+- Data measured on a numeric scale
+- Examples: height (cm), temperature (°C), seagrass length (cm)
+- Summarised by **mean**, **median**, **standard deviation**, etc.
+- Can take any value within a range
+:::
+:::
+
+::: fragment
+::: {style="background-color: var(--ochre-bg-light, #f0f0f0); padding: 0.5em 1em; border-radius: 4px; margin-top: 0.5em;"}
+Knowing your data type helps you choose the right summary statistic. We will revisit this in more detail in Lecture 03.
+:::
+:::
+
+
+## That is all for today!
+
+We will continue with **measures of central tendency** and **measures of spread** in tomorrow's session.
+
+# Tuesday's session {visibility="hidden"}
+
+## How many students are in this room? {visibility="hidden"}
+
+Scan the QR code and enter your estimate. We will use the class results for our Excel examples today.
+
+![Scan to submit your estimate](images/qr-google-sheets.png){fig-align="center" height=400}
 
 
 # Measures of central tendency
@@ -204,12 +240,17 @@ We use **descriptive statistics** to summarise and describe data, helping us com
 - Add up all your numbers
 - Divide by how many numbers you have
 
-::: {.callout-note}
-## Mathematical notation
+::: {style="background-color: var(--ochre-bg-light, #f0f0f0); padding: 0.5em 1em; border-radius: 4px;"}
+**Mathematical notation**
+
 - Population mean: $\mu = \frac{\sum_{i=1}^{N} x_i}{N}$
 - Sample mean: $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$
 
-Where $x_i$ is each individual value, $N$ is population size, and $n$ is sample size.
+Where $x_i$ is each individual value, $N$ is population size, and $n$ is sample size. Notice how $\mu$ (population) and $\bar{x}$ (sample) mirror the population vs sample distinction from earlier.
+:::
+
+::: fragment
+Do not worry about memorising the formulas -- R handles the calculation for us. The important thing is understanding what the mean *represents*.
 :::
 
 
@@ -294,31 +335,24 @@ The median is the middle number when your data is in order:
 Example: House prices ($'000s): 450, 1100, 480, 460, 470, 420, 1400, 450, 470
 
 ::: fragment
-Order: 450, 450, 420, 460, **470**, 470, 480, 1100, 1400
+Order: 420, 450, 450, 460, **470**, 470, 480, 1100, 1400
 :::
 
 ::: fragment
-**How is it useful?**
+The median is not pulled by extreme values (like the two expensive houses at $1,100k and $1,400k), making it a better summary for skewed data.
 :::
 :::
 
 ## Median in Excel
 
+Excel provides the MEDIAN function:
 
-Excel provides two main ways to find the median:
-
-1. **Using MEDIAN function**
-   ```
-   =MEDIAN(A1:A9)
-   ```
-   - Type `=MEDIAN(`
-   - Select your data range
-   - Press Enter
-
-2. **Alternative method**
-   - Sort your data first (use the Sort functionality in the Data tab)
-   - Find middle value(s)
-   - If even number of values, average the middle two
+```
+=MEDIAN(A1:A9)
+```
+- Type `=MEDIAN(`
+- Select your data range
+- Press Enter
 
 
 ## Median in R
@@ -353,22 +387,17 @@ mean(prices)
 ## Mode -- most frequent value
 
 ::: fragment
-The mode is the value that appears most frequently in your data. It's particularly useful for:
+The mode is the value that appears most frequently in your data. It is most useful for:
 
-- Categorical data (like blood types, eye colors)
+- **Categorical data** (like blood types, species names, eye colours)
 - Finding the most common item in a group
-- Data that has clear repeated values
 :::
 
 ::: fragment
-Calculating the mode can be tricky, especially if there are multiple modes or no mode at all. This is why the mode is not commonly used in statistics.
-:::
-
-::: fragment
-### Questions that the mode can answer
+For numerical data, the mean or median is usually preferred. But the mode answers questions that other measures cannot:
 
 - What is the most common blood type in a population?
-- What is the most common eye color in a group of people?
+- Which species is most frequently observed at a field site?
 :::
 
 ## Mode in Excel
@@ -388,63 +417,44 @@ Excel provides several methods to find the mode but the simplest is to use the M
 
 ## Mode in R
 
-There is no built-in function to calculate the mode, so we use the `modeest` package:
+R does not have a built-in mode function, but there are straightforward ways to find it.
+
+**Do it yourself** with `table()`:
 
 ```{r}
 #| code-fold: false
 #| echo: true
+# Species observed at a field site
+species <- c("banksia", "eucalyptus", "banksia", "acacia",
+             "eucalyptus", "banksia", "grevillea", "banksia")
 
+# Count how often each species appears
+table(species)
+```
+
+::: fragment
+```{r}
+#| code-fold: false
+#| echo: true
+# Find the most common species
+freq_table <- table(species)
+names(freq_table[freq_table == max(freq_table)])
+```
+:::
+
+::: fragment
+**Or use a package**:
+```{r}
+#| code-fold: false
+#| echo: true
 if(!require("modeest")) install.packages("modeest")
 library(modeest)
-
-df <- c(1, 2, 3, 3, 4, 5, 5, 5, 6)
-mlv(df, method = "mfv")  # most frequent value
+mlv(species, method = "mfv")  # most frequent value
 ```
-
-::: fragment
-If you were to do it yourself, how would you do it in R? 
 :::
 
 ::: fragment
-::: {.panel-tabset}
-
-## Using frequencies
-Use the `table()` function to count frequencies:
-```{r}
-#| code-fold: false
-#| echo: true
-freq_table <- table(df) # Count frequencies of each value
-# Find which value(s) appear most often
-modes <- as.numeric(names(freq_table[freq_table == max(freq_table)]))
-modes
-```
-
-## Using run-length encoding
-Use run-length encoding after sorting:
-```{r}
-#| code-fold: false
-#| echo: true
-sorted_df <- sort(df) # Sort the vector first
-runs <- rle(sorted_df) # Use run-length encoding to find sequences
-modes <- runs$values[runs$lengths == max(runs$lengths)] # Find the value(s) with max length
-modes
-```
-
-## Using loops
-Loop through the vector and count occurrences:
-```{r}
-#| code-fold: false
-#| echo: true
-unique_vals <- factor(df) # Create a factor of unique values
-counts <- tapply(df, unique_vals, length) # Count occurrences using tapply
-modes <- as.numeric(names(counts[counts == max(counts)])) # Find which values have the maximum count
-modes
-```
-:::
-:::
-
-::: fragment
-**The point is that it doesn't matter how you calculate the mode, as long as you are able to do it.** Also -- if you needed this -- aren't you glad R has a package for it?
+The point is that when R does not have a built-in function, you can write your own solution or find a package that does the job.
 :::
 
 
@@ -493,11 +503,19 @@ p1 + p2
 
 - Central tendency (mean, median, mode) only tells part of the story
 - Spread tells us how much variation exists in our data
-- Different measures of spread tell us different things:
-  - **Range**: Overall spread of data
-  - **IQR**: Spread of middle 50% of data
-  - **Variance**: Average squared deviation from mean
-  - **Standard deviation**: Average deviation in original units
+
+::: fragment
+- **Range**: Overall spread of data
+:::
+::: fragment
+- **IQR**: Spread of middle 50% of data
+:::
+::: fragment
+- **Variance**: Average squared deviation from mean
+:::
+::: fragment
+- **Standard deviation**: Average deviation in original units
+:::
 
 ## Range -- The simplest measure of spread
 
@@ -513,9 +531,17 @@ cat("Protected bay range:", diff(range(seagrass_protected)), "cm\n")
 cat("Wave-exposed range:", diff(range(seagrass_exposed)), "cm\n")
 ```
 
-::: {.callout-note}
+::: {style="background-color: var(--ochre-bg-light, #f0f0f0); padding: 0.5em 1em; border-radius: 4px; margin-top: 0.5em;"}
 The range shows us that seagrass lengths are much more variable in the wave-exposed site!
 :::
+
+## Range in Excel
+
+Use `MAX()` and `MIN()` to calculate the range:
+
+```
+=MAX(A1:A10) - MIN(A1:A10)
+```
 
 ## Interquartile range (IQR): The middle 50%
 
@@ -538,7 +564,7 @@ quantile(seagrass_protected)
 ### Why use IQR?
 - Ignores extreme values
 - Works with skewed data
-- More stable than range
+- Less affected by extreme values than the range
 
 
 ## Comparing Sites Using IQR
@@ -556,9 +582,19 @@ exbay
 - Protected bay IQR: `r pbay` cm
 - Wave-exposed IQR: `r exbay` cm
 
-::: {.callout-note}
-The larger IQR in the wave-exposed site shows more spread in the typical seagrass lengths
+::: {style="background-color: var(--ochre-bg-light, #f0f0f0); padding: 0.5em 1em; border-radius: 4px; margin-top: 0.5em;"}
+The larger IQR in the wave-exposed site shows more spread in the typical seagrass lengths.
 :::
+
+## IQR in Excel
+
+Use `QUARTILE.INC()` to find the IQR:
+
+```
+For Q1: =QUARTILE.INC(A1:A10, 1)
+For Q3: =QUARTILE.INC(A1:A10, 3)
+For IQR: =QUARTILE.INC(A1:A10, 3) - QUARTILE.INC(A1:A10, 1)
+```
 
 ## Variance: a detailed measure of spread
 
@@ -572,7 +608,7 @@ Variance measures how far data points are spread from their mean by:
 ### Why use variance?
 
 - Uses **all** data points (unlike IQR)
-- Less sensitive to outliers than range
+- Squaring amplifies the effect of extreme values, making outliers stand out
 - Shows total spread in both directions
 
 
@@ -592,27 +628,41 @@ cat("Protected bay variance:", var(seagrass_protected), "cm²\n")
 cat("Wave-exposed variance:", var(seagrass_exposed), "cm²\n")
 ```
 
-::: {.callout-note}
-The larger variance in wave-exposed site shows more spread from the mean!
+::: {style="background-color: var(--ochre-bg-light, #f0f0f0); padding: 0.5em 1em; border-radius: 4px; margin-top: 0.5em;"}
+The larger variance in the wave-exposed site shows more spread from the mean!
 :::
+
+## Variance in Excel
+
+Use `VAR.S()` to calculate the sample variance:
+
+```
+=VAR.S(A1:A10)
+```
+
+For now, always use `.S` (sample) in this course.
 
 
 
 
 ## Standard deviation: a more interpretable measure
 
+::: fragment
 Standard deviation (SD, or $\sigma$ for population, $s$ for sample) is the square root of variance:
 
 - Tells us the "typical distance" from the mean
-- Easy to understand - similar to saying "± value" after a mean
+- Easy to understand -- similar to saying "± value" after a mean
 - Small SD means values cluster closely around mean
-- Large SD means values are more spread out
+- Larger SD values mean values are more spread out
+:::
 
+::: fragment
 ### When and why to use it
 - Values are in the **same units** as your data (unlike variance)
 - Perfect for describing natural variation (height, weight, temperature)
 - Used in many statistical tests
 - Great for comparing different groups or datasets
+:::
 
 
 ## Interpreting standard deviation (with R)
@@ -633,9 +683,19 @@ sd_e <- sd(seagrass_exposed)
 cat("Wave-exposed:", round(mean_e, 1), "±", round(sd_e, 2), "cm\n")
 ```
 
-::: {.callout-tip}
-The ± tells us about the typical variation around the mean. Larger values indicate more spread!
+::: {style="background-color: var(--ochre-bg-light, #f0f0f0); padding: 0.5em 1em; border-radius: 4px; margin-top: 0.5em;"}
+The ± tells us about the typical variation around the mean. Larger SD values indicate more spread!
 :::
+
+## SD in Excel
+
+Use `STDEV.S()` to calculate the sample standard deviation:
+
+```
+=STDEV.S(A1:A10)
+```
+
+For now, always use `.S` (sample) in this course.
 
 
 
@@ -655,48 +715,12 @@ The ± tells us about the typical variation around the mean. Larger values indic
 - Standard deviation is most commonly used in research papers
 
 
-## Range and IQR in Excel
-
-Common Excel functions for measuring spread:
-
-1. **Range**: Use `MAX()` and `MIN()`
-```
-=MAX(A1:A10) - MIN(A1:A10)
-```
-
-2. **Quartiles and IQR**: Use `QUARTILE.INC()`
-```
-For Q1: =QUARTILE.INC(A1:A10, 1)
-For Q3: =QUARTILE.INC(A1:A10, 3)
-For IQR: =QUARTILE.INC(A1:A10, 3) - QUARTILE.INC(A1:A10, 1)
-```
-
-## Variance and standard deviation in Excel
-
-Statistical functions for variance and standard deviation:
-
-1. **Sample Variance**: Use `VAR.S()`
-```
-=VAR.S(A1:A10)
-```
-
-2. **Sample Standard Deviation**: Use `STDEV.S()`
-```
-=STDEV.S(A1:A10)
-```
-
-::: {.callout-tip}
-## Tip
-Use `.P` instead of `.S` for population measures:
-
-- `VAR.P()` for population variance
-- `STDEV.P()` for population standard deviation
-:::
-
-
 # References and Resources
 
 ## Core Reading
+
+Read after the lecture:
+
 - Quinn & Keough (2024). *Experimental Design and Data Analysis for Biologists*. Cambridge University Press. **Chapter 2**: Things to know before proceeding.
 - Canvas site for lecture notes and additional resources
 
