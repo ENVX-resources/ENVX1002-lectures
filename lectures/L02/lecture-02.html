@@ -6,7 +6,10 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.26">
 
   <meta name="author" content="Januar Harianto">
@@ -207,7 +210,7 @@ Januar Harianto
     </div>
 </div>
 
-  <p class="date">Feb 2026</p>
+  <p class="date">Mar 2026</p>
 </section>
 <section>
 <section id="learning-outcomes" class="title-slide slide level1 center">
@@ -219,11 +222,9 @@ Januar Harianto
 <ol type="1">
 <li>Navigate and use the RStudio interface effectively</li>
 <li>Execute basic R functions and understand their syntax</li>
-<li>Feel confident explaining basic statistical concepts like <strong>samples</strong> and <strong>populations</strong></li>
-<li>Understand and explain measures of <strong>central tendency</strong> (mean, median, mode) clearly and without mathematical jargon</li>
-<li>Master different measures of <strong>spread</strong> (range, IQR, variance, standard deviation) through practical examples</li>
-<li>Calculate statistical measures using <strong>both R and Excel</strong></li>
-<li>Choose appropriate statistical measures for your biological data and explain your choices</li>
+<li>Describe measures of <strong>central tendency</strong> (mean, median, mode) clearly and without mathematical jargon</li>
+<li>Describe measures of <strong>spread</strong> (range, IQR, variance, standard deviation) through practical examples</li>
+<li>Calculate and compare statistical measures using <strong>R and Excel</strong> for biological data</li>
 </ol>
 </section>
 <section id="quick-checklist" class="slide level2">
@@ -233,6 +234,7 @@ Januar Harianto
 <li><label><input type="checkbox">Installed <a href="https://cran.r-project.org/"><strong>R</strong></a></label></li>
 <li><label><input type="checkbox">Installed <a href="https://posit.co/download/rstudio-desktop/"><strong>RStudio</strong></a></label></li>
 <li><label><input type="checkbox">Created one (or two) documents in <a href="https://quarto.org/docs/authoring/markdown-basics.html">Markdown</a> using Quarto</label></li>
+<li><label><input type="checkbox">Read the ENVX1002 R guide (Canvas &gt; Tool Kit)</label></li>
 </ul>
 </section></section>
 <section>
@@ -242,108 +244,91 @@ Januar Harianto
 </section>
 <section id="from-calculators-to-computers" class="slide level2">
 <h2>From calculators to computers</h2>
-<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-panel" data-layout-ncol="4">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-left">
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/calculator1800s.png" height="400"></p>
+<p><a href="images/calculator1800s.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="1800s: Mechanical calculators. Source"><img data-src="images/calculator1800s.png" height="250" alt="1800s: Mechanical calculators. Source"></a></p>
 <figcaption>1800s: Mechanical calculators. <a href="https://upload.wikimedia.org/wikipedia/commons/5/57/Mechanical_calculators_Keyboards.png">Source</a></figcaption>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/bmdp.gif" height="400"></p>
+<p><a href="images/bmdp.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="1960s: Statistical software BMDP and SPSS (not in image). Source"><img data-src="images/bmdp.gif" height="250" alt="1960s: Statistical software BMDP and SPSS (not in image). Source"></a></p>
 <figcaption>1960s: Statistical software BMDP and SPSS (not in image). <a href="https://economicsnetwork.ac.uk/cheer/ch10_3/ch10_3p21.htm">Source</a></figcaption>
 </figure>
 </div>
 </div>
-</div>
-</div>
-</section>
-<section id="statistical-software-in-the-1970s" class="slide level2">
-<h2>Statistical software in the 1970s</h2>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-left">
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/sas-stat.png" height="300"></p>
+<p><a href="images/sas-stat.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="1970s: SAS (Statistical Analysis System) Source"><img data-src="images/sas-stat.png" height="250" alt="1970s: SAS (Statistical Analysis System) Source"></a></p>
 <figcaption>1970s: SAS (Statistical Analysis System) <a href="https://data-flair.training/blogs/sas-software/">Source</a></figcaption>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/splus.png" height="300"></p>
+<p><a href="images/splus.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="1976: Birth of S at Bell Labs. S-PLUS debuts in 1988. Source"><img data-src="images/splus.png" height="250" alt="1976: Birth of S at Bell Labs. S-PLUS debuts in 1988. Source"></a></p>
 <figcaption>1976: Birth of S at Bell Labs. S-PLUS debuts in 1988. <a href="https://solutionmetrics.com.au/splus/">Source</a></figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-</section></section>
-<section>
-<section id="the-r-story" class="title-slide slide level1 center">
-<h1>The R story</h1>
+</section>
+<section id="the-r-story" class="slide level2">
+<h2>The R story</h2>
 <ul>
 <li>Created at University of Auckland, New Zealand in 1993</li>
 <li>Named after creators (Ross &amp; Robert) – and inspired by S programming language</li>
-<li>Developed rapidly in the 2000s</li>
-<li>Designed specifically for statistical computing and graphics, but now used in many fields</li>
-</ul>
-
-<img data-src="images/rgui.jpeg" class="r-stretch quarto-figure-left"><p class="caption">The R graphical user interface. <a href="https://users.ssc.wisc.edu/~hemken/Rworkshops/interface/RConsole.html">Source</a></p></section>
-<section id="r-in-todays-world" class="slide level2">
-<h2>R in today’s world</h2>
-<ul>
-<li>Leading tool in data science and statistics (although Python leads in majority of machine learning workflows)</li>
+<li>Designed specifically for statistical computing and graphics, now used in many fields</li>
 <li>Over 22,000 <a href="https://cran.r-project.org/web/packages/index.html">packages on CRAN</a> – extensive statistical capabilities</li>
-<li>Integration with other modern tools: Python, HTML, Javascript, Excel, AJAX…</li>
-<li><strong>Meets modern academic standards of reproducibility and increasingly preferred by statisticians</strong></li>
+<li><strong>Supports reproducible research</strong> – a key theme in modern science (remember Lecture 01?)</li>
 </ul>
-
-<img data-src="images/rstudio.png" class="r-stretch quarto-figure-left"><p class="caption">RStudio IDE. Source: Januar Harianto</p></section></section>
+</section>
+<section id="the-r-story-1" class="slide level2">
+<h2>The R story</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/rstudio.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="RStudio IDE. Source: Januar Harianto"><img data-src="images/rstudio.png" alt="RStudio IDE. Source: Januar Harianto"></a></p>
+<figcaption>RStudio IDE. Source: Januar Harianto</figcaption>
+</figure>
+</div>
+</section></section>
 <section>
 <section id="getting-started-with-r" class="title-slide slide level1 center">
 <h1>Getting Started with R</h1>
 
 </section>
-<section id="your-rstudio-workspace" class="slide level2">
-<h2>Your RStudio workspace</h2>
-
-<img data-src="images/rstudio-interface.png" class="r-stretch"><p><strong>Left</strong>: all input, <strong>Right</strong>: all output</p>
+<section id="your-rstudio-workspace-5-min" class="slide level2">
+<h2>Your RStudio workspace (5 min)</h2>
+<p><a href="images/rstudio-interface.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img data-src="images/rstudio-interface.png"></a></p>
+<p><strong>Left</strong>: all input, <strong>Right</strong>: all output</p>
 </section>
-<section id="we-will-always-work-in-quarto" class="slide level2">
-<h2>We will always work in Quarto</h2>
+<section id="working-in-quarto" class="slide level2">
+<h2>Working in Quarto</h2>
 <ul>
-<li>A <strong>Markdown-based</strong> authoring tool</li>
-<li>Allows you to write <strong>reproducible documents</strong> with code and text</li>
-<li>Outputs to various formats: HTML, PDF, Word, and more</li>
+<li>A <strong>Markdown-based</strong> authoring tool for <strong>reproducible documents</strong></li>
+<li>Write code and text together, output to HTML, PDF, Word and more</li>
 <li><a href="https://quarto.org/docs/gallery/">Quarto gallery</a></li>
+<li>Quick demo (5 min)</li>
 </ul>
+<p><a href="images/quarto-connection.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img data-src="images/quarto-connection.jpeg"></a></p>
 </section>
-<section id="how-quarto-works" class="slide level2">
-<h2>How Quarto works</h2>
-<ul>
-<li>Write your content in <strong>Markdown</strong> (left panel)</li>
-<li>View the output in <strong>Preview</strong> (right panel)</li>
-<li>Quick demo (only available in the live lecture)</li>
-</ul>
-
-<img data-src="images/quarto-connection.jpeg" class="r-stretch"></section>
-<section id="essential-resources" class="slide level2">
-<h2>Essential Resources</h2>
+<section id="where-to-find-help" class="slide level2">
+<h2>Where to find help</h2>
 <ul>
 <li>Read “A brief R guide for surviving ENVX1002” by Dr.&nbsp;Geoffrey Mazue
 <ul>
 <li>Available in the Tool Kit section on Canvas</li>
 <li>Contains essential R programming tips and best practices for this unit</li>
 </ul></li>
-<li>Use the Help panel in RStudio</li>
+<li>Use the <strong>Help</strong> panel in RStudio (bottom-right) – type <code>?function_name</code> to look up any function</li>
 </ul>
 </section></section>
 <section>
@@ -371,16 +356,14 @@ Januar Harianto
 <li>What we <em>actually</em> measure</li>
 <li>Example: 100 trees measured in a forest</li>
 </ul>
-<p><strong>Most (if not all) statistical analyses are based on samples, not populations.</strong></p>
+<div style="background-color: var(--ochre-bg-light, #f0f0f0); padding: 0.5em 1em; border-radius: 4px; margin-top: 0.5em;">
+<p><strong>Most (if not all) statistical analyses are based on samples, not populations.</strong> This is why we need descriptive statistics – to summarise what our sample tells us.</p>
+</div>
 </div></div>
 </section>
 <section id="populations-and-their-samples" class="slide level2">
 <h2>Populations and their samples</h2>
 <table class="caption-top">
-<colgroup>
-<col style="width: 60%">
-<col style="width: 40%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Population</th>
@@ -408,36 +391,28 @@ Januar Harianto
 <td>All students at the university</td>
 <td>The 200 students in this course</td>
 </tr>
-<tr class="even">
-<td>Water quality in the entire ocean</td>
-<td>Water samples from specific locations</td>
-</tr>
-<tr class="odd">
-<td>All trees in a national park</td>
-<td>75 trees measured in random plots</td>
-</tr>
-<tr class="even">
-<td>All possible blood test results</td>
-<td>Blood samples from 100 patients</td>
-</tr>
 </tbody>
 </table>
-<p><em>Disclaimer: use of GenAI for content generation in this slide.</em></p>
+<div class="fragment">
+<p><em>Each sample is a small piece of a much larger picture.</em></p>
+</div>
 </section>
 <section id="how-well-does-a-sample-represent-the-population" class="slide level2">
 <h2>How well does a sample represent the population?</h2>
 <p>It depends:</p>
 <ul>
-<li><strong>Sample size</strong>: Larger samples are more likely to represent the population</li>
-<li><strong>Sampling method</strong>: Random samples are more likely to be representative</li>
-<li><strong>Population variability</strong>: More variability means larger samples are needed</li>
+<li class="fragment"><strong>Sample size</strong>: Larger samples are more likely to represent the population</li>
+<li class="fragment"><strong>Sampling method</strong>: Random samples are more likely to be representative</li>
+<li class="fragment"><strong>Population variability</strong>: More variability means larger samples are needed</li>
 </ul>
-<p>In reality, we often have to balance these factors due to time, cost, and practical constraints.</p>
+<div class="fragment">
+<p>We often balance these factors due to time, cost, and practical constraints. We will learn tools for this later – <strong>confidence intervals</strong> and <strong>hypothesis testing</strong>.</p>
+</div>
 </section>
 <section id="samples-vary" class="slide level2">
 <h2>Samples vary</h2>
 <p>Different samples give different results – suppose we have a population of <strong>1000 trees</strong> and we randomly sample 6 tree heights. If this is done 3 times, it is likely that the samples will be different.</p>
-<p>We have code to demonstrate this but just focus on the results for now:</p>
+<p>The code below demonstrates this – focus on the results for now:</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -459,28 +434,63 @@ Sample 2:  7.6 6.1 9.9 10.1 12.5 14.9
 Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 </div>
 </div>
-<p>Are the samples different? <em>How</em> different are they?</p>
+<p>Are the samples different? <em>How</em> different are they? This is where <strong>descriptive statistics</strong> come in.</p>
 </section>
 <section id="descriptive-statistics" class="slide level2">
 <h2>Descriptive statistics</h2>
 <p>We use <strong>descriptive statistics</strong> to summarise and describe data, helping us compare and contrast.</p>
+<div class="fragment">
 <ol type="1">
 <li><strong>Measures of central tendency</strong> – describe the “typical” value in a sample
 <ul>
 <li>mean, median, mode</li>
 </ul></li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="2" type="1">
 <li><strong>Measures of spread</strong> – describe how much the data varies
 <ul>
 <li>standard deviation, variance (commonly used)</li>
 <li>range, quartiles, IQR (for unique cases)</li>
 </ul></li>
-<li><strong>Measures of uncertainty</strong> – describe how confident we are in our estimates
-<ul>
-<li>standard error</li>
-<li>confidence intervals</li>
-</ul></li>
 </ol>
+</div>
+</section>
+<section id="data-types" class="slide level2">
+<h2>Data types</h2>
+<p>Before we calculate any statistics, it helps to know what kind of data we are working with.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Categorical</strong> (qualitative)</p>
+<ul>
+<li>Data that falls into groups or categories</li>
+<li>Examples: blood type (A, B, AB, O), eye colour, species name</li>
+<li>Summarised by <strong>counts</strong> or <strong>proportions</strong></li>
+<li>The <strong>mode</strong> is the main measure of central tendency</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Continuous</strong> (quantitative)</p>
+<ul>
+<li>Data measured on a numeric scale</li>
+<li>Examples: height (cm), temperature (°C), seagrass length (cm)</li>
+<li>Summarised by <strong>mean</strong>, <strong>median</strong>, <strong>standard deviation</strong>, etc.</li>
+<li>Can take any value within a range</li>
+</ul>
+</div></div>
+<div class="fragment">
+<div style="background-color: var(--ochre-bg-light, #f0f0f0); padding: 0.5em 1em; border-radius: 4px; margin-top: 0.5em;">
+<p>Knowing your data type helps you choose the right summary statistic. We will revisit this in more detail in Lecture 03.</p>
+</div>
+</div>
+</section>
+<section id="that-is-all-for-today" class="slide level2">
+<h2>That is all for today!</h2>
+<p>We will continue with <strong>measures of central tendency</strong> and <strong>measures of spread</strong> in tomorrow’s session.</p>
 </section></section>
+<section>
+
+</section>
 <section>
 <section id="measures-of-central-tendency" class="title-slide slide level1 center">
 <h1>Measures of central tendency</h1>
@@ -492,22 +502,16 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 <li>Add up all your numbers</li>
 <li>Divide by how many numbers you have</li>
 </ul>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
+<div style="background-color: var(--ochre-bg-light, #f0f0f0); padding: 0.5em 1em; border-radius: 4px;">
 <p><strong>Mathematical notation</strong></p>
-</div>
-<div class="callout-content">
 <ul>
 <li>Population mean: <span class="math inline">\(\mu = \frac{\sum_{i=1}^{N} x_i}{N}\)</span></li>
 <li>Sample mean: <span class="math inline">\(\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}\)</span></li>
 </ul>
-<p>Where <span class="math inline">\(x_i\)</span> is each individual value, <span class="math inline">\(N\)</span> is population size, and <span class="math inline">\(n\)</span> is sample size.</p>
+<p>Where <span class="math inline">\(x_i\)</span> is each individual value, <span class="math inline">\(N\)</span> is population size, and <span class="math inline">\(n\)</span> is sample size. Notice how <span class="math inline">\(\mu\)</span> (population) and <span class="math inline">\(\bar{x}\)</span> (sample) mirror the population vs sample distinction from earlier.</p>
 </div>
-</div>
+<div class="fragment">
+<p>Do not worry about memorising the formulas – R handles the calculation for us. The important thing is understanding what the mean <em>represents</em>.</p>
 </div>
 </section>
 <section id="mean-in-excel" class="slide level2">
@@ -531,7 +535,7 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 </ul></li>
 </ol>
 </div><div class="column" style="width:60%;">
-<p><img data-src="images/excel-mean.gif"></p>
+<p><a href="images/excel-mean.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img data-src="images/excel-mean.gif"></a></p>
 </div></div>
 </section>
 <section id="mean-in-r" class="slide level2">
@@ -582,31 +586,22 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 <div class="fragment">
 <p>Example: House prices ($’000s): 450, 1100, 480, 460, 470, 420, 1400, 450, 470</p>
 <div class="fragment">
-<p>Order: 450, 450, 420, 460, <strong>470</strong>, 470, 480, 1100, 1400</p>
+<p>Order: 420, 450, 450, 460, <strong>470</strong>, 470, 480, 1100, 1400</p>
 </div>
 <div class="fragment">
-<p><strong>How is it useful?</strong></p>
+<p>The median is not pulled by extreme values (like the two expensive houses at $1,100k and $1,400k), making it a better summary for skewed data.</p>
 </div>
 </div>
 </section>
 <section id="median-in-excel" class="slide level2">
 <h2>Median in Excel</h2>
-<p>Excel provides two main ways to find the median:</p>
-<ol type="1">
-<li><p><strong>Using MEDIAN function</strong></p>
+<p>Excel provides the MEDIAN function:</p>
 <pre><code>=MEDIAN(A1:A9)</code></pre>
 <ul>
 <li>Type <code>=MEDIAN(</code></li>
 <li>Select your data range</li>
 <li>Press Enter</li>
-</ul></li>
-<li><p><strong>Alternative method</strong></p>
-<ul>
-<li>Sort your data first (use the Sort functionality in the Data tab)</li>
-<li>Find middle value(s)</li>
-<li>If even number of values, average the middle two</li>
-</ul></li>
-</ol>
+</ul>
 </section>
 <section id="median-in-r" class="slide level2">
 <h2>Median in R</h2>
@@ -638,21 +633,17 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 <section id="mode-most-frequent-value" class="slide level2">
 <h2>Mode – most frequent value</h2>
 <div class="fragment">
-<p>The mode is the value that appears most frequently in your data. It’s particularly useful for:</p>
+<p>The mode is the value that appears most frequently in your data. It is most useful for:</p>
 <ul>
-<li>Categorical data (like blood types, eye colors)</li>
+<li><strong>Categorical data</strong> (like blood types, species names, eye colours)</li>
 <li>Finding the most common item in a group</li>
-<li>Data that has clear repeated values</li>
 </ul>
 </div>
 <div class="fragment">
-<p>Calculating the mode can be tricky, especially if there are multiple modes or no mode at all. This is why the mode is not commonly used in statistics.</p>
-</div>
-<div class="fragment">
-<h3 id="questions-that-the-mode-can-answer">Questions that the mode can answer</h3>
+<p>For numerical data, the mean or median is usually preferred. But the mode answers questions that other measures cannot:</p>
 <ul>
 <li>What is the most common blood type in a population?</li>
-<li>What is the most common eye color in a group of people?</li>
+<li>Which species is most frequently observed at a field site?</li>
 </ul>
 </div>
 </section>
@@ -668,65 +659,44 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 </section>
 <section id="mode-in-r" class="slide level2">
 <h2>Mode in R</h2>
-<p>There is no built-in function to calculate the mode, so we use the <code>modeest</code> package:</p>
+<p>R does not have a built-in mode function, but there are straightforward ways to find it.</p>
+<p><strong>Do it yourself</strong> with <code>table()</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">"modeest"</span>)) <span class="fu">install.packages</span>(<span class="st">"modeest"</span>)</span>
-<span id="cb16-2"><a></a><span class="fu">library</span>(modeest)</span>
-<span id="cb16-3"><a></a></span>
-<span id="cb16-4"><a></a>df <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
-<span id="cb16-5"><a></a><span class="fu">mlv</span>(df, <span class="at">method =</span> <span class="st">"mfv"</span>)  <span class="co"># most frequent value</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="co"># Species observed at a field site</span></span>
+<span id="cb16-2"><a></a>species <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"banksia"</span>, <span class="st">"eucalyptus"</span>, <span class="st">"banksia"</span>, <span class="st">"acacia"</span>,</span>
+<span id="cb16-3"><a></a>             <span class="st">"eucalyptus"</span>, <span class="st">"banksia"</span>, <span class="st">"grevillea"</span>, <span class="st">"banksia"</span>)</span>
+<span id="cb16-4"><a></a></span>
+<span id="cb16-5"><a></a><span class="co"># Count how often each species appears</span></span>
+<span id="cb16-6"><a></a><span class="fu">table</span>(species)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 5</code></pre>
+<pre><code>species
+    acacia    banksia eucalyptus  grevillea 
+         1          4          2          1 </code></pre>
 </div>
 </div>
 <div class="fragment">
-<p>If you were to do it yourself, how would you do it in R?</p>
-</div>
-<div class="fragment">
-<div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Using frequencies</a></li><li><a href="#tabset-1-2">Using run-length encoding</a></li><li><a href="#tabset-1-3">Using loops</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1">
-<p>Use the <code>table()</code> function to count frequencies:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>freq_table <span class="ot">&lt;-</span> <span class="fu">table</span>(df) <span class="co"># Count frequencies of each value</span></span>
-<span id="cb18-2"><a></a><span class="co"># Find which value(s) appear most often</span></span>
-<span id="cb18-3"><a></a>modes <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">names</span>(freq_table[freq_table <span class="sc">==</span> <span class="fu">max</span>(freq_table)]))</span>
-<span id="cb18-4"><a></a>modes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="co"># Find the most common species</span></span>
+<span id="cb18-2"><a></a>freq_table <span class="ot">&lt;-</span> <span class="fu">table</span>(species)</span>
+<span id="cb18-3"><a></a><span class="fu">names</span>(freq_table[freq_table <span class="sc">==</span> <span class="fu">max</span>(freq_table)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 5</code></pre>
-</div>
-</div>
-</div>
-<div id="tabset-1-2">
-<p>Use run-length encoding after sorting:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>sorted_df <span class="ot">&lt;-</span> <span class="fu">sort</span>(df) <span class="co"># Sort the vector first</span></span>
-<span id="cb20-2"><a></a>runs <span class="ot">&lt;-</span> <span class="fu">rle</span>(sorted_df) <span class="co"># Use run-length encoding to find sequences</span></span>
-<span id="cb20-3"><a></a>modes <span class="ot">&lt;-</span> runs<span class="sc">$</span>values[runs<span class="sc">$</span>lengths <span class="sc">==</span> <span class="fu">max</span>(runs<span class="sc">$</span>lengths)] <span class="co"># Find the value(s) with max length</span></span>
-<span id="cb20-4"><a></a>modes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 5</code></pre>
-</div>
-</div>
-</div>
-<div id="tabset-1-3">
-<p>Loop through the vector and count occurrences:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>unique_vals <span class="ot">&lt;-</span> <span class="fu">factor</span>(df) <span class="co"># Create a factor of unique values</span></span>
-<span id="cb22-2"><a></a>counts <span class="ot">&lt;-</span> <span class="fu">tapply</span>(df, unique_vals, length) <span class="co"># Count occurrences using tapply</span></span>
-<span id="cb22-3"><a></a>modes <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">names</span>(counts[counts <span class="sc">==</span> <span class="fu">max</span>(counts)])) <span class="co"># Find which values have the maximum count</span></span>
-<span id="cb22-4"><a></a>modes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 5</code></pre>
-</div>
-</div>
-</div>
+<pre><code>[1] "banksia"</code></pre>
 </div>
 </div>
 </div>
 <div class="fragment">
-<p><strong>The point is that it doesn’t matter how you calculate the mode, as long as you are able to do it.</strong> Also – if you needed this – aren’t you glad R has a package for it?</p>
+<p><strong>Or use a package</strong>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">"modeest"</span>)) <span class="fu">install.packages</span>(<span class="st">"modeest"</span>)</span>
+<span id="cb20-2"><a></a><span class="fu">library</span>(modeest)</span>
+<span id="cb20-3"><a></a><span class="fu">mlv</span>(species, <span class="at">method =</span> <span class="st">"mfv"</span>)  <span class="co"># most frequent value</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "banksia"</code></pre>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>The point is that when R does not have a built-in function, you can write your own solution or find a package that does the job.</p>
 </div>
 </section></section>
 <section>
@@ -736,8 +706,17 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 </section>
 <section id="a-biological-example" class="slide level2">
 <h2>A biological example</h2>
-
-<img data-src="images/seagrass.jpg" class="r-stretch quarto-figure-left"><p class="caption"><a href="https://stock.adobe.com/au">Source: Adobe Stock</a> # 85659279</p><p>Imagine sampling seagrass blade lengths from two different sites in a marine ecosystem, and they have the same mean length of 15.2 cm. Are both sites the same?</p>
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><a href="images/seagrass.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Source: Adobe Stock # 85659279"><img data-src="images/seagrass.jpg" class="quarto-figure quarto-figure-left" alt="Source: Adobe Stock # 85659279"></a></p>
+</figure>
+</div>
+<figcaption><a href="https://stock.adobe.com/au">Source: Adobe Stock</a> # 85659279</figcaption>
+</figure>
+</div>
+<p>Imagine sampling seagrass blade lengths from two different sites in a marine ecosystem, and they have the same mean length of 15.2 cm. Are both sites the same?</p>
 <div class="fragment">
 <ul>
 <li><strong>Site A (Protected Bay)</strong>: 15.2, 15.0, 15.3, 15.1, 15.2 centimetres</li>
@@ -750,83 +729,97 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="co"># Plot seagrass lengths</span></span>
-<span id="cb24-2"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb24-3"><a></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb24-4"><a></a></span>
-<span id="cb24-5"><a></a>seagrass_protected <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">15.2</span>, <span class="fl">15.0</span>, <span class="fl">15.3</span>, <span class="fl">15.1</span>, <span class="fl">15.2</span>)</span>
-<span id="cb24-6"><a></a>seagrass_exposed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">12.0</span>, <span class="fl">18.0</span>, <span class="fl">14.5</span>, <span class="fl">16.5</span>, <span class="fl">15.0</span>)</span>
-<span id="cb24-7"><a></a></span>
-<span id="cb24-8"><a></a><span class="co"># Create plots for both sites</span></span>
-<span id="cb24-9"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb24-10"><a></a>   <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">y =</span> seagrass_protected), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb24-11"><a></a>   <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(seagrass_protected), <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb24-12"><a></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Site A: Protected Bay"</span>, <span class="at">x =</span> <span class="st">"Measurement"</span>, <span class="at">y =</span> <span class="st">"Length (cm)"</span>) <span class="sc">+</span></span>
-<span id="cb24-13"><a></a>   <span class="fu">ylim</span>(<span class="dv">10</span>, <span class="dv">20</span>)</span>
-<span id="cb24-14"><a></a></span>
-<span id="cb24-15"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb24-16"><a></a>   <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">y =</span> seagrass_exposed), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb24-17"><a></a>   <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(seagrass_exposed), <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb24-18"><a></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Site B: Wave-exposed Coast"</span>, <span class="at">x =</span> <span class="st">"Measurement"</span>, <span class="at">y =</span> <span class="st">"Length (cm)"</span>) <span class="sc">+</span></span>
-<span id="cb24-19"><a></a>   <span class="fu">ylim</span>(<span class="dv">10</span>, <span class="dv">20</span>)</span>
-<span id="cb24-20"><a></a></span>
-<span id="cb24-21"><a></a><span class="co"># Combine plots side by side</span></span>
-<span id="cb24-22"><a></a>p1 <span class="sc">+</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="co"># Plot seagrass lengths</span></span>
+<span id="cb22-2"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb22-3"><a></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb22-4"><a></a></span>
+<span id="cb22-5"><a></a>seagrass_protected <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">15.2</span>, <span class="fl">15.0</span>, <span class="fl">15.3</span>, <span class="fl">15.1</span>, <span class="fl">15.2</span>)</span>
+<span id="cb22-6"><a></a>seagrass_exposed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">12.0</span>, <span class="fl">18.0</span>, <span class="fl">14.5</span>, <span class="fl">16.5</span>, <span class="fl">15.0</span>)</span>
+<span id="cb22-7"><a></a></span>
+<span id="cb22-8"><a></a><span class="co"># Create plots for both sites</span></span>
+<span id="cb22-9"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb22-10"><a></a>   <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">y =</span> seagrass_protected), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb22-11"><a></a>   <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(seagrass_protected), <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb22-12"><a></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Site A: Protected Bay"</span>, <span class="at">x =</span> <span class="st">"Measurement"</span>, <span class="at">y =</span> <span class="st">"Length (cm)"</span>) <span class="sc">+</span></span>
+<span id="cb22-13"><a></a>   <span class="fu">ylim</span>(<span class="dv">10</span>, <span class="dv">20</span>)</span>
+<span id="cb22-14"><a></a></span>
+<span id="cb22-15"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb22-16"><a></a>   <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">y =</span> seagrass_exposed), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb22-17"><a></a>   <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(seagrass_exposed), <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb22-18"><a></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Site B: Wave-exposed Coast"</span>, <span class="at">x =</span> <span class="st">"Measurement"</span>, <span class="at">y =</span> <span class="st">"Length (cm)"</span>) <span class="sc">+</span></span>
+<span id="cb22-19"><a></a>   <span class="fu">ylim</span>(<span class="dv">10</span>, <span class="dv">20</span>)</span>
+<span id="cb22-20"><a></a></span>
+<span id="cb22-21"><a></a><span class="co"># Combine plots side by side</span></span>
+<span id="cb22-22"><a></a>p1 <span class="sc">+</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="lecture-02_files/figure-revealjs/unnamed-chunk-10-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img data-src="lecture-02_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></a></p>
+</figure>
 </div>
-<img data-src="lecture-02_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
+</div>
+</div>
+</section>
 <section id="why-do-we-need-measures-of-spread" class="slide level2">
 <h2>Why do we need measures of spread?</h2>
 <ul>
 <li>Central tendency (mean, median, mode) only tells part of the story</li>
 <li>Spread tells us how much variation exists in our data</li>
-<li>Different measures of spread tell us different things:
+</ul>
+<div class="fragment">
 <ul>
 <li><strong>Range</strong>: Overall spread of data</li>
-<li><strong>IQR</strong>: Spread of middle 50% of data</li>
-<li><strong>Variance</strong>: Average squared deviation from mean</li>
-<li><strong>Standard deviation</strong>: Average deviation in original units</li>
-</ul></li>
 </ul>
+</div>
+<div class="fragment">
+<ul>
+<li><strong>IQR</strong>: Spread of middle 50% of data</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><strong>Variance</strong>: Average squared deviation from mean</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><strong>Standard deviation</strong>: Average deviation in original units</li>
+</ul>
+</div>
 </section>
 <section id="range-the-simplest-measure-of-spread" class="slide level2">
 <h2>Range – The simplest measure of spread</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="co"># Create our seagrass data</span></span>
-<span id="cb25-2"><a></a>seagrass_protected <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">15.2</span>, <span class="fl">15.0</span>, <span class="fl">15.3</span>, <span class="fl">15.1</span>, <span class="fl">15.2</span>)  <span class="co"># Protected bay</span></span>
-<span id="cb25-3"><a></a>seagrass_exposed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">12.0</span>, <span class="fl">18.0</span>, <span class="fl">14.5</span>, <span class="fl">16.5</span>, <span class="fl">15.0</span>)    <span class="co"># Wave-exposed coast</span></span>
-<span id="cb25-4"><a></a></span>
-<span id="cb25-5"><a></a><span class="co"># Calculate ranges</span></span>
-<span id="cb25-6"><a></a><span class="fu">cat</span>(<span class="st">"Protected bay range:"</span>, <span class="fu">diff</span>(<span class="fu">range</span>(seagrass_protected)), <span class="st">"cm</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="co"># Create our seagrass data</span></span>
+<span id="cb23-2"><a></a>seagrass_protected <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">15.2</span>, <span class="fl">15.0</span>, <span class="fl">15.3</span>, <span class="fl">15.1</span>, <span class="fl">15.2</span>)  <span class="co"># Protected bay</span></span>
+<span id="cb23-3"><a></a>seagrass_exposed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">12.0</span>, <span class="fl">18.0</span>, <span class="fl">14.5</span>, <span class="fl">16.5</span>, <span class="fl">15.0</span>)    <span class="co"># Wave-exposed coast</span></span>
+<span id="cb23-4"><a></a></span>
+<span id="cb23-5"><a></a><span class="co"># Calculate ranges</span></span>
+<span id="cb23-6"><a></a><span class="fu">cat</span>(<span class="st">"Protected bay range:"</span>, <span class="fu">diff</span>(<span class="fu">range</span>(seagrass_protected)), <span class="st">"cm</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Protected bay range: 0.3 cm</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">cat</span>(<span class="st">"Wave-exposed range:"</span>, <span class="fu">diff</span>(<span class="fu">range</span>(seagrass_exposed)), <span class="st">"cm</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">cat</span>(<span class="st">"Wave-exposed range:"</span>, <span class="fu">diff</span>(<span class="fu">range</span>(seagrass_exposed)), <span class="st">"cm</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Wave-exposed range: 6 cm</code></pre>
 </div>
 </div>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
+<div style="background-color: var(--ochre-bg-light, #f0f0f0); padding: 0.5em 1em; border-radius: 4px; margin-top: 0.5em;">
 <p>The range shows us that seagrass lengths are much more variable in the wave-exposed site!</p>
 </div>
-</div>
-</div>
+</section>
+<section id="range-in-excel" class="slide level2">
+<h2>Range in Excel</h2>
+<p>Use <code>MAX()</code> and <code>MIN()</code> to calculate the range:</p>
+<pre><code>=MAX(A1:A10) - MIN(A1:A10)</code></pre>
 </section>
 <section id="interquartile-range-iqr-the-middle-50" class="slide level2">
 <h2>Interquartile range (IQR): The middle 50%</h2>
 <p>The IQR tells us how spread out the middle 50% of our data is:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="co"># Get quartiles for protected bay</span></span>
-<span id="cb29-2"><a></a><span class="fu">quantile</span>(seagrass_protected)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="co"># Get quartiles for protected bay</span></span>
+<span id="cb28-2"><a></a><span class="fu">quantile</span>(seagrass_protected)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  0%  25%  50%  75% 100% 
 15.0 15.1 15.2 15.2 15.3 </code></pre>
@@ -841,20 +834,20 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 <ul>
 <li>Ignores extreme values</li>
 <li>Works with skewed data</li>
-<li>More stable than range</li>
+<li>Less affected by extreme values than the range</li>
 </ul>
 </section>
 <section id="comparing-sites-using-iqr" class="slide level2">
 <h2>Comparing Sites Using IQR</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="co"># Compare IQRs</span></span>
-<span id="cb31-2"><a></a>pbay <span class="ot">&lt;-</span> <span class="fu">IQR</span>(seagrass_protected)</span>
-<span id="cb31-3"><a></a>pbay</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="co"># Compare IQRs</span></span>
+<span id="cb30-2"><a></a>pbay <span class="ot">&lt;-</span> <span class="fu">IQR</span>(seagrass_protected)</span>
+<span id="cb30-3"><a></a>pbay</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>exbay <span class="ot">&lt;-</span> <span class="fu">IQR</span>(seagrass_exposed)</span>
-<span id="cb33-2"><a></a>exbay</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>exbay <span class="ot">&lt;-</span> <span class="fu">IQR</span>(seagrass_exposed)</span>
+<span id="cb32-2"><a></a>exbay</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
@@ -863,19 +856,16 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 <li>Protected bay IQR: 0.1 cm</li>
 <li>Wave-exposed IQR: 2 cm</li>
 </ul>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div style="background-color: var(--ochre-bg-light, #f0f0f0); padding: 0.5em 1em; border-radius: 4px; margin-top: 0.5em;">
+<p>The larger IQR in the wave-exposed site shows more spread in the typical seagrass lengths.</p>
 </div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>The larger IQR in the wave-exposed site shows more spread in the typical seagrass lengths</p>
-</div>
-</div>
-</div>
+</section>
+<section id="iqr-in-excel" class="slide level2">
+<h2>IQR in Excel</h2>
+<p>Use <code>QUARTILE.INC()</code> to find the IQR:</p>
+<pre><code>For Q1: =QUARTILE.INC(A1:A10, 1)
+For Q3: =QUARTILE.INC(A1:A10, 3)
+For IQR: =QUARTILE.INC(A1:A10, 3) - QUARTILE.INC(A1:A10, 1)</code></pre>
 </section>
 <section id="variance-a-detailed-measure-of-spread" class="slide level2">
 <h2>Variance: a detailed measure of spread</h2>
@@ -888,7 +878,7 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 <h3 id="why-use-variance">Why use variance?</h3>
 <ul>
 <li>Uses <strong>all</strong> data points (unlike IQR)</li>
-<li>Less sensitive to outliers than range</li>
+<li>Squaring amplifies the effect of extreme values, making outliers stand out</li>
 <li>Shows total spread in both directions</li>
 </ul>
 <div class="fragment">
@@ -918,29 +908,28 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 <pre><code>Wave-exposed variance: 5.075 cm²</code></pre>
 </div>
 </div>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div style="background-color: var(--ochre-bg-light, #f0f0f0); padding: 0.5em 1em; border-radius: 4px; margin-top: 0.5em;">
+<p>The larger variance in the wave-exposed site shows more spread from the mean!</p>
 </div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>The larger variance in wave-exposed site shows more spread from the mean!</p>
-</div>
-</div>
-</div>
+</section>
+<section id="variance-in-excel" class="slide level2">
+<h2>Variance in Excel</h2>
+<p>Use <code>VAR.S()</code> to calculate the sample variance:</p>
+<pre><code>=VAR.S(A1:A10)</code></pre>
+<p>For now, always use <code>.S</code> (sample) in this course.</p>
 </section>
 <section id="standard-deviation-a-more-interpretable-measure" class="slide level2">
 <h2>Standard deviation: a more interpretable measure</h2>
+<div class="fragment">
 <p>Standard deviation (SD, or <span class="math inline">\(\sigma\)</span> for population, <span class="math inline">\(s\)</span> for sample) is the square root of variance:</p>
 <ul>
 <li>Tells us the “typical distance” from the mean</li>
-<li>Easy to understand - similar to saying “± value” after a mean</li>
+<li>Easy to understand – similar to saying “± value” after a mean</li>
 <li>Small SD means values cluster closely around mean</li>
-<li>Large SD means values are more spread out</li>
+<li>Larger SD values mean values are more spread out</li>
 </ul>
+</div>
+<div class="fragment">
 <h3 id="when-and-why-to-use-it">When and why to use it</h3>
 <ul>
 <li>Values are in the <strong>same units</strong> as your data (unlike variance)</li>
@@ -948,39 +937,36 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 <li>Used in many statistical tests</li>
 <li>Great for comparing different groups or datasets</li>
 </ul>
+</div>
 </section>
 <section id="interpreting-standard-deviation-with-r" class="slide level2">
 <h2>Interpreting standard deviation (with R)</h2>
 <p>We can describe our seagrass lengths using mean ± standard deviation:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="co"># Protected bay</span></span>
-<span id="cb39-2"><a></a>mean_p <span class="ot">&lt;-</span> <span class="fu">mean</span>(seagrass_protected)</span>
-<span id="cb39-3"><a></a>sd_p <span class="ot">&lt;-</span> <span class="fu">sd</span>(seagrass_protected)</span>
-<span id="cb39-4"><a></a><span class="fu">cat</span>(<span class="st">"Protected bay:"</span>, <span class="fu">round</span>(mean_p, <span class="dv">1</span>), <span class="st">"±"</span>, <span class="fu">round</span>(sd_p, <span class="dv">2</span>), <span class="st">"cm</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="co"># Protected bay</span></span>
+<span id="cb40-2"><a></a>mean_p <span class="ot">&lt;-</span> <span class="fu">mean</span>(seagrass_protected)</span>
+<span id="cb40-3"><a></a>sd_p <span class="ot">&lt;-</span> <span class="fu">sd</span>(seagrass_protected)</span>
+<span id="cb40-4"><a></a><span class="fu">cat</span>(<span class="st">"Protected bay:"</span>, <span class="fu">round</span>(mean_p, <span class="dv">1</span>), <span class="st">"±"</span>, <span class="fu">round</span>(sd_p, <span class="dv">2</span>), <span class="st">"cm</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Protected bay: 15.2 ± 0.11 cm</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="co"># Wave-exposed</span></span>
-<span id="cb41-2"><a></a>mean_e <span class="ot">&lt;-</span> <span class="fu">mean</span>(seagrass_exposed)</span>
-<span id="cb41-3"><a></a>sd_e <span class="ot">&lt;-</span> <span class="fu">sd</span>(seagrass_exposed)</span>
-<span id="cb41-4"><a></a><span class="fu">cat</span>(<span class="st">"Wave-exposed:"</span>, <span class="fu">round</span>(mean_e, <span class="dv">1</span>), <span class="st">"±"</span>, <span class="fu">round</span>(sd_e, <span class="dv">2</span>), <span class="st">"cm</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="co"># Wave-exposed</span></span>
+<span id="cb42-2"><a></a>mean_e <span class="ot">&lt;-</span> <span class="fu">mean</span>(seagrass_exposed)</span>
+<span id="cb42-3"><a></a>sd_e <span class="ot">&lt;-</span> <span class="fu">sd</span>(seagrass_exposed)</span>
+<span id="cb42-4"><a></a><span class="fu">cat</span>(<span class="st">"Wave-exposed:"</span>, <span class="fu">round</span>(mean_e, <span class="dv">1</span>), <span class="st">"±"</span>, <span class="fu">round</span>(sd_e, <span class="dv">2</span>), <span class="st">"cm</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Wave-exposed: 15.2 ± 2.25 cm</code></pre>
 </div>
 </div>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div style="background-color: var(--ochre-bg-light, #f0f0f0); padding: 0.5em 1em; border-radius: 4px; margin-top: 0.5em;">
+<p>The ± tells us about the typical variation around the mean. Larger SD values indicate more spread!</p>
 </div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<p>The ± tells us about the typical variation around the mean. Larger values indicate more spread!</p>
-</div>
-</div>
-</div>
+</section>
+<section id="sd-in-excel" class="slide level2">
+<h2>SD in Excel</h2>
+<p>Use <code>STDEV.S()</code> to calculate the sample standard deviation:</p>
+<pre><code>=STDEV.S(A1:A10)</code></pre>
+<p>For now, always use <code>.S</code> (sample) in this course.</p>
 </section>
 <section id="comparing-spread-measures" class="slide level2">
 <h2>Comparing spread measures</h2>
@@ -1033,49 +1019,6 @@ Sample 3:  9.8 7.9 18.4 19.1 7 26.1 </code></pre>
 <li>Choose based on your data and goals</li>
 <li>Standard deviation is most commonly used in research papers</li>
 </ul>
-</section>
-<section id="range-and-iqr-in-excel" class="slide level2">
-<h2>Range and IQR in Excel</h2>
-<p>Common Excel functions for measuring spread:</p>
-<ol type="1">
-<li><strong>Range</strong>: Use <code>MAX()</code> and <code>MIN()</code></li>
-</ol>
-<pre><code>=MAX(A1:A10) - MIN(A1:A10)</code></pre>
-<ol start="2" type="1">
-<li><strong>Quartiles and IQR</strong>: Use <code>QUARTILE.INC()</code></li>
-</ol>
-<pre><code>For Q1: =QUARTILE.INC(A1:A10, 1)
-For Q3: =QUARTILE.INC(A1:A10, 3)
-For IQR: =QUARTILE.INC(A1:A10, 3) - QUARTILE.INC(A1:A10, 1)</code></pre>
-</section>
-<section id="variance-and-standard-deviation-in-excel" class="slide level2">
-<h2>Variance and standard deviation in Excel</h2>
-<p>Statistical functions for variance and standard deviation:</p>
-<ol type="1">
-<li><strong>Sample Variance</strong>: Use <code>VAR.S()</code></li>
-</ol>
-<pre><code>=VAR.S(A1:A10)</code></pre>
-<ol start="2" type="1">
-<li><strong>Sample Standard Deviation</strong>: Use <code>STDEV.S()</code></li>
-</ol>
-<pre><code>=STDEV.S(A1:A10)</code></pre>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<p>Use <code>.P</code> instead of <code>.S</code> for population measures:</p>
-<ul>
-<li><code>VAR.P()</code> for population variance</li>
-<li><code>STDEV.P()</code> for population standard deviation</li>
-</ul>
-</div>
-</div>
-</div>
 </section></section>
 <section>
 <section id="references-and-resources" class="title-slide slide level1 center">
@@ -1084,6 +1027,7 @@ For IQR: =QUARTILE.INC(A1:A10, 3) - QUARTILE.INC(A1:A10, 1)</code></pre>
 </section>
 <section id="core-reading" class="slide level2">
 <h2>Core Reading</h2>
+<p>Read after the lecture:</p>
 <ul>
 <li>Quinn &amp; Keough (2024). <em>Experimental Design and Data Analysis for Biologists</em>. Cambridge University Press. <strong>Chapter 2</strong>: Things to know before proceeding.</li>
 <li>Canvas site for lecture notes and additional resources</li>
@@ -1152,7 +1096,7 @@ For IQR: =QUARTILE.INC(A1:A10, 3) - QUARTILE.INC(A1:A10, 1)</code></pre>
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -1517,6 +1461,38 @@ For IQR: =QUARTILE.INC(A1:A10, 3) - QUARTILE.INC(A1:A10, 1)</code></pre>
         }
       });
       </script>
+    <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+    (function() {
+      let previousOnload = window.onload;
+      window.onload = () => {
+        if (previousOnload) {
+          previousOnload();
+        }
+        lightboxQuarto.on('slide_before_load', (data) => {
+          const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+          const href = trigger.getAttribute('href');
+          if (href !== null) {
+            const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+            if (imgEl !== null) {
+              const srcAttr = imgEl.getAttribute("src");
+              if (srcAttr && srcAttr.startsWith("data:")) {
+                slideConfig.href = srcAttr;
+              }
+            }
+          } 
+        });
+      
+        lightboxQuarto.on('slide_after_load', (data) => {
+          const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(slideNode);
+          }
+        });
+      
+      };
+      
+    })();
+              </script>
     
 
 </body></html>

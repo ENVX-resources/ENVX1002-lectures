@@ -1185,105 +1185,112 @@
     "href": "lectures/L02/lecture-02.html#after-this-week-you-will-be-able-to",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "After this week, you will be able to:",
-    "text": "After this week, you will be able to:\n\nNavigate and use the RStudio interface effectively\nExecute basic R functions and understand their syntax\nFeel confident explaining basic statistical concepts like samples and populations\nUnderstand and explain measures of central tendency (mean, median, mode) clearly and without mathematical jargon\nMaster different measures of spread (range, IQR, variance, standard deviation) through practical examples\nCalculate statistical measures using both R and Excel\nChoose appropriate statistical measures for your biological data and explain your choices"
+    "text": "After this week, you will be able to:\n\nNavigate and use the RStudio interface effectively\nExecute basic R functions and understand their syntax\nDescribe measures of central tendency (mean, median, mode) clearly and without mathematical jargon\nDescribe measures of spread (range, IQR, variance, standard deviation) through practical examples\nCalculate and compare statistical measures using R and Excel for biological data"
   },
   {
     "objectID": "lectures/L02/lecture-02.html#quick-checklist",
     "href": "lectures/L02/lecture-02.html#quick-checklist",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Quick checklist",
-    "text": "Quick checklist\nBy now you should have…\n\nInstalled R\nInstalled RStudio\nCreated one (or two) documents in Markdown using Quarto"
+    "text": "Quick checklist\nBy now you should have…\n\nInstalled R\nInstalled RStudio\nCreated one (or two) documents in Markdown using Quarto\nRead the ENVX1002 R guide (Canvas &gt; Tool Kit)"
   },
   {
     "objectID": "lectures/L02/lecture-02.html#from-calculators-to-computers",
     "href": "lectures/L02/lecture-02.html#from-calculators-to-computers",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "From calculators to computers",
-    "text": "From calculators to computers\n\n\n\n\n\n\n1800s: Mechanical calculators. Source\n\n\n\n\n\n\n\n1960s: Statistical software BMDP and SPSS (not in image). Source"
+    "text": "From calculators to computers\n\n\n\n\n\n\n1800s: Mechanical calculators. Source\n\n\n\n\n\n\n\n1960s: Statistical software BMDP and SPSS (not in image). Source\n\n\n\n\n\n\n\n1970s: SAS (Statistical Analysis System) Source\n\n\n\n\n\n\n\n1976: Birth of S at Bell Labs. S-PLUS debuts in 1988. Source"
   },
   {
-    "objectID": "lectures/L02/lecture-02.html#statistical-software-in-the-1970s",
-    "href": "lectures/L02/lecture-02.html#statistical-software-in-the-1970s",
+    "objectID": "lectures/L02/lecture-02.html#the-r-story",
+    "href": "lectures/L02/lecture-02.html#the-r-story",
     "title": "Lecture 02: Introduction to statistical programming",
-    "section": "Statistical software in the 1970s",
-    "text": "Statistical software in the 1970s\n\n\n\n\n\n\n1970s: SAS (Statistical Analysis System) Source\n\n\n\n\n\n\n\n1976: Birth of S at Bell Labs. S-PLUS debuts in 1988. Source"
+    "section": "The R story",
+    "text": "The R story\n\nCreated at University of Auckland, New Zealand in 1993\nNamed after creators (Ross & Robert) – and inspired by S programming language\nDesigned specifically for statistical computing and graphics, now used in many fields\nOver 22,000 packages on CRAN – extensive statistical capabilities\nSupports reproducible research – a key theme in modern science (remember Lecture 01?)"
   },
   {
-    "objectID": "lectures/L02/lecture-02.html#r-in-todays-world",
-    "href": "lectures/L02/lecture-02.html#r-in-todays-world",
+    "objectID": "lectures/L02/lecture-02.html#the-r-story-1",
+    "href": "lectures/L02/lecture-02.html#the-r-story-1",
     "title": "Lecture 02: Introduction to statistical programming",
-    "section": "R in today’s world",
-    "text": "R in today’s world\n\nLeading tool in data science and statistics (although Python leads in majority of machine learning workflows)\nOver 22,000 packages on CRAN – extensive statistical capabilities\nIntegration with other modern tools: Python, HTML, Javascript, Excel, AJAX…\nMeets modern academic standards of reproducibility and increasingly preferred by statisticians\n\n\nRStudio IDE. Source: Januar Harianto"
+    "section": "The R story",
+    "text": "The R story\n\n\n\nRStudio IDE. Source: Januar Harianto"
   },
   {
-    "objectID": "lectures/L02/lecture-02.html#your-rstudio-workspace",
-    "href": "lectures/L02/lecture-02.html#your-rstudio-workspace",
+    "objectID": "lectures/L02/lecture-02.html#your-rstudio-workspace-5-min",
+    "href": "lectures/L02/lecture-02.html#your-rstudio-workspace-5-min",
     "title": "Lecture 02: Introduction to statistical programming",
-    "section": "Your RStudio workspace",
-    "text": "Your RStudio workspace\n\nLeft: all input, Right: all output"
+    "section": "Your RStudio workspace (5 min)",
+    "text": "Your RStudio workspace (5 min)\n\nLeft: all input, Right: all output"
   },
   {
-    "objectID": "lectures/L02/lecture-02.html#we-will-always-work-in-quarto",
-    "href": "lectures/L02/lecture-02.html#we-will-always-work-in-quarto",
+    "objectID": "lectures/L02/lecture-02.html#working-in-quarto",
+    "href": "lectures/L02/lecture-02.html#working-in-quarto",
     "title": "Lecture 02: Introduction to statistical programming",
-    "section": "We will always work in Quarto",
-    "text": "We will always work in Quarto\n\nA Markdown-based authoring tool\nAllows you to write reproducible documents with code and text\nOutputs to various formats: HTML, PDF, Word, and more\nQuarto gallery"
+    "section": "Working in Quarto",
+    "text": "Working in Quarto\n\nA Markdown-based authoring tool for reproducible documents\nWrite code and text together, output to HTML, PDF, Word and more\nQuarto gallery\nQuick demo (5 min)"
   },
   {
-    "objectID": "lectures/L02/lecture-02.html#how-quarto-works",
-    "href": "lectures/L02/lecture-02.html#how-quarto-works",
+    "objectID": "lectures/L02/lecture-02.html#where-to-find-help",
+    "href": "lectures/L02/lecture-02.html#where-to-find-help",
     "title": "Lecture 02: Introduction to statistical programming",
-    "section": "How Quarto works",
-    "text": "How Quarto works\n\nWrite your content in Markdown (left panel)\nView the output in Preview (right panel)\nQuick demo (only available in the live lecture)"
-  },
-  {
-    "objectID": "lectures/L02/lecture-02.html#essential-resources",
-    "href": "lectures/L02/lecture-02.html#essential-resources",
-    "title": "Lecture 02: Introduction to statistical programming",
-    "section": "Essential Resources",
-    "text": "Essential Resources\n\nRead “A brief R guide for surviving ENVX1002” by Dr. Geoffrey Mazue\n\nAvailable in the Tool Kit section on Canvas\nContains essential R programming tips and best practices for this unit\n\nUse the Help panel in RStudio"
+    "section": "Where to find help",
+    "text": "Where to find help\n\nRead “A brief R guide for surviving ENVX1002” by Dr. Geoffrey Mazue\n\nAvailable in the Tool Kit section on Canvas\nContains essential R programming tips and best practices for this unit\n\nUse the Help panel in RStudio (bottom-right) – type ?function_name to look up any function"
   },
   {
     "objectID": "lectures/L02/lecture-02.html#population-vs-sample",
     "href": "lectures/L02/lecture-02.html#population-vs-sample",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Population vs Sample",
-    "text": "Population vs Sample\n\n\n\n\n\n\nPopulation\n\nAll possible observations\nUsually too large to measure\nExample: All trees in a forest\n\nSample\n\nSubset of the population\nWhat we actually measure\nExample: 100 trees measured in a forest\n\nMost (if not all) statistical analyses are based on samples, not populations."
+    "text": "Population vs Sample\n\n\n\n\n\n\nPopulation\n\nAll possible observations\nUsually too large to measure\nExample: All trees in a forest\n\nSample\n\nSubset of the population\nWhat we actually measure\nExample: 100 trees measured in a forest\n\n\nMost (if not all) statistical analyses are based on samples, not populations. This is why we need descriptive statistics – to summarise what our sample tells us."
   },
   {
     "objectID": "lectures/L02/lecture-02.html#populations-and-their-samples",
     "href": "lectures/L02/lecture-02.html#populations-and-their-samples",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Populations and their samples",
-    "text": "Populations and their samples\n\n\n\n\n\n\n\nPopulation\nSample\n\n\n\n\nAll koalas in Australia\n150 koalas studied in NSW\n\n\nEvery fish in Sydney Harbour\n300 fish caught in specific locations\n\n\nAll soil bacteria in a forest\nBacteria from 50 soil cores\n\n\nAll cookies in a bakery\nTasting 3 cookies to judge quality\n\n\nAll students at the university\nThe 200 students in this course\n\n\nWater quality in the entire ocean\nWater samples from specific locations\n\n\nAll trees in a national park\n75 trees measured in random plots\n\n\nAll possible blood test results\nBlood samples from 100 patients\n\n\n\nDisclaimer: use of GenAI for content generation in this slide."
+    "text": "Populations and their samples\n\n\n\nPopulation\nSample\n\n\n\n\nAll koalas in Australia\n150 koalas studied in NSW\n\n\nEvery fish in Sydney Harbour\n300 fish caught in specific locations\n\n\nAll soil bacteria in a forest\nBacteria from 50 soil cores\n\n\nAll cookies in a bakery\nTasting 3 cookies to judge quality\n\n\nAll students at the university\nThe 200 students in this course\n\n\n\n\nEach sample is a small piece of a much larger picture."
   },
   {
     "objectID": "lectures/L02/lecture-02.html#how-well-does-a-sample-represent-the-population",
     "href": "lectures/L02/lecture-02.html#how-well-does-a-sample-represent-the-population",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "How well does a sample represent the population?",
-    "text": "How well does a sample represent the population?\nIt depends:\n\nSample size: Larger samples are more likely to represent the population\nSampling method: Random samples are more likely to be representative\nPopulation variability: More variability means larger samples are needed\n\nIn reality, we often have to balance these factors due to time, cost, and practical constraints."
+    "text": "How well does a sample represent the population?\nIt depends:\n\nSample size: Larger samples are more likely to represent the population\nSampling method: Random samples are more likely to be representative\nPopulation variability: More variability means larger samples are needed\n\n\nWe often balance these factors due to time, cost, and practical constraints. We will learn tools for this later – confidence intervals and hypothesis testing."
   },
   {
     "objectID": "lectures/L02/lecture-02.html#samples-vary",
     "href": "lectures/L02/lecture-02.html#samples-vary",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Samples vary",
-    "text": "Samples vary\nDifferent samples give different results – suppose we have a population of 1000 trees and we randomly sample 6 tree heights. If this is done 3 times, it is likely that the samples will be different.\nWe have code to demonstrate this but just focus on the results for now:\n\n\nCode\nset.seed(258) \npopulation &lt;- rnorm(1000, mean = 12, sd = 5)\n\n# create samples\nsample1 &lt;- round(sample(population, size = 6), 1)\nsample2 &lt;- round(sample(population, size = 6), 1)\nsample3 &lt;- round(sample(population, size = 6), 1)\n# show samples\nfor (i in 1:3) {\n   cat(sprintf(\"Sample %d: \", i), get(paste0(\"sample\", i)), \"\\n\")\n}\n\n\nSample 1:  13.7 14.6 14.8 9.6 6.5 10 \nSample 2:  7.6 6.1 9.9 10.1 12.5 14.9 \nSample 3:  9.8 7.9 18.4 19.1 7 26.1 \n\n\nAre the samples different? How different are they?"
+    "text": "Samples vary\nDifferent samples give different results – suppose we have a population of 1000 trees and we randomly sample 6 tree heights. If this is done 3 times, it is likely that the samples will be different.\nThe code below demonstrates this – focus on the results for now:\n\n\nCode\nset.seed(258) \npopulation &lt;- rnorm(1000, mean = 12, sd = 5)\n\n# create samples\nsample1 &lt;- round(sample(population, size = 6), 1)\nsample2 &lt;- round(sample(population, size = 6), 1)\nsample3 &lt;- round(sample(population, size = 6), 1)\n# show samples\nfor (i in 1:3) {\n   cat(sprintf(\"Sample %d: \", i), get(paste0(\"sample\", i)), \"\\n\")\n}\n\n\nSample 1:  13.7 14.6 14.8 9.6 6.5 10 \nSample 2:  7.6 6.1 9.9 10.1 12.5 14.9 \nSample 3:  9.8 7.9 18.4 19.1 7 26.1 \n\n\nAre the samples different? How different are they? This is where descriptive statistics come in."
   },
   {
     "objectID": "lectures/L02/lecture-02.html#descriptive-statistics",
     "href": "lectures/L02/lecture-02.html#descriptive-statistics",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Descriptive statistics",
-    "text": "Descriptive statistics\nWe use descriptive statistics to summarise and describe data, helping us compare and contrast.\n\nMeasures of central tendency – describe the “typical” value in a sample\n\nmean, median, mode\n\nMeasures of spread – describe how much the data varies\n\nstandard deviation, variance (commonly used)\nrange, quartiles, IQR (for unique cases)\n\nMeasures of uncertainty – describe how confident we are in our estimates\n\nstandard error\nconfidence intervals"
+    "text": "Descriptive statistics\nWe use descriptive statistics to summarise and describe data, helping us compare and contrast.\n\n\nMeasures of central tendency – describe the “typical” value in a sample\n\nmean, median, mode\n\n\n\n\n\nMeasures of spread – describe how much the data varies\n\nstandard deviation, variance (commonly used)\nrange, quartiles, IQR (for unique cases)"
+  },
+  {
+    "objectID": "lectures/L02/lecture-02.html#data-types",
+    "href": "lectures/L02/lecture-02.html#data-types",
+    "title": "Lecture 02: Introduction to statistical programming",
+    "section": "Data types",
+    "text": "Data types\nBefore we calculate any statistics, it helps to know what kind of data we are working with.\n\n\nCategorical (qualitative)\n\nData that falls into groups or categories\nExamples: blood type (A, B, AB, O), eye colour, species name\nSummarised by counts or proportions\nThe mode is the main measure of central tendency\n\n\nContinuous (quantitative)\n\nData measured on a numeric scale\nExamples: height (cm), temperature (°C), seagrass length (cm)\nSummarised by mean, median, standard deviation, etc.\nCan take any value within a range\n\n\n\n\nKnowing your data type helps you choose the right summary statistic. We will revisit this in more detail in Lecture 03."
+  },
+  {
+    "objectID": "lectures/L02/lecture-02.html#that-is-all-for-today",
+    "href": "lectures/L02/lecture-02.html#that-is-all-for-today",
+    "title": "Lecture 02: Introduction to statistical programming",
+    "section": "That is all for today!",
+    "text": "That is all for today!\nWe will continue with measures of central tendency and measures of spread in tomorrow’s session."
   },
   {
     "objectID": "lectures/L02/lecture-02.html#mean-also-known-as-the-average",
     "href": "lectures/L02/lecture-02.html#mean-also-known-as-the-average",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Mean – also known as the average",
-    "text": "Mean – also known as the average\n\nAdd up all your numbers\nDivide by how many numbers you have\n\n\n\n\n\n\n\nMathematical notation\n\n\n\nPopulation mean: \\(\\mu = \\frac{\\sum_{i=1}^{N} x_i}{N}\\)\nSample mean: \\(\\bar{x} = \\frac{\\sum_{i=1}^{n} x_i}{n}\\)\n\nWhere \\(x_i\\) is each individual value, \\(N\\) is population size, and \\(n\\) is sample size."
+    "text": "Mean – also known as the average\n\nAdd up all your numbers\nDivide by how many numbers you have\n\n\nMathematical notation\n\nPopulation mean: \\(\\mu = \\frac{\\sum_{i=1}^{N} x_i}{N}\\)\nSample mean: \\(\\bar{x} = \\frac{\\sum_{i=1}^{n} x_i}{n}\\)\n\nWhere \\(x_i\\) is each individual value, \\(N\\) is population size, and \\(n\\) is sample size. Notice how \\(\\mu\\) (population) and \\(\\bar{x}\\) (sample) mirror the population vs sample distinction from earlier.\n\n\nDo not worry about memorising the formulas – R handles the calculation for us. The important thing is understanding what the mean represents."
   },
   {
     "objectID": "lectures/L02/lecture-02.html#mean-in-excel",
@@ -1304,14 +1311,14 @@
     "href": "lectures/L02/lecture-02.html#median-the-middle-value",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Median – the middle value",
-    "text": "Median – the middle value\nThe median is the middle number when your data is in order:\n\nFirst, put your numbers in order\nFind the middle value\nIf you have an even number of values, take the average of the two middle numbers\n\n\nExample: House prices ($’000s): 450, 1100, 480, 460, 470, 420, 1400, 450, 470\n\nOrder: 450, 450, 420, 460, 470, 470, 480, 1100, 1400\n\n\nHow is it useful?"
+    "text": "Median – the middle value\nThe median is the middle number when your data is in order:\n\nFirst, put your numbers in order\nFind the middle value\nIf you have an even number of values, take the average of the two middle numbers\n\n\nExample: House prices ($’000s): 450, 1100, 480, 460, 470, 420, 1400, 450, 470\n\nOrder: 420, 450, 450, 460, 470, 470, 480, 1100, 1400\n\n\nThe median is not pulled by extreme values (like the two expensive houses at $1,100k and $1,400k), making it a better summary for skewed data."
   },
   {
     "objectID": "lectures/L02/lecture-02.html#median-in-excel",
     "href": "lectures/L02/lecture-02.html#median-in-excel",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Median in Excel",
-    "text": "Median in Excel\nExcel provides two main ways to find the median:\n\nUsing MEDIAN function\n=MEDIAN(A1:A9)\n\nType =MEDIAN(\nSelect your data range\nPress Enter\n\nAlternative method\n\nSort your data first (use the Sort functionality in the Data tab)\nFind middle value(s)\nIf even number of values, average the middle two"
+    "text": "Median in Excel\nExcel provides the MEDIAN function:\n=MEDIAN(A1:A9)\n\nType =MEDIAN(\nSelect your data range\nPress Enter"
   },
   {
     "objectID": "lectures/L02/lecture-02.html#median-in-r",
@@ -1325,7 +1332,7 @@
     "href": "lectures/L02/lecture-02.html#mode-most-frequent-value",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Mode – most frequent value",
-    "text": "Mode – most frequent value\n\nThe mode is the value that appears most frequently in your data. It’s particularly useful for:\n\nCategorical data (like blood types, eye colors)\nFinding the most common item in a group\nData that has clear repeated values\n\n\n\nCalculating the mode can be tricky, especially if there are multiple modes or no mode at all. This is why the mode is not commonly used in statistics.\n\n\nQuestions that the mode can answer\n\nWhat is the most common blood type in a population?\nWhat is the most common eye color in a group of people?"
+    "text": "Mode – most frequent value\n\nThe mode is the value that appears most frequently in your data. It is most useful for:\n\nCategorical data (like blood types, species names, eye colours)\nFinding the most common item in a group\n\n\n\nFor numerical data, the mean or median is usually preferred. But the mode answers questions that other measures cannot:\n\nWhat is the most common blood type in a population?\nWhich species is most frequently observed at a field site?"
   },
   {
     "objectID": "lectures/L02/lecture-02.html#mode-in-excel",
@@ -1339,14 +1346,14 @@
     "href": "lectures/L02/lecture-02.html#mode-in-r",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Mode in R",
-    "text": "Mode in R\nThere is no built-in function to calculate the mode, so we use the modeest package:\n\nif(!require(\"modeest\")) install.packages(\"modeest\")\nlibrary(modeest)\n\ndf &lt;- c(1, 2, 3, 3, 4, 5, 5, 5, 6)\nmlv(df, method = \"mfv\")  # most frequent value\n\n[1] 5\n\n\n\nIf you were to do it yourself, how would you do it in R?\n\n\n\nUsing frequenciesUsing run-length encodingUsing loops\n\n\nUse the table() function to count frequencies:\n\nfreq_table &lt;- table(df) # Count frequencies of each value\n# Find which value(s) appear most often\nmodes &lt;- as.numeric(names(freq_table[freq_table == max(freq_table)]))\nmodes\n\n[1] 5\n\n\n\n\nUse run-length encoding after sorting:\n\nsorted_df &lt;- sort(df) # Sort the vector first\nruns &lt;- rle(sorted_df) # Use run-length encoding to find sequences\nmodes &lt;- runs$values[runs$lengths == max(runs$lengths)] # Find the value(s) with max length\nmodes\n\n[1] 5\n\n\n\n\nLoop through the vector and count occurrences:\n\nunique_vals &lt;- factor(df) # Create a factor of unique values\ncounts &lt;- tapply(df, unique_vals, length) # Count occurrences using tapply\nmodes &lt;- as.numeric(names(counts[counts == max(counts)])) # Find which values have the maximum count\nmodes\n\n[1] 5\n\n\n\n\n\n\n\nThe point is that it doesn’t matter how you calculate the mode, as long as you are able to do it. Also – if you needed this – aren’t you glad R has a package for it?"
+    "text": "Mode in R\nR does not have a built-in mode function, but there are straightforward ways to find it.\nDo it yourself with table():\n\n# Species observed at a field site\nspecies &lt;- c(\"banksia\", \"eucalyptus\", \"banksia\", \"acacia\",\n             \"eucalyptus\", \"banksia\", \"grevillea\", \"banksia\")\n\n# Count how often each species appears\ntable(species)\n\nspecies\n    acacia    banksia eucalyptus  grevillea \n         1          4          2          1 \n\n\n\n\n# Find the most common species\nfreq_table &lt;- table(species)\nnames(freq_table[freq_table == max(freq_table)])\n\n[1] \"banksia\"\n\n\n\n\nOr use a package:\n\nif(!require(\"modeest\")) install.packages(\"modeest\")\nlibrary(modeest)\nmlv(species, method = \"mfv\")  # most frequent value\n\n[1] \"banksia\"\n\n\n\n\nThe point is that when R does not have a built-in function, you can write your own solution or find a package that does the job."
   },
   {
     "objectID": "lectures/L02/lecture-02.html#a-biological-example",
     "href": "lectures/L02/lecture-02.html#a-biological-example",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "A biological example",
-    "text": "A biological example\n\nSource: Adobe Stock # 85659279Imagine sampling seagrass blade lengths from two different sites in a marine ecosystem, and they have the same mean length of 15.2 cm. Are both sites the same?\n\n\nSite A (Protected Bay): 15.2, 15.0, 15.3, 15.1, 15.2 centimetres\nSite B (Wave-exposed Coast): 12.0, 18.0, 14.5, 16.5, 15.0 centimetres"
+    "text": "A biological example\n\n\n\n\n\n\n\nSource: Adobe Stock # 85659279\n\n\nImagine sampling seagrass blade lengths from two different sites in a marine ecosystem, and they have the same mean length of 15.2 cm. Are both sites the same?\n\n\nSite A (Protected Bay): 15.2, 15.0, 15.3, 15.1, 15.2 centimetres\nSite B (Wave-exposed Coast): 12.0, 18.0, 14.5, 16.5, 15.0 centimetres"
   },
   {
     "objectID": "lectures/L02/lecture-02.html#comparing-different-measures",
@@ -1360,56 +1367,84 @@
     "href": "lectures/L02/lecture-02.html#why-do-we-need-measures-of-spread",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Why do we need measures of spread?",
-    "text": "Why do we need measures of spread?\n\nCentral tendency (mean, median, mode) only tells part of the story\nSpread tells us how much variation exists in our data\nDifferent measures of spread tell us different things:\n\nRange: Overall spread of data\nIQR: Spread of middle 50% of data\nVariance: Average squared deviation from mean\nStandard deviation: Average deviation in original units"
+    "text": "Why do we need measures of spread?\n\nCentral tendency (mean, median, mode) only tells part of the story\nSpread tells us how much variation exists in our data\n\n\n\nRange: Overall spread of data\n\n\n\n\nIQR: Spread of middle 50% of data\n\n\n\n\nVariance: Average squared deviation from mean\n\n\n\n\nStandard deviation: Average deviation in original units"
   },
   {
     "objectID": "lectures/L02/lecture-02.html#range-the-simplest-measure-of-spread",
     "href": "lectures/L02/lecture-02.html#range-the-simplest-measure-of-spread",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Range – The simplest measure of spread",
-    "text": "Range – The simplest measure of spread\n\n# Create our seagrass data\nseagrass_protected &lt;- c(15.2, 15.0, 15.3, 15.1, 15.2)  # Protected bay\nseagrass_exposed &lt;- c(12.0, 18.0, 14.5, 16.5, 15.0)    # Wave-exposed coast\n\n# Calculate ranges\ncat(\"Protected bay range:\", diff(range(seagrass_protected)), \"cm\\n\")\n\nProtected bay range: 0.3 cm\n\ncat(\"Wave-exposed range:\", diff(range(seagrass_exposed)), \"cm\\n\")\n\nWave-exposed range: 6 cm\n\n\n\n\n\n\n\n\nNote\n\n\nThe range shows us that seagrass lengths are much more variable in the wave-exposed site!"
+    "text": "Range – The simplest measure of spread\n\n# Create our seagrass data\nseagrass_protected &lt;- c(15.2, 15.0, 15.3, 15.1, 15.2)  # Protected bay\nseagrass_exposed &lt;- c(12.0, 18.0, 14.5, 16.5, 15.0)    # Wave-exposed coast\n\n# Calculate ranges\ncat(\"Protected bay range:\", diff(range(seagrass_protected)), \"cm\\n\")\n\nProtected bay range: 0.3 cm\n\ncat(\"Wave-exposed range:\", diff(range(seagrass_exposed)), \"cm\\n\")\n\nWave-exposed range: 6 cm\n\n\n\nThe range shows us that seagrass lengths are much more variable in the wave-exposed site!"
+  },
+  {
+    "objectID": "lectures/L02/lecture-02.html#range-in-excel",
+    "href": "lectures/L02/lecture-02.html#range-in-excel",
+    "title": "Lecture 02: Introduction to statistical programming",
+    "section": "Range in Excel",
+    "text": "Range in Excel\nUse MAX() and MIN() to calculate the range:\n=MAX(A1:A10) - MIN(A1:A10)"
   },
   {
     "objectID": "lectures/L02/lecture-02.html#interquartile-range-iqr-the-middle-50",
     "href": "lectures/L02/lecture-02.html#interquartile-range-iqr-the-middle-50",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Interquartile range (IQR): The middle 50%",
-    "text": "Interquartile range (IQR): The middle 50%\nThe IQR tells us how spread out the middle 50% of our data is:\n\n# Get quartiles for protected bay\nquantile(seagrass_protected)\n\n  0%  25%  50%  75% 100% \n15.0 15.1 15.2 15.2 15.3 \n\n\n\n25% of data below Q1 (1st quartile)\n75% of data below Q3 (3rd quartile)\nIQR = Q3 - Q1\n\nWhy use IQR?\n\nIgnores extreme values\nWorks with skewed data\nMore stable than range"
+    "text": "Interquartile range (IQR): The middle 50%\nThe IQR tells us how spread out the middle 50% of our data is:\n\n# Get quartiles for protected bay\nquantile(seagrass_protected)\n\n  0%  25%  50%  75% 100% \n15.0 15.1 15.2 15.2 15.3 \n\n\n\n25% of data below Q1 (1st quartile)\n75% of data below Q3 (3rd quartile)\nIQR = Q3 - Q1\n\nWhy use IQR?\n\nIgnores extreme values\nWorks with skewed data\nLess affected by extreme values than the range"
   },
   {
     "objectID": "lectures/L02/lecture-02.html#comparing-sites-using-iqr",
     "href": "lectures/L02/lecture-02.html#comparing-sites-using-iqr",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Comparing Sites Using IQR",
-    "text": "Comparing Sites Using IQR\n\n# Compare IQRs\npbay &lt;- IQR(seagrass_protected)\npbay\n\n[1] 0.1\n\nexbay &lt;- IQR(seagrass_exposed)\nexbay\n\n[1] 2\n\n\n\nProtected bay IQR: 0.1 cm\nWave-exposed IQR: 2 cm\n\n\n\n\n\n\n\nNote\n\n\nThe larger IQR in the wave-exposed site shows more spread in the typical seagrass lengths"
+    "text": "Comparing Sites Using IQR\n\n# Compare IQRs\npbay &lt;- IQR(seagrass_protected)\npbay\n\n[1] 0.1\n\nexbay &lt;- IQR(seagrass_exposed)\nexbay\n\n[1] 2\n\n\n\nProtected bay IQR: 0.1 cm\nWave-exposed IQR: 2 cm\n\n\nThe larger IQR in the wave-exposed site shows more spread in the typical seagrass lengths."
+  },
+  {
+    "objectID": "lectures/L02/lecture-02.html#iqr-in-excel",
+    "href": "lectures/L02/lecture-02.html#iqr-in-excel",
+    "title": "Lecture 02: Introduction to statistical programming",
+    "section": "IQR in Excel",
+    "text": "IQR in Excel\nUse QUARTILE.INC() to find the IQR:\nFor Q1: =QUARTILE.INC(A1:A10, 1)\nFor Q3: =QUARTILE.INC(A1:A10, 3)\nFor IQR: =QUARTILE.INC(A1:A10, 3) - QUARTILE.INC(A1:A10, 1)"
   },
   {
     "objectID": "lectures/L02/lecture-02.html#variance-a-detailed-measure-of-spread",
     "href": "lectures/L02/lecture-02.html#variance-a-detailed-measure-of-spread",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Variance: a detailed measure of spread",
-    "text": "Variance: a detailed measure of spread\nVariance measures how far data points are spread from their mean by:\n\nFinding how far each point is from the mean\nSquaring these distances (to handle negative values)\nTaking the average of these squared distances\n\nWhy use variance?\n\nUses all data points (unlike IQR)\nLess sensitive to outliers than range\nShows total spread in both directions\n\n\nKey points\n\nMeasured in squared units (cm²)\nLarger variance = more spread"
+    "text": "Variance: a detailed measure of spread\nVariance measures how far data points are spread from their mean by:\n\nFinding how far each point is from the mean\nSquaring these distances (to handle negative values)\nTaking the average of these squared distances\n\nWhy use variance?\n\nUses all data points (unlike IQR)\nSquaring amplifies the effect of extreme values, making outliers stand out\nShows total spread in both directions\n\n\nKey points\n\nMeasured in squared units (cm²)\nLarger variance = more spread"
   },
   {
     "objectID": "lectures/L02/lecture-02.html#calculating-variance-in-r",
     "href": "lectures/L02/lecture-02.html#calculating-variance-in-r",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Calculating Variance in R",
-    "text": "Calculating Variance in R\n\n\nCode\n# Calculate variance for both sites\ncat(\"Protected bay variance:\", var(seagrass_protected), \"cm²\\n\")\n\n\nProtected bay variance: 0.013 cm²\n\n\nCode\ncat(\"Wave-exposed variance:\", var(seagrass_exposed), \"cm²\\n\")\n\n\nWave-exposed variance: 5.075 cm²\n\n\n\n\n\n\n\n\nNote\n\n\nThe larger variance in wave-exposed site shows more spread from the mean!"
+    "text": "Calculating Variance in R\n\n\nCode\n# Calculate variance for both sites\ncat(\"Protected bay variance:\", var(seagrass_protected), \"cm²\\n\")\n\n\nProtected bay variance: 0.013 cm²\n\n\nCode\ncat(\"Wave-exposed variance:\", var(seagrass_exposed), \"cm²\\n\")\n\n\nWave-exposed variance: 5.075 cm²\n\n\n\nThe larger variance in the wave-exposed site shows more spread from the mean!"
+  },
+  {
+    "objectID": "lectures/L02/lecture-02.html#variance-in-excel",
+    "href": "lectures/L02/lecture-02.html#variance-in-excel",
+    "title": "Lecture 02: Introduction to statistical programming",
+    "section": "Variance in Excel",
+    "text": "Variance in Excel\nUse VAR.S() to calculate the sample variance:\n=VAR.S(A1:A10)\nFor now, always use .S (sample) in this course."
   },
   {
     "objectID": "lectures/L02/lecture-02.html#standard-deviation-a-more-interpretable-measure",
     "href": "lectures/L02/lecture-02.html#standard-deviation-a-more-interpretable-measure",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Standard deviation: a more interpretable measure",
-    "text": "Standard deviation: a more interpretable measure\nStandard deviation (SD, or \\(\\sigma\\) for population, \\(s\\) for sample) is the square root of variance:\n\nTells us the “typical distance” from the mean\nEasy to understand - similar to saying “± value” after a mean\nSmall SD means values cluster closely around mean\nLarge SD means values are more spread out\n\nWhen and why to use it\n\nValues are in the same units as your data (unlike variance)\nPerfect for describing natural variation (height, weight, temperature)\nUsed in many statistical tests\nGreat for comparing different groups or datasets"
+    "text": "Standard deviation: a more interpretable measure\n\nStandard deviation (SD, or \\(\\sigma\\) for population, \\(s\\) for sample) is the square root of variance:\n\nTells us the “typical distance” from the mean\nEasy to understand – similar to saying “± value” after a mean\nSmall SD means values cluster closely around mean\nLarger SD values mean values are more spread out\n\n\n\nWhen and why to use it\n\nValues are in the same units as your data (unlike variance)\nPerfect for describing natural variation (height, weight, temperature)\nUsed in many statistical tests\nGreat for comparing different groups or datasets"
   },
   {
     "objectID": "lectures/L02/lecture-02.html#interpreting-standard-deviation-with-r",
     "href": "lectures/L02/lecture-02.html#interpreting-standard-deviation-with-r",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Interpreting standard deviation (with R)",
-    "text": "Interpreting standard deviation (with R)\nWe can describe our seagrass lengths using mean ± standard deviation:\n\n# Protected bay\nmean_p &lt;- mean(seagrass_protected)\nsd_p &lt;- sd(seagrass_protected)\ncat(\"Protected bay:\", round(mean_p, 1), \"±\", round(sd_p, 2), \"cm\\n\")\n\nProtected bay: 15.2 ± 0.11 cm\n\n# Wave-exposed\nmean_e &lt;- mean(seagrass_exposed)\nsd_e &lt;- sd(seagrass_exposed)\ncat(\"Wave-exposed:\", round(mean_e, 1), \"±\", round(sd_e, 2), \"cm\\n\")\n\nWave-exposed: 15.2 ± 2.25 cm\n\n\n\n\n\n\n\n\nTip\n\n\nThe ± tells us about the typical variation around the mean. Larger values indicate more spread!"
+    "text": "Interpreting standard deviation (with R)\nWe can describe our seagrass lengths using mean ± standard deviation:\n\n# Protected bay\nmean_p &lt;- mean(seagrass_protected)\nsd_p &lt;- sd(seagrass_protected)\ncat(\"Protected bay:\", round(mean_p, 1), \"±\", round(sd_p, 2), \"cm\\n\")\n\nProtected bay: 15.2 ± 0.11 cm\n\n# Wave-exposed\nmean_e &lt;- mean(seagrass_exposed)\nsd_e &lt;- sd(seagrass_exposed)\ncat(\"Wave-exposed:\", round(mean_e, 1), \"±\", round(sd_e, 2), \"cm\\n\")\n\nWave-exposed: 15.2 ± 2.25 cm\n\n\n\nThe ± tells us about the typical variation around the mean. Larger SD values indicate more spread!"
+  },
+  {
+    "objectID": "lectures/L02/lecture-02.html#sd-in-excel",
+    "href": "lectures/L02/lecture-02.html#sd-in-excel",
+    "title": "Lecture 02: Introduction to statistical programming",
+    "section": "SD in Excel",
+    "text": "SD in Excel\nUse STDEV.S() to calculate the sample standard deviation:\n=STDEV.S(A1:A10)\nFor now, always use .S (sample) in this course."
   },
   {
     "objectID": "lectures/L02/lecture-02.html#comparing-spread-measures",
@@ -1419,25 +1454,11 @@
     "text": "Comparing spread measures\n\n\n\n\n\n\n\n\n\nMeasure\nProtected Bay\nWave-exposed Coast\nWhat it Tells Us\n\n\n\n\nRange\n0.3 cm\n6 cm\nOverall spread (sensitive to outliers)\n\n\nIQR\n0.1 cm\n2 cm\nMiddle 50% spread (ignores extremes)\n\n\nVariance\n0.01 cm²\n5.07 cm²\nAverage squared distance from mean\n\n\nSD\n0.11 cm\n2.25 cm\nAverage distance from mean (in original units)\n\n\n\nKey Observations\n\nWave-exposed site shows consistently more variation\nEach measure gives a different perspective\nChoose based on your data and goals\nStandard deviation is most commonly used in research papers"
   },
   {
-    "objectID": "lectures/L02/lecture-02.html#range-and-iqr-in-excel",
-    "href": "lectures/L02/lecture-02.html#range-and-iqr-in-excel",
-    "title": "Lecture 02: Introduction to statistical programming",
-    "section": "Range and IQR in Excel",
-    "text": "Range and IQR in Excel\nCommon Excel functions for measuring spread:\n\nRange: Use MAX() and MIN()\n\n=MAX(A1:A10) - MIN(A1:A10)\n\nQuartiles and IQR: Use QUARTILE.INC()\n\nFor Q1: =QUARTILE.INC(A1:A10, 1)\nFor Q3: =QUARTILE.INC(A1:A10, 3)\nFor IQR: =QUARTILE.INC(A1:A10, 3) - QUARTILE.INC(A1:A10, 1)"
-  },
-  {
-    "objectID": "lectures/L02/lecture-02.html#variance-and-standard-deviation-in-excel",
-    "href": "lectures/L02/lecture-02.html#variance-and-standard-deviation-in-excel",
-    "title": "Lecture 02: Introduction to statistical programming",
-    "section": "Variance and standard deviation in Excel",
-    "text": "Variance and standard deviation in Excel\nStatistical functions for variance and standard deviation:\n\nSample Variance: Use VAR.S()\n\n=VAR.S(A1:A10)\n\nSample Standard Deviation: Use STDEV.S()\n\n=STDEV.S(A1:A10)\n\n\n\n\n\n\nTip\n\n\nUse .P instead of .S for population measures:\n\nVAR.P() for population variance\nSTDEV.P() for population standard deviation"
-  },
-  {
     "objectID": "lectures/L02/lecture-02.html#core-reading",
     "href": "lectures/L02/lecture-02.html#core-reading",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Core Reading",
-    "text": "Core Reading\n\nQuinn & Keough (2024). Experimental Design and Data Analysis for Biologists. Cambridge University Press. Chapter 2: Things to know before proceeding.\nCanvas site for lecture notes and additional resources"
+    "text": "Core Reading\nRead after the lecture:\n\nQuinn & Keough (2024). Experimental Design and Data Analysis for Biologists. Cambridge University Press. Chapter 2: Things to know before proceeding.\nCanvas site for lecture notes and additional resources"
   },
   {
     "objectID": "lectures/L03/lecture-03.html#after-this-week-you-will-be-able-to",
