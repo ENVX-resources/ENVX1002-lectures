@@ -6,9 +6,9 @@ project:
   resources:
     - "lectures/**/*.pdf"
   pre-render:
-    - scripts/pre-render.sh
+    - scripts/pre-render.bat
   post-render:
-    - scripts/copy-pdfs.sh
+    - scripts/copy-pdfs.bat
 editor:
   render-on-save: true
 execute:
