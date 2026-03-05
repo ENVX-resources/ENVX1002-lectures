@@ -6,9 +6,9 @@ project:
   resources:
     - "lectures/**/*.pdf"
   pre-render:
-    - scripts/pre-render.bat
+    - scripts/pre-render.lua
   post-render:
-    - scripts/copy-pdfs.bat
+    - scripts/copy-pdfs.lua
 editor:
   render-on-save: true
 execute:
