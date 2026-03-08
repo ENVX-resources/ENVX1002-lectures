@@ -1465,49 +1465,49 @@
     "href": "lectures/L03/lecture-03.html#after-this-week-you-will-be-able-to",
     "title": "Lecture 03: Exploring and visualising data",
     "section": "After this week, you will be able to:",
-    "text": "After this week, you will be able to:\n\nUnderstand the importance of data exploration before analysis\nApply exploratory functions to explore and summarise datasets\nIdentify different data types and structures in datasets\nSelect appropriate visualization types based on data characteristics\nUnderstand the Grammar of Graphics approach to data visualisation\nCreate and customise visualisations in R using the ggplot2 package\nBuild plots layer-by-layer using the ggplot2 framework\nInterpret distributions, including skewness, kurtosis, and outliers"
+    "text": "After this week, you will be able to:\n\nExplore datasets using summary functions and identify data quality issues\nChoose appropriate plot types for different kinds of data\nBuild layered visualisations in R using ggplot2\nInterpret distribution shapes, including skewness and kurtosis"
   },
   {
     "objectID": "lectures/L03/lecture-03.html#quick-checklist",
     "href": "lectures/L03/lecture-03.html#quick-checklist",
     "title": "Lecture 03: Exploring and visualising data",
     "section": "Quick checklist",
-    "text": "Quick checklist\nBy now you should have…\n\nInstalled R and RStudio\nCompleted Lecture 2 content and read the ENVX1002 R guide\nA basic understanding of measures of central tendency and spread\nA basic understanding of what a function(argument = value) is in R\nRendered a few Quarto documents in RStudio"
+    "text": "Quick checklist\nBy now you should have…\n\nInstalled R and RStudio\nCompleted Lecture 2 content and read the ENVX1002 R guide\nReviewed measures of central tendency and spread\nPractised using R functions with the function(argument = value) syntax\nRendered a few Quarto documents in RStudio"
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#data-exploration",
-    "href": "lectures/L03/lecture-03.html#data-exploration",
+    "objectID": "lectures/L03/lecture-03.html#looking-before-you-leap",
+    "href": "lectures/L03/lecture-03.html#looking-before-you-leap",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Data exploration",
-    "text": "Data exploration\nWhy explore data before analysis?\n\nIdentify patterns, outliers, and relationships\nDetect data quality issues\nGuide selection of appropriate statistical methods\nAvoid incorrect conclusions from flawed data\n\nThe data exploration workflow\n\nUnderstand data structure and types\nExamine distributions and summary statistics\nVisualise relationships between variables\nIdentify patterns and anomalies"
+    "section": "Looking before you leap",
+    "text": "Looking before you leap\nJumping straight into analysis without exploring your data is like navigating without a map. You might arrive somewhere, but probably not where you intended.\nData exploration helps you:\n\nSpot problems early (missing values, outliers, errors)\nUnderstand what shape your data takes\nChoose the right analysis method\nAvoid drawing conclusions from flawed data"
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#types-of-data-recap-from-week-1",
-    "href": "lectures/L03/lecture-03.html#types-of-data-recap-from-week-1",
+    "objectID": "lectures/L03/lecture-03.html#the-data-exploration-workflow",
+    "href": "lectures/L03/lecture-03.html#the-data-exploration-workflow",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Types of data: recap from Week 1",
-    "text": "Types of data: recap from Week 1\nData in R can be broadly categorized as either categorical or continuous.\n\nDifferent data types require different analysis approaches\nUnderstanding data types helps select appropriate visualisations\nR stores different data types in specific formats (which is why we need to know what they are when we import data!)"
+    "section": "The data exploration workflow",
+    "text": "The data exploration workflow\nA practical sequence for getting to know a new dataset:\n\nCheck the structure and data types\nSummarise with descriptive statistics\nVisualise distributions and relationships\nFlag anything unexpected"
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#categorical-data",
-    "href": "lectures/L03/lecture-03.html#categorical-data",
+    "objectID": "lectures/L03/lecture-03.html#quick-recap-types-of-data",
+    "href": "lectures/L03/lecture-03.html#quick-recap-types-of-data",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Categorical data",
-    "text": "Categorical data\n\nNominal: no natural order, e.g.\n\nSpecies (dog, cat, fish)\nHair colour (black, brown, blonde)\nBlood type (A, B, AB, O)\n\nOrdinal: natural order exists, e.g.\n\nEducation (primary, secondary, tertiary)\nPain scale (mild, moderate, severe)\nT-shirt sizes (S, M, L, XL)"
+    "section": "Quick recap: types of data",
+    "text": "Quick recap: types of data\nR needs to know what kind of data it is working with. Here is the breakdown:\n\n\n\n\nType\nOrder?\nExample\n\n\n\n\nCategorical\nNominal\nNo\nSpecies, blood type\n\n\n\nOrdinal\nYes\nPain scale (mild → severe)\n\n\nContinuous\nInterval\n—\nTemperature in °C\n\n\n\nRatio\n—\nHeight, weight, age\n\n\n\nCategorical data groups observations into labels. Continuous data measures quantities on a scale. The distinction matters because each type calls for different summaries and different plots."
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#continuous-data",
-    "href": "lectures/L03/lecture-03.html#continuous-data",
+    "objectID": "lectures/L03/lecture-03.html#section",
+    "href": "lectures/L03/lecture-03.html#section",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Continuous data",
-    "text": "Continuous data\n\nInterval: equal intervals, no true zero, e.g.\n\nTemperature in °C (0°C isn’t “no temperature”)\nCalendar dates\npH scale\n\nRatio: equal intervals with true zero, e.g.\n\nHeight (0 cm = no height)\nWeight (0 kg = no weight)\nAge (0 years = birth)"
+    "section": "",
+    "text": "“The greatest value of a picture is when it forces us to notice what we never expected to see.” — John Tukey, Exploratory Data Analysis (1977)\n\nThe shape of your data influences everything: which summary statistics make sense, which plots to use, and which analyses are valid."
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#normal-distribution-introduction",
-    "href": "lectures/L03/lecture-03.html#normal-distribution-introduction",
+    "objectID": "lectures/L03/lecture-03.html#the-normal-distribution",
+    "href": "lectures/L03/lecture-03.html#the-normal-distribution",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Normal distribution: Introduction",
-    "text": "Normal distribution: Introduction\n\nBell-shaped, symmetric curve\nDefined by mean (μ) and standard deviation (\\(\\sigma\\))\nMany natural phenomena follow this distribution\n\nHeights of individuals in a population\nMeasurement errors\nMany physiological traits\n\n\n\\[X \\sim N(\\mu, \\sigma^2)\\]\n\nThe random variable X follows a normal distribution with mean \\(\\mu\\) and variance \\(\\sigma^2\\)"
+    "section": "The normal distribution",
+    "text": "The normal distribution\nThe most common distribution you will encounter is the normal (or “bell curve”) distribution. It is symmetric, with most values clustered near the centre and fewer in the tails.\n\nDefined by two parameters: the mean (μ) and standard deviation (σ)\nAppears frequently in nature: heights, measurement errors, physiological traits\n\n\\[X \\sim N(\\mu, \\sigma^2)\\]\nThis notation means: the variable \\(X\\) follows a normal distribution with mean \\(\\mu\\) and variance \\(\\sigma^2\\)."
   },
   {
     "objectID": "lectures/L03/lecture-03.html#what-does-a-normal-distribution-look-like",
@@ -1517,172 +1517,123 @@
     "text": "What does a normal distribution look like?\n\n\nCode\n# Generate normal distribution data\nset.seed(123)\nnormal_data &lt;- rnorm(1000, mean = 0, sd = 1)\n\n# Plot normal distribution\nggplot(data.frame(x = normal_data), aes(x = x)) +\n  geom_histogram(aes(y = after_stat(density)),\n                 bins = 30,\n                 fill = \"skyblue\",\n                 colour = \"black\") +\n  geom_density(colour = \"red\") +\n  labs(title = \"Standard Normal Distribution (μ = 0, σ = 1)\",\n       x = \"Value\",\n       y = \"Density\")"
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#properties-of-normal-distribution-the-empirical-rule",
-    "href": "lectures/L03/lecture-03.html#properties-of-normal-distribution-the-empirical-rule",
+    "objectID": "lectures/L03/lecture-03.html#the-empirical-rule-68-95-99.7",
+    "href": "lectures/L03/lecture-03.html#the-empirical-rule-68-95-99.7",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Properties of normal distribution: The empirical rule",
-    "text": "Properties of normal distribution: The empirical rule\n\nMean = median = mode\n~68% of data within 1\\(\\sigma\\) of mean\n~95% of data within 2\\(\\sigma\\) of mean\n~99.7% of data within 3\\(\\sigma\\) of mean"
+    "section": "The empirical rule (68-95-99.7)",
+    "text": "The empirical rule (68-95-99.7)\nFor a normal distribution, the mean, median, and mode are all the same value. The data clusters predictably around that centre:\n\nAbout 68% of values fall within 1 standard deviation of the mean\nAbout 95% within 2 standard deviations\nAbout 99.7% within 3 standard deviations"
   },
   {
     "objectID": "lectures/L03/lecture-03.html#the-empirical-rule-visualised",
     "href": "lectures/L03/lecture-03.html#the-empirical-rule-visualised",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "The empirical rule visualised",
-    "text": "The empirical rule visualised\n\n\nCode\n# Create a standard normal distribution\nx &lt;- seq(-4, 4, length.out = 1000)\ny &lt;- dnorm(x)\ndf &lt;- data.frame(x = x, y = y)\n\n# Plot with empirical rule highlighted\nggplot(df, aes(x = x, y = y)) +\n  geom_line() +\n  # Add vertical reference lines at standard deviations\n  geom_vline(xintercept = c(-3, -2, -1, 0, 1, 2, 3), linetype = \"dashed\", colour = \"gray50\", alpha = 0.7) +\n  geom_area(data = subset(df, x &gt;= -1 & x &lt;= 1), fill = \"darkblue\", alpha = 0.3) +\n  geom_area(data = subset(df, (x &gt;= -2 & x &lt; -1) | (x &gt; 1 & x &lt;= 2)), fill = \"darkgreen\", alpha = 0.3) +\n  geom_area(data = subset(df, (x &gt;= -3 & x &lt; -2) | (x &gt; 2 & x &lt;= 3)), fill = \"darkred\", alpha = 0.3) +\n  annotate(\"text\", x = 0, y = 0.2, label = \"68%\", colour = \"darkblue\") +\n  annotate(\"text\", x = 1.5, y = 0.1, label = \"95%\", colour = \"darkgreen\") +\n  annotate(\"text\", x = 2.5, y = 0.05, label = \"99.7%\", colour = \"darkred\") +\n  labs(title = \"Normal Distribution: Empirical Rule\",\n       x = \"Standard Deviations from Mean\",\n       y = \"Density\")"
+    "section": "The empirical rule, visualised",
+    "text": "The empirical rule, visualised\nThis pattern makes the normal distribution especially useful: if you know the mean and standard deviation, you already know where most of the data sits.\n\n\nCode\n# Create a standard normal distribution\nx &lt;- seq(-4, 4, length.out = 1000)\ny &lt;- dnorm(x)\ndf &lt;- data.frame(x = x, y = y)\n\n# Plot with empirical rule highlighted\nggplot(df, aes(x = x, y = y)) +\n  geom_line() +\n  # Add vertical reference lines at standard deviations\n  geom_vline(xintercept = c(-3, -2, -1, 0, 1, 2, 3), linetype = \"dashed\", colour = \"gray50\", alpha = 0.7) +\n  geom_area(data = subset(df, x &gt;= -1 & x &lt;= 1), fill = \"darkblue\", alpha = 0.3) +\n  geom_area(data = subset(df, (x &gt;= -2 & x &lt; -1) | (x &gt; 1 & x &lt;= 2)), fill = \"darkgreen\", alpha = 0.3) +\n  geom_area(data = subset(df, (x &gt;= -3 & x &lt; -2) | (x &gt; 2 & x &lt;= 3)), fill = \"darkred\", alpha = 0.3) +\n  annotate(\"text\", x = 0, y = 0.2, label = \"68%\", colour = \"darkblue\") +\n  annotate(\"text\", x = 1.5, y = 0.1, label = \"95%\", colour = \"darkgreen\") +\n  annotate(\"text\", x = 2.5, y = 0.05, label = \"99.7%\", colour = \"darkred\") +\n  labs(title = \"Normal Distribution: Empirical Rule\",\n       x = \"Standard Deviations from Mean\",\n       y = \"Density\")"
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#why-normal-distributions-matter-in-data-exploration",
-    "href": "lectures/L03/lecture-03.html#why-normal-distributions-matter-in-data-exploration",
+    "objectID": "lectures/L03/lecture-03.html#why-does-this-matter",
+    "href": "lectures/L03/lecture-03.html#why-does-this-matter",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Why normal distributions matter in data exploration",
-    "text": "Why normal distributions matter in data exploration\nWhen exploring data, understanding distributions helps you:\n\nIdentify patterns and anomalies\n\nIs your data normally distributed as expected?\nAre there unexpected skews or outliers?\n\nChoose appropriate analysis methods\n\nMany statistical tests assume normality\nNon-normal data may require different approaches\n\nInterpret results correctly\n\nContext for understanding how unusual a value is\nFramework for making statistical inferences"
+    "section": "Why does this matter?",
+    "text": "Why does this matter?\nMany biological measurements follow a normal distribution. If you know your data is roughly normal, you can predict where most values will land and spot anything unusual.\n\n\nCode\n# Simulate plant height data\nset.seed(456)\nplant_heights &lt;- rnorm(200, mean = 25, sd = 3)  # Heights in cm\n\n# Plot the distribution\nggplot(data.frame(height = plant_heights), aes(x = height)) +\n  geom_histogram(aes(y = after_stat(density)),\n                 bins = 20,\n                 fill = \"#66c2a5\",\n                 colour = \"black\") +\n  geom_density(colour = \"#1f78b4\", linewidth = 1) +\n  geom_vline(xintercept = 25, linetype = \"dashed\", colour = \"red\") +\n  annotate(\"text\", x = 25.5, y = 0.05, label = \"μ = 25 cm\", colour = \"red\") +\n  labs(title = \"Distribution of Plant Heights in a Population\",\n       x = \"Height (cm)\",\n       y = \"Density\")\n\n\n\nHere, plant heights cluster around a mean of 25 cm. A plant measuring 35 cm would be more than 3 standard deviations from the mean, making it a clear outlier worth investigating."
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#example",
-    "href": "lectures/L03/lecture-03.html#example",
+    "objectID": "lectures/L03/lecture-03.html#but-what-if-the-data-is-not-symmetric",
+    "href": "lectures/L03/lecture-03.html#but-what-if-the-data-is-not-symmetric",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Example",
-    "text": "Example\nMany biological traits follow normal distributions. For example, plant heights within a species:\n\n\nCode\n# Simulate plant height data\nset.seed(456)\nplant_heights &lt;- rnorm(200, mean = 25, sd = 3)  # Heights in cm\n\n# Plot the distribution\nggplot(data.frame(height = plant_heights), aes(x = height)) +\n  geom_histogram(aes(y = after_stat(density)),\n                 bins = 20,\n                 fill = \"#66c2a5\",\n                 colour = \"black\") +\n  geom_density(colour = \"#1f78b4\", linewidth = 1) +\n  geom_vline(xintercept = 25, linetype = \"dashed\", colour = \"red\") +\n  annotate(\"text\", x = 25.5, y = 0.05, label = \"μ = 25 cm\", colour = \"red\") +\n  labs(title = \"Distribution of Plant Heights in a Population\",\n       subtitle = \"Example of a biological trait following normal distribution\",\n       x = \"Height (cm)\",\n       y = \"Density\")\n\n\n\nThis example shows how plant heights cluster around the mean (25 cm) following a normal distribution pattern. This helps researchers identify outliers, establish experimental categories, and detect environmental effects on growth patterns."
-  },
-  {
-    "objectID": "lectures/L03/lecture-03.html#skewness",
-    "href": "lectures/L03/lecture-03.html#skewness",
-    "title": "Lecture 03: Exploring and visualising data",
-    "section": "Skewness",
-    "text": "Skewness\nWhat is skewness?\n\nMeasure of asymmetry in a distribution\nIndicates which side of the distribution has a longer tail\nImportant for selecting appropriate statistical tests"
+    "section": "But what if the data is not symmetric?",
+    "text": "But what if the data is not symmetric?\nNot all data follows a neat bell curve. When a distribution leans to one side, we call it skewed. The direction of the longer tail tells you the type of skew, and it shifts the mean away from the median."
   },
   {
     "objectID": "lectures/L03/lecture-03.html#positive-skew-right-skewed",
     "href": "lectures/L03/lecture-03.html#positive-skew-right-skewed",
     "title": "Lecture 03: Exploring and visualising data",
     "section": "Positive skew (right-skewed)",
-    "text": "Positive skew (right-skewed)\n\nLong tail on right side\nMean &gt; median\n\n\n\nCode\n# Generate positive skewed distribution\nset.seed(123)\nright_skewed &lt;- exp(rnorm(1000, 0, 0.5))\n\n# Calculate statistics\nmean_val &lt;- mean(right_skewed)\nmedian_val &lt;- median(right_skewed)\n\n# Plot positive skewed distribution\nggplot(data.frame(x = right_skewed), aes(x = x)) +\n  geom_histogram(aes(y = after_stat(density)),\n                 bins = 30,\n                 fill = \"#66c2a5\", # colourblind-friendly green\n                 colour = \"black\") +\n  geom_density(colour = \"#1f78b4\", linewidth = 1) +\n  # Add vertical lines for mean and median\n  geom_vline(xintercept = mean_val, colour = \"red\", linetype = \"dashed\", linewidth = 1) +\n  geom_vline(xintercept = median_val, colour = \"blue\", linetype = \"dashed\", linewidth = 1) +\n  # Add annotations\n  annotate(\"text\", x = mean_val + 0.2, y = 0.5, label = paste(\"Mean =\", round(mean_val, 2)), colour = \"red\") +\n  annotate(\"text\", x = median_val - 0.2, y = 0.4, label = paste(\"Median =\", round(median_val, 2)), colour = \"blue\") +\n  labs(title = \"Positive skew (right-skewed)\",\n       subtitle = \"Note that Mean &gt; Median\",\n       x = \"Value\",\n       y = \"Density\")"
+    "text": "Positive skew (right-skewed)\nThe tail stretches to the right, pulling the mean above the median. Common in income data, reaction times, and species abundance counts.\n\n\nCode\n# Generate positive skewed distribution\nset.seed(123)\nright_skewed &lt;- exp(rnorm(1000, 0, 0.5))\n\n# Calculate statistics\nmean_val &lt;- mean(right_skewed)\nmedian_val &lt;- median(right_skewed)\n\n# Plot positive skewed distribution\nggplot(data.frame(x = right_skewed), aes(x = x)) +\n  geom_histogram(aes(y = after_stat(density)),\n                 bins = 30,\n                 fill = \"#66c2a5\", # colourblind-friendly green\n                 colour = \"black\") +\n  geom_density(colour = \"#1f78b4\", linewidth = 1) +\n  # Add vertical lines for mean and median\n  geom_vline(xintercept = mean_val, colour = \"red\", linetype = \"dashed\", linewidth = 1) +\n  geom_vline(xintercept = median_val, colour = \"blue\", linetype = \"dashed\", linewidth = 1) +\n  # Add annotations\n  annotate(\"text\", x = mean_val + 0.2, y = 0.5, label = paste(\"Mean =\", round(mean_val, 2)), colour = \"red\") +\n  annotate(\"text\", x = median_val - 0.2, y = 0.4, label = paste(\"Median =\", round(median_val, 2)), colour = \"blue\") +\n  labs(title = \"Positive skew (right-skewed)\",\n       subtitle = \"Note that Mean &gt; Median\",\n       x = \"Value\",\n       y = \"Density\")"
   },
   {
     "objectID": "lectures/L03/lecture-03.html#negative-skew-left-skewed",
     "href": "lectures/L03/lecture-03.html#negative-skew-left-skewed",
     "title": "Lecture 03: Exploring and visualising data",
     "section": "Negative skew (left-skewed)",
-    "text": "Negative skew (left-skewed)\n\nLong tail on left side\nMean &lt; median\n\n\n\nCode\n# Generate skewed distributions\nset.seed(123)\nleft_skewed &lt;- max(right_skewed) - right_skewed + min(right_skewed)\n\n# Calculate statistics\nmean_val &lt;- mean(left_skewed)\nmedian_val &lt;- median(left_skewed)\n\n# Plot negative skewed distribution\nggplot(data.frame(x = left_skewed), aes(x = x)) +\n  geom_histogram(aes(y = after_stat(density)),\n                 bins = 30,\n                 fill = \"#8da0cb\", # colourblind-friendly blue\n                 colour = \"black\") +\n  geom_density(colour = \"#1f78b4\", linewidth = 1) +\n  # Add vertical lines for mean and median\n  geom_vline(xintercept = mean_val, colour = \"red\", linetype = \"dashed\", linewidth = 1) +\n  geom_vline(xintercept = median_val, colour = \"blue\", linetype = \"dashed\", linewidth = 1) +\n  # Add annotations\n  annotate(\"text\", x = mean_val - 0.2, y = 0.5, label = paste(\"Mean =\", round(mean_val, 2)), colour = \"red\") +\n  annotate(\"text\", x = median_val + 0.2, y = 0.4, label = paste(\"Median =\", round(median_val, 2)), colour = \"blue\") +\n  labs(title = \"Negative skew (left-skewed)\",\n       subtitle = \"Note that Mean &lt; Median\",\n       x = \"Value\",\n       y = \"Density\")"
+    "text": "Negative skew (left-skewed)\nThe tail stretches to the left, pulling the mean below the median. Less common, but seen in exam scores near a ceiling or age at retirement.\n\n\nCode\n# Generate skewed distributions\nset.seed(123)\nleft_skewed &lt;- max(right_skewed) - right_skewed + min(right_skewed)\n\n# Calculate statistics\nmean_val &lt;- mean(left_skewed)\nmedian_val &lt;- median(left_skewed)\n\n# Plot negative skewed distribution\nggplot(data.frame(x = left_skewed), aes(x = x)) +\n  geom_histogram(aes(y = after_stat(density)),\n                 bins = 30,\n                 fill = \"#8da0cb\", # colourblind-friendly blue\n                 colour = \"black\") +\n  geom_density(colour = \"#1f78b4\", linewidth = 1) +\n  # Add vertical lines for mean and median\n  geom_vline(xintercept = mean_val, colour = \"red\", linetype = \"dashed\", linewidth = 1) +\n  geom_vline(xintercept = median_val, colour = \"blue\", linetype = \"dashed\", linewidth = 1) +\n  # Add annotations\n  annotate(\"text\", x = mean_val - 0.2, y = 0.5, label = paste(\"Mean =\", round(mean_val, 2)), colour = \"red\") +\n  annotate(\"text\", x = median_val + 0.2, y = 0.4, label = paste(\"Median =\", round(median_val, 2)), colour = \"blue\") +\n  labs(title = \"Negative skew (left-skewed)\",\n       subtitle = \"Note that Mean &lt; Median\",\n       x = \"Value\",\n       y = \"Density\")"
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#kurtosis",
-    "href": "lectures/L03/lecture-03.html#kurtosis",
+    "objectID": "lectures/L03/lecture-03.html#kurtosis-how-heavy-are-the-tails",
+    "href": "lectures/L03/lecture-03.html#kurtosis-how-heavy-are-the-tails",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Kurtosis",
-    "text": "Kurtosis\n\nMeasure of “tailedness” of a distribution\nDescribes the shape of a distribution’s tails relative to its overall shape\nAffects the choice of statistical methods\n\nTypes of kurtosis\n\nMesokurtic: Normal distribution (kurtosis = 3)\nLeptokurtic: Sharper peak, heavier tails (kurtosis &gt; 3)\nPlatykurtic: Flatter peak, thinner tails (kurtosis &lt; 3)"
+    "section": "Kurtosis: how heavy are the tails?",
+    "text": "Kurtosis: how heavy are the tails?\nKurtosis describes whether a distribution has heavy tails (more extreme values than expected) or light tails (fewer extremes). It is not about how “peaked” the distribution looks, despite what some textbooks say.\n\nMesokurtic: a normal distribution (the baseline)\nLeptokurtic: heavier tails, more outliers\nPlatykurtic: lighter tails, fewer outliers"
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#visualising-kurtosis",
-    "href": "lectures/L03/lecture-03.html#visualising-kurtosis",
+    "objectID": "lectures/L03/lecture-03.html#kurtosis-visualised",
+    "href": "lectures/L03/lecture-03.html#kurtosis-visualised",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Visualising kurtosis",
-    "text": "Visualising kurtosis\n\n\nCode\n# Generate distributions with different kurtosis\nset.seed(123)\nnormal &lt;- rnorm(1000, 0, 1)  # Mesokurtic\nleptokurtic &lt;- rt(1000, df = 5)  # t-distribution with 5 df is leptokurtic\nplatykurtic &lt;- runif(1000, -3, 3)  # Uniform distribution is platykurtic\n\n# Calculate kurtosis values (using e1071 package)\nlibrary(e1071)\nk_normal &lt;- kurtosis(normal)\nk_lepto &lt;- kurtosis(leptokurtic)\nk_platy &lt;- kurtosis(platykurtic)\n\n# Plot distributions\np1 &lt;- ggplot(data.frame(x = normal), aes(x = x)) +\n  geom_histogram(aes(y = after_stat(density)), bins = 30,\n                 fill = \"#a6cee3\", # colourblind-friendly blue\n                 colour = \"black\") +\n  geom_density(colour = \"#1f78b4\", linewidth = 1) + # Darker blue\n  annotate(\"text\", x = 2, y = 0.3,\n           label = paste(\"Kurtosis =\", round(k_normal, 2)),\n           colour = \"#1f78b4\") +\n  labs(title = \"Mesokurtic (normal)\",\n       subtitle = \"Normal distribution with balanced tails\",\n       x = \"Value\",\n       y = \"Density\")\n\np2 &lt;- ggplot(data.frame(x = leptokurtic), aes(x = x)) +\n  geom_histogram(aes(y = after_stat(density)), bins = 30,\n                 fill = \"#fb9a99\", # colourblind-friendly pink\n                 colour = \"black\") +\n  geom_density(colour = \"#e31a1c\", linewidth = 1) + # Darker red\n  annotate(\"text\", x = 2, y = 0.3,\n           label = paste(\"Kurtosis =\", round(k_lepto, 2)),\n           colour = \"#e31a1c\") +\n  labs(title = \"Leptokurtic (heavy-tailed)\",\n       subtitle = \"Sharper peak, heavier tails\",\n       x = \"Value\",\n       y = \"Density\")\n\np3 &lt;- ggplot(data.frame(x = platykurtic), aes(x = x)) +\n  geom_histogram(aes(y = after_stat(density)), bins = 30,\n                 fill = \"#b2df8a\", # colourblind-friendly green\n                 colour = \"black\") +\n  geom_density(colour = \"#33a02c\", linewidth = 1) + # Darker green\n  annotate(\"text\", x = 0, y = 0.15,\n           label = paste(\"Kurtosis =\", round(k_platy, 2)),\n           colour = \"#33a02c\") +\n  labs(title = \"Platykurtic (light-tailed)\",\n       subtitle = \"Flatter peak, thinner tails\",\n       x = \"Value\",\n       y = \"Density\")\n\n# Display plots vertically\nlibrary(patchwork)\np1 + p2 + p3"
+    "section": "Kurtosis, visualised",
+    "text": "Kurtosis, visualised\nCompare these three distributions. They all have the same mean and similar spread, but their tails behave very differently.\n\n\nCode\n# Generate distributions with different kurtosis\nset.seed(123)\nnormal &lt;- rnorm(1000, 0, 1)  # Mesokurtic\nleptokurtic &lt;- rt(1000, df = 5)  # t-distribution with 5 df is leptokurtic\nplatykurtic &lt;- runif(1000, -3, 3)  # Uniform distribution is platykurtic\n\n# Calculate kurtosis values (using e1071 package)\nlibrary(e1071)\nk_normal &lt;- kurtosis(normal)\nk_lepto &lt;- kurtosis(leptokurtic)\nk_platy &lt;- kurtosis(platykurtic)\n\n# Plot distributions\np1 &lt;- ggplot(data.frame(x = normal), aes(x = x)) +\n  geom_histogram(aes(y = after_stat(density)), bins = 30,\n                 fill = \"#a6cee3\", # colourblind-friendly blue\n                 colour = \"black\") +\n  geom_density(colour = \"#1f78b4\", linewidth = 1) + # Darker blue\n  annotate(\"text\", x = 2, y = 0.3,\n           label = paste(\"Kurtosis =\", round(k_normal, 2)),\n           colour = \"#1f78b4\") +\n  labs(title = \"Mesokurtic (normal)\",\n       subtitle = \"Normal distribution with balanced tails\",\n       x = \"Value\",\n       y = \"Density\")\n\np2 &lt;- ggplot(data.frame(x = leptokurtic), aes(x = x)) +\n  geom_histogram(aes(y = after_stat(density)), bins = 30,\n                 fill = \"#fb9a99\", # colourblind-friendly pink\n                 colour = \"black\") +\n  geom_density(colour = \"#e31a1c\", linewidth = 1) + # Darker red\n  annotate(\"text\", x = 2, y = 0.3,\n           label = paste(\"Kurtosis =\", round(k_lepto, 2)),\n           colour = \"#e31a1c\") +\n  labs(title = \"Leptokurtic (heavy-tailed)\",\n       subtitle = \"Sharper peak, heavier tails\",\n       x = \"Value\",\n       y = \"Density\")\n\np3 &lt;- ggplot(data.frame(x = platykurtic), aes(x = x)) +\n  geom_histogram(aes(y = after_stat(density)), bins = 30,\n                 fill = \"#b2df8a\", # colourblind-friendly green\n                 colour = \"black\") +\n  geom_density(colour = \"#33a02c\", linewidth = 1) + # Darker green\n  annotate(\"text\", x = 0, y = 0.15,\n           label = paste(\"Kurtosis =\", round(k_platy, 2)),\n           colour = \"#33a02c\") +\n  labs(title = \"Platykurtic (light-tailed)\",\n       subtitle = \"Flatter peak, thinner tails\",\n       x = \"Value\",\n       y = \"Density\")\n\n# Display plots vertically\nlibrary(patchwork)\np1 + p2 + p3"
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#data-structures-in-r",
-    "href": "lectures/L03/lecture-03.html#data-structures-in-r",
+    "objectID": "lectures/L03/lecture-03.html#data-structures-you-will-use",
+    "href": "lectures/L03/lecture-03.html#data-structures-you-will-use",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Data structures in R",
-    "text": "Data structures in R\nData is stored in R in various structures, each with specific purposes:\nVectors: 1-dimensional collection of elements\n\n\nCode\n# Vector - 1-dimensional collection of elements\nheights &lt;- c(1.65, 1.70, 1.75, 1.80, 1.85)\nheights\n\n\n[1] 1.65 1.70 1.75 1.80 1.85\n\n\nData frames: 2-dimensional tables with rows and columns\n\n\nCode\n# Data frame - 2-dimensional table\ndf &lt;- data.frame(\n  species = c(\"A\", \"B\", \"C\", \"A\", \"B\"),\n  height = c(1.65, 1.70, 1.75, 1.80, 1.85),\n  weight = c(60, 65, 70, 75, 80)\n)\ndf\n\n\n  species height weight\n1       A   1.65     60\n2       B   1.70     65\n3       C   1.75     70\n4       A   1.80     75\n5       B   1.85     80\n\n\nOther data structures include lists, matrices, arrays, and factors, but these are less common at your level."
+    "section": "Data structures you will use",
+    "text": "Data structures you will use\nThe two structures you will work with most in this course:\nVectors: a single row of values\n\nheights &lt;- c(1.65, 1.70, 1.75, 1.80, 1.85)\nheights\n\n[1] 1.65 1.70 1.75 1.80 1.85\n\n\nData frames: a table with rows and columns (like a spreadsheet)\n\ndf &lt;- data.frame(\n  species = c(\"A\", \"B\", \"C\", \"A\", \"B\"),\n  height = c(1.65, 1.70, 1.75, 1.80, 1.85),\n  weight = c(60, 65, 70, 75, 80)\n)\ndf\n\n  species height weight\n1       A   1.65     60\n2       B   1.70     65\n3       C   1.75     70\n4       A   1.80     75\n5       B   1.85     80"
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#common-functions",
-    "href": "lectures/L03/lecture-03.html#common-functions",
+    "objectID": "lectures/L03/lecture-03.html#getting-to-know-your-data",
+    "href": "lectures/L03/lecture-03.html#getting-to-know-your-data",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Common functions",
-    "text": "Common functions\nUse these essential functions to understand your data structure and summary statistics:\n\n# Core function 1: Structure overview\nstr(df)\n\n'data.frame':   5 obs. of  3 variables:\n $ species: chr  \"A\" \"B\" \"C\" \"A\" ...\n $ height : num  1.65 1.7 1.75 1.8 1.85\n $ weight : num  60 65 70 75 80\n\n# Core function 2: Statistical summary\nsummary(df)\n\n   species              height         weight  \n Length:5           Min.   :1.65   Min.   :60  \n Class :character   1st Qu.:1.70   1st Qu.:65  \n Mode  :character   Median :1.75   Median :70  \n                    Mean   :1.75   Mean   :70  \n                    3rd Qu.:1.80   3rd Qu.:75  \n                    Max.   :1.85   Max.   :80  \n\n\nThe summary() function provides a quick overview of your data and can help identify skewness, outliers, and missing values…but it isn’t always enough."
+    "section": "Getting to know your data",
+    "text": "Getting to know your data\nA few functions that give you an immediate overview:\n\nstr(df)\n\n'data.frame':   5 obs. of  3 variables:\n $ species: chr  \"A\" \"B\" \"C\" \"A\" ...\n $ height : num  1.65 1.7 1.75 1.8 1.85\n $ weight : num  60 65 70 75 80\n\nsummary(df)\n\n   species              height         weight  \n Length:5           Min.   :1.65   Min.   :60  \n Class :character   1st Qu.:1.70   1st Qu.:65  \n Mode  :character   Median :1.75   Median :70  \n                    Mean   :1.75   Mean   :70  \n                    3rd Qu.:1.80   3rd Qu.:75  \n                    Max.   :1.85   Max.   :80  \n\nunique(df$species)\n\n[1] \"A\" \"B\" \"C\"\n\n\nsummary() is useful, but it does not always reveal the full picture."
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#your-options-are-endless-almost",
-    "href": "lectures/L03/lecture-03.html#your-options-are-endless-almost",
+    "objectID": "lectures/L03/lecture-03.html#visualising-missing-data",
+    "href": "lectures/L03/lecture-03.html#visualising-missing-data",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Your options are endless (almost)",
-    "text": "Your options are endless (almost)\nThere are many specialised functions for exploring different aspects of your data:\n\n# Check for unique values in categorical variables\nunique(df$species)\n\n[1] \"A\" \"B\" \"C\"\n\n# Visualise missing data patterns\nlibrary(naniar)\nvis_miss(airquality)"
+    "section": "Visualising missing data",
+    "text": "Visualising missing data\nThe naniar package can show you exactly where values are missing, which is much easier to interpret than scanning raw output.\n\nlibrary(naniar)\nvis_miss(airquality)"
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#the-value-of-data-visualisation",
-    "href": "lectures/L03/lecture-03.html#the-value-of-data-visualisation",
+    "objectID": "lectures/L03/lecture-03.html#seeing-vs-reading",
+    "href": "lectures/L03/lecture-03.html#seeing-vs-reading",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "The value of data visualisation",
-    "text": "The value of data visualisation\nThe output of vis_mis() cleary demonstrates the advantage of a visual approach to data exploration.\n\nCompare the visualisation to looking at the raw data or a summary of the raw data\n\nairquality$Ozone\n\n  [1]  41  36  12  18  NA  28  23  19   8  NA   7  16  11  14  18  14  34   6\n [19]  30  11   1  11   4  32  NA  NA  NA  23  45 115  37  NA  NA  NA  NA  NA\n [37]  NA  29  NA  71  39  NA  NA  23  NA  NA  21  37  20  12  13  NA  NA  NA\n [55]  NA  NA  NA  NA  NA  NA  NA 135  49  32  NA  64  40  77  97  97  85  NA\n [73]  10  27  NA   7  48  35  61  79  63  16  NA  NA  80 108  20  52  82  50\n [91]  64  59  39   9  16  78  35  66 122  89 110  NA  NA  44  28  65  NA  22\n[109]  59  23  31  44  21   9  NA  45 168  73  NA  76 118  84  85  96  78  73\n[127]  91  47  32  20  23  21  24  44  21  28   9  13  46  18  13  24  16  13\n[145]  23  36   7  14  30  NA  14  18  20\n\nsummary(airquality$Ozone)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n   1.00   18.00   31.50   42.13   63.25  168.00      37"
+    "section": "Seeing vs reading",
+    "text": "Seeing vs reading\nCompare the vis_miss() output to the raw data below. Which one makes the missing values easier to spot?\n\n\nairquality$Ozone\n\n  [1]  41  36  12  18  NA  28  23  19   8  NA   7  16  11  14  18  14  34   6\n [19]  30  11   1  11   4  32  NA  NA  NA  23  45 115  37  NA  NA  NA  NA  NA\n [37]  NA  29  NA  71  39  NA  NA  23  NA  NA  21  37  20  12  13  NA  NA  NA\n [55]  NA  NA  NA  NA  NA  NA  NA 135  49  32  NA  64  40  77  97  97  85  NA\n [73]  10  27  NA   7  48  35  61  79  63  16  NA  NA  80 108  20  52  82  50\n [91]  64  59  39   9  16  78  35  66 122  89 110  NA  NA  44  28  65  NA  22\n[109]  59  23  31  44  21   9  NA  45 168  73  NA  76 118  84  85  96  78  73\n[127]  91  47  32  20  23  21  24  44  21  28   9  13  46  18  13  24  16  13\n[145]  23  36   7  14  30  NA  14  18  20\n\nsummary(airquality$Ozone)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n   1.00   18.00   31.50   42.13   63.25  168.00      37"
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#common-plot-types-and-their-applications",
-    "href": "lectures/L03/lecture-03.html#common-plot-types-and-their-applications",
+    "objectID": "lectures/L03/lecture-03.html#histograms-the-shape-of-continuous-data",
+    "href": "lectures/L03/lecture-03.html#histograms-the-shape-of-continuous-data",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Common plot types and their applications",
-    "text": "Common plot types and their applications\nDifferent types of data require different visualisation approaches. Let’s explore the most common plot types and when to use them."
+    "section": "Histograms: the shape of continuous data",
+    "text": "Histograms: the shape of continuous data\nUse histograms when you want to see how a continuous variable is distributed. They reveal the centre, spread, and any skewness or outliers at a glance.\n\n\nCode\nhist(penguins$body_mass_g,\n     main = \"Distribution of Penguin Body Mass\",\n     xlab = \"Body Mass (g)\",\n     col = \"skyblue\",\n     border = \"white\")"
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#histograms",
-    "href": "lectures/L03/lecture-03.html#histograms",
+    "objectID": "lectures/L03/lecture-03.html#bar-plots-comparing-categories",
+    "href": "lectures/L03/lecture-03.html#bar-plots-comparing-categories",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Histograms",
-    "text": "Histograms\nPurpose and applications:\n\nVisualise distribution of continuous data\nIdentify central tendency, spread, outliers, and skewness\nExamine distributions of measurements in biological data\n\nWhen to use:\n\nFor continuous variables (interval or ratio data)\nWhen you want to understand the shape of a distribution\nExamples: heights, weights, temperatures, measurements"
+    "section": "Bar plots: comparing categories",
+    "text": "Bar plots: comparing categories\nBar plots show counts or proportions across groups. Use them for categorical data like species, treatments, or survey responses.\n\n\nCode\nspecies_counts &lt;- table(penguins$species)\nbarplot(species_counts,\n        main = \"Count of Penguins by Species\",\n        xlab = \"Species\", ylab = \"Count\",\n        col = c(\"darkorange\", \"purple\", \"cyan4\"),\n        border = \"white\")"
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#section",
-    "href": "lectures/L03/lecture-03.html#section",
+    "objectID": "lectures/L03/lecture-03.html#scatterplots-relationships-between-variables",
+    "href": "lectures/L03/lecture-03.html#scatterplots-relationships-between-variables",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "",
-    "text": "Code\n# Example using base R with palmerpenguins data\nhist(penguins$body_mass_g,\n     main = \"Distribution of Penguin Body Mass\",\n     xlab = \"Body Mass (g)\",\n     col = \"skyblue\",\n     border = \"white\")"
+    "section": "Scatterplots: relationships between variables",
+    "text": "Scatterplots: relationships between variables\nScatterplots show how two continuous variables relate to each other. They are the go-to plot for spotting correlations, clusters, and outliers.\n\n\nCode\npenguins_clean &lt;- na.omit(penguins[, c(\"flipper_length_mm\", \"body_mass_g\")])\nplot(penguins_clean$flipper_length_mm, penguins_clean$body_mass_g,\n     main = \"Relationship Between Flipper Length and Body Mass\",\n     xlab = \"Flipper Length (mm)\", ylab = \"Body Mass (g)\",\n     pch = 19, col = \"darkblue\")"
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#bar-plots",
-    "href": "lectures/L03/lecture-03.html#bar-plots",
+    "objectID": "lectures/L03/lecture-03.html#boxplots-comparing-distributions-across-groups",
+    "href": "lectures/L03/lecture-03.html#boxplots-comparing-distributions-across-groups",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Bar plots",
-    "text": "Bar plots\nPurpose and applications:\n\nCompare values across categories\nShow proportions or counts in categorical data\nVisualise species abundance, treatment effects\n\nWhen to use:\n\nFor categorical variables (nominal or ordinal data)\nWhen comparing frequencies or counts across groups\nExamples: species counts, treatment groups, survey responses"
+    "section": "Boxplots: comparing distributions across groups",
+    "text": "Boxplots: comparing distributions across groups\nBoxplots summarise the median, quartiles, and outliers for each group. They are ideal for comparing a continuous variable across categories.\n\n\nCode\nboxplot(body_mass_g ~ species, data = penguins,\n        main = \"Body Mass by Penguin Species\",\n        xlab = \"Species\", ylab = \"Body Mass (g)\",\n        col = c(\"darkorange\", \"purple\", \"cyan4\"),\n        border = \"black\")"
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#section-1",
-    "href": "lectures/L03/lecture-03.html#section-1",
+    "objectID": "lectures/L03/lecture-03.html#a-grammar-for-graphics",
+    "href": "lectures/L03/lecture-03.html#a-grammar-for-graphics",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "",
-    "text": "Code\n# Example using base R with palmerpenguins data\nspecies_counts &lt;- table(penguins$species)\nbarplot(species_counts,\n        main = \"Count of Penguins by Species\",\n        xlab = \"Species\",\n        ylab = \"Count\",\n        col = c(\"darkorange\", \"purple\", \"cyan4\"),\n        border = \"white\")"
-  },
-  {
-    "objectID": "lectures/L03/lecture-03.html#scatterplots",
-    "href": "lectures/L03/lecture-03.html#scatterplots",
-    "title": "Lecture 03: Exploring and visualising data",
-    "section": "Scatterplots",
-    "text": "Scatterplots\nPurpose and applications:\n\nExamine relationships between continuous variables\nIdentify correlations, patterns, and outliers\nExplore relationships between measurements\n\nWhen to use:\n\nWhen examining relationships between two continuous variables\nWhen looking for correlations or patterns\nExamples: height vs. weight, temperature vs. growth rate"
-  },
-  {
-    "objectID": "lectures/L03/lecture-03.html#section-2",
-    "href": "lectures/L03/lecture-03.html#section-2",
-    "title": "Lecture 03: Exploring and visualising data",
-    "section": "",
-    "text": "Code\n# Example using base R with palmerpenguins data\n# Remove NA values for this example\npenguins_clean &lt;- na.omit(penguins[, c(\"flipper_length_mm\", \"body_mass_g\")])\nplot(penguins_clean$flipper_length_mm, penguins_clean$body_mass_g,\n     main = \"Relationship Between Flipper Length and Body Mass\",\n     xlab = \"Flipper Length (mm)\",\n     ylab = \"Body Mass (g)\",\n     pch = 19,\n     col = \"darkblue\")"
-  },
-  {
-    "objectID": "lectures/L03/lecture-03.html#boxplots",
-    "href": "lectures/L03/lecture-03.html#boxplots",
-    "title": "Lecture 03: Exploring and visualising data",
-    "section": "Boxplots",
-    "text": "Boxplots\nPurpose and applications:\n\nCompare distributions across groups\nVisualise median, quartiles, and outliers\nCompare measurements across treatments\n\nWhen to use:\n\nWhen comparing a continuous variable across categorical groups\nWhen you need to show the spread and central tendency\nExamples: comparing heights across species, measurements across treatments"
-  },
-  {
-    "objectID": "lectures/L03/lecture-03.html#section-3",
-    "href": "lectures/L03/lecture-03.html#section-3",
-    "title": "Lecture 03: Exploring and visualising data",
-    "section": "",
-    "text": "Code\n# Example using base R with palmerpenguins data\nboxplot(body_mass_g ~ species, data = penguins,\n        main = \"Body Mass by Penguin Species\",\n        xlab = \"Species\",\n        ylab = \"Body Mass (g)\",\n        col = c(\"darkorange\", \"purple\", \"cyan4\"),\n        border = \"black\")"
-  },
-  {
-    "objectID": "lectures/L03/lecture-03.html#the-grammar-of-graphics",
-    "href": "lectures/L03/lecture-03.html#the-grammar-of-graphics",
-    "title": "Lecture 03: Exploring and visualising data",
-    "section": "The Grammar of Graphics",
-    "text": "The Grammar of Graphics\nggplot2 is based on the Grammar of Graphics, a systematic approach to creating visualisations by combining different components:\n\nData: The dataset you want to visualise\nAesthetics: Mapping variables to visual properties (position, colour, size, etc.)\nGeometries: The shapes used to represent the data (points, lines, bars, etc.)\nScales: How values are mapped to visual properties\nFacets: How to split the data into subplots\nCoordinates: The coordinate system to use\nThemes: Visual styling of the plot\n\nThis grammar allows you to build complex visualisations layer by layer."
-  },
-  {
-    "objectID": "lectures/L03/lecture-03.html#why-use-ggplot2",
-    "href": "lectures/L03/lecture-03.html#why-use-ggplot2",
-    "title": "Lecture 03: Exploring and visualising data",
-    "section": "Why use ggplot2?",
-    "text": "Why use ggplot2?\n\nConsistent syntax across different plot types\nLayered approach makes it easy to build complex visualisations\nExcellent defaults that produce publication-quality graphics\nHighly customisable with extensive options for fine-tuning\nLarge community with extensive documentation and examples"
+    "section": "A grammar for graphics",
+    "text": "A grammar for graphics\nggplot2 builds plots from three core ingredients:\n\nData: the dataset\nAesthetics (aes): which variables map to x, y, colour, size, etc.\nGeometries (geom_*): how the data is drawn (points, bars, lines, etc.)\n\nYou combine these with + to build a plot layer by layer. As you get more comfortable, you can add scales, facets, and themes to refine the result."
   },
   {
     "objectID": "lectures/L03/lecture-03.html#building-a-plot-step-1---start-with-data",

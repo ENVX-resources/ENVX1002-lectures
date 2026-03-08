@@ -217,14 +217,10 @@ Januar Harianto
 <section id="after-this-week-you-will-be-able-to" class="slide level2">
 <h2>After this <strong>week</strong>, you will be able to:</h2>
 <ol type="1">
-<li>Understand the importance of data exploration before analysis</li>
-<li>Apply exploratory functions to explore and summarise datasets</li>
-<li>Identify different data types and structures in datasets</li>
-<li>Select appropriate visualization types based on data characteristics</li>
-<li>Understand the Grammar of Graphics approach to data visualisation</li>
-<li>Create and customise visualisations in R using the ggplot2 package</li>
-<li>Build plots layer-by-layer using the ggplot2 framework</li>
-<li>Interpret distributions, including skewness, kurtosis, and outliers</li>
+<li>Explore datasets using summary functions and identify data quality issues</li>
+<li>Choose appropriate plot types for different kinds of data</li>
+<li>Build layered visualisations in R using ggplot2</li>
+<li>Interpret distribution shapes, including skewness and kurtosis</li>
 </ol>
 </section>
 <section id="quick-checklist" class="slide level2">
@@ -233,97 +229,99 @@ Januar Harianto
 <ul class="task-list">
 <li><label><input type="checkbox">Installed <a href="https://cran.r-project.org/"><strong>R</strong></a> and <a href="https://posit.co/download/rstudio-desktop/"><strong>RStudio</strong></a></label></li>
 <li><label><input type="checkbox">Completed Lecture 2 content and read the ENVX1002 R guide</label></li>
-<li><label><input type="checkbox">A basic understanding of measures of central tendency and spread</label></li>
-<li><label><input type="checkbox">A basic understanding of what a <code>function(argument = value)</code> is in R</label></li>
+<li><label><input type="checkbox">Reviewed measures of central tendency and spread</label></li>
+<li><label><input type="checkbox">Practised using R functions with the <code>function(argument = value)</code> syntax</label></li>
 <li><label><input type="checkbox">Rendered a few Quarto documents in RStudio</label></li>
 </ul>
 </section></section>
 <section>
-<section id="core-concepts" class="title-slide slide level1 center">
-<h1>Core concepts</h1>
+<section id="why-explore-data-first" class="title-slide slide level1 center">
+<h1>Why explore data first?</h1>
 
 </section>
-<section id="data-exploration" class="slide level2">
-<h2>Data exploration</h2>
-<h3 id="why-explore-data-before-analysis">Why explore data before analysis?</h3>
+<section id="looking-before-you-leap" class="slide level2">
+<h2>Looking before you leap</h2>
+<p>Jumping straight into analysis without exploring your data is like navigating without a map. You might arrive somewhere, but probably not where you intended.</p>
+<p>Data exploration helps you:</p>
 <ul>
-<li>Identify patterns, outliers, and relationships</li>
-<li>Detect data quality issues</li>
-<li>Guide selection of appropriate statistical methods</li>
-<li>Avoid incorrect conclusions from flawed data</li>
+<li>Spot problems early (missing values, outliers, errors)</li>
+<li>Understand what shape your data takes</li>
+<li>Choose the right analysis method</li>
+<li>Avoid drawing conclusions from flawed data</li>
 </ul>
-<h3 id="the-data-exploration-workflow">The data exploration workflow</h3>
+</section>
+<section id="the-data-exploration-workflow" class="slide level2">
+<h2>The data exploration workflow</h2>
+<p>A practical sequence for getting to know a new dataset:</p>
 <ol type="1">
-<li>Understand data structure and types</li>
-<li>Examine distributions and summary statistics</li>
-<li>Visualise relationships between variables</li>
-<li>Identify patterns and anomalies</li>
+<li>Check the structure and data types</li>
+<li>Summarise with descriptive statistics</li>
+<li>Visualise distributions and relationships</li>
+<li>Flag anything unexpected</li>
 </ol>
 </section>
-<section id="types-of-data-recap-from-week-1" class="slide level2">
-<h2>Types of data: recap from Week 1</h2>
-<p>Data in R can be broadly categorized as either <strong>categorical</strong> or <strong>continuous</strong>.</p>
-<ul>
-<li>Different data types require different analysis approaches</li>
-<li>Understanding data types helps select appropriate visualisations</li>
-<li><strong>R stores different data types in specific formats</strong> (which is why we need to know what they are when we import data!)</li>
-</ul>
-</section>
-<section id="categorical-data" class="slide level2">
-<h2>Categorical data</h2>
-<ul>
-<li><strong>Nominal</strong>: no natural order, e.g.
-<ul>
-<li>Species (dog, cat, fish)</li>
-<li>Hair colour (black, brown, blonde)</li>
-<li>Blood type (A, B, AB, O)</li>
-</ul></li>
-<li><strong>Ordinal</strong>: natural order exists, e.g.
-<ul>
-<li>Education (primary, secondary, tertiary)</li>
-<li>Pain scale (mild, moderate, severe)</li>
-<li>T-shirt sizes (S, M, L, XL)</li>
-</ul></li>
-</ul>
-</section>
-<section id="continuous-data" class="slide level2">
-<h2>Continuous data</h2>
-<ul>
-<li><strong>Interval</strong>: equal intervals, no true zero, e.g.
-<ul>
-<li>Temperature in °C (0°C isn’t “no temperature”)</li>
-<li>Calendar dates</li>
-<li>pH scale</li>
-</ul></li>
-<li><strong>Ratio</strong>: equal intervals with true zero, e.g.
-<ul>
-<li>Height (0 cm = no height)</li>
-<li>Weight (0 kg = no weight)</li>
-<li>Age (0 years = birth)</li>
-</ul></li>
-</ul>
+<section id="quick-recap-types-of-data" class="slide level2">
+<h2>Quick recap: types of data</h2>
+<p>R needs to know what kind of data it is working with. Here is the breakdown:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>Type</th>
+<th>Order?</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Categorical</strong></td>
+<td>Nominal</td>
+<td>No</td>
+<td>Species, blood type</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Ordinal</td>
+<td>Yes</td>
+<td>Pain scale (mild → severe)</td>
+</tr>
+<tr class="odd">
+<td><strong>Continuous</strong></td>
+<td>Interval</td>
+<td>—</td>
+<td>Temperature in °C</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Ratio</td>
+<td>—</td>
+<td>Height, weight, age</td>
+</tr>
+</tbody>
+</table>
+<p>Categorical data groups observations into labels. Continuous data measures quantities on a scale. The distinction matters because each type calls for different summaries and different plots.</p>
 </section></section>
 <section>
-<section id="different-types-of-data-are-distributed-differently" class="title-slide slide level1 center">
-<h1>Different types of data are distributed differently</h1>
-<p>Understanding how data is distributed is crucial for selecting appropriate ways to explain it to others.</p>
+<section id="how-is-your-data-shaped" class="title-slide slide level1 center">
+<h1>How is your data shaped?</h1>
+
 </section>
-<section id="normal-distribution-introduction" class="slide level2">
-<h2>Normal distribution: Introduction</h2>
+<section id="section" class="slide level2">
+<h2></h2>
+<blockquote>
+<p>“The greatest value of a picture is when it forces us to notice what we never expected to see.” — John Tukey, <em>Exploratory Data Analysis</em> (1977)</p>
+</blockquote>
+<p>The shape of your data influences everything: which summary statistics make sense, which plots to use, and which analyses are valid.</p>
+</section>
+<section id="the-normal-distribution" class="slide level2">
+<h2>The normal distribution</h2>
+<p>The most common distribution you will encounter is the normal (or “bell curve”) distribution. It is symmetric, with most values clustered near the centre and fewer in the tails.</p>
 <ul>
-<li>Bell-shaped, symmetric curve</li>
-<li>Defined by mean (μ) and standard deviation (<span class="math inline">\(\sigma\)</span>)</li>
-<li>Many natural phenomena follow this distribution
-<ul>
-<li>Heights of individuals in a population</li>
-<li>Measurement errors</li>
-<li>Many physiological traits</li>
-</ul></li>
+<li>Defined by two parameters: the mean (μ) and standard deviation (σ)</li>
+<li>Appears frequently in nature: heights, measurement errors, physiological traits</li>
 </ul>
 <p><span class="math display">\[X \sim N(\mu, \sigma^2)\]</span></p>
-<blockquote>
-<p>The random variable X follows a normal distribution with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span></p>
-</blockquote>
+<p>This notation means: the variable <span class="math inline">\(X\)</span> follows a normal distribution with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>.</p>
 </section>
 <section id="what-does-a-normal-distribution-look-like" class="slide level2">
 <h2>What does a normal distribution look like?</h2>
@@ -348,17 +346,18 @@ Januar Harianto
 
 </div>
 <img data-src="lecture-03_files/figure-revealjs/normal_dist_plot-1.png" width="960" class="r-stretch"></section>
-<section id="properties-of-normal-distribution-the-empirical-rule" class="slide level2">
-<h2>Properties of normal distribution: The empirical rule</h2>
+<section id="the-empirical-rule-68-95-99.7" class="slide level2">
+<h2>The empirical rule (68-95-99.7)</h2>
+<p>For a normal distribution, the mean, median, and mode are all the same value. The data clusters predictably around that centre:</p>
 <ul>
-<li>Mean = median = mode</li>
-<li>~68% of data within 1<span class="math inline">\(\sigma\)</span> of mean</li>
-<li>~95% of data within 2<span class="math inline">\(\sigma\)</span> of mean</li>
-<li>~99.7% of data within 3<span class="math inline">\(\sigma\)</span> of mean</li>
+<li>About <strong>68%</strong> of values fall within 1 standard deviation of the mean</li>
+<li>About <strong>95%</strong> within 2 standard deviations</li>
+<li>About <strong>99.7%</strong> within 3 standard deviations</li>
 </ul>
 </section>
 <section id="the-empirical-rule-visualised" class="slide level2">
-<h2>The empirical rule visualised</h2>
+<h2>The empirical rule, visualised</h2>
+<p>This pattern makes the normal distribution especially useful: if you know the mean and standard deviation, you already know where most of the data sits.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -385,30 +384,9 @@ Januar Harianto
 
 </div>
 <img data-src="lecture-03_files/figure-revealjs/normal_empirical_rule-1.png" width="960" class="r-stretch"></section>
-<section id="why-normal-distributions-matter-in-data-exploration" class="slide level2">
-<h2>Why normal distributions matter in data exploration</h2>
-<p>When exploring data, understanding distributions helps you:</p>
-<ol type="1">
-<li><strong>Identify patterns and anomalies</strong>
-<ul>
-<li>Is your data normally distributed as expected?</li>
-<li>Are there unexpected skews or outliers?</li>
-</ul></li>
-<li><strong>Choose appropriate analysis methods</strong>
-<ul>
-<li>Many statistical tests assume normality</li>
-<li>Non-normal data may require different approaches</li>
-</ul></li>
-<li><strong>Interpret results correctly</strong>
-<ul>
-<li>Context for understanding how unusual a value is</li>
-<li>Framework for making statistical inferences</li>
-</ul></li>
-</ol>
-</section>
-<section id="example" class="slide level2">
-<h2>Example</h2>
-<p>Many biological traits follow normal distributions. For example, plant heights within a species:</p>
+<section id="why-does-this-matter" class="slide level2">
+<h2>Why does this matter?</h2>
+<p>Many biological measurements follow a normal distribution. If you know your data is roughly normal, you can predict where most values will land and spot anything unusual.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -426,29 +404,20 @@ Januar Harianto
 <span id="cb3-12"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">25</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
 <span id="cb3-13"><a></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">25.5</span>, <span class="at">y =</span> <span class="fl">0.05</span>, <span class="at">label =</span> <span class="st">"μ = 25 cm"</span>, <span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
 <span id="cb3-14"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Plant Heights in a Population"</span>,</span>
-<span id="cb3-15"><a></a>       <span class="at">subtitle =</span> <span class="st">"Example of a biological trait following normal distribution"</span>,</span>
-<span id="cb3-16"><a></a>       <span class="at">x =</span> <span class="st">"Height (cm)"</span>,</span>
-<span id="cb3-17"><a></a>       <span class="at">y =</span> <span class="st">"Density"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-15"><a></a>       <span class="at">x =</span> <span class="st">"Height (cm)"</span>,</span>
+<span id="cb3-16"><a></a>       <span class="at">y =</span> <span class="st">"Density"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="lecture-03_files/figure-revealjs/plant_height_example-1.png" width="960" class="r-stretch"><p>This example shows how plant heights cluster around the mean (25 cm) following a normal distribution pattern. This helps researchers identify outliers, establish experimental categories, and detect environmental effects on growth patterns.</p>
+<img data-src="lecture-03_files/figure-revealjs/plant_height_example-1.png" width="960" class="r-stretch"><p>Here, plant heights cluster around a mean of 25 cm. A plant measuring 35 cm would be more than 3 standard deviations from the mean, making it a clear outlier worth investigating.</p>
 </section>
-<section id="skewness" class="slide level2">
-<h2>Skewness</h2>
-<h3 id="what-is-skewness">What is skewness?</h3>
-<ul>
-<li>Measure of asymmetry in a distribution</li>
-<li>Indicates which side of the distribution has a longer tail</li>
-<li>Important for selecting appropriate statistical tests</li>
-</ul>
+<section id="but-what-if-the-data-is-not-symmetric" class="slide level2">
+<h2>But what if the data is not symmetric?</h2>
+<p>Not all data follows a neat bell curve. When a distribution leans to one side, we call it <strong>skewed</strong>. The direction of the longer tail tells you the type of skew, and it shifts the mean away from the median.</p>
 </section>
 <section id="positive-skew-right-skewed" class="slide level2">
 <h2>Positive skew (right-skewed)</h2>
-<ul>
-<li>Long tail on right side</li>
-<li>Mean &gt; median</li>
-</ul>
+<p>The tail stretches to the right, pulling the mean above the median. Common in income data, reaction times, and species abundance counts.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -483,10 +452,7 @@ Januar Harianto
 <img data-src="lecture-03_files/figure-revealjs/positive_skew_plot-1.png" width="960" class="r-stretch"></section>
 <section id="negative-skew-left-skewed" class="slide level2">
 <h2>Negative skew (left-skewed)</h2>
-<ul>
-<li>Long tail on left side</li>
-<li>Mean &lt; median</li>
-</ul>
+<p>The tail stretches to the left, pulling the mean below the median. Less common, but seen in exam scores near a ceiling or age at retirement.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -519,22 +485,18 @@ Januar Harianto
 
 </div>
 <img data-src="lecture-03_files/figure-revealjs/negative_skew_plot-1.png" width="960" class="r-stretch"></section>
-<section id="kurtosis" class="slide level2">
-<h2>Kurtosis</h2>
+<section id="kurtosis-how-heavy-are-the-tails" class="slide level2">
+<h2>Kurtosis: how heavy are the tails?</h2>
+<p>Kurtosis describes whether a distribution has heavy tails (more extreme values than expected) or light tails (fewer extremes). It is not about how “peaked” the distribution looks, despite what some textbooks say.</p>
 <ul>
-<li>Measure of “tailedness” of a distribution</li>
-<li>Describes the shape of a distribution’s tails relative to its overall shape</li>
-<li>Affects the choice of statistical methods</li>
-</ul>
-<h3 id="types-of-kurtosis">Types of kurtosis</h3>
-<ul>
-<li><strong>Mesokurtic</strong>: Normal distribution (kurtosis = 3)</li>
-<li><strong>Leptokurtic</strong>: Sharper peak, heavier tails (kurtosis &gt; 3)</li>
-<li><strong>Platykurtic</strong>: Flatter peak, thinner tails (kurtosis &lt; 3)</li>
+<li><strong>Mesokurtic</strong>: a normal distribution (the baseline)</li>
+<li><strong>Leptokurtic</strong>: heavier tails, more outliers</li>
+<li><strong>Platykurtic</strong>: lighter tails, fewer outliers</li>
 </ul>
 </section>
-<section id="visualising-kurtosis" class="slide level2">
-<h2>Visualising kurtosis</h2>
+<section id="kurtosis-visualised" class="slide level2">
+<h2>Kurtosis, visualised</h2>
+<p>Compare these three distributions. They all have the same mean and similar spread, but their tails behave very differently.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -602,33 +564,25 @@ Januar Harianto
 <h1>Exploring data in R</h1>
 
 </section>
-<section id="data-structures-in-r" class="slide level2">
-<h2>Data structures in R</h2>
-<p>Data is stored in R in various structures, each with specific purposes:</p>
-<p><strong>Vectors</strong>: 1-dimensional collection of elements</p>
+<section id="data-structures-you-will-use" class="slide level2">
+<h2>Data structures you will use</h2>
+<p>The two structures you will work with most in this course:</p>
+<p><strong>Vectors</strong>: a single row of values</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># Vector - 1-dimensional collection of elements</span></span>
-<span id="cb7-2"><a></a>heights <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.65</span>, <span class="fl">1.70</span>, <span class="fl">1.75</span>, <span class="fl">1.80</span>, <span class="fl">1.85</span>)</span>
-<span id="cb7-3"><a></a>heights</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>heights <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.65</span>, <span class="fl">1.70</span>, <span class="fl">1.75</span>, <span class="fl">1.80</span>, <span class="fl">1.85</span>)</span>
+<span id="cb7-2"><a></a>heights</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.65 1.70 1.75 1.80 1.85</code></pre>
 </div>
 </div>
-<p><strong>Data frames</strong>: 2-dimensional tables with rows and columns</p>
+<p><strong>Data frames</strong>: a table with rows and columns (like a spreadsheet)</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># Data frame - 2-dimensional table</span></span>
-<span id="cb9-2"><a></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb9-3"><a></a>  <span class="at">species =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>),</span>
-<span id="cb9-4"><a></a>  <span class="at">height =</span> <span class="fu">c</span>(<span class="fl">1.65</span>, <span class="fl">1.70</span>, <span class="fl">1.75</span>, <span class="fl">1.80</span>, <span class="fl">1.85</span>),</span>
-<span id="cb9-5"><a></a>  <span class="at">weight =</span> <span class="fu">c</span>(<span class="dv">60</span>, <span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>)</span>
-<span id="cb9-6"><a></a>)</span>
-<span id="cb9-7"><a></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb9-2"><a></a>  <span class="at">species =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>),</span>
+<span id="cb9-3"><a></a>  <span class="at">height =</span> <span class="fu">c</span>(<span class="fl">1.65</span>, <span class="fl">1.70</span>, <span class="fl">1.75</span>, <span class="fl">1.80</span>, <span class="fl">1.85</span>),</span>
+<span id="cb9-4"><a></a>  <span class="at">weight =</span> <span class="fu">c</span>(<span class="dv">60</span>, <span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>)</span>
+<span id="cb9-5"><a></a>)</span>
+<span id="cb9-6"><a></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  species height weight
 1       A   1.65     60
@@ -638,22 +592,19 @@ Januar Harianto
 5       B   1.85     80</code></pre>
 </div>
 </div>
-<p><strong>Other data structures</strong> include lists, matrices, arrays, and factors, but these are less common at your level.</p>
 </section>
-<section id="common-functions" class="slide level2">
-<h2>Common functions</h2>
-<p>Use these essential functions to understand your data structure and summary statistics:</p>
+<section id="getting-to-know-your-data" class="slide level2">
+<h2>Getting to know your data</h2>
+<p>A few functions that give you an immediate overview:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># Core function 1: Structure overview</span></span>
-<span id="cb11-2"><a></a><span class="fu">str</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">str</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   5 obs. of  3 variables:
  $ species: chr  "A" "B" "C" "A" ...
  $ height : num  1.65 1.7 1.75 1.8 1.85
  $ weight : num  60 65 70 75 80</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># Core function 2: Statistical summary</span></span>
-<span id="cb13-2"><a></a><span class="fu">summary</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">summary</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   species              height         weight  
  Length:5           Min.   :1.65   Min.   :60  
@@ -663,29 +614,26 @@ Januar Harianto
                     3rd Qu.:1.80   3rd Qu.:75  
                     Max.   :1.85   Max.   :80  </code></pre>
 </div>
-</div>
-<p>The <code>summary()</code> function provides a quick overview of your data and can help identify skewness, outliers, and missing values…but it isn’t always enough.</p>
-</section>
-<section id="your-options-are-endless-almost" class="slide level2">
-<h2>Your options are endless (almost)</h2>
-<p>There are many specialised functions for exploring different aspects of your data:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="co"># Check for unique values in categorical variables</span></span>
-<span id="cb15-2"><a></a><span class="fu">unique</span>(df<span class="sc">$</span>species)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">unique</span>(df<span class="sc">$</span>species)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "A" "B" "C"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="co"># Visualise missing data patterns</span></span>
-<span id="cb17-2"><a></a><span class="fu">library</span>(naniar)</span>
-<span id="cb17-3"><a></a><span class="fu">vis_miss</span>(airquality)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>summary()</code> is useful, but it does not always reveal the full picture.</p>
+</section>
+<section id="visualising-missing-data" class="slide level2">
+<h2>Visualising missing data</h2>
+<p>The <code>naniar</code> package can show you exactly where values are missing, which is much easier to interpret than scanning raw output.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">library</span>(naniar)</span>
+<span id="cb17-2"><a></a><span class="fu">vis_miss</span>(airquality)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="lecture-03_files/figure-revealjs/additional_exploration_combined-1.png" width="960" class="r-stretch"></section>
-<section id="the-value-of-data-visualisation" class="slide level2">
-<h2>The value of data visualisation</h2>
-<p>The output of <code>vis_mis()</code> cleary demonstrates the advantage of a <strong>visual</strong> approach to data exploration.</p>
+<section id="seeing-vs-reading" class="slide level2">
+<h2>Seeing vs reading</h2>
+<p>Compare the <code>vis_miss()</code> output to the raw data below. Which one makes the missing values easier to spot?</p>
 <div class="fragment">
-<p>Compare the visualisation to looking at the raw data or a summary of the raw data</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>airquality<span class="sc">$</span>Ozone</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -707,132 +655,63 @@ Januar Harianto
 </div>
 </div>
 </section>
-<section id="common-plot-types-and-their-applications" class="slide level2">
-<h2>Common plot types and their applications</h2>
-<p>Different types of data require different visualisation approaches. Let’s explore the most common plot types and when to use them.</p>
-</section>
-<section id="histograms" class="slide level2">
-<h2>Histograms</h2>
-<p><strong>Purpose and applications:</strong></p>
-<ul>
-<li>Visualise distribution of continuous data</li>
-<li>Identify central tendency, spread, outliers, and skewness</li>
-<li>Examine distributions of measurements in biological data</li>
-</ul>
-<p><strong>When to use:</strong></p>
-<ul>
-<li>For continuous variables (interval or ratio data)</li>
-<li>When you want to understand the shape of a distribution</li>
-<li>Examples: heights, weights, temperatures, measurements</li>
-</ul>
-</section>
-<section id="section" class="slide level2">
-<h2></h2>
+<section id="histograms-the-shape-of-continuous-data" class="slide level2">
+<h2>Histograms: the shape of continuous data</h2>
+<p>Use histograms when you want to see how a continuous variable is distributed. They reveal the centre, spread, and any skewness or outliers at a glance.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="co"># Example using base R with palmerpenguins data</span></span>
-<span id="cb22-2"><a></a><span class="fu">hist</span>(penguins<span class="sc">$</span>body_mass_g,</span>
-<span id="cb22-3"><a></a>     <span class="at">main =</span> <span class="st">"Distribution of Penguin Body Mass"</span>,</span>
-<span id="cb22-4"><a></a>     <span class="at">xlab =</span> <span class="st">"Body Mass (g)"</span>,</span>
-<span id="cb22-5"><a></a>     <span class="at">col =</span> <span class="st">"skyblue"</span>,</span>
-<span id="cb22-6"><a></a>     <span class="at">border =</span> <span class="st">"white"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">hist</span>(penguins<span class="sc">$</span>body_mass_g,</span>
+<span id="cb22-2"><a></a>     <span class="at">main =</span> <span class="st">"Distribution of Penguin Body Mass"</span>,</span>
+<span id="cb22-3"><a></a>     <span class="at">xlab =</span> <span class="st">"Body Mass (g)"</span>,</span>
+<span id="cb22-4"><a></a>     <span class="at">col =</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb22-5"><a></a>     <span class="at">border =</span> <span class="st">"white"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
 <img data-src="lecture-03_files/figure-revealjs/histogram_base_example-1.png" width="960" class="r-stretch"></section>
-<section id="bar-plots" class="slide level2">
-<h2>Bar plots</h2>
-<p><strong>Purpose and applications:</strong></p>
-<ul>
-<li>Compare values across categories</li>
-<li>Show proportions or counts in categorical data</li>
-<li>Visualise species abundance, treatment effects</li>
-</ul>
-<p><strong>When to use:</strong></p>
-<ul>
-<li>For categorical variables (nominal or ordinal data)</li>
-<li>When comparing frequencies or counts across groups</li>
-<li>Examples: species counts, treatment groups, survey responses</li>
-</ul>
-</section>
-<section id="section-1" class="slide level2">
-<h2></h2>
+<section id="bar-plots-comparing-categories" class="slide level2">
+<h2>Bar plots: comparing categories</h2>
+<p>Bar plots show counts or proportions across groups. Use them for categorical data like species, treatments, or survey responses.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="co"># Example using base R with palmerpenguins data</span></span>
-<span id="cb23-2"><a></a>species_counts <span class="ot">&lt;-</span> <span class="fu">table</span>(penguins<span class="sc">$</span>species)</span>
-<span id="cb23-3"><a></a><span class="fu">barplot</span>(species_counts,</span>
-<span id="cb23-4"><a></a>        <span class="at">main =</span> <span class="st">"Count of Penguins by Species"</span>,</span>
-<span id="cb23-5"><a></a>        <span class="at">xlab =</span> <span class="st">"Species"</span>,</span>
-<span id="cb23-6"><a></a>        <span class="at">ylab =</span> <span class="st">"Count"</span>,</span>
-<span id="cb23-7"><a></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>),</span>
-<span id="cb23-8"><a></a>        <span class="at">border =</span> <span class="st">"white"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>species_counts <span class="ot">&lt;-</span> <span class="fu">table</span>(penguins<span class="sc">$</span>species)</span>
+<span id="cb23-2"><a></a><span class="fu">barplot</span>(species_counts,</span>
+<span id="cb23-3"><a></a>        <span class="at">main =</span> <span class="st">"Count of Penguins by Species"</span>,</span>
+<span id="cb23-4"><a></a>        <span class="at">xlab =</span> <span class="st">"Species"</span>, <span class="at">ylab =</span> <span class="st">"Count"</span>,</span>
+<span id="cb23-5"><a></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>),</span>
+<span id="cb23-6"><a></a>        <span class="at">border =</span> <span class="st">"white"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
 <img data-src="lecture-03_files/figure-revealjs/barplot_base_example-1.png" width="960" class="r-stretch"></section>
-<section id="scatterplots" class="slide level2">
-<h2>Scatterplots</h2>
-<p><strong>Purpose and applications:</strong></p>
-<ul>
-<li>Examine relationships between continuous variables</li>
-<li>Identify correlations, patterns, and outliers</li>
-<li>Explore relationships between measurements</li>
-</ul>
-<p><strong>When to use:</strong></p>
-<ul>
-<li>When examining relationships between two continuous variables</li>
-<li>When looking for correlations or patterns</li>
-<li>Examples: height vs.&nbsp;weight, temperature vs.&nbsp;growth rate</li>
-</ul>
-</section>
-<section id="section-2" class="slide level2">
-<h2></h2>
+<section id="scatterplots-relationships-between-variables" class="slide level2">
+<h2>Scatterplots: relationships between variables</h2>
+<p>Scatterplots show how two continuous variables relate to each other. They are the go-to plot for spotting correlations, clusters, and outliers.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="co"># Example using base R with palmerpenguins data</span></span>
-<span id="cb24-2"><a></a><span class="co"># Remove NA values for this example</span></span>
-<span id="cb24-3"><a></a>penguins_clean <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(penguins[, <span class="fu">c</span>(<span class="st">"flipper_length_mm"</span>, <span class="st">"body_mass_g"</span>)])</span>
-<span id="cb24-4"><a></a><span class="fu">plot</span>(penguins_clean<span class="sc">$</span>flipper_length_mm, penguins_clean<span class="sc">$</span>body_mass_g,</span>
-<span id="cb24-5"><a></a>     <span class="at">main =</span> <span class="st">"Relationship Between Flipper Length and Body Mass"</span>,</span>
-<span id="cb24-6"><a></a>     <span class="at">xlab =</span> <span class="st">"Flipper Length (mm)"</span>,</span>
-<span id="cb24-7"><a></a>     <span class="at">ylab =</span> <span class="st">"Body Mass (g)"</span>,</span>
-<span id="cb24-8"><a></a>     <span class="at">pch =</span> <span class="dv">19</span>,</span>
-<span id="cb24-9"><a></a>     <span class="at">col =</span> <span class="st">"darkblue"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>penguins_clean <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(penguins[, <span class="fu">c</span>(<span class="st">"flipper_length_mm"</span>, <span class="st">"body_mass_g"</span>)])</span>
+<span id="cb24-2"><a></a><span class="fu">plot</span>(penguins_clean<span class="sc">$</span>flipper_length_mm, penguins_clean<span class="sc">$</span>body_mass_g,</span>
+<span id="cb24-3"><a></a>     <span class="at">main =</span> <span class="st">"Relationship Between Flipper Length and Body Mass"</span>,</span>
+<span id="cb24-4"><a></a>     <span class="at">xlab =</span> <span class="st">"Flipper Length (mm)"</span>, <span class="at">ylab =</span> <span class="st">"Body Mass (g)"</span>,</span>
+<span id="cb24-5"><a></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"darkblue"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
 <img data-src="lecture-03_files/figure-revealjs/scatterplot_base_example-1.png" width="960" class="r-stretch"></section>
-<section id="boxplots" class="slide level2">
-<h2>Boxplots</h2>
-<p><strong>Purpose and applications:</strong></p>
-<ul>
-<li>Compare distributions across groups</li>
-<li>Visualise median, quartiles, and outliers</li>
-<li>Compare measurements across treatments</li>
-</ul>
-<p><strong>When to use:</strong></p>
-<ul>
-<li>When comparing a continuous variable across categorical groups</li>
-<li>When you need to show the spread and central tendency</li>
-<li>Examples: comparing heights across species, measurements across treatments</li>
-</ul>
-</section>
-<section id="section-3" class="slide level2">
-<h2></h2>
+<section id="boxplots-comparing-distributions-across-groups" class="slide level2">
+<h2>Boxplots: comparing distributions across groups</h2>
+<p>Boxplots summarise the median, quartiles, and outliers for each group. They are ideal for comparing a continuous variable across categories.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="co"># Example using base R with palmerpenguins data</span></span>
-<span id="cb25-2"><a></a><span class="fu">boxplot</span>(body_mass_g <span class="sc">~</span> species, <span class="at">data =</span> penguins,</span>
-<span id="cb25-3"><a></a>        <span class="at">main =</span> <span class="st">"Body Mass by Penguin Species"</span>,</span>
-<span id="cb25-4"><a></a>        <span class="at">xlab =</span> <span class="st">"Species"</span>,</span>
-<span id="cb25-5"><a></a>        <span class="at">ylab =</span> <span class="st">"Body Mass (g)"</span>,</span>
-<span id="cb25-6"><a></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>),</span>
-<span id="cb25-7"><a></a>        <span class="at">border =</span> <span class="st">"black"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">boxplot</span>(body_mass_g <span class="sc">~</span> species, <span class="at">data =</span> penguins,</span>
+<span id="cb25-2"><a></a>        <span class="at">main =</span> <span class="st">"Body Mass by Penguin Species"</span>,</span>
+<span id="cb25-3"><a></a>        <span class="at">xlab =</span> <span class="st">"Species"</span>, <span class="at">ylab =</span> <span class="st">"Body Mass (g)"</span>,</span>
+<span id="cb25-4"><a></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>),</span>
+<span id="cb25-5"><a></a>        <span class="at">border =</span> <span class="st">"black"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
@@ -842,29 +721,15 @@ Januar Harianto
 <h1>Introduction to ggplot2</h1>
 
 </section>
-<section id="the-grammar-of-graphics" class="slide level2">
-<h2>The Grammar of Graphics</h2>
-<p><strong>ggplot2</strong> is based on the Grammar of Graphics, a systematic approach to creating visualisations by combining different components:</p>
+<section id="a-grammar-for-graphics" class="slide level2">
+<h2>A grammar for graphics</h2>
+<p>ggplot2 builds plots from three core ingredients:</p>
 <ol type="1">
-<li><strong>Data</strong>: The dataset you want to visualise</li>
-<li><strong>Aesthetics</strong>: Mapping variables to visual properties (position, colour, size, etc.)</li>
-<li><strong>Geometries</strong>: The shapes used to represent the data (points, lines, bars, etc.)</li>
-<li><strong>Scales</strong>: How values are mapped to visual properties</li>
-<li><strong>Facets</strong>: How to split the data into subplots</li>
-<li><strong>Coordinates</strong>: The coordinate system to use</li>
-<li><strong>Themes</strong>: Visual styling of the plot</li>
+<li><strong>Data</strong>: the dataset</li>
+<li><strong>Aesthetics</strong> (<code>aes</code>): which variables map to x, y, colour, size, etc.</li>
+<li><strong>Geometries</strong> (<code>geom_*</code>): how the data is drawn (points, bars, lines, etc.)</li>
 </ol>
-<p>This grammar allows you to build complex visualisations layer by layer.</p>
-</section>
-<section id="why-use-ggplot2" class="slide level2">
-<h2>Why use ggplot2?</h2>
-<ul>
-<li><strong>Consistent syntax</strong> across different plot types</li>
-<li><strong>Layered approach</strong> makes it easy to build complex visualisations</li>
-<li><strong>Excellent defaults</strong> that produce publication-quality graphics</li>
-<li><strong>Highly customisable</strong> with extensive options for fine-tuning</li>
-<li><strong>Large community</strong> with extensive documentation and examples</li>
-</ul>
+<p>You combine these with <code>+</code> to build a plot layer by layer. As you get more comfortable, you can add scales, facets, and themes to refine the result.</p>
 </section>
 <section id="building-a-plot-step-1---start-with-data" class="slide level2">
 <h2>Building a plot: Step 1 - Start with data</h2>
