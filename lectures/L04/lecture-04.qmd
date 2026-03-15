@@ -182,6 +182,7 @@ p2
 - We can calculate the probability of a tree being a certain height or within a range
 - Some heights have a probability of zero (e.g. negative heights, or heights above 40m)
 
+## 
 
 We can use these properties to make reasonable predictions about tree heights:
 
@@ -457,6 +458,10 @@ prob_between <- pnorm(22, 20, 3) - pnorm(18, 20, 3)
 prob_between
 ```
 
+## Practical uses of normal distribution functions
+
+These functions help us answer questions like:
+
 - How tall are the top 5% of trees?
 ```{r normal-practical2}
 #| code-fold: false
@@ -464,6 +469,10 @@ prob_between
 tall_threshold <- qnorm(0.95, 20, 3)
 tall_threshold
 ```
+
+## Practical uses of normal distribution functions
+
+These functions help us answer questions like:
 
 - What are the height thresholds for "extreme" trees (top 1% and bottom 1%)?
 
@@ -473,8 +482,6 @@ tall_threshold
 extreme_thresholds <- qnorm(c(0.01, 0.99), 20, 3)
 extreme_thresholds
 ```
-
-
 
 
 # The standard normal curve
