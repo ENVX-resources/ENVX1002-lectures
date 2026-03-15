@@ -1766,14 +1766,28 @@
     "href": "lectures/L04/lecture-04.html#probability-distribution",
     "title": "Lecture 04 – The central limit theorem",
     "section": "Probability distribution?",
-    "text": "Probability distribution?\nA probability distribution is a function or equation that tells us:\n\nHow likely different values are to occur\nThe pattern of variation in our measurements\nThe range and spread of possible values\n\nIt is like a mathematical recipe for how values are distributed.\n\nDifferent types of distributions\nDepending on the data, distributions can be:\n\nDiscrete (e.g. number of trees in 100m2 of forest) – probability distribution function \\(P = f(x)\\)\n\nWhat is the probability that 100m2 of forest contains 50 trees?\n\nContinuous (e.g. rainfall amounts over a period) – probability density function \\(f(x)\\)\n\nWhat is the probability of rainfall between 10-20mm a day?\n\nBoth discrete and continuous (e.g. age of trees) \\(F(x) = P(X \\leq x)\\)\n\nWhat is the probability that a tree is older than 50 years?"
+    "text": "Probability distribution?\nA probability distribution is a function or equation that tells us:\n\nHow likely different values are to occur\nThe pattern of variation in our measurements\nThe range and spread of possible values\n\nIt is like a mathematical recipe for how values are distributed."
+  },
+  {
+    "objectID": "lectures/L04/lecture-04.html#different-types-of-distributions",
+    "href": "lectures/L04/lecture-04.html#different-types-of-distributions",
+    "title": "Lecture 04 – The central limit theorem",
+    "section": "Different types of distributions",
+    "text": "Different types of distributions\nDepending on the data, distributions can be:\n\nDiscrete (e.g. number of trees in 100m2 of forest) – probability distribution function \\(P = f(x)\\)\n\nWhat is the probability that 100m2 of forest contains 50 trees?\n\nContinuous (e.g. rainfall amounts over a period) – probability density function \\(f(x)\\)\n\nWhat is the probability of rainfall between 10-20mm a day?\n\nBoth discrete and continuous (e.g. age of trees) \\(F(x) = P(X \\leq x)\\)\n\nWhat is the probability that a tree is older than 50 years?"
   },
   {
     "objectID": "lectures/L04/lecture-04.html#properties-of-distributions",
     "href": "lectures/L04/lecture-04.html#properties-of-distributions",
     "title": "Lecture 04 – The central limit theorem",
     "section": "Properties of distributions",
-    "text": "Properties of distributions\nWe now combine all of what we have learnt about data in the last 3 weeks:\n\nCentral tendency – mean, median, mode\nSpread – standard deviation, variance\nShape – symmetry, skewness\nTails – how quickly they “decay” towards zero\n\nBut how do we use these properties to make predictions? Do some distributions have special properties?\n\n\nCode\n# Annotate our rainfall distribution with key properties\np_rainfall +\n  geom_vline(\n    xintercept = mean(rainfall_data$rainfall),\n    colour = \"red\", linetype = \"dashed\"\n  ) +\n  annotate(\"text\",\n    x = mean(rainfall_data$rainfall), y = 100,\n    label = \"Mean\", angle = 90, vjust = -0.5\n  ) +\n  labs(\n    x = \"Daily Rainfall (mm)\",\n    y = \"Frequency\",\n    title = \"Can we use the mean to predict rainfall?\"\n  )"
+    "text": "Properties of distributions\nWe now combine all of what we have learnt about data in the last 3 weeks:\n\nCentral tendency – mean, median, mode\nSpread – standard deviation, variance\nShape – symmetry, skewness\nTails – how quickly they “decay” towards zero\n\nBut how do we use these properties to make predictions? Do some distributions have special properties?"
+  },
+  {
+    "objectID": "lectures/L04/lecture-04.html#section",
+    "href": "lectures/L04/lecture-04.html#section",
+    "title": "Lecture 04 – The central limit theorem",
+    "section": "",
+    "text": "Code\n# Annotate our rainfall distribution with key properties\np_rainfall +\n  geom_vline(\n    xintercept = mean(rainfall_data$rainfall),\n    colour = \"red\", linetype = \"dashed\"\n  ) +\n  annotate(\"text\",\n    x = mean(rainfall_data$rainfall), y = 100,\n    label = \"Mean\", angle = 90, vjust = -0.5\n  ) +\n  labs(\n    x = \"Daily Rainfall (mm)\",\n    y = \"Frequency\",\n    title = \"Can we use the mean to predict rainfall?\"\n  )"
   },
   {
     "objectID": "lectures/L04/lecture-04.html#tree-heights",
@@ -1794,14 +1808,28 @@
     "href": "lectures/L04/lecture-04.html#why-do-tree-heights-follow-a-normal-distribution",
     "title": "Lecture 04 – The central limit theorem",
     "section": "Why do tree heights follow a normal distribution?",
-    "text": "Why do tree heights follow a normal distribution?\n\nThe middle (mean) height is most common – most trees are around 20 metres tall\nHeights spread out evenly on both sides – as many short trees as tall trees, like a mirror image around the middle\nExtreme heights are rare – very few extremely short or tall trees – numbers decrease gradually as we move away from the middle\n\nThe normal distribution is a natural phenomenon in many real-world situations – a fundamental concept in statistics.\n\n\nCode\np2"
+    "text": "Why do tree heights follow a normal distribution?\n\nThe middle (mean) height is most common – most trees are around 20 metres tall\nHeights spread out evenly on both sides – as many short trees as tall trees, like a mirror image around the middle\nExtreme heights are rare – very few extremely short or tall trees – numbers decrease gradually as we move away from the middle"
+  },
+  {
+    "objectID": "lectures/L04/lecture-04.html#section-1",
+    "href": "lectures/L04/lecture-04.html#section-1",
+    "title": "Lecture 04 – The central limit theorem",
+    "section": "",
+    "text": "The normal distribution is a natural phenomenon in many real-world situations – a fundamental concept in statistics.\n\n\nCode\np2"
   },
   {
     "objectID": "lectures/L04/lecture-04.html#a-continuous-distribution",
     "href": "lectures/L04/lecture-04.html#a-continuous-distribution",
     "title": "Lecture 04 – The central limit theorem",
     "section": "A continuous distribution",
-    "text": "A continuous distribution\n\nThere is an infinite number of possible heights within a certain range (e.g. 0-40m)\nWe can calculate the probability of a tree being a certain height or within a range\nSome heights have a probability of zero (e.g. negative heights, or heights above 40m)\n\nWe can use these properties to make reasonable predictions about tree heights:\n\n\nCode\n# Calculate mean and standard deviations\nmean_height &lt;- mean(tree_heights$height)\nsd_height &lt;- sd(tree_heights$height)\n\n# Create plot with standard deviation ranges\np2 +\n  # Add vertical lines for mean and SDs\n  geom_vline(\n    xintercept = mean_height,\n    colour = \"darkred\",\n    size = 1,\n    linetype = \"dashed\"\n  ) +\n  # Add SD ranges\n  annotate(\"rect\",\n    xmin = mean_height - sd_height,\n    xmax = mean_height + sd_height,\n    ymin = 0, ymax = Inf,\n    fill = \"yellow\", alpha = 0.2\n  ) +\n  annotate(\"rect\",\n    xmin = mean_height - 2 * sd_height,\n    xmax = mean_height + 2 * sd_height,\n    ymin = 0, ymax = Inf,\n    fill = \"orange\", alpha = 0.1\n  ) +\n  # Add labels\n  annotate(\"text\",\n    x = mean_height, y = 0.15,\n    label = \"Mean\", angle = 90, vjust = -0.5\n  ) +\n  annotate(\"text\",\n    x = mean_height - sd_height/2, y = 0.12,\n    label = \"68% within\\n1 SD\", angle = 90, vjust = -0.5\n  ) +\n  annotate(\"text\",\n    x = mean_height - sd_height, y = 0.09,\n    label = \"95% within\\n2 SD\", angle = 90, vjust = -0.5\n  ) +\n  labs(\n    x = \"Tree Height (m)\",\n    y = \"Density\",\n    title = \"Normal Distribution\\n(Tree Heights)\"\n  )"
+    "text": "A continuous distribution\n\nThere is an infinite number of possible heights within a certain range (e.g. 0-40m)\nWe can calculate the probability of a tree being a certain height or within a range\nSome heights have a probability of zero (e.g. negative heights, or heights above 40m)"
+  },
+  {
+    "objectID": "lectures/L04/lecture-04.html#section-2",
+    "href": "lectures/L04/lecture-04.html#section-2",
+    "title": "Lecture 04 – The central limit theorem",
+    "section": "",
+    "text": "We can use these properties to make reasonable predictions about tree heights:\n\n\nCode\n# Calculate mean and standard deviations\nmean_height &lt;- mean(tree_heights$height)\nsd_height &lt;- sd(tree_heights$height)\n\n# Create plot with standard deviation ranges\np2 +\n  # Add vertical lines for mean and SDs\n  geom_vline(\n    xintercept = mean_height,\n    colour = \"darkred\",\n    size = 1,\n    linetype = \"dashed\"\n  ) +\n  # Add SD ranges\n  annotate(\"rect\",\n    xmin = mean_height - sd_height,\n    xmax = mean_height + sd_height,\n    ymin = 0, ymax = Inf,\n    fill = \"yellow\", alpha = 0.2\n  ) +\n  annotate(\"rect\",\n    xmin = mean_height - 2 * sd_height,\n    xmax = mean_height + 2 * sd_height,\n    ymin = 0, ymax = Inf,\n    fill = \"orange\", alpha = 0.1\n  ) +\n  # Add labels\n  annotate(\"text\",\n    x = mean_height, y = 0.15,\n    label = \"Mean\", angle = 90, vjust = -0.5\n  ) +\n  annotate(\"text\",\n    x = mean_height - sd_height/2, y = 0.12,\n    label = \"68% within\\n1 SD\", angle = 90, vjust = -0.5\n  ) +\n  annotate(\"text\",\n    x = mean_height - sd_height, y = 0.09,\n    label = \"95% within\\n2 SD\", angle = 90, vjust = -0.5\n  ) +\n  labs(\n    x = \"Tree Height (m)\",\n    y = \"Density\",\n    title = \"Normal Distribution\\n(Tree Heights)\"\n  )"
   },
   {
     "objectID": "lectures/L04/lecture-04.html#the-68-95-99.7-rule",
@@ -1871,7 +1899,21 @@
     "href": "lectures/L04/lecture-04.html#practical-uses-of-normal-distribution-functions",
     "title": "Lecture 04 – The central limit theorem",
     "section": "Practical uses of normal distribution functions",
-    "text": "Practical uses of normal distribution functions\nThese functions help us answer questions like:\n\nWhat proportion of trees are between 18m and 22m tall?\n\n\n# Probability between 18m and 22m - calculate the difference\nprob_between &lt;- pnorm(22, 20, 3) - pnorm(18, 20, 3)\nprob_between\n\n[1] 0.4950149\n\n\n\nHow tall are the top 5% of trees?\n\n\n# Height of tallest 5% of trees\ntall_threshold &lt;- qnorm(0.95, 20, 3)\ntall_threshold\n\n[1] 24.93456\n\n\n\nWhat are the height thresholds for “extreme” trees (top 1% and bottom 1%)?\n\n\n# Height thresholds for \"extreme\" trees\nextreme_thresholds &lt;- qnorm(c(0.01, 0.99), 20, 3)\nextreme_thresholds\n\n[1] 13.02096 26.97904"
+    "text": "Practical uses of normal distribution functions\nThese functions help us answer questions like:\n\nWhat proportion of trees are between 18m and 22m tall?\n\n\n# Probability between 18m and 22m - calculate the difference\nprob_between &lt;- pnorm(22, 20, 3) - pnorm(18, 20, 3)\nprob_between\n\n[1] 0.4950149"
+  },
+  {
+    "objectID": "lectures/L04/lecture-04.html#practical-uses-of-normal-distribution-functions-1",
+    "href": "lectures/L04/lecture-04.html#practical-uses-of-normal-distribution-functions-1",
+    "title": "Lecture 04 – The central limit theorem",
+    "section": "Practical uses of normal distribution functions",
+    "text": "Practical uses of normal distribution functions\nThese functions help us answer questions like:\n\nHow tall are the top 5% of trees?\n\n\n# Height of tallest 5% of trees\ntall_threshold &lt;- qnorm(0.95, 20, 3)\ntall_threshold\n\n[1] 24.93456"
+  },
+  {
+    "objectID": "lectures/L04/lecture-04.html#practical-uses-of-normal-distribution-functions-2",
+    "href": "lectures/L04/lecture-04.html#practical-uses-of-normal-distribution-functions-2",
+    "title": "Lecture 04 – The central limit theorem",
+    "section": "Practical uses of normal distribution functions",
+    "text": "Practical uses of normal distribution functions\nThese functions help us answer questions like:\n\nWhat are the height thresholds for “extreme” trees (top 1% and bottom 1%)?\n\n\n# Height thresholds for \"extreme\" trees\nextreme_thresholds &lt;- qnorm(c(0.01, 0.99), 20, 3)\nextreme_thresholds\n\n[1] 13.02096 26.97904"
   },
   {
     "objectID": "lectures/L04/lecture-04.html#standardising-variables",
