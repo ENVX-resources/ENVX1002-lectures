@@ -5,8 +5,6 @@ project:
     - "!*.md"
   resources:
     - "lectures/**/*.pdf"
-  pre-render:
-    - scripts/pre-render.lua
   post-render:
     - scripts/copy-pdfs.lua
 editor:
