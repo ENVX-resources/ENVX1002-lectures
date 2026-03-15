@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-b3e01583ec44b7c7851a6cdbb03cd1cd.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-db369ac6a2a3b7745e1b1c2a74c34a6d.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -237,11 +237,15 @@ Januar Harianto
 <h1>Probability distributions</h1>
 
 </section>
-<section id="example-rainfall" class="slide level2 scrollable">
+<section id="example-rainfall" class="slide level2">
 <h2>Example: rainfall</h2>
 <p>Consider measuring daily rainfall amounts in a coastal wetland. <em>Some</em> days have no rain. <strong>Most</strong> days have small to moderate amounts. <em>Few</em> days have very heavy rainfall.</p>
 <div class="fragment">
 <p>This creates a pattern of variation in rainfall amounts, which at some point we can predict. This pattern is what we call a <strong>probability distribution</strong> (i.e.&nbsp;we can calculate the probability of a certain amount of rainfall on a given day).</p>
+</div>
+</section>
+<section id="probability-distribution-of-rainfall" class="slide level2">
+<h2>Probability distribution of rainfall</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -258,16 +262,9 @@ Januar Harianto
 <span id="cb1-11"><a></a>  )</span>
 <span id="cb1-12"><a></a>p_rainfall</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lecture-04_files/figure-revealjs/rainfall-sim-1.png" width="960"></p>
-</figure>
+
 </div>
-</div>
-</div>
-</div>
-</section>
+<img data-src="lecture-04_files/figure-revealjs/rainfall-sim-1.png" width="960" class="r-stretch"></section>
 <section id="probability-distribution" class="slide level2">
 <h2>Probability distribution?</h2>
 <p>A probability distribution is a function or equation that tells us:</p>
@@ -1100,13 +1097,7 @@ Januar Harianto
 </details>
 
 </div>
-<img data-src="lecture-04_files/figure-revealjs/rainfall_sample_sizes_zoom-1.png" width="960" class="r-stretch"><p>As sample size increases, something remarkable happens:</p>
-<ol type="1">
-<li>The distribution becomes more symmetrical and bell-shaped</li>
-<li>The spread of sample means decreases</li>
-<li>The distribution approaches a normal distribution</li>
-</ol>
-</section></section>
+<img data-src="lecture-04_files/figure-revealjs/rainfall_sample_sizes_zoom-1.png" width="960" class="r-stretch"></section></section>
 <section>
 <section id="the-central-limit-theorem" class="title-slide slide level1 center">
 <h1>The Central Limit Theorem</h1>
@@ -1307,8 +1298,13 @@ Januar Harianto
 <ul>
 <li>The sampling distribution becomes more normal as sample size increases</li>
 <li>The sampling distribution centers on the population mean (≈ 2, since 20 × 0.1 = 2)</li>
-<li>The standard error decreases as sample size increases</li>
+<li>The standard <strong>error</strong> decreases as sample size increases</li>
 </ul>
+</section></section>
+<section>
+<section id="standard-error" class="title-slide slide level1 center">
+<h1>Standard error</h1>
+
 </section>
 <section id="standard-error-measuring-the-precision-of-sample-means" class="slide level2">
 <h2>Standard error: Measuring the precision of sample means</h2>

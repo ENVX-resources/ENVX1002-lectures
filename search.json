@@ -1759,7 +1759,14 @@
     "href": "lectures/L04/lecture-04.html#example-rainfall",
     "title": "Lecture 04 – The central limit theorem",
     "section": "Example: rainfall",
-    "text": "Example: rainfall\nConsider measuring daily rainfall amounts in a coastal wetland. Some days have no rain. Most days have small to moderate amounts. Few days have very heavy rainfall.\n\nThis creates a pattern of variation in rainfall amounts, which at some point we can predict. This pattern is what we call a probability distribution (i.e. we can calculate the probability of a certain amount of rainfall on a given day).\n\n\nCode\nset.seed(123)\nrainfall_data &lt;- data.frame(\n  rainfall = rgamma(1000, shape = 2, scale = 5)\n)\n\np_rainfall &lt;- ggplot(rainfall_data, aes(x = rainfall)) +\n  geom_histogram(binwidth = 2, fill = \"steelblue\", colour = \"white\") +\n  labs(\n    x = \"Daily Rainfall (mm)\",\n    y = \"Frequency\"\n  )\np_rainfall"
+    "text": "Example: rainfall\nConsider measuring daily rainfall amounts in a coastal wetland. Some days have no rain. Most days have small to moderate amounts. Few days have very heavy rainfall.\n\nThis creates a pattern of variation in rainfall amounts, which at some point we can predict. This pattern is what we call a probability distribution (i.e. we can calculate the probability of a certain amount of rainfall on a given day)."
+  },
+  {
+    "objectID": "lectures/L04/lecture-04.html#probability-distribution-of-rainfall",
+    "href": "lectures/L04/lecture-04.html#probability-distribution-of-rainfall",
+    "title": "Lecture 04 – The central limit theorem",
+    "section": "Probability distribution of rainfall",
+    "text": "Probability distribution of rainfall\n\n\nCode\nset.seed(123)\nrainfall_data &lt;- data.frame(\n  rainfall = rgamma(1000, shape = 2, scale = 5)\n)\n\np_rainfall &lt;- ggplot(rainfall_data, aes(x = rainfall)) +\n  geom_histogram(binwidth = 2, fill = \"steelblue\", colour = \"white\") +\n  labs(\n    x = \"Daily Rainfall (mm)\",\n    y = \"Frequency\"\n  )\np_rainfall"
   },
   {
     "objectID": "lectures/L04/lecture-04.html#probability-distribution",
@@ -2018,7 +2025,7 @@
     "href": "lectures/L04/lecture-04.html#zoomed-in",
     "title": "Lecture 04 – The central limit theorem",
     "section": "Zoomed-in",
-    "text": "Zoomed-in\nWhat happens when we increase our sample size?\n\n\nCode\nggplot(rain_means_df, aes(x = sample_mean)) +\n  geom_density(fill = \"skyblue\", alpha = 0.7) +\n  geom_vline(xintercept = mean(rainfall_population),\n             colour = \"red\", linetype = \"dashed\") +\n  facet_wrap(~ sample_size, ncol = 3, scales = \"free\",\n             labeller = labeller(sample_size = function(x) paste(\"n =\", x))) +\n  labs(x = \"Sample Mean Rainfall (mm)\", y = \"Density\",\n       title = \"Effect of Sample Size on Distribution of Sample Means\") +\n  theme(strip.background = element_rect(fill = \"lightgrey\"),\n        strip.text = element_text(size = 12, face = \"bold\"))\n\n\n\nAs sample size increases, something remarkable happens:\n\nThe distribution becomes more symmetrical and bell-shaped\nThe spread of sample means decreases\nThe distribution approaches a normal distribution"
+    "text": "Zoomed-in\nWhat happens when we increase our sample size?\n\n\nCode\nggplot(rain_means_df, aes(x = sample_mean)) +\n  geom_density(fill = \"skyblue\", alpha = 0.7) +\n  geom_vline(xintercept = mean(rainfall_population),\n             colour = \"red\", linetype = \"dashed\") +\n  facet_wrap(~ sample_size, ncol = 3, scales = \"free\",\n             labeller = labeller(sample_size = function(x) paste(\"n =\", x))) +\n  labs(x = \"Sample Mean Rainfall (mm)\", y = \"Density\",\n       title = \"Effect of Sample Size on Distribution of Sample Means\") +\n  theme(strip.background = element_rect(fill = \"lightgrey\"),\n        strip.text = element_text(size = 12, face = \"bold\"))"
   },
   {
     "objectID": "lectures/L04/lecture-04.html#what-is-the-clt",
