@@ -69,8 +69,8 @@ A probability distribution is a function or equation that tells us:
 
 It is like a mathematical recipe for how values are distributed.
 
-::: {.fragment}
-### Different types of distributions
+
+## Different types of distributions
 
 Depending on the data, distributions can be:
 
@@ -80,7 +80,7 @@ Depending on the data, distributions can be:
   - What is the probability of rainfall between 10-20mm a day?
 - Both discrete and continuous (e.g. age of trees) $F(x) = P(X \leq x)$
   - What is the probability that a tree is older than 50 years?
-:::
+
 
 ## Properties of distributions
 
@@ -92,6 +92,8 @@ We now combine all of what we have learnt about data in the last 3 weeks:
 - **Tails** -- how quickly they "decay" towards zero
 
 But how do we use these properties to make predictions? **Do some distributions have special properties?**
+
+##
 
 ```{r dist-properties}
 # Annotate our rainfall distribution with key properties
@@ -164,6 +166,8 @@ plot_grid(p1, p2, ncol = 2)
 1. The middle (mean) height is most common -- most trees are around 20 metres tall
 2. Heights spread out evenly on both sides -- as many short trees as tall trees, like a mirror image around the middle
 3. Extreme heights are rare -- very few extremely short or tall trees -- numbers decrease gradually as we move away from the middle
+
+## 
 
 The normal distribution is a natural phenomenon in many real-world situations -- a **fundamental** concept in statistics.
 
