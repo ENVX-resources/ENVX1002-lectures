@@ -4,8 +4,6 @@ author: Januar Harianto
 format:
   ochre-revealjs: default
   ochre-typst: default
-execute:
-  cache: true
 ---
 
 ```{r setup, include=FALSE}
@@ -35,12 +33,15 @@ theme_set(theme_cowplot())
 
 # Probability distributions
 
-## Example: rainfall {.scrollable}
+## Example: rainfall
 
 Consider measuring daily rainfall amounts in a coastal wetland. *Some* days have no rain. **Most** days have small to moderate amounts. *Few* days have very heavy rainfall.
 
 ::: {.fragment}
 This creates a pattern of variation in rainfall amounts, which at some point we can predict. This pattern is what we call a **probability distribution** (i.e. we can calculate the probability of a certain amount of rainfall on a given day).
+:::
+
+## Probability distribution of rainfall
 
 ```{r rainfall-sim}
 set.seed(123)
@@ -56,7 +57,7 @@ p_rainfall <- ggplot(rainfall_data, aes(x = rainfall)) +
   )
 p_rainfall
 ```
-:::
+
 
 
 ## Probability distribution?
@@ -363,6 +364,7 @@ R provides three main functions that help us work with normal distributions. Thi
 ## Using `pnorm()` for probabilities
 
 What proportion of trees in our forest are shorter than 23m, knowing that mean height is 20m and the sd is 3m?
+
 
 ```{r pnorm-example}
 #| code-fold: false
@@ -789,11 +791,6 @@ ggplot(rain_means_df, aes(x = sample_mean)) +
 ```
 
 
-As sample size increases, something remarkable happens:
-
-1. The distribution becomes more symmetrical and bell-shaped
-2. The spread of sample means decreases
-3. The distribution approaches a normal distribution
 
 # The Central Limit Theorem
 
@@ -987,8 +984,9 @@ Even with discrete, highly skewed data, the CLT still applies:
 
 - The sampling distribution becomes more normal as sample size increases
 - The sampling distribution centers on the population mean (≈ 2, since 20 × 0.1 = 2)
-- The standard error decreases as sample size increases
+- The standard **error** decreases as sample size increases
 
+# Standard error
 ## Standard error: Measuring the precision of sample means
 
 The standard error (SE) tells us how much sample means typically vary:
