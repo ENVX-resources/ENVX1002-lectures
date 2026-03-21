@@ -315,6 +315,17 @@ Its exact shape depends on the **degrees of freedom**
 
 Suppose we wish to test whether the mean resting heart rate of ENVX1002 students differs from a benchmark value of 70 beats per minute (bpm). 
 
+We are going to do this exercise in class but I have provided a simulated example below so you have it in the slides as well.
+
+## Class exercise: One sample t-test
+
+We will simulate some data for 30 students in our ENVX1002 class. To do this we will draw 30 random numbers from a normal distribution with a mean of 70 and a standard deviation of 10.
+
+```{r}
+set.seed(1974)
+heart_rate <- rnorm(30, mean = 70, sd = 10)
+```
+
 ## Class exercise: <span style="color: blue;">**H**</span>ypothesis
 
 **State the Null and Alternate hypothesis!**
@@ -323,17 +334,6 @@ Suppose we wish to test whether the mean resting heart rate of ENVX1002 students
 
 - $H_1 \ne 70 \text{ bpm}$	(Alternate hypothesis)
 
-
-## Class example: One sample t-test
-
-We are going to do this exercise in class but I have provided an example below so you have it in the slides as well.
-
-We will simulate some data for 30 students in our ENVX1002 class. To do this we will draw 30 random numbers from a normal distribution with a mean of 70 and a standard deviation of 10.
-
-```{r}
-set.seed(1974)
-heart_rate <- rnorm(30, mean = 70, sd = 10)
-```
 
 ## Class example: <span style="color: blue;">**A**</span>ssumptions
 
