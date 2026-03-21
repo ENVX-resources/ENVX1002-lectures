@@ -39,10 +39,30 @@ There are resources available to help you. Don’t be afraid to ask for help.
 # Outline
 
 - Why do inferential statistics?
-- Confidence intervals;
 - Hypothesis testing;
 - One-sample tests;
-- What to do when assumptions are not met.
+- Confidence intervals;
+- Transformations.
+
+## Learning outcomes
+
+::: {style="background-color: yellow; padding: 10px; border: 1px solid black;"}
+**LO1**. By the end of this course, students will be able to implement basic reproducible research practices—including consistent data organization, documented code, and version-controlled workflows—so that their statistical analyses and results can be readily replicated and validated by others.
+:::
+
+::: {style="background-color: yellow; padding: 10px; border: 1px solid black;"}
+**LO2**. By the end of this course, students will demonstrate proficiency in utilizing R and Excel to effectively explore and describe life science datasets.
+:::
+
+::: {style="background-color: yellow; padding: 10px; border: 1px solid black;"}
+**LO3**. By the end of this course, students will be able to apply parametric and non-parametric statistical inference methods to experimental and observational data using RStudio and effectively interpret and communicate the results in the context of the data.
+:::
+
+LO4. By the end ot this course, students will be able to put into practice both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.
+
+::: {style="background-color: yellow; padding: 10px; border: 1px solid black;"}
+**LO5**. By the end of this course, students will be able to articulate statistical and modelling results clearly and convincingly in both written reports and oral presentations, working effectively as an individual and collaboratively in a team, showcasing the ability to convey complex information to varied audiences.
+:::
 
 
 ## Inferential statistics
@@ -83,7 +103,7 @@ There are resources available to help you. Don’t be afraid to ask for help.
 
 ::: {.column width="50%"}
 
-![Image of stream - Brightside near Braidwood](images/stream2.jpg)
+![Grose River - Floris van Ogtrop](images/stream1.png)
 
 :::
 
@@ -136,7 +156,7 @@ For example
 
 ## T: Test Statistic 
 
-A test statistic measureshow far the observedresult is from what we would expect under the null hypothesis.
+A test statistic measure show far the observed result is from what we would expect under the null hypothesis.
 
 $\text{Test statistic}=\frac{\text{Observed value - Expected value}}{\text{Standard error}}$
 
@@ -521,9 +541,11 @@ qt(0.975, df = 29) ## in our heart rate example, n=30 so df = 29
 
 ## Example 2: Water Quality 
 
-Let's look at our water quality example:
-    - Total nitrogen (TN) levels @ Wallacia in western Sydney on the Nepean River
-    - According to the ANZECC guidelines, the maximum acceptable level of TN in an lowland river is 500 $\mu g/L$ and for an upland river = 250 $\mu g/l$. (see Table 3.3.2 in Australian and New Zealand Guidelines for Fresh and Marine Water Quality)
+Let's look at our water quality example again:
+
+- The data is Total Nitrogen (TN) levels @ Wallacia in western Sydney on the Nepean River
+- According to the ANZECC guidelines, the maximum acceptable level of TN in an lowland river is 500 $\mu g/L$ and for an upland river = 250 $\mu g/l$. (see Table 3.3.2 in Australian and New Zealand Guidelines for Fresh and Marine Water Quality)
+- We want to know if the observed mean value of TN in our sample is different to the guideline value of 500 $\mu g/L$
 
 ```{r}
 TN <- read.csv("data/TN_Wallacia.csv")
@@ -557,6 +579,8 @@ str(TN)
 ## Example 2: Water Quality
 
 **Check assumptions**
+
+What do we notice about the plots? Does the data look normally distributed? Do we see strong skewness or outliers?
 
 :::: {.columns}
 
@@ -627,26 +651,19 @@ For right (positive) skewed data, we can use a
   
 For left (negative) skewed data (which is rare to find), we can "try" a
 
-- $x^2$ or $x^3$ transformation.
+- $x^2$, $x^3$ or $e^x$ transformation.
 
 
 
 ## Example 2: Transformations & Recheck assumptions
 
+Let's try a log10 transformation:
+
+- We start by creating a new column in our data frame called log10_TN
+- We then take the log10 of the TN column and store it in the new column - note we could also use "mutate" from the dplyr package to do this.
+
 ```{r}
-# Let's try a log10 transformation
-# We start by creating a new column in our data frame called log10_TN
-# We then take the log10 of the TN column and store it in the new column
 TN$log10_TN <- log10(TN$TN)
-```
-
-
-**Geometric mean**
-
-Note that now we are looking at the geometric mean as opposed the the arithmatic mean which was 855.86 in our case
-
-```{r}
-10^mean(TN$log10_TN)
 ```
 
 ## Example 2: Recheck assumptions
@@ -706,7 +723,14 @@ shapiro.test(TN$log10_TN)
 - From our previous slide, our data seems to be quite symmetrical
 - Now P>0.05 so we **fail to reject** the null hypothesis that the data is normally distributed.
 - We can now proceed with our t-test using the log transformed data.
-- **NOTE:** *We will also need to transform the hypothesised mean of 500 to the log10 scale.*
+
+## Example 2: Restate the hypotheses
+
+- We will also need to transform the hypothesised mean of 500 to the log10 scale.
+
+- $H_0: \mu = log10(500)$ $\mu g/l$ (Null hypothesis)
+- $H_1: \mu \ne log10(500)$ $\mu g/l$ (Alternate hypothesis)
+
 
 
 ## Example 2: T-test & P-Value
@@ -724,7 +748,17 @@ t.test(TN$log10_TN,
 - Can we say something about the direction??
 
 
-## Example 2: Confidence intervals
+## Example 2: Geometric mean & Confidence intervals
+
+**Geometric mean**
+
+Note that now we are looking at the geometric mean as opposed the the arithmatic mean which was 855.86 in our case
+
+```{r}
+10^mean(TN$log10_TN)
+```
+
+**Confidence intervals**
 
 - We need to back transform the confidence interval to the original scale.
 - To back-transform the confidence interval we can use the following:
@@ -756,11 +790,11 @@ $10^{CI_{low}}$ and $10^{CI_{high}}$
 - We can also use a one tailed test if we are specifically interested in whether the observed value is greater or less than the expected value.
 - In this case we only want to know if the TN concentration is greater than the ANZECC guidelines of 500 $\mu g/l$.
 
-- $H_0: \mu = 500$ $\mu g/l$ (Null hypothesis)
-- $H_1: \mu > 500$ $\mu g/l$ (Alternate hypothesis)
+> Detect unsafe water | H₀: μ ≤ 500, H₁: μ > 500 |
 
+OR
 
-
+> Detect unsafe water | H₀: μ ≤ $log_{10}500$, H₁: μ > $log_{10}500)$ |
 
 
 ## Example 3: One tailed test
@@ -774,7 +808,7 @@ t.test(TN$log10_TN,
 ```
 
 - P < 0.001 (3.d.p.) so we reject the null hypothesis.
-- Because we are doing a one tailed test we can now conclude that the mean value of TN in Nepean River is greater than 500 ug/L.
+- Because we are doing a one tailed test we can now conclude that the mean value of TN in Nepean River is greater than $log_{10}500 \mu g/L$
 - Take a look at the confidence interval and the p-value. What do you notice when comparing to the two tailed test?
 
 
