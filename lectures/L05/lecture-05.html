@@ -209,91 +209,114 @@ Floris van Ogtrop
 
   <p class="date">Mar 2026</p>
 </section>
+<section id="important-notice" class="slide level2">
+<h2>Important Notice</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>The Faculty has been informed of instances where students are being targeted by illegitimate academic services, which could potentially lead to plagiarism or other breaches.</p>
+<p>This can include:</p>
+<ul>
+<li>“tutoring” services who provide assignment instructions or model answers;</li>
+<li>using another person or company to write or complete your assignment;</li>
+<li>using online file-sharing sites that lead to plagiarism.</li>
+</ul>
+<p>Engaging in such activities could constitute a breach of the Academic Integrity Policy and may result in penalties, including failing the assignment, the unit, or even a suspension or exclusion for misconduct.</p>
+</div><div class="column" style="width:50%;">
+<p>We want you to do well on assessments. Contact the Learning Hub, you tutor, or Unit Coordinator to get support.</p>
+<p>There are resources available to help you. Don’t be afraid to ask for help.</p>
+<p><img data-src="images/QR1.png"></p>
+</div></div>
+</section>
+<section>
 <section id="outline" class="title-slide slide level1 center">
 <h1>Outline</h1>
 <ul>
-<li>Inferential statistics</li>
-<li>Confidence intervals</li>
-<li>Hypothesis testing</li>
-<li>1-sample tests</li>
+<li>Why do inferential statistics?</li>
+<li>Hypothesis testing;</li>
+<li>One-sample tests;</li>
+<li>Confidence intervals;</li>
+<li>Transformations.</li>
 </ul>
 </section>
-
-<section id="inferential-statistics" class="title-slide slide level1 center">
-<h1>Inferential statistics</h1>
+<section id="learning-outcomes" class="slide level2">
+<h2>Learning outcomes</h2>
+<div style="background-color: yellow; padding: 10px; border: 1px solid black;">
+<p><strong>LO1</strong>. By the end of this course, students will be able to implement basic reproducible research practices—including consistent data organization, documented code, and version-controlled workflows—so that their statistical analyses and results can be readily replicated and validated by others.</p>
+</div>
+<div style="background-color: yellow; padding: 10px; border: 1px solid black;">
+<p><strong>LO2</strong>. By the end of this course, students will demonstrate proficiency in utilizing R and Excel to effectively explore and describe life science datasets.</p>
+</div>
+<div style="background-color: yellow; padding: 10px; border: 1px solid black;">
+<p><strong>LO3</strong>. By the end of this course, students will be able to apply parametric and non-parametric statistical inference methods to experimental and observational data using RStudio and effectively interpret and communicate the results in the context of the data.</p>
+</div>
+<p>LO4. By the end ot this course, students will be able to put into practice both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.</p>
+<div style="background-color: yellow; padding: 10px; border: 1px solid black;">
+<p><strong>LO5</strong>. By the end of this course, students will be able to articulate statistical and modelling results clearly and convincingly in both written reports and oral presentations, working effectively as an individual and collaboratively in a team, showcasing the ability to convey complex information to varied audiences.</p>
+</div>
+</section>
+<section id="inferential-statistics" class="slide level2">
+<h2>Inferential statistics</h2>
 <ul>
-<li>You should be familiar with <strong>EDA</strong> by now</li>
-<li>Now we are going to take the next step into the world of <strong>inferential statistics</strong></li>
-<li>This is an important and sometimes difficult step in statistics</li>
-<li>We are going to draw conclusions about a population from a “smaller” sample of that population</li>
+<li>So far we have focused on Exploratory Data Analysis <strong>EDA</strong>;</li>
+<li><strong>EDA</strong> helps us describe and visualise data;</li>
+<li><strong>Inferential statistics</strong> takes the next step: using a <strong>sample</strong> to learn about a <strong>population</strong>;</li>
+<li>This is an important and sometimes difficult step in statistics;</li>
+<li>Because samples vary by chance, we need formal methods to decide whether an observed difference is likely to reflect the real effect.</li>
 </ul>
 </section>
-
-<section id="hypothesis-testing" class="title-slide slide level1 center">
-<h1>Hypothesis testing</h1>
+<section id="hypothesis-testing" class="slide level2">
+<h2>Hypothesis testing</h2>
 <ul>
-<li>A hypothesis consists either of a suggested explanation for a phenomenon or of a reasoned proposal suggesting possible relationships between multiple phenomena</li>
+<li>In statistics, a <strong>hypothesis</strong> is a claim about a population parameter.</li>
+<li>We often begin with a <strong>benchmark</strong> or <strong>reference value</strong></li>
+<li>We then ask:</li>
 </ul>
-<p><strong>Why?</strong></p>
-<ul>
-<li>To make evidence based decisions, we need to evaluate the evidence</li>
-<li>Hypothesis testing is a scientific method for weighing up the evidence given the data against the given hypothesis (model)</li>
-</ul>
-<p><strong>Evidence?</strong></p>
-<ul>
-<li>The data is not consistent with the hypothesis of the gap between the observed value (data) and the expected value is too big (&gt; 2 or 3 Standard Errors)</li>
-</ul>
+<blockquote>
+<p>Is our sample consistent with that claim, or is the difference too large to plausibly due to chance alone?</p>
+</blockquote>
 </section>
-
-<section id="hypothesis-testing-1" class="title-slide slide level1 center">
-<h1>Hypothesis testing</h1>
-<p><strong>Framework</strong></p>
+<section id="hypothesis-testing-1" class="slide level2">
+<h2>Hypothesis testing</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
-<li>Null Hypothesis (H0) vs Alternative Hypothesis (H1)</li>
-<li>Is the data consistent with H0? Wait, but I’m interested in if there is a difference?
+<li>Suppose the guideline value for Total Nitrogen (TN) at a site along a river is <span class="math inline">\(500 \mu g/L\)</span></li>
+<li>We might ask</li>
+</ul>
+<blockquote>
+<p>Is the mean TN concentration at this site equal to <span class="math inline">\(500 \mu g/L\)</span>, or is it different?</p>
+</blockquote>
 <ul>
-<li>Falsifiability: only takes one contrary observation to falsify a statement (Karl Popper)
+<li>This gives us a natural hypothesis test:
 <ul>
-<li>Can we falsify this statement? “There are invisible and undetectable fairies in my garden.” - it is non-falsifiable so we cannot test it with empirical data.</li>
-<li>Can we falsify this statement? “All swans are black” - if we observe a single white swan, then the statement is falsified.</li>
-</ul></li>
+<li><strong>Null hypothesis</strong> <span class="math inline">\(H_0:\)</span> the mean TN concentration is <span class="math inline">\(500 \mu g/L\)</span></li>
+<li><strong>Alternative hypothesis</strong> <span class="math inline">\(H_1:\)</span> the mean TN concentration is <strong>NOT</strong> <span class="math inline">\(500 \mu g/L\)</span></li>
 </ul></li>
 </ul>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/DALL·E 2024-02-10 16.01.27.png"></p>
-<figcaption>generated by DALL-E 3</figcaption>
+<p><img data-src="images/stream1.png"></p>
+<figcaption>Grose River - Floris van Ogtrop</figcaption>
 </figure>
 </div>
 </div></div>
 </section>
-
-<section id="hypothesis-testing-2" class="title-slide slide level1 center">
-<h1>Hypothesis testing</h1>
-
-<img data-src="images/underwood.png" class="r-stretch quarto-figure-center"><p class="caption">Underwood, A.J., 2009, April. Components of design in ecological field experiments. In Annales Zoologici Fennici (Vol. 46, No.&nbsp;2, pp.&nbsp;93-111). Finnish Zoological and Botanical Publishing Board.</p></section>
-
-<section id="hypothesis-testing-3" class="title-slide slide level1 center">
-<h1>Hypothesis testing</h1>
+<section id="hypothesis-testing-workflow" class="slide level2">
+<h2>Hypothesis testing workflow</h2>
 <p><strong>We will follow the steps in hypothesis testing</strong></p>
-<ul>
-<li>Choose level of significance (usually 0.05)</li>
-<li>Write null and alternate hypotheses</li>
-<li>Check assumptions</li>
-<li>Calculate test statistic</li>
-<li>Obtain P-value or critical value</li>
-<li>Make statistical conclusion</li>
-<li>Write a scientific (biological) conclusion</li>
-</ul>
+<ol type="1">
+<li>State the hypotheses;</li>
+<li>Check assumptions;</li>
+<li>Calculate the test statistic;</li>
+<li>Obtain P-value, critical value, confidence intervals;</li>
+<li>Draw the statistical conclusion;</li>
+<li>Write a scientific (biological) conclusion.</li>
+</ol>
 </section>
-
-<section id="hypothesis-testing-4" class="title-slide slide level1 center">
-<h1>Hypothesis testing</h1>
-<p><strong>Acronyms</strong></p>
-<p>Sometimes we use HATPC to remember these steps - HAT Prevent Cancer - come up with your own</p>
+<section id="hypothesis-testing-workflow-1" class="slide level2">
+<h2>Hypothesis testing workflow</h2>
+<p>A usefull acronym is <strong>HATPC</strong>:</p>
 <ul>
 <li><strong>H:</strong> Hypothesis</li>
 <li><strong>A:</strong> Assumptions</li>
@@ -302,65 +325,75 @@ Floris van Ogtrop
 <li><strong>C:</strong> Conclusion</li>
 </ul>
 </section>
-
-<section id="hypothesis-h" class="title-slide slide level1 center">
-<h1>Hypothesis (H)</h1>
+<section id="h-hypothesis" class="slide level2">
+<h2>H: Hypothesis</h2>
 <ul>
-<li>The <strong>null hypothesis</strong> <span class="math inline">\((H_0)\)</span> assumes that the difference between the observation (data) and the expected value is due to chance</li>
-<li>The <strong>alternative hypothesis</strong> <span class="math inline">\((H_1)\)</span> assumes that the difference between the observed value (data) and expected value is NOT due to chance alone.</li>
+<li>The <strong>null hypothesis</strong> <span class="math inline">\((H_0)\)</span> is the benchmark or reference claim</li>
+<li>The <strong>alternative hypothesis</strong> <span class="math inline">\((H_1)\)</span> is the competing claim we are interested in.</li>
+</ul>
+<p>For example</p>
+<ul>
+<li><span class="math inline">\(H_0:\mu = 500 \mu g/L\)</span></li>
+<li><span class="math inline">\(H_1:\mu \ne 500 \mu g/L\)</span></li>
 </ul>
 </section>
-
-<section id="assumptions-a" class="title-slide slide level1 center">
-<h1>Assumptions (A)</h1>
+<section id="a-assumptions" class="slide level2">
+<h2>A: Assumptions</h2>
 <ul>
-<li>We need to check the assumptions of the test we are using.</li>
-<li>For example, if we are using a one sample t-test we need to check the assumption of normality.</li>
-<li>This is done by 1) looking at the distribution of our data (EDA) and 2) using a hypothesis test such as the Shapiro-Wilk test.</li>
-<li>If the assumptions are not met, we may need to transform the data or use a non-parametric test.</li>
+<li>Before carrying out a t-test, we need to check whether its assumptions are reasonable;</li>
+<li>For a one sample t-test, an important assumption is that the sample data is approximately normally distributed.</li>
+<li>We usually check this by:</li>
 </ul>
+<ol type="1">
+<li>looking at the data using plots</li>
+<li>Checking for strong skewness or outliers</li>
+<li>Optionally using a formal test such as the Shapiro-Wilk test</li>
+</ol>
 </section>
-
-<section id="test-statistic-t" class="title-slide slide level1 center">
-<h1>Test Statistic (T)</h1>
-<p>Measures the difference between what is observed in the data and what is expected from the null hypothesis.</p>
+<section id="t-test-statistic" class="slide level2">
+<h2>T: Test Statistic</h2>
+<p>A test statistic measure show far the observed result is from what we would expect under the null hypothesis.</p>
 <p><span class="math inline">\(\text{Test statistic}=\frac{\text{Observed value - Expected value}}{\text{Standard error}}\)</span></p>
-</section>
-
-<section id="p-value-p" class="title-slide slide level1 center">
-<h1>P-Value (P)</h1>
-<p><strong>What is P-value?</strong></p>
+<p>This is essentially</p>
+<p><span class="math inline">\(=\frac{\text{Signal}}{\text{Noise}}\)</span></p>
 <ul>
-<li>The P-value is a way of weighing up whether the sample (data) is consistent with <span class="math inline">\(H_0\)</span></li>
+<li><strong>Numerator</strong> = difference from the null value</li>
+<li><strong>Denominator</strong> = uncertainty in that estimate</li>
+</ul>
+</section>
+<section id="p-p-value" class="slide level2">
+<h2>P: p-value</h2>
+<ul>
+<li>The <strong>p-value</strong> tells us how unusual our results would be <strong>if the null hypothesis were true</strong></li>
 </ul>
 <p>More formally:</p>
 <ul>
-<li>The P-value is the chance of observing the test statistic (or something more extreme) if the <span class="math inline">\(H_0\)</span> is true.</li>
+<li>It is the probability of observing the test statistic, or something more extreme, assuming <span class="math inline">\(H_0\)</span> is true.</li>
 </ul>
+<p>So the p-value helps us judge whether the data are <strong>consistent with</strong> the null hypothesis.</p>
 </section>
-
-<section id="p-value-p-1" class="title-slide slide level1 center">
-<h1>P-Value (P)</h1>
+<section id="p-p-value-1" class="slide level2">
+<h2>P: p-value</h2>
 <p><strong>What does this have to do with sampling distributions??</strong></p>
 
 <img data-src="images/two_tail.png" class="r-stretch"></section>
-
-<section id="p-value-p-2" class="title-slide slide level1 center">
-<h1>P-Value (P)</h1>
+<section id="p-p-value-2" class="slide level2">
+<h2>P: p-value</h2>
+<p>A useful memory aid is:</p>
 <p><strong>“If the P-value is low the Null hypothesis must go.”</strong></p>
+<p>But more formally:</p>
 <ul>
-<li>So we calculate the P-value to assess the level of evidence against the Null hypothesis.
+<li>If <span class="math inline">\(p &lt; 0.05\)</span> the data provide evidence against <span class="math inline">\(H_0\)</span></li>
+<li>If <span class="math inline">\(p \ge 0.05\)</span> the data do not provide strong evidence against <span class="math inline">\(H_0\)</span></li>
+</ul>
+<p>Important:</p>
 <ul>
-<li>Generally if a P-value &gt; 0.05 we say there is <strong>no strong</strong> evidence to reject the null hypothesis (we fail to reject it)</li>
-<li>We never say we accept the null hypothesis!!</li>
-<li>0.05 is called the significance level</li>
-<li>We may choose other significance levels such as 0.2, 0.01, 0.001 (for this course we will use 0.05)</li>
-</ul></li>
+<li>We <strong>do not accept</strong> <span class="math inline">\(H_0\)</span></li>
+<li>We say <strong>we fail to reject</strong> <span class="math inline">\(H_0\)</span></li>
 </ul>
 </section>
-
-<section id="p-value-p-3" class="title-slide slide level1 center">
-<h1>P-Value (P)</h1>
+<section id="p-p-value-3" class="slide level2">
+<h2>P: p-value</h2>
 <p><strong>Common mistakes</strong></p>
 <ul>
 <li>The p-value is not the chance that the NULL hypothesis is true</li>
@@ -369,11 +402,11 @@ Floris van Ogtrop
 
 <img data-src="images/p_value.png" class="r-stretch"><ul>
 <li>The use of 0.05 is not mandatory, it is a convention.</li>
+<li>Other levels such as 0.01 or 0.001 may also be used.</li>
 </ul>
 </section>
-
-<section id="p-value-p-4" class="title-slide slide level1 center">
-<h1>P-value (P)</h1>
+<section id="p-p-value-4" class="slide level2">
+<h2>P: p-value</h2>
 <p><strong>Controversy</strong></p>
 <p><a href="https://www.nature.com/news/statisticians-issue-warning-over-misuse-of-p-values-1.19503">Nature article 1</a></p>
 <p><a href="https://www.nature.com/articles/d41586-019-00857-9">Nature article 2</a></p>
@@ -382,38 +415,22 @@ Floris van Ogtrop
 <li>Look up terms like <strong>“P Hacking”</strong>…</li>
 </ul>
 </section>
-
-<section id="a-little-more-on-the-p-value" class="title-slide slide level1 center">
-<h1>A little more on the P-value</h1>
-<p>Why is the p-value 0.05?</p>
-<ul>
-<li>The p-value is the probability of observing a test statistic as extreme as the one calculated, assuming the null hypothesis is true.</li>
-<li>It is based on the idea we 1 in 20 times we will reject the null hypothesis when it is true.</li>
-</ul>
+<section id="c-conclusion" class="slide level2">
+<h2>C: Conclusion</h2>
+<p>At the end of a statistical test we write two conclusions</p>
+<ol type="1">
+<li>A <strong>statistical conclusion</strong> based on the test statistic, confidence intervals, p-value and the level of significance i.e.&nbsp;we reject or fail to reject <span class="math inline">\(H_0\)</span></li>
+<li>A <strong>scientific (biological) conclusion</strong> what does this mean in the context of the study.</li>
+</ol>
 </section>
+<section id="one-or-two---tails" class="slide level2">
+<h2>One or Two - Tails</h2>
 
-<section id="conclusion-c" class="title-slide slide level1 center">
-<h1>Conclusion (C)</h1>
+<img data-src="images/tails.png" class="r-stretch"></section>
+<section id="one-or-two---tails-1" class="slide level2">
+<h2>One or Two - Tails</h2>
 <ul>
-<li>We make a statistical conclusion based on the p-value and the level of significance.</li>
-<li>We also make a scientific (biological) conclusion based on the statistical conclusion.</li>
-</ul>
-</section>
-
-<section id="tails" class="title-slide slide level1 center">
-<h1>Tails</h1>
-<p><strong>Tails??</strong></p>
-
-<img data-src="images/tails.png" class="r-stretch"><ul>
-<li>In this course we will mostly use two-tailed tests because we are interested in whether the observed value is different to the expected value.</li>
-<li>One tailed tests are used when we are specifically interested in whether the observed value is greater or less than the expected value. Examples are in quality control and production processes.</li>
-</ul>
-</section>
-
-<section id="tails-1" class="title-slide slide level1 center">
-<h1>Tails</h1>
-<ul>
-<li><p>Let say we would like to test whether a sample or population behaves according to a known or expected value. For example, ENVX1002 students have a mean heart rate of 70 beats per minute <span class="math inline">\((c)\)</span>. We could test the relationship between our population or sample mean <span class="math inline">\((\mu)\)</span> or <span class="math inline">\((y)\)</span> and our expected mean <span class="math inline">\((c)\)</span>.</p>
+<li><p>Suppose we want to compare a sample population or sample mean <span class="math inline">\((\mu)\)</span> to a benchmark value <span class="math inline">\((c)\)</span> - Could be our water quality benchmark of <span class="math inline">\(c=500 \mu g/L\)</span></p>
 <ul>
 <li><p><span class="math inline">\(H_0:\mu=c\)</span> <em>Two tailed</em></p></li>
 <li><p><span class="math inline">\(H_1:\mu \ne c\)</span> <em>Two tailed</em></p></li>
@@ -422,13 +439,38 @@ Floris van Ogtrop
 <li><p><span class="math inline">\(H_0:\mu \le c\)</span> <em>One tailed - less than</em></p></li>
 <li><p><span class="math inline">\(H_1:\mu &gt; c\)</span> <em>One tailed - less than</em></p></li>
 </ul></li>
-<li><p>We usually use the first (two tailed) form unless we are specifically interested in testing whether the difference is in one direction or the means of two variables are equivalent (i.e.&nbsp;equivalence testing in production)</p></li>
-<li><p>In this course we are assuming that the population/sample is normally distributed.</p></li>
+<li><p>We usually use the first (two tailed) form unless we are specifically interested in testing whether the difference is in one direction because this is the only direction of interest</p></li>
 </ul>
 </section>
-
-<section id="type-error" class="title-slide slide level1 center">
-<h1>Type error??</h1>
+<section id="one-tailed-tests-water-quality" class="slide level2">
+<h2>One-tailed tests (water quality)</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Goal</th>
+<th>Hypotheses</th>
+<th>Tail</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Detect unsafe water</td>
+<td>H₀: μ ≤ c, H₁: μ &gt; c</td>
+<td>Right</td>
+</tr>
+<tr class="even">
+<td>Demonstrate safe water</td>
+<td>H₀: μ ≥ c, H₁: μ &lt; c</td>
+<td>Left</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Rule:</strong> The tail follows the alternative hypothesis (H₁)</p>
+</blockquote>
+</section>
+<section id="type-one-or-type-two-error" class="slide level2">
+<h2>Type one or type two error</h2>
 <p><strong>Type I error</strong></p>
 <ul>
 <li>False positive: we reject H0 when it is true</li>
@@ -440,42 +482,35 @@ Floris van Ogtrop
 
 <img data-src="images/error.png" class="r-stretch"><p><strong>Note:</strong> Decreasing the significance level (<span class="math inline">\(\alpha\)</span>) to say 0.01 will increase the probability of type II error</p>
 </section>
-
-<section id="sample-size-and-power" class="title-slide slide level1 center">
-<h1>Sample size and power</h1>
-<p><strong>Sample size &amp; Power</strong></p>
+<section id="sample-size-and-power" class="slide level2">
+<h2>Sample size and power</h2>
+<p><strong>Power</strong> is the probability a test will detect a real effect when one exists.</p>
 <ul>
-<li>While we won’t do these calculations, it is important to think about sample size and power. For example, when comparing two means we can estimate the sample size required using the following</li>
+<li><strong>High power</strong> means a low chance of type II error;</li>
+<li><strong>Low power</strong> means a higher chance of missing a real effect.</li>
 </ul>
-<p><span class="math inline">\(n = \left( \frac{(Z_{\alpha/2} + Z_{\beta})^2 \cdot (SD_1^2 + SD_2^2)}{\delta^2} \right)\)</span></p>
+<p>In general:</p>
 <ul>
-<li><span class="math inline">\(n\)</span> represents the required sample size for each group.</li>
-<li><span class="math inline">\(Z_{\alpha/2}\)</span> denotes the critical value of the normal distribution at the desired significance level (<span class="math inline">\(\alpha\)</span>). For example, for a 95% confidence level (<span class="math inline">\(\alpha = 0.05\)</span>,<span class="math inline">\(Z_{\alpha/2}=1.96\)</span>.</li>
-<li><span class="math inline">\(Z_{\beta}\)</span> is the Z-score corresponding to the desired power of the test <span class="math inline">\((1 - \beta)\)</span>. For 80% power <span class="math inline">\((\beta=0.2)\)</span>, you would use the Z-score that corresponds to 80% in the normal distribution table.</li>
-<li><span class="math inline">\(SD_1\)</span> and <span class="math inline">\(SD_2\)</span> are the standard deviations of the two groups being compared.</li>
-<li><span class="math inline">\(\delta\)</span> is the minimum difference in means between the two groups that the study is designed to detect, also known as the effect size.</li>
+<li>larger sample sizes increase power;</li>
+<li>smaller standard deviations increase power;</li>
+<li>larger effects are easier to detect.</li>
 </ul>
 </section>
-
-<section id="sample-size-and-power-1" class="title-slide slide level1 center">
-<h1>Sample size and power</h1>
-<p><strong>Sample size &amp; Power</strong></p>
-<p>In a nut shell…</p>
-<p><strong>High Power:</strong> If a test has high power (close to 1), it means that the probability of committing a Type II error is low. This indicates that the test is very likely to detect an effect or difference when one exists.</p>
-<p><strong>Low Power:</strong> Conversely, if a test has low power, the probability of committing a Type II error is high. This means the test is less likely to detect an effect or difference, even if one exists.</p>
-<p><strong>Sample size:</strong> Generally power increases as sample size increases, but so does time and costs!</p>
-</section>
-
-<section id="the-t-distribution-and-degrees-of-freedom" class="title-slide slide level1 center">
-<h1>The t-distribution and degrees of freedom?</h1>
+<section id="the-t-distribution" class="slide level2">
+<h2>The t-distribution</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p>The T-distribution has the following properties:</p>
+<p>The t-distribution is:</p>
 <ul>
-<li><p>It is bell-shaped, symmetrical about the mean, median and mode, which are all of equal value. [It is a little flatter than the normal distribution.]</p></li>
-<li><p>The area under the curve = 1, as is the case for all continuous probability distributions.</p></li>
-<li><p>The probability density function is defined by three parameters, the mean <span class="math inline">\(\mu\)</span>, the standard deviation <span class="math inline">\(\sigma\)</span> and the sample size <span class="math inline">\(n\)</span>.</p></li>
-<li><p>The exact shape of the t distribution depends on the quantity called degrees of freedom, df. The df = n – 1 for any t distribution.</p></li>
+<li>bell-shaped;</li>
+<li>symmetric;</li>
+<li>centred on zero;</li>
+<li>similar in shape to the normal distribution, but with <strong>heavier tails</strong>.</li>
+</ul>
+<p>Its exact shape depends on the <strong>degrees of freedom</strong></p>
+<ul>
+<li>For a one-sample t-test <span class="math inline">\(df=n-1\)</span> where n is the sample size.</li>
+<li>As the sample size increases, the t-distribution becomes more similar to the normal distribution.</li>
 </ul>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
@@ -486,344 +521,213 @@ Floris van Ogtrop
 </div>
 </div></div>
 </section>
-
-<section id="example-1-one-sample-t-test" class="title-slide slide level1 center">
-<h1>Example 1: One sample t-test</h1>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/DALL·E 2024-02-11 10.31.33_hippie.png"></p>
-<figcaption>Generated using DALL.E 3</figcaption>
-</figure>
+<section id="class-exercise-one-sample-t-test" class="slide level2">
+<h2>Class exercise: One sample t-test</h2>
+<p>Suppose we wish to test whether the mean resting heart rate of ENVX1002 students differs from a benchmark value of 70 beats per minute (bpm).</p>
+<p>We are going to do this exercise in class but I have provided a simulated example below so you have it in the slides as well.</p>
+</section>
+<section id="class-exercise-one-sample-t-test-1" class="slide level2">
+<h2>Class exercise: One sample t-test</h2>
+<p>We will simulate some data for 30 students in our ENVX1002 class. To do this we will draw 30 random numbers from a normal distribution with a mean of 70 and a standard deviation of 10.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">set.seed</span>(<span class="dv">1974</span>)</span>
+<span id="cb1-2"><a></a>heart_rate <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">70</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
-</div><div class="column" style="width:50%;">
-<p><span style="color: blue;"><strong>H</strong></span>ypothesis</p>
-<p>Say our hippie friend here has seen the light after a helping of mung beans and wishes to test whether ENVX1002 student average heart rates differ from the global average of 70 bpm (beats per minute).</p>
+</section>
+<section id="class-exercise-hypothesis" class="slide level2">
+<h2>Class exercise: <span style="color: blue;"><strong>H</strong></span>ypothesis</h2>
 <p><strong>State the Null and Alternate hypothesis!</strong></p>
 <ul>
 <li><p><span class="math inline">\(H_0=70 \text{ bpm}\)</span> (Null hypothesis)</p></li>
 <li><p><span class="math inline">\(H_1 \ne 70 \text{ bpm}\)</span> (Alternate hypothesis)</p></li>
 </ul>
-</div></div>
 </section>
+<section id="class-example-assumptions" class="slide level2">
+<h2>Class example: <span style="color: blue;"><strong>A</strong></span>ssumptions</h2>
+<p>Before applying a one-sample t-test, we should check whether the sample is approximately normally distributed. Consider the following:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 15%">
+<col style="width: 14%">
+<col style="width: 18%">
+<col style="width: 12%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sample size</th>
+<th>Histogram</th>
+<th>Q-Q plot</th>
+<th>Jitter plot</th>
+<th>Boxplot</th>
+<th>Shapiro test</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Small</strong> (<em>n</em> &lt; 30)</td>
+<td>Limited</td>
+<td><strong>Best</strong></td>
+<td><strong>Very useful</strong></td>
+<td><strong>Useful</strong></td>
+<td>Cautious use</td>
+</tr>
+<tr class="even">
+<td><strong>Medium</strong> (30–100)</td>
+<td>Useful</td>
+<td><strong>Very useful</strong></td>
+<td>Useful</td>
+<td>Useful</td>
+<td>Sometimes useful</td>
+</tr>
+<tr class="odd">
+<td><strong>Large</strong> (<em>n</em> &gt; 100)</td>
+<td>Useful</td>
+<td><strong>Best</strong></td>
+<td>Less useful</td>
+<td><strong>Good (outliers)</strong></td>
+<td>Too sensitive</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Rule of thumb:</strong><br>
+- Small <em>n</em>: <strong>show the data</strong> (jitter) + Q-Q plot<br>
+- Larger <em>n</em>: <strong>histogram + Q-Q plot</strong><br>
+- Use boxplots to highlight <strong>spread and outliers</strong>, not normality alone</p>
+</blockquote>
+</section>
+<section id="class-example-assumptions-1" class="slide level2">
+<h2>Class example: <span style="color: blue;"><strong>A</strong></span>ssumptions</h2>
+<p>We begin by looking at the data (EDA). Ours sample size is 30 so we can look at the histogram, Q-Q plot and jitter plot.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb2-3"><a></a></span>
+<span id="cb2-4"><a></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(heart_rate)</span>
+<span id="cb2-5"><a></a></span>
+<span id="cb2-6"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(heart_rate)) <span class="sc">+</span></span>
+<span id="cb2-7"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"grey80"</span>, <span class="at">colour =</span> <span class="st">"white"</span>, <span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
+<span id="cb2-8"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram"</span>, <span class="at">x =</span> <span class="st">"Heart rate"</span>, <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb2-9"><a></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb2-10"><a></a></span>
+<span id="cb2-11"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">sample =</span> heart_rate)) <span class="sc">+</span></span>
+<span id="cb2-12"><a></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
+<span id="cb2-13"><a></a>  <span class="fu">stat_qq_line</span>(<span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb2-14"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Q-Q plot"</span>, <span class="at">x =</span> <span class="st">"Theoretical"</span>, <span class="at">y =</span> <span class="st">"Sample"</span>) <span class="sc">+</span></span>
+<span id="cb2-15"><a></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb2-16"><a></a></span>
+<span id="cb2-17"><a></a>p1 <span class="sc">+</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 
-<section id="example-1-one-sample-t-test-1" class="title-slide slide level1 center">
-<h1>Example 1: One sample t-test</h1>
-<p><span style="color: blue;"><strong>A</strong></span>ssumptions</p>
+</div>
+<img data-src="lecture-05_files/figure-revealjs/unnamed-chunk-2-1.png" width="768" class="r-stretch"></section>
+<section id="class-example-assumptions-2" class="slide level2">
+<h2>Class example: <span style="color: blue;"><strong>A</strong></span>ssumptions</h2>
+<p>As an option, we can also use the Shapiro-Wilk test as a supporting check. Best if the sample size is less than 50.</p>
 <ul>
-<li>This time we are testing a data set where the <strong>variance is unknown</strong>.</li>
-<li>A key assumption for the one-sample t-test is that the sample is “reasonably” normally distributed.</li>
-<li>Why do we need to test the assumption of normality?</li>
-<li>Think about if our distribution is right skewed, then our <em>mean</em> may not reflect the central tendency of our sample population.</li>
-</ul>
-</section>
-
-<section id="example-1-one-sample-t-test-2" class="title-slide slide level1 center">
-<h1>Example 1: One sample t-test</h1>
-<p><span style="color: blue;"><strong>A</strong></span>ssumptions</p>
-<p><strong>Small Samples:</strong> With small samples (typically n &lt; 30), even slight deviations from normality can significantly impact the t-test’s validity because the t-test relies heavily on the assumption of normality in this scenario. However, if the data are symmetrically distributed and don’t have outliers, the t-test can be robust to mild violations of normality. Note that the t-test adjusts for the sample size, so the larger the sample, the less important the normality assumption becomes.</p>
-<p><strong>Large Samples:</strong> For larger samples (n &gt; 30), the Central Limit Theorem (CLT) suggests that the distribution of the sample means tends to be normal, regardless of the population distribution. This means that for sufficiently large samples, the t-test can be robust to violations of normality. <em>However, extreme skewness, heavy tails, or outliers can still affect the test’s performance</em>.</p>
-</section>
-
-<section id="example-1-one-sample-t-test-3" class="title-slide slide level1 center">
-<h1>Example 1: One sample t-test</h1>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><span style="color: blue;"><strong>A</strong></span>ssumptions</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-2"><a></a></span>
-<span id="cb1-3"><a></a><span class="co"># Assuming 'skewed_sample' is your skewed data. For this example, let's simulate it</span></span>
-<span id="cb1-4"><a></a><span class="fu">set.seed</span>(<span class="dv">0</span>) <span class="co"># For reproducibility</span></span>
-<span id="cb1-5"><a></a>skewed_sample <span class="ot">&lt;-</span> <span class="fu">rlnorm</span>(<span class="dv">100</span>, <span class="at">meanlog =</span> <span class="dv">0</span>, <span class="at">sdlog =</span> <span class="dv">1</span>) <span class="sc">-</span> <span class="fu">exp</span>(<span class="fl">0.5</span>) <span class="co"># Skewed data, centered around 0</span></span>
-<span id="cb1-6"><a></a></span>
-<span id="cb1-7"><a></a><span class="co"># Create a data frame for ggplot</span></span>
-<span id="cb1-8"><a></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">value =</span> skewed_sample)</span>
-<span id="cb1-9"><a></a></span>
-<span id="cb1-10"><a></a><span class="co"># Plot</span></span>
-<span id="cb1-11"><a></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
-<span id="cb1-12"><a></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">binwidth =</span> <span class="fl">0.5</span>, <span class="at">fill =</span> <span class="st">"lightgreen"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb1-13"><a></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb1-14"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Skewed Distributed Sample"</span>, <span class="at">x =</span> <span class="st">"Value"</span>, <span class="at">y =</span> <span class="st">"Density"</span>) <span class="sc">+</span></span>
-<span id="cb1-15"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb1-16"><a></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(value)), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linetype =</span> <span class="st">"dotted"</span>) <span class="sc">+</span></span>
-<span id="cb1-17"><a></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fu">mean</span>(skewed_sample), <span class="at">y =</span> <span class="fl">0.35</span>, <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">"Mean:"</span>, <span class="fu">round</span>(<span class="fu">mean</span>(skewed_sample), <span class="dv">2</span>)), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">print</span>(p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lecture-05_files/figure-revealjs/unnamed-chunk-2-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
-</section>
-
-<section id="example-1-one-sample-t-test-4" class="title-slide slide level1 center">
-<h1>Example 1: One sample t-test</h1>
-<p><span style="color: blue;"><strong>A</strong></span>ssumptions</p>
-<ul>
-<li>Let’s help out our hippie friend: We have asked students to measure their heart rate and randomly selected heart rates from 21 students (a <em>completely randomised design</em>) in our hippie friends ENVX1002 class. Note we will do this exercise in class!!</li>
-</ul>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb3-2"><a></a>heart_rate <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">21</span>, <span class="at">mean =</span> <span class="dv">70</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<ul>
-<li>We have a small sample size so often we use a <em>stem plot</em> or <em>box plot</em> to look at the distribution. Both look quite symmetrical!</li>
-</ul>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">stem</span>(heart_rate)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-  The decimal point is 1 digit(s) to the right of the |
-
-  4 | 7
-  5 | 8
-  6 | 01122445559
-  7 | 11345
-  8 | 01
-  9 | 4</code></pre>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">boxplot</span>(heart_rate)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lecture-05_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
-</section>
-
-<section id="example-1-one-sample-t-test-5" class="title-slide slide level1 center">
-<h1>Example 1: One sample t-test</h1>
-<p><span style="color: blue;"><strong>A</strong></span>ssumptions</p>
-<ul>
-<li>We can also look at the 6 number summary and the histogram. The histogram looks quite symmetrical and the 6 number summary is quite symmetrical.</li>
+<li>If (p &gt; 0.05), we do not have strong evidence against normality;</li>
+<li>This does not prove normality, but suggests the t-test may be reasonable.</li>
 </ul>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">summary</span>(heart_rate)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  46.54   61.63   64.89   67.68   72.77   94.16 </code></pre>
-</div>
-</div>
-<ul>
-<li>We can see that the mean and the median are quite similar. This is a good sign that the data is symmetrical and perhaps normally distributed.</li>
-<li>We can also start to think how our student heart rate compares to the national average of 70 bpm.</li>
-</ul>
-</section>
-
-<section id="example-one-sample-t-test" class="title-slide slide level1 center">
-<h1>Example: One sample t-test</h1>
-<p><span style="color: blue;"><strong>A</strong></span>ssumptions</p>
-<ul>
-<li>We can also use a hypothesis test called the <em>Shapiro Test</em> and use a plot called a <em>qqplot</em> (“Quantile Quantile plot”).</li>
-<li>We can see that the p-value of the shapiro test &gt; 0.05 - no strong evidence that the distribution is not normal.</li>
-<li>We can see that the points on the Q-Q plot are reasonably straight and follow the “line”.</li>
-</ul>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">shapiro.test</span>(heart_rate)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">shapiro.test</span>(heart_rate)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Shapiro-Wilk normality test
 
 data:  heart_rate
-W = 0.94441, p-value = 0.266</code></pre>
+W = 0.95114, p-value = 0.1814</code></pre>
 </div>
 </div>
-</div><div class="column" style="width:50%;">
-<div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">R base graphics</a></li><li><a href="#tabset-1-2">ggplot2</a></li><li><a href="#tabset-1-3">ggpubr</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1">
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">qqnorm</span>(heart_rate)</span>
-<span id="cb11-2"><a></a><span class="fu">qqline</span>(heart_rate)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lecture-05_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-1-2">
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb12-2"><a></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">sample =</span> heart_rate)) <span class="sc">+</span></span>
-<span id="cb12-3"><a></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
-<span id="cb12-4"><a></a>  <span class="fu">stat_qq_line</span>(<span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb12-5"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Q-Q Plot using ggplot2"</span>) <span class="sc">+</span></span>
-<span id="cb12-6"><a></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lecture-05_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-1-3">
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb13-2"><a></a><span class="fu">ggqqplot</span>(heart_rate, </span>
-<span id="cb13-3"><a></a>         <span class="at">main =</span> <span class="st">"Q-Q Plot using ggpubr"</span>,</span>
-<span id="cb13-4"><a></a>         <span class="at">color =</span> <span class="st">"blue"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lecture-05_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div></div>
 </section>
-
-<section id="example-1-one-sample-t-test-6" class="title-slide slide level1 center">
-<h1>Example 1: One sample t-test</h1>
-<p><span style="color: blue;"><strong>T</strong></span>est statistic</p>
-<p><strong>t-test</strong></p>
+<section id="class-example-test" class="slide level2">
+<h2>Class example: <span style="color: blue;"><strong>T</strong></span>est</h2>
+<p>For a one-sample t-test, the test statistic is:</p>
+<p><span class="math inline">\(t = \frac{\bar{y} - \mu}{s/\sqrt{n}}\)</span></p>
+<p>where:</p>
 <ul>
-<li>The formula is the same as the z-test but we use the t-distribution instead of the normal distribution and we use the sample standard deviation instead of the population standard deviation.</li>
-</ul>
-<p><span class="math inline">\(t = \frac{\bar{y} - \mu}{s / \sqrt{n}}\)</span> population variance unknown (estimate <span class="math inline">\(s^2\)</span>)</p>
-<ul>
-<li><span class="math inline">\(\bar{y}\)</span> is the sample mean</li>
-<li><span class="math inline">\(\mu\)</span> is the population mean</li>
-<li><span class="math inline">\(s\)</span> is the sample standard deviation</li>
-<li><span class="math inline">\(n\)</span> is the sample size</li>
+<li><span class="math inline">\(\bar{y}\)</span> = sample mean</li>
+<li><span class="math inline">\(\mu\)</span> = null (benchmark) value</li>
+<li><span class="math inline">\(s\)</span> = sample standard deviation</li>
+<li><span class="math inline">\(n\)</span> = sample size</li>
 </ul>
 </section>
-
-<section id="example-1-one-sample-t-test-7" class="title-slide slide level1 center">
-<h1>Example 1: One sample t-test</h1>
+<section id="class-example-test-1" class="slide level2">
+<h2>Class example: <span style="color: blue;"><strong>T</strong></span>est</h2>
 <p><span style="color: blue;"><strong>CI</strong></span> &amp; <span style="color: blue;"><strong>T</strong></span>-Statistic &amp; <span style="color: blue;"><strong>P</strong></span>-value</p>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p>Luckily for us we have a function in RStudio that does all of the above in one function!</p>
+<p>In R, the one-sample t-test gives us:</p>
+<ul>
+<li>the test statistic</li>
+<li>degrees of freedom</li>
+<li>the p-value</li>
+<li>the confidence interval</li>
+<li>the sample mean</li>
+</ul>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">t.test</span>(heart_rate,</span>
-<span id="cb14-2"><a></a>  <span class="at">mu =</span> <span class="dv">70</span>,</span>
-<span id="cb14-3"><a></a>  <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
-<span id="cb14-4"><a></a>  <span class="at">conf.level =</span> <span class="fl">0.95</span></span>
-<span id="cb14-5"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">t.test</span>(heart_rate,</span>
+<span id="cb5-2"><a></a>  <span class="at">mu =</span> <span class="dv">70</span>,</span>
+<span id="cb5-3"><a></a>  <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
+<span id="cb5-4"><a></a>  <span class="at">conf.level =</span> <span class="fl">0.95</span></span>
+<span id="cb5-5"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
 
 data:  heart_rate
-t = -1.0736, df = 20, p-value = 0.2958
+t = 0.25373, df = 29, p-value = 0.8015
 alternative hypothesis: true mean is not equal to 70
 95 percent confidence interval:
- 63.16242 72.19073
+ 66.76984 74.14513
 sample estimates:
 mean of x 
- 67.67657 </code></pre>
+ 70.45748 </code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
 <p>We can see the following output:</p>
 <ul>
-<li>the t-statistic = -1.0736</li>
-<li>the degrees of freedom = 20 <span class="math inline">\((n-1)\)</span></li>
-<li>the p-value = 0.2958</li>
-<li>the 95% confidence interval = (63.16242 72.19073)</li>
-<li>the sample mean = 67.67657</li>
+<li>the t-statistic = 0.25373</li>
+<li>the degrees of freedom = 29 <span class="math inline">\((n-1)\)</span></li>
+<li>the p-value = 0.8015</li>
+<li>the 95% confidence interval = (66.76984 74.14513)</li>
+<li>the sample mean = 70.45748</li>
 </ul>
 </div></div>
 </section>
-
-<section id="example-1-one-sample-t-test-8" class="title-slide slide level1 center">
-<h1>Example 1: One sample t-test</h1>
-<p><span style="color: blue;"><strong>C</strong></span>onclusion</p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/happy_mung.png"></p>
-<figcaption>Ceated using DALL.E 3</figcaption>
-</figure>
-</div>
-</div><div class="column" style="width:50%;">
-<p>Let’s revisit our hippie friend’s hypothesis</p>
-<ul>
-<li><p><span class="math inline">\(H_0=70 \text{ bpm}\)</span> (Null hypothesis)</p></li>
-<li><p><span class="math inline">\(H_1 \ne 70 \text{ bpm}\)</span> (Alternate hypothesis)</p></li>
-<li><p>The p-value is 0.2958 which is not less than 0.05. We retain null hypothesis.</p></li>
-<li><p>There is no strong evidence to indicate that the mean heart rate of ENVX1002 students is different to the global mean of 70 bpm. We can be 95% confident that the true mean heart rate of 63 and 72 (0 d.p.) beats per minute. Our global mean lies within this interval. Therefore we are petty confident that the class average heart rate is similar to the global average.</p></li>
-</ul>
-</div></div>
+<section id="class-example-conclusion" class="slide level2">
+<h2>Class example: <span style="color: blue;"><strong>C</strong></span>onclusion</h2>
+<h3 id="statistical-conclusion">Statistical conclusion</h3>
+<p>Because (p = 0.8015 &gt; 0.05), we <strong>fail to reject the null hypothesis</strong>.</p>
+<h3 id="scientific-conclusion">Scientific conclusion</h3>
+<p>The data do not provide strong evidence that the mean resting heart rate of ENVX1002 students differs from 70 bpm.</p>
+<p>Also note: - 70 bpm lies within the 95% confidence interval - this is consistent with the non-significant test result</p>
 </section>
-
-<section id="confidence-intervals" class="title-slide slide level1 center">
-<h1>Confidence intervals</h1>
+<section id="confidence-intervals" class="slide level2">
+<h2>Confidence intervals</h2>
+<p>A <strong>confidence interval</strong> gives a range of plausible values for an unknown population parameter.</p>
+<p>Many people prefer confidence intervals because they show:</p>
 <ul>
-<li>A confidence interval is a range of values, derived from a sample, that is likely to contain the value of an unknown population parameter.</li>
-<li>Confidence are important and many people prefer them to formal hypothesis tests because they give a range of values rather than a single value.</li>
-<li>There are two types we are going to look at:
-<ul>
-<li>Confidence interval where we <strong>know</strong> the population variance</li>
-<li>Confidence interval where we <strong>do not know</strong> the population variance</li>
-</ul></li>
+<li>the estimated value</li>
+<li>the uncertainty around that estimate</li>
 </ul>
+<p>A hypothesis test gives a decision about a claim. A confidence interval gives a plausible range.</p>
 </section>
-
-<section id="confidence-intervals---known-variance" class="title-slide slide level1 center">
-<h1>Confidence intervals - known variance</h1>
+<section id="confidence-intervals---known-variance" class="slide level2">
+<h2>Confidence intervals - known variance</h2>
 <ul>
 <li>Assuming our sample comes from a normal population, we can calculate the confidence interval for the mean of a population when the population <strong>variance is known</strong>. An example may be in manufacturing where we know the variance of a process.</li>
 <li>The formula for the confidence interval is:</li>
@@ -831,109 +735,65 @@ mean of x
 <p><span class="math inline">\(CI = \bar{y} \pm Z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}\)</span></p>
 <p>for the 95% confidence interval, <span class="math inline">\(\alpha = 0.05\)</span> and <span class="math inline">\(Z_{\alpha/2} = 1.96\)</span> i.e.&nbsp;2 standard errors from the mean.</p>
 </section>
-
-<section id="confidence-intervals---known-variance-1" class="title-slide slide level1 center">
-<h1>Confidence intervals - known variance</h1>
+<section id="confidence-intervals---unknown-variance" class="slide level2">
+<h2>Confidence intervals - Unknown variance</h2>
+<p>In practice, we usually do <strong>not</strong> know the population variance.</p>
+<p>In that case, we use the t-distribution:</p>
+<p><span class="math inline">\(CI = \bar{y} \pm t_{\alpha/2,df}\frac{s}{\sqrt{n}}\)</span></p>
+<p>where:</p>
 <ul>
-<li><span class="math inline">\(\bar y\)</span> is a random variable with a sampling distribution.</li>
-<li>Because there is an infinite number of values of <span class="math inline">\(\bar y\)</span>, there is an infinite number of intervals of the form <span class="math inline">\(CI = \bar{y} \pm 1.96 \cdot \frac{\sigma}{\sqrt{n}}\)</span>.</li>
-<li>The probability statement says that 95% of these intervals will actually include <span class="math inline">\(\mu\)</span> between the limits.</li>
-<li>For any one interval, <span class="math inline">\(CI = \bar{y} \pm 1.96 \cdot \frac{\sigma}{\sqrt{n}}\)</span>, we say that we are 95% confident that <span class="math inline">\(\mu\)</span> lies between these limits.</li>
-</ul>
-</section>
-
-<section id="confidence-intervals---known-variance-2" class="title-slide slide level1 center">
-<h1>Confidence intervals - known variance</h1>
-<p><strong>Example</strong></p>
-<p>Say we have measured the weights of 6 chocolate bars from Florry’s chocolate factory. The readings were:</p>
-<p>48 43 45 51 49 40</p>
-<p>The mean for these six values is <span class="math inline">\(\bar y = 46\)</span>g. Let’s assume that the bar weights follow a normal distribution and that <span class="math inline">\(\sigma = 1\)</span>g These assumptions allow us to calculate a 95% z-based confidence interval:</p>
-<p>So the 95% CI for the current example is</p>
-<p><span class="math inline">\(CI = 46 \pm 1.96 \cdot \frac{1}{\sqrt{6}}\)</span> or <span class="math inline">\(CI = 46 \pm 0.80\)</span> or <span class="math inline">\(CI = (45.20, 46.80)\)</span></p>
-<p>So we are 95% confident that the true mean weight of the chocolate bars is between 45.20 and 46.80g.</p>
-<ul>
-<li>We will calculate confidence intervals with <strong>unknown variance</strong> in later on.</li>
-</ul>
-</section>
-
-<section id="confidence-intervals---unknown-variance" class="title-slide slide level1 center">
-<h1>Confidence intervals - Unknown variance</h1>
-<ul>
-<li><p>We can also calculate a confidence interval when we do not know the population variance.</p></li>
-<li><p>The formula for the confidence interval is:<br>
-<span class="math inline">\(CI = \bar{y} \pm t_{\alpha/2} \cdot \frac{s}{\sqrt{n}}\)</span></p></li>
-<li><p>For the 95% confidence interval, <span class="math inline">\(\alpha = 0.05\)</span> and <span class="math inline">\(t_{\alpha/2} = 2.093\)</span> (for 20 degrees of freedom)</p></li>
-<li><p>The degrees of freedom is <span class="math inline">\(n-1\)</span></p></li>
+<li><span class="math inline">\(s\)</span> is the sample standard deviation</li>
+<li><span class="math inline">\(df = n - 1\)</span></li>
 </ul>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">29</span>) <span class="do">## in our heart rate example, n=30 so df = 29 </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.085963</code></pre>
+<pre><code>[1] 2.04523</code></pre>
 </div>
 </div>
 </section>
-
-<section id="confidence-intervals---unknown-variance-1" class="title-slide slide level1 center">
-<h1>Confidence intervals - Unknown variance</h1>
+<section id="confidence-intervals---unknown-variance-1" class="slide level2">
+<h2>Confidence intervals - Unknown variance</h2>
 <ul>
-<li>Another interesting result to contemplate can be demonstrated through the following simulation of 100 studies, each containing n = 6 observations of a fictitious toxic substance concentration (<span class="math inline">\(\mu g / l\)</span>) assumed to be <span class="math inline">\(\sim N(0.3, 0.12)\)</span>. For each sample the 95% confidence interval calculated:</li>
+<li>The following is simulation of 100 studies, each containing n = 6 observations of a fictitious toxic substance concentration (<span class="math inline">\(\mu g / l\)</span>) assumed to be <span class="math inline">\(\sim N(0.3, 0.12)\)</span>.</li>
+<li>For each sample the 95% confidence interval calculated:</li>
 </ul>
 
 <img data-src="images/CI_sim.png" class="r-stretch quarto-figure-center"><p class="caption">Depiction of confidence intervals from each of 100 simulated samples</p></section>
-
-<section id="confidence-intervals---unknown-variance-2" class="title-slide slide level1 center">
-<h1>Confidence intervals - Unknown variance</h1>
+<section id="confidence-intervals---unknown-variance-2" class="slide level2">
+<h2>Confidence intervals - Unknown variance</h2>
 <ul>
-<li>Approximately 95% of these simulated samples have a confidence interval that includes the true value of 0.3 (<span class="math inline">\(\mu g / l\)</span>). In the graph above, a confidence interval includes the true mean value of 0.3 if the vertical line (representing the width of the CI) crosses the horizontal line.</li>
+<li>In the graph on the previous slide, a confidence interval includes the true mean value of 0.3 if the vertical line (representing the width of the CI) crosses the horizontal line.</li>
 <li>We have to accept that 5% of the time we will not capture the true mean.</li>
 <li>We can widen the confidence interval to 99% so we are more confident but this can increase the chance of a type II error.</li>
 </ul>
 </section>
-
-<section id="example-2-one-sample-test" class="title-slide slide level1 center">
-<h1>Example 2: One sample test</h1>
-<p>What happens when the assumptions are not met?</p>
-<ol type="1">
-<li>We can try and transform the data to make it more normal (and equal variance for later)</li>
-<li>We can use a non-parametric test (later)</li>
-</ol>
-</section>
-
-<section id="example-2-data-transformations" class="title-slide slide level1 center">
-<h1>Example 2: Data transformations</h1>
-<p>My data is not normal :( what can I do? - Sometimes we can transform our data to make it more normal. - Let’s look at an example: - Total nitrogen (TN) levels @ Wallacia in western Sydney on the Nepean River - According to the ANZECC guidelines, the maximum acceptable level of TN in an lowland river is 500 <span class="math inline">\(\mu g/L\)</span> and for an upland river = 250 <span class="math inline">\(\mu g/l\)</span>. (see Table 3.3.2 in Australian and New Zealand Guidelines for Fresh and Marine Water Quality)</p>
+<section id="example-2-water-quality" class="slide level2">
+<h2>Example 2: Water Quality</h2>
+<p>Let’s look at our water quality example again:</p>
+<ul>
+<li>The data is Total Nitrogen (TN) levels @ Wallacia in western Sydney on the Nepean River</li>
+<li>According to the ANZECC guidelines, the maximum acceptable level of TN in an lowland river is 500 <span class="math inline">\(\mu g/L\)</span> and for an upland river = 250 <span class="math inline">\(\mu g/l\)</span>. (see Table 3.3.2 in Australian and New Zealand Guidelines for Fresh and Marine Water Quality)</li>
+<li>We want to know if the observed mean value of TN in our sample is different to the guideline value of 500 <span class="math inline">\(\mu g/L\)</span></li>
+</ul>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>TN <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/TN_Wallacia.csv"</span>)</span>
-<span id="cb18-2"><a></a><span class="fu">str</span>(TN)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>TN <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/TN_Wallacia.csv"</span>)</span>
+<span id="cb9-2"><a></a><span class="fu">str</span>(TN)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   29 obs. of  1 variable:
  $ TN: int  1020 1120 1170 920 920 1010 850 910 800 710 ...</code></pre>
 </div>
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">mean</span>(TN<span class="sc">$</span>TN, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="co"># na.rm=TRUE if we have missing values</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 855.8621</code></pre>
-</div>
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">median</span>(TN<span class="sc">$</span>TN, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 800</code></pre>
-</div>
 </div>
 </section>
-
-<section id="example-2-state-hypothesis" class="title-slide slide level1 center">
-<h1>Example 2: State Hypothesis</h1>
+<section id="example-2-water-quality-1" class="slide level2">
+<h2>Example 2: Water Quality</h2>
+<p><strong>State Hypothesis</strong></p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
@@ -949,67 +809,67 @@ mean of x
 </div>
 </div></div>
 </section>
-
-<section id="example-2-check-assumptions" class="title-slide slide level1 center">
-<h1>Example 2: Check assumptions</h1>
+<section id="example-2-water-quality-2" class="slide level2">
+<h2>Example 2: Water Quality</h2>
+<p><strong>Check assumptions</strong></p>
+<p>What do we notice about the plots? Does the data look normally distributed? Do we see strong skewness or outliers?</p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb24-2"><a></a><span class="fu">library</span>(gridExtra)</span>
-<span id="cb24-3"><a></a></span>
-<span id="cb24-4"><a></a><span class="co"># Histogram</span></span>
-<span id="cb24-5"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(TN, <span class="fu">aes</span>(<span class="at">x =</span> TN)) <span class="sc">+</span></span>
-<span id="cb24-6"><a></a>  <span class="fu">geom_histogram</span>(</span>
-<span id="cb24-7"><a></a>    <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb24-8"><a></a>    <span class="at">bins =</span> <span class="dv">7</span></span>
-<span id="cb24-9"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb24-10"><a></a>  <span class="fu">xlab</span>(<span class="st">"Total Nitrogen (ug/L)"</span>) <span class="sc">+</span></span>
-<span id="cb24-11"><a></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb24-12"><a></a></span>
-<span id="cb24-13"><a></a><span class="co"># Boxplot</span></span>
-<span id="cb24-14"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(TN, <span class="fu">aes</span>(<span class="at">x =</span> TN)) <span class="sc">+</span></span>
-<span id="cb24-15"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb24-16"><a></a>  <span class="fu">xlab</span>(<span class="st">"Total Nitrogen (ug/L)"</span>) <span class="sc">+</span></span>
-<span id="cb24-17"><a></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb24-18"><a></a></span>
-<span id="cb24-19"><a></a><span class="co"># Q-Q plot</span></span>
-<span id="cb24-20"><a></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(TN, <span class="fu">aes</span>(<span class="at">sample =</span> TN)) <span class="sc">+</span></span>
-<span id="cb24-21"><a></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
-<span id="cb24-22"><a></a>  <span class="fu">stat_qq_line</span>(<span class="at">col =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb24-23"><a></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb11-2"><a></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb11-3"><a></a></span>
+<span id="cb11-4"><a></a><span class="co"># Histogram</span></span>
+<span id="cb11-5"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(TN, <span class="fu">aes</span>(<span class="at">x =</span> TN)) <span class="sc">+</span></span>
+<span id="cb11-6"><a></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="cb11-7"><a></a>    <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb11-8"><a></a>    <span class="at">bins =</span> <span class="dv">7</span></span>
+<span id="cb11-9"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb11-10"><a></a>  <span class="fu">xlab</span>(<span class="st">"Total Nitrogen (ug/L)"</span>) <span class="sc">+</span></span>
+<span id="cb11-11"><a></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb11-12"><a></a></span>
+<span id="cb11-13"><a></a><span class="co"># Boxplot</span></span>
+<span id="cb11-14"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(TN, <span class="fu">aes</span>(<span class="at">x =</span> TN)) <span class="sc">+</span></span>
+<span id="cb11-15"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb11-16"><a></a>  <span class="fu">xlab</span>(<span class="st">"Total Nitrogen (ug/L)"</span>) <span class="sc">+</span></span>
+<span id="cb11-17"><a></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb11-18"><a></a></span>
+<span id="cb11-19"><a></a><span class="co"># Q-Q plot</span></span>
+<span id="cb11-20"><a></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(TN, <span class="fu">aes</span>(<span class="at">sample =</span> TN)) <span class="sc">+</span></span>
+<span id="cb11-21"><a></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
+<span id="cb11-22"><a></a>  <span class="fu">stat_qq_line</span>(<span class="at">col =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb11-23"><a></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="co"># Arrange the plots in a 2x2 layout</span></span>
-<span id="cb25-2"><a></a><span class="fu">grid.arrange</span>(p1, p2, p3, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co"># Arrange the plots in a 2x2 layout</span></span>
+<span id="cb12-2"><a></a><span class="fu">grid.arrange</span>(p1, p2, p3, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="lecture-05_files/figure-revealjs/unnamed-chunk-15-1.png" width="960"></p>
+<p><img data-src="lecture-05_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
 </div></div>
 </section>
-
-<section id="example-2-check-assumptions-1" class="title-slide slide level1 center">
-<h1>Example 2: Check assumptions</h1>
+<section id="example-2-check-assumptions" class="slide level2">
+<h2>Example 2: Check assumptions</h2>
 <p><strong>Shapiro-Wilk normality test</strong></p>
 <ul>
-<li>For smaller sample sizes, use the Shapiro-Wilk test (say &lt; 50)</li>
+<li>For smaller sample sizes, we can use the Shapiro-Wilk test (say &lt; 50) to confirm whether the data is normally distributed or not.</li>
 </ul>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">shapiro.test</span>(TN<span class="sc">$</span>TN)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">shapiro.test</span>(TN<span class="sc">$</span>TN)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1021,12 +881,11 @@ W = 0.92582, p-value = 0.04293</code></pre>
 </div>
 <ul>
 <li>We see P&lt;0.05 so we <strong>reject</strong> the null hypothesis that the data is normally distributed.</li>
-<li>For really large samples (&gt;&gt;30) the central limit theorem suggests that the distribution of the sample means tends to be normal, regardless of the population distribution. This means that for sufficiently large samples, the t-test can be robust to violations of normality. However, extreme skewness, heavy tails, or outliers can still affect the test’s performance.</li>
+<li>For really large samples (&gt;&gt;30) the central limit theorem suggests that the distribution of the sample means tends to be normal. However, extreme skewness, heavy tails, or outliers can still affect the test’s performance.</li>
 </ul>
 </section>
-
-<section id="example-2-transformations" class="title-slide slide level1 center">
-<h1>Example 2: Transformations</h1>
+<section id="example-2-transformations" class="slide level2">
+<h2>Example 2: Transformations</h2>
 <p>For right (positive) skewed data, we can use a</p>
 <ul>
 <li><span class="math inline">\(1/x\)</span> inverse transformation for highly skewed data.</li>
@@ -1035,91 +894,79 @@ W = 0.92582, p-value = 0.04293</code></pre>
 </ul>
 <p>For left (negative) skewed data (which is rare to find), we can “try” a</p>
 <ul>
-<li><span class="math inline">\(x^2\)</span> or <span class="math inline">\(x^3\)</span> transformation.</li>
+<li><span class="math inline">\(x^2\)</span>, <span class="math inline">\(x^3\)</span> or <span class="math inline">\(e^x\)</span> transformation.</li>
 </ul>
 </section>
-
-<section id="example-2-transformations-recheck-assumptions" class="title-slide slide level1 center">
-<h1>Example 2: Transformations &amp; Recheck assumptions</h1>
+<section id="example-2-transformations-recheck-assumptions" class="slide level2">
+<h2>Example 2: Transformations &amp; Recheck assumptions</h2>
+<p>Let’s try a log10 transformation:</p>
+<ul>
+<li>We start by creating a new column in our data frame called log10_TN</li>
+<li>We then take the log10 of the TN column and store it in the new column - note we could also use “mutate” from the dplyr package to do this.</li>
+</ul>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="co"># Let's try a log10 transformation</span></span>
-<span id="cb28-2"><a></a><span class="co"># We start by creating a new column in our data frame called log10_TN</span></span>
-<span id="cb28-3"><a></a><span class="co"># We then take the log10 of the TN column and store it in the new column</span></span>
-<span id="cb28-4"><a></a>TN<span class="sc">$</span>log10_TN <span class="ot">&lt;-</span> <span class="fu">log10</span>(TN<span class="sc">$</span>TN)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>TN<span class="sc">$</span>log10_TN <span class="ot">&lt;-</span> <span class="fu">log10</span>(TN<span class="sc">$</span>TN)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
-<p><strong>Geometric mean</strong></p>
-<p>Note that now we are looking at the geometric mean as opposed the the arithmatic mean which was 855.86 in our case</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="dv">10</span><span class="sc">^</span><span class="fu">mean</span>(TN<span class="sc">$</span>log10_TN)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 770.0666</code></pre>
-</div>
 </div>
 </section>
-
-<section id="example-2-recheck-assumptions" class="title-slide slide level1 center">
-<h1>Example 2: Recheck assumptions</h1>
+<section id="example-2-recheck-assumptions" class="slide level2">
+<h2>Example 2: Recheck assumptions</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb31-2"><a></a><span class="fu">library</span>(gridExtra)</span>
-<span id="cb31-3"><a></a></span>
-<span id="cb31-4"><a></a><span class="co"># Histogram</span></span>
-<span id="cb31-5"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(TN, <span class="fu">aes</span>(<span class="at">x =</span> log10_TN)) <span class="sc">+</span></span>
-<span id="cb31-6"><a></a>  <span class="fu">geom_histogram</span>(</span>
-<span id="cb31-7"><a></a>    <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb31-8"><a></a>    <span class="at">bins =</span> <span class="dv">7</span></span>
-<span id="cb31-9"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb31-10"><a></a>  <span class="fu">xlab</span>(<span class="st">"Log10 Total Nitrogen (ug/L)"</span>) <span class="sc">+</span></span>
-<span id="cb31-11"><a></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb31-12"><a></a></span>
-<span id="cb31-13"><a></a><span class="co"># Boxplot</span></span>
-<span id="cb31-14"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(TN, <span class="fu">aes</span>(<span class="at">x =</span> log10_TN)) <span class="sc">+</span></span>
-<span id="cb31-15"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb31-16"><a></a>  <span class="fu">xlab</span>(<span class="st">"log10 Total Nitrogen (ug/L)"</span>) <span class="sc">+</span></span>
-<span id="cb31-17"><a></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb31-18"><a></a></span>
-<span id="cb31-19"><a></a><span class="co"># Q-Q plot</span></span>
-<span id="cb31-20"><a></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(TN, <span class="fu">aes</span>(<span class="at">sample =</span> log10_TN)) <span class="sc">+</span></span>
-<span id="cb31-21"><a></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
-<span id="cb31-22"><a></a>  <span class="fu">stat_qq_line</span>(<span class="at">col =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb31-23"><a></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb16-2"><a></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb16-3"><a></a></span>
+<span id="cb16-4"><a></a><span class="co"># Histogram</span></span>
+<span id="cb16-5"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(TN, <span class="fu">aes</span>(<span class="at">x =</span> log10_TN)) <span class="sc">+</span></span>
+<span id="cb16-6"><a></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="cb16-7"><a></a>    <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb16-8"><a></a>    <span class="at">bins =</span> <span class="dv">7</span></span>
+<span id="cb16-9"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb16-10"><a></a>  <span class="fu">xlab</span>(<span class="st">"Log10 Total Nitrogen (ug/L)"</span>) <span class="sc">+</span></span>
+<span id="cb16-11"><a></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb16-12"><a></a></span>
+<span id="cb16-13"><a></a><span class="co"># Boxplot</span></span>
+<span id="cb16-14"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(TN, <span class="fu">aes</span>(<span class="at">x =</span> log10_TN)) <span class="sc">+</span></span>
+<span id="cb16-15"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb16-16"><a></a>  <span class="fu">xlab</span>(<span class="st">"log10 Total Nitrogen (ug/L)"</span>) <span class="sc">+</span></span>
+<span id="cb16-17"><a></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb16-18"><a></a></span>
+<span id="cb16-19"><a></a><span class="co"># Q-Q plot</span></span>
+<span id="cb16-20"><a></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(TN, <span class="fu">aes</span>(<span class="at">sample =</span> log10_TN)) <span class="sc">+</span></span>
+<span id="cb16-21"><a></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
+<span id="cb16-22"><a></a>  <span class="fu">stat_qq_line</span>(<span class="at">col =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb16-23"><a></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="co"># Arrange the plots in a 2x2 layout</span></span>
-<span id="cb32-2"><a></a><span class="fu">grid.arrange</span>(p1, p2, p3, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="co"># Arrange the plots in a 2x2 layout</span></span>
+<span id="cb17-2"><a></a><span class="fu">grid.arrange</span>(p1, p2, p3, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="lecture-05_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></p>
+<p><img data-src="lecture-05_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
 </div></div>
 </section>
-
-<section id="example-2-recheck-assumptions-1" class="title-slide slide level1 center">
-<h1>Example 2: Recheck assumptions</h1>
+<section id="example-2-recheck-assumptions-1" class="slide level2">
+<h2>Example 2: Recheck assumptions</h2>
 <p><strong>Shapiro-Wilk normality test</strong></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">shapiro.test</span>(TN<span class="sc">$</span>log10_TN)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">shapiro.test</span>(TN<span class="sc">$</span>log10_TN)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1133,20 +980,26 @@ W = 0.97279, p-value = 0.6375</code></pre>
 <li>From our previous slide, our data seems to be quite symmetrical</li>
 <li>Now P&gt;0.05 so we <strong>fail to reject</strong> the null hypothesis that the data is normally distributed.</li>
 <li>We can now proceed with our t-test using the log transformed data.</li>
-<li><strong>NOTE:</strong> <em>We will also need to transform the hypothesised mean of 500 to the log10 scale.</em></li>
 </ul>
 </section>
-
-<section id="example-2-t-test-p-value" class="title-slide slide level1 center">
-<h1>Example 2: T-test &amp; P-Value</h1>
+<section id="example-2-restate-the-hypotheses" class="slide level2">
+<h2>Example 2: Restate the hypotheses</h2>
+<ul>
+<li><p>We will also need to transform the hypothesised mean of 500 to the log10 scale.</p></li>
+<li><p><span class="math inline">\(H_0: \mu = log10(500)\)</span> <span class="math inline">\(\mu g/l\)</span> (Null hypothesis)</p></li>
+<li><p><span class="math inline">\(H_1: \mu \ne log10(500)\)</span> <span class="math inline">\(\mu g/l\)</span> (Alternate hypothesis)</p></li>
+</ul>
+</section>
+<section id="example-2-t-test-p-value" class="slide level2">
+<h2>Example 2: T-test &amp; P-Value</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">t.test</span>(TN<span class="sc">$</span>log10_TN,</span>
-<span id="cb35-2"><a></a>  <span class="at">mu =</span> <span class="fu">log10</span>(<span class="dv">500</span>),</span>
-<span id="cb35-3"><a></a>  <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
-<span id="cb35-4"><a></a>  <span class="at">conf.level =</span> <span class="fl">0.95</span></span>
-<span id="cb35-5"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">t.test</span>(TN<span class="sc">$</span>log10_TN,</span>
+<span id="cb20-2"><a></a>  <span class="at">mu =</span> <span class="fu">log10</span>(<span class="dv">500</span>),</span>
+<span id="cb20-3"><a></a>  <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
+<span id="cb20-4"><a></a>  <span class="at">conf.level =</span> <span class="fl">0.95</span></span>
+<span id="cb20-5"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1168,9 +1021,20 @@ mean of x
 <li>Can we say something about the direction??</li>
 </ul>
 </section>
-
-<section id="example-2-confidence-intervals" class="title-slide slide level1 center">
-<h1>Example 2: Confidence intervals</h1>
+<section id="example-2-geometric-mean-confidence-intervals" class="slide level2">
+<h2>Example 2: Geometric mean &amp; Confidence intervals</h2>
+<p><strong>Geometric mean</strong></p>
+<p>Note that now we are looking at the geometric mean as opposed the the arithmatic mean which was 855.86 in our case</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="dv">10</span><span class="sc">^</span><span class="fu">mean</span>(TN<span class="sc">$</span>log10_TN)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 770.0666</code></pre>
+</div>
+</div>
+<p><strong>Confidence intervals</strong></p>
 <ul>
 <li>We need to back transform the confidence interval to the original scale.</li>
 <li>To back-transform the confidence interval we can use the following:</li>
@@ -1179,14 +1043,14 @@ mean of x
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="dv">10</span><span class="sc">^</span>(<span class="fl">2.81</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="dv">10</span><span class="sc">^</span>(<span class="fl">2.81</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 645.6542</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="dv">10</span><span class="sc">^</span>(<span class="fl">2.97</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="dv">10</span><span class="sc">^</span>(<span class="fl">2.97</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 933.2543</code></pre>
@@ -1196,9 +1060,8 @@ mean of x
 <li>This means that we are 95% confident that the geometric mean (back-transformed mean) of the sample is between approximately 646 and 933 ug/l. This is higher than the hypothesised mean.</li>
 </ul>
 </section>
-
-<section id="example-2-conclusion" class="title-slide slide level1 center">
-<h1>Example 2: Conclusion</h1>
+<section id="example-2-conclusion" class="slide level2">
+<h2>Example 2: Conclusion</h2>
 <ol type="1">
 <li>The data was log10 transformed to meet the assumptions of the t-test.</li>
 <li>We have strong evidence that the mean value of Total Nitrogen in Nepean River is different to 500 ug/L.</li>
@@ -1206,27 +1069,30 @@ mean of x
 <li>Looking at the confidence interval, we can say that the mean value of TN in Nepean River is significantly greater than 500 ug/L.</li>
 </ol>
 </section>
-
-<section id="example-3-one-tailed-test" class="title-slide slide level1 center">
-<h1>Example 3: One tailed test</h1>
+<section id="example-3-one-tailed-test" class="slide level2">
+<h2>Example 3: One tailed test</h2>
 <ul>
-<li><p>We can also use a one tailed test if we are specifically interested in whether the observed value is greater or less than the expected value.</p></li>
-<li><p>In this case we only want to know if the TN concentration is greater than the ANZECC guidelines of 500 <span class="math inline">\(\mu g/l\)</span>.</p></li>
-<li><p><span class="math inline">\(H_0: \mu = 500\)</span> <span class="math inline">\(\mu g/l\)</span> (Null hypothesis)</p></li>
-<li><p><span class="math inline">\(H_1: \mu &gt; 500\)</span> <span class="math inline">\(\mu g/l\)</span> (Alternate hypothesis)</p></li>
+<li>We can also use a one tailed test if we are specifically interested in whether the observed value is greater or less than the expected value.</li>
+<li>In this case we only want to know if the TN concentration is greater than the ANZECC guidelines of 500 <span class="math inline">\(\mu g/l\)</span>.</li>
 </ul>
+<blockquote>
+<p>Detect unsafe water | H₀: μ ≤ 500, H₁: μ &gt; 500 |</p>
+</blockquote>
+<p>OR</p>
+<blockquote>
+<p>Detect unsafe water | H₀: μ ≤ <span class="math inline">\(log_{10}500\)</span>, H₁: μ &gt; <span class="math inline">\(log_{10}500)\)</span> |</p>
+</blockquote>
 </section>
-
-<section id="example-3-one-tailed-test-1" class="title-slide slide level1 center">
-<h1>Example 3: One tailed test</h1>
+<section id="example-3-one-tailed-test-1" class="slide level2">
+<h2>Example 3: One tailed test</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="fu">t.test</span>(TN<span class="sc">$</span>log10_TN,</span>
-<span id="cb41-2"><a></a>  <span class="at">mu =</span> <span class="fu">log10</span>(<span class="dv">500</span>),</span>
-<span id="cb41-3"><a></a>  <span class="at">alternative =</span> <span class="st">"greater"</span>,</span>
-<span id="cb41-4"><a></a>  <span class="at">conf.level =</span> <span class="fl">0.95</span></span>
-<span id="cb41-5"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="fu">t.test</span>(TN<span class="sc">$</span>log10_TN,</span>
+<span id="cb28-2"><a></a>  <span class="at">mu =</span> <span class="fu">log10</span>(<span class="dv">500</span>),</span>
+<span id="cb28-3"><a></a>  <span class="at">alternative =</span> <span class="st">"greater"</span>,</span>
+<span id="cb28-4"><a></a>  <span class="at">conf.level =</span> <span class="fl">0.95</span></span>
+<span id="cb28-5"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1244,17 +1110,15 @@ mean of x
 </div>
 <ul>
 <li>P &lt; 0.001 (3.d.p.) so we reject the null hypothesis.</li>
-<li>Because we are doing a one tailed test we can now conclude that the mean value of TN in Nepean River is greater than 500 ug/L.</li>
+<li>Because we are doing a one tailed test we can now conclude that the mean value of TN in Nepean River is greater than <span class="math inline">\(log_{10}500 \mu g/L\)</span></li>
 <li>Take a look at the confidence interval and the p-value. What do you notice when comparing to the two tailed test?</li>
 </ul>
 </section>
-
-<section id="example-3-one-tailed-test-2" class="title-slide slide level1 center">
-<h1>Example 3: One tailed test</h1>
+<section id="example-3-one-tailed-test-2" class="slide level2">
+<h2>Example 3: One tailed test</h2>
 <p><a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/j.2041-210X.2010.00014.x">Ruxton and Neuhäuser 2010</a></p>
 
-<img data-src="images/one_tail.png" class="r-stretch"></section>
-
+<img data-src="images/one_tail.png" class="r-stretch"></section></section>
 <section id="references" class="title-slide slide level1 center">
 <h1>References</h1>
 <ul>

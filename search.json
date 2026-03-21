@@ -2091,6 +2091,363 @@
     "text": "Practical implications of the CLT\nThe Central Limit Theorem enables modern inferential statistics:\n\nMaking inferences from samples to populations\n\nEstimate population parameters with quantifiable precision\nCalculate confidence intervals for parameters (coming soon!)\nPerform hypothesis tests with known error rates\n\nWorks regardless of population distribution\n\nNon-normal data still produces normally distributed sample means\nEnables parametric tests even when original data is skewed\nOnly requires sufficiently large samples (n ≥ 30 is often adequate)\n\nFoundation for statistical theory"
   },
   {
+    "objectID": "lectures/L05/lecture-05.html#important-notice",
+    "href": "lectures/L05/lecture-05.html#important-notice",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Important Notice",
+    "text": "Important Notice\n\n\nThe Faculty has been informed of instances where students are being targeted by illegitimate academic services, which could potentially lead to plagiarism or other breaches.\nThis can include:\n\n“tutoring” services who provide assignment instructions or model answers;\nusing another person or company to write or complete your assignment;\nusing online file-sharing sites that lead to plagiarism.\n\nEngaging in such activities could constitute a breach of the Academic Integrity Policy and may result in penalties, including failing the assignment, the unit, or even a suspension or exclusion for misconduct.\n\nWe want you to do well on assessments. Contact the Learning Hub, you tutor, or Unit Coordinator to get support.\nThere are resources available to help you. Don’t be afraid to ask for help."
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#learning-outcomes",
+    "href": "lectures/L05/lecture-05.html#learning-outcomes",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nLO1. By the end of this course, students will be able to implement basic reproducible research practices—including consistent data organization, documented code, and version-controlled workflows—so that their statistical analyses and results can be readily replicated and validated by others.\n\n\nLO2. By the end of this course, students will demonstrate proficiency in utilizing R and Excel to effectively explore and describe life science datasets.\n\n\nLO3. By the end of this course, students will be able to apply parametric and non-parametric statistical inference methods to experimental and observational data using RStudio and effectively interpret and communicate the results in the context of the data.\n\nLO4. By the end ot this course, students will be able to put into practice both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.\n\nLO5. By the end of this course, students will be able to articulate statistical and modelling results clearly and convincingly in both written reports and oral presentations, working effectively as an individual and collaboratively in a team, showcasing the ability to convey complex information to varied audiences."
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#inferential-statistics",
+    "href": "lectures/L05/lecture-05.html#inferential-statistics",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Inferential statistics",
+    "text": "Inferential statistics\n\nSo far we have focused on Exploratory Data Analysis EDA;\nEDA helps us describe and visualise data;\nInferential statistics takes the next step: using a sample to learn about a population;\nThis is an important and sometimes difficult step in statistics;\nBecause samples vary by chance, we need formal methods to decide whether an observed difference is likely to reflect the real effect."
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#hypothesis-testing",
+    "href": "lectures/L05/lecture-05.html#hypothesis-testing",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Hypothesis testing",
+    "text": "Hypothesis testing\n\nIn statistics, a hypothesis is a claim about a population parameter.\nWe often begin with a benchmark or reference value\nWe then ask:\n\n\nIs our sample consistent with that claim, or is the difference too large to plausibly due to chance alone?"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#hypothesis-testing-1",
+    "href": "lectures/L05/lecture-05.html#hypothesis-testing-1",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Hypothesis testing",
+    "text": "Hypothesis testing\n\n\n\nSuppose the guideline value for Total Nitrogen (TN) at a site along a river is \\(500 \\mu g/L\\)\nWe might ask\n\n\nIs the mean TN concentration at this site equal to \\(500 \\mu g/L\\), or is it different?\n\n\nThis gives us a natural hypothesis test:\n\nNull hypothesis \\(H_0:\\) the mean TN concentration is \\(500 \\mu g/L\\)\nAlternative hypothesis \\(H_1:\\) the mean TN concentration is NOT \\(500 \\mu g/L\\)\n\n\n\n\n\n\nGrose River - Floris van Ogtrop"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#hypothesis-testing-workflow",
+    "href": "lectures/L05/lecture-05.html#hypothesis-testing-workflow",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Hypothesis testing workflow",
+    "text": "Hypothesis testing workflow\nWe will follow the steps in hypothesis testing\n\nState the hypotheses;\nCheck assumptions;\nCalculate the test statistic;\nObtain P-value, critical value, confidence intervals;\nDraw the statistical conclusion;\nWrite a scientific (biological) conclusion."
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#hypothesis-testing-workflow-1",
+    "href": "lectures/L05/lecture-05.html#hypothesis-testing-workflow-1",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Hypothesis testing workflow",
+    "text": "Hypothesis testing workflow\nA usefull acronym is HATPC:\n\nH: Hypothesis\nA: Assumptions\nT: Test statistic\nP: P-Value\nC: Conclusion"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#h-hypothesis",
+    "href": "lectures/L05/lecture-05.html#h-hypothesis",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "H: Hypothesis",
+    "text": "H: Hypothesis\n\nThe null hypothesis \\((H_0)\\) is the benchmark or reference claim\nThe alternative hypothesis \\((H_1)\\) is the competing claim we are interested in.\n\nFor example\n\n\\(H_0:\\mu = 500 \\mu g/L\\)\n\\(H_1:\\mu \\ne 500 \\mu g/L\\)"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#a-assumptions",
+    "href": "lectures/L05/lecture-05.html#a-assumptions",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "A: Assumptions",
+    "text": "A: Assumptions\n\nBefore carrying out a t-test, we need to check whether its assumptions are reasonable;\nFor a one sample t-test, an important assumption is that the sample data is approximately normally distributed.\nWe usually check this by:\n\n\nlooking at the data using plots\nChecking for strong skewness or outliers\nOptionally using a formal test such as the Shapiro-Wilk test"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#t-test-statistic",
+    "href": "lectures/L05/lecture-05.html#t-test-statistic",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "T: Test Statistic",
+    "text": "T: Test Statistic\nA test statistic measure show far the observed result is from what we would expect under the null hypothesis.\n\\(\\text{Test statistic}=\\frac{\\text{Observed value - Expected value}}{\\text{Standard error}}\\)\nThis is essentially\n\\(=\\frac{\\text{Signal}}{\\text{Noise}}\\)\n\nNumerator = difference from the null value\nDenominator = uncertainty in that estimate"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#p-p-value",
+    "href": "lectures/L05/lecture-05.html#p-p-value",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "P: p-value",
+    "text": "P: p-value\n\nThe p-value tells us how unusual our results would be if the null hypothesis were true\n\nMore formally:\n\nIt is the probability of observing the test statistic, or something more extreme, assuming \\(H_0\\) is true.\n\nSo the p-value helps us judge whether the data are consistent with the null hypothesis."
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#p-p-value-1",
+    "href": "lectures/L05/lecture-05.html#p-p-value-1",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "P: p-value",
+    "text": "P: p-value\nWhat does this have to do with sampling distributions??"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#p-p-value-2",
+    "href": "lectures/L05/lecture-05.html#p-p-value-2",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "P: p-value",
+    "text": "P: p-value\nA useful memory aid is:\n“If the P-value is low the Null hypothesis must go.”\nBut more formally:\n\nIf \\(p &lt; 0.05\\) the data provide evidence against \\(H_0\\)\nIf \\(p \\ge 0.05\\) the data do not provide strong evidence against \\(H_0\\)\n\nImportant:\n\nWe do not accept \\(H_0\\)\nWe say we fail to reject \\(H_0\\)"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#p-p-value-3",
+    "href": "lectures/L05/lecture-05.html#p-p-value-3",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "P: p-value",
+    "text": "P: p-value\nCommon mistakes\n\nThe p-value is not the chance that the NULL hypothesis is true\nA large p-value does not mean that \\(H_0\\) is true\n\n\n\nThe use of 0.05 is not mandatory, it is a convention.\nOther levels such as 0.01 or 0.001 may also be used."
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#p-p-value-4",
+    "href": "lectures/L05/lecture-05.html#p-p-value-4",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "P: p-value",
+    "text": "P: p-value\nControversy\nNature article 1\nNature article 2\n\nShould we move away from an over reliance on p-values towards more robust statistical methods and a greater emphasis on the size and reproducibility of effects?\nLook up terms like “P Hacking”…"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#c-conclusion",
+    "href": "lectures/L05/lecture-05.html#c-conclusion",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "C: Conclusion",
+    "text": "C: Conclusion\nAt the end of a statistical test we write two conclusions\n\nA statistical conclusion based on the test statistic, confidence intervals, p-value and the level of significance i.e. we reject or fail to reject \\(H_0\\)\nA scientific (biological) conclusion what does this mean in the context of the study."
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#one-or-two---tails",
+    "href": "lectures/L05/lecture-05.html#one-or-two---tails",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "One or Two - Tails",
+    "text": "One or Two - Tails"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#one-or-two---tails-1",
+    "href": "lectures/L05/lecture-05.html#one-or-two---tails-1",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "One or Two - Tails",
+    "text": "One or Two - Tails\n\nSuppose we want to compare a sample population or sample mean \\((\\mu)\\) to a benchmark value \\((c)\\) - Could be our water quality benchmark of \\(c=500 \\mu g/L\\)\n\n\\(H_0:\\mu=c\\) Two tailed\n\\(H_1:\\mu \\ne c\\) Two tailed\n\\(H_0:\\mu \\ge c\\) One tailed - greater than\n\\(H_1:\\mu &lt; c\\) One tailed - greater than\n\\(H_0:\\mu \\le c\\) One tailed - less than\n\\(H_1:\\mu &gt; c\\) One tailed - less than\n\nWe usually use the first (two tailed) form unless we are specifically interested in testing whether the difference is in one direction because this is the only direction of interest"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#one-tailed-tests-water-quality",
+    "href": "lectures/L05/lecture-05.html#one-tailed-tests-water-quality",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "One-tailed tests (water quality)",
+    "text": "One-tailed tests (water quality)\n\n\n\nGoal\nHypotheses\nTail\n\n\n\n\nDetect unsafe water\nH₀: μ ≤ c, H₁: μ &gt; c\nRight\n\n\nDemonstrate safe water\nH₀: μ ≥ c, H₁: μ &lt; c\nLeft\n\n\n\n\nRule: The tail follows the alternative hypothesis (H₁)"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#type-one-or-type-two-error",
+    "href": "lectures/L05/lecture-05.html#type-one-or-type-two-error",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Type one or type two error",
+    "text": "Type one or type two error\nType I error\n\nFalse positive: we reject H0 when it is true\n\nType II error\n\nFalse negative: we accept H0 when it is false\n\n\nNote: Decreasing the significance level (\\(\\alpha\\)) to say 0.01 will increase the probability of type II error"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#sample-size-and-power",
+    "href": "lectures/L05/lecture-05.html#sample-size-and-power",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Sample size and power",
+    "text": "Sample size and power\nPower is the probability a test will detect a real effect when one exists.\n\nHigh power means a low chance of type II error;\nLow power means a higher chance of missing a real effect.\n\nIn general:\n\nlarger sample sizes increase power;\nsmaller standard deviations increase power;\nlarger effects are easier to detect."
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#the-t-distribution",
+    "href": "lectures/L05/lecture-05.html#the-t-distribution",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "The t-distribution",
+    "text": "The t-distribution\n\n\nThe t-distribution is:\n\nbell-shaped;\nsymmetric;\ncentred on zero;\nsimilar in shape to the normal distribution, but with heavier tails.\n\nIts exact shape depends on the degrees of freedom\n\nFor a one-sample t-test \\(df=n-1\\) where n is the sample size.\nAs the sample size increases, the t-distribution becomes more similar to the normal distribution.\n\n\n\n\n\nComparing the shapes of the Student’s T and the Z (normal) curve"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#class-exercise-one-sample-t-test",
+    "href": "lectures/L05/lecture-05.html#class-exercise-one-sample-t-test",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Class exercise: One sample t-test",
+    "text": "Class exercise: One sample t-test\nSuppose we wish to test whether the mean resting heart rate of ENVX1002 students differs from a benchmark value of 70 beats per minute (bpm).\nWe are going to do this exercise in class but I have provided a simulated example below so you have it in the slides as well."
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#class-exercise-one-sample-t-test-1",
+    "href": "lectures/L05/lecture-05.html#class-exercise-one-sample-t-test-1",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Class exercise: One sample t-test",
+    "text": "Class exercise: One sample t-test\nWe will simulate some data for 30 students in our ENVX1002 class. To do this we will draw 30 random numbers from a normal distribution with a mean of 70 and a standard deviation of 10.\n\n\nCode\nset.seed(1974)\nheart_rate &lt;- rnorm(30, mean = 70, sd = 10)"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#class-exercise-hypothesis",
+    "href": "lectures/L05/lecture-05.html#class-exercise-hypothesis",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Class exercise: Hypothesis",
+    "text": "Class exercise: Hypothesis\nState the Null and Alternate hypothesis!\n\n\\(H_0=70 \\text{ bpm}\\) (Null hypothesis)\n\\(H_1 \\ne 70 \\text{ bpm}\\) (Alternate hypothesis)"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#class-example-assumptions",
+    "href": "lectures/L05/lecture-05.html#class-example-assumptions",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Class example: Assumptions",
+    "text": "Class example: Assumptions\nBefore applying a one-sample t-test, we should check whether the sample is approximately normally distributed. Consider the following:\n\n\n\n\n\n\n\n\n\n\n\nSample size\nHistogram\nQ-Q plot\nJitter plot\nBoxplot\nShapiro test\n\n\n\n\nSmall (n &lt; 30)\nLimited\nBest\nVery useful\nUseful\nCautious use\n\n\nMedium (30–100)\nUseful\nVery useful\nUseful\nUseful\nSometimes useful\n\n\nLarge (n &gt; 100)\nUseful\nBest\nLess useful\nGood (outliers)\nToo sensitive\n\n\n\n\nRule of thumb:\n- Small n: show the data (jitter) + Q-Q plot\n- Larger n: histogram + Q-Q plot\n- Use boxplots to highlight spread and outliers, not normality alone"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#class-example-assumptions-1",
+    "href": "lectures/L05/lecture-05.html#class-example-assumptions-1",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Class example: Assumptions",
+    "text": "Class example: Assumptions\nWe begin by looking at the data (EDA). Ours sample size is 30 so we can look at the histogram, Q-Q plot and jitter plot.\n\n\nCode\nlibrary(ggplot2)\nlibrary(patchwork)\n\ndf &lt;- data.frame(heart_rate)\n\np1 &lt;- ggplot(df, aes(heart_rate)) +\n  geom_histogram(fill = \"grey80\", colour = \"white\", bins = 30) +\n  labs(title = \"Histogram\", x = \"Heart rate\", y = \"Count\") +\n  theme_minimal()\n\np2 &lt;- ggplot(df, aes(sample = heart_rate)) +\n  stat_qq() +\n  stat_qq_line(colour = \"red\") +\n  labs(title = \"Q-Q plot\", x = \"Theoretical\", y = \"Sample\") +\n  theme_minimal()\n\np1 + p2"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#class-example-assumptions-2",
+    "href": "lectures/L05/lecture-05.html#class-example-assumptions-2",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Class example: Assumptions",
+    "text": "Class example: Assumptions\nAs an option, we can also use the Shapiro-Wilk test as a supporting check. Best if the sample size is less than 50.\n\nIf (p &gt; 0.05), we do not have strong evidence against normality;\nThis does not prove normality, but suggests the t-test may be reasonable.\n\n\n\nCode\nshapiro.test(heart_rate)\n\n\n\n    Shapiro-Wilk normality test\n\ndata:  heart_rate\nW = 0.95114, p-value = 0.1814"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#class-example-test",
+    "href": "lectures/L05/lecture-05.html#class-example-test",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Class example: Test",
+    "text": "Class example: Test\nFor a one-sample t-test, the test statistic is:\n\\(t = \\frac{\\bar{y} - \\mu}{s/\\sqrt{n}}\\)\nwhere:\n\n\\(\\bar{y}\\) = sample mean\n\\(\\mu\\) = null (benchmark) value\n\\(s\\) = sample standard deviation\n\\(n\\) = sample size"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#class-example-test-1",
+    "href": "lectures/L05/lecture-05.html#class-example-test-1",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Class example: Test",
+    "text": "Class example: Test\nCI & T-Statistic & P-value\n\n\nIn R, the one-sample t-test gives us:\n\nthe test statistic\ndegrees of freedom\nthe p-value\nthe confidence interval\nthe sample mean\n\n\n\nCode\nt.test(heart_rate,\n  mu = 70,\n  alternative = \"two.sided\",\n  conf.level = 0.95\n)\n\n\n\n    One Sample t-test\n\ndata:  heart_rate\nt = 0.25373, df = 29, p-value = 0.8015\nalternative hypothesis: true mean is not equal to 70\n95 percent confidence interval:\n 66.76984 74.14513\nsample estimates:\nmean of x \n 70.45748 \n\n\n\nWe can see the following output:\n\nthe t-statistic = 0.25373\nthe degrees of freedom = 29 \\((n-1)\\)\nthe p-value = 0.8015\nthe 95% confidence interval = (66.76984 74.14513)\nthe sample mean = 70.45748"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#class-example-conclusion",
+    "href": "lectures/L05/lecture-05.html#class-example-conclusion",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Class example: Conclusion",
+    "text": "Class example: Conclusion\nStatistical conclusion\nBecause (p = 0.8015 &gt; 0.05), we fail to reject the null hypothesis.\nScientific conclusion\nThe data do not provide strong evidence that the mean resting heart rate of ENVX1002 students differs from 70 bpm.\nAlso note: - 70 bpm lies within the 95% confidence interval - this is consistent with the non-significant test result"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#confidence-intervals",
+    "href": "lectures/L05/lecture-05.html#confidence-intervals",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Confidence intervals",
+    "text": "Confidence intervals\nA confidence interval gives a range of plausible values for an unknown population parameter.\nMany people prefer confidence intervals because they show:\n\nthe estimated value\nthe uncertainty around that estimate\n\nA hypothesis test gives a decision about a claim. A confidence interval gives a plausible range."
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#confidence-intervals---known-variance",
+    "href": "lectures/L05/lecture-05.html#confidence-intervals---known-variance",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Confidence intervals - known variance",
+    "text": "Confidence intervals - known variance\n\nAssuming our sample comes from a normal population, we can calculate the confidence interval for the mean of a population when the population variance is known. An example may be in manufacturing where we know the variance of a process.\nThe formula for the confidence interval is:\n\n\\(CI = \\bar{y} \\pm Z_{\\alpha/2} \\cdot \\frac{\\sigma}{\\sqrt{n}}\\)\nfor the 95% confidence interval, \\(\\alpha = 0.05\\) and \\(Z_{\\alpha/2} = 1.96\\) i.e. 2 standard errors from the mean."
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#confidence-intervals---unknown-variance",
+    "href": "lectures/L05/lecture-05.html#confidence-intervals---unknown-variance",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Confidence intervals - Unknown variance",
+    "text": "Confidence intervals - Unknown variance\nIn practice, we usually do not know the population variance.\nIn that case, we use the t-distribution:\n\\(CI = \\bar{y} \\pm t_{\\alpha/2,df}\\frac{s}{\\sqrt{n}}\\)\nwhere:\n\n\\(s\\) is the sample standard deviation\n\\(df = n - 1\\)\n\n\n\nCode\nqt(0.975, df = 29) ## in our heart rate example, n=30 so df = 29 \n\n\n[1] 2.04523"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#confidence-intervals---unknown-variance-1",
+    "href": "lectures/L05/lecture-05.html#confidence-intervals---unknown-variance-1",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Confidence intervals - Unknown variance",
+    "text": "Confidence intervals - Unknown variance\n\nThe following is simulation of 100 studies, each containing n = 6 observations of a fictitious toxic substance concentration (\\(\\mu g / l\\)) assumed to be \\(\\sim N(0.3, 0.12)\\).\nFor each sample the 95% confidence interval calculated:\n\n\nDepiction of confidence intervals from each of 100 simulated samples"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#confidence-intervals---unknown-variance-2",
+    "href": "lectures/L05/lecture-05.html#confidence-intervals---unknown-variance-2",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Confidence intervals - Unknown variance",
+    "text": "Confidence intervals - Unknown variance\n\nIn the graph on the previous slide, a confidence interval includes the true mean value of 0.3 if the vertical line (representing the width of the CI) crosses the horizontal line.\nWe have to accept that 5% of the time we will not capture the true mean.\nWe can widen the confidence interval to 99% so we are more confident but this can increase the chance of a type II error."
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#example-2-water-quality",
+    "href": "lectures/L05/lecture-05.html#example-2-water-quality",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Example 2: Water Quality",
+    "text": "Example 2: Water Quality\nLet’s look at our water quality example again:\n\nThe data is Total Nitrogen (TN) levels @ Wallacia in western Sydney on the Nepean River\nAccording to the ANZECC guidelines, the maximum acceptable level of TN in an lowland river is 500 \\(\\mu g/L\\) and for an upland river = 250 \\(\\mu g/l\\). (see Table 3.3.2 in Australian and New Zealand Guidelines for Fresh and Marine Water Quality)\nWe want to know if the observed mean value of TN in our sample is different to the guideline value of 500 \\(\\mu g/L\\)\n\n\n\nCode\nTN &lt;- read.csv(\"data/TN_Wallacia.csv\")\nstr(TN)\n\n\n'data.frame':   29 obs. of  1 variable:\n $ TN: int  1020 1120 1170 920 920 1010 850 910 800 710 ..."
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#example-2-water-quality-1",
+    "href": "lectures/L05/lecture-05.html#example-2-water-quality-1",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Example 2: Water Quality",
+    "text": "Example 2: Water Quality\nState Hypothesis\n\n\n\n\\(H_0: \\mu = 500\\) \\(\\mu g/l\\) (Null hypothesis)\n\\(H_1: \\mu \\ne 500\\) \\(\\mu g/l\\) (Alternate hypothesis)\n\n\n\n\n\nGrose River - Floris van Ogtrop"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#example-2-water-quality-2",
+    "href": "lectures/L05/lecture-05.html#example-2-water-quality-2",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Example 2: Water Quality",
+    "text": "Example 2: Water Quality\nCheck assumptions\nWhat do we notice about the plots? Does the data look normally distributed? Do we see strong skewness or outliers?\n\n\n\n\nCode\nlibrary(ggplot2)\nlibrary(gridExtra)\n\n# Histogram\np1 &lt;- ggplot(TN, aes(x = TN)) +\n  geom_histogram(\n    fill = \"blue\", color = \"black\",\n    bins = 7\n  ) +\n  xlab(\"Total Nitrogen (ug/L)\") +\n  theme_minimal()\n\n# Boxplot\np2 &lt;- ggplot(TN, aes(x = TN)) +\n  geom_boxplot(fill = \"blue\") +\n  xlab(\"Total Nitrogen (ug/L)\") +\n  theme_minimal()\n\n# Q-Q plot\np3 &lt;- ggplot(TN, aes(sample = TN)) +\n  stat_qq() +\n  stat_qq_line(col = \"red\") +\n  theme_minimal()\n\n\n\n\n\nCode\n# Arrange the plots in a 2x2 layout\ngrid.arrange(p1, p2, p3, ncol = 2)"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#example-2-check-assumptions",
+    "href": "lectures/L05/lecture-05.html#example-2-check-assumptions",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Example 2: Check assumptions",
+    "text": "Example 2: Check assumptions\nShapiro-Wilk normality test\n\nFor smaller sample sizes, we can use the Shapiro-Wilk test (say &lt; 50) to confirm whether the data is normally distributed or not.\n\n\n\nCode\nshapiro.test(TN$TN)\n\n\n\n    Shapiro-Wilk normality test\n\ndata:  TN$TN\nW = 0.92582, p-value = 0.04293\n\n\n\nWe see P&lt;0.05 so we reject the null hypothesis that the data is normally distributed.\nFor really large samples (&gt;&gt;30) the central limit theorem suggests that the distribution of the sample means tends to be normal. However, extreme skewness, heavy tails, or outliers can still affect the test’s performance."
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#example-2-transformations",
+    "href": "lectures/L05/lecture-05.html#example-2-transformations",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Example 2: Transformations",
+    "text": "Example 2: Transformations\nFor right (positive) skewed data, we can use a\n\n\\(1/x\\) inverse transformation for highly skewed data.\n\\(\\log_{10}\\) or \\(\\log_e\\) transformation for very skewed data.\n\\(\\sqrt{x}\\) square root transformation for moderately skewed data.\n\nFor left (negative) skewed data (which is rare to find), we can “try” a\n\n\\(x^2\\), \\(x^3\\) or \\(e^x\\) transformation."
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#example-2-transformations-recheck-assumptions",
+    "href": "lectures/L05/lecture-05.html#example-2-transformations-recheck-assumptions",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Example 2: Transformations & Recheck assumptions",
+    "text": "Example 2: Transformations & Recheck assumptions\nLet’s try a log10 transformation:\n\nWe start by creating a new column in our data frame called log10_TN\nWe then take the log10 of the TN column and store it in the new column - note we could also use “mutate” from the dplyr package to do this.\n\n\n\nCode\nTN$log10_TN &lt;- log10(TN$TN)"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#example-2-recheck-assumptions",
+    "href": "lectures/L05/lecture-05.html#example-2-recheck-assumptions",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Example 2: Recheck assumptions",
+    "text": "Example 2: Recheck assumptions\n\n\n\n\nCode\nlibrary(ggplot2)\nlibrary(gridExtra)\n\n# Histogram\np1 &lt;- ggplot(TN, aes(x = log10_TN)) +\n  geom_histogram(\n    fill = \"blue\", color = \"black\",\n    bins = 7\n  ) +\n  xlab(\"Log10 Total Nitrogen (ug/L)\") +\n  theme_minimal()\n\n# Boxplot\np2 &lt;- ggplot(TN, aes(x = log10_TN)) +\n  geom_boxplot(fill = \"blue\") +\n  xlab(\"log10 Total Nitrogen (ug/L)\") +\n  theme_minimal()\n\n# Q-Q plot\np3 &lt;- ggplot(TN, aes(sample = log10_TN)) +\n  stat_qq() +\n  stat_qq_line(col = \"red\") +\n  theme_minimal()\n\n\n\n\n\nCode\n# Arrange the plots in a 2x2 layout\ngrid.arrange(p1, p2, p3, ncol = 2)"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#example-2-recheck-assumptions-1",
+    "href": "lectures/L05/lecture-05.html#example-2-recheck-assumptions-1",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Example 2: Recheck assumptions",
+    "text": "Example 2: Recheck assumptions\nShapiro-Wilk normality test\n\n\nCode\nshapiro.test(TN$log10_TN)\n\n\n\n    Shapiro-Wilk normality test\n\ndata:  TN$log10_TN\nW = 0.97279, p-value = 0.6375\n\n\n\nFrom our previous slide, our data seems to be quite symmetrical\nNow P&gt;0.05 so we fail to reject the null hypothesis that the data is normally distributed.\nWe can now proceed with our t-test using the log transformed data."
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#example-2-restate-the-hypotheses",
+    "href": "lectures/L05/lecture-05.html#example-2-restate-the-hypotheses",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Example 2: Restate the hypotheses",
+    "text": "Example 2: Restate the hypotheses\n\nWe will also need to transform the hypothesised mean of 500 to the log10 scale.\n\\(H_0: \\mu = log10(500)\\) \\(\\mu g/l\\) (Null hypothesis)\n\\(H_1: \\mu \\ne log10(500)\\) \\(\\mu g/l\\) (Alternate hypothesis)"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#example-2-t-test-p-value",
+    "href": "lectures/L05/lecture-05.html#example-2-t-test-p-value",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Example 2: T-test & P-Value",
+    "text": "Example 2: T-test & P-Value\n\n\nCode\nt.test(TN$log10_TN,\n  mu = log10(500),\n  alternative = \"two.sided\",\n  conf.level = 0.95\n)\n\n\n\n    One Sample t-test\n\ndata:  TN$log10_TN\nt = 4.8768, df = 28, p-value = 3.884e-05\nalternative hypothesis: true mean is not equal to 2.69897\n95 percent confidence interval:\n 2.807748 2.965309\nsample estimates:\nmean of x \n 2.886528 \n\n\n\nThe p-value is &lt;0.001 (3.d.p.) which is less than 0.05. Therefore, we reject the null hypothesis.\nThere is strong evidence that the mean value of TN in Nepean River is different to 500 ug/L.\nCan we say something about the direction??"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#example-2-geometric-mean-confidence-intervals",
+    "href": "lectures/L05/lecture-05.html#example-2-geometric-mean-confidence-intervals",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Example 2: Geometric mean & Confidence intervals",
+    "text": "Example 2: Geometric mean & Confidence intervals\nGeometric mean\nNote that now we are looking at the geometric mean as opposed the the arithmatic mean which was 855.86 in our case\n\n\nCode\n10^mean(TN$log10_TN)\n\n\n[1] 770.0666\n\n\nConfidence intervals\n\nWe need to back transform the confidence interval to the original scale.\nTo back-transform the confidence interval we can use the following:\n\n\\(10^{CI_{low}}\\) and \\(10^{CI_{high}}\\)\n\n\nCode\n10^(2.81)\n\n\n[1] 645.6542\n\n\nCode\n10^(2.97)\n\n\n[1] 933.2543\n\n\n\nThis means that we are 95% confident that the geometric mean (back-transformed mean) of the sample is between approximately 646 and 933 ug/l. This is higher than the hypothesised mean."
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#example-2-conclusion",
+    "href": "lectures/L05/lecture-05.html#example-2-conclusion",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Example 2: Conclusion",
+    "text": "Example 2: Conclusion\n\nThe data was log10 transformed to meet the assumptions of the t-test.\nWe have strong evidence that the mean value of Total Nitrogen in Nepean River is different to 500 ug/L.\nWe are 95% confident that the geometric mean (back-transformed mean) of the sample is between approximately 646 and 933 ug/l.\nLooking at the confidence interval, we can say that the mean value of TN in Nepean River is significantly greater than 500 ug/L."
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#example-3-one-tailed-test",
+    "href": "lectures/L05/lecture-05.html#example-3-one-tailed-test",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Example 3: One tailed test",
+    "text": "Example 3: One tailed test\n\nWe can also use a one tailed test if we are specifically interested in whether the observed value is greater or less than the expected value.\nIn this case we only want to know if the TN concentration is greater than the ANZECC guidelines of 500 \\(\\mu g/l\\).\n\n\nDetect unsafe water | H₀: μ ≤ 500, H₁: μ &gt; 500 |\n\nOR\n\nDetect unsafe water | H₀: μ ≤ \\(log_{10}500\\), H₁: μ &gt; \\(log_{10}500)\\) |"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#example-3-one-tailed-test-1",
+    "href": "lectures/L05/lecture-05.html#example-3-one-tailed-test-1",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Example 3: One tailed test",
+    "text": "Example 3: One tailed test\n\n\nCode\nt.test(TN$log10_TN,\n  mu = log10(500),\n  alternative = \"greater\",\n  conf.level = 0.95\n)\n\n\n\n    One Sample t-test\n\ndata:  TN$log10_TN\nt = 4.8768, df = 28, p-value = 1.942e-05\nalternative hypothesis: true mean is greater than 2.69897\n95 percent confidence interval:\n 2.821104      Inf\nsample estimates:\nmean of x \n 2.886528 \n\n\n\nP &lt; 0.001 (3.d.p.) so we reject the null hypothesis.\nBecause we are doing a one tailed test we can now conclude that the mean value of TN in Nepean River is greater than \\(log_{10}500 \\mu g/L\\)\nTake a look at the confidence interval and the p-value. What do you notice when comparing to the two tailed test?"
+  },
+  {
+    "objectID": "lectures/L05/lecture-05.html#example-3-one-tailed-test-2",
+    "href": "lectures/L05/lecture-05.html#example-3-one-tailed-test-2",
+    "title": "Topic 5 – Introduction to hypothesis testing",
+    "section": "Example 3: One tailed test",
+    "text": "Example 3: One tailed test\nRuxton and Neuhäuser 2010"
+  },
+  {
     "objectID": "lectures/L06/lecture-06.html#recap-we-have-one-sample",
     "href": "lectures/L06/lecture-06.html#recap-we-have-one-sample",
     "title": "Topic 6 – Two-sample t-tests",
