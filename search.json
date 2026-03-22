@@ -2095,14 +2095,14 @@
     "href": "lectures/L05/lecture-05.html#important-notice",
     "title": "Topic 5 – Introduction to hypothesis testing",
     "section": "Important Notice",
-    "text": "Important Notice\n\n\nThe Faculty has been informed of instances where students are being targeted by illegitimate academic services, which could potentially lead to plagiarism or other breaches.\nThis can include:\n\n“tutoring” services who provide assignment instructions or model answers;\nusing another person or company to write or complete your assignment;\nusing online file-sharing sites that lead to plagiarism.\n\nEngaging in such activities could constitute a breach of the Academic Integrity Policy and may result in penalties, including failing the assignment, the unit, or even a suspension or exclusion for misconduct.\n\nWe want you to do well on assessments. Contact the Learning Hub, you tutor, or Unit Coordinator to get support.\nThere are resources available to help you. Don’t be afraid to ask for help."
+    "text": "Important Notice\n\n\nThe Faculty has been informed of instances where students are being targeted by illegitimate academic services, which could potentially lead to plagiarism or other breaches.\nThis can include:\n\n“tutoring” services who provide assignment instructions or model answers;\nusing another person or company to write or complete your assignment;\nusing online file-sharing sites that lead to plagiarism.\n\nEngaging in such activities could constitute a breach of the Academic Integrity Policy and may result in penalties, including failing the assignment, the unit, or even a suspension or exclusion for misconduct.\n\nWe want you to do well on assessments. Contact the Learning Hub, your tutor, or Unit Coordinator to get support.\nThere are resources available to help you. Don’t be afraid to ask for help."
   },
   {
     "objectID": "lectures/L05/lecture-05.html#learning-outcomes",
     "href": "lectures/L05/lecture-05.html#learning-outcomes",
     "title": "Topic 5 – Introduction to hypothesis testing",
     "section": "Learning outcomes",
-    "text": "Learning outcomes\n\nLO1. By the end of this course, students will be able to implement basic reproducible research practices—including consistent data organization, documented code, and version-controlled workflows—so that their statistical analyses and results can be readily replicated and validated by others.\n\n\nLO2. By the end of this course, students will demonstrate proficiency in utilizing R and Excel to effectively explore and describe life science datasets.\n\n\nLO3. By the end of this course, students will be able to apply parametric and non-parametric statistical inference methods to experimental and observational data using RStudio and effectively interpret and communicate the results in the context of the data.\n\nLO4. By the end ot this course, students will be able to put into practice both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.\n\nLO5. By the end of this course, students will be able to articulate statistical and modelling results clearly and convincingly in both written reports and oral presentations, working effectively as an individual and collaboratively in a team, showcasing the ability to convey complex information to varied audiences."
+    "text": "Learning outcomes\n\nLO1. By the end of this course, students will be able to implement basic reproducible research practices—including consistent data organization, documented code, and version-controlled workflows—so that their statistical analyses and results can be readily replicated and validated by others.\n\n\nLO2. By the end of this course, students will demonstrate proficiency in utilizing R and Excel to effectively explore and describe life science datasets.\n\n\nLO3. By the end of this course, students will be able to apply parametric and non-parametric statistical inference methods to experimental and observational data using RStudio and effectively interpret and communicate the results in the context of the data.\n\nLO4. By the end of this course, students will be able to put into practice both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.\n\nLO5. By the end of this course, students will be able to articulate statistical and modelling results clearly and convincingly in both written reports and oral presentations, working effectively as an individual and collaboratively in a team, showcasing the ability to convey complex information to varied audiences."
   },
   {
     "objectID": "lectures/L05/lecture-05.html#inferential-statistics",
@@ -2137,7 +2137,7 @@
     "href": "lectures/L05/lecture-05.html#hypothesis-testing-workflow-1",
     "title": "Topic 5 – Introduction to hypothesis testing",
     "section": "Hypothesis testing workflow",
-    "text": "Hypothesis testing workflow\nA usefull acronym is HATPC:\n\nH: Hypothesis\nA: Assumptions\nT: Test statistic\nP: P-Value\nC: Conclusion"
+    "text": "Hypothesis testing workflow\nA useful acronym is HATPC:\n\nH: Hypothesis\nA: Assumptions\nT: Test statistic\nP: P-Value\nC: Conclusion"
   },
   {
     "objectID": "lectures/L05/lecture-05.html#h-hypothesis",
@@ -2158,7 +2158,7 @@
     "href": "lectures/L05/lecture-05.html#t-test-statistic",
     "title": "Topic 5 – Introduction to hypothesis testing",
     "section": "T: Test Statistic",
-    "text": "T: Test Statistic\nA test statistic measure show far the observed result is from what we would expect under the null hypothesis.\n\\(\\text{Test statistic}=\\frac{\\text{Observed value - Expected value}}{\\text{Standard error}}\\)\nThis is essentially\n\\(=\\frac{\\text{Signal}}{\\text{Noise}}\\)\n\nNumerator = difference from the null value\nDenominator = uncertainty in that estimate"
+    "text": "T: Test Statistic\nA test statistic measures how far the observed result is from what we would expect under the null hypothesis.\n\\(\\text{Test statistic}=\\frac{\\text{Observed value - Expected value}}{\\text{Standard error}}\\)\nThis is essentially\n\\(=\\frac{\\text{Signal}}{\\text{Noise}}\\)\n\nNumerator = difference from the null value\nDenominator = uncertainty in that estimate"
   },
   {
     "objectID": "lectures/L05/lecture-05.html#p-p-value",
@@ -2214,7 +2214,7 @@
     "href": "lectures/L05/lecture-05.html#one-or-two---tails-1",
     "title": "Topic 5 – Introduction to hypothesis testing",
     "section": "One or Two - Tails",
-    "text": "One or Two - Tails\n\nSuppose we want to compare a sample population or sample mean \\((\\mu)\\) to a benchmark value \\((c)\\) - Could be our water quality benchmark of \\(c=500 \\mu g/L\\)\n\n\\(H_0:\\mu=c\\) Two tailed\n\\(H_1:\\mu \\ne c\\) Two tailed\n\\(H_0:\\mu \\ge c\\) One tailed - greater than\n\\(H_1:\\mu &lt; c\\) One tailed - greater than\n\\(H_0:\\mu \\le c\\) One tailed - less than\n\\(H_1:\\mu &gt; c\\) One tailed - less than\n\nWe usually use the first (two tailed) form unless we are specifically interested in testing whether the difference is in one direction because this is the only direction of interest"
+    "text": "One or Two - Tails\n\nSuppose we want to compare a sample population or sample mean \\((\\mu)\\) to a benchmark value \\((c)\\) - Could be our water quality benchmark of \\(c=500 \\mu g/L\\)\n\n\\(H_0:\\mu=c\\) Two tailed\n\\(H_1:\\mu \\ne c\\) Two tailed\n\\(H_0:\\mu \\ge c\\) One tailed - less than\n\\(H_1:\\mu &lt; c\\) One tailed - less than\n\\(H_0:\\mu \\le c\\) One tailed - greater than\n\\(H_1:\\mu &gt; c\\) One tailed - greater than\n\nWe usually use the first (two tailed) form unless we are specifically interested in testing whether the difference is in one direction because this is the only direction of interest"
   },
   {
     "objectID": "lectures/L05/lecture-05.html#one-tailed-tests-water-quality",
@@ -2263,7 +2263,7 @@
     "href": "lectures/L05/lecture-05.html#class-exercise-hypothesis",
     "title": "Topic 5 – Introduction to hypothesis testing",
     "section": "Class exercise: Hypothesis",
-    "text": "Class exercise: Hypothesis\nState the Null and Alternate hypothesis!\n\n\\(H_0=70 \\text{ bpm}\\) (Null hypothesis)\n\\(H_1 \\ne 70 \\text{ bpm}\\) (Alternate hypothesis)"
+    "text": "Class exercise: Hypothesis\nState the Null and Alternate hypothesis!\n\n\\(H_0: \\mu = 70 \\text{ bpm}\\) (Null hypothesis)\n\\(H_1: \\mu \\ne 70 \\text{ bpm}\\) (Alternate hypothesis)"
   },
   {
     "objectID": "lectures/L05/lecture-05.html#class-example-assumptions",
@@ -2277,7 +2277,7 @@
     "href": "lectures/L05/lecture-05.html#class-example-assumptions-1",
     "title": "Topic 5 – Introduction to hypothesis testing",
     "section": "Class example: Assumptions",
-    "text": "Class example: Assumptions\nWe begin by looking at the data (EDA). Ours sample size is 30 so we can look at the histogram, Q-Q plot and jitter plot.\n\n\nCode\nlibrary(ggplot2)\nlibrary(patchwork)\n\ndf &lt;- data.frame(heart_rate)\n\np1 &lt;- ggplot(df, aes(heart_rate)) +\n  geom_histogram(fill = \"grey80\", colour = \"white\", bins = 30) +\n  labs(title = \"Histogram\", x = \"Heart rate\", y = \"Count\") +\n  theme_minimal()\n\np2 &lt;- ggplot(df, aes(sample = heart_rate)) +\n  stat_qq() +\n  stat_qq_line(colour = \"red\") +\n  labs(title = \"Q-Q plot\", x = \"Theoretical\", y = \"Sample\") +\n  theme_minimal()\n\np1 + p2"
+    "text": "Class example: Assumptions\nWe begin by looking at the data (EDA). Our sample size is 30 so we can look at the histogram, Q-Q plot and jitter plot.\n\n\nCode\nlibrary(ggplot2)\nlibrary(patchwork)\n\ndf &lt;- data.frame(heart_rate)\n\np1 &lt;- ggplot(df, aes(heart_rate)) +\n  geom_histogram(fill = \"grey80\", colour = \"white\", bins = 30) +\n  labs(title = \"Histogram\", x = \"Heart rate\", y = \"Count\") +\n  theme_minimal()\n\np2 &lt;- ggplot(df, aes(sample = heart_rate)) +\n  stat_qq() +\n  stat_qq_line(colour = \"red\") +\n  labs(title = \"Q-Q plot\", x = \"Theoretical\", y = \"Sample\") +\n  theme_minimal()\n\np1 + p2"
   },
   {
     "objectID": "lectures/L05/lecture-05.html#class-example-assumptions-2",
@@ -2347,14 +2347,14 @@
     "href": "lectures/L05/lecture-05.html#example-2-water-quality",
     "title": "Topic 5 – Introduction to hypothesis testing",
     "section": "Example 2: Water Quality",
-    "text": "Example 2: Water Quality\nLet’s look at our water quality example again:\n\nThe data is Total Nitrogen (TN) levels @ Wallacia in western Sydney on the Nepean River\nAccording to the ANZECC guidelines, the maximum acceptable level of TN in an lowland river is 500 \\(\\mu g/L\\) and for an upland river = 250 \\(\\mu g/l\\). (see Table 3.3.2 in Australian and New Zealand Guidelines for Fresh and Marine Water Quality)\nWe want to know if the observed mean value of TN in our sample is different to the guideline value of 500 \\(\\mu g/L\\)\n\n\n\nCode\nTN &lt;- read.csv(\"data/TN_Wallacia.csv\")\nstr(TN)\n\n\n'data.frame':   29 obs. of  1 variable:\n $ TN: int  1020 1120 1170 920 920 1010 850 910 800 710 ..."
+    "text": "Example 2: Water Quality\nLet’s look at our water quality example again:\n\nThe data is Total Nitrogen (TN) levels @ Wallacia in western Sydney on the Nepean River\nAccording to the ANZECC guidelines, the maximum acceptable level of TN in an lowland river is 500 \\(\\mu g/L\\) and for an upland river = 250 \\(\\mu g/L\\). (see Table 3.3.2 in Australian and New Zealand Guidelines for Fresh and Marine Water Quality)\nWe want to know if the observed mean value of TN in our sample is different to the guideline value of 500 \\(\\mu g/L\\)\n\n\n\nCode\nTN &lt;- read.csv(\"data/TN_Wallacia.csv\")\nstr(TN)\n\n\n'data.frame':   29 obs. of  1 variable:\n $ TN: int  1020 1120 1170 920 920 1010 850 910 800 710 ..."
   },
   {
     "objectID": "lectures/L05/lecture-05.html#example-2-water-quality-1",
     "href": "lectures/L05/lecture-05.html#example-2-water-quality-1",
     "title": "Topic 5 – Introduction to hypothesis testing",
     "section": "Example 2: Water Quality",
-    "text": "Example 2: Water Quality\nState Hypothesis\n\n\n\n\\(H_0: \\mu = 500\\) \\(\\mu g/l\\) (Null hypothesis)\n\\(H_1: \\mu \\ne 500\\) \\(\\mu g/l\\) (Alternate hypothesis)\n\n\n\n\n\nGrose River - Floris van Ogtrop"
+    "text": "Example 2: Water Quality\nState Hypothesis\n\n\n\n\\(H_0: \\mu = 500\\) \\(\\mu g/L\\) (Null hypothesis)\n\\(H_1: \\mu \\ne 500\\) \\(\\mu g/L\\) (Alternate hypothesis)\n\n\n\n\n\nGrose River - Floris van Ogtrop"
   },
   {
     "objectID": "lectures/L05/lecture-05.html#example-2-water-quality-2",
@@ -2403,7 +2403,7 @@
     "href": "lectures/L05/lecture-05.html#example-2-restate-the-hypotheses",
     "title": "Topic 5 – Introduction to hypothesis testing",
     "section": "Example 2: Restate the hypotheses",
-    "text": "Example 2: Restate the hypotheses\n\nWe will also need to transform the hypothesised mean of 500 to the log10 scale.\n\\(H_0: \\mu = log10(500)\\) \\(\\mu g/l\\) (Null hypothesis)\n\\(H_1: \\mu \\ne log10(500)\\) \\(\\mu g/l\\) (Alternate hypothesis)"
+    "text": "Example 2: Restate the hypotheses\n\nWe will also need to transform the hypothesised mean of 500 to the log10 scale.\n\\(H_0: \\mu = \\log_{10}(500)\\) \\(\\mu g/L\\) (Null hypothesis)\n\\(H_1: \\mu \\ne \\log_{10}(500)\\) \\(\\mu g/L\\) (Alternate hypothesis)"
   },
   {
     "objectID": "lectures/L05/lecture-05.html#example-2-t-test-p-value",
@@ -2417,28 +2417,28 @@
     "href": "lectures/L05/lecture-05.html#example-2-geometric-mean-confidence-intervals",
     "title": "Topic 5 – Introduction to hypothesis testing",
     "section": "Example 2: Geometric mean & Confidence intervals",
-    "text": "Example 2: Geometric mean & Confidence intervals\nGeometric mean\nNote that now we are looking at the geometric mean as opposed the the arithmatic mean which was 855.86 in our case\n\n\nCode\n10^mean(TN$log10_TN)\n\n\n[1] 770.0666\n\n\nConfidence intervals\n\nWe need to back transform the confidence interval to the original scale.\nTo back-transform the confidence interval we can use the following:\n\n\\(10^{CI_{low}}\\) and \\(10^{CI_{high}}\\)\n\n\nCode\n10^(2.81)\n\n\n[1] 645.6542\n\n\nCode\n10^(2.97)\n\n\n[1] 933.2543\n\n\n\nThis means that we are 95% confident that the geometric mean (back-transformed mean) of the sample is between approximately 646 and 933 ug/l. This is higher than the hypothesised mean."
+    "text": "Example 2: Geometric mean & Confidence intervals\nGeometric mean\nNote that now we are looking at the geometric mean as opposed the the arithmetic mean which was 855.86 in our case\n\n\nCode\n10^mean(TN$log10_TN)\n\n\n[1] 770.0666\n\n\nConfidence intervals\n\nWe need to back transform the confidence interval to the original scale.\nTo back-transform the confidence interval we can use the following:\n\n\\(10^{CI_{low}}\\) and \\(10^{CI_{high}}\\)\n\n\nCode\n10^(2.81)\n\n\n[1] 645.6542\n\n\nCode\n10^(2.97)\n\n\n[1] 933.2543\n\n\n\nThis means that we are 95% confident that the geometric mean (back-transformed mean) of the sample is between approximately 646 and 933 ug/L. This is higher than the hypothesised mean."
   },
   {
     "objectID": "lectures/L05/lecture-05.html#example-2-conclusion",
     "href": "lectures/L05/lecture-05.html#example-2-conclusion",
     "title": "Topic 5 – Introduction to hypothesis testing",
     "section": "Example 2: Conclusion",
-    "text": "Example 2: Conclusion\n\nThe data was log10 transformed to meet the assumptions of the t-test.\nWe have strong evidence that the mean value of Total Nitrogen in Nepean River is different to 500 ug/L.\nWe are 95% confident that the geometric mean (back-transformed mean) of the sample is between approximately 646 and 933 ug/l.\nLooking at the confidence interval, we can say that the mean value of TN in Nepean River is significantly greater than 500 ug/L."
+    "text": "Example 2: Conclusion\n\nThe data was log10 transformed to meet the assumptions of the t-test.\nWe have strong evidence that the mean value of Total Nitrogen in Nepean River is different to 500 ug/L.\nWe are 95% confident that the geometric mean (back-transformed mean) of the sample is between approximately 646 and 933 ug/L.\nLooking at the confidence interval, we can say that the mean value of TN in Nepean River is significantly greater than 500 ug/L."
   },
   {
     "objectID": "lectures/L05/lecture-05.html#example-3-one-tailed-test",
     "href": "lectures/L05/lecture-05.html#example-3-one-tailed-test",
     "title": "Topic 5 – Introduction to hypothesis testing",
     "section": "Example 3: One tailed test",
-    "text": "Example 3: One tailed test\n\nWe can also use a one tailed test if we are specifically interested in whether the observed value is greater or less than the expected value.\nIn this case we only want to know if the TN concentration is greater than the ANZECC guidelines of 500 \\(\\mu g/l\\).\n\n\nDetect unsafe water | H₀: μ ≤ 500, H₁: μ &gt; 500 |\n\nOR\n\nDetect unsafe water | H₀: μ ≤ \\(log_{10}500\\), H₁: μ &gt; \\(log_{10}500)\\) |"
+    "text": "Example 3: One tailed test\n\nWe can also use a one tailed test if we are specifically interested in whether the observed value is greater or less than the expected value.\nIn this case we only want to know if the TN concentration is greater than the ANZECC guidelines of 500 \\(\\mu g/L\\).\n\n\nDetect unsafe water | H₀: μ ≤ 500, H₁: μ &gt; 500 |\n\nOR\n\nDetect unsafe water | H₀: μ ≤ \\(\\log_{10}(500)\\), H₁: μ &gt; \\(\\log_{10}(500)\\) |"
   },
   {
     "objectID": "lectures/L05/lecture-05.html#example-3-one-tailed-test-1",
     "href": "lectures/L05/lecture-05.html#example-3-one-tailed-test-1",
     "title": "Topic 5 – Introduction to hypothesis testing",
     "section": "Example 3: One tailed test",
-    "text": "Example 3: One tailed test\n\n\nCode\nt.test(TN$log10_TN,\n  mu = log10(500),\n  alternative = \"greater\",\n  conf.level = 0.95\n)\n\n\n\n    One Sample t-test\n\ndata:  TN$log10_TN\nt = 4.8768, df = 28, p-value = 1.942e-05\nalternative hypothesis: true mean is greater than 2.69897\n95 percent confidence interval:\n 2.821104      Inf\nsample estimates:\nmean of x \n 2.886528 \n\n\n\nP &lt; 0.001 (3.d.p.) so we reject the null hypothesis.\nBecause we are doing a one tailed test we can now conclude that the mean value of TN in Nepean River is greater than \\(log_{10}500 \\mu g/L\\)\nTake a look at the confidence interval and the p-value. What do you notice when comparing to the two tailed test?"
+    "text": "Example 3: One tailed test\n\n\nCode\nt.test(TN$log10_TN,\n  mu = log10(500),\n  alternative = \"greater\",\n  conf.level = 0.95\n)\n\n\n\n    One Sample t-test\n\ndata:  TN$log10_TN\nt = 4.8768, df = 28, p-value = 1.942e-05\nalternative hypothesis: true mean is greater than 2.69897\n95 percent confidence interval:\n 2.821104      Inf\nsample estimates:\nmean of x \n 2.886528 \n\n\n\nP &lt; 0.001 (3.d.p.) so we reject the null hypothesis.\nBecause we are doing a one tailed test we can now conclude that the mean value of TN in Nepean River is greater than \\(\\log_{10}(500)\\) \\(\\mu g/L\\)\nTake a look at the confidence interval and the p-value. What do you notice when comparing to the two tailed test?"
   },
   {
     "objectID": "lectures/L05/lecture-05.html#example-3-one-tailed-test-2",

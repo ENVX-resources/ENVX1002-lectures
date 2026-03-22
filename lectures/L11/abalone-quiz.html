@@ -111,6 +111,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -220,7 +221,7 @@ Si Yang Han
 <p>This dataset records abalone from the coast of Tasmania, Australia (Nash, 1995) and was accessed from the [UCI Machine Learning Repository]<a href="https://archive.ics.uci.edu/dataset/1/abalone" class="uri">https://archive.ics.uci.edu/dataset/1/abalone</a>.</p>
 </blockquote>
 </section>
-<section id="introduction" class="slide level2">
+<section id="introduction" class="slide level2 scrollable">
 <h2>Introduction</h2>
 <p>Abalone are marine snails that are a considered a delicacy and very expensive. The older the abalone, the higher the price. Age is determined by counting the number of rings in the shell. To do this, the shell needs to be cut, stained and viewed under a microscope - which is a lot of effort. Researchers measured 9 attributes of the abalone: <code>sex</code>, <code>length</code>, <code>diameter</code>, <code>height</code>, <code>whole</code>, <code>shucked</code>, <code>viscera</code>, <code>shell</code>, and <code>rings</code>.</p>
 <p>Note: <code>whole</code>, <code>shucked</code>, <code>viscera</code> and <code>shell</code> are weight measurements.</p>
@@ -239,7 +240,7 @@ Si Yang Han
 </blockquote>
 </div>
 </section>
-<section id="research-question" class="slide level2" data-auto-animate="true">
+<section id="research-question" class="slide level2 scrollable" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Research question</h2>
 <p>Abalone are marine snails that are a considered a delicacy and very expensive. The older the abalone, the higher the price. Age is determined by counting the number of rings in the shell. To do this, the shell needs to be cut, stained and viewed under a microscope - which is a lot of effort. Researchers measured 9 attributes of the abalone: <code>sex</code>, <code>length</code>, <code>diameter</code>, <code>height</code>, <code>whole</code>, <code>shucked</code>, <code>viscera</code>, <code>shell</code>, and <code>rings</code>.</p>
 <p>Note: <code>whole</code>, <code>shucked</code>, <code>viscera</code> and <code>shell</code> are weight measurements.</p>
@@ -284,7 +285,7 @@ Si Yang Han
 </div>
 </div>
 </section>
-<section class="slide level2">
+<section class="slide level2 scrollable">
 
 <div class="cell">
 <details class="code-fold">
@@ -313,7 +314,7 @@ Si Yang Han
 </div>
 </div></div>
 </section>
-<section class="slide level2">
+<section class="slide level2 scrollable">
 
 <div class="columns">
 <div class="column" style="width:60%;">
@@ -363,7 +364,7 @@ rings      0.50     0.53   0.54  0.50    0.36    0.42  0.63  1.00</code></pre>
 </div>
 </div></div>
 </section>
-<section id="fit-a-model" class="slide level2" data-auto-animate="true">
+<section id="fit-a-model" class="slide level2 scrollable" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Fit a model</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -416,7 +417,7 @@ F-statistic: 21.32 on 7 and 92 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div></div>
 </section>
-<section id="fit-a-model-1" class="slide level2">
+<section id="fit-a-model-1" class="slide level2 scrollable">
 <h2>Fit a model</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>Residual standard error<span class="sc">:</span> <span class="fl">0.1996</span> on <span class="dv">92</span> degrees of freedom</span>
 <span id="cb9-2"><a></a>Multiple R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.6187</span>,    Adjusted R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.5897</span> </span>
@@ -434,7 +435,7 @@ F-statistic: 21.32 on 7 and 92 DF,  p-value: &lt; 2.2e-16</code></pre>
 </blockquote>
 </div>
 </section>
-<section id="the-problem-with-using-too-many-predictors" class="slide level2">
+<section id="the-problem-with-using-too-many-predictors" class="slide level2 scrollable">
 <h2>The problem with using too many predictors</h2>
 <p>Here, the model is fit with all predictors, then the least significant predictor is removed. This process is repeated until only one predictor remains.</p>
 <div class="cell">
@@ -551,7 +552,7 @@ F-statistic: 21.32 on 7 and 92 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div></div>
 </section>
-<section id="interpretation" class="slide level2">
+<section id="interpretation" class="slide level2 scrollable">
 <h2>Interpretation</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co">#| eval: false</span></span>
 <span id="cb11-2"><a></a>Call<span class="sc">:</span></span>
@@ -586,7 +587,7 @@ F-statistic: 21.32 on 7 and 92 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div></div>
 </section>
-<section id="interpretation-1" class="slide level2">
+<section id="interpretation-1" class="slide level2 scrollable">
 <h2>Interpretation</h2>
 <p>The equation of our model is:</p>
 <p><strong><code>log(rings)</code> = 1.41 + 2.03 x <code>diameter</code> + -1.33 x <code>shucked</code> + 2.05 x <code>shell</code></strong></p>
@@ -613,7 +614,7 @@ F-statistic: 21.32 on 7 and 92 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div></div>
 </section>
-<section id="the-most-important-question" class="slide level2" data-auto-animate="true">
+<section id="the-most-important-question" class="slide level2 scrollable" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">The most important question</h2>
 <p><strong>How do you feel about regression so far?</strong></p>
 <ol type="a">
@@ -686,7 +687,7 @@ F-statistic: 21.32 on 7 and 92 DF,  p-value: &lt; 2.2e-16</code></pre>
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',

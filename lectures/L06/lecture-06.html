@@ -111,6 +111,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -438,7 +439,7 @@ Floris van Ogtrop
 <p><em>Compare this to the one-sample </em>t<em>-test, where the null hypothesis is that the sample mean is equal to a fixed value:</em> <span class="math display">\[H_0: \mu = \mu_0\]</span> <span class="math display">\[H_1: \mu \neq \mu_0\]</span></p>
 </div>
 </section>
-<section id="assumptions" class="slide level2">
+<section id="assumptions" class="slide level2 scrollable">
 <h2>Assumptions</h2>
 <p>The assumptions of the two-sample <em>t</em>-test include:</p>
 <ol type="1">
@@ -1190,7 +1191,7 @@ $ Tree &lt;fct&gt; Rowan, Rowan, Rowan, Rowan, Rowan, Rowan, Rowan, Rowan, Rowan
 <h1>Data transformation</h1>
 
 </section>
-<section id="workflow" class="slide level2">
+<section id="workflow" class="slide level2 scrollable">
 <h2>Workflow</h2>
 <ol type="1">
 <li class="fragment">Check the data for normality and homogeneity of variance (i.e.&nbsp;<strong>test assumptions</strong>).</li>
@@ -1484,7 +1485,7 @@ sample estimates:
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',

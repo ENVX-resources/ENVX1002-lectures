@@ -111,6 +111,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -209,7 +210,7 @@ Januar Harianto
 
   <p class="date">Mar 2026</p>
 </section>
-<section id="learning-outcomes" class="slide level2">
+<section id="learning-outcomes" class="slide level2 scrollable">
 <h2>Learning Outcomes</h2>
 <h3 id="at-the-end-of-this-week-you-will-be-able-to">At the end of this week, you will be able to:</h3>
 <ol type="1">
@@ -384,7 +385,7 @@ Januar Harianto
 
 </div>
 <img data-src="lecture-04_files/figure-revealjs/compare-dist-1.png" width="960" class="r-stretch"></section>
-<section id="why-do-tree-heights-follow-a-normal-distribution" class="slide level2">
+<section id="why-do-tree-heights-follow-a-normal-distribution" class="slide level2 scrollable">
 <h2>Why do tree heights follow a normal distribution?</h2>
 <ol type="1">
 <li>The middle (mean) height is most common – most trees are around 20 metres tall</li>
@@ -553,7 +554,7 @@ Januar Harianto
 
 </div>
 <img data-src="lecture-04_files/figure-revealjs/predictability-1.png" width="960" class="r-stretch"></section>
-<section id="when-data-is-normal" class="slide level2">
+<section id="when-data-is-normal" class="slide level2 scrollable">
 <h2>When data is normal…</h2>
 <ol type="1">
 <li>We can use normal probability functions to:
@@ -755,7 +756,7 @@ Januar Harianto
 <h1>The standard normal curve</h1>
 
 </section>
-<section id="standardising-variables" class="slide level2">
+<section id="standardising-variables" class="slide level2 scrollable">
 <h2>Standardising variables</h2>
 <p>We can convert any normal distribution to a standard form where:</p>
 <p><span class="math display">\[ X \sim N(\mu, \sigma^2) \rightarrow Z \sim N(0, 1) \]</span></p>
@@ -852,7 +853,7 @@ Januar Harianto
 
 </div>
 <img data-src="lecture-04_files/figure-revealjs/standard_curve_visual-1.png" width="960" class="r-stretch"></section>
-<section id="answering-questions-with-standardised-data" class="slide level2">
+<section id="answering-questions-with-standardised-data" class="slide level2 scrollable">
 <h2>Answering questions with standardised data</h2>
 <ol type="1">
 <li><code>pnorm()</code>: What proportion of values fall below a given z-score?</li>
@@ -1034,7 +1035,7 @@ Januar Harianto
 </div>
 <img data-src="lecture-04_files/figure-revealjs/many_rainfall_samples-1.png" width="960" class="r-stretch"><p>Notice how the sample means are distributed around the true population mean, but the distribution is still somewhat skewed.</p>
 </section>
-<section id="effect-of-sample-size-on-rainfall-means" class="slide level2">
+<section id="effect-of-sample-size-on-rainfall-means" class="slide level2 scrollable">
 <h2>Effect of sample size on rainfall means</h2>
 <p>What happens when we increase our sample size?</p>
 <div class="cell">
@@ -1106,7 +1107,7 @@ Januar Harianto
 </blockquote>
 <p>– Sir Francis Galton <a href="https://www.ucl.ac.uk/taxome/jim/Mim/galton.html">(source)</a> (1822-1911)</p>
 </section>
-<section id="what-is-the-clt" class="slide level2">
+<section id="what-is-the-clt" class="slide level2 scrollable">
 <h2>What is the CLT?</h2>
 <p>The Central Limit Theorem (CLT) states that:</p>
 <p>When we take sufficiently large random samples from any population:</p>
@@ -1409,7 +1410,7 @@ Januar Harianto
 </div>
 </div>
 </section>
-<section id="practical-implications-of-the-clt" class="slide level2">
+<section id="practical-implications-of-the-clt" class="slide level2 scrollable">
 <h2>Practical implications of the CLT</h2>
 <p>The Central Limit Theorem enables modern inferential statistics:</p>
 <ol type="1">
@@ -1491,7 +1492,7 @@ Januar Harianto
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',

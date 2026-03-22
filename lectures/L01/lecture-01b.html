@@ -111,6 +111,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -267,7 +268,7 @@ Januar Harianto
 <p>Does it matter? Statistics is everywhere and can be applied in almost any field – a multi-disciplinary problem-solving tool.</p>
 </div>
 </section>
-<section id="benefits" class="slide level2">
+<section id="benefits" class="slide level2 scrollable">
 <h2>Benefits</h2>
 <p>Even if you don’t become a data scientist, statistics will help you to:</p>
 <ol type="1">
@@ -899,7 +900,7 @@ Januar Harianto
 <p><img data-src="images/hatpc.png" style="width:50.0%" alt="Diagram of the HATPC framework: Hypothesis, Assumptions, Test statistic, P-value, Conclusion"></p>
 </div></div>
 </section>
-<section id="key-principles" class="slide level2">
+<section id="key-principles" class="slide level2 scrollable">
 <h2>Key principles</h2>
 <ol type="1">
 <li><strong>Ask a question</strong> — What do you want to know?</li>
@@ -1056,7 +1057,7 @@ Januar Harianto
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',

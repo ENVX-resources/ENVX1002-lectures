@@ -111,6 +111,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -222,7 +223,7 @@ Floris van Ogtrop
 </ul>
 <p>Engaging in such activities could constitute a breach of the Academic Integrity Policy and may result in penalties, including failing the assignment, the unit, or even a suspension or exclusion for misconduct.</p>
 </div><div class="column" style="width:50%;">
-<p>We want you to do well on assessments. Contact the Learning Hub, you tutor, or Unit Coordinator to get support.</p>
+<p>We want you to do well on assessments. Contact the Learning Hub, your tutor, or Unit Coordinator to get support.</p>
 <p>There are resources available to help you. Don’t be afraid to ask for help.</p>
 <p><img data-src="images/QR1.png"></p>
 </div></div>
@@ -249,7 +250,7 @@ Floris van Ogtrop
 <div style="background-color: yellow; padding: 10px; border: 1px solid black;">
 <p><strong>LO3</strong>. By the end of this course, students will be able to apply parametric and non-parametric statistical inference methods to experimental and observational data using RStudio and effectively interpret and communicate the results in the context of the data.</p>
 </div>
-<p>LO4. By the end ot this course, students will be able to put into practice both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.</p>
+<p>LO4. By the end of this course, students will be able to put into practice both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.</p>
 <div style="background-color: yellow; padding: 10px; border: 1px solid black;">
 <p><strong>LO5</strong>. By the end of this course, students will be able to articulate statistical and modelling results clearly and convincingly in both written reports and oral presentations, working effectively as an individual and collaboratively in a team, showcasing the ability to convey complex information to varied audiences.</p>
 </div>
@@ -302,7 +303,7 @@ Floris van Ogtrop
 </div>
 </div></div>
 </section>
-<section id="hypothesis-testing-workflow" class="slide level2">
+<section id="hypothesis-testing-workflow" class="slide level2 scrollable">
 <h2>Hypothesis testing workflow</h2>
 <p><strong>We will follow the steps in hypothesis testing</strong></p>
 <ol type="1">
@@ -316,7 +317,7 @@ Floris van Ogtrop
 </section>
 <section id="hypothesis-testing-workflow-1" class="slide level2">
 <h2>Hypothesis testing workflow</h2>
-<p>A usefull acronym is <strong>HATPC</strong>:</p>
+<p>A useful acronym is <strong>HATPC</strong>:</p>
 <ul>
 <li><strong>H:</strong> Hypothesis</li>
 <li><strong>A:</strong> Assumptions</li>
@@ -337,7 +338,7 @@ Floris van Ogtrop
 <li><span class="math inline">\(H_1:\mu \ne 500 \mu g/L\)</span></li>
 </ul>
 </section>
-<section id="a-assumptions" class="slide level2">
+<section id="a-assumptions" class="slide level2 scrollable">
 <h2>A: Assumptions</h2>
 <ul>
 <li>Before carrying out a t-test, we need to check whether its assumptions are reasonable;</li>
@@ -352,7 +353,7 @@ Floris van Ogtrop
 </section>
 <section id="t-test-statistic" class="slide level2">
 <h2>T: Test Statistic</h2>
-<p>A test statistic measure show far the observed result is from what we would expect under the null hypothesis.</p>
+<p>A test statistic measures how far the observed result is from what we would expect under the null hypothesis.</p>
 <p><span class="math inline">\(\text{Test statistic}=\frac{\text{Observed value - Expected value}}{\text{Standard error}}\)</span></p>
 <p>This is essentially</p>
 <p><span class="math inline">\(=\frac{\text{Signal}}{\text{Noise}}\)</span></p>
@@ -415,7 +416,7 @@ Floris van Ogtrop
 <li>Look up terms like <strong>“P Hacking”</strong>…</li>
 </ul>
 </section>
-<section id="c-conclusion" class="slide level2">
+<section id="c-conclusion" class="slide level2 scrollable">
 <h2>C: Conclusion</h2>
 <p>At the end of a statistical test we write two conclusions</p>
 <ol type="1">
@@ -434,10 +435,10 @@ Floris van Ogtrop
 <ul>
 <li><p><span class="math inline">\(H_0:\mu=c\)</span> <em>Two tailed</em></p></li>
 <li><p><span class="math inline">\(H_1:\mu \ne c\)</span> <em>Two tailed</em></p></li>
-<li><p><span class="math inline">\(H_0:\mu \ge c\)</span> <em>One tailed - greater than</em></p></li>
-<li><p><span class="math inline">\(H_1:\mu &lt; c\)</span> <em>One tailed - greater than</em></p></li>
-<li><p><span class="math inline">\(H_0:\mu \le c\)</span> <em>One tailed - less than</em></p></li>
-<li><p><span class="math inline">\(H_1:\mu &gt; c\)</span> <em>One tailed - less than</em></p></li>
+<li><p><span class="math inline">\(H_0:\mu \ge c\)</span> <em>One tailed - less than</em></p></li>
+<li><p><span class="math inline">\(H_1:\mu &lt; c\)</span> <em>One tailed - less than</em></p></li>
+<li><p><span class="math inline">\(H_0:\mu \le c\)</span> <em>One tailed - greater than</em></p></li>
+<li><p><span class="math inline">\(H_1:\mu &gt; c\)</span> <em>One tailed - greater than</em></p></li>
 </ul></li>
 <li><p>We usually use the first (two tailed) form unless we are specifically interested in testing whether the difference is in one direction because this is the only direction of interest</p></li>
 </ul>
@@ -541,8 +542,8 @@ Floris van Ogtrop
 <h2>Class exercise: <span style="color: blue;"><strong>H</strong></span>ypothesis</h2>
 <p><strong>State the Null and Alternate hypothesis!</strong></p>
 <ul>
-<li><p><span class="math inline">\(H_0=70 \text{ bpm}\)</span> (Null hypothesis)</p></li>
-<li><p><span class="math inline">\(H_1 \ne 70 \text{ bpm}\)</span> (Alternate hypothesis)</p></li>
+<li><p><span class="math inline">\(H_0: \mu = 70 \text{ bpm}\)</span> (Null hypothesis)</p></li>
+<li><p><span class="math inline">\(H_1: \mu \ne 70 \text{ bpm}\)</span> (Alternate hypothesis)</p></li>
 </ul>
 </section>
 <section id="class-example-assumptions" class="slide level2">
@@ -603,7 +604,7 @@ Floris van Ogtrop
 </section>
 <section id="class-example-assumptions-1" class="slide level2">
 <h2>Class example: <span style="color: blue;"><strong>A</strong></span>ssumptions</h2>
-<p>We begin by looking at the data (EDA). Ours sample size is 30 so we can look at the histogram, Q-Q plot and jitter plot.</p>
+<p>We begin by looking at the data (EDA). Our sample size is 30 so we can look at the histogram, Q-Q plot and jitter plot.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -776,7 +777,7 @@ mean of x
 <p>Let’s look at our water quality example again:</p>
 <ul>
 <li>The data is Total Nitrogen (TN) levels @ Wallacia in western Sydney on the Nepean River</li>
-<li>According to the ANZECC guidelines, the maximum acceptable level of TN in an lowland river is 500 <span class="math inline">\(\mu g/L\)</span> and for an upland river = 250 <span class="math inline">\(\mu g/l\)</span>. (see Table 3.3.2 in Australian and New Zealand Guidelines for Fresh and Marine Water Quality)</li>
+<li>According to the ANZECC guidelines, the maximum acceptable level of TN in an lowland river is 500 <span class="math inline">\(\mu g/L\)</span> and for an upland river = 250 <span class="math inline">\(\mu g/L\)</span>. (see Table 3.3.2 in Australian and New Zealand Guidelines for Fresh and Marine Water Quality)</li>
 <li>We want to know if the observed mean value of TN in our sample is different to the guideline value of 500 <span class="math inline">\(\mu g/L\)</span></li>
 </ul>
 <div class="cell">
@@ -797,8 +798,8 @@ mean of x
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
-<li><span class="math inline">\(H_0: \mu = 500\)</span> <span class="math inline">\(\mu g/l\)</span> (Null hypothesis)</li>
-<li><span class="math inline">\(H_1: \mu \ne 500\)</span> <span class="math inline">\(\mu g/l\)</span> (Alternate hypothesis)</li>
+<li><span class="math inline">\(H_0: \mu = 500\)</span> <span class="math inline">\(\mu g/L\)</span> (Null hypothesis)</li>
+<li><span class="math inline">\(H_1: \mu \ne 500\)</span> <span class="math inline">\(\mu g/L\)</span> (Alternate hypothesis)</li>
 </ul>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
@@ -986,8 +987,8 @@ W = 0.97279, p-value = 0.6375</code></pre>
 <h2>Example 2: Restate the hypotheses</h2>
 <ul>
 <li><p>We will also need to transform the hypothesised mean of 500 to the log10 scale.</p></li>
-<li><p><span class="math inline">\(H_0: \mu = log10(500)\)</span> <span class="math inline">\(\mu g/l\)</span> (Null hypothesis)</p></li>
-<li><p><span class="math inline">\(H_1: \mu \ne log10(500)\)</span> <span class="math inline">\(\mu g/l\)</span> (Alternate hypothesis)</p></li>
+<li><p><span class="math inline">\(H_0: \mu = \log_{10}(500)\)</span> <span class="math inline">\(\mu g/L\)</span> (Null hypothesis)</p></li>
+<li><p><span class="math inline">\(H_1: \mu \ne \log_{10}(500)\)</span> <span class="math inline">\(\mu g/L\)</span> (Alternate hypothesis)</p></li>
 </ul>
 </section>
 <section id="example-2-t-test-p-value" class="slide level2">
@@ -1024,7 +1025,7 @@ mean of x
 <section id="example-2-geometric-mean-confidence-intervals" class="slide level2">
 <h2>Example 2: Geometric mean &amp; Confidence intervals</h2>
 <p><strong>Geometric mean</strong></p>
-<p>Note that now we are looking at the geometric mean as opposed the the arithmatic mean which was 855.86 in our case</p>
+<p>Note that now we are looking at the geometric mean as opposed the the arithmetic mean which was 855.86 in our case</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1057,15 +1058,15 @@ mean of x
 </div>
 </div>
 <ul>
-<li>This means that we are 95% confident that the geometric mean (back-transformed mean) of the sample is between approximately 646 and 933 ug/l. This is higher than the hypothesised mean.</li>
+<li>This means that we are 95% confident that the geometric mean (back-transformed mean) of the sample is between approximately 646 and 933 ug/L. This is higher than the hypothesised mean.</li>
 </ul>
 </section>
-<section id="example-2-conclusion" class="slide level2">
+<section id="example-2-conclusion" class="slide level2 scrollable">
 <h2>Example 2: Conclusion</h2>
 <ol type="1">
 <li>The data was log10 transformed to meet the assumptions of the t-test.</li>
 <li>We have strong evidence that the mean value of Total Nitrogen in Nepean River is different to 500 ug/L.</li>
-<li>We are 95% confident that the geometric mean (back-transformed mean) of the sample is between approximately 646 and 933 ug/l.</li>
+<li>We are 95% confident that the geometric mean (back-transformed mean) of the sample is between approximately 646 and 933 ug/L.</li>
 <li>Looking at the confidence interval, we can say that the mean value of TN in Nepean River is significantly greater than 500 ug/L.</li>
 </ol>
 </section>
@@ -1073,14 +1074,14 @@ mean of x
 <h2>Example 3: One tailed test</h2>
 <ul>
 <li>We can also use a one tailed test if we are specifically interested in whether the observed value is greater or less than the expected value.</li>
-<li>In this case we only want to know if the TN concentration is greater than the ANZECC guidelines of 500 <span class="math inline">\(\mu g/l\)</span>.</li>
+<li>In this case we only want to know if the TN concentration is greater than the ANZECC guidelines of 500 <span class="math inline">\(\mu g/L\)</span>.</li>
 </ul>
 <blockquote>
 <p>Detect unsafe water | H₀: μ ≤ 500, H₁: μ &gt; 500 |</p>
 </blockquote>
 <p>OR</p>
 <blockquote>
-<p>Detect unsafe water | H₀: μ ≤ <span class="math inline">\(log_{10}500\)</span>, H₁: μ &gt; <span class="math inline">\(log_{10}500)\)</span> |</p>
+<p>Detect unsafe water | H₀: μ ≤ <span class="math inline">\(\log_{10}(500)\)</span>, H₁: μ &gt; <span class="math inline">\(\log_{10}(500)\)</span> |</p>
 </blockquote>
 </section>
 <section id="example-3-one-tailed-test-1" class="slide level2">
@@ -1110,7 +1111,7 @@ mean of x
 </div>
 <ul>
 <li>P &lt; 0.001 (3.d.p.) so we reject the null hypothesis.</li>
-<li>Because we are doing a one tailed test we can now conclude that the mean value of TN in Nepean River is greater than <span class="math inline">\(log_{10}500 \mu g/L\)</span></li>
+<li>Because we are doing a one tailed test we can now conclude that the mean value of TN in Nepean River is greater than <span class="math inline">\(\log_{10}(500)\)</span> <span class="math inline">\(\mu g/L\)</span></li>
 <li>Take a look at the confidence interval and the p-value. What do you notice when comparing to the two tailed test?</li>
 </ul>
 </section>
@@ -1192,7 +1193,7 @@ mean of x
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',

@@ -111,6 +111,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -221,7 +222,7 @@ Floris van Ogtrop
 <li>Printing services are available on campus. See <a href="https://www.sydney.edu.au/students/student-it/print-scan-copy.html">here</a>.</li>
 </ul>
 </section>
-<section id="learning-outcomes" class="slide level2">
+<section id="learning-outcomes" class="slide level2 scrollable">
 <h2>Learning Outcomes</h2>
 <h3 id="at-the-end-of-this-week-you-will-be-able-to">At the end of this week, you will be able to:</h3>
 <ol type="1">
@@ -236,7 +237,7 @@ Floris van Ogtrop
 <h1>Recap</h1>
 
 </section>
-<section id="non-normal-data" class="slide level2">
+<section id="non-normal-data" class="slide level2 scrollable">
 <h2>Non-normal data</h2>
 <p>Where data does not meet the assumptions of parametric tests, we have two options:</p>
 <ol type="1">
@@ -282,7 +283,7 @@ To where it bent in the undergrowth;</p>
 <li class="fragment">Requires comparatively higher computational power, <strong>but nowadays it is not a problem</strong> – any modern personal computer can handle it.</li>
 </ul>
 </section>
-<section id="randomisation-or-bootstrap" class="slide level2">
+<section id="randomisation-or-bootstrap" class="slide level2 scrollable">
 <h2>Randomisation or Bootstrap?</h2>
 <div class="fragment">
 <h3 id="they-are-not-the-same">They are not the same:</h3>
@@ -327,7 +328,7 @@ To where it bent in the undergrowth;</p>
 <h1>Randomisation tests</h1>
 <p>To generate a distribution of the test statistic under the null hypothesis.</p>
 </section>
-<section id="example-comparing-two-groups" class="slide level2">
+<section id="example-comparing-two-groups" class="slide level2 scrollable">
 <h2>Example: comparing two groups</h2>
 <ul>
 <li class="fragment">Suppose we have two samples (groups) and we want to test if the <strong>mean scores<sup>1</sup></strong> are different.</li>
@@ -335,7 +336,7 @@ To where it bent in the undergrowth;</p>
 <li class="fragment">Thus, we can <strong>pool</strong> the scores and reassign them to the two groups, since any score is equally likely to belong in either group, i.e.&nbsp;the scores are <strong>exchangeable</strong>.</li>
 </ul>
 <aside><ol class="aside-footnotes"><li id="fn2"><p>Basically any measure of interest.</p></li></ol></aside></section>
-<section id="steps" class="slide level2">
+<section id="steps" class="slide level2 scrollable">
 <h2>Steps</h2>
 <ol type="1">
 <li class="fragment"><strong>Pool</strong> the scores from both groups into a single dataset.</li>
@@ -579,7 +580,7 @@ alternative hypothesis: two.sided</code></pre>
 <li class="fragment">Instead, we can use the <strong>bootstrap</strong> to estimate the 95% CI, which is based on the <strong>simulated distribution of the mean difference</strong>.</li>
 </ul>
 </section>
-<section id="steps-1" class="slide level2">
+<section id="steps-1" class="slide level2 scrollable">
 <h2>Steps</h2>
 <ol type="1">
 <li class="fragment"><strong>Resample</strong> the data with replacement.</li>
@@ -790,7 +791,7 @@ Calculations and Intervals on Original Scale</code></pre>
 </div>
 </div>
 </section>
-<section id="using-infer" class="slide level2">
+<section id="using-infer" class="slide level2 scrollable">
 <h2>Using <code>infer</code></h2>
 <div class="cell">
 <details class="code-fold">
@@ -947,7 +948,7 @@ $ BEETLES &lt;dbl&gt; 256, 209, 0, 0, 0, 44, 49, 117, 6, 0, 0, 75, 34, 13, 0, 90
 </div>
 </div>
 </section>
-<section id="comparisons" class="slide level2">
+<section id="comparisons" class="slide level2 scrollable">
 <h2>Comparisons</h2>
 <p>Let’s compare the p-values from</p>
 <ol type="1">
@@ -1091,7 +1092,7 @@ $ BEETLES &lt;dbl&gt; 256, 209, 0, 0, 0, 44, 49, 117, 6, 0, 0, 75, 34, 13, 0, 90
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',

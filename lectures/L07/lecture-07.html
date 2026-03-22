@@ -111,6 +111,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -223,7 +224,7 @@ Floris van Ogtrop
 <h1>Learning Outcomes</h1>
 
 </section>
-<section id="at-the-end-of-this-week-you-will-be-able-to" class="slide level2">
+<section id="at-the-end-of-this-week-you-will-be-able-to" class="slide level2 scrollable">
 <h2>At the end of this week, you will be able to:</h2>
 <ol type="1">
 <li><strong>Explain the rationale</strong> for using non-parametric tests, including when to choose them over parametric tests due to violations of assumptions (e.g., non-normality, ordinal data).</li>
@@ -1539,7 +1540,7 @@ mean in group A mean in group B
 <h1>Non-parametric alternatives</h1>
 
 </section>
-<section id="when-to-use" class="slide level2">
+<section id="when-to-use" class="slide level2 scrollable">
 <h2>When to use</h2>
 <ol type="1">
 <li>If assumptions are met (normality, homogeneity of variance), use parametric tests as they are more powerful and efficient than non-parametric tests.</li>
@@ -2092,7 +2093,7 @@ mean in group A mean in group B
 <p>Basically, used in same situations as the one-sample or paired <span class="math inline">\(t\)</span>-test, but when the data is not normally distributed but <strong>still symmetric</strong>.</p>
 </div>
 </section>
-<section id="calculating-ranks" class="slide level2">
+<section id="calculating-ranks" class="slide level2 scrollable">
 <h2>Calculating ranks</h2>
 <p>If comparing two groups, the ranks are calculated as follows:</p>
 <ol type="1">
@@ -4104,7 +4105,7 @@ X-squared = 13.542, df = 4, p-value = 0.008911</code></pre>
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
