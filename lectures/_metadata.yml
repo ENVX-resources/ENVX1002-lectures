@@ -7,6 +7,8 @@ subtitle: ENVX1002 Statistics in Life and Environmental Sciences
 institute: The University of Sydney
 date: last-modified # today | last-modified
 date-format: "MMM YYYY" # see https://momentjs.com/docs/#/displaying/format/
+scrollable: true
+slide-number: true
 code-fold: true
 knitr:
   opts_chunk:

@@ -26,7 +26,7 @@ Engaging in such activities could constitute a breach of the Academic Integrity 
 
 ::: {.column width="50%"}
 
-We want you to do well on assessments. Contact the Learning Hub, you tutor, or Unit Coordinator to get support.
+We want you to do well on assessments. Contact the Learning Hub, your tutor, or Unit Coordinator to get support.
 
 There are resources available to help you. Don’t be afraid to ask for help.
 
@@ -58,7 +58,7 @@ There are resources available to help you. Don’t be afraid to ask for help.
 **LO3**. By the end of this course, students will be able to apply parametric and non-parametric statistical inference methods to experimental and observational data using RStudio and effectively interpret and communicate the results in the context of the data.
 :::
 
-LO4. By the end ot this course, students will be able to put into practice both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.
+LO4. By the end of this course, students will be able to put into practice both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.
 
 ::: {style="background-color: yellow; padding: 10px; border: 1px solid black;"}
 **LO5**. By the end of this course, students will be able to articulate statistical and modelling results clearly and convincingly in both written reports and oral presentations, working effectively as an individual and collaboratively in a team, showcasing the ability to convey complex information to varied audiences.
@@ -124,7 +124,7 @@ LO4. By the end ot this course, students will be able to put into practice both 
 
 ## Hypothesis testing workflow
 
-A usefull acronym is **HATPC**:
+A useful acronym is **HATPC**:
 
 - **H:** Hypothesis
 - **A:** Assumptions
@@ -156,7 +156,7 @@ For example
 
 ## T: Test Statistic 
 
-A test statistic measure show far the observed result is from what we would expect under the null hypothesis.
+A test statistic measures how far the observed result is from what we would expect under the null hypothesis.
 
 $\text{Test statistic}=\frac{\text{Observed value - Expected value}}{\text{Standard error}}$
 
@@ -252,11 +252,11 @@ At the end of a statistical test we write two conclusions
   - $H_0:\mu=c$ *Two tailed*
   - $H_1:\mu \ne c$ *Two tailed*
   
-  - $H_0:\mu \ge c$ *One tailed - greater than*
-  - $H_1:\mu < c$ *One tailed - greater than*
-  
-  - $H_0:\mu \le c$ *One tailed - less than*
-  - $H_1:\mu > c$ *One tailed - less than*
+  - $H_0:\mu \ge c$ *One tailed - less than*
+  - $H_1:\mu < c$ *One tailed - less than*
+
+  - $H_0:\mu \le c$ *One tailed - greater than*
+  - $H_1:\mu > c$ *One tailed - greater than*
   
 - We usually use the first (two tailed) form unless we are specifically interested in testing whether the difference is in one direction because this is the only direction of interest
 
@@ -350,9 +350,9 @@ heart_rate <- rnorm(30, mean = 70, sd = 10)
 
 **State the Null and Alternate hypothesis!**
 
-- $H_0=70 \text{ bpm}$	(Null hypothesis)
+- $H_0: \mu = 70 \text{ bpm}$	(Null hypothesis)
 
-- $H_1 \ne 70 \text{ bpm}$	(Alternate hypothesis)
+- $H_1: \mu \ne 70 \text{ bpm}$	(Alternate hypothesis)
 
 
 ## Class example: <span style="color: blue;">**A**</span>ssumptions
@@ -372,7 +372,7 @@ Before applying a one-sample t-test, we should check whether the sample is appro
 
 ## Class example: <span style="color: blue;">**A**</span>ssumptions
 
-We begin by looking at the data (EDA). Ours sample size is 30 so we can look at the histogram, Q-Q plot and jitter plot.
+We begin by looking at the data (EDA). Our sample size is 30 so we can look at the histogram, Q-Q plot and jitter plot.
 
 ```{r}
 #| fig-width: 8
@@ -544,7 +544,7 @@ qt(0.975, df = 29) ## in our heart rate example, n=30 so df = 29
 Let's look at our water quality example again:
 
 - The data is Total Nitrogen (TN) levels @ Wallacia in western Sydney on the Nepean River
-- According to the ANZECC guidelines, the maximum acceptable level of TN in an lowland river is 500 $\mu g/L$ and for an upland river = 250 $\mu g/l$. (see Table 3.3.2 in Australian and New Zealand Guidelines for Fresh and Marine Water Quality)
+- According to the ANZECC guidelines, the maximum acceptable level of TN in an lowland river is 500 $\mu g/L$ and for an upland river = 250 $\mu g/L$. (see Table 3.3.2 in Australian and New Zealand Guidelines for Fresh and Marine Water Quality)
 - We want to know if the observed mean value of TN in our sample is different to the guideline value of 500 $\mu g/L$
 
 ```{r}
@@ -561,8 +561,8 @@ str(TN)
 
 ::: {.column width="50%"}
 
-- $H_0: \mu = 500$ $\mu g/l$ (Null hypothesis)
-- $H_1: \mu \ne 500$ $\mu g/l$ (Alternate hypothesis)
+- $H_0: \mu = 500$ $\mu g/L$ (Null hypothesis)
+- $H_1: \mu \ne 500$ $\mu g/L$ (Alternate hypothesis)
 
 :::
 
@@ -728,8 +728,8 @@ shapiro.test(TN$log10_TN)
 
 - We will also need to transform the hypothesised mean of 500 to the log10 scale.
 
-- $H_0: \mu = log10(500)$ $\mu g/l$ (Null hypothesis)
-- $H_1: \mu \ne log10(500)$ $\mu g/l$ (Alternate hypothesis)
+- $H_0: \mu = \log_{10}(500)$ $\mu g/L$ (Null hypothesis)
+- $H_1: \mu \ne \log_{10}(500)$ $\mu g/L$ (Alternate hypothesis)
 
 
 
@@ -752,7 +752,7 @@ t.test(TN$log10_TN,
 
 **Geometric mean**
 
-Note that now we are looking at the geometric mean as opposed the the arithmatic mean which was 855.86 in our case
+Note that now we are looking at the geometric mean as opposed the the arithmetic mean which was 855.86 in our case
 
 ```{r}
 10^mean(TN$log10_TN)
@@ -770,7 +770,7 @@ $10^{CI_{low}}$ and $10^{CI_{high}}$
 10^(2.97)
 ```
 
-- This means that we are 95% confident that the geometric mean (back-transformed mean) of the sample is between approximately 646 and 933 ug/l. This is higher than the hypothesised mean.
+- This means that we are 95% confident that the geometric mean (back-transformed mean) of the sample is between approximately 646 and 933 ug/L. This is higher than the hypothesised mean.
 
 
 
@@ -778,7 +778,7 @@ $10^{CI_{low}}$ and $10^{CI_{high}}$
 
 1. The data was log10 transformed to meet the assumptions of the t-test.
 2. We have strong evidence that the mean value of Total Nitrogen in Nepean River is different to 500 ug/L.
-3. We are 95% confident that the geometric mean (back-transformed mean) of the sample is between approximately 646 and 933 ug/l.
+3. We are 95% confident that the geometric mean (back-transformed mean) of the sample is between approximately 646 and 933 ug/L.
 4. Looking at the confidence interval, we can say that the mean value of TN in Nepean River is significantly greater than 500 ug/L.
 
 
@@ -788,13 +788,13 @@ $10^{CI_{low}}$ and $10^{CI_{high}}$
 ## Example 3: One tailed test
 
 - We can also use a one tailed test if we are specifically interested in whether the observed value is greater or less than the expected value.
-- In this case we only want to know if the TN concentration is greater than the ANZECC guidelines of 500 $\mu g/l$.
+- In this case we only want to know if the TN concentration is greater than the ANZECC guidelines of 500 $\mu g/L$.
 
 > Detect unsafe water | H₀: μ ≤ 500, H₁: μ > 500 |
 
 OR
 
-> Detect unsafe water | H₀: μ ≤ $log_{10}500$, H₁: μ > $log_{10}500)$ |
+> Detect unsafe water | H₀: μ ≤ $\log_{10}(500)$, H₁: μ > $\log_{10}(500)$ |
 
 
 ## Example 3: One tailed test
@@ -808,7 +808,7 @@ t.test(TN$log10_TN,
 ```
 
 - P < 0.001 (3.d.p.) so we reject the null hypothesis.
-- Because we are doing a one tailed test we can now conclude that the mean value of TN in Nepean River is greater than $log_{10}500 \mu g/L$
+- Because we are doing a one tailed test we can now conclude that the mean value of TN in Nepean River is greater than $\log_{10}(500)$ $\mu g/L$
 - Take a look at the confidence interval and the p-value. What do you notice when comparing to the two tailed test?
 
 
