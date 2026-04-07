@@ -31,7 +31,7 @@ theme_set(theme_cowplot())
    - The **Wilcoxon signed-rank tests** (for one-sample or paired data),
    - The **Mann-Whitney U test** (AKA Wilcoxon rank-sum test) for two independent samples, and
    - The **Chi-squared test**, including tests for proportions (goodness-of-fit) and association (independence).
-3. **Apply and interpret** Wilcoxon and Mann-Whitney tests in R, for one-sample paired samples or two independent samples
+3. **Apply and interpret** Wilcoxon and Mann-Whitney tests in R, for one-sample, paired samples or two independent samples
 4. **Conduct and interpret** Chi-squared tests in R, including:
    - Chi-squared test of independence to examine association between two categorical variables
    - Chi-squared goodness-of-fit test to compare observed proportions with expected proportions
@@ -198,8 +198,9 @@ The real difference between the two groups is *obscured* by the outlier. **Type 
 ## When to use
 
 1. If assumptions are met (normality, homogeneity of variance), use parametric tests as they are more powerful and efficient than non-parametric tests.
-2. If the normality assumption is violated, transform the data and check for normality again (*optional*).
-3. **Non-parametric tests are a good way to deal with circumstances in which parametric tests perform "poorly".**
+2. If the normality assumption is violated, we first try transform the data and check for normality again.  
+3. If the data is stubborn and not transforming well, **Non-parametric tests** are a good next step.
+4. Often used when sample sizes are small (<15ish) and can't easily transform the data.
 
 ## What to use
 
@@ -237,7 +238,7 @@ Altenrative to the one-sample $t$-test and the paired $t$-test.
 
 ## Overview
 
-The Wilcoxon signed-rank test is a non-parametric test used to compare two related samples, matched pairs, or repeated measures on a single sample.
+The Wilcoxon signed-rank test is a non-parametric test used to assess whether a single sample differs from zero, or whether paired samples differ.
 
 . . .
 
@@ -250,29 +251,13 @@ Is an alternative to:
 
 . . .
 
-- Data comes from the same population
-- Data are randomly and independently sampled
+- Independent observations (or independent pairs)
+- Data represent differences from a value (normally zero) (or between pairs)
+- Differences are fairly balanced around zero
 
 . . .
 
-Basically, used in same situations as the one-sample or paired $t$-test, but when the data is not normally distributed but **still symmetric**.
-
-## Calculating ranks
-
-If comparing two groups, the ranks are calculated as follows:
-
-::: incremental
-1. Calculate the difference $D$ between the two groups.
-2. Rank the absolute values of the differences in ascending order.
-3. Assign the sign of the difference to the rank.
-4. Sum the ranks for each group -- **zero differences are ignored**.
-:::
-
-. . .
-
-::: callout-note
-See Slide 5 to recall how ranks are calculated, but we will show another example in the next slide.
-:::
+Basically, used in same situations as the one-sample or paired $t$-test, but when the data is not normally distributed but **still reasonably balanced**.
 
 
 # Example: Paired data
@@ -301,49 +286,25 @@ gt(df) %>%
 
 ### Is there a significant increase in weight gain after the diet?
 
-## Rank values
-
-```{r}
-#| code-fold: true
-
-df %>%
-  mutate(D = weight_after - weight) %>%
-  mutate(Sign = ifelse(D > 0, "+", "-")) %>%
-  mutate(rank = rank(abs(D))) %>%
-  mutate("Signed rank" = ifelse(D > 0, rank, -rank)) %>%
-  gt() %>%
-  opt_table_font(font = "Crimson Pro", add = FALSE) %>%
-  tab_options(
-    table.font.size = px(24),
-    column_labels.font.weight = "bold")
-```
-
-::: callout-note
-The order of the ranks is based on the **absolute** values of the differences; the signs are assigned afterward.
-:::
 
 ## Hypothesis
 
-> Is there a significant increase in weight gain after the diet?
+> Is there a significant increase in weight gain after the diet - indicates a one tailed test?
 
-$$H_0: \mu_{\text{before}} = \mu_{\text{after}}$$
-$$H_1: \mu_{\text{before}} < \mu_{\text{after}}$$
+Sometimes we state the hypothesis in terms of the median as it is a robust estimator of the centre of the distribution:
+$$H_0: \text{the median difference between the paired samples is equal to zero}$$
+$$H_1: \text{the median difference between the paired samples is greater than zero}$$ 
 
+What we really mean is:
+$$H_0: \text{the distribution of the difference between the paired samples is centered at zero}$$
+$$H_1: \text{the distribution of the difference between the paired samples is centered at a value greater than zero}$$ 
 . . .
 
-In words: 
+We can also say: 
 
-- $H_0$: There is no difference in weight gain before and after the diet.
-- $H_1$: There is an increase in weight gain after the diet.
+- $H_0$: The distribution of the difference in median weight gain before and after the diet is centred at zero.
+- $H_1$: The distribution of the difference in median weight gain before and after the diet is centred at greater than zero.
 
----
-
-Alternatively, since the data is paired, we may also consider hypotheses based on the differences between the two groups:
-
-$$H_0: \mu_D = 0$$
-$$H_1: \mu_D > 0$$
-
-where $D$ is the difference between the two groups.
 
 ## Assumptions
 
@@ -362,7 +323,7 @@ library(patchwork)
 p1 + p2 + p3
 ```
 
-With so few data points, we may want to use a formal test to check for normality.
+With so few data points (small sample), we may want to use a formal test to check for normality.
 
 ## Assumptions
 
@@ -372,7 +333,8 @@ With so few data points, we may want to use a formal test to check for normality
 shapiro.test(df$weight_after - df$weight)
 ```
 
-Results indicate that the data significantly deviates from normality (W = 0.63, p < 0.05). We will use the Wilcoxon signed-rank test.
+- Results indicate that the data significantly deviates from normality (W = 0.63, p < 0.05). 
+- because it is a small sample size and the data is not normally distributed, we decide to use the Wilcoxon signed-rank test instead of transforming the data.
 
 ## Performing the test
 
@@ -412,8 +374,8 @@ douglassi brevirostre*)
 
 Does the average smaller size class lizard eat about 100 beetles per day?
 
-$$H_0: \mu = 100$$
-$$H_1: \mu \neq 100$$
+$$H_0: the distribution of smaller lizard beetle consumption is centred at 100 beetles per day$$
+$$H_1: the distribution of smaller lizard beetle consumption is not centred at 100 beetles per day$$
 
 ### Dataset [Download](data/beetle.csv)
 
