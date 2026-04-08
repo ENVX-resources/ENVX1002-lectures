@@ -49,7 +49,7 @@ Depends on the assumption that the data is normally distributed with mean $\mu$ 
 ::: fragment
 ### Non-parametric methods
 
-Do **not** make *any* assumptions about the distribution of the data. 
+**Relax** assumptions about the distribution of the data. 
 
 **Uses other properties** e.g. ranking of the data, e.g. Wilcoxon signed-rank test, Mann-Whitney U test, Kruskal-Wallis test.
 :::
@@ -291,19 +291,19 @@ gt(df) %>%
 
 > Is there a significant increase in weight gain after the diet - indicates a one tailed test?
 
-Sometimes we state the hypothesis in terms of the median as it is a robust estimator of the centre of the distribution:
-$$H_0: \text{the median difference between the paired samples is equal to zero}$$
-$$H_1: \text{the median difference between the paired samples is greater than zero}$$ 
+. . . 
 
-What we really mean is:
-$$H_0: \text{the distribution of the difference between the paired samples is centered at zero}$$
-$$H_1: \text{the distribution of the difference between the paired samples is centered at a value greater than zero}$$ 
+Sometimes we state the hypothesis in terms of the median as it is a robust estimator of the centre of the distribution:
+
+- $H_0$: the median difference between the paired samples is equal to zero
+- $H_1$: the median difference between the paired samples is greater than zero 
+
 . . .
 
-We can also say: 
+What we really mean is:
 
-- $H_0$: The distribution of the difference in median weight gain before and after the diet is centred at zero.
-- $H_1$: The distribution of the difference in median weight gain before and after the diet is centred at greater than zero.
+- $H_0$: the distribution of the difference between the paired samples is centered at zero
+- $H_1$: the distribution of the difference between the paired samples is centered at a value greater than zero 
 
 
 ## Assumptions
@@ -374,8 +374,8 @@ douglassi brevirostre*)
 
 Does the average smaller size class lizard eat about 100 beetles per day?
 
-$$H_0: the distribution of smaller lizard beetle consumption is centred at 100 beetles per day$$
-$$H_1: the distribution of smaller lizard beetle consumption is not centred at 100 beetles per day$$
+- $H_0$: the distribution of smaller lizard beetle consumption is centred at 100 beetles per day
+- $H_1$: the distribution of smaller lizard beetle consumption is not centred at 100 beetles per day
 
 ### Dataset [Download](data/beetle.csv)
 
@@ -424,7 +424,7 @@ Results indicate that the average number of beetles consumed by the smaller size
 . . .
 
 ::: callout-important
-We are unable to make a conclusion about effect size from non-parametric tests as the information is lost when the data is transformed into ranks.
+We not easily able to make a conclusion about effect size (confidence intervals and mean) from non-parametric tests as the information is lost when the data is transformed into ranks.
 :::
 
 
@@ -458,10 +458,10 @@ We will now compare the number of beetles consumed by the **larger** and **small
 
 Loosely speaking, because we are not assuming symmetry, the most appropriate summary statistic to use when comparing the two groups is the **median**.
 
-$$H_0: median_{\text{larger}} = median_{\text{smaller}}$$
-$$H_1: median_{\text{larger}} \neq median_{\text{smaller}}$$
+$$H_0: \text{median}_{\text{larger}} = \text{median}_{\text{smaller}}$$
+$$H_1: \text{median}_{\text{larger}} \neq \text{median}_{\text{smaller}}$$
 
-More accurately, we are testing for a difference in the *distribution* of the two groups.
+More accurately, we are testing for a difference in centre of the *distribution* of the two groups and the median is a robust estimator of this.
 
 ## Assumptions
 
@@ -482,7 +482,7 @@ library(patchwork)
 p1 + p2 + p3
 ```
 
-Data does not meet the normality assumption.
+Data does not meet the normality assumption? Compare the shapes of the distributions
 
 ## Test statistic
 
@@ -512,7 +512,7 @@ The results indicate that the number of beetles consumed by the larger and small
 - Some argue that non-parametric tests **must** be decided during experimental design and not when the data fails to meet the normality assumption: **as the decision to rank data has implications on the interpretation of the results.**
   - e.g. [Graphpad Advice: Don't automate the decision to use a nonparametric test](https://www.graphpad.com/guides/prism/latest/statistics/using_a_normality_test_to_choo.htm)
 - The conventional wisdom is to **transform the data** and check for normality if the assumption is not met. If the data is *still* not normal, then use non-parametric tests (after considering the implications on interpretation).
-  - Or, use bootstrapping (next week!).
+  - Or, use simulations based approaches (next week!).
 
 :::
 
@@ -531,7 +531,7 @@ The results indicate that the number of beetles consumed by the larger and small
 ## Parametric and non-parametric alternatives
 
 ::: incremental
-- So far, **all** of our techniques have been aimed at comparing **means/medians** of continuous variables.
+- So far, **all** of our techniques have been aimed at comparing **means/medians/central mass** of continuous variables.
 - The *assumption of normality* **underpins** these techniques -- if the data is not normally distributed, we have alternatives like *transforming* the data or using *non-parametric tests*.
 - **Does this apply to all data?**
 :::
@@ -546,6 +546,7 @@ The results indicate that the number of beetles consumed by the larger and small
 
 
 # Categorical data
+
 Some data are not measured on a continuous scale, but rather as **categories**. 
 
 ## What are categorical variables?
