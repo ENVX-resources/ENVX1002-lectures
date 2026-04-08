@@ -234,7 +234,7 @@ Floris van Ogtrop
 <li>The <strong>Mann-Whitney U test</strong> (AKA Wilcoxon rank-sum test) for two independent samples, and</li>
 <li>The <strong>Chi-squared test</strong>, including tests for proportions (goodness-of-fit) and association (independence).</li>
 </ul></li>
-<li><strong>Apply and interpret</strong> Wilcoxon and Mann-Whitney tests in R, for one-sample paired samples or two independent samples</li>
+<li><strong>Apply and interpret</strong> Wilcoxon and Mann-Whitney tests in R, for one-sample, paired samples or two independent samples</li>
 <li><strong>Conduct and interpret</strong> Chi-squared tests in R, including:
 <ul>
 <li>Chi-squared test of independence to examine association between two categorical variables</li>
@@ -255,7 +255,7 @@ Floris van Ogtrop
 <p>Depends on the assumption that the data is normally distributed with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span> ,e.g.&nbsp;<span class="math inline">\(t\)</span>-test, ANOVA, linear regression.</p>
 <div class="fragment">
 <h3 id="non-parametric-methods">Non-parametric methods</h3>
-<p>Do <strong>not</strong> make <em>any</em> assumptions about the distribution of the data.</p>
+<p><strong>Relax</strong> assumptions about the distribution of the data.</p>
 <p><strong>Uses other properties</strong> e.g.&nbsp;ranking of the data, e.g.&nbsp;Wilcoxon signed-rank test, Mann-Whitney U test, Kruskal-Wallis test.</p>
 </div>
 </section>
@@ -427,23 +427,23 @@ Floris van Ogtrop
 <span id="cb1-7"><a></a>  <span class="fu">opt_table_font</span>(<span class="at">font =</span> <span class="st">"Crimson Pro"</span>, <span class="at">add =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="piraoxokql" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#piraoxokql table {
+<div id="yrqlembnih" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yrqlembnih table {
   font-family: 'Crimson Pro';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#piraoxokql thead, #piraoxokql tbody, #piraoxokql tfoot, #piraoxokql tr, #piraoxokql td, #piraoxokql th {
+#yrqlembnih thead, #yrqlembnih tbody, #yrqlembnih tfoot, #yrqlembnih tr, #yrqlembnih td, #yrqlembnih th {
   border-style: none;
 }
 
-#piraoxokql p {
+#yrqlembnih p {
   margin: 0;
   padding: 0;
 }
 
-#piraoxokql .gt_table {
+#yrqlembnih .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -469,12 +469,12 @@ Floris van Ogtrop
   border-left-color: #D3D3D3;
 }
 
-#piraoxokql .gt_caption {
+#yrqlembnih .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#piraoxokql .gt_title {
+#yrqlembnih .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -486,7 +486,7 @@ Floris van Ogtrop
   border-bottom-width: 0;
 }
 
-#piraoxokql .gt_subtitle {
+#yrqlembnih .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -498,7 +498,7 @@ Floris van Ogtrop
   border-top-width: 0;
 }
 
-#piraoxokql .gt_heading {
+#yrqlembnih .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -510,13 +510,13 @@ Floris van Ogtrop
   border-right-color: #D3D3D3;
 }
 
-#piraoxokql .gt_bottom_border {
+#yrqlembnih .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#piraoxokql .gt_col_headings {
+#yrqlembnih .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -531,7 +531,7 @@ Floris van Ogtrop
   border-right-color: #D3D3D3;
 }
 
-#piraoxokql .gt_col_heading {
+#yrqlembnih .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -551,7 +551,7 @@ Floris van Ogtrop
   overflow-x: hidden;
 }
 
-#piraoxokql .gt_column_spanner_outer {
+#yrqlembnih .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -563,15 +563,15 @@ Floris van Ogtrop
   padding-right: 4px;
 }
 
-#piraoxokql .gt_column_spanner_outer:first-child {
+#yrqlembnih .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#piraoxokql .gt_column_spanner_outer:last-child {
+#yrqlembnih .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#piraoxokql .gt_column_spanner {
+#yrqlembnih .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -583,11 +583,11 @@ Floris van Ogtrop
   width: 100%;
 }
 
-#piraoxokql .gt_spanner_row {
+#yrqlembnih .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#piraoxokql .gt_group_heading {
+#yrqlembnih .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -613,7 +613,7 @@ Floris van Ogtrop
   text-align: left;
 }
 
-#piraoxokql .gt_empty_group_heading {
+#yrqlembnih .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -628,15 +628,15 @@ Floris van Ogtrop
   vertical-align: middle;
 }
 
-#piraoxokql .gt_from_md > :first-child {
+#yrqlembnih .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#piraoxokql .gt_from_md > :last-child {
+#yrqlembnih .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#piraoxokql .gt_row {
+#yrqlembnih .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -655,7 +655,7 @@ Floris van Ogtrop
   overflow-x: hidden;
 }
 
-#piraoxokql .gt_stub {
+#yrqlembnih .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -668,7 +668,7 @@ Floris van Ogtrop
   padding-right: 5px;
 }
 
-#piraoxokql .gt_stub_row_group {
+#yrqlembnih .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -682,15 +682,15 @@ Floris van Ogtrop
   vertical-align: top;
 }
 
-#piraoxokql .gt_row_group_first td {
+#yrqlembnih .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#piraoxokql .gt_row_group_first th {
+#yrqlembnih .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#piraoxokql .gt_summary_row {
+#yrqlembnih .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -700,16 +700,16 @@ Floris van Ogtrop
   padding-right: 5px;
 }
 
-#piraoxokql .gt_first_summary_row {
+#yrqlembnih .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#piraoxokql .gt_first_summary_row.thick {
+#yrqlembnih .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#piraoxokql .gt_last_summary_row {
+#yrqlembnih .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -719,7 +719,7 @@ Floris van Ogtrop
   border-bottom-color: #D3D3D3;
 }
 
-#piraoxokql .gt_grand_summary_row {
+#yrqlembnih .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -729,7 +729,7 @@ Floris van Ogtrop
   padding-right: 5px;
 }
 
-#piraoxokql .gt_first_grand_summary_row {
+#yrqlembnih .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -739,7 +739,7 @@ Floris van Ogtrop
   border-top-color: #D3D3D3;
 }
 
-#piraoxokql .gt_last_grand_summary_row_top {
+#yrqlembnih .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -749,11 +749,11 @@ Floris van Ogtrop
   border-bottom-color: #D3D3D3;
 }
 
-#piraoxokql .gt_striped {
+#yrqlembnih .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#piraoxokql .gt_table_body {
+#yrqlembnih .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -762,7 +762,7 @@ Floris van Ogtrop
   border-bottom-color: #D3D3D3;
 }
 
-#piraoxokql .gt_footnotes {
+#yrqlembnih .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -776,7 +776,7 @@ Floris van Ogtrop
   border-right-color: #D3D3D3;
 }
 
-#piraoxokql .gt_footnote {
+#yrqlembnih .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -785,7 +785,7 @@ Floris van Ogtrop
   padding-right: 5px;
 }
 
-#piraoxokql .gt_sourcenotes {
+#yrqlembnih .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -799,7 +799,7 @@ Floris van Ogtrop
   border-right-color: #D3D3D3;
 }
 
-#piraoxokql .gt_sourcenote {
+#yrqlembnih .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -807,72 +807,72 @@ Floris van Ogtrop
   padding-right: 5px;
 }
 
-#piraoxokql .gt_left {
+#yrqlembnih .gt_left {
   text-align: left;
 }
 
-#piraoxokql .gt_center {
+#yrqlembnih .gt_center {
   text-align: center;
 }
 
-#piraoxokql .gt_right {
+#yrqlembnih .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#piraoxokql .gt_font_normal {
+#yrqlembnih .gt_font_normal {
   font-weight: normal;
 }
 
-#piraoxokql .gt_font_bold {
+#yrqlembnih .gt_font_bold {
   font-weight: bold;
 }
 
-#piraoxokql .gt_font_italic {
+#yrqlembnih .gt_font_italic {
   font-style: italic;
 }
 
-#piraoxokql .gt_super {
+#yrqlembnih .gt_super {
   font-size: 65%;
 }
 
-#piraoxokql .gt_footnote_marks {
+#yrqlembnih .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#piraoxokql .gt_asterisk {
+#yrqlembnih .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#piraoxokql .gt_indent_1 {
+#yrqlembnih .gt_indent_1 {
   text-indent: 5px;
 }
 
-#piraoxokql .gt_indent_2 {
+#yrqlembnih .gt_indent_2 {
   text-indent: 10px;
 }
 
-#piraoxokql .gt_indent_3 {
+#yrqlembnih .gt_indent_3 {
   text-indent: 15px;
 }
 
-#piraoxokql .gt_indent_4 {
+#yrqlembnih .gt_indent_4 {
   text-indent: 20px;
 }
 
-#piraoxokql .gt_indent_5 {
+#yrqlembnih .gt_indent_5 {
   text-indent: 25px;
 }
 
-#piraoxokql .katex-display {
+#yrqlembnih .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#piraoxokql div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#yrqlembnih div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -942,23 +942,23 @@ Floris van Ogtrop
 <span id="cb2-4"><a></a>  <span class="fu">opt_table_font</span>(<span class="at">font =</span> <span class="st">"Crimson Pro"</span>, <span class="at">add =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="bxcqebaiac" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#bxcqebaiac table {
+<div id="wnakxcoxys" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wnakxcoxys table {
   font-family: 'Crimson Pro';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#bxcqebaiac thead, #bxcqebaiac tbody, #bxcqebaiac tfoot, #bxcqebaiac tr, #bxcqebaiac td, #bxcqebaiac th {
+#wnakxcoxys thead, #wnakxcoxys tbody, #wnakxcoxys tfoot, #wnakxcoxys tr, #wnakxcoxys td, #wnakxcoxys th {
   border-style: none;
 }
 
-#bxcqebaiac p {
+#wnakxcoxys p {
   margin: 0;
   padding: 0;
 }
 
-#bxcqebaiac .gt_table {
+#wnakxcoxys .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -984,12 +984,12 @@ Floris van Ogtrop
   border-left-color: #D3D3D3;
 }
 
-#bxcqebaiac .gt_caption {
+#wnakxcoxys .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#bxcqebaiac .gt_title {
+#wnakxcoxys .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1001,7 +1001,7 @@ Floris van Ogtrop
   border-bottom-width: 0;
 }
 
-#bxcqebaiac .gt_subtitle {
+#wnakxcoxys .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1013,7 +1013,7 @@ Floris van Ogtrop
   border-top-width: 0;
 }
 
-#bxcqebaiac .gt_heading {
+#wnakxcoxys .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1025,13 +1025,13 @@ Floris van Ogtrop
   border-right-color: #D3D3D3;
 }
 
-#bxcqebaiac .gt_bottom_border {
+#wnakxcoxys .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bxcqebaiac .gt_col_headings {
+#wnakxcoxys .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1046,7 +1046,7 @@ Floris van Ogtrop
   border-right-color: #D3D3D3;
 }
 
-#bxcqebaiac .gt_col_heading {
+#wnakxcoxys .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1066,7 +1066,7 @@ Floris van Ogtrop
   overflow-x: hidden;
 }
 
-#bxcqebaiac .gt_column_spanner_outer {
+#wnakxcoxys .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1078,15 +1078,15 @@ Floris van Ogtrop
   padding-right: 4px;
 }
 
-#bxcqebaiac .gt_column_spanner_outer:first-child {
+#wnakxcoxys .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bxcqebaiac .gt_column_spanner_outer:last-child {
+#wnakxcoxys .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bxcqebaiac .gt_column_spanner {
+#wnakxcoxys .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1098,11 +1098,11 @@ Floris van Ogtrop
   width: 100%;
 }
 
-#bxcqebaiac .gt_spanner_row {
+#wnakxcoxys .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#bxcqebaiac .gt_group_heading {
+#wnakxcoxys .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1128,7 +1128,7 @@ Floris van Ogtrop
   text-align: left;
 }
 
-#bxcqebaiac .gt_empty_group_heading {
+#wnakxcoxys .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1143,15 +1143,15 @@ Floris van Ogtrop
   vertical-align: middle;
 }
 
-#bxcqebaiac .gt_from_md > :first-child {
+#wnakxcoxys .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bxcqebaiac .gt_from_md > :last-child {
+#wnakxcoxys .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bxcqebaiac .gt_row {
+#wnakxcoxys .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1170,7 +1170,7 @@ Floris van Ogtrop
   overflow-x: hidden;
 }
 
-#bxcqebaiac .gt_stub {
+#wnakxcoxys .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1183,7 +1183,7 @@ Floris van Ogtrop
   padding-right: 5px;
 }
 
-#bxcqebaiac .gt_stub_row_group {
+#wnakxcoxys .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1197,15 +1197,15 @@ Floris van Ogtrop
   vertical-align: top;
 }
 
-#bxcqebaiac .gt_row_group_first td {
+#wnakxcoxys .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#bxcqebaiac .gt_row_group_first th {
+#wnakxcoxys .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#bxcqebaiac .gt_summary_row {
+#wnakxcoxys .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1215,16 +1215,16 @@ Floris van Ogtrop
   padding-right: 5px;
 }
 
-#bxcqebaiac .gt_first_summary_row {
+#wnakxcoxys .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#bxcqebaiac .gt_first_summary_row.thick {
+#wnakxcoxys .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#bxcqebaiac .gt_last_summary_row {
+#wnakxcoxys .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1234,7 +1234,7 @@ Floris van Ogtrop
   border-bottom-color: #D3D3D3;
 }
 
-#bxcqebaiac .gt_grand_summary_row {
+#wnakxcoxys .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1244,7 +1244,7 @@ Floris van Ogtrop
   padding-right: 5px;
 }
 
-#bxcqebaiac .gt_first_grand_summary_row {
+#wnakxcoxys .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1254,7 +1254,7 @@ Floris van Ogtrop
   border-top-color: #D3D3D3;
 }
 
-#bxcqebaiac .gt_last_grand_summary_row_top {
+#wnakxcoxys .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1264,11 +1264,11 @@ Floris van Ogtrop
   border-bottom-color: #D3D3D3;
 }
 
-#bxcqebaiac .gt_striped {
+#wnakxcoxys .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bxcqebaiac .gt_table_body {
+#wnakxcoxys .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1277,7 +1277,7 @@ Floris van Ogtrop
   border-bottom-color: #D3D3D3;
 }
 
-#bxcqebaiac .gt_footnotes {
+#wnakxcoxys .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1291,7 +1291,7 @@ Floris van Ogtrop
   border-right-color: #D3D3D3;
 }
 
-#bxcqebaiac .gt_footnote {
+#wnakxcoxys .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1300,7 +1300,7 @@ Floris van Ogtrop
   padding-right: 5px;
 }
 
-#bxcqebaiac .gt_sourcenotes {
+#wnakxcoxys .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1314,7 +1314,7 @@ Floris van Ogtrop
   border-right-color: #D3D3D3;
 }
 
-#bxcqebaiac .gt_sourcenote {
+#wnakxcoxys .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1322,72 +1322,72 @@ Floris van Ogtrop
   padding-right: 5px;
 }
 
-#bxcqebaiac .gt_left {
+#wnakxcoxys .gt_left {
   text-align: left;
 }
 
-#bxcqebaiac .gt_center {
+#wnakxcoxys .gt_center {
   text-align: center;
 }
 
-#bxcqebaiac .gt_right {
+#wnakxcoxys .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bxcqebaiac .gt_font_normal {
+#wnakxcoxys .gt_font_normal {
   font-weight: normal;
 }
 
-#bxcqebaiac .gt_font_bold {
+#wnakxcoxys .gt_font_bold {
   font-weight: bold;
 }
 
-#bxcqebaiac .gt_font_italic {
+#wnakxcoxys .gt_font_italic {
   font-style: italic;
 }
 
-#bxcqebaiac .gt_super {
+#wnakxcoxys .gt_super {
   font-size: 65%;
 }
 
-#bxcqebaiac .gt_footnote_marks {
+#wnakxcoxys .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#bxcqebaiac .gt_asterisk {
+#wnakxcoxys .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#bxcqebaiac .gt_indent_1 {
+#wnakxcoxys .gt_indent_1 {
   text-indent: 5px;
 }
 
-#bxcqebaiac .gt_indent_2 {
+#wnakxcoxys .gt_indent_2 {
   text-indent: 10px;
 }
 
-#bxcqebaiac .gt_indent_3 {
+#wnakxcoxys .gt_indent_3 {
   text-indent: 15px;
 }
 
-#bxcqebaiac .gt_indent_4 {
+#wnakxcoxys .gt_indent_4 {
   text-indent: 20px;
 }
 
-#bxcqebaiac .gt_indent_5 {
+#wnakxcoxys .gt_indent_5 {
   text-indent: 25px;
 }
 
-#bxcqebaiac .katex-display {
+#wnakxcoxys .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#bxcqebaiac div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#wnakxcoxys div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1544,8 +1544,10 @@ mean in group A mean in group B
 <h2>When to use</h2>
 <ol type="1">
 <li>If assumptions are met (normality, homogeneity of variance), use parametric tests as they are more powerful and efficient than non-parametric tests.</li>
-<li>If the normality assumption is violated, transform the data and check for normality again (<em>optional</em>).</li>
-<li><strong>Non-parametric tests are a good way to deal with circumstances in which parametric tests perform “poorly”.</strong></li>
+<li>If the normality assumption is violated, we first try transform the data and check for normality again.<br>
+</li>
+<li>If the data is stubborn and not transforming well, <strong>Non-parametric tests</strong> are a good next step.</li>
+<li>Often used when sample sizes are small (&lt;15ish) and can’t easily transform the data.</li>
 </ol>
 </section>
 <section id="what-to-use" class="slide level2">
@@ -1568,23 +1570,23 @@ mean in group A mean in group B
 <span id="cb9-13"><a></a>    <span class="at">column_labels.font.weight =</span> <span class="st">"bold"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="vhbqecicht" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vhbqecicht table {
+<div id="hbqybcdxlf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hbqybcdxlf table {
   font-family: 'Crimson Pro';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vhbqecicht thead, #vhbqecicht tbody, #vhbqecicht tfoot, #vhbqecicht tr, #vhbqecicht td, #vhbqecicht th {
+#hbqybcdxlf thead, #hbqybcdxlf tbody, #hbqybcdxlf tfoot, #hbqybcdxlf tr, #hbqybcdxlf td, #hbqybcdxlf th {
   border-style: none;
 }
 
-#vhbqecicht p {
+#hbqybcdxlf p {
   margin: 0;
   padding: 0;
 }
 
-#vhbqecicht .gt_table {
+#hbqybcdxlf .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1610,12 +1612,12 @@ mean in group A mean in group B
   border-left-color: #D3D3D3;
 }
 
-#vhbqecicht .gt_caption {
+#hbqybcdxlf .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vhbqecicht .gt_title {
+#hbqybcdxlf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1627,7 +1629,7 @@ mean in group A mean in group B
   border-bottom-width: 0;
 }
 
-#vhbqecicht .gt_subtitle {
+#hbqybcdxlf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1639,7 +1641,7 @@ mean in group A mean in group B
   border-top-width: 0;
 }
 
-#vhbqecicht .gt_heading {
+#hbqybcdxlf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1651,13 +1653,13 @@ mean in group A mean in group B
   border-right-color: #D3D3D3;
 }
 
-#vhbqecicht .gt_bottom_border {
+#hbqybcdxlf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vhbqecicht .gt_col_headings {
+#hbqybcdxlf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1672,7 +1674,7 @@ mean in group A mean in group B
   border-right-color: #D3D3D3;
 }
 
-#vhbqecicht .gt_col_heading {
+#hbqybcdxlf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1692,7 +1694,7 @@ mean in group A mean in group B
   overflow-x: hidden;
 }
 
-#vhbqecicht .gt_column_spanner_outer {
+#hbqybcdxlf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1704,15 +1706,15 @@ mean in group A mean in group B
   padding-right: 4px;
 }
 
-#vhbqecicht .gt_column_spanner_outer:first-child {
+#hbqybcdxlf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vhbqecicht .gt_column_spanner_outer:last-child {
+#hbqybcdxlf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vhbqecicht .gt_column_spanner {
+#hbqybcdxlf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1724,11 +1726,11 @@ mean in group A mean in group B
   width: 100%;
 }
 
-#vhbqecicht .gt_spanner_row {
+#hbqybcdxlf .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vhbqecicht .gt_group_heading {
+#hbqybcdxlf .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1754,7 +1756,7 @@ mean in group A mean in group B
   text-align: left;
 }
 
-#vhbqecicht .gt_empty_group_heading {
+#hbqybcdxlf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1769,15 +1771,15 @@ mean in group A mean in group B
   vertical-align: middle;
 }
 
-#vhbqecicht .gt_from_md > :first-child {
+#hbqybcdxlf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vhbqecicht .gt_from_md > :last-child {
+#hbqybcdxlf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vhbqecicht .gt_row {
+#hbqybcdxlf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1796,7 +1798,7 @@ mean in group A mean in group B
   overflow-x: hidden;
 }
 
-#vhbqecicht .gt_stub {
+#hbqybcdxlf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1809,7 +1811,7 @@ mean in group A mean in group B
   padding-right: 5px;
 }
 
-#vhbqecicht .gt_stub_row_group {
+#hbqybcdxlf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1823,15 +1825,15 @@ mean in group A mean in group B
   vertical-align: top;
 }
 
-#vhbqecicht .gt_row_group_first td {
+#hbqybcdxlf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vhbqecicht .gt_row_group_first th {
+#hbqybcdxlf .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vhbqecicht .gt_summary_row {
+#hbqybcdxlf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1841,16 +1843,16 @@ mean in group A mean in group B
   padding-right: 5px;
 }
 
-#vhbqecicht .gt_first_summary_row {
+#hbqybcdxlf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vhbqecicht .gt_first_summary_row.thick {
+#hbqybcdxlf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vhbqecicht .gt_last_summary_row {
+#hbqybcdxlf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1860,7 +1862,7 @@ mean in group A mean in group B
   border-bottom-color: #D3D3D3;
 }
 
-#vhbqecicht .gt_grand_summary_row {
+#hbqybcdxlf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1870,7 +1872,7 @@ mean in group A mean in group B
   padding-right: 5px;
 }
 
-#vhbqecicht .gt_first_grand_summary_row {
+#hbqybcdxlf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1880,7 +1882,7 @@ mean in group A mean in group B
   border-top-color: #D3D3D3;
 }
 
-#vhbqecicht .gt_last_grand_summary_row_top {
+#hbqybcdxlf .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1890,11 +1892,11 @@ mean in group A mean in group B
   border-bottom-color: #D3D3D3;
 }
 
-#vhbqecicht .gt_striped {
+#hbqybcdxlf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vhbqecicht .gt_table_body {
+#hbqybcdxlf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1903,7 +1905,7 @@ mean in group A mean in group B
   border-bottom-color: #D3D3D3;
 }
 
-#vhbqecicht .gt_footnotes {
+#hbqybcdxlf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1917,7 +1919,7 @@ mean in group A mean in group B
   border-right-color: #D3D3D3;
 }
 
-#vhbqecicht .gt_footnote {
+#hbqybcdxlf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1926,7 +1928,7 @@ mean in group A mean in group B
   padding-right: 5px;
 }
 
-#vhbqecicht .gt_sourcenotes {
+#hbqybcdxlf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1940,7 +1942,7 @@ mean in group A mean in group B
   border-right-color: #D3D3D3;
 }
 
-#vhbqecicht .gt_sourcenote {
+#hbqybcdxlf .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1948,72 +1950,72 @@ mean in group A mean in group B
   padding-right: 5px;
 }
 
-#vhbqecicht .gt_left {
+#hbqybcdxlf .gt_left {
   text-align: left;
 }
 
-#vhbqecicht .gt_center {
+#hbqybcdxlf .gt_center {
   text-align: center;
 }
 
-#vhbqecicht .gt_right {
+#hbqybcdxlf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vhbqecicht .gt_font_normal {
+#hbqybcdxlf .gt_font_normal {
   font-weight: normal;
 }
 
-#vhbqecicht .gt_font_bold {
+#hbqybcdxlf .gt_font_bold {
   font-weight: bold;
 }
 
-#vhbqecicht .gt_font_italic {
+#hbqybcdxlf .gt_font_italic {
   font-style: italic;
 }
 
-#vhbqecicht .gt_super {
+#hbqybcdxlf .gt_super {
   font-size: 65%;
 }
 
-#vhbqecicht .gt_footnote_marks {
+#hbqybcdxlf .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vhbqecicht .gt_asterisk {
+#hbqybcdxlf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vhbqecicht .gt_indent_1 {
+#hbqybcdxlf .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vhbqecicht .gt_indent_2 {
+#hbqybcdxlf .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vhbqecicht .gt_indent_3 {
+#hbqybcdxlf .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vhbqecicht .gt_indent_4 {
+#hbqybcdxlf .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vhbqecicht .gt_indent_5 {
+#hbqybcdxlf .gt_indent_5 {
   text-indent: 25px;
 }
 
-#vhbqecicht .katex-display {
+#hbqybcdxlf .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#vhbqecicht div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#hbqybcdxlf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2072,7 +2074,7 @@ mean in group A mean in group B
 </section>
 <section id="overview-1" class="slide level2">
 <h2>Overview</h2>
-<p>The Wilcoxon signed-rank test is a non-parametric test used to compare two related samples, matched pairs, or repeated measures on a single sample.</p>
+<p>The Wilcoxon signed-rank test is a non-parametric test used to assess whether a single sample differs from zero, or whether paired samples differ.</p>
 <div class="fragment">
 <p>Is an alternative to:</p>
 <ul>
@@ -2085,37 +2087,13 @@ mean in group A mean in group B
 <h2>Assumptions</h2>
 <div class="fragment">
 <ul>
-<li>Data comes from the same population</li>
-<li>Data are randomly and independently sampled</li>
+<li>Independent observations (or independent pairs)</li>
+<li>Data represent differences from a value (normally zero) (or between pairs)</li>
+<li>Differences are fairly balanced around zero</li>
 </ul>
 </div>
 <div class="fragment">
-<p>Basically, used in same situations as the one-sample or paired <span class="math inline">\(t\)</span>-test, but when the data is not normally distributed but <strong>still symmetric</strong>.</p>
-</div>
-</section>
-<section id="calculating-ranks" class="slide level2 scrollable">
-<h2>Calculating ranks</h2>
-<p>If comparing two groups, the ranks are calculated as follows:</p>
-<ol type="1">
-<li class="fragment">Calculate the difference <span class="math inline">\(D\)</span> between the two groups.</li>
-<li class="fragment">Rank the absolute values of the differences in ascending order.</li>
-<li class="fragment">Assign the sign of the difference to the rank.</li>
-<li class="fragment">Sum the ranks for each group – <strong>zero differences are ignored</strong>.</li>
-</ol>
-<div class="fragment">
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>See Slide 5 to recall how ranks are calculated, but we will show another example in the next slide.</p>
-</div>
-</div>
-</div>
+<p>Basically, used in same situations as the one-sample or paired <span class="math inline">\(t\)</span>-test, but when the data is not normally distributed but <strong>still reasonably balanced</strong>.</p>
 </div>
 </section></section>
 <section>
@@ -2144,23 +2122,23 @@ mean in group A mean in group B
 <span id="cb10-13"><a></a>    <span class="at">column_labels.font.weight =</span> <span class="st">"bold"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="npkajmskbq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#npkajmskbq table {
+<div id="gqqvhgtjqj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gqqvhgtjqj table {
   font-family: 'Crimson Pro';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#npkajmskbq thead, #npkajmskbq tbody, #npkajmskbq tfoot, #npkajmskbq tr, #npkajmskbq td, #npkajmskbq th {
+#gqqvhgtjqj thead, #gqqvhgtjqj tbody, #gqqvhgtjqj tfoot, #gqqvhgtjqj tr, #gqqvhgtjqj td, #gqqvhgtjqj th {
   border-style: none;
 }
 
-#npkajmskbq p {
+#gqqvhgtjqj p {
   margin: 0;
   padding: 0;
 }
 
-#npkajmskbq .gt_table {
+#gqqvhgtjqj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2186,12 +2164,12 @@ mean in group A mean in group B
   border-left-color: #D3D3D3;
 }
 
-#npkajmskbq .gt_caption {
+#gqqvhgtjqj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#npkajmskbq .gt_title {
+#gqqvhgtjqj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2203,7 +2181,7 @@ mean in group A mean in group B
   border-bottom-width: 0;
 }
 
-#npkajmskbq .gt_subtitle {
+#gqqvhgtjqj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2215,7 +2193,7 @@ mean in group A mean in group B
   border-top-width: 0;
 }
 
-#npkajmskbq .gt_heading {
+#gqqvhgtjqj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2227,13 +2205,13 @@ mean in group A mean in group B
   border-right-color: #D3D3D3;
 }
 
-#npkajmskbq .gt_bottom_border {
+#gqqvhgtjqj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#npkajmskbq .gt_col_headings {
+#gqqvhgtjqj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2248,7 +2226,7 @@ mean in group A mean in group B
   border-right-color: #D3D3D3;
 }
 
-#npkajmskbq .gt_col_heading {
+#gqqvhgtjqj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2268,7 +2246,7 @@ mean in group A mean in group B
   overflow-x: hidden;
 }
 
-#npkajmskbq .gt_column_spanner_outer {
+#gqqvhgtjqj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2280,15 +2258,15 @@ mean in group A mean in group B
   padding-right: 4px;
 }
 
-#npkajmskbq .gt_column_spanner_outer:first-child {
+#gqqvhgtjqj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#npkajmskbq .gt_column_spanner_outer:last-child {
+#gqqvhgtjqj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#npkajmskbq .gt_column_spanner {
+#gqqvhgtjqj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2300,11 +2278,11 @@ mean in group A mean in group B
   width: 100%;
 }
 
-#npkajmskbq .gt_spanner_row {
+#gqqvhgtjqj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#npkajmskbq .gt_group_heading {
+#gqqvhgtjqj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2330,7 +2308,7 @@ mean in group A mean in group B
   text-align: left;
 }
 
-#npkajmskbq .gt_empty_group_heading {
+#gqqvhgtjqj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2345,15 +2323,15 @@ mean in group A mean in group B
   vertical-align: middle;
 }
 
-#npkajmskbq .gt_from_md > :first-child {
+#gqqvhgtjqj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#npkajmskbq .gt_from_md > :last-child {
+#gqqvhgtjqj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#npkajmskbq .gt_row {
+#gqqvhgtjqj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2372,7 +2350,7 @@ mean in group A mean in group B
   overflow-x: hidden;
 }
 
-#npkajmskbq .gt_stub {
+#gqqvhgtjqj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2385,7 +2363,7 @@ mean in group A mean in group B
   padding-right: 5px;
 }
 
-#npkajmskbq .gt_stub_row_group {
+#gqqvhgtjqj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2399,15 +2377,15 @@ mean in group A mean in group B
   vertical-align: top;
 }
 
-#npkajmskbq .gt_row_group_first td {
+#gqqvhgtjqj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#npkajmskbq .gt_row_group_first th {
+#gqqvhgtjqj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#npkajmskbq .gt_summary_row {
+#gqqvhgtjqj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2417,16 +2395,16 @@ mean in group A mean in group B
   padding-right: 5px;
 }
 
-#npkajmskbq .gt_first_summary_row {
+#gqqvhgtjqj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#npkajmskbq .gt_first_summary_row.thick {
+#gqqvhgtjqj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#npkajmskbq .gt_last_summary_row {
+#gqqvhgtjqj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2436,7 +2414,7 @@ mean in group A mean in group B
   border-bottom-color: #D3D3D3;
 }
 
-#npkajmskbq .gt_grand_summary_row {
+#gqqvhgtjqj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2446,7 +2424,7 @@ mean in group A mean in group B
   padding-right: 5px;
 }
 
-#npkajmskbq .gt_first_grand_summary_row {
+#gqqvhgtjqj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2456,7 +2434,7 @@ mean in group A mean in group B
   border-top-color: #D3D3D3;
 }
 
-#npkajmskbq .gt_last_grand_summary_row_top {
+#gqqvhgtjqj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2466,11 +2444,11 @@ mean in group A mean in group B
   border-bottom-color: #D3D3D3;
 }
 
-#npkajmskbq .gt_striped {
+#gqqvhgtjqj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#npkajmskbq .gt_table_body {
+#gqqvhgtjqj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2479,7 +2457,7 @@ mean in group A mean in group B
   border-bottom-color: #D3D3D3;
 }
 
-#npkajmskbq .gt_footnotes {
+#gqqvhgtjqj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2493,7 +2471,7 @@ mean in group A mean in group B
   border-right-color: #D3D3D3;
 }
 
-#npkajmskbq .gt_footnote {
+#gqqvhgtjqj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2502,7 +2480,7 @@ mean in group A mean in group B
   padding-right: 5px;
 }
 
-#npkajmskbq .gt_sourcenotes {
+#gqqvhgtjqj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2516,7 +2494,7 @@ mean in group A mean in group B
   border-right-color: #D3D3D3;
 }
 
-#npkajmskbq .gt_sourcenote {
+#gqqvhgtjqj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2524,72 +2502,72 @@ mean in group A mean in group B
   padding-right: 5px;
 }
 
-#npkajmskbq .gt_left {
+#gqqvhgtjqj .gt_left {
   text-align: left;
 }
 
-#npkajmskbq .gt_center {
+#gqqvhgtjqj .gt_center {
   text-align: center;
 }
 
-#npkajmskbq .gt_right {
+#gqqvhgtjqj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#npkajmskbq .gt_font_normal {
+#gqqvhgtjqj .gt_font_normal {
   font-weight: normal;
 }
 
-#npkajmskbq .gt_font_bold {
+#gqqvhgtjqj .gt_font_bold {
   font-weight: bold;
 }
 
-#npkajmskbq .gt_font_italic {
+#gqqvhgtjqj .gt_font_italic {
   font-style: italic;
 }
 
-#npkajmskbq .gt_super {
+#gqqvhgtjqj .gt_super {
   font-size: 65%;
 }
 
-#npkajmskbq .gt_footnote_marks {
+#gqqvhgtjqj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#npkajmskbq .gt_asterisk {
+#gqqvhgtjqj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#npkajmskbq .gt_indent_1 {
+#gqqvhgtjqj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#npkajmskbq .gt_indent_2 {
+#gqqvhgtjqj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#npkajmskbq .gt_indent_3 {
+#gqqvhgtjqj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#npkajmskbq .gt_indent_4 {
+#gqqvhgtjqj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#npkajmskbq .gt_indent_5 {
+#gqqvhgtjqj .gt_indent_5 {
   text-indent: 25px;
 }
 
-#npkajmskbq .katex-display {
+#gqqvhgtjqj .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#npkajmskbq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gqqvhgtjqj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2631,586 +2609,50 @@ mean in group A mean in group B
 </div>
 <h3 id="is-there-a-significant-increase-in-weight-gain-after-the-diet">Is there a significant increase in weight gain after the diet?</h3>
 </section>
-<section id="rank-values" class="slide level2">
-<h2>Rank values</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a></a>  <span class="fu">mutate</span>(<span class="at">D =</span> weight_after <span class="sc">-</span> weight) <span class="sc">%&gt;%</span></span>
-<span id="cb11-3"><a></a>  <span class="fu">mutate</span>(<span class="at">Sign =</span> <span class="fu">ifelse</span>(D <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"+"</span>, <span class="st">"-"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb11-4"><a></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="fu">abs</span>(D))) <span class="sc">%&gt;%</span></span>
-<span id="cb11-5"><a></a>  <span class="fu">mutate</span>(<span class="st">"Signed rank"</span> <span class="ot">=</span> <span class="fu">ifelse</span>(D <span class="sc">&gt;</span> <span class="dv">0</span>, rank, <span class="sc">-</span>rank)) <span class="sc">%&gt;%</span></span>
-<span id="cb11-6"><a></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb11-7"><a></a>  <span class="fu">opt_table_font</span>(<span class="at">font =</span> <span class="st">"Crimson Pro"</span>, <span class="at">add =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb11-8"><a></a>  <span class="fu">tab_options</span>(</span>
-<span id="cb11-9"><a></a>    <span class="at">table.font.size =</span> <span class="fu">px</span>(<span class="dv">24</span>),</span>
-<span id="cb11-10"><a></a>    <span class="at">column_labels.font.weight =</span> <span class="st">"bold"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div id="puwissalif" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#puwissalif table {
-  font-family: 'Crimson Pro';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#puwissalif thead, #puwissalif tbody, #puwissalif tfoot, #puwissalif tr, #puwissalif td, #puwissalif th {
-  border-style: none;
-}
-
-#puwissalif p {
-  margin: 0;
-  padding: 0;
-}
-
-#puwissalif .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 24px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#puwissalif .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#puwissalif .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#puwissalif .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#puwissalif .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#puwissalif .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#puwissalif .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#puwissalif .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: bold;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#puwissalif .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: bold;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#puwissalif .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#puwissalif .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#puwissalif .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#puwissalif .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#puwissalif .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#puwissalif .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#puwissalif .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#puwissalif .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#puwissalif .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#puwissalif .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#puwissalif .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#puwissalif .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#puwissalif .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#puwissalif .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#puwissalif .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#puwissalif .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#puwissalif .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#puwissalif .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#puwissalif .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#puwissalif .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#puwissalif .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#puwissalif .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#puwissalif .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#puwissalif .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#puwissalif .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#puwissalif .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#puwissalif .gt_left {
-  text-align: left;
-}
-
-#puwissalif .gt_center {
-  text-align: center;
-}
-
-#puwissalif .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#puwissalif .gt_font_normal {
-  font-weight: normal;
-}
-
-#puwissalif .gt_font_bold {
-  font-weight: bold;
-}
-
-#puwissalif .gt_font_italic {
-  font-style: italic;
-}
-
-#puwissalif .gt_super {
-  font-size: 65%;
-}
-
-#puwissalif .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#puwissalif .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#puwissalif .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#puwissalif .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#puwissalif .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#puwissalif .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#puwissalif .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#puwissalif .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#puwissalif div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-
-<table class="gt_table caption-top" data-quarto-bootstrap="false">
-<thead>
-<tr class="gt_col_headings header">
-<th id="chicken" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">chicken</th>
-<th id="weight" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">weight</th>
-<th id="weight_after" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">weight_after</th>
-<th id="D" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">D</th>
-<th id="Sign" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Sign</th>
-<th id="rank" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">rank</th>
-<th id="Signed-rank" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Signed rank</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_right" headers="chicken">1</td>
-<td class="gt_row gt_right" headers="weight">2.5</td>
-<td class="gt_row gt_right" headers="weight_after">4.0</td>
-<td class="gt_row gt_right" headers="D">1.5</td>
-<td class="gt_row gt_right" headers="Sign">+</td>
-<td class="gt_row gt_right" headers="rank">3</td>
-<td class="gt_row gt_right" headers="Signed rank">3</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="chicken">2</td>
-<td class="gt_row gt_right" headers="weight">3.5</td>
-<td class="gt_row gt_right" headers="weight_after">5.0</td>
-<td class="gt_row gt_right" headers="D">1.5</td>
-<td class="gt_row gt_right" headers="Sign">+</td>
-<td class="gt_row gt_right" headers="rank">3</td>
-<td class="gt_row gt_right" headers="Signed rank">3</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="chicken">3</td>
-<td class="gt_row gt_right" headers="weight">3.5</td>
-<td class="gt_row gt_right" headers="weight_after">5.0</td>
-<td class="gt_row gt_right" headers="D">1.5</td>
-<td class="gt_row gt_right" headers="Sign">+</td>
-<td class="gt_row gt_right" headers="rank">3</td>
-<td class="gt_row gt_right" headers="Signed rank">3</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="chicken">4</td>
-<td class="gt_row gt_right" headers="weight">3.4</td>
-<td class="gt_row gt_right" headers="weight_after">4.6</td>
-<td class="gt_row gt_right" headers="D">1.2</td>
-<td class="gt_row gt_right" headers="Sign">+</td>
-<td class="gt_row gt_right" headers="rank">1</td>
-<td class="gt_row gt_right" headers="Signed rank">1</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>The order of the ranks is based on the <strong>absolute</strong> values of the differences; the signs are assigned afterward.</p>
-</div>
-</div>
-</div>
-</section>
 <section id="hypothesis" class="slide level2">
 <h2>Hypothesis</h2>
 <blockquote>
-<p>Is there a significant increase in weight gain after the diet?</p>
+<p>Is there a significant increase in weight gain after the diet - indicates a one tailed test?</p>
 </blockquote>
-<p><span class="math display">\[H_0: \mu_{\text{before}} = \mu_{\text{after}}\]</span> <span class="math display">\[H_1: \mu_{\text{before}} &lt; \mu_{\text{after}}\]</span></p>
 <div class="fragment">
-<p>In words:</p>
+<p>Sometimes we state the hypothesis in terms of the median as it is a robust estimator of the centre of the distribution:</p>
 <ul>
-<li><span class="math inline">\(H_0\)</span>: There is no difference in weight gain before and after the diet.</li>
-<li><span class="math inline">\(H_1\)</span>: There is an increase in weight gain after the diet.</li>
+<li><span class="math inline">\(H_0\)</span>: the median difference between the paired samples is equal to zero</li>
+<li><span class="math inline">\(H_1\)</span>: the median difference between the paired samples is greater than zero</li>
 </ul>
 </div>
-</section>
-<section class="slide level2">
-
-<p>Alternatively, since the data is paired, we may also consider hypotheses based on the differences between the two groups:</p>
-<p><span class="math display">\[H_0: \mu_D = 0\]</span> <span class="math display">\[H_1: \mu_D &gt; 0\]</span></p>
-<p>where <span class="math inline">\(D\)</span> is the difference between the two groups.</p>
+<div class="fragment">
+<p>What we really mean is:</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: the distribution of the difference between the paired samples is centered at zero</li>
+<li><span class="math inline">\(H_1\)</span>: the distribution of the difference between the paired samples is centered at a value greater than zero</li>
+</ul>
+</div>
 </section>
 <section id="assumptions-1" class="slide level2">
 <h2>Assumptions</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> weight_after <span class="sc">-</span> weight)) <span class="sc">+</span></span>
-<span id="cb12-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>)</span>
-<span id="cb12-3"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">sample =</span> weight_after <span class="sc">-</span> weight)) <span class="sc">+</span></span>
-<span id="cb12-4"><a></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
-<span id="cb12-5"><a></a>  <span class="fu">stat_qq_line</span>()</span>
-<span id="cb12-6"><a></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> weight_after <span class="sc">-</span> weight)) <span class="sc">+</span></span>
-<span id="cb12-7"><a></a>  <span class="fu">geom_boxplot</span>()</span>
-<span id="cb12-8"><a></a></span>
-<span id="cb12-9"><a></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb12-10"><a></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> weight_after <span class="sc">-</span> weight)) <span class="sc">+</span></span>
+<span id="cb11-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>)</span>
+<span id="cb11-3"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">sample =</span> weight_after <span class="sc">-</span> weight)) <span class="sc">+</span></span>
+<span id="cb11-4"><a></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
+<span id="cb11-5"><a></a>  <span class="fu">stat_qq_line</span>()</span>
+<span id="cb11-6"><a></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> weight_after <span class="sc">-</span> weight)) <span class="sc">+</span></span>
+<span id="cb11-7"><a></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb11-8"><a></a></span>
+<span id="cb11-9"><a></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb11-10"><a></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"><p>With so few data points, we may want to use a formal test to check for normality.</p>
+<img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"><p>With so few data points (small sample), we may want to use a formal test to check for normality.</p>
 </section>
 <section id="assumptions-2" class="slide level2">
 <h2>Assumptions</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">shapiro.test</span>(df<span class="sc">$</span>weight_after <span class="sc">-</span> df<span class="sc">$</span>weight)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">shapiro.test</span>(df<span class="sc">$</span>weight_after <span class="sc">-</span> df<span class="sc">$</span>weight)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Shapiro-Wilk normality test
@@ -3219,15 +2661,18 @@ data:  df$weight_after - df$weight
 W = 0.62978, p-value = 0.001241</code></pre>
 </div>
 </div>
-<p>Results indicate that the data significantly deviates from normality (W = 0.63, p &lt; 0.05). We will use the Wilcoxon signed-rank test.</p>
+<ul>
+<li>Results indicate that the data significantly deviates from normality (W = 0.63, p &lt; 0.05).</li>
+<li>because it is a small sample size and the data is not normally distributed, we decide to use the Wilcoxon signed-rank test instead of transforming the data.</li>
+</ul>
 </section>
 <section id="performing-the-test" class="slide level2">
 <h2>Performing the test</h2>
 <h3 id="in-r">In R</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">wilcox.test</span>(<span class="at">x =</span> df<span class="sc">$</span>weight_after, <span class="at">y =</span> df<span class="sc">$</span>weight,  <span class="co"># data must be x - y</span></span>
-<span id="cb15-2"><a></a>  <span class="at">alternative =</span> <span class="st">"greater"</span>,  <span class="co"># because we are testing for an increase</span></span>
-<span id="cb15-3"><a></a>  <span class="at">paired =</span> <span class="cn">TRUE</span>)            <span class="co"># because the data is paired</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">wilcox.test</span>(<span class="at">x =</span> df<span class="sc">$</span>weight_after, <span class="at">y =</span> df<span class="sc">$</span>weight,  <span class="co"># data must be x - y</span></span>
+<span id="cb14-2"><a></a>  <span class="at">alternative =</span> <span class="st">"greater"</span>,  <span class="co"># because we are testing for an increase</span></span>
+<span id="cb14-3"><a></a>  <span class="at">paired =</span> <span class="cn">TRUE</span>)            <span class="co"># because the data is paired</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Wilcoxon signed rank test with continuity correction
@@ -3261,13 +2706,16 @@ alternative hypothesis: true location shift is greater than 0</code></pre>
 <section id="hypothesis-1" class="slide level2">
 <h2>Hypothesis</h2>
 <p>Does the average smaller size class lizard eat about 100 beetles per day?</p>
-<p><span class="math display">\[H_0: \mu = 100\]</span> <span class="math display">\[H_1: \mu \neq 100\]</span></p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: the distribution of smaller lizard beetle consumption is centred at 100 beetles per day</li>
+<li><span class="math inline">\(H_1\)</span>: the distribution of smaller lizard beetle consumption is not centred at 100 beetles per day</li>
+</ul>
 <h3 id="dataset-download">Dataset <a href="data/beetle.csv">Download</a></h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>beetle <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/beetle.csv"</span>)</span>
-<span id="cb17-2"><a></a><span class="fu">glimpse</span>(beetle)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>beetle <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/beetle.csv"</span>)</span>
+<span id="cb16-2"><a></a><span class="fu">glimpse</span>(beetle)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 45
@@ -3282,29 +2730,29 @@ $ BEETLES &lt;dbl&gt; 256, 209, 0, 0, 0, 44, 49, 117, 6, 0, 0, 75, 34, 13, 0, 90
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(beetle, <span class="fu">aes</span>(<span class="at">x =</span> BEETLES)) <span class="sc">+</span></span>
-<span id="cb19-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>)</span>
-<span id="cb19-3"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(beetle, <span class="fu">aes</span>(<span class="at">sample =</span> BEETLES)) <span class="sc">+</span></span>
-<span id="cb19-4"><a></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
-<span id="cb19-5"><a></a>  <span class="fu">stat_qq_line</span>()</span>
-<span id="cb19-6"><a></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(beetle, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> BEETLES)) <span class="sc">+</span></span>
-<span id="cb19-7"><a></a>  <span class="fu">geom_boxplot</span>()</span>
-<span id="cb19-8"><a></a></span>
-<span id="cb19-9"><a></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb19-10"><a></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(beetle, <span class="fu">aes</span>(<span class="at">x =</span> BEETLES)) <span class="sc">+</span></span>
+<span id="cb18-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>)</span>
+<span id="cb18-3"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(beetle, <span class="fu">aes</span>(<span class="at">sample =</span> BEETLES)) <span class="sc">+</span></span>
+<span id="cb18-4"><a></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
+<span id="cb18-5"><a></a>  <span class="fu">stat_qq_line</span>()</span>
+<span id="cb18-6"><a></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(beetle, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> BEETLES)) <span class="sc">+</span></span>
+<span id="cb18-7"><a></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb18-8"><a></a></span>
+<span id="cb18-9"><a></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb18-10"><a></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"><p>Is it normally distributed?</p>
+<img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"><p>Is it normally distributed?</p>
 </section>
 <section id="run-the-test" class="slide level2">
 <h2>Run the test</h2>
 <p>The Wilcoxon signed-rank test for one sample can be performed as follows:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>beetle <span class="sc">%&gt;%</span></span>
-<span id="cb20-2"><a></a>  <span class="fu">filter</span>(SIZE <span class="sc">==</span> <span class="st">"small"</span>) <span class="sc">%&gt;%</span>  <span class="co"># filter only the smaller size class</span></span>
-<span id="cb20-3"><a></a>  <span class="fu">pull</span>(BEETLES) <span class="sc">%&gt;%</span>            <span class="co"># convert to a vector using pull()</span></span>
-<span id="cb20-4"><a></a>  <span class="fu">wilcox.test</span>(<span class="at">mu =</span> <span class="dv">100</span>)        <span class="co"># wilcox.text(x, mu)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>beetle <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a></a>  <span class="fu">filter</span>(SIZE <span class="sc">==</span> <span class="st">"small"</span>) <span class="sc">%&gt;%</span>  <span class="co"># filter only the smaller size class</span></span>
+<span id="cb19-3"><a></a>  <span class="fu">pull</span>(BEETLES) <span class="sc">%&gt;%</span>            <span class="co"># convert to a vector using pull()</span></span>
+<span id="cb19-4"><a></a>  <span class="fu">wilcox.test</span>(<span class="at">mu =</span> <span class="dv">100</span>)        <span class="co"># wilcox.text(x, mu)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Wilcoxon signed rank test with continuity correction
@@ -3327,7 +2775,7 @@ alternative hypothesis: true location is not equal to 100</code></pre>
 <p><strong>Important</strong></p>
 </div>
 <div class="callout-content">
-<p>We are unable to make a conclusion about effect size from non-parametric tests as the information is lost when the data is transformed into ranks.</p>
+<p>We not easily able to make a conclusion about effect size (confidence intervals and mean) from non-parametric tests as the information is lost when the data is transformed into ranks.</p>
 </div>
 </div>
 </div>
@@ -3367,36 +2815,36 @@ alternative hypothesis: true location is not equal to 100</code></pre>
 <p>Are the number of beetles consumed by the larger and smaller size classes of lizards different?</p>
 </blockquote>
 <p>Loosely speaking, because we are not assuming symmetry, the most appropriate summary statistic to use when comparing the two groups is the <strong>median</strong>.</p>
-<p><span class="math display">\[H_0: median_{\text{larger}} = median_{\text{smaller}}\]</span> <span class="math display">\[H_1: median_{\text{larger}} \neq median_{\text{smaller}}\]</span></p>
-<p>More accurately, we are testing for a difference in the <em>distribution</em> of the two groups.</p>
+<p><span class="math display">\[H_0: \text{median}_{\text{larger}} = \text{median}_{\text{smaller}}\]</span> <span class="math display">\[H_1: \text{median}_{\text{larger}} \neq \text{median}_{\text{smaller}}\]</span></p>
+<p>More accurately, we are testing for a difference in centre of the <em>distribution</em> of the two groups and the median is a robust estimator of this.</p>
 </section>
 <section id="assumptions-3" class="slide level2">
 <h2>Assumptions</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(beetle, <span class="fu">aes</span>(<span class="at">x =</span> BEETLES)) <span class="sc">+</span></span>
-<span id="cb22-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">14</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb22-3"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>SIZE, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
-<span id="cb22-4"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(beetle, <span class="fu">aes</span>(<span class="at">x =</span> SIZE, <span class="at">y =</span> BEETLES)) <span class="sc">+</span></span>
-<span id="cb22-5"><a></a>  <span class="fu">geom_boxplot</span>()</span>
-<span id="cb22-6"><a></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(beetle, <span class="fu">aes</span>(<span class="at">sample =</span> BEETLES)) <span class="sc">+</span></span>
-<span id="cb22-7"><a></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
-<span id="cb22-8"><a></a>  <span class="fu">stat_qq_line</span>() <span class="sc">+</span></span>
-<span id="cb22-9"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>SIZE, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
-<span id="cb22-10"><a></a></span>
-<span id="cb22-11"><a></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb22-12"><a></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(beetle, <span class="fu">aes</span>(<span class="at">x =</span> BEETLES)) <span class="sc">+</span></span>
+<span id="cb21-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">14</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb21-3"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>SIZE, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb21-4"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(beetle, <span class="fu">aes</span>(<span class="at">x =</span> SIZE, <span class="at">y =</span> BEETLES)) <span class="sc">+</span></span>
+<span id="cb21-5"><a></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb21-6"><a></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(beetle, <span class="fu">aes</span>(<span class="at">sample =</span> BEETLES)) <span class="sc">+</span></span>
+<span id="cb21-7"><a></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
+<span id="cb21-8"><a></a>  <span class="fu">stat_qq_line</span>() <span class="sc">+</span></span>
+<span id="cb21-9"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>SIZE, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb21-10"><a></a></span>
+<span id="cb21-11"><a></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb21-12"><a></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"><p>Data does not meet the normality assumption.</p>
+<img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"><p>Data does not meet the normality assumption? Compare the shapes of the distributions</p>
 </section>
 <section id="test-statistic" class="slide level2">
 <h2>Test statistic</h2>
 <p>The same function <code>wilcox.test()</code> can be used to perform the Mann-Whitney U test.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">wilcox.test</span>(BEETLES <span class="sc">~</span> SIZE, <span class="at">data =</span> beetle)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">wilcox.test</span>(BEETLES <span class="sc">~</span> SIZE, <span class="at">data =</span> beetle)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Wilcoxon rank sum test with continuity correction
@@ -3432,7 +2880,7 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 </ul></li>
 <li class="fragment">The conventional wisdom is to <strong>transform the data</strong> and check for normality if the assumption is not met. If the data is <em>still</em> not normal, then use non-parametric tests (after considering the implications on interpretation).
 <ul>
-<li class="fragment">Or, use bootstrapping (next week!).</li>
+<li class="fragment">Or, use simulations based approaches (next week!).</li>
 </ul></li>
 </ul>
 </section>
@@ -3458,7 +2906,7 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <section id="parametric-and-non-parametric-alternatives" class="slide level2">
 <h2>Parametric and non-parametric alternatives</h2>
 <ul>
-<li class="fragment">So far, <strong>all</strong> of our techniques have been aimed at comparing <strong>means/medians</strong> of continuous variables.</li>
+<li class="fragment">So far, <strong>all</strong> of our techniques have been aimed at comparing <strong>means/medians/central mass</strong> of continuous variables.</li>
 <li class="fragment">The <em>assumption of normality</em> <strong>underpins</strong> these techniques – if the data is not normally distributed, we have alternatives like <em>transforming</em> the data or using <em>non-parametric tests</em>.</li>
 <li class="fragment"><strong>Does this apply to all data?</strong></li>
 </ul>
@@ -3496,21 +2944,21 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb25-2"><a></a><span class="co"># generate some butterfly data</span></span>
-<span id="cb25-3"><a></a>butterfly_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb25-4"><a></a>  <span class="at">color =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>, <span class="st">"yellow"</span>),</span>
-<span id="cb25-5"><a></a>  <span class="at">count =</span> <span class="fu">c</span>(<span class="dv">48</span>, <span class="dv">62</span>, <span class="dv">56</span>, <span class="dv">34</span>)</span>
-<span id="cb25-6"><a></a>)</span>
-<span id="cb25-7"><a></a></span>
-<span id="cb25-8"><a></a><span class="co"># plot the data</span></span>
-<span id="cb25-9"><a></a><span class="fu">ggplot</span>(butterfly_data, <span class="fu">aes</span>(<span class="at">x =</span> color, <span class="at">y =</span> count)) <span class="sc">+</span></span>
-<span id="cb25-10"><a></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb25-11"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Butterfly colour distribution"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb24-2"><a></a><span class="co"># generate some butterfly data</span></span>
+<span id="cb24-3"><a></a>butterfly_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb24-4"><a></a>  <span class="at">color =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>, <span class="st">"yellow"</span>),</span>
+<span id="cb24-5"><a></a>  <span class="at">count =</span> <span class="fu">c</span>(<span class="dv">48</span>, <span class="dv">62</span>, <span class="dv">56</span>, <span class="dv">34</span>)</span>
+<span id="cb24-6"><a></a>)</span>
+<span id="cb24-7"><a></a></span>
+<span id="cb24-8"><a></a><span class="co"># plot the data</span></span>
+<span id="cb24-9"><a></a><span class="fu">ggplot</span>(butterfly_data, <span class="fu">aes</span>(<span class="at">x =</span> color, <span class="at">y =</span> count)) <span class="sc">+</span></span>
+<span id="cb24-10"><a></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb24-11"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Butterfly colour distribution"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"><p>We can only <strong>count</strong> the number of times a particular category occurs, or the <strong>proportion</strong> of the total that each category represents.</p>
+<img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"><p>We can only <strong>count</strong> the number of times a particular category occurs, or the <strong>proportion</strong> of the total that each category represents.</p>
 </section>
 <section id="types-of-categorical-data" class="slide level2">
 <h2>Types of categorical data</h2>
@@ -3543,14 +2991,14 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">1</span>), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">9</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">ylab =</span> <span class="st">"Density"</span>, <span class="at">xlab =</span> <span class="st">"Value"</span>, <span class="at">main =</span> <span class="st">"Chi-squared vs. normal"</span>)</span>
-<span id="cb26-2"><a></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="at">from =</span> <span class="sc">-</span><span class="dv">9</span>, <span class="at">to =</span> <span class="dv">9</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb26-3"><a></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb26-4"><a></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Chi-squared with 1 df"</span>, <span class="st">"Normal"</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>), <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">1</span>), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">9</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">ylab =</span> <span class="st">"Density"</span>, <span class="at">xlab =</span> <span class="st">"Value"</span>, <span class="at">main =</span> <span class="st">"Chi-squared vs. normal"</span>)</span>
+<span id="cb25-2"><a></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="at">from =</span> <span class="sc">-</span><span class="dv">9</span>, <span class="at">to =</span> <span class="dv">9</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb25-3"><a></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb25-4"><a></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Chi-squared with 1 df"</span>, <span class="st">"Normal"</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>), <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"><p>How is the chi-squared distribution used in hypothesis testing?</p>
+<img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"><p>How is the chi-squared distribution used in hypothesis testing?</p>
 </section>
 <section id="butterflies-data" class="slide level2">
 <h2>Butterflies data</h2>
@@ -3561,8 +3009,8 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>butterfly_data <span class="sc">%&gt;%</span></span>
-<span id="cb27-2"><a></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>butterfly_data <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top">
@@ -3604,9 +3052,9 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>df <span class="ot">&lt;-</span> butterfly_data <span class="sc">%&gt;%</span></span>
-<span id="cb28-2"><a></a>  <span class="fu">mutate</span>(<span class="at">expected =</span> <span class="dv">200</span> <span class="sc">*</span> <span class="fl">0.25</span>)</span>
-<span id="cb28-3"><a></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>df <span class="ot">&lt;-</span> butterfly_data <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a></a>  <span class="fu">mutate</span>(<span class="at">expected =</span> <span class="dv">200</span> <span class="sc">*</span> <span class="fl">0.25</span>)</span>
+<span id="cb27-3"><a></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top">
@@ -3651,8 +3099,8 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <div class="fragment">
 <p>So for the butterfly data:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>chi_squared <span class="ot">&lt;-</span> <span class="fu">sum</span>((df<span class="sc">$</span>count <span class="sc">-</span> df<span class="sc">$</span>expected)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> df<span class="sc">$</span>expected)</span>
-<span id="cb29-2"><a></a>chi_squared</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>chi_squared <span class="ot">&lt;-</span> <span class="fu">sum</span>((df<span class="sc">$</span>count <span class="sc">-</span> df<span class="sc">$</span>expected)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> df<span class="sc">$</span>expected)</span>
+<span id="cb28-2"><a></a>chi_squared</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 8.8</code></pre>
 </div>
@@ -3667,47 +3115,47 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="co"># simulate sampling of 200 butterflies 1000 times under the null hypothesis and plot the distribution of chi-squared values</span></span>
-<span id="cb31-2"><a></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb31-3"><a></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>, <span class="st">"yellow"</span>)</span>
-<span id="cb31-4"><a></a>B <span class="ot">&lt;-</span> <span class="dv">3000</span></span>
-<span id="cb31-5"><a></a>test_statistic <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">"numeric"</span>, <span class="at">length =</span> B)</span>
-<span id="cb31-6"><a></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
-<span id="cb31-7"><a></a>  sim <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
-<span id="cb31-8"><a></a>    <span class="at">x =</span> cols, <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb31-9"><a></a>    <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>)</span>
-<span id="cb31-10"><a></a>  )</span>
-<span id="cb31-11"><a></a>  sim_y <span class="ot">&lt;-</span> <span class="fu">table</span>(sim)</span>
-<span id="cb31-12"><a></a>  test_statistic[i] <span class="ot">&lt;-</span> <span class="fu">sum</span>((sim_y <span class="sc">-</span> <span class="dv">50</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="dv">50</span>)</span>
-<span id="cb31-13"><a></a>}</span>
-<span id="cb31-14"><a></a></span>
-<span id="cb31-15"><a></a>p1 <span class="ot">&lt;-</span></span>
-<span id="cb31-16"><a></a>  <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(test_statistic), <span class="fu">aes</span>(<span class="at">x =</span> test_statistic)) <span class="sc">+</span></span>
-<span id="cb31-17"><a></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">bins =</span> <span class="dv">20</span>, <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb31-18"><a></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb31-19"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Simulated distribution of chi-squared values under the null hypothesis"</span>) <span class="sc">+</span></span>
-<span id="cb31-20"><a></a>  <span class="fu">xlab</span>(<span class="st">"Chi-squared value"</span>) <span class="sc">+</span></span>
-<span id="cb31-21"><a></a>  <span class="fu">ylab</span>(<span class="st">"Frequency"</span>)</span>
-<span id="cb31-22"><a></a>p1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="co"># simulate sampling of 200 butterflies 1000 times under the null hypothesis and plot the distribution of chi-squared values</span></span>
+<span id="cb30-2"><a></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb30-3"><a></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>, <span class="st">"yellow"</span>)</span>
+<span id="cb30-4"><a></a>B <span class="ot">&lt;-</span> <span class="dv">3000</span></span>
+<span id="cb30-5"><a></a>test_statistic <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">"numeric"</span>, <span class="at">length =</span> B)</span>
+<span id="cb30-6"><a></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
+<span id="cb30-7"><a></a>  sim <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb30-8"><a></a>    <span class="at">x =</span> cols, <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb30-9"><a></a>    <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>)</span>
+<span id="cb30-10"><a></a>  )</span>
+<span id="cb30-11"><a></a>  sim_y <span class="ot">&lt;-</span> <span class="fu">table</span>(sim)</span>
+<span id="cb30-12"><a></a>  test_statistic[i] <span class="ot">&lt;-</span> <span class="fu">sum</span>((sim_y <span class="sc">-</span> <span class="dv">50</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="dv">50</span>)</span>
+<span id="cb30-13"><a></a>}</span>
+<span id="cb30-14"><a></a></span>
+<span id="cb30-15"><a></a>p1 <span class="ot">&lt;-</span></span>
+<span id="cb30-16"><a></a>  <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(test_statistic), <span class="fu">aes</span>(<span class="at">x =</span> test_statistic)) <span class="sc">+</span></span>
+<span id="cb30-17"><a></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">bins =</span> <span class="dv">20</span>, <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb30-18"><a></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb30-19"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Simulated distribution of chi-squared values under the null hypothesis"</span>) <span class="sc">+</span></span>
+<span id="cb30-20"><a></a>  <span class="fu">xlab</span>(<span class="st">"Chi-squared value"</span>) <span class="sc">+</span></span>
+<span id="cb30-21"><a></a>  <span class="fu">ylab</span>(<span class="st">"Frequency"</span>)</span>
+<span id="cb30-22"><a></a>p1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-23-1.png" width="1536" class="r-stretch"></section>
+<img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-22-1.png" width="1536" class="r-stretch"></section>
 <section id="what-does-our-test-statistic-tell-us" class="slide level2">
 <h2>What does our test statistic tell us?</h2>
 <div class="fragment">
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>p1 <span class="sc">+</span></span>
-<span id="cb32-2"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> chi_squared, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb32-3"><a></a>  <span class="co"># label the line</span></span>
-<span id="cb32-4"><a></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> chi_squared <span class="sc">+</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="fl">0.25</span>, <span class="at">label =</span> <span class="st">"Observed value"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>p1 <span class="sc">+</span></span>
+<span id="cb31-2"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> chi_squared, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb31-3"><a></a>  <span class="co"># label the line</span></span>
+<span id="cb31-4"><a></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> chi_squared <span class="sc">+</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="fl">0.25</span>, <span class="at">label =</span> <span class="st">"Observed value"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-24-1.png" width="960"></p>
+<p><img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -3715,7 +3163,7 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">mean</span>(test_statistic <span class="sc">&gt;=</span> chi_squared)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="fu">mean</span>(test_statistic <span class="sc">&gt;=</span> chi_squared)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.034</code></pre>
@@ -3731,18 +3179,18 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(test_statistic), <span class="fu">aes</span>(<span class="at">x =</span> test_statistic)) <span class="sc">+</span></span>
-<span id="cb35-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">bins =</span> <span class="dv">20</span>, <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb35-3"><a></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb35-4"><a></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dchisq, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">df =</span> <span class="dv">3</span>), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb35-5"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Simulated distribution of chi-squared values under the null hypothesis"</span>) <span class="sc">+</span></span>
-<span id="cb35-6"><a></a>  <span class="fu">xlab</span>(<span class="st">"Chi-squared value"</span>) <span class="sc">+</span></span>
-<span id="cb35-7"><a></a>  <span class="fu">ylab</span>(<span class="st">"Frequency"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(test_statistic), <span class="fu">aes</span>(<span class="at">x =</span> test_statistic)) <span class="sc">+</span></span>
+<span id="cb34-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">bins =</span> <span class="dv">20</span>, <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb34-3"><a></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb34-4"><a></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dchisq, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">df =</span> <span class="dv">3</span>), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb34-5"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Simulated distribution of chi-squared values under the null hypothesis"</span>) <span class="sc">+</span></span>
+<span id="cb34-6"><a></a>  <span class="fu">xlab</span>(<span class="st">"Chi-squared value"</span>) <span class="sc">+</span></span>
+<span id="cb34-7"><a></a>  <span class="fu">ylab</span>(<span class="st">"Frequency"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-26-1.png" width="960"></p>
+<p><img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-25-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -3766,15 +3214,15 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb36-2"><a></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">2</span>), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fu">qchisq</span>(<span class="fl">0.995</span>, <span class="at">df =</span> <span class="dv">2</span>), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">ylab =</span> <span class="st">"Density"</span>, <span class="at">xlab =</span> <span class="st">"Value"</span>, <span class="at">main =</span> <span class="st">"Chi-squared with 2 df"</span>)</span>
-<span id="cb36-3"><a></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">10</span>), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fu">qchisq</span>(<span class="fl">0.995</span>, <span class="at">df =</span> <span class="dv">10</span>), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">ylab =</span> <span class="st">"Density"</span>, <span class="at">xlab =</span> <span class="st">"Value"</span>, <span class="at">main =</span> <span class="st">"Chi-squared with 10 df"</span>)</span>
-<span id="cb36-4"><a></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">50</span>), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fu">qchisq</span>(<span class="fl">0.995</span>, <span class="at">df =</span> <span class="dv">50</span>), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">ylab =</span> <span class="st">"Density"</span>, <span class="at">xlab =</span> <span class="st">"Value"</span>, <span class="at">main =</span> <span class="st">"Chi-squared with 50 df"</span>)</span>
-<span id="cb36-5"><a></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">100</span>), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fu">qchisq</span>(<span class="fl">0.995</span>, <span class="at">df =</span> <span class="dv">100</span>), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">ylab =</span> <span class="st">"Density"</span>, <span class="at">xlab =</span> <span class="st">"Value"</span>, <span class="at">main =</span> <span class="st">"Chi-squared with 100 df"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb35-2"><a></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">2</span>), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fu">qchisq</span>(<span class="fl">0.995</span>, <span class="at">df =</span> <span class="dv">2</span>), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">ylab =</span> <span class="st">"Density"</span>, <span class="at">xlab =</span> <span class="st">"Value"</span>, <span class="at">main =</span> <span class="st">"Chi-squared with 2 df"</span>)</span>
+<span id="cb35-3"><a></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">10</span>), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fu">qchisq</span>(<span class="fl">0.995</span>, <span class="at">df =</span> <span class="dv">10</span>), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">ylab =</span> <span class="st">"Density"</span>, <span class="at">xlab =</span> <span class="st">"Value"</span>, <span class="at">main =</span> <span class="st">"Chi-squared with 10 df"</span>)</span>
+<span id="cb35-4"><a></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">50</span>), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fu">qchisq</span>(<span class="fl">0.995</span>, <span class="at">df =</span> <span class="dv">50</span>), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">ylab =</span> <span class="st">"Density"</span>, <span class="at">xlab =</span> <span class="st">"Value"</span>, <span class="at">main =</span> <span class="st">"Chi-squared with 50 df"</span>)</span>
+<span id="cb35-5"><a></a><span class="fu">curve</span>(<span class="fu">dchisq</span>(x, <span class="at">df =</span> <span class="dv">100</span>), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fu">qchisq</span>(<span class="fl">0.995</span>, <span class="at">df =</span> <span class="dv">100</span>), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">ylab =</span> <span class="st">"Density"</span>, <span class="at">xlab =</span> <span class="st">"Value"</span>, <span class="at">main =</span> <span class="st">"Chi-squared with 100 df"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch"></section></section>
+<img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-26-1.png" width="960" class="r-stretch"></section></section>
 <section>
 <section id="the-chi-squared-test-1" class="title-slide slide level1 center">
 <h1>The Chi-squared test</h1>
@@ -3827,15 +3275,15 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <section id="test-statistic-and-check-assumptions-in-r" class="slide level2">
 <h2>Test statistic and check assumptions (in R)</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="co"># chi-squared test for goodness of fit</span></span>
-<span id="cb37-2"><a></a>fit <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(df<span class="sc">$</span>count, <span class="at">p =</span> <span class="fu">rep</span>(<span class="fl">0.25</span>, <span class="dv">4</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="co"># chi-squared test for goodness of fit</span></span>
+<span id="cb36-2"><a></a>fit <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(df<span class="sc">$</span>count, <span class="at">p =</span> <span class="fu">rep</span>(<span class="fl">0.25</span>, <span class="dv">4</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Assumptions</strong></p>
 <p>By performing the chi-squared test, we can check the assumptions of the test by looking at the calculated frequences in the output:</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>fit<span class="sc">$</span>observed</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>fit<span class="sc">$</span>observed</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 48 62 56 34</code></pre>
@@ -3845,7 +3293,7 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>fit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>fit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -3901,11 +3349,11 @@ X-squared = 8.8, df = 3, p-value = 0.03207</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="co"># create contingency table as matrix with labels</span></span>
-<span id="cb42-2"><a></a>deer_data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb42-3"><a></a><span class="fu">rownames</span>(deer_data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"young"</span>, <span class="st">"adult"</span>, <span class="st">"old"</span>)</span>
-<span id="cb42-4"><a></a><span class="fu">colnames</span>(deer_data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"grass"</span>, <span class="st">"leaves"</span>, <span class="st">"bark"</span>)</span>
-<span id="cb42-5"><a></a>deer_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="co"># create contingency table as matrix with labels</span></span>
+<span id="cb41-2"><a></a>deer_data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb41-3"><a></a><span class="fu">rownames</span>(deer_data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"young"</span>, <span class="st">"adult"</span>, <span class="st">"old"</span>)</span>
+<span id="cb41-4"><a></a><span class="fu">colnames</span>(deer_data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"grass"</span>, <span class="st">"leaves"</span>, <span class="st">"bark"</span>)</span>
+<span id="cb41-5"><a></a>deer_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      grass leaves bark
@@ -3921,9 +3369,9 @@ old      10     10   10</code></pre>
 <h3 id="test-statistic-2">Test statistic</h3>
 <p><br></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="co"># chi-squared test for independence</span></span>
-<span id="cb44-2"><a></a>fit <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(deer_data) <span class="co"># exclude the age group column</span></span>
-<span id="cb44-3"><a></a>fit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a><span class="co"># chi-squared test for independence</span></span>
+<span id="cb43-2"><a></a>fit <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(deer_data) <span class="co"># exclude the age group column</span></span>
+<span id="cb43-3"><a></a>fit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's Chi-squared test
@@ -3948,14 +3396,14 @@ X-squared = 13.542, df = 4, p-value = 0.008911</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a><span class="fu">mosaicplot</span>(deer_data,</span>
-<span id="cb46-2"><a></a>  <span class="at">shade =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb46-3"><a></a>  <span class="at">main =</span> <span class="st">"Deer age group and vegetation preference"</span></span>
-<span id="cb46-4"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a><span class="fu">mosaicplot</span>(deer_data,</span>
+<span id="cb45-2"><a></a>  <span class="at">shade =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb45-3"><a></a>  <span class="at">main =</span> <span class="st">"Deer age group and vegetation preference"</span></span>
+<span id="cb45-4"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-33-1.png" width="960" class="r-stretch"></section>
+<img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-32-1.png" width="960" class="r-stretch"></section>
 <section id="interpretation" class="slide level2">
 <h2>Interpretation</h2>
 <ul>
@@ -3971,12 +3419,12 @@ X-squared = 13.542, df = 4, p-value = 0.008911</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a><span class="fu">library</span>(vcd)</span>
-<span id="cb47-2"><a></a><span class="fu">assoc</span>(deer_data, <span class="at">shade =</span> <span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">"Deer age group and vegetation preference"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a><span class="fu">library</span>(vcd)</span>
+<span id="cb46-2"><a></a><span class="fu">assoc</span>(deer_data, <span class="at">shade =</span> <span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">"Deer age group and vegetation preference"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-34-1.png" width="960" class="r-stretch"></section>
+<img data-src="lecture-07_files/figure-revealjs/unnamed-chunk-33-1.png" width="960" class="r-stretch"></section>
 <section id="interpretation-1" class="slide level2">
 <h2>Interpretation</h2>
 <ul>

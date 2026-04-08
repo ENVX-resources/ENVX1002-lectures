@@ -2760,14 +2760,14 @@
     "href": "lectures/L07/lecture-07.html#at-the-end-of-this-week-you-will-be-able-to",
     "title": "Topic 7 – Non-parametric tests",
     "section": "At the end of this week, you will be able to:",
-    "text": "At the end of this week, you will be able to:\n\nExplain the rationale for using non-parametric tests, including when to choose them over parametric tests due to violations of assumptions (e.g., non-normality, ordinal data).\nDifferentiate between:\n\nThe Wilcoxon signed-rank tests (for one-sample or paired data),\nThe Mann-Whitney U test (AKA Wilcoxon rank-sum test) for two independent samples, and\nThe Chi-squared test, including tests for proportions (goodness-of-fit) and association (independence).\n\nApply and interpret Wilcoxon and Mann-Whitney tests in R, for one-sample paired samples or two independent samples\nConduct and interpret Chi-squared tests in R, including:\n\nChi-squared test of independence to examine association between two categorical variables\nChi-squared goodness-of-fit test to compare observed proportions with expected proportions\nCheck assumptions for the Chi-squared test (e.g., expected cell counts) and understand potential limitations and alternatives (e.g., Fisher’s Exact Test).\n\nPresent and visualise results from all non-parametric tests using RStudio output, with appropriate interpretation and reporting."
+    "text": "At the end of this week, you will be able to:\n\nExplain the rationale for using non-parametric tests, including when to choose them over parametric tests due to violations of assumptions (e.g., non-normality, ordinal data).\nDifferentiate between:\n\nThe Wilcoxon signed-rank tests (for one-sample or paired data),\nThe Mann-Whitney U test (AKA Wilcoxon rank-sum test) for two independent samples, and\nThe Chi-squared test, including tests for proportions (goodness-of-fit) and association (independence).\n\nApply and interpret Wilcoxon and Mann-Whitney tests in R, for one-sample, paired samples or two independent samples\nConduct and interpret Chi-squared tests in R, including:\n\nChi-squared test of independence to examine association between two categorical variables\nChi-squared goodness-of-fit test to compare observed proportions with expected proportions\nCheck assumptions for the Chi-squared test (e.g., expected cell counts) and understand potential limitations and alternatives (e.g., Fisher’s Exact Test).\n\nPresent and visualise results from all non-parametric tests using RStudio output, with appropriate interpretation and reporting."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#overview",
     "href": "lectures/L07/lecture-07.html#overview",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Overview",
-    "text": "Overview\nParametric methods\nDepends on the assumption that the data is normally distributed with mean \\(\\mu\\) and standard deviation \\(\\sigma\\) ,e.g. \\(t\\)-test, ANOVA, linear regression.\n\nNon-parametric methods\nDo not make any assumptions about the distribution of the data.\nUses other properties e.g. ranking of the data, e.g. Wilcoxon signed-rank test, Mann-Whitney U test, Kruskal-Wallis test."
+    "text": "Overview\nParametric methods\nDepends on the assumption that the data is normally distributed with mean \\(\\mu\\) and standard deviation \\(\\sigma\\) ,e.g. \\(t\\)-test, ANOVA, linear regression.\n\nNon-parametric methods\nRelax assumptions about the distribution of the data.\nUses other properties e.g. ranking of the data, e.g. Wilcoxon signed-rank test, Mann-Whitney U test, Kruskal-Wallis test."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#rank-based-tests",
@@ -2816,7 +2816,7 @@
     "href": "lectures/L07/lecture-07.html#when-to-use",
     "title": "Topic 7 – Non-parametric tests",
     "section": "When to use",
-    "text": "When to use\n\nIf assumptions are met (normality, homogeneity of variance), use parametric tests as they are more powerful and efficient than non-parametric tests.\nIf the normality assumption is violated, transform the data and check for normality again (optional).\nNon-parametric tests are a good way to deal with circumstances in which parametric tests perform “poorly”."
+    "text": "When to use\n\nIf assumptions are met (normality, homogeneity of variance), use parametric tests as they are more powerful and efficient than non-parametric tests.\nIf the normality assumption is violated, we first try transform the data and check for normality again.\n\nIf the data is stubborn and not transforming well, Non-parametric tests are a good next step.\nOften used when sample sizes are small (&lt;15ish) and can’t easily transform the data."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#what-to-use",
@@ -2830,21 +2830,14 @@
     "href": "lectures/L07/lecture-07.html#overview-1",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Overview",
-    "text": "Overview\nThe Wilcoxon signed-rank test is a non-parametric test used to compare two related samples, matched pairs, or repeated measures on a single sample.\n\nIs an alternative to:\n\nOne-sample \\(t\\)-test\nPaired \\(t\\)-test"
+    "text": "Overview\nThe Wilcoxon signed-rank test is a non-parametric test used to assess whether a single sample differs from zero, or whether paired samples differ.\n\nIs an alternative to:\n\nOne-sample \\(t\\)-test\nPaired \\(t\\)-test"
   },
   {
     "objectID": "lectures/L07/lecture-07.html#assumptions",
     "href": "lectures/L07/lecture-07.html#assumptions",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Assumptions",
-    "text": "Assumptions\n\n\nData comes from the same population\nData are randomly and independently sampled\n\n\n\nBasically, used in same situations as the one-sample or paired \\(t\\)-test, but when the data is not normally distributed but still symmetric."
-  },
-  {
-    "objectID": "lectures/L07/lecture-07.html#calculating-ranks",
-    "href": "lectures/L07/lecture-07.html#calculating-ranks",
-    "title": "Topic 7 – Non-parametric tests",
-    "section": "Calculating ranks",
-    "text": "Calculating ranks\nIf comparing two groups, the ranks are calculated as follows:\n\nCalculate the difference \\(D\\) between the two groups.\nRank the absolute values of the differences in ascending order.\nAssign the sign of the difference to the rank.\nSum the ranks for each group – zero differences are ignored.\n\n\n\n\n\n\n\n\nNote\n\n\nSee Slide 5 to recall how ranks are calculated, but we will show another example in the next slide."
+    "text": "Assumptions\n\n\nIndependent observations (or independent pairs)\nData represent differences from a value (normally zero) (or between pairs)\nDifferences are fairly balanced around zero\n\n\n\nBasically, used in same situations as the one-sample or paired \\(t\\)-test, but when the data is not normally distributed but still reasonably balanced."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#weight-gain",
@@ -2854,32 +2847,25 @@
     "text": "Weight gain\nWe measured weight gain in chickens before and after a diet.\n\n\nCode\nweight &lt;- c(2.5, 3.5, 3.5, 3.4)\nweight_after &lt;- c(4, 5, 5, 4.6)\n\ndf &lt;- tibble(\n  chicken = 1:4,\n  weight = weight,\n  weight_after = weight_after)\n\ngt(df) %&gt;%\n  opt_table_font(font = \"Crimson Pro\", add = FALSE) %&gt;%\n  tab_options(\n    table.font.size = px(24),\n    column_labels.font.weight = \"bold\")\n\n\n\n\n\n\n\n\nchicken\nweight\nweight_after\n\n\n\n\n1\n2.5\n4.0\n\n\n2\n3.5\n5.0\n\n\n3\n3.5\n5.0\n\n\n4\n3.4\n4.6\n\n\n\n\n\n\n\nIs there a significant increase in weight gain after the diet?"
   },
   {
-    "objectID": "lectures/L07/lecture-07.html#rank-values",
-    "href": "lectures/L07/lecture-07.html#rank-values",
-    "title": "Topic 7 – Non-parametric tests",
-    "section": "Rank values",
-    "text": "Rank values\n\n\nCode\ndf %&gt;%\n  mutate(D = weight_after - weight) %&gt;%\n  mutate(Sign = ifelse(D &gt; 0, \"+\", \"-\")) %&gt;%\n  mutate(rank = rank(abs(D))) %&gt;%\n  mutate(\"Signed rank\" = ifelse(D &gt; 0, rank, -rank)) %&gt;%\n  gt() %&gt;%\n  opt_table_font(font = \"Crimson Pro\", add = FALSE) %&gt;%\n  tab_options(\n    table.font.size = px(24),\n    column_labels.font.weight = \"bold\")\n\n\n\n\n\n\n\n\nchicken\nweight\nweight_after\nD\nSign\nrank\nSigned rank\n\n\n\n\n1\n2.5\n4.0\n1.5\n+\n3\n3\n\n\n2\n3.5\n5.0\n1.5\n+\n3\n3\n\n\n3\n3.5\n5.0\n1.5\n+\n3\n3\n\n\n4\n3.4\n4.6\n1.2\n+\n1\n1\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nThe order of the ranks is based on the absolute values of the differences; the signs are assigned afterward."
-  },
-  {
     "objectID": "lectures/L07/lecture-07.html#hypothesis",
     "href": "lectures/L07/lecture-07.html#hypothesis",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Hypothesis",
-    "text": "Hypothesis\n\nIs there a significant increase in weight gain after the diet?\n\n\\[H_0: \\mu_{\\text{before}} = \\mu_{\\text{after}}\\] \\[H_1: \\mu_{\\text{before}} &lt; \\mu_{\\text{after}}\\]\n\nIn words:\n\n\\(H_0\\): There is no difference in weight gain before and after the diet.\n\\(H_1\\): There is an increase in weight gain after the diet."
+    "text": "Hypothesis\n\nIs there a significant increase in weight gain after the diet - indicates a one tailed test?\n\n\nSometimes we state the hypothesis in terms of the median as it is a robust estimator of the centre of the distribution:\n\n\\(H_0\\): the median difference between the paired samples is equal to zero\n\\(H_1\\): the median difference between the paired samples is greater than zero\n\n\n\nWhat we really mean is:\n\n\\(H_0\\): the distribution of the difference between the paired samples is centered at zero\n\\(H_1\\): the distribution of the difference between the paired samples is centered at a value greater than zero"
   },
   {
     "objectID": "lectures/L07/lecture-07.html#assumptions-1",
     "href": "lectures/L07/lecture-07.html#assumptions-1",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Assumptions",
-    "text": "Assumptions\n\n\nCode\np1 &lt;- ggplot(df, aes(x = weight_after - weight)) +\n  geom_histogram(bins = 10)\np2 &lt;- ggplot(df, aes(sample = weight_after - weight)) +\n  stat_qq() +\n  stat_qq_line()\np3 &lt;- ggplot(df, aes(x = \"\", y = weight_after - weight)) +\n  geom_boxplot()\n\nlibrary(patchwork)\np1 + p2 + p3\n\n\n\nWith so few data points, we may want to use a formal test to check for normality."
+    "text": "Assumptions\n\n\nCode\np1 &lt;- ggplot(df, aes(x = weight_after - weight)) +\n  geom_histogram(bins = 10)\np2 &lt;- ggplot(df, aes(sample = weight_after - weight)) +\n  stat_qq() +\n  stat_qq_line()\np3 &lt;- ggplot(df, aes(x = \"\", y = weight_after - weight)) +\n  geom_boxplot()\n\nlibrary(patchwork)\np1 + p2 + p3\n\n\n\nWith so few data points (small sample), we may want to use a formal test to check for normality."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#assumptions-2",
     "href": "lectures/L07/lecture-07.html#assumptions-2",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Assumptions",
-    "text": "Assumptions\n\nshapiro.test(df$weight_after - df$weight)\n\n\n    Shapiro-Wilk normality test\n\ndata:  df$weight_after - df$weight\nW = 0.62978, p-value = 0.001241\n\n\nResults indicate that the data significantly deviates from normality (W = 0.63, p &lt; 0.05). We will use the Wilcoxon signed-rank test."
+    "text": "Assumptions\n\nshapiro.test(df$weight_after - df$weight)\n\n\n    Shapiro-Wilk normality test\n\ndata:  df$weight_after - df$weight\nW = 0.62978, p-value = 0.001241\n\n\n\nResults indicate that the data significantly deviates from normality (W = 0.63, p &lt; 0.05).\nbecause it is a small sample size and the data is not normally distributed, we decide to use the Wilcoxon signed-rank test instead of transforming the data."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#performing-the-test",
@@ -2900,7 +2886,7 @@
     "href": "lectures/L07/lecture-07.html#hypothesis-1",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Hypothesis",
-    "text": "Hypothesis\nDoes the average smaller size class lizard eat about 100 beetles per day?\n\\[H_0: \\mu = 100\\] \\[H_1: \\mu \\neq 100\\]\nDataset Download\n\n\nCode\nbeetle &lt;- read_csv(\"data/beetle.csv\")\nglimpse(beetle)\n\n\nRows: 45\nColumns: 2\n$ SIZE    &lt;chr&gt; \"small\", \"small\", \"small\", \"small\", \"small\", \"small\", \"small\",…\n$ BEETLES &lt;dbl&gt; 256, 209, 0, 0, 0, 44, 49, 117, 6, 0, 0, 75, 34, 13, 0, 90, 0,…"
+    "text": "Hypothesis\nDoes the average smaller size class lizard eat about 100 beetles per day?\n\n\\(H_0\\): the distribution of smaller lizard beetle consumption is centred at 100 beetles per day\n\\(H_1\\): the distribution of smaller lizard beetle consumption is not centred at 100 beetles per day\n\nDataset Download\n\n\nCode\nbeetle &lt;- read_csv(\"data/beetle.csv\")\nglimpse(beetle)\n\n\nRows: 45\nColumns: 2\n$ SIZE    &lt;chr&gt; \"small\", \"small\", \"small\", \"small\", \"small\", \"small\", \"small\",…\n$ BEETLES &lt;dbl&gt; 256, 209, 0, 0, 0, 44, 49, 117, 6, 0, 0, 75, 34, 13, 0, 90, 0,…"
   },
   {
     "objectID": "lectures/L07/lecture-07.html#first-check-assumptions",
@@ -2914,7 +2900,7 @@
     "href": "lectures/L07/lecture-07.html#run-the-test",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Run the test",
-    "text": "Run the test\nThe Wilcoxon signed-rank test for one sample can be performed as follows:\n\nbeetle %&gt;%\n  filter(SIZE == \"small\") %&gt;%  # filter only the smaller size class\n  pull(BEETLES) %&gt;%            # convert to a vector using pull()\n  wilcox.test(mu = 100)        # wilcox.text(x, mu)\n\n\n    Wilcoxon signed rank test with continuity correction\n\ndata:  .\nV = 92, p-value = 0.09755\nalternative hypothesis: true location is not equal to 100\n\n\n\nResults indicate that the average number of beetles consumed by the smaller size class lizard is not significantly different from 100 (V = 92, p = 0.1).\n\n\n\n\n\n\n\n\nImportant\n\n\nWe are unable to make a conclusion about effect size from non-parametric tests as the information is lost when the data is transformed into ranks."
+    "text": "Run the test\nThe Wilcoxon signed-rank test for one sample can be performed as follows:\n\nbeetle %&gt;%\n  filter(SIZE == \"small\") %&gt;%  # filter only the smaller size class\n  pull(BEETLES) %&gt;%            # convert to a vector using pull()\n  wilcox.test(mu = 100)        # wilcox.text(x, mu)\n\n\n    Wilcoxon signed rank test with continuity correction\n\ndata:  .\nV = 92, p-value = 0.09755\nalternative hypothesis: true location is not equal to 100\n\n\n\nResults indicate that the average number of beetles consumed by the smaller size class lizard is not significantly different from 100 (V = 92, p = 0.1).\n\n\n\n\n\n\n\n\nImportant\n\n\nWe not easily able to make a conclusion about effect size (confidence intervals and mean) from non-parametric tests as the information is lost when the data is transformed into ranks."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#about",
@@ -2935,14 +2921,14 @@
     "href": "lectures/L07/lecture-07.html#hypotheses",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Hypotheses",
-    "text": "Hypotheses\n\nAre the number of beetles consumed by the larger and smaller size classes of lizards different?\n\nLoosely speaking, because we are not assuming symmetry, the most appropriate summary statistic to use when comparing the two groups is the median.\n\\[H_0: median_{\\text{larger}} = median_{\\text{smaller}}\\] \\[H_1: median_{\\text{larger}} \\neq median_{\\text{smaller}}\\]\nMore accurately, we are testing for a difference in the distribution of the two groups."
+    "text": "Hypotheses\n\nAre the number of beetles consumed by the larger and smaller size classes of lizards different?\n\nLoosely speaking, because we are not assuming symmetry, the most appropriate summary statistic to use when comparing the two groups is the median.\n\\[H_0: \\text{median}_{\\text{larger}} = \\text{median}_{\\text{smaller}}\\] \\[H_1: \\text{median}_{\\text{larger}} \\neq \\text{median}_{\\text{smaller}}\\]\nMore accurately, we are testing for a difference in centre of the distribution of the two groups and the median is a robust estimator of this."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#assumptions-3",
     "href": "lectures/L07/lecture-07.html#assumptions-3",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Assumptions",
-    "text": "Assumptions\n\n\nCode\np1 &lt;- ggplot(beetle, aes(x = BEETLES)) +\n  geom_histogram(bins = 14, position = \"dodge\") +\n  facet_wrap(~SIZE, ncol = 1)\np2 &lt;- ggplot(beetle, aes(x = SIZE, y = BEETLES)) +\n  geom_boxplot()\np3 &lt;- ggplot(beetle, aes(sample = BEETLES)) +\n  stat_qq() +\n  stat_qq_line() +\n  facet_wrap(~SIZE, ncol = 1)\n\nlibrary(patchwork)\np1 + p2 + p3\n\n\n\nData does not meet the normality assumption."
+    "text": "Assumptions\n\n\nCode\np1 &lt;- ggplot(beetle, aes(x = BEETLES)) +\n  geom_histogram(bins = 14, position = \"dodge\") +\n  facet_wrap(~SIZE, ncol = 1)\np2 &lt;- ggplot(beetle, aes(x = SIZE, y = BEETLES)) +\n  geom_boxplot()\np3 &lt;- ggplot(beetle, aes(sample = BEETLES)) +\n  stat_qq() +\n  stat_qq_line() +\n  facet_wrap(~SIZE, ncol = 1)\n\nlibrary(patchwork)\np1 + p2 + p3\n\n\n\nData does not meet the normality assumption? Compare the shapes of the distributions"
   },
   {
     "objectID": "lectures/L07/lecture-07.html#test-statistic",
@@ -2956,7 +2942,7 @@
     "href": "lectures/L07/lecture-07.html#transform-or-non-parametric",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Transform, or non-parametric?",
-    "text": "Transform, or non-parametric?\n\nAs usual, there is ongoing debate on whether to transform the data or use non-parametric tests, but the general consensus is to always prefer parametric tests and transformations when assumptions are met using those techniques.\n\ne.g. Parametric analysis of transformed data is more powerful than non-parametric analysis\n\nSome argue that non-parametric tests must be decided during experimental design and not when the data fails to meet the normality assumption: as the decision to rank data has implications on the interpretation of the results.\n\ne.g. Graphpad Advice: Don’t automate the decision to use a nonparametric test\n\nThe conventional wisdom is to transform the data and check for normality if the assumption is not met. If the data is still not normal, then use non-parametric tests (after considering the implications on interpretation).\n\nOr, use bootstrapping (next week!)."
+    "text": "Transform, or non-parametric?\n\nAs usual, there is ongoing debate on whether to transform the data or use non-parametric tests, but the general consensus is to always prefer parametric tests and transformations when assumptions are met using those techniques.\n\ne.g. Parametric analysis of transformed data is more powerful than non-parametric analysis\n\nSome argue that non-parametric tests must be decided during experimental design and not when the data fails to meet the normality assumption: as the decision to rank data has implications on the interpretation of the results.\n\ne.g. Graphpad Advice: Don’t automate the decision to use a nonparametric test\n\nThe conventional wisdom is to transform the data and check for normality if the assumption is not met. If the data is still not normal, then use non-parametric tests (after considering the implications on interpretation).\n\nOr, use simulations based approaches (next week!)."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#summary",
@@ -2970,7 +2956,7 @@
     "href": "lectures/L07/lecture-07.html#parametric-and-non-parametric-alternatives",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Parametric and non-parametric alternatives",
-    "text": "Parametric and non-parametric alternatives\n\nSo far, all of our techniques have been aimed at comparing means/medians of continuous variables.\nThe assumption of normality underpins these techniques – if the data is not normally distributed, we have alternatives like transforming the data or using non-parametric tests.\nDoes this apply to all data?"
+    "text": "Parametric and non-parametric alternatives\n\nSo far, all of our techniques have been aimed at comparing means/medians/central mass of continuous variables.\nThe assumption of normality underpins these techniques – if the data is not normally distributed, we have alternatives like transforming the data or using non-parametric tests.\nDoes this apply to all data?"
   },
   {
     "objectID": "lectures/L07/lecture-07.html#a-rational-assumption",
