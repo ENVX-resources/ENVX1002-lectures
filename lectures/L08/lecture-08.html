@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.8.26">
 
   <meta name="author" content="Floris van Ogtrop">
-  <title>Topic 8 – Permutation tests and bootstrap</title>
+  <title>Topic 8 – A modern approach to hypothesis testing with infer</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -194,7 +194,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="../../site_libs/quarto-contrib/quarto-project/ochre/logo_charcoal.svg" data-background-position="bottom 4em center" data-background-size="10%" class="quarto-title-block center">
-  <h1 class="title">Topic 8 – Permutation tests and bootstrap</h1>
+  <h1 class="title">Topic 8 – A modern approach to hypothesis testing with infer</h1>
   <p class="subtitle">ENVX1002 Statistics in Life and Environmental Sciences</p>
 
 <div class="quarto-title-authors">
@@ -222,133 +222,47 @@ Floris van Ogtrop
 <li>Printing services are available on campus. See <a href="https://www.sydney.edu.au/students/student-it/print-scan-copy.html">here</a>.</li>
 </ul>
 </section>
-<section id="learning-outcomes" class="slide level2 scrollable">
-<h2>Learning Outcomes</h2>
-<h3 id="at-the-end-of-this-week-you-will-be-able-to">At the end of this week, you will be able to:</h3>
-<ol type="1">
-<li>Understand and explain resampling techniques as alternatives to parametric and non-parametric tests</li>
-<li>Apply permutation tests to analyse data when parametric assumptions are not met</li>
-<li>Implement bootstrap methods to estimate confidence intervals and statistical parameters</li>
-<li>Compare and contrast different statistical approaches (parametric, non-parametric, and resampling)</li>
-</ol>
-</section>
 <section>
-<section id="recap" class="title-slide slide level1 center">
-<h1>Recap</h1>
+<section id="learning-outcomes" class="title-slide slide level1 center">
+<h1>Learning Outcomes</h1>
 
 </section>
-<section id="non-normal-data" class="slide level2 scrollable">
-<h2>Non-normal data</h2>
-<p>Where data does not meet the assumptions of parametric tests, we have two options:</p>
+<section id="by-the-end-of-this-lecture-you-can" class="slide level2 scrollable">
+<h2>By the end of this lecture, you can:</h2>
 <ol type="1">
-<li><strong>Transform</strong> the data, and continue with parametric tests; or</li>
-<li>Use <strong>non-parametric</strong> “equivalents” of parametric tests at the cost of power and loss of information.</li>
+<li>Understand hypothesis testing as a <strong>comparison to a distribution</strong></li>
+<li>Use simulation to <strong>generate that distribution from data</strong></li>
+<li>Perform a hypothesis test using the <strong>infer package</strong></li>
+<li>Interpret results without relying on strict assumptions</li>
 </ol>
-<div class="fragment">
-<h3 id="a-third-option-exists.">A third option exists.</h3>
-</div>
-<ul>
-<li class="fragment">Use <em>computer intensive</em>, randomisation-based methods to test hypotheses, called <strong>resampling techniques</strong>.</li>
-<li class="fragment">These methods include <strong>randomisation (or permutation) tests</strong> and <strong>bootstrap</strong>.</li>
-<li class="fragment">Retains estimates of <strong>effect size</strong> and <strong>confidence intervals</strong>.</li>
-</ul>
 </section></section>
 <section>
-<section id="resampling-techniques" class="title-slide slide level1 center">
-<h1>Resampling techniques</h1>
-<div class="fragment">
-<blockquote>
-<p>Two roads diverged in a yellow wood,<br>
-And sorry I could not travel both<br>
-And be one traveler, long I stood<br>
-And looked down one as far as I could<br>
-To where it bent in the undergrowth;</p>
-</blockquote>
-<p>– Robert Frost, The Road Not Taken, 1916</p>
-</div>
+<section id="the-big-idea" class="title-slide slide level1 center">
+<h1>The Big Idea</h1>
+
 </section>
-<section id="model-based-inferential-techniques" class="slide level2">
-<h2>Model-based inferential techniques</h2>
+<section id="how-do-we-usually-test-hypotheses" class="slide level2">
+<h2>How do we usually test hypotheses?</h2>
 <ul>
-<li class="fragment">Traditionally, inferential statistics is based on <strong>mathematical approximations</strong> and <em>assumptions</em> about how data is obtained.</li>
-<li class="fragment">Based on knowledge that “randomness” somehow obeys certain patterns in nature which can be <em>reliably</em> described by <strong>probability distributions</strong>.</li>
-<li class="fragment">Uses <strong>probability theory</strong> to draw approximate conclusions about these patterns when we observe data.</li>
+<li>Compare our observed result to a <strong>theoretical distribution</strong></li>
+<li>This distribution is based on assumptions about the data (e.g., normality, equal variances)</li>
 </ul>
 </section>
-<section id="resampling-techniques-1" class="slide level2">
-<h2>Resampling techniques</h2>
+<section id="a-different-idea" class="slide level2">
+<h2>A different idea</h2>
+<blockquote>
+<p>What if we <strong>didn’t assume a distribution at all</strong>?</p>
+</blockquote>
 <ul>
-<li class="fragment">Based on the idea that we can use the <strong>data itself</strong> to estimate the distribution of the test statistic or parameter of interest.</li>
-<li class="fragment">These methods are <strong>model-free</strong> and <strong>distribution-free</strong>.</li>
-<li class="fragment">Requires comparatively higher computational power, <strong>but nowadays it is not a problem</strong> – any modern personal computer can handle it.</li>
+<li>Use the data to <strong>simulate the distribution</strong> of the test statistic under the null hypothesis<br>
+</li>
+<li>Simulate “no effect” data by randomly shuffling group labels (permutation test)<br>
+</li>
+<li>Compare our observed statistic to this simulated distribution to get a p-value</li>
 </ul>
 </section>
-<section id="randomisation-or-bootstrap" class="slide level2 scrollable">
-<h2>Randomisation or Bootstrap?</h2>
-<div class="fragment">
-<h3 id="they-are-not-the-same">They are not the same:</h3>
-<div class="columns">
-<div class="column">
-<div class="fragment">
-<h3 id="randomisation">Randomisation</h3>
-<p>Generate a distribution of the <strong>test statistic</strong> under the null hypothesis by randomly sub-sampling the data, <em>without replacement</em>. Can be used to estimate a <strong>p-value</strong>.</p>
-</div>
-</div><div class="column">
-<div class="fragment">
-<h3 id="bootstrap">Bootstrap</h3>
-<p>Generate a distribution of the <strong>parameter</strong> of interest (e.g.&nbsp;mean) by resampling the data with replacement<sup>1</sup>. Can be used to estimate <strong>confidence intervals</strong>.</p>
-</div>
-</div></div>
-<div class="columns">
-<div class="column">
-<div class="fragment">
-<blockquote>
-<p>Basically, shuffle the data and see what happens.</p>
-</blockquote>
-</div>
-</div><div class="column">
-<div class="fragment">
-<blockquote>
-<p>Basically, create alternative versions of the data and see what happens.</p>
-</blockquote>
-</div>
-</div></div>
-</div>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>Also known as hallucination as it creates <em>alternative</em> versions of the data.</p></li></ol></aside></section>
-<section id="why-would-these-techniques-work" class="slide level2">
-<h2>Why would these techniques work?</h2>
-<p>At the core of the resampling approach is the idea that the <strong>observed data</strong> is a <strong>random sample</strong> from a <strong>larger population</strong>.</p>
-<div class="fragment">
-<h3 id="if-the-sampled-data-is-truly-representative-of-the-population">If the sampled data is truly representative of the population…</h3>
-<p>Then, if we <em>infinitely resample from the sample itself</em>, we should be able to <em>somewhat</em> approximate the distribution of the test statistic under the null hypothesis, or parameter of interest (will show example later).</p>
-</div>
-</section></section>
-<section>
-<section id="randomisation-tests" class="title-slide slide level1 center">
-<h1>Randomisation tests</h1>
-<p>To generate a distribution of the test statistic under the null hypothesis.</p>
-</section>
-<section id="example-comparing-two-groups" class="slide level2 scrollable">
-<h2>Example: comparing two groups</h2>
-<ul>
-<li class="fragment">Suppose we have two samples (groups) and we want to test if the <strong>mean scores<sup>1</sup></strong> are different.</li>
-<li class="fragment">Under the <strong>null hypothesis</strong> that there is <em>no difference</em> between the groups, the two sets of scores will have the same distribution.</li>
-<li class="fragment">Thus, we can <strong>pool</strong> the scores and reassign them to the two groups, since any score is equally likely to belong in either group, i.e.&nbsp;the scores are <strong>exchangeable</strong>.</li>
-</ul>
-<aside><ol class="aside-footnotes"><li id="fn2"><p>Basically any measure of interest.</p></li></ol></aside></section>
-<section id="steps" class="slide level2 scrollable">
-<h2>Steps</h2>
-<ol type="1">
-<li class="fragment"><strong>Pool</strong> the scores from both groups into a single dataset.</li>
-<li class="fragment"><strong>Randomly reassign</strong> the scores to two groups.</li>
-<li class="fragment">Calculate the <strong>test statistic</strong> of interest, in this case the <em>t</em>-test statistic.</li>
-<li class="fragment">Repeat steps 2 and 3 many times to generate a distribution of the test statistic under the null hypothesis.</li>
-<li class="fragment">Compare the <strong>observed</strong> test statistic to the <strong>randomised</strong> distribution to calculate a <strong>p-value</strong>.</li>
-</ol>
-</section>
-<section id="data" class="slide level2">
-<h2>Data</h2>
-<p>The <code>sleep</code> dataset in R contains the average <strong>extra</strong> hours of sleep, compared to control, for 10 patients who were given two different drugs.</p>
+<section id="example-sleep-data" class="slide level2">
+<h2>Example: Sleep data</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -364,459 +278,39 @@ $ ID    &lt;fct&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 </div>
 </div>
 </section>
-<section id="are-assumptions-of-normality-met" class="slide level2">
-<h2>Are assumptions of normality met?</h2>
-<p>We picked a dataset where the assumptions are met, so that we can compare the results with the parametric test.</p>
+<section id="step-1-plot-the-data-eda" class="slide level2">
+<h2>Step 1 — Plot the data (EDA)</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(sleep, <span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> extra)) <span class="sc">+</span></span>
-<span id="cb3-2"><a></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>sleep <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> extra)) <span class="sc">+</span></span>
+<span id="cb3-3"><a></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb3-4"><a></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb3-5"><a></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
 <img data-src="lecture-08_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
-<section id="calculating-the-t-test-statistic" class="slide level2">
-<h2>Calculating the <em>t</em>-test statistic</h2>
-<p>Recall that the test statistic for the two-sample <em>t</em>-test is:</p>
-<p><span class="math display">\[ t = \frac{Difference\ in\ the\ means}{Standard\ error\ of\ the\ difference} \]</span></p>
-<p>We could calculate it manually, but let’s just use the <code>t.test()</code> function in R since the function calculates the test statistic for us. For example, the observed test statistic for the <code>sleep</code> data is:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">t.test</span>(extra <span class="sc">~</span> group, <span class="at">data =</span> sleep)<span class="sc">$</span>statistic</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>        t 
--1.860813 </code></pre>
-</div>
-</div>
-</section>
-<section id="step-1-pool-the-scores" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Step 1: Pool the scores</h2>
-<p>The first step is to pool the data. The pooled data is:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb6-1" class="hljs-ln-code"><a></a>pooled_data <span class="ot">&lt;-</span> sleep<span class="sc">$</span>extra</span>
-<span id="cb6-2" class="hljs-ln-code"><a></a>pooled_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1]  0.7 -1.6 -0.2 -1.2 -0.1  3.4  3.7  0.8  0.0  2.0  1.9  0.8  1.1  0.1 -0.1
-[16]  4.4  5.5  1.6  4.6  3.4</code></pre>
-</div>
-</div>
-<p>Where the first 10 scores are from the first group, and the next 10 scores are from the second group.</p>
-</section>
-<section id="step-2-randomly-reassign-the-scores" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Step 2: Randomly reassign the scores</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>pooled_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1]  0.7 -1.6 -0.2 -1.2 -0.1  3.4  3.7  0.8  0.0  2.0  1.9  0.8  1.1  0.1 -0.1
-[16]  4.4  5.5  1.6  4.6  3.4</code></pre>
-</div>
-</div>
-<p>Next, we randomly shuffle the pooled data and re-assign the first 10 scores to group 1, and the next 10 scores to group 2.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">set.seed</span>(<span class="dv">1022</span>)</span>
-<span id="cb10-2"><a></a>shuffled_data <span class="ot">&lt;-</span> <span class="fu">sample</span>(pooled_data)</span>
-<span id="cb10-3"><a></a>shuffled_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] -1.2  2.0  3.7  0.1  0.8  1.6  0.8  1.9  0.0  3.4 -1.6 -0.2  1.1 -0.1  0.7
-[16]  4.4  5.5  3.4 -0.1  4.6</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>group1 <span class="ot">&lt;-</span> shuffled_data[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
-<span id="cb12-2"><a></a>group2 <span class="ot">&lt;-</span> shuffled_data[<span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="step-3-calculate-the-test-statistic" class="slide level2">
-<h2>Step 3: Calculate the test statistic</h2>
-<p>We’re not using the results from the <code>t.test()</code> function, but just extracting the test statistic.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">t.test</span>(group1, group2)<span class="sc">$</span>statistic</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>         t 
--0.4995608 </code></pre>
-</div>
-</div>
-</section>
-<section id="step-4-repeat-many-times" class="slide level2">
-<h2>Step 4: Repeat many times</h2>
-<p>Putting it all together, we can write a function to obtain the test statistic:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>random_t <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
-<span id="cb15-2"><a></a>  shuffled_data <span class="ot">&lt;-</span> <span class="fu">sample</span>(data)</span>
-<span id="cb15-3"><a></a>  group1 <span class="ot">&lt;-</span> shuffled_data[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
-<span id="cb15-4"><a></a>  group2 <span class="ot">&lt;-</span> shuffled_data[<span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>]</span>
-<span id="cb15-5"><a></a></span>
-<span id="cb15-6"><a></a>  <span class="fu">return</span>(<span class="fu">t.test</span>(group1, group2)<span class="sc">$</span>statistic)</span>
-<span id="cb15-7"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Repeat the function 10,000 times:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">set.seed</span>(<span class="dv">1034</span>)</span>
-<span id="cb16-2"><a></a>random_t_values <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>, <span class="fu">random_t</span>(pooled_data))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="step-5-compare-the-observed-test-statistic" class="slide level2">
-<h2>Step 5: Compare the observed test statistic</h2>
-<p>Finally, we can compare the observed test statistic to the randomised distribution. This can be done by calculating the proportion of randomised test statistics that are more extreme than the observed test statistic.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>fit <span class="ot">&lt;-</span> <span class="fu">t.test</span>(extra <span class="sc">~</span> group, <span class="at">data =</span> sleep) <span class="co"># test on observed data</span></span>
-<span id="cb17-2"><a></a>p_value <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(random_t_values) <span class="sc">&gt;=</span> <span class="fu">abs</span>(fit<span class="sc">$</span>statistic))</span>
-<span id="cb17-3"><a></a><span class="fu">round</span>(p_value, <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.08</code></pre>
-</div>
-</div>
-<h3 id="how-does-this-compare-to-the-parametric-t-test">How does this compare to the parametric t-test?</h3>
-<p>If we round the p-values of both tests to two decimal places, we get:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">round</span>(fit<span class="sc">$</span>p.value, <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.08</code></pre>
-</div>
-</div>
-<p>As we can see, the p-values are very similar. This is because the assumptions of the parametric test are met, so the results will be close even though the methods are different!</p>
-</section>
-<section id="whats-the-difference-between-the-two-techniques" class="slide level2">
-<h2>What’s the difference between the two techniques?</h2>
-<div class="fragment">
-<div class="columns">
-<div class="column">
-<h3 id="t-test"><em>t</em>-test</h3>
+<section id="step-2-observed-effect" class="slide level2">
+<h2>Step 2 Observed effect</h2>
 <ul>
-<li>The <strong>parametric</strong> test compares the <strong>observed</strong> test statistic to a <strong>theoretical</strong> distribution that has fixed parameters.</li>
+<li>Create an observed test statistic using the infer workflow</li>
+<li>Take the ‘sleep’ dataset and pass it into the infer pipeline</li>
+<li>Define the response variable (‘extra’) and explanatory variable (‘group’) i.e., we are comparing ‘extra’ across the two groups</li>
+<li>Compute the statistic of interest: difference in group means</li>
+<li>Specify the order: mean(group 1) - mean(group 2). This determines the direction (sign) of the difference</li>
 </ul>
-</div><div class="column">
-<h3 id="randomisation-test">Randomisation test</h3>
-<ul>
-<li>The <strong>randomisation</strong> test compares the <strong>observed</strong> test statistic to a <strong>randomised</strong> distribution that is generated from the data itself.</li>
-</ul>
-</div></div>
-</div>
-<div class="fragment">
-<div class="columns">
-<div class="column">
-<ul>
-<li>Assumes that the data is <strong>normally distributed</strong>.</li>
-</ul>
-</div><div class="column">
-<ul>
-<li><strong>No assumptions</strong> about the data distribution, but if the assumption were met, the results would be similar.</li>
-</ul>
-</div></div>
-</div>
-<div class="fragment">
-<div class="columns">
-<div class="column">
-<ul>
-<li>P-value is calculated from the <strong>theoretical</strong> distribution.</li>
-</ul>
-</div><div class="column">
-<ul>
-<li>P-value is calculated from the <em>simulated</em> distribution.</li>
-</ul>
-</div></div>
-</div>
-</section>
-<section id="visualising-the-randomised-distribution" class="slide level2">
-<h2>Visualising the randomised distribution</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">t =</span> random_t_values), <span class="fu">aes</span>(<span class="at">x =</span> t)) <span class="sc">+</span></span>
-<span id="cb21-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.5</span>, <span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb21-3"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> fit<span class="sc">$</span>statistic, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb21-4"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Randomised distribution of t-test statistic"</span>,</span>
-<span id="cb21-5"><a></a>       <span class="at">x =</span> <span class="st">"t-test statistic"</span>,</span>
-<span id="cb21-6"><a></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(infer)</span>
+<span id="cb4-2"><a></a>observed <span class="ot">&lt;-</span> sleep <span class="sc">%&gt;%</span> </span>
+<span id="cb4-3"><a></a>  <span class="fu">specify</span>(extra <span class="sc">~</span> group) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>,           </span>
+<span id="cb4-5"><a></a>            <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) </span>
+<span id="cb4-6"><a></a>observed</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-
-</div>
-<img data-src="lecture-08_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"><p>We can see that the observed test statistic is well within the distribution of the randomised test statistics (which is normally distributed).</p>
-</section></section>
-<section>
-<section id="randomisation-test-using-a-package" class="title-slide slide level1 center">
-<h1>Randomisation test using a package</h1>
-
-</section>
-<section id="randomisation-tests-using-coin" class="slide level2">
-<h2>Randomisation tests using <code>coin</code></h2>
-<p>The <code>coin</code> package in R provides a simple interface to perform randomisation tests.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">library</span>(coin)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<p>Let’s use the <code>sleep</code> dataset to demonstrate how to use the <code>coin</code> package to perform a randomisation test.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>perm_test <span class="ot">&lt;-</span> <span class="fu">independence_test</span>(extra <span class="sc">~</span> group, <span class="at">data =</span> sleep, <span class="at">distribution =</span> <span class="fu">approximate</span>(<span class="at">B =</span> <span class="dv">9999</span>))</span>
-<span id="cb23-2"><a></a></span>
-<span id="cb23-3"><a></a><span class="co"># Print results</span></span>
-<span id="cb23-4"><a></a><span class="fu">print</span>(perm_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Approximative General Independence Test
-
-data:  extra by group (1, 2)
-Z = -1.7508, p-value = 0.08321
-alternative hypothesis: two.sided</code></pre>
-</div>
-</div>
-</section></section>
-<section>
-<section id="bootstrap-1" class="title-slide slide level1 center">
-<h1>Bootstrap</h1>
-<p>To generate a distribution of the parameter of interest.</p>
-</section>
-<section id="example-estimating-the-mean" class="slide level2">
-<h2>Example: estimating the mean</h2>
-<ul>
-<li class="fragment">Suppose we have two samples (groups) and we want to estimate the <strong>difference in means</strong>, and the <strong>95% confidence interval</strong> of the difference.</li>
-<li class="fragment">We can use the usual <strong>mathematical equation</strong> to calculate 95% CI, but if the data <em>does not meet the assumption of normality</em>, then the CI will be a bad estimate.</li>
-<li class="fragment">Instead, we can use the <strong>bootstrap</strong> to estimate the 95% CI, which is based on the <strong>simulated distribution of the mean difference</strong>.</li>
-</ul>
-</section>
-<section id="steps-1" class="slide level2 scrollable">
-<h2>Steps</h2>
-<ol type="1">
-<li class="fragment"><strong>Resample</strong> the data with replacement.</li>
-<li class="fragment">Calculate the <strong>parameter of interest</strong> (e.g.&nbsp;mean) for each resample.</li>
-<li class="fragment">Repeat steps 1 and 2 many times (<span class="math inline">\(N\)</span>) to generate a distribution of the parameter of interest.</li>
-<li class="fragment">Calculate the <strong>95% confidence interval</strong> from the simulated distribution:
-<ul>
-<li class="fragment">The mean of the distribution is the <strong>point estimate</strong>.</li>
-<li class="fragment">The <span class="math inline">\(0.025 \times N\)</span>th smallest mean is the <strong>lower bound</strong> of the 95% CI.</li>
-<li class="fragment">The <span class="math inline">\(0.975\times N\)</span>th smallest mean is the <strong>upper bound</strong> of the 95% CI.</li>
-</ul></li>
-</ol>
-</section>
-<section id="data-1" class="slide level2">
-<h2>Data</h2>
-<p>The <code>BOD</code> dataset in R contains the <strong>biochemical oxygen demand</strong> (mg/L) measurements of 6 samples over time.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">glimpse</span>(BOD)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 6
-Columns: 2
-$ Time   &lt;dbl&gt; 1, 2, 3, 4, 5, 7
-$ demand &lt;dbl&gt; 8.3, 10.3, 19.0, 16.0, 15.6, 19.8</code></pre>
-</div>
-</div>
-</section>
-<section id="step-1-resample-the-data" class="slide level2">
-<h2>Step 1: Resample the data</h2>
-<p>From the pooled original data:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>BOD<span class="sc">$</span>demand</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  8.3 10.3 19.0 16.0 15.6 19.8</code></pre>
-</div>
-</div>
-<p>We <code>sample()</code> with replacement:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">set.seed</span>(<span class="dv">1113</span>)</span>
-<span id="cb29-2"><a></a>resampled_data <span class="ot">&lt;-</span> <span class="fu">sample</span>(BOD<span class="sc">$</span>demand, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb29-3"><a></a>resampled_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 15.6  8.3  8.3  8.3 16.0  8.3</code></pre>
-</div>
-</div>
-<p>Noting that some scores will be repeated, and some will be missing.</p>
-</section>
-<section id="step-2-calculate-the-parameter-of-interest" class="slide level2">
-<h2>Step 2: Calculate the parameter of interest</h2>
-<p>The parameter of interest is the mean value.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">mean</span>(resampled_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 10.8</code></pre>
-</div>
-</div>
-</section>
-<section id="step-3-repeat-many-times" class="slide level2">
-<h2>Step 3: Repeat many times</h2>
-<p>Since it’s a simple process, we can write a function to calculate the mean:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>bootstrap_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
-<span id="cb33-2"><a></a>  resampled_data <span class="ot">&lt;-</span> <span class="fu">sample</span>(data, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb33-3"><a></a>  <span class="fu">return</span>(<span class="fu">mean</span>(resampled_data))</span>
-<span id="cb33-4"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<p>Then repeat the function 10,000 times:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">set.seed</span>(<span class="dv">1116</span>)</span>
-<span id="cb34-2"><a></a>bootstrap_means <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">10000</span>, <span class="fu">bootstrap_mean</span>(BOD<span class="sc">$</span>demand))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="step-4-calculate-the-95-ci" class="slide level2">
-<h2>Step 4: Calculate the 95% CI</h2>
-<p>The 95% CI is calculated from the simulated distribution:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>meanval <span class="ot">&lt;-</span> <span class="fu">mean</span>(bootstrap_means)</span>
-<span id="cb35-2"><a></a>CI <span class="ot">&lt;-</span> <span class="fu">quantile</span>(bootstrap_means, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Putting it together, the mean is 14.85131 with a 95% CI of [11.25, 18.13].</p>
-<h3 id="how-does-this-compare-to-the-parametric-test">How does this compare to the parametric test?</h3>
-<p>If we use the <code>t.test()</code> function to calculate the 95% CI:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">t.test</span>(BOD<span class="sc">$</span>demand)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    One Sample t-test
-
-data:  BOD$demand
-t = 7.8465, df = 5, p-value = 0.0005397
-alternative hypothesis: true mean is not equal to 0
-95 percent confidence interval:
-  9.973793 19.692874
-sample estimates:
-mean of x 
- 14.83333 </code></pre>
-</div>
-</div>
-</section>
-<section id="how-different-are-the-results" class="slide level2">
-<h2>How different are the results?</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Method</th>
-<th>Mean</th>
-<th>95% CI</th>
-<th>CI size</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Bootstrap</td>
-<td>14.85</td>
-<td>[11.25, 18.13]</td>
-<td>6.88</td>
-</tr>
-<tr class="even">
-<td>Parametric</td>
-<td>14.83</td>
-<td>[9.97, 19.69]</td>
-<td>9.72</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li class="fragment">The <strong>point estimates</strong> of the mean are almost identical.</li>
-<li class="fragment">The <strong>95% CI</strong> of the mean are similar, but the <strong>bootstrap</strong> CI is non-symmetric - it represents the <strong>true</strong> distribution of the mean.</li>
-<li class="fragment">The <strong>size</strong> of the CI is smaller for the <strong>bootstrap</strong> method, indicating that the <strong>parametric</strong> method is <strong>overestimating</strong> the precision of the estimate.</li>
-</ul>
-</section></section>
-<section>
-<section id="bootstrap-test-using-boot" class="title-slide slide level1 center">
-<h1>Bootstrap test using <code>boot</code></h1>
-
-</section>
-<section id="again-we-can-use-a-package-to-do-this" class="slide level2">
-<h2>Again we can use a package to do this</h2>
-<p>The <code>boot</code> package in R provides a simple interface to perform bootstrap tests.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">library</span>(boot)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<p>Let’s use the <code>BOD</code> dataset to demonstrate how to use the <code>boot</code> package to perform a bootstrap test.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="co"># Define function to compute mean</span></span>
-<span id="cb39-2"><a></a>boot_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(data, indices) {</span>
-<span id="cb39-3"><a></a>  <span class="fu">return</span>(<span class="fu">mean</span>(data[indices]))</span>
-<span id="cb39-4"><a></a>}</span>
-<span id="cb39-5"><a></a></span>
-<span id="cb39-6"><a></a>boot_test <span class="ot">&lt;-</span> <span class="fu">boot</span>(BOD<span class="sc">$</span>demand, boot_mean, <span class="at">R =</span> <span class="dv">10000</span>)</span>
-<span id="cb39-7"><a></a></span>
-<span id="cb39-8"><a></a><span class="co"># Print results </span></span>
-<span id="cb39-9"><a></a><span class="fu">print</span>(boot_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-ORDINARY NONPARAMETRIC BOOTSTRAP
-
-
-Call:
-boot(data = BOD$demand, statistic = boot_mean, R = 10000)
-
-
-Bootstrap Statistics :
-    original    bias    std. error
-t1* 14.83333 -0.010455     1.72223</code></pre>
-</div>
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="co"># Compute bootstrap confidence interval</span></span>
-<span id="cb41-2"><a></a><span class="fu">boot.ci</span>(boot_test, <span class="at">type =</span> <span class="fu">c</span>(<span class="st">"perc"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
-Based on 10000 bootstrap replicates
-
-CALL : 
-boot.ci(boot.out = boot_test, type = c("perc"))
-
-Intervals : 
-Level     Percentile     
-95%   (11.40, 18.13 )  
-Calculations and Intervals on Original Scale</code></pre>
-</div>
-</div>
-</section></section>
-<section>
-<section id="what-is-recommended" class="title-slide slide level1 center">
-<h1>What is recommended?</h1>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>TLDR</strong></p>
-</div>
-<div class="callout-content">
-<p>The general trend in modern statistics is to use resampling techniques over traditional methods, even when the assumptions are met – and this is currently led by the <code>tidymodels</code> framework in R.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="using-infer" class="slide level2 scrollable">
-<h2>Using <code>infer</code></h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a><span class="fu">library</span>(tidymodels)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<p>Let’s use the <code>sleep</code> dataset to demonstrate how to use the <code>infer</code> package to perform a randomisation test (also makes it easier to compare against manual method).</p>
-<p>The <code>infer</code> package requires the user to use an expressive grammar to specify the analysis.</p>
-<h3 id="steps-2">Steps</h3>
-<ol type="1">
-<li><code>specify()</code> the response variable of interest, then</li>
-<li><code>hypothesise()</code> the null hypothesis, then</li>
-<li><code>generate()</code> the null distribution, and finally</li>
-<li><code>calculate()</code> the p-value.</li>
-</ol>
-</section>
-<section id="two-sample-t-test-using-infer" class="slide level2">
-<h2>Two-sample t-test using <code>infer</code></h2>
-<p>First we need to calculate the observed test statistic so that we can compare it to the simulated distribution.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a>observed <span class="ot">&lt;-</span> sleep <span class="sc">%&gt;%</span></span>
-<span id="cb44-2"><a></a>  <span class="fu">specify</span>(extra <span class="sc">~</span> group) <span class="sc">%&gt;%</span></span>
-<span id="cb44-3"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb44-4"><a></a>observed</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Response: extra (numeric)
 Explanatory: group (factor)
@@ -826,207 +320,142 @@ Explanatory: group (factor)
 1 -1.58</code></pre>
 </div>
 </div>
-<p>Then we generate the null distribution and calculate the p-value:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a><span class="fu">set.seed</span>(<span class="dv">1034</span>)</span>
-<span id="cb46-2"><a></a>pval_infer <span class="ot">&lt;-</span> </span>
-<span id="cb46-3"><a></a>  sleep <span class="sc">%&gt;%</span></span>
-<span id="cb46-4"><a></a>  <span class="fu">specify</span>(extra <span class="sc">~</span> group) <span class="sc">%&gt;%</span></span>
-<span id="cb46-5"><a></a>  <span class="fu">hypothesise</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb46-6"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb46-7"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb46-8"><a></a>   <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> observed,</span>
-<span id="cb46-9"><a></a>              <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="what-are-the-differences" class="slide level2">
-<h2>What are the differences?</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Method</th>
-<th>P-value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Manual</td>
-<td>0.082</td>
-</tr>
-<tr class="even">
-<td><code>infer</code></td>
-<td>0.084</td>
-</tr>
-<tr class="odd">
-<td><code>t.test()</code></td>
-<td>0.079</td>
-</tr>
-</tbody>
-</table>
-<p>As we can see, the results are very similar because the assumptions of the parametric test were already met.</p>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>To calculate confidence intervals, use the <code>get_ci()</code> function as documented <a href="https://infer.netlify.app/articles/observed_stat_examples#confidence-intervals">here</a>.</p>
-</div>
-</div>
-</div>
 </section></section>
 <section>
-<section id="what-about-non-normal-data" class="title-slide slide level1 center">
-<h1>What about non-normal data?</h1>
+<section id="think-first-prediction" class="title-slide slide level1 center">
+<h1>Think first (Prediction)</h1>
 
 </section>
-<section id="example-beetles" class="slide level2">
-<h2>Example: beetles</h2>
-<p>The <code>beetle</code> dataset was used in last week’s lecture to demonstrate the non-parametric Wilcoxon rank-sum test.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a>beetle <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"data/beetle.csv"</span>)</span>
-<span id="cb47-2"><a></a><span class="fu">glimpse</span>(beetle)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 45
-Columns: 2
-$ SIZE    &lt;chr&gt; "small", "small", "small", "small", "small", "small", "small",…
-$ BEETLES &lt;dbl&gt; 256, 209, 0, 0, 0, 44, 49, 117, 6, 0, 0, 75, 34, 13, 0, 90, 0,…</code></pre>
-</div>
-</div>
+<section id="before-we-run-the-test" class="slide level2 scrollable">
+<h2>Before we run the test:</h2>
+<ul>
+<li>Does the difference look <strong>big or small</strong>?</li>
+<li>Do you expect:
+<ul>
+<li><ol type="A">
+<li>Small p-value (&lt; 0.05)</li>
+</ol></li>
+<li><ol start="2" type="A">
+<li>Moderate (~0.1)</li>
+</ol></li>
+<li><ol start="3" type="A">
+<li>Large (&gt; 0.2)</li>
+</ol></li>
+</ul></li>
+</ul>
+<blockquote>
+<p>Commit to an answer</p>
+</blockquote>
 </section>
-<section id="assumption" class="slide level2">
-<h2>Assumption</h2>
-<p>Recall that the data does not meet the assumptions of normality:</p>
+<section id="step-3-simulate-null-distribution-hat" class="slide level2">
+<h2>Step 3 — Simulate null distribution (HAT)</h2>
+<ul>
+<li>Start with the dataset (sleep) to build a null distribution</li>
+<li>Set the seed for reproducibility</li>
+<li>Specify the response (extra) and grouping variable (group)</li>
+<li><strong>(H)</strong> State the null hypothesis of no relationship (independence) - Assume the response is unrelated to group (i.e., group labels don’t matter).</li>
+<li><strong>(A)</strong> Randomly shuffle group labels 1000 times to simulate “no effect” data (<em>exchangeability under the null hypothesis</em>)</li>
+<li><strong>(T)</strong> Calculate the difference in means for each simulated dataset</li>
+</ul>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(beetle, <span class="fu">aes</span>(<span class="at">x =</span> BEETLES)) <span class="sc">+</span></span>
-<span id="cb49-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">14</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb49-3"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>SIZE, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
-<span id="cb49-4"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(beetle, <span class="fu">aes</span>(<span class="at">x =</span> SIZE, <span class="at">y =</span> BEETLES)) <span class="sc">+</span></span>
-<span id="cb49-5"><a></a>  <span class="fu">geom_boxplot</span>()</span>
-<span id="cb49-6"><a></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(beetle, <span class="fu">aes</span>(<span class="at">sample =</span> BEETLES)) <span class="sc">+</span></span>
-<span id="cb49-7"><a></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
-<span id="cb49-8"><a></a>  <span class="fu">stat_qq_line</span>() <span class="sc">+</span></span>
-<span id="cb49-9"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>SIZE, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
-<span id="cb49-10"><a></a></span>
-<span id="cb49-11"><a></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb49-12"><a></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> p3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb6-2"><a></a></span>
+<span id="cb6-3"><a></a>null_dist <span class="ot">&lt;-</span> sleep <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a></a>  <span class="fu">specify</span>(extra <span class="sc">~</span> group) <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a></a>  <span class="fu">hypothesise</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">%&gt;%</span> <span class="do">## Hypothesis (H)</span></span>
+<span id="cb6-6"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">1000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-7"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) <span class="co"># Test (T)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-
 </div>
-<img data-src="lecture-08_files/figure-revealjs/unnamed-chunk-29-1.png" width="960" class="r-stretch"></section>
-<section id="t-test-via-resampling-using-infer" class="slide level2">
-<h2>T-test via resampling using <code>infer</code></h2>
-<p>First, calculate the test statistic:</p>
+</section>
+<section id="step-3-p-value-p" class="slide level2">
+<h2>Step 3 — p-value (P)</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a>observed <span class="ot">&lt;-</span> beetle <span class="sc">%&gt;%</span></span>
-<span id="cb50-2"><a></a>  <span class="fu">specify</span>(BEETLES <span class="sc">~</span> SIZE) <span class="sc">%&gt;%</span></span>
-<span id="cb50-3"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"small"</span>, <span class="st">"large"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Then generate the null distribution and calculate the p-value:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a><span class="fu">set.seed</span>(<span class="dv">1034</span>)</span>
-<span id="cb51-2"><a></a>pval_infer <span class="ot">&lt;-</span> </span>
-<span id="cb51-3"><a></a>  beetle <span class="sc">%&gt;%</span></span>
-<span id="cb51-4"><a></a>  <span class="fu">specify</span>(BEETLES <span class="sc">~</span> SIZE) <span class="sc">%&gt;%</span></span>
-<span id="cb51-5"><a></a>  <span class="fu">hypothesise</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb51-6"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb51-7"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in means"</span>, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"small"</span>, <span class="st">"large"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb51-8"><a></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> observed,</span>
-<span id="cb51-9"><a></a>              <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span>
-<span id="cb51-10"><a></a></span>
-<span id="cb51-11"><a></a>pval_infer</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>p_value <span class="ot">&lt;-</span> null_dist <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> observed, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span>
+<span id="cb7-3"><a></a></span>
+<span id="cb7-4"><a></a>p_value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
     &lt;dbl&gt;
-1   0.025</code></pre>
+1   0.076</code></pre>
 </div>
 </div>
-</section>
-<section id="comparisons" class="slide level2 scrollable">
-<h2>Comparisons</h2>
-<p>Let’s compare the p-values from</p>
-<ol type="1">
-<li>a t-test (if we ignore violations of assumptions),</li>
-<li>the wilcoxon rank-sum test, and</li>
-<li>the <code>infer</code> randomisation test.</li>
-</ol>
-</section>
-<section id="comparisons-1" class="slide level2">
-<h2>Comparisons</h2>
-<h3 id="t-test-1">T-test</h3>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a>p_ttest <span class="ot">&lt;-</span> <span class="fu">t.test</span>(BEETLES <span class="sc">~</span> SIZE, <span class="at">data =</span> beetle)<span class="sc">$</span>p.value <span class="sc">%&gt;%</span></span>
-<span id="cb53-2"><a></a>  <span class="fu">round</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<h3 id="wilcoxon-rank-sum-test">Wilcoxon rank-sum test</h3>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a>p_wilcox <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(BEETLES <span class="sc">~</span> SIZE, <span class="at">data =</span> beetle)<span class="sc">$</span>p.value <span class="sc">%&gt;%</span></span>
-<span id="cb54-2"><a></a>  <span class="fu">round</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<h3 id="randomisation-test-1">Randomisation test</h3>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a>p_infer <span class="ot">&lt;-</span> <span class="fu">pull</span>(pval_infer, p_value) <span class="sc">%&gt;%</span></span>
-<span id="cb55-2"><a></a>  <span class="fu">round</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</section>
-<section id="results" class="slide level2">
-<h2>Results</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Method</th>
-<th>P-value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>T-test</td>
-<td>0.037</td>
-</tr>
-<tr class="even">
-<td>Wilcoxon</td>
-<td>0.075</td>
-</tr>
-<tr class="odd">
-<td><code>infer</code></td>
-<td>0.025</td>
-</tr>
-</tbody>
-</table>
 <ul>
-<li>As we can see, the p-values are quite different because the assumptions of the parametric test were violated.</li>
-<li>The randomisation test is more robust and provides a more accurate estimate of the p-value than the Wilcoxon rank-sum test.</li>
+<li>we can visualise the null distribution and see where our observed statistic falls, and shade the area corresponding to the p-value</li>
 </ul>
-<h3 id="how-to-report-results-of-randomisation-test">How to report results of randomisation test</h3>
-<p>The results of the randomisation test can be reported as follows:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>null_dist <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a></a>  <span class="fu">visualize</span>() <span class="sc">+</span></span>
+<span id="cb9-3"><a></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> observed, <span class="at">direction =</span> <span class="st">"two-sided"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="lecture-08_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<section id="conclusion-c" class="slide level2">
+<h2>Conclusion (C)</h2>
 <blockquote>
-<p>Beetle consumption was significantly different between small and large beetles (t = 2.19, R = 10000, p = 0.025).</p>
+<p>If the observed statistic is rare under “no effect” → evidence against null In this case it is not super rare, so we do not have strong evidence against the null hypothesis of no difference in sleep between the two groups.</p>
 </blockquote>
+</section>
+<section id="compare-to-t-test" class="slide level2">
+<h2>Compare to t-test</h2>
+<ul>
+<li>The t-test also tests the null hypothesis of no difference between groups, but it relies on assumptions (e.g., normality, equal variances).</li>
+<li>The permutation test we performed does not rely on these assumptions and is based on the actual data.</li>
+<li>The p-value from the permutation test may differ from the t-test, especially if the assumptions of the t-test are violated. In this case, we might find that the t-test gives a different p-value, which could lead to a different conclusion about the evidence against the null hypothesis.</li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">t.test</span>(extra <span class="sc">~</span> group, <span class="at">data =</span> sleep)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  extra by group
+t = -1.8608, df = 17.776, p-value = 0.07939
+alternative hypothesis: true difference in means between group 1 and group 2 is not equal to 0
+95 percent confidence interval:
+ -3.3654832  0.2054832
+sample estimates:
+mean in group 1 mean in group 2 
+           0.75            2.33 </code></pre>
+</div>
+</div>
 </section></section>
+<section>
 <section id="summary" class="title-slide slide level1 center">
 <h1>Summary</h1>
-<ul>
-<li>Resampling techniques are <strong>model-free</strong> and <strong>distribution-free</strong> and requires only that the data is a random sample that is representative of the population.</li>
-<li>If the <strong>assumptions of parametric tests are met</strong>, the results of resampling techniques will be <strong>similar</strong> to traditional methods.</li>
-<li>No information is lost in resampling techniques, and they are more robust than traditional methods.</li>
-</ul>
-</section>
 
+</section>
+<section id="key-points" class="slide level2">
+<h2>Key points</h2>
+<ul>
+<li>Hypothesis testing = compare to distribution<br>
+</li>
+<li>We can simulate that distribution<br>
+</li>
+<li><code>infer</code> provides a clean workflow</li>
+</ul>
+<p>simulate → compare → conclude</p>
+</section>
+<section id="final-thought" class="slide level2">
+<h2>Final Thought</h2>
+<blockquote>
+<p>We are not memorising tests<br>
+We are learning how to <strong>“build” inference</strong></p>
+</blockquote>
+</section></section>
 <section id="thanks" class="title-slide slide level1 center">
 <h1>Thanks!</h1>
 <p>This presentation is based on the <a href="https://github.com/usyd-soles-edu/soles-revealjs">SOLES Quarto reveal.js template</a> and is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
@@ -1034,8 +463,6 @@ $ BEETLES &lt;dbl&gt; 256, 209, 0, 0, 0, 44, 49, 117, 6, 0, 0, 75, 34, 13, 0, 90
 
 
 </section>
-
-
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

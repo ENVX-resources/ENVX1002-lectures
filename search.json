@@ -3178,268 +3178,100 @@
   {
     "objectID": "lectures/L08/lecture-08.html#announcement",
     "href": "lectures/L08/lecture-08.html#announcement",
-    "title": "Topic 8 – Permutation tests and bootstrap",
+    "title": "Topic 8 – A modern approach to hypothesis testing with infer",
     "section": "Announcement",
     "text": "Announcement\n\nPractice Skills assessment this week, run in your respective labs. You must attend your lab to complete the assessment.\nA reminder that you are allowed to use cheat sheets for the assessment, but you must write or print them yourself\n\nmaximum 4 sides of A4 paper\nno electronic devices allowed\n\nPrinting services are available on campus. See here."
   },
   {
-    "objectID": "lectures/L08/lecture-08.html#learning-outcomes",
-    "href": "lectures/L08/lecture-08.html#learning-outcomes",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Learning Outcomes",
-    "text": "Learning Outcomes\nAt the end of this week, you will be able to:\n\nUnderstand and explain resampling techniques as alternatives to parametric and non-parametric tests\nApply permutation tests to analyse data when parametric assumptions are not met\nImplement bootstrap methods to estimate confidence intervals and statistical parameters\nCompare and contrast different statistical approaches (parametric, non-parametric, and resampling)"
+    "objectID": "lectures/L08/lecture-08.html#by-the-end-of-this-lecture-you-can",
+    "href": "lectures/L08/lecture-08.html#by-the-end-of-this-lecture-you-can",
+    "title": "Topic 8 – A modern approach to hypothesis testing with infer",
+    "section": "By the end of this lecture, you can:",
+    "text": "By the end of this lecture, you can:\n\nUnderstand hypothesis testing as a comparison to a distribution\nUse simulation to generate that distribution from data\nPerform a hypothesis test using the infer package\nInterpret results without relying on strict assumptions"
   },
   {
-    "objectID": "lectures/L08/lecture-08.html#non-normal-data",
-    "href": "lectures/L08/lecture-08.html#non-normal-data",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Non-normal data",
-    "text": "Non-normal data\nWhere data does not meet the assumptions of parametric tests, we have two options:\n\nTransform the data, and continue with parametric tests; or\nUse non-parametric “equivalents” of parametric tests at the cost of power and loss of information.\n\n\nA third option exists.\n\n\nUse computer intensive, randomisation-based methods to test hypotheses, called resampling techniques.\nThese methods include randomisation (or permutation) tests and bootstrap.\nRetains estimates of effect size and confidence intervals."
+    "objectID": "lectures/L08/lecture-08.html#how-do-we-usually-test-hypotheses",
+    "href": "lectures/L08/lecture-08.html#how-do-we-usually-test-hypotheses",
+    "title": "Topic 8 – A modern approach to hypothesis testing with infer",
+    "section": "How do we usually test hypotheses?",
+    "text": "How do we usually test hypotheses?\n\nCompare our observed result to a theoretical distribution\nThis distribution is based on assumptions about the data (e.g., normality, equal variances)"
   },
   {
-    "objectID": "lectures/L08/lecture-08.html#model-based-inferential-techniques",
-    "href": "lectures/L08/lecture-08.html#model-based-inferential-techniques",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Model-based inferential techniques",
-    "text": "Model-based inferential techniques\n\nTraditionally, inferential statistics is based on mathematical approximations and assumptions about how data is obtained.\nBased on knowledge that “randomness” somehow obeys certain patterns in nature which can be reliably described by probability distributions.\nUses probability theory to draw approximate conclusions about these patterns when we observe data."
+    "objectID": "lectures/L08/lecture-08.html#a-different-idea",
+    "href": "lectures/L08/lecture-08.html#a-different-idea",
+    "title": "Topic 8 – A modern approach to hypothesis testing with infer",
+    "section": "A different idea",
+    "text": "A different idea\n\nWhat if we didn’t assume a distribution at all?\n\n\nUse the data to simulate the distribution of the test statistic under the null hypothesis\n\nSimulate “no effect” data by randomly shuffling group labels (permutation test)\n\nCompare our observed statistic to this simulated distribution to get a p-value"
   },
   {
-    "objectID": "lectures/L08/lecture-08.html#resampling-techniques-1",
-    "href": "lectures/L08/lecture-08.html#resampling-techniques-1",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Resampling techniques",
-    "text": "Resampling techniques\n\nBased on the idea that we can use the data itself to estimate the distribution of the test statistic or parameter of interest.\nThese methods are model-free and distribution-free.\nRequires comparatively higher computational power, but nowadays it is not a problem – any modern personal computer can handle it."
+    "objectID": "lectures/L08/lecture-08.html#example-sleep-data",
+    "href": "lectures/L08/lecture-08.html#example-sleep-data",
+    "title": "Topic 8 – A modern approach to hypothesis testing with infer",
+    "section": "Example: Sleep data",
+    "text": "Example: Sleep data\n\n\nCode\nlibrary(tidyverse)\nglimpse(sleep)\n\n\nRows: 20\nColumns: 3\n$ extra &lt;dbl&gt; 0.7, -1.6, -0.2, -1.2, -0.1, 3.4, 3.7, 0.8, 0.0, 2.0, 1.9, 0.8, …\n$ group &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2\n$ ID    &lt;fct&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
   },
   {
-    "objectID": "lectures/L08/lecture-08.html#randomisation-or-bootstrap",
-    "href": "lectures/L08/lecture-08.html#randomisation-or-bootstrap",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Randomisation or Bootstrap?",
-    "text": "Randomisation or Bootstrap?\n\nThey are not the same:\n\n\n\nRandomisation\nGenerate a distribution of the test statistic under the null hypothesis by randomly sub-sampling the data, without replacement. Can be used to estimate a p-value.\n\n\n\nBootstrap\nGenerate a distribution of the parameter of interest (e.g. mean) by resampling the data with replacement1. Can be used to estimate confidence intervals.\n\n\n\n\n\n\nBasically, shuffle the data and see what happens.\n\n\n\n\n\nBasically, create alternative versions of the data and see what happens.\n\n\n\n\nAlso known as hallucination as it creates alternative versions of the data."
+    "objectID": "lectures/L08/lecture-08.html#step-1-plot-the-data-eda",
+    "href": "lectures/L08/lecture-08.html#step-1-plot-the-data-eda",
+    "title": "Topic 8 – A modern approach to hypothesis testing with infer",
+    "section": "Step 1 — Plot the data (EDA)",
+    "text": "Step 1 — Plot the data (EDA)\n\n\nCode\nsleep %&gt;%\n  ggplot(aes(x = group, y = extra)) +\n  geom_boxplot() +\n  geom_jitter(width = 0.1) +\n  theme_minimal()"
   },
   {
-    "objectID": "lectures/L08/lecture-08.html#why-would-these-techniques-work",
-    "href": "lectures/L08/lecture-08.html#why-would-these-techniques-work",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Why would these techniques work?",
-    "text": "Why would these techniques work?\nAt the core of the resampling approach is the idea that the observed data is a random sample from a larger population.\n\nIf the sampled data is truly representative of the population…\nThen, if we infinitely resample from the sample itself, we should be able to somewhat approximate the distribution of the test statistic under the null hypothesis, or parameter of interest (will show example later)."
+    "objectID": "lectures/L08/lecture-08.html#step-2-observed-effect",
+    "href": "lectures/L08/lecture-08.html#step-2-observed-effect",
+    "title": "Topic 8 – A modern approach to hypothesis testing with infer",
+    "section": "Step 2 Observed effect",
+    "text": "Step 2 Observed effect\n\nCreate an observed test statistic using the infer workflow\nTake the ‘sleep’ dataset and pass it into the infer pipeline\nDefine the response variable (‘extra’) and explanatory variable (‘group’) i.e., we are comparing ‘extra’ across the two groups\nCompute the statistic of interest: difference in group means\nSpecify the order: mean(group 1) - mean(group 2). This determines the direction (sign) of the difference\n\n\n\nCode\nlibrary(infer)\nobserved &lt;- sleep %&gt;% \n  specify(extra ~ group) %&gt;%\n  calculate(stat = \"diff in means\",           \n            order = c(1, 2)) \nobserved\n\n\nResponse: extra (numeric)\nExplanatory: group (factor)\n# A tibble: 1 × 1\n   stat\n  &lt;dbl&gt;\n1 -1.58"
   },
   {
-    "objectID": "lectures/L08/lecture-08.html#example-comparing-two-groups",
-    "href": "lectures/L08/lecture-08.html#example-comparing-two-groups",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Example: comparing two groups",
-    "text": "Example: comparing two groups\n\nSuppose we have two samples (groups) and we want to test if the mean scores1 are different.\nUnder the null hypothesis that there is no difference between the groups, the two sets of scores will have the same distribution.\nThus, we can pool the scores and reassign them to the two groups, since any score is equally likely to belong in either group, i.e. the scores are exchangeable.\n\nBasically any measure of interest."
+    "objectID": "lectures/L08/lecture-08.html#before-we-run-the-test",
+    "href": "lectures/L08/lecture-08.html#before-we-run-the-test",
+    "title": "Topic 8 – A modern approach to hypothesis testing with infer",
+    "section": "Before we run the test:",
+    "text": "Before we run the test:\n\nDoes the difference look big or small?\nDo you expect:\n\n\nSmall p-value (&lt; 0.05)\n\n\nModerate (~0.1)\n\n\nLarge (&gt; 0.2)\n\n\n\n\nCommit to an answer"
   },
   {
-    "objectID": "lectures/L08/lecture-08.html#steps",
-    "href": "lectures/L08/lecture-08.html#steps",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Steps",
-    "text": "Steps\n\nPool the scores from both groups into a single dataset.\nRandomly reassign the scores to two groups.\nCalculate the test statistic of interest, in this case the t-test statistic.\nRepeat steps 2 and 3 many times to generate a distribution of the test statistic under the null hypothesis.\nCompare the observed test statistic to the randomised distribution to calculate a p-value."
+    "objectID": "lectures/L08/lecture-08.html#step-3-simulate-null-distribution-hat",
+    "href": "lectures/L08/lecture-08.html#step-3-simulate-null-distribution-hat",
+    "title": "Topic 8 – A modern approach to hypothesis testing with infer",
+    "section": "Step 3 — Simulate null distribution (HAT)",
+    "text": "Step 3 — Simulate null distribution (HAT)\n\nStart with the dataset (sleep) to build a null distribution\nSet the seed for reproducibility\nSpecify the response (extra) and grouping variable (group)\n(H) State the null hypothesis of no relationship (independence) - Assume the response is unrelated to group (i.e., group labels don’t matter).\n(A) Randomly shuffle group labels 1000 times to simulate “no effect” data (exchangeability under the null hypothesis)\n(T) Calculate the difference in means for each simulated dataset\n\n\n\nCode\nset.seed(123)\n\nnull_dist &lt;- sleep %&gt;%\n  specify(extra ~ group) %&gt;%\n  hypothesise(null = \"independence\") %&gt;% ## Hypothesis (H)\n  generate(reps = 1000, type = \"permute\") %&gt;%\n  calculate(stat = \"diff in means\", order = c(1, 2)) # Test (T)"
   },
   {
-    "objectID": "lectures/L08/lecture-08.html#data",
-    "href": "lectures/L08/lecture-08.html#data",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Data",
-    "text": "Data\nThe sleep dataset in R contains the average extra hours of sleep, compared to control, for 10 patients who were given two different drugs.\n\n\nCode\nlibrary(tidyverse)\nglimpse(sleep)\n\n\nRows: 20\nColumns: 3\n$ extra &lt;dbl&gt; 0.7, -1.6, -0.2, -1.2, -0.1, 3.4, 3.7, 0.8, 0.0, 2.0, 1.9, 0.8, …\n$ group &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2\n$ ID    &lt;fct&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
+    "objectID": "lectures/L08/lecture-08.html#step-3-p-value-p",
+    "href": "lectures/L08/lecture-08.html#step-3-p-value-p",
+    "title": "Topic 8 – A modern approach to hypothesis testing with infer",
+    "section": "Step 3 — p-value (P)",
+    "text": "Step 3 — p-value (P)\n\n\nCode\np_value &lt;- null_dist %&gt;%\n  get_p_value(obs_stat = observed, direction = \"two-sided\")\n\np_value\n\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1   0.076\n\n\n\nwe can visualise the null distribution and see where our observed statistic falls, and shade the area corresponding to the p-value\n\n\n\nCode\nnull_dist %&gt;%\n  visualize() +\n  shade_p_value(obs_stat = observed, direction = \"two-sided\")"
   },
   {
-    "objectID": "lectures/L08/lecture-08.html#are-assumptions-of-normality-met",
-    "href": "lectures/L08/lecture-08.html#are-assumptions-of-normality-met",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Are assumptions of normality met?",
-    "text": "Are assumptions of normality met?\nWe picked a dataset where the assumptions are met, so that we can compare the results with the parametric test.\n\n\nCode\nggplot(sleep, aes(x = group, y = extra)) +\n  geom_boxplot()"
+    "objectID": "lectures/L08/lecture-08.html#conclusion-c",
+    "href": "lectures/L08/lecture-08.html#conclusion-c",
+    "title": "Topic 8 – A modern approach to hypothesis testing with infer",
+    "section": "Conclusion (C)",
+    "text": "Conclusion (C)\n\nIf the observed statistic is rare under “no effect” → evidence against null In this case it is not super rare, so we do not have strong evidence against the null hypothesis of no difference in sleep between the two groups."
   },
   {
-    "objectID": "lectures/L08/lecture-08.html#calculating-the-t-test-statistic",
-    "href": "lectures/L08/lecture-08.html#calculating-the-t-test-statistic",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Calculating the t-test statistic",
-    "text": "Calculating the t-test statistic\nRecall that the test statistic for the two-sample t-test is:\n\\[ t = \\frac{Difference\\ in\\ the\\ means}{Standard\\ error\\ of\\ the\\ difference} \\]\nWe could calculate it manually, but let’s just use the t.test() function in R since the function calculates the test statistic for us. For example, the observed test statistic for the sleep data is:\n\nt.test(extra ~ group, data = sleep)$statistic\n\n        t \n-1.860813"
+    "objectID": "lectures/L08/lecture-08.html#compare-to-t-test",
+    "href": "lectures/L08/lecture-08.html#compare-to-t-test",
+    "title": "Topic 8 – A modern approach to hypothesis testing with infer",
+    "section": "Compare to t-test",
+    "text": "Compare to t-test\n\nThe t-test also tests the null hypothesis of no difference between groups, but it relies on assumptions (e.g., normality, equal variances).\nThe permutation test we performed does not rely on these assumptions and is based on the actual data.\nThe p-value from the permutation test may differ from the t-test, especially if the assumptions of the t-test are violated. In this case, we might find that the t-test gives a different p-value, which could lead to a different conclusion about the evidence against the null hypothesis.\n\n\n\nCode\nt.test(extra ~ group, data = sleep)\n\n\n\n    Welch Two Sample t-test\n\ndata:  extra by group\nt = -1.8608, df = 17.776, p-value = 0.07939\nalternative hypothesis: true difference in means between group 1 and group 2 is not equal to 0\n95 percent confidence interval:\n -3.3654832  0.2054832\nsample estimates:\nmean in group 1 mean in group 2 \n           0.75            2.33"
   },
   {
-    "objectID": "lectures/L08/lecture-08.html#step-1-pool-the-scores",
-    "href": "lectures/L08/lecture-08.html#step-1-pool-the-scores",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Step 1: Pool the scores",
-    "text": "Step 1: Pool the scores\nThe first step is to pool the data. The pooled data is:\n\npooled_data &lt;- sleep$extra\npooled_data\n\n [1]  0.7 -1.6 -0.2 -1.2 -0.1  3.4  3.7  0.8  0.0  2.0  1.9  0.8  1.1  0.1 -0.1\n[16]  4.4  5.5  1.6  4.6  3.4\n\n\nWhere the first 10 scores are from the first group, and the next 10 scores are from the second group."
+    "objectID": "lectures/L08/lecture-08.html#key-points",
+    "href": "lectures/L08/lecture-08.html#key-points",
+    "title": "Topic 8 – A modern approach to hypothesis testing with infer",
+    "section": "Key points",
+    "text": "Key points\n\nHypothesis testing = compare to distribution\n\nWe can simulate that distribution\n\ninfer provides a clean workflow\n\nsimulate → compare → conclude"
   },
   {
-    "objectID": "lectures/L08/lecture-08.html#step-2-randomly-reassign-the-scores",
-    "href": "lectures/L08/lecture-08.html#step-2-randomly-reassign-the-scores",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Step 2: Randomly reassign the scores",
-    "text": "Step 2: Randomly reassign the scores\n\n\nCode\npooled_data\n\n\n [1]  0.7 -1.6 -0.2 -1.2 -0.1  3.4  3.7  0.8  0.0  2.0  1.9  0.8  1.1  0.1 -0.1\n[16]  4.4  5.5  1.6  4.6  3.4\n\n\nNext, we randomly shuffle the pooled data and re-assign the first 10 scores to group 1, and the next 10 scores to group 2.\n\nset.seed(1022)\nshuffled_data &lt;- sample(pooled_data)\nshuffled_data\n\n [1] -1.2  2.0  3.7  0.1  0.8  1.6  0.8  1.9  0.0  3.4 -1.6 -0.2  1.1 -0.1  0.7\n[16]  4.4  5.5  3.4 -0.1  4.6\n\ngroup1 &lt;- shuffled_data[1:10]\ngroup2 &lt;- shuffled_data[11:20]"
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#step-3-calculate-the-test-statistic",
-    "href": "lectures/L08/lecture-08.html#step-3-calculate-the-test-statistic",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Step 3: Calculate the test statistic",
-    "text": "Step 3: Calculate the test statistic\nWe’re not using the results from the t.test() function, but just extracting the test statistic.\n\nt.test(group1, group2)$statistic\n\n         t \n-0.4995608"
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#step-4-repeat-many-times",
-    "href": "lectures/L08/lecture-08.html#step-4-repeat-many-times",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Step 4: Repeat many times",
-    "text": "Step 4: Repeat many times\nPutting it all together, we can write a function to obtain the test statistic:\n\nrandom_t &lt;- function(data) {\n  shuffled_data &lt;- sample(data)\n  group1 &lt;- shuffled_data[1:10]\n  group2 &lt;- shuffled_data[11:20]\n\n  return(t.test(group1, group2)$statistic)\n}\n\nRepeat the function 10,000 times:\n\nset.seed(1034)\nrandom_t_values &lt;- replicate(10000, random_t(pooled_data))"
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#step-5-compare-the-observed-test-statistic",
-    "href": "lectures/L08/lecture-08.html#step-5-compare-the-observed-test-statistic",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Step 5: Compare the observed test statistic",
-    "text": "Step 5: Compare the observed test statistic\nFinally, we can compare the observed test statistic to the randomised distribution. This can be done by calculating the proportion of randomised test statistics that are more extreme than the observed test statistic.\n\nfit &lt;- t.test(extra ~ group, data = sleep) # test on observed data\np_value &lt;- mean(abs(random_t_values) &gt;= abs(fit$statistic))\nround(p_value, 2)\n\n[1] 0.08\n\n\nHow does this compare to the parametric t-test?\nIf we round the p-values of both tests to two decimal places, we get:\n\nround(fit$p.value, 2)\n\n[1] 0.08\n\n\nAs we can see, the p-values are very similar. This is because the assumptions of the parametric test are met, so the results will be close even though the methods are different!"
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#whats-the-difference-between-the-two-techniques",
-    "href": "lectures/L08/lecture-08.html#whats-the-difference-between-the-two-techniques",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "What’s the difference between the two techniques?",
-    "text": "What’s the difference between the two techniques?\n\n\n\nt-test\n\nThe parametric test compares the observed test statistic to a theoretical distribution that has fixed parameters.\n\n\nRandomisation test\n\nThe randomisation test compares the observed test statistic to a randomised distribution that is generated from the data itself.\n\n\n\n\n\n\n\nAssumes that the data is normally distributed.\n\n\n\nNo assumptions about the data distribution, but if the assumption were met, the results would be similar.\n\n\n\n\n\n\n\nP-value is calculated from the theoretical distribution.\n\n\n\nP-value is calculated from the simulated distribution."
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#visualising-the-randomised-distribution",
-    "href": "lectures/L08/lecture-08.html#visualising-the-randomised-distribution",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Visualising the randomised distribution",
-    "text": "Visualising the randomised distribution\n\n\nCode\nggplot(data.frame(t = random_t_values), aes(x = t)) +\n  geom_histogram(binwidth = 0.5, fill = \"skyblue\", color = \"black\") +\n  geom_vline(xintercept = fit$statistic, color = \"red\", linetype = \"dashed\") +\n  labs(title = \"Randomised distribution of t-test statistic\",\n       x = \"t-test statistic\",\n       y = \"Frequency\")\n\n\n\nWe can see that the observed test statistic is well within the distribution of the randomised test statistics (which is normally distributed)."
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#randomisation-tests-using-coin",
-    "href": "lectures/L08/lecture-08.html#randomisation-tests-using-coin",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Randomisation tests using coin",
-    "text": "Randomisation tests using coin\nThe coin package in R provides a simple interface to perform randomisation tests.\n\n\nCode\nlibrary(coin)\n\n\nLet’s use the sleep dataset to demonstrate how to use the coin package to perform a randomisation test.\n\n\nCode\nperm_test &lt;- independence_test(extra ~ group, data = sleep, distribution = approximate(B = 9999))\n\n# Print results\nprint(perm_test)\n\n\n\n    Approximative General Independence Test\n\ndata:  extra by group (1, 2)\nZ = -1.7508, p-value = 0.08321\nalternative hypothesis: two.sided"
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#example-estimating-the-mean",
-    "href": "lectures/L08/lecture-08.html#example-estimating-the-mean",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Example: estimating the mean",
-    "text": "Example: estimating the mean\n\nSuppose we have two samples (groups) and we want to estimate the difference in means, and the 95% confidence interval of the difference.\nWe can use the usual mathematical equation to calculate 95% CI, but if the data does not meet the assumption of normality, then the CI will be a bad estimate.\nInstead, we can use the bootstrap to estimate the 95% CI, which is based on the simulated distribution of the mean difference."
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#steps-1",
-    "href": "lectures/L08/lecture-08.html#steps-1",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Steps",
-    "text": "Steps\n\nResample the data with replacement.\nCalculate the parameter of interest (e.g. mean) for each resample.\nRepeat steps 1 and 2 many times (\\(N\\)) to generate a distribution of the parameter of interest.\nCalculate the 95% confidence interval from the simulated distribution:\n\nThe mean of the distribution is the point estimate.\nThe \\(0.025 \\times N\\)th smallest mean is the lower bound of the 95% CI.\nThe \\(0.975\\times N\\)th smallest mean is the upper bound of the 95% CI."
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#data-1",
-    "href": "lectures/L08/lecture-08.html#data-1",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Data",
-    "text": "Data\nThe BOD dataset in R contains the biochemical oxygen demand (mg/L) measurements of 6 samples over time.\n\nglimpse(BOD)\n\nRows: 6\nColumns: 2\n$ Time   &lt;dbl&gt; 1, 2, 3, 4, 5, 7\n$ demand &lt;dbl&gt; 8.3, 10.3, 19.0, 16.0, 15.6, 19.8"
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#step-1-resample-the-data",
-    "href": "lectures/L08/lecture-08.html#step-1-resample-the-data",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Step 1: Resample the data",
-    "text": "Step 1: Resample the data\nFrom the pooled original data:\n\nBOD$demand\n\n[1]  8.3 10.3 19.0 16.0 15.6 19.8\n\n\nWe sample() with replacement:\n\nset.seed(1113)\nresampled_data &lt;- sample(BOD$demand, replace = TRUE)\nresampled_data\n\n[1] 15.6  8.3  8.3  8.3 16.0  8.3\n\n\nNoting that some scores will be repeated, and some will be missing."
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#step-2-calculate-the-parameter-of-interest",
-    "href": "lectures/L08/lecture-08.html#step-2-calculate-the-parameter-of-interest",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Step 2: Calculate the parameter of interest",
-    "text": "Step 2: Calculate the parameter of interest\nThe parameter of interest is the mean value.\n\nmean(resampled_data)\n\n[1] 10.8"
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#step-3-repeat-many-times",
-    "href": "lectures/L08/lecture-08.html#step-3-repeat-many-times",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Step 3: Repeat many times",
-    "text": "Step 3: Repeat many times\nSince it’s a simple process, we can write a function to calculate the mean:\n\n\nCode\nbootstrap_mean &lt;- function(data) {\n  resampled_data &lt;- sample(data, replace = TRUE)\n  return(mean(resampled_data))\n}\n\n\nThen repeat the function 10,000 times:\n\nset.seed(1116)\nbootstrap_means &lt;- replicate(10000, bootstrap_mean(BOD$demand))"
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#step-4-calculate-the-95-ci",
-    "href": "lectures/L08/lecture-08.html#step-4-calculate-the-95-ci",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Step 4: Calculate the 95% CI",
-    "text": "Step 4: Calculate the 95% CI\nThe 95% CI is calculated from the simulated distribution:\n\nmeanval &lt;- mean(bootstrap_means)\nCI &lt;- quantile(bootstrap_means, c(0.025, 0.975))\n\nPutting it together, the mean is 14.85131 with a 95% CI of [11.25, 18.13].\nHow does this compare to the parametric test?\nIf we use the t.test() function to calculate the 95% CI:\n\nt.test(BOD$demand)\n\n\n    One Sample t-test\n\ndata:  BOD$demand\nt = 7.8465, df = 5, p-value = 0.0005397\nalternative hypothesis: true mean is not equal to 0\n95 percent confidence interval:\n  9.973793 19.692874\nsample estimates:\nmean of x \n 14.83333"
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#how-different-are-the-results",
-    "href": "lectures/L08/lecture-08.html#how-different-are-the-results",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "How different are the results?",
-    "text": "How different are the results?\n\n\n\nMethod\nMean\n95% CI\nCI size\n\n\n\n\nBootstrap\n14.85\n[11.25, 18.13]\n6.88\n\n\nParametric\n14.83\n[9.97, 19.69]\n9.72\n\n\n\n\nThe point estimates of the mean are almost identical.\nThe 95% CI of the mean are similar, but the bootstrap CI is non-symmetric - it represents the true distribution of the mean.\nThe size of the CI is smaller for the bootstrap method, indicating that the parametric method is overestimating the precision of the estimate."
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#again-we-can-use-a-package-to-do-this",
-    "href": "lectures/L08/lecture-08.html#again-we-can-use-a-package-to-do-this",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Again we can use a package to do this",
-    "text": "Again we can use a package to do this\nThe boot package in R provides a simple interface to perform bootstrap tests.\n\n\nCode\nlibrary(boot)\n\n\nLet’s use the BOD dataset to demonstrate how to use the boot package to perform a bootstrap test.\n\n\nCode\n# Define function to compute mean\nboot_mean &lt;- function(data, indices) {\n  return(mean(data[indices]))\n}\n\nboot_test &lt;- boot(BOD$demand, boot_mean, R = 10000)\n\n# Print results \nprint(boot_test)\n\n\n\nORDINARY NONPARAMETRIC BOOTSTRAP\n\n\nCall:\nboot(data = BOD$demand, statistic = boot_mean, R = 10000)\n\n\nBootstrap Statistics :\n    original    bias    std. error\nt1* 14.83333 -0.010455     1.72223\n\n\nCode\n# Compute bootstrap confidence interval\nboot.ci(boot_test, type = c(\"perc\"))\n\n\nBOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS\nBased on 10000 bootstrap replicates\n\nCALL : \nboot.ci(boot.out = boot_test, type = c(\"perc\"))\n\nIntervals : \nLevel     Percentile     \n95%   (11.40, 18.13 )  \nCalculations and Intervals on Original Scale"
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#using-infer",
-    "href": "lectures/L08/lecture-08.html#using-infer",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Using infer",
-    "text": "Using infer\n\n\nCode\nlibrary(tidymodels)\n\n\nLet’s use the sleep dataset to demonstrate how to use the infer package to perform a randomisation test (also makes it easier to compare against manual method).\nThe infer package requires the user to use an expressive grammar to specify the analysis.\nSteps\n\nspecify() the response variable of interest, then\nhypothesise() the null hypothesis, then\ngenerate() the null distribution, and finally\ncalculate() the p-value."
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#two-sample-t-test-using-infer",
-    "href": "lectures/L08/lecture-08.html#two-sample-t-test-using-infer",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Two-sample t-test using infer",
-    "text": "Two-sample t-test using infer\nFirst we need to calculate the observed test statistic so that we can compare it to the simulated distribution.\n\nobserved &lt;- sleep %&gt;%\n  specify(extra ~ group) %&gt;%\n  calculate(stat = \"diff in means\", order = c(1, 2))\nobserved\n\nResponse: extra (numeric)\nExplanatory: group (factor)\n# A tibble: 1 × 1\n   stat\n  &lt;dbl&gt;\n1 -1.58\n\n\nThen we generate the null distribution and calculate the p-value:\n\nset.seed(1034)\npval_infer &lt;- \n  sleep %&gt;%\n  specify(extra ~ group) %&gt;%\n  hypothesise(null = \"independence\") %&gt;%\n  generate(reps = 10000, type = \"permute\") %&gt;%\n  calculate(stat = \"diff in means\", order = c(1, 2)) %&gt;%\n   get_p_value(obs_stat = observed,\n              direction = \"two-sided\")"
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#what-are-the-differences",
-    "href": "lectures/L08/lecture-08.html#what-are-the-differences",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "What are the differences?",
-    "text": "What are the differences?\n\n\n\nMethod\nP-value\n\n\n\n\nManual\n0.082\n\n\ninfer\n0.084\n\n\nt.test()\n0.079\n\n\n\nAs we can see, the results are very similar because the assumptions of the parametric test were already met.\n\n\n\n\n\n\nNote\n\n\nTo calculate confidence intervals, use the get_ci() function as documented here."
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#example-beetles",
-    "href": "lectures/L08/lecture-08.html#example-beetles",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Example: beetles",
-    "text": "Example: beetles\nThe beetle dataset was used in last week’s lecture to demonstrate the non-parametric Wilcoxon rank-sum test.\n\nbeetle &lt;- readr::read_csv(\"data/beetle.csv\")\nglimpse(beetle)\n\nRows: 45\nColumns: 2\n$ SIZE    &lt;chr&gt; \"small\", \"small\", \"small\", \"small\", \"small\", \"small\", \"small\",…\n$ BEETLES &lt;dbl&gt; 256, 209, 0, 0, 0, 44, 49, 117, 6, 0, 0, 75, 34, 13, 0, 90, 0,…"
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#assumption",
-    "href": "lectures/L08/lecture-08.html#assumption",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Assumption",
-    "text": "Assumption\nRecall that the data does not meet the assumptions of normality:\n\n\nCode\np1 &lt;- ggplot(beetle, aes(x = BEETLES)) +\n  geom_histogram(bins = 14, position = \"dodge\") +\n  facet_wrap(~SIZE, ncol = 1)\np2 &lt;- ggplot(beetle, aes(x = SIZE, y = BEETLES)) +\n  geom_boxplot()\np3 &lt;- ggplot(beetle, aes(sample = BEETLES)) +\n  stat_qq() +\n  stat_qq_line() +\n  facet_wrap(~SIZE, ncol = 1)\n\nlibrary(patchwork)\np1 + p2 + p3"
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#t-test-via-resampling-using-infer",
-    "href": "lectures/L08/lecture-08.html#t-test-via-resampling-using-infer",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "T-test via resampling using infer",
-    "text": "T-test via resampling using infer\nFirst, calculate the test statistic:\n\nobserved &lt;- beetle %&gt;%\n  specify(BEETLES ~ SIZE) %&gt;%\n  calculate(stat = \"diff in means\", order = c(\"small\", \"large\"))\n\nThen generate the null distribution and calculate the p-value:\n\nset.seed(1034)\npval_infer &lt;- \n  beetle %&gt;%\n  specify(BEETLES ~ SIZE) %&gt;%\n  hypothesise(null = \"independence\") %&gt;%\n  generate(reps = 10000, type = \"permute\") %&gt;%\n  calculate(stat = \"diff in means\", order = c(\"small\", \"large\")) %&gt;%\n  get_p_value(obs_stat = observed,\n              direction = \"two-sided\")\n\npval_infer\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1   0.025"
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#comparisons",
-    "href": "lectures/L08/lecture-08.html#comparisons",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Comparisons",
-    "text": "Comparisons\nLet’s compare the p-values from\n\na t-test (if we ignore violations of assumptions),\nthe wilcoxon rank-sum test, and\nthe infer randomisation test."
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#comparisons-1",
-    "href": "lectures/L08/lecture-08.html#comparisons-1",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Comparisons",
-    "text": "Comparisons\nT-test\n\n\nCode\np_ttest &lt;- t.test(BEETLES ~ SIZE, data = beetle)$p.value %&gt;%\n  round(3)\n\n\nWilcoxon rank-sum test\n\n\nCode\np_wilcox &lt;- wilcox.test(BEETLES ~ SIZE, data = beetle)$p.value %&gt;%\n  round(3)\n\n\nRandomisation test\n\n\nCode\np_infer &lt;- pull(pval_infer, p_value) %&gt;%\n  round(3)"
-  },
-  {
-    "objectID": "lectures/L08/lecture-08.html#results",
-    "href": "lectures/L08/lecture-08.html#results",
-    "title": "Topic 8 – Permutation tests and bootstrap",
-    "section": "Results",
-    "text": "Results\n\n\n\nMethod\nP-value\n\n\n\n\nT-test\n0.037\n\n\nWilcoxon\n0.075\n\n\ninfer\n0.025\n\n\n\n\nAs we can see, the p-values are quite different because the assumptions of the parametric test were violated.\nThe randomisation test is more robust and provides a more accurate estimate of the p-value than the Wilcoxon rank-sum test.\n\nHow to report results of randomisation test\nThe results of the randomisation test can be reported as follows:\n\nBeetle consumption was significantly different between small and large beetles (t = 2.19, R = 10000, p = 0.025)."
+    "objectID": "lectures/L08/lecture-08.html#final-thought",
+    "href": "lectures/L08/lecture-08.html#final-thought",
+    "title": "Topic 8 – A modern approach to hypothesis testing with infer",
+    "section": "Final Thought",
+    "text": "Final Thought\n\nWe are not memorising tests\nWe are learning how to “build” inference"
   },
   {
     "objectID": "lectures/L09/lecture-09.html#about-me",
