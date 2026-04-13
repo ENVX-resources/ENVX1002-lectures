@@ -1,5 +1,5 @@
 ---
-title: Topic 8 -- Permutation tests and bootstrap
+title: Topic 8 -- A modern approach to hypothesis testing with infer
 author: Floris van Ogtrop
 format:
   ochre-revealjs: default
@@ -14,691 +14,148 @@ format:
   - no electronic devices allowed
 - Printing services are available on campus. See [here](https://www.sydney.edu.au/students/student-it/print-scan-copy.html).
 
-## Learning Outcomes
+# Learning Outcomes
 
-### At the end of this week, you will be able to:
+## By the end of this lecture, you can:
 
-1. Understand and explain resampling techniques as alternatives to parametric and non-parametric tests
-2. Apply permutation tests to analyse data when parametric assumptions are not met
-3. Implement bootstrap methods to estimate confidence intervals and statistical parameters
-4. Compare and contrast different statistical approaches (parametric, non-parametric, and resampling)
-
-
-# Recap
-
-## Non-normal data
-
-Where data does not meet the assumptions of parametric tests, we have two options:
-
-1. **Transform** the data, and continue with parametric tests; or
-2. Use **non-parametric** "equivalents" of parametric tests at the cost of power and loss of information.
-
-::: fragment
-### A third option exists.
-:::
-
-::: incremental
-- Use *computer intensive*, randomisation-based methods to test hypotheses, called **resampling techniques**.
-- These methods include **randomisation (or permutation) tests** and **bootstrap**.
-- Retains estimates of **effect size** and **confidence intervals**.
-:::
+1. Understand hypothesis testing as a **comparison to a distribution**
+2. Use simulation to **generate that distribution from data**
+3. Perform a hypothesis test using the **infer package**
+4. Interpret results without relying on strict assumptions
 
 
-# Resampling techniques
 
-. . .
+# The Big Idea
 
-> Two roads diverged in a yellow wood,  
-> And sorry I could not travel both  
-> And be one traveler, long I stood  
-> And looked down one as far as I could  
-> To where it bent in the undergrowth;
+## How do we usually test hypotheses?
 
-– Robert Frost, The Road Not Taken, 1916
+- Compare our observed result to a **theoretical distribution**
+- This distribution is based on assumptions about the data (e.g., normality, equal variances)
 
-## Model-based inferential techniques
 
-::: incremental
-- Traditionally, inferential statistics is based on **mathematical approximations** and *assumptions* about how data is obtained.
-- Based on knowledge that "randomness" somehow obeys certain patterns in nature which can be *reliably* described by **probability distributions**.
-- Uses **probability theory** to draw approximate conclusions about these patterns when we observe data.
-:::
+## A different idea
 
-## Resampling techniques
+> What if we **didn’t assume a distribution at all**?
 
-::: incremental
-- Based on the idea that we can use the **data itself** to estimate the distribution of the test statistic or parameter of interest.
-- These methods are **model-free** and **distribution-free**.
-- Requires comparatively higher computational power, **but nowadays it is not a problem** -- any modern personal computer can handle it.
-:::
+- Use the data to **simulate the distribution** of the test statistic under the null hypothesis  
+- Simulate “no effect” data by randomly shuffling group labels (permutation test)  
+- Compare our observed statistic to this simulated distribution to get a p-value
 
-## Randomisation or Bootstrap?
 
-. . .
-
-### They are not the same:
-
-:::: columns
-::: column
-::: fragment
-### Randomisation
-Generate a distribution of the **test statistic** under the null hypothesis by randomly sub-sampling the data, *without replacement*. Can be used to estimate a **p-value**.
-:::
-:::
-
-::: column
-::: fragment
-### Bootstrap
-Generate a distribution of the **parameter** of interest (e.g. mean) by resampling the data with replacement[^resampling]. Can be used to estimate **confidence intervals**.
-
-[^resampling]: Also known as hallucination as it creates *alternative* versions of the data.
-
-:::
-:::
-::::
-
-:::: columns
-::: column
-::: fragment
-> Basically, shuffle the data and see what happens.
-:::
-:::
-
-::: column
-::: fragment
-> Basically, create alternative versions of the data and see what happens.
-:::
-:::
-::::
-
-## Why would these techniques work?
-
-At the core of the resampling approach is the idea that the **observed data** is a **random sample** from a **larger population**.
-
-::: fragment
-### If the sampled data is truly representative of the population...
-
-Then, if we *infinitely resample from the sample itself*, we should be able to *somewhat* approximate the distribution of the test statistic under the null hypothesis, or parameter of interest (will show example later).
-
-:::
-
-# Randomisation tests
-
-To generate a distribution of the test statistic under the null hypothesis.
-
-## Example: comparing two groups
-
-::: incremental
-
-- Suppose we have two samples (groups) and we want to test if the **mean scores[^scores]** are different.
-- Under the **null hypothesis** that there is *no difference* between the groups, the two sets of scores will have the same distribution.
-- Thus, we can **pool** the scores and reassign them to the two groups, since any score is equally likely to belong in either group, i.e. the scores are **exchangeable**.
-:::
-
-## Steps
-
-::: incremental
-1. **Pool** the scores from both groups into a single dataset.
-2. **Randomly reassign** the scores to two groups.
-3. Calculate the **test statistic** of interest, in this case the *t*-test statistic.
-4. Repeat steps 2 and 3 many times to generate a distribution of the test statistic under the null hypothesis.
-5. Compare the **observed** test statistic to the **randomised** distribution to calculate a **p-value**.
-:::
-
-[^scores]: Basically any measure of interest.
-
-## Data
-
-The `sleep` dataset in R contains the average **extra** hours of sleep, compared to control,  for 10 patients who were given two different drugs.
+## Example: Sleep data
 
 ```{r}
 library(tidyverse)
 glimpse(sleep)
 ```
 
-## Are assumptions of normality met?
-
-We picked a dataset where the assumptions are met, so that we can compare the results with the parametric test.
+## Step 1 — Plot the data (EDA)
 
 ```{r}
-#| code-fold: true
-ggplot(sleep, aes(x = group, y = extra)) +
-  geom_boxplot()
-```
-
-## Calculating the *t*-test statistic
-
-Recall that the test statistic for the two-sample *t*-test is:
-
-$$ t = \frac{Difference\ in\ the\ means}{Standard\ error\ of\ the\ difference} $$
-
-We could calculate it manually, but let's just use the `t.test()` function in R since the function calculates the test statistic for us. For example, the observed test statistic for the `sleep` data is:
-
-```{r}
-#| code-fold: false
-
-t.test(extra ~ group, data = sleep)$statistic
-```
-
-## Step 1: Pool the scores {auto-animate=true}
-
-The first step is to pool the data. The pooled data is:
-
-```{r}
-#| code-fold: false
-
-pooled_data <- sleep$extra
-pooled_data
-```
-
-Where the first 10 scores are from the first group, and the next 10 scores are from the second group.
-
-## Step 2: Randomly reassign the scores {auto-animate=true}
-
-```{r}
-#| code-fold: true
-
-pooled_data
-```
-
-Next, we randomly shuffle the pooled data and re-assign the first 10 scores to group 1, and the next 10 scores to group 2.
-
-
-```{r}
-#| code-fold: false
-
-set.seed(1022)
-shuffled_data <- sample(pooled_data)
-shuffled_data
-group1 <- shuffled_data[1:10]
-group2 <- shuffled_data[11:20]
-
+sleep %>%
+  ggplot(aes(x = group, y = extra)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.1) +
+  theme_minimal()
 ```
 
 
-## Step 3: Calculate the test statistic
+## Step 2 Observed effect
 
-We're not using the results from the `t.test()` function, but just extracting the test statistic.
-
-```{r}
-#| code-fold: false
-
-t.test(group1, group2)$statistic
-```
-
-
-## Step 4: Repeat many times
-
-Putting it all together, we can write a function to obtain the test statistic:
+- Create an observed test statistic using the infer workflow
+- Take the 'sleep' dataset and pass it into the infer pipeline
+- Define the response variable ('extra') and explanatory variable ('group') i.e., we are comparing 'extra' across the two groups
+- Compute the statistic of interest: difference in group means
+- Specify the order: mean(group 1) - mean(group 2). This determines the direction (sign) of the difference
 
 ```{r}
-#| code-fold: false
-
-random_t <- function(data) {
-  shuffled_data <- sample(data)
-  group1 <- shuffled_data[1:10]
-  group2 <- shuffled_data[11:20]
-
-  return(t.test(group1, group2)$statistic)
-}
-```
-
-
-Repeat the function 10,000 times:
-
-```{r}
-#| code-fold: false
-#| cache: true
-
-set.seed(1034)
-random_t_values <- replicate(10000, random_t(pooled_data))
-```
-
-## Step 5: Compare the observed test statistic
-
-Finally, we can compare the observed test statistic to the randomised distribution. This can be done by calculating the proportion of randomised test statistics that are more extreme than the observed test statistic.
-
-```{r}
-#| code-fold: false
-
-fit <- t.test(extra ~ group, data = sleep) # test on observed data
-p_value <- mean(abs(random_t_values) >= abs(fit$statistic))
-round(p_value, 2)
-
-
-```
-
-
-### How does this compare to the parametric t-test?
-
-If we round the p-values of both tests to two decimal places, we get:
-
-```{r}
-#| code-fold: false
-
-round(fit$p.value, 2)
-```
-
-As we can see, the p-values are very similar. This is because the assumptions of the parametric test are met, so the results will be close even though the methods are different!
-
-## What's the difference between the two techniques?
-
-. . .
-
-:::: columns
-::: column
-
-### *t*-test
-- The **parametric** test compares the **observed** test statistic to a **theoretical** distribution that has fixed parameters.
-:::
-
-::: column
-### Randomisation test
-- The **randomisation** test compares the **observed** test statistic to a **randomised** distribution that is generated from the data itself.
-:::
-::::
-
-. . .
-
-:::: columns
-::: column
-- Assumes that the data is **normally distributed**.
-:::
-
-::: column
-- **No assumptions** about the data distribution, but if the assumption were met, the results would be similar.
-:::
-::::
-
-. . .
-
-:::: columns
-::: column
-- P-value is calculated from the **theoretical** distribution.
-:::
-
-::: column
-- P-value is calculated from the *simulated* distribution.
-:::
-::::
-
-## Visualising the randomised distribution
-
-```{r}
-#| code-fold: true
-
-ggplot(data.frame(t = random_t_values), aes(x = t)) +
-  geom_histogram(binwidth = 0.5, fill = "skyblue", color = "black") +
-  geom_vline(xintercept = fit$statistic, color = "red", linetype = "dashed") +
-  labs(title = "Randomised distribution of t-test statistic",
-       x = "t-test statistic",
-       y = "Frequency")
-
-```
-
-We can see that the observed test statistic is well within the distribution of the randomised test statistics (which is normally distributed).
-
-# Randomisation test using a package
-
-## Randomisation tests using `coin`
-
-The `coin` package in R provides a simple interface to perform randomisation tests.
-
-```{r}
-library(coin)
-```
-
-Let's use the `sleep` dataset to demonstrate how to use the `coin` package to perform a randomisation test.
-
-```{r}
-perm_test <- independence_test(extra ~ group, data = sleep, distribution = approximate(B = 9999))
-
-# Print results
-print(perm_test)
-```
-
-
-# Bootstrap
-
-To generate a distribution of the parameter of interest.
-
-## Example: estimating the mean
-
-::: incremental
-- Suppose we have two samples (groups) and we want to estimate the **difference in means**, and the **95% confidence interval** of the difference.
-- We can use the usual **mathematical equation** to calculate 95% CI, but if the data *does not meet the assumption of normality*, then  the CI will be a bad estimate.
-- Instead, we can use the **bootstrap** to estimate the 95% CI, which is based on the **simulated distribution of the mean difference**.
-:::
-
-## Steps
-
-::: incremental
-1. **Resample** the data with replacement.
-2. Calculate the **parameter of interest** (e.g. mean) for each resample.
-3. Repeat steps 1 and 2 many times ($N$) to generate a distribution of the parameter of interest.
-4. Calculate the **95% confidence interval** from the simulated distribution:
-   - The mean of the distribution is the **point estimate**.
-   - The $0.025 \times N$th smallest mean is the **lower bound** of the 95% CI.
-   - The $0.975\times N$th smallest mean is the **upper bound** of the 95% CI.
-:::
-
-## Data
-
-The `BOD` dataset in R contains the **biochemical oxygen demand** (mg/L) measurements of 6 samples over time.
-
-```{r}
-#| code-fold: false
-
-glimpse(BOD)
-
-```
-
-## Step 1: Resample the data
-
-From the pooled original data:
-
-```{r}
-#| code-fold: false
-
-BOD$demand
-```
-
-We `sample()` with replacement:
-
-```{r}
-#| code-fold: false
-
-set.seed(1113)
-resampled_data <- sample(BOD$demand, replace = TRUE)
-resampled_data
-```
-
-Noting that some scores will be repeated, and some will be missing.
-
-## Step 2: Calculate the parameter of interest
-
-The parameter of interest is the mean value.
-
-```{r}
-#| code-fold: false
-
-mean(resampled_data)
-```
-
-## Step 3: Repeat many times
-
-Since it's a simple process, we can write a function to calculate the mean:
-
-```{r}
-#| code-fold: true
-
-bootstrap_mean <- function(data) {
-  resampled_data <- sample(data, replace = TRUE)
-  return(mean(resampled_data))
-}
-```
-
-Then repeat the function 10,000 times:
-
-```{r}
-#| code-fold: false
-#| cache: true
-
-set.seed(1116)
-bootstrap_means <- replicate(10000, bootstrap_mean(BOD$demand))
-```
-
-## Step 4: Calculate the 95% CI
-
-The 95% CI is calculated from the simulated distribution:
-
-```{r}
-#| code-fold: false
-meanval <- mean(bootstrap_means)
-CI <- quantile(bootstrap_means, c(0.025, 0.975))
-```
-
-Putting it together, the mean is `{r} meanval` with a 95% CI of [`{r} round(CI, 2)`].
-
-
-
-### How does this compare to the parametric test?
-
-If we use the `t.test()` function to calculate the 95% CI:
-
-```{r}
-#| code-fold: false
-
-t.test(BOD$demand)
-```
-
-## How different are the results?
-
-| Method | Mean | 95% CI | CI size |
-|--------|------|--------|---------|
-| Bootstrap | `r round(meanval, 2)` | [`r round(CI, 2)`] | `r round(diff(CI), 2)` |
-| Parametric | `r round(t.test(BOD$demand)$estimate[1], 2)` | [`r round(t.test(BOD$demand)$conf.int, 2)`] | `r round(diff(t.test(BOD$demand)$conf.int), 2)` |
-
-::: incremental
-- The **point estimates** of the mean are almost identical.
-- The **95% CI** of the mean are similar, but the **bootstrap** CI is non-symmetric - it represents the **true** distribution of the mean.
-- The **size** of the CI is smaller for the **bootstrap** method, indicating that the **parametric** method is **overestimating** the precision of the estimate.
-:::
-
-# Bootstrap test using `boot`
-
-## Again we can use a package to do this
-
-The `boot` package in R provides a simple interface to perform bootstrap tests.
-
-```{r}
-library(boot)
-```
-
-Let's use the `BOD` dataset to demonstrate how to use the `boot` package to perform a bootstrap test.
-
-```{r}
-# Define function to compute mean
-boot_mean <- function(data, indices) {
-  return(mean(data[indices]))
-}
-
-boot_test <- boot(BOD$demand, boot_mean, R = 10000)
-
-# Print results 
-print(boot_test)
-
-# Compute bootstrap confidence interval
-boot.ci(boot_test, type = c("perc"))
-```
-
-# What is recommended?
-
-::: callout-note
-## TLDR
-The general trend in modern statistics is to use resampling techniques over traditional methods, even when the assumptions are met -- and this is currently led by the `tidymodels` framework in R.
-:::
-
-## Using `infer`
-
-```{r}
-library(tidymodels)
-```
-
-Let's use the `sleep` dataset to demonstrate how to use the `infer` package to perform a randomisation test (also makes it easier to compare against manual method).
-
-The `infer` package requires the user to use an expressive grammar to specify the analysis. 
-
-### Steps
-
-1. `specify()` the response variable of interest, then
-2. `hypothesise()` the null hypothesis, then
-3. `generate()` the null distribution, and finally
-4. `calculate()` the p-value.
-
-## Two-sample t-test using `infer`
-
-First we need to calculate the observed test statistic so that we can compare it to the simulated distribution.
-
-```{r}
-#| code-fold: false
-#| 
-observed <- sleep %>%
+library(infer)
+observed <- sleep %>% 
   specify(extra ~ group) %>%
-  calculate(stat = "diff in means", order = c(1, 2))
+  calculate(stat = "diff in means",           
+            order = c(1, 2)) 
 observed
 ```
 
-Then we generate the null distribution and calculate the p-value:
+# Think first (Prediction)
+
+## Before we run the test:
+
+- Does the difference look **big or small**?
+- Do you expect:
+  - A) Small p-value (< 0.05)
+  - B) Moderate (~0.1)
+  - C) Large (> 0.2)
+
+> Commit to an answer
+
+## Step 3 — Simulate null distribution (HAT)
+
+- Start with the dataset (sleep) to build a null distribution
+- Set the seed for reproducibility
+- Specify the response (extra) and grouping variable (group)
+- **(H)** State the null hypothesis of no relationship (independence) - Assume the response is unrelated to group (i.e., group labels don’t matter).
+- **(A)** Randomly shuffle group labels 1000 times to simulate “no effect” data (*exchangeability under the null hypothesis*)
+- **(T)** Calculate the difference in means for each simulated dataset
 
 ```{r}
-#| code-fold: false
-#| cache: true
+set.seed(123)
 
-set.seed(1034)
-pval_infer <- 
-  sleep %>%
+null_dist <- sleep %>%
   specify(extra ~ group) %>%
-  hypothesise(null = "independence") %>%
-  generate(reps = 10000, type = "permute") %>%
-  calculate(stat = "diff in means", order = c(1, 2)) %>%
-   get_p_value(obs_stat = observed,
-              direction = "two-sided")
+  hypothesise(null = "independence") %>% ## Hypothesis (H)
+  generate(reps = 1000, type = "permute") %>%
+  calculate(stat = "diff in means", order = c(1, 2)) # Test (T)
 ```
 
-## What are the differences?
 
-| Method | P-value |
-|--------|---------|
-| Manual | `r round(p_value, 3)` |
-| `infer` | `r round(pval_infer, 3)` |
-| `t.test()` | `r round(fit$p.value, 3)` |
-
-As we can see, the results are very similar because the assumptions of the parametric test were already met.
-
-::: callout-note
-To calculate confidence intervals, use the `get_ci()` function as documented [here](https://infer.netlify.app/articles/observed_stat_examples#confidence-intervals).
-:::
-
-# What about non-normal data?
-
-## Example: beetles
-
-The `beetle` dataset was used in last week's lecture to demonstrate the non-parametric Wilcoxon rank-sum test.
+## Step 3 — p-value (P)
 
 ```{r}
-#| code-fold: false
+p_value <- null_dist %>%
+  get_p_value(obs_stat = observed, direction = "two-sided")
 
-beetle <- readr::read_csv("data/beetle.csv")
-glimpse(beetle)
+p_value
 ```
 
-
-## Assumption
-
-Recall that the data does not meet the assumptions of normality:
+- we can visualise the null distribution and see where our observed statistic falls, and shade the area corresponding to the p-value
 
 ```{r}
-#| code-fold: true
-p1 <- ggplot(beetle, aes(x = BEETLES)) +
-  geom_histogram(bins = 14, position = "dodge") +
-  facet_wrap(~SIZE, ncol = 1)
-p2 <- ggplot(beetle, aes(x = SIZE, y = BEETLES)) +
-  geom_boxplot()
-p3 <- ggplot(beetle, aes(sample = BEETLES)) +
-  stat_qq() +
-  stat_qq_line() +
-  facet_wrap(~SIZE, ncol = 1)
-
-library(patchwork)
-p1 + p2 + p3
+null_dist %>%
+  visualize() +
+  shade_p_value(obs_stat = observed, direction = "two-sided")
 ```
 
-## T-test via resampling using `infer`
+## Conclusion (C)
 
-First, calculate the test statistic:
+> If the observed statistic is rare under “no effect” → evidence against null
+> In this case it is not super rare, so we do not have strong evidence against the null hypothesis of no difference in sleep between the two groups.
+
+## Compare to t-test
+
+- The t-test also tests the null hypothesis of no difference between groups, but it relies on assumptions (e.g., normality, equal variances).
+- The permutation test we performed does not rely on these assumptions and is based on the actual data.
+- The p-value from the permutation test may differ from the t-test, especially if the assumptions of the t-test are violated. In this case, we might find that the t-test gives a different p-value, which could lead to a different conclusion about the evidence against the null hypothesis.
 
 ```{r}
-#| code-fold: false
-
-observed <- beetle %>%
-  specify(BEETLES ~ SIZE) %>%
-  calculate(stat = "diff in means", order = c("small", "large"))
+t.test(extra ~ group, data = sleep)
 ```
-
-Then generate the null distribution and calculate the p-value:
-
-```{r}
-#| code-fold: false
-#| cache: true
-
-set.seed(1034)
-pval_infer <- 
-  beetle %>%
-  specify(BEETLES ~ SIZE) %>%
-  hypothesise(null = "independence") %>%
-  generate(reps = 10000, type = "permute") %>%
-  calculate(stat = "diff in means", order = c("small", "large")) %>%
-  get_p_value(obs_stat = observed,
-              direction = "two-sided")
-
-pval_infer
-```
-
-## Comparisons
-
-Let's compare the p-values from 
-
-1. a t-test (if we ignore violations of assumptions),
-2. the wilcoxon rank-sum test, and
-3. the `infer` randomisation test.
-
-## Comparisons
-
-### T-test
-
-```{r}
-p_ttest <- t.test(BEETLES ~ SIZE, data = beetle)$p.value %>%
-  round(3)
-```
-
-### Wilcoxon rank-sum test
-
-```{r}
-p_wilcox <- wilcox.test(BEETLES ~ SIZE, data = beetle)$p.value %>%
-  round(3)
-```
-
-### Randomisation test
-
-```{r}
-p_infer <- pull(pval_infer, p_value) %>%
-  round(3)
-```
-
-## Results
-
-| Method | P-value |
-|--------|---------|
-| T-test | `r p_ttest` |
-| Wilcoxon | `r p_wilcox` |
-| `infer` | `r p_infer` |
-
-- As we can see, the p-values are quite different because the assumptions of the parametric test were violated.
-- The randomisation test is more robust and provides a more accurate estimate of the p-value than the Wilcoxon rank-sum test.
-
-### How to report results of randomisation test
-
-The results of the randomisation test can be reported as follows:
-
-> Beetle consumption was significantly different between small and large beetles (t = 2.19, R = 10000, p = `{r} p_infer`).
 
 
 # Summary
 
-- Resampling techniques are **model-free** and **distribution-free** and requires only that the data is a random sample that is representative of the population.
-- If the **assumptions of parametric tests are met**, the results of resampling techniques will be **similar** to traditional methods.
-- No information is lost in resampling techniques, and they are more robust than traditional methods.
+## Key points
+
+- Hypothesis testing = compare to distribution  
+- We can simulate that distribution  
+- `infer` provides a clean workflow  
+
+simulate → compare → conclude
+
+## Final Thought
+
+> We are not memorising tests  
+> We are learning how to **"build" inference**
 
 
 # Thanks!
