@@ -19,6 +19,42 @@ jobs:
         with:
           version: 1.8.26
 
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: 'release'
+          use-public-rspm: true
+
+      - name: Discover R package dependencies
+        id: deps
+        run: |
+          Rscript -e '
+            install.packages(c("renv", "knitr", "rmarkdown"))
+            pkgs <- unique(renv::dependencies(quiet = TRUE)$Package)
+            pkgs <- setdiff(pkgs, c("R", rownames(installed.packages(priority = "base"))))
+            github_map <- c(
+              # GitHub-only packages: pkgname = "owner/repo/subdir"
+            )
+            refs <- vapply(sort(pkgs), function(p) {
+              if (p %in% names(github_map)) paste0("github::", github_map[[p]])
+              else paste0("any::", p)
+            }, character(1))
+            writeLines(refs, "r-packages.txt")
+            cat("Detected", length(refs), "packages:\n")
+            cat(paste(" -", refs), sep = "\n")'
+          {
+            echo "packages<<EOF"
+            cat r-packages.txt
+            echo EOF
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Install R packages
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: ${{ steps.deps.outputs.packages }}
+          cache-version: 1
+          install-quarto: 'false'
+
       - name: Render site (skip typst to avoid CI stall)
         run: |
           find lectures -name "*.qmd" -exec sed -i '/^  ochre-typst: default$/d' {} +
