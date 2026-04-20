@@ -36,7 +36,7 @@ jobs:
             soft_extras <- c("see", "patchwork", "qqplotr")
             pkgs <- unique(c(pkgs, soft_extras))
             github_map <- c(
-              # GitHub-only packages: pkgname = "owner/repo/subdir"
+              renderthis = "gadenbuie/renderthis"
             )
             refs <- vapply(sort(pkgs), function(p) {
               if (p %in% names(github_map)) paste0("github::", github_map[[p]])
