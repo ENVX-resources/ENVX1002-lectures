@@ -7,7 +7,8 @@ lightbox: true
 format:
   ochre-revealjs:
     slide-number: true
-  ochre-typst: default
+  ochre-typst:
+    fig-format: png
 ---
 
 
