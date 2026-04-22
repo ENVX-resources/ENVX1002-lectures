@@ -58,10 +58,17 @@ jobs:
           cache-version: 1
           install-quarto: 'false'
 
-      - name: Render site (skip typst to avoid CI stall)
-        run: |
-          find lectures -name "*.qmd" -exec sed -i '/^  ochre-typst: default$/d' {} +
-          quarto render
+      - name: Cache Typst packages
+        # Bump the v<N> prefix to force a cache refresh (e.g. if a qmd starts
+        # using an @preview import that isn't covered by the hashed paths).
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/typst/packages
+          key: typst-packages-v1-${{ hashFiles('_extensions/**/*.typ', '_quarto.yml') }}
+          restore-keys: typst-packages-v1-
+
+      - name: Render site
+        run: quarto render
 
       - name: Publish to GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2
