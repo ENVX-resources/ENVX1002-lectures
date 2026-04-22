@@ -10,7 +10,7 @@ project:
 editor:
   render-on-save: true
 execute:
-  freeze: true # always use cached results; render locally before pushing
+  freeze: auto # re-render only when source changes; CI installs R so it can re-execute
 
 website:
   page-navigation: true
