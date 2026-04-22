@@ -33,7 +33,9 @@ jobs:
             pkgs <- unique(renv::dependencies(quiet = TRUE)$Package)
             pkgs <- setdiff(pkgs, c("R", rownames(installed.packages(priority = "base"))))
             # Suggests-tier packages loaded at runtime (e.g. by performance::check_model)
-            soft_extras <- c("see", "patchwork", "qqplotr")
+            # and packages referenced only as YAML strings (e.g. dev: "ragg_png" in
+            # lectures/_metadata.yml) which renv::dependencies() cannot discover.
+            soft_extras <- c("see", "patchwork", "qqplotr", "ragg", "systemfonts")
             pkgs <- unique(c(pkgs, soft_extras))
             github_map <- c(
               renderthis = "gadenbuie/renderthis"

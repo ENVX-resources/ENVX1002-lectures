@@ -3,7 +3,8 @@ title: Topic 8 -- A modern approach to hypothesis testing with infer
 author: Floris van Ogtrop
 format:
   ochre-revealjs: default
-  ochre-typst: default
+  ochre-typst:
+    fig-format: png
 ---
 
 ## Announcement

@@ -3,7 +3,8 @@ title: Topic 11 -- Multiple Linear Regression
 author: Si Yang Han
 format:
   ochre-revealjs: default
-  ochre-typst: default
+  ochre-typst:
+    fig-format: png
 scrollable: true
 prefer-html: true
 ---

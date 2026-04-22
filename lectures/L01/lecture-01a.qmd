@@ -3,7 +3,8 @@ title: Lecture 01a -- Welcome to ENVX1002
 author: Liana Pozza
 format:
   ochre-revealjs: default
-  ochre-typst: default
+  ochre-typst:
+    fig-format: png
 ---
 
 
