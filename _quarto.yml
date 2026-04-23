@@ -3,10 +3,6 @@ project:
   render:
     - "*.qmd"
     - "!*.md"
-  resources:
-    - "lectures/**/*.pdf"
-  post-render:
-    - scripts/copy-pdfs.lua
 editor:
   render-on-save: true
 execute:
