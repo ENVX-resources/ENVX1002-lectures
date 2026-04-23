@@ -732,253 +732,103 @@ Januar Harianto
 </ol>
 <p>You combine these with <code>+</code> to build a plot layer by layer. As you get more comfortable, you can add scales, facets, and themes to refine the result.</p>
 </section>
-<section id="building-a-plot-step-1---start-with-data" class="slide level2">
-<h2>Building a plot: Step 1 - Start with data</h2>
-<p>Let’s build a scatterplot of penguin flipper length vs.&nbsp;body mass using the palmerpenguins dataset.</p>
-<p>First, we need to load the ggplot2 package and prepare our data:</p>
+<section id="building-a-plot-start-with-data" class="slide level2">
+<h2>Building a plot: start with data</h2>
+<p>We will build a scatterplot of penguin flipper length vs body mass, step by step.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb26-2"><a></a><span class="co"># Remove missing values for this example</span></span>
-<span id="cb26-3"><a></a>penguins_clean <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(penguins)</span>
-<span id="cb26-4"><a></a></span>
-<span id="cb26-5"><a></a><span class="co"># Look at the first few rows of our data</span></span>
-<span id="cb26-6"><a></a><span class="fu">head</span>(penguins_clean[, <span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"flipper_length_mm"</span>, <span class="st">"body_mass_g"</span>)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-  species flipper_length_mm body_mass_g
-  &lt;fct&gt;               &lt;int&gt;       &lt;int&gt;
-1 Adelie                181        3750
-2 Adelie                186        3800
-3 Adelie                195        3250
-4 Adelie                193        3450
-5 Adelie                190        3650
-6 Adelie                181        3625</code></pre>
+<span id="cb26-2"><a></a>penguins_clean <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(penguins)</span>
+<span id="cb26-3"><a></a></span>
+<span id="cb26-4"><a></a><span class="co"># Start with data — this creates an empty canvas</span></span>
+<span id="cb26-5"><a></a><span class="fu">ggplot</span>(penguins_clean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
 </div>
-</div>
+<img data-src="lecture-03_files/figure-revealjs/ggplot2_step1-1.png" width="960" class="r-stretch"><p>Nothing to see yet. We need to tell ggplot2 <em>what</em> to plot and <em>how</em> to draw it.</p>
 </section>
-<section id="building-a-plot-step-2---create-a-blank-canvas" class="slide level2">
-<h2>Building a plot: Step 2 - Create a blank canvas</h2>
-<p>The <code>ggplot()</code> function initialises a plot with data:</p>
+<section id="add-aesthetics-and-a-geometry" class="slide level2">
+<h2>Add aesthetics and a geometry</h2>
+<p>Map variables to axes with <code>aes()</code>, then choose a geometry to draw them:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="co"># Create a blank canvas with our data</span></span>
-<span id="cb28-2"><a></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins_clean)</span>
-<span id="cb28-3"><a></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">ggplot</span>(penguins_clean, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb27-2"><a></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="lecture-03_files/figure-revealjs/ggplot2_step2-1.png" width="960" class="r-stretch"><p>This creates an empty plot. We need to add layers to visualise our data.</p>
+<img data-src="lecture-03_files/figure-revealjs/ggplot2_step2-1.png" width="960" class="r-stretch"><p>Two lines of code, and we already have a working scatterplot. The <code>+</code> operator is how you add layers in ggplot2.</p>
 </section>
-<section id="building-a-plot-step-3---add-aesthetics" class="slide level2">
-<h2>Building a plot: Step 3 - Add aesthetics</h2>
-<p>Aesthetics map variables in the data to visual properties:</p>
+<section id="colour-by-group-and-add-labels" class="slide level2">
+<h2>Colour by group and add labels</h2>
+<p>Map a categorical variable to <code>colour</code> inside <code>aes()</code> to split by group. Use <code>labs()</code> to add titles and clean up axis names.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="co"># Add aesthetics mapping</span></span>
-<span id="cb29-2"><a></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins_clean, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g))</span>
-<span id="cb29-3"><a></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="fu">ggplot</span>(penguins_clean, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">colour =</span> species)) <span class="sc">+</span></span>
+<span id="cb28-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb28-3"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb28-4"><a></a>    <span class="at">title =</span> <span class="st">"Relationship Between Flipper Length and Body Mass"</span>,</span>
+<span id="cb28-5"><a></a>    <span class="at">subtitle =</span> <span class="st">"Palmer Penguins Dataset"</span>,</span>
+<span id="cb28-6"><a></a>    <span class="at">x =</span> <span class="st">"Flipper Length (mm)"</span>,</span>
+<span id="cb28-7"><a></a>    <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>,</span>
+<span id="cb28-8"><a></a>    <span class="at">colour =</span> <span class="st">"Penguin Species"</span></span>
+<span id="cb28-9"><a></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="lecture-03_files/figure-revealjs/ggplot2_step3-1.png" width="960" class="r-stretch"><p>We’ve defined which variables go on which axes, but we still need to specify how to represent the data.</p>
-</section>
-<section id="building-a-plot-step-4---add-a-geometry" class="slide level2">
-<h2>Building a plot: Step 4 - Add a geometry</h2>
-<p>Geometries define how the data is represented visually:</p>
+<img data-src="lecture-03_files/figure-revealjs/ggplot2_step3-1.png" width="960" class="r-stretch"></section>
+<section id="customise-colours-and-themes" class="slide level2">
+<h2>Customise colours and themes</h2>
+<p><code>scale_colour_manual()</code> lets you pick your own palette. Themes control the overall look of the plot.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="co"># Add points geometry</span></span>
-<span id="cb30-2"><a></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins_clean, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb30-3"><a></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb30-4"><a></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins_clean, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">colour =</span> species)) <span class="sc">+</span></span>
+<span id="cb29-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb29-3"><a></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>)) <span class="sc">+</span></span>
+<span id="cb29-4"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb29-5"><a></a>    <span class="at">title =</span> <span class="st">"Relationship Between Flipper Length and Body Mass"</span>,</span>
+<span id="cb29-6"><a></a>    <span class="at">subtitle =</span> <span class="st">"Palmer Penguins Dataset"</span>,</span>
+<span id="cb29-7"><a></a>    <span class="at">x =</span> <span class="st">"Flipper Length (mm)"</span>,</span>
+<span id="cb29-8"><a></a>    <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>,</span>
+<span id="cb29-9"><a></a>    <span class="at">colour =</span> <span class="st">"Penguin Species"</span></span>
+<span id="cb29-10"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb29-11"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb29-12"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb29-13"><a></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="lecture-03_files/figure-revealjs/ggplot2_step4-1.png" width="960" class="r-stretch"><p>Now we can see the relationship between flipper length and body mass!</p>
-</section>
-<section id="building-a-plot-step-5---add-colour-by-species" class="slide level2">
-<h2>Building a plot: Step 5 - Add colour by species</h2>
-<p>We can map the species variable to the colour aesthetic:</p>
+<img data-src="lecture-03_files/figure-revealjs/ggplot2_step4-1.png" width="960" class="r-stretch"></section>
+<section id="adding-more-layers" class="slide level2">
+<h2>Adding more layers</h2>
+<p>Once you have a base plot saved as <code>p</code>, you can keep adding layers. Trend lines and facets are two of the most useful:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="co"># colour points by species</span></span>
-<span id="cb31-2"><a></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins_clean, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">colour =</span> species)) <span class="sc">+</span></span>
-<span id="cb31-3"><a></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb31-4"><a></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="co"># Add a linear trend line per species</span></span>
+<span id="cb30-2"><a></a>p <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture-03_files/figure-revealjs/ggplot2_trendlines-1.png" width="960"></p>
+</figure>
 </div>
-<img data-src="lecture-03_files/figure-revealjs/ggplot2_step5-1.png" width="960" class="r-stretch"><p>Notice how ggplot2 automatically creates a legend for the species colours.</p>
-</section>
-<section id="building-a-plot-step-6---customise-point-appearance" class="slide level2">
-<h2>Building a plot: Step 6 - Customise point appearance</h2>
-<p>We can adjust the size and transparency of points:</p>
+</div>
+</div>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="co"># Customize point appearance</span></span>
-<span id="cb32-2"><a></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins_clean, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">colour =</span> species)) <span class="sc">+</span></span>
-<span id="cb32-3"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>)</span>
-<span id="cb32-4"><a></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="co"># Split into separate panels</span></span>
+<span id="cb31-2"><a></a>p <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span> species)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture-03_files/figure-revealjs/ggplot2_facets-1.png" width="960"></p>
+</figure>
 </div>
-<img data-src="lecture-03_files/figure-revealjs/ggplot2_step6-1.png" width="960" class="r-stretch"></section>
-<section id="building-a-plot-step-7---add-labels-and-title" class="slide level2">
-<h2>Building a plot: Step 7 - Add labels and title</h2>
-<p>Let’s add informative labels and a title:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="co"># Add labels and title</span></span>
-<span id="cb33-2"><a></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins_clean, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">colour =</span> species)) <span class="sc">+</span></span>
-<span id="cb33-3"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb33-4"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb33-5"><a></a>    <span class="at">title =</span> <span class="st">"Relationship Between Flipper Length and Body Mass"</span>,</span>
-<span id="cb33-6"><a></a>    <span class="at">subtitle =</span> <span class="st">"Palmer Penguins Dataset"</span>,</span>
-<span id="cb33-7"><a></a>    <span class="at">x =</span> <span class="st">"Flipper Length (mm)"</span>,</span>
-<span id="cb33-8"><a></a>    <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>,</span>
-<span id="cb33-9"><a></a>    <span class="at">colour =</span> <span class="st">"Penguin Species"</span></span>
-<span id="cb33-10"><a></a>  )</span>
-<span id="cb33-11"><a></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-
 </div>
-<img data-src="lecture-03_files/figure-revealjs/ggplot2_step7-1.png" width="960" class="r-stretch"></section>
-<section id="building-a-plot-step-8---customise-colours" class="slide level2">
-<h2>Building a plot: Step 8 - Customise colours</h2>
-<p>We can use a custom colour palette:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="co"># Customize colours</span></span>
-<span id="cb34-2"><a></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins_clean, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">colour =</span> species)) <span class="sc">+</span></span>
-<span id="cb34-3"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb34-4"><a></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>)) <span class="sc">+</span></span>
-<span id="cb34-5"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb34-6"><a></a>    <span class="at">title =</span> <span class="st">"Relationship Between Flipper Length and Body Mass"</span>,</span>
-<span id="cb34-7"><a></a>    <span class="at">subtitle =</span> <span class="st">"Palmer Penguins Dataset"</span>,</span>
-<span id="cb34-8"><a></a>    <span class="at">x =</span> <span class="st">"Flipper Length (mm)"</span>,</span>
-<span id="cb34-9"><a></a>    <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>,</span>
-<span id="cb34-10"><a></a>    <span class="at">colour =</span> <span class="st">"Penguin Species"</span></span>
-<span id="cb34-11"><a></a>  )</span>
-<span id="cb34-12"><a></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-
 </div>
-<img data-src="lecture-03_files/figure-revealjs/ggplot2_step8-1.png" width="960" class="r-stretch"></section>
-<section id="building-a-plot-step-9---apply-a-theme" class="slide level2">
-<h2>Building a plot: Step 9 - Apply a theme</h2>
-<p>Finally, let’s apply a theme to change the overall appearance:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="co"># Apply a theme</span></span>
-<span id="cb35-2"><a></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins_clean, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">colour =</span> species)) <span class="sc">+</span></span>
-<span id="cb35-3"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb35-4"><a></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>)) <span class="sc">+</span></span>
-<span id="cb35-5"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb35-6"><a></a>    <span class="at">title =</span> <span class="st">"Relationship Between Flipper Length and Body Mass"</span>,</span>
-<span id="cb35-7"><a></a>    <span class="at">subtitle =</span> <span class="st">"Palmer Penguins Dataset"</span>,</span>
-<span id="cb35-8"><a></a>    <span class="at">x =</span> <span class="st">"Flipper Length (mm)"</span>,</span>
-<span id="cb35-9"><a></a>    <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>,</span>
-<span id="cb35-10"><a></a>    <span class="at">colour =</span> <span class="st">"Penguin Species"</span></span>
-<span id="cb35-11"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb35-12"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb35-13"><a></a>  <span class="fu">theme</span>(</span>
-<span id="cb35-14"><a></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb35-15"><a></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb35-16"><a></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>)</span>
-<span id="cb35-17"><a></a>  )</span>
-<span id="cb35-18"><a></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-
-</div>
-<img data-src="lecture-03_files/figure-revealjs/ggplot2_step9-1.png" width="960" class="r-stretch"></section>
-<section id="adding-more-layers-trend-lines" class="slide level2">
-<h2>Adding more layers: Trend lines</h2>
-<p>One of the strengths of ggplot2 is the ability to add multiple layers:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="co"># Add trend lines for each species</span></span>
-<span id="cb36-2"><a></a>p <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-
-</div>
-<img data-src="lecture-03_files/figure-revealjs/ggplot2_trendlines-1.png" width="960" class="r-stretch"></section>
-<section id="faceting-split-by-species" class="slide level2">
-<h2>Faceting: Split by species</h2>
-<p>We can also split the plot into facets by species:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="co"># Create facets by species</span></span>
-<span id="cb37-2"><a></a>p <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span> species)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-
-</div>
-<img data-src="lecture-03_files/figure-revealjs/ggplot2_facets-1.png" width="960" class="r-stretch"></section>
-<section id="the-complete-ggplot2-code" class="slide level2">
-<h2>The complete ggplot2 code</h2>
-<p>Here’s the complete code for our final plot:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">ggplot</span>(penguins_clean, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">colour =</span> species)) <span class="sc">+</span></span>
-<span id="cb38-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb38-3"><a></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>)) <span class="sc">+</span></span>
-<span id="cb38-4"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb38-5"><a></a>    <span class="at">title =</span> <span class="st">"Relationship Between Flipper Length and Body Mass"</span>,</span>
-<span id="cb38-6"><a></a>    <span class="at">subtitle =</span> <span class="st">"Palmer Penguins Dataset"</span>,</span>
-<span id="cb38-7"><a></a>    <span class="at">x =</span> <span class="st">"Flipper Length (mm)"</span>,</span>
-<span id="cb38-8"><a></a>    <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>,</span>
-<span id="cb38-9"><a></a>    <span class="at">colour =</span> <span class="st">"Penguin Species"</span></span>
-<span id="cb38-10"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb38-11"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb38-12"><a></a>  <span class="fu">theme</span>(</span>
-<span id="cb38-13"><a></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb38-14"><a></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb38-15"><a></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>)</span>
-<span id="cb38-16"><a></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</section>
-<section id="resources-for-further-learning" class="slide level2">
-<h2>Resources for further learning</h2>
-<ul>
-<li><a href="https://r-graphics.org/">R Graphics Cookbook</a></li>
-<li><a href="https://ggplot2.tidyverse.org/">ggplot2 documentation</a></li>
-<li><a href="https://r4ds.had.co.nz/">R for Data Science</a></li>
-</ul>
 </section></section>
 <section>
 <section id="references-and-resources" class="title-slide slide level1 center">
 <h1>References and resources</h1>
 
 </section>
-<section id="core-reading" class="slide level2">
-<h2>Core reading</h2>
+<section id="further-reading" class="slide level2">
+<h2>Further reading</h2>
 <ul>
 <li>Wickham, H. (2016). <em>ggplot2: Elegant Graphics for Data Analysis</em>. Springer.</li>
-<li>Chang, W. (2018). <em>R Graphics Cookbook</em>. O’Reilly Media.</li>
 <li>Wickham, H., &amp; Grolemund, G. (2017). <em>R for Data Science</em>. O’Reilly Media.</li>
-</ul>
-</section>
-<section id="online-resources" class="slide level2">
-<h2>Online resources</h2>
-<ul>
 <li><a href="https://ggplot2.tidyverse.org/">ggplot2 documentation</a></li>
-<li><a href="https://r4ds.had.co.nz/data-visualisation.html">R for Data Science - Data Visualization chapter</a></li>
 <li><a href="https://www.r-graph-gallery.com/">The R Graph Gallery</a></li>
-<li><a href="http://www.cookbook-r.com/Graphs/">Cookbook for R - Graphs</a></li>
 </ul>
 </section></section>
 <section id="thanks" class="title-slide slide level1 center">

@@ -256,14 +256,14 @@
     "href": "lectures/L12/lecture-12.html#interpretation",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Interpretation",
-    "text": "Interpretation\n\n\nCode\nsummary(fit_exponential)\n\n\n\nFormula: response ~ y0 * exp(k * predictor)\n\nParameters:\n   Estimate Std. Error t value Pr(&gt;|t|)    \ny0   1.1694     0.1291   9.059 4.82e-12 ***\nk    0.4847     0.0121  40.057  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.409 on 49 degrees of freedom\n\nNumber of iterations to convergence: 8 \nAchieved convergence tolerance: 1.192e-06\n\n\n\nThe model is significant since the p-value is less than 0.05 for all parameters.\nIf this were real data (e.g. population growth), the parameters themselves e.g. rate of change, are useful\nThe parameterised model is:\n\n\\[ y = 1.17 \\cdot e^{-0.484x} \\] The R-squared value is not reported for nonlinear models as the sum of squares is not partitioned into explained and unexplained components. You can use the residual standard error and plots instead to compare between models."
+    "text": "Interpretation\n\n\nCode\nsummary(fit_exponential)\n\n\n\nFormula: response ~ y0 * exp(k * predictor)\n\nParameters:\n   Estimate Std. Error t value Pr(&gt;|t|)    \ny0   1.1694     0.1291   9.059 4.82e-12 ***\nk    0.4847     0.0121  40.057  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.409 on 49 degrees of freedom\n\nNumber of iterations to convergence: 8 \nAchieved convergence tolerance: 1.194e-06\n\n\n\nThe model is significant since the p-value is less than 0.05 for all parameters.\nIf this were real data (e.g. population growth), the parameters themselves e.g. rate of change, are useful\nThe parameterised model is:\n\n\\[ y = 1.17 \\cdot e^{-0.484x} \\] The R-squared value is not reported for nonlinear models as the sum of squares is not partitioned into explained and unexplained components. You can use the residual standard error and plots instead to compare between models."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#a-really-bad-guess",
     "href": "lectures/L12/lecture-12.html#a-really-bad-guess",
     "title": "Topic 12 – Nonlinear regression",
     "section": "A really bad guess",
-    "text": "A really bad guess\nWhat if we don’t estimate our parameters very well? R will either give an error or get there eventually.\nNote the parameters and residual standard error are the same as the previous slide - but the Number of iterations to convergence is higher.\n\n\nCode\nfit_exponential &lt;- nls(response ~ y0*exp(k*predictor), data = growth, \n  start = list(y0 = 50, k = 1.5)) # totally bogus numbers\n\nsummary(fit_exponential)\n\n\n\nFormula: response ~ y0 * exp(k * predictor)\n\nParameters:\n   Estimate Std. Error t value Pr(&gt;|t|)    \ny0   1.1694     0.1291   9.059 4.82e-12 ***\nk    0.4847     0.0121  40.057  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.409 on 49 degrees of freedom\n\nNumber of iterations to convergence: 28 \nAchieved convergence tolerance: 2.003e-06\n\n\n\n\n\n\n\n\nTip\n\n\nIf an error pops up, try different starting values - the rate of change is most likely the problem."
+    "text": "A really bad guess\nWhat if we don’t estimate our parameters very well? R will either give an error or get there eventually.\nNote the parameters and residual standard error are the same as the previous slide - but the Number of iterations to convergence is higher.\n\n\nCode\nfit_exponential &lt;- nls(response ~ y0*exp(k*predictor), data = growth, \n  start = list(y0 = 50, k = 1.5)) # totally bogus numbers\n\nsummary(fit_exponential)\n\n\n\nFormula: response ~ y0 * exp(k * predictor)\n\nParameters:\n   Estimate Std. Error t value Pr(&gt;|t|)    \ny0   1.1694     0.1291   9.059 4.82e-12 ***\nk    0.4847     0.0121  40.057  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.409 on 49 degrees of freedom\n\nNumber of iterations to convergence: 28 \nAchieved convergence tolerance: 1.975e-06\n\n\n\n\n\n\n\n\nTip\n\n\nIf an error pops up, try different starting values - the rate of change is most likely the problem."
   },
   {
     "objectID": "lectures/L12/lecture-12.html#fitting-the-model-with-ssexpf",
@@ -298,7 +298,7 @@
     "href": "lectures/L12/lecture-12.html#interpretation-1",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Interpretation",
-    "text": "Interpretation\n\n\nCode\nsummary(fit_asymptotic)\n\n\n\nFormula: response ~ SSasymp(predictor, Asym, R0, lrc)\n\nParameters:\n     Estimate Std. Error t value Pr(&gt;|t|)    \nAsym  98.5204     2.2852  43.113  &lt; 2e-16 ***\nR0   -14.5176     6.6416  -2.186  0.03374 *  \nlrc   -0.4626     0.1134  -4.079  0.00017 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 10.21 on 48 degrees of freedom\n\nNumber of iterations to convergence: 0 \nAchieved convergence tolerance: 3.341e-07\n\n\n\nThe model is significant since the p-value is less than 0.05 for all parameters.\nIf this were real data (e.g. population growth), the parameters themselves e.g. rate of change, are useful\nThe parameterised model is:\n\n\\[ y = 98.5 + (-14.5-98.5) \\cdot e^{-e^{-0.463} \\cdot x}  \\] # Example: fitting a logistic model"
+    "text": "Interpretation\n\n\nCode\nsummary(fit_asymptotic)\n\n\n\nFormula: response ~ SSasymp(predictor, Asym, R0, lrc)\n\nParameters:\n     Estimate Std. Error t value Pr(&gt;|t|)    \nAsym  98.5204     2.2852  43.113  &lt; 2e-16 ***\nR0   -14.5176     6.6416  -2.186  0.03374 *  \nlrc   -0.4626     0.1134  -4.079  0.00017 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 10.21 on 48 degrees of freedom\n\nNumber of iterations to convergence: 0 \nAchieved convergence tolerance: 3.376e-07\n\n\n\nThe model is significant since the p-value is less than 0.05 for all parameters.\nIf this were real data (e.g. population growth), the parameters themselves e.g. rate of change, are useful\nThe parameterised model is:\n\n\\[ y = 98.5 + (-14.5-98.5) \\cdot e^{-e^{-0.463} \\cdot x}  \\] # Example: fitting a logistic model"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#the-equation-1",
@@ -319,7 +319,7 @@
     "href": "lectures/L12/lecture-12.html#interpretation-2",
     "title": "Topic 12 – Nonlinear regression",
     "section": "Interpretation",
-    "text": "Interpretation\nSSlogis() guessed the parameters on the first try.\n\n\nCode\nsummary(fit_logistic)\n\n\n\nFormula: response ~ SSlogis(predictor, Asym, xmid, scal)\n\nParameters:\n      Estimate Std. Error t value Pr(&gt;|t|)    \nAsym 310.64727    4.62579   67.16   &lt;2e-16 ***\nxmid   4.92715    0.07142   68.99   &lt;2e-16 ***\nscal   1.34877    0.05418   24.90   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 10.22 on 48 degrees of freedom\n\nNumber of iterations to convergence: 1 \nAchieved convergence tolerance: 6.632e-07\n\n\n\nThe model is significant since the p-value is less than 0.05 for all parameters.\nIf the model visually fits well and relationship has reasoning (parameter significance not always important).\nThe parameterised model is:\n\n\\[ y = \\frac{310}{1+e^{\\frac{4.93-x}{1.35}}} \\]"
+    "text": "Interpretation\nSSlogis() guessed the parameters on the first try.\n\n\nCode\nsummary(fit_logistic)\n\n\n\nFormula: response ~ SSlogis(predictor, Asym, xmid, scal)\n\nParameters:\n      Estimate Std. Error t value Pr(&gt;|t|)    \nAsym 310.64727    4.62579   67.16   &lt;2e-16 ***\nxmid   4.92715    0.07142   68.99   &lt;2e-16 ***\nscal   1.34877    0.05418   24.90   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 10.22 on 48 degrees of freedom\n\nNumber of iterations to convergence: 1 \nAchieved convergence tolerance: 6.629e-07\n\n\n\nThe model is significant since the p-value is less than 0.05 for all parameters.\nIf the model visually fits well and relationship has reasoning (parameter significance not always important).\nThe parameterised model is:\n\n\\[ y = \\frac{310}{1+e^{\\frac{4.93-x}{1.35}}} \\]"
   },
   {
     "objectID": "lectures/L12/lecture-12.html#example-polynomial-regression",
@@ -1451,7 +1451,7 @@
     "href": "lectures/L02/lecture-02.html#comparing-spread-measures",
     "title": "Lecture 02: Introduction to statistical programming",
     "section": "Comparing spread measures",
-    "text": "Comparing spread measures\n\n\n\n\n\n\n\n\n\nMeasure\nProtected Bay\nWave-exposed Coast\nWhat it Tells Us\n\n\n\n\nRange\n0.3 cm\n6 cm\nOverall spread (sensitive to outliers)\n\n\nIQR\n0.1 cm\n2 cm\nMiddle 50% spread (ignores extremes)\n\n\nVariance\n0.01 cm²\n5.07 cm²\nAverage squared distance from mean\n\n\nSD\n0.11 cm\n2.25 cm\nAverage distance from mean (in original units)\n\n\n\nKey Observations\n\nWave-exposed site shows consistently more variation\nEach measure gives a different perspective\nChoose based on your data and goals\nStandard deviation is most commonly used in research papers"
+    "text": "Comparing spread measures\n\n\n\n\n\n\n\n\n\nMeasure\nProtected Bay\nWave-exposed Coast\nWhat it Tells Us\n\n\n\n\nRange\n0.3 cm\n6 cm\nOverall spread (sensitive to outliers)\n\n\nIQR\n0.1 cm\n2 cm\nMiddle 50% spread (ignores extremes)\n\n\nVariance\n0.01 cm²\n5.08 cm²\nAverage squared distance from mean\n\n\nSD\n0.11 cm\n2.25 cm\nAverage distance from mean (in original units)\n\n\n\nKey Observations\n\nWave-exposed site shows consistently more variation\nEach measure gives a different perspective\nChoose based on your data and goals\nStandard deviation is most commonly used in research papers"
   },
   {
     "objectID": "lectures/L02/lecture-02.html#core-reading",
@@ -1636,109 +1636,46 @@
     "text": "A grammar for graphics\nggplot2 builds plots from three core ingredients:\n\nData: the dataset\nAesthetics (aes): which variables map to x, y, colour, size, etc.\nGeometries (geom_*): how the data is drawn (points, bars, lines, etc.)\n\nYou combine these with + to build a plot layer by layer. As you get more comfortable, you can add scales, facets, and themes to refine the result."
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#building-a-plot-step-1---start-with-data",
-    "href": "lectures/L03/lecture-03.html#building-a-plot-step-1---start-with-data",
+    "objectID": "lectures/L03/lecture-03.html#building-a-plot-start-with-data",
+    "href": "lectures/L03/lecture-03.html#building-a-plot-start-with-data",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Building a plot: Step 1 - Start with data",
-    "text": "Building a plot: Step 1 - Start with data\nLet’s build a scatterplot of penguin flipper length vs. body mass using the palmerpenguins dataset.\nFirst, we need to load the ggplot2 package and prepare our data:\n\n\nCode\nlibrary(ggplot2)\n# Remove missing values for this example\npenguins_clean &lt;- na.omit(penguins)\n\n# Look at the first few rows of our data\nhead(penguins_clean[, c(\"species\", \"flipper_length_mm\", \"body_mass_g\")])\n\n\n# A tibble: 6 × 3\n  species flipper_length_mm body_mass_g\n  &lt;fct&gt;               &lt;int&gt;       &lt;int&gt;\n1 Adelie                181        3750\n2 Adelie                186        3800\n3 Adelie                195        3250\n4 Adelie                193        3450\n5 Adelie                190        3650\n6 Adelie                181        3625"
+    "section": "Building a plot: start with data",
+    "text": "Building a plot: start with data\nWe will build a scatterplot of penguin flipper length vs body mass, step by step.\n\nlibrary(ggplot2)\npenguins_clean &lt;- na.omit(penguins)\n\n# Start with data — this creates an empty canvas\nggplot(penguins_clean)\n\n\nNothing to see yet. We need to tell ggplot2 what to plot and how to draw it."
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#building-a-plot-step-2---create-a-blank-canvas",
-    "href": "lectures/L03/lecture-03.html#building-a-plot-step-2---create-a-blank-canvas",
+    "objectID": "lectures/L03/lecture-03.html#add-aesthetics-and-a-geometry",
+    "href": "lectures/L03/lecture-03.html#add-aesthetics-and-a-geometry",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Building a plot: Step 2 - Create a blank canvas",
-    "text": "Building a plot: Step 2 - Create a blank canvas\nThe ggplot() function initialises a plot with data:\n\n\nCode\n# Create a blank canvas with our data\np &lt;- ggplot(penguins_clean)\np\n\n\n\nThis creates an empty plot. We need to add layers to visualise our data."
+    "section": "Add aesthetics and a geometry",
+    "text": "Add aesthetics and a geometry\nMap variables to axes with aes(), then choose a geometry to draw them:\n\nggplot(penguins_clean, aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point()\n\n\nTwo lines of code, and we already have a working scatterplot. The + operator is how you add layers in ggplot2."
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#building-a-plot-step-3---add-aesthetics",
-    "href": "lectures/L03/lecture-03.html#building-a-plot-step-3---add-aesthetics",
+    "objectID": "lectures/L03/lecture-03.html#colour-by-group-and-add-labels",
+    "href": "lectures/L03/lecture-03.html#colour-by-group-and-add-labels",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Building a plot: Step 3 - Add aesthetics",
-    "text": "Building a plot: Step 3 - Add aesthetics\nAesthetics map variables in the data to visual properties:\n\n\nCode\n# Add aesthetics mapping\np &lt;- ggplot(penguins_clean, aes(x = flipper_length_mm, y = body_mass_g))\np\n\n\n\nWe’ve defined which variables go on which axes, but we still need to specify how to represent the data."
+    "section": "Colour by group and add labels",
+    "text": "Colour by group and add labels\nMap a categorical variable to colour inside aes() to split by group. Use labs() to add titles and clean up axis names.\n\nggplot(penguins_clean, aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +\n  geom_point(size = 3, alpha = 0.7) +\n  labs(\n    title = \"Relationship Between Flipper Length and Body Mass\",\n    subtitle = \"Palmer Penguins Dataset\",\n    x = \"Flipper Length (mm)\",\n    y = \"Body Mass (g)\",\n    colour = \"Penguin Species\"\n  )"
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#building-a-plot-step-4---add-a-geometry",
-    "href": "lectures/L03/lecture-03.html#building-a-plot-step-4---add-a-geometry",
+    "objectID": "lectures/L03/lecture-03.html#customise-colours-and-themes",
+    "href": "lectures/L03/lecture-03.html#customise-colours-and-themes",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Building a plot: Step 4 - Add a geometry",
-    "text": "Building a plot: Step 4 - Add a geometry\nGeometries define how the data is represented visually:\n\n\nCode\n# Add points geometry\np &lt;- ggplot(penguins_clean, aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point()\np\n\n\n\nNow we can see the relationship between flipper length and body mass!"
+    "section": "Customise colours and themes",
+    "text": "Customise colours and themes\nscale_colour_manual() lets you pick your own palette. Themes control the overall look of the plot.\n\np &lt;- ggplot(penguins_clean, aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +\n  geom_point(size = 3, alpha = 0.7) +\n  scale_colour_manual(values = c(\"darkorange\", \"purple\", \"cyan4\")) +\n  labs(\n    title = \"Relationship Between Flipper Length and Body Mass\",\n    subtitle = \"Palmer Penguins Dataset\",\n    x = \"Flipper Length (mm)\",\n    y = \"Body Mass (g)\",\n    colour = \"Penguin Species\"\n  ) +\n  theme_minimal() +\n  theme(legend.position = \"bottom\")\np"
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#building-a-plot-step-5---add-colour-by-species",
-    "href": "lectures/L03/lecture-03.html#building-a-plot-step-5---add-colour-by-species",
+    "objectID": "lectures/L03/lecture-03.html#adding-more-layers",
+    "href": "lectures/L03/lecture-03.html#adding-more-layers",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Building a plot: Step 5 - Add colour by species",
-    "text": "Building a plot: Step 5 - Add colour by species\nWe can map the species variable to the colour aesthetic:\n\n\nCode\n# colour points by species\np &lt;- ggplot(penguins_clean, aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +\n  geom_point()\np\n\n\n\nNotice how ggplot2 automatically creates a legend for the species colours."
+    "section": "Adding more layers",
+    "text": "Adding more layers\nOnce you have a base plot saved as p, you can keep adding layers. Trend lines and facets are two of the most useful:\n\n# Add a linear trend line per species\np + geom_smooth(method = \"lm\", se = FALSE)\n\n\n\n\n\n\n\n\n\n# Split into separate panels\np + facet_wrap(~ species)"
   },
   {
-    "objectID": "lectures/L03/lecture-03.html#building-a-plot-step-6---customise-point-appearance",
-    "href": "lectures/L03/lecture-03.html#building-a-plot-step-6---customise-point-appearance",
+    "objectID": "lectures/L03/lecture-03.html#further-reading",
+    "href": "lectures/L03/lecture-03.html#further-reading",
     "title": "Lecture 03: Exploring and visualising data",
-    "section": "Building a plot: Step 6 - Customise point appearance",
-    "text": "Building a plot: Step 6 - Customise point appearance\nWe can adjust the size and transparency of points:\n\n\nCode\n# Customize point appearance\np &lt;- ggplot(penguins_clean, aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +\n  geom_point(size = 3, alpha = 0.7)\np"
-  },
-  {
-    "objectID": "lectures/L03/lecture-03.html#building-a-plot-step-7---add-labels-and-title",
-    "href": "lectures/L03/lecture-03.html#building-a-plot-step-7---add-labels-and-title",
-    "title": "Lecture 03: Exploring and visualising data",
-    "section": "Building a plot: Step 7 - Add labels and title",
-    "text": "Building a plot: Step 7 - Add labels and title\nLet’s add informative labels and a title:\n\n\nCode\n# Add labels and title\np &lt;- ggplot(penguins_clean, aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +\n  geom_point(size = 3, alpha = 0.7) +\n  labs(\n    title = \"Relationship Between Flipper Length and Body Mass\",\n    subtitle = \"Palmer Penguins Dataset\",\n    x = \"Flipper Length (mm)\",\n    y = \"Body Mass (g)\",\n    colour = \"Penguin Species\"\n  )\np"
-  },
-  {
-    "objectID": "lectures/L03/lecture-03.html#building-a-plot-step-8---customise-colours",
-    "href": "lectures/L03/lecture-03.html#building-a-plot-step-8---customise-colours",
-    "title": "Lecture 03: Exploring and visualising data",
-    "section": "Building a plot: Step 8 - Customise colours",
-    "text": "Building a plot: Step 8 - Customise colours\nWe can use a custom colour palette:\n\n\nCode\n# Customize colours\np &lt;- ggplot(penguins_clean, aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +\n  geom_point(size = 3, alpha = 0.7) +\n  scale_colour_manual(values = c(\"darkorange\", \"purple\", \"cyan4\")) +\n  labs(\n    title = \"Relationship Between Flipper Length and Body Mass\",\n    subtitle = \"Palmer Penguins Dataset\",\n    x = \"Flipper Length (mm)\",\n    y = \"Body Mass (g)\",\n    colour = \"Penguin Species\"\n  )\np"
-  },
-  {
-    "objectID": "lectures/L03/lecture-03.html#building-a-plot-step-9---apply-a-theme",
-    "href": "lectures/L03/lecture-03.html#building-a-plot-step-9---apply-a-theme",
-    "title": "Lecture 03: Exploring and visualising data",
-    "section": "Building a plot: Step 9 - Apply a theme",
-    "text": "Building a plot: Step 9 - Apply a theme\nFinally, let’s apply a theme to change the overall appearance:\n\n\nCode\n# Apply a theme\np &lt;- ggplot(penguins_clean, aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +\n  geom_point(size = 3, alpha = 0.7) +\n  scale_colour_manual(values = c(\"darkorange\", \"purple\", \"cyan4\")) +\n  labs(\n    title = \"Relationship Between Flipper Length and Body Mass\",\n    subtitle = \"Palmer Penguins Dataset\",\n    x = \"Flipper Length (mm)\",\n    y = \"Body Mass (g)\",\n    colour = \"Penguin Species\"\n  ) +\n  theme_minimal() +\n  theme(\n    legend.position = \"bottom\",\n    plot.title = element_text(face = \"bold\"),\n    axis.title = element_text(face = \"italic\")\n  )\np"
-  },
-  {
-    "objectID": "lectures/L03/lecture-03.html#adding-more-layers-trend-lines",
-    "href": "lectures/L03/lecture-03.html#adding-more-layers-trend-lines",
-    "title": "Lecture 03: Exploring and visualising data",
-    "section": "Adding more layers: Trend lines",
-    "text": "Adding more layers: Trend lines\nOne of the strengths of ggplot2 is the ability to add multiple layers:\n\n\nCode\n# Add trend lines for each species\np + geom_smooth(method = \"lm\", se = FALSE)"
-  },
-  {
-    "objectID": "lectures/L03/lecture-03.html#faceting-split-by-species",
-    "href": "lectures/L03/lecture-03.html#faceting-split-by-species",
-    "title": "Lecture 03: Exploring and visualising data",
-    "section": "Faceting: Split by species",
-    "text": "Faceting: Split by species\nWe can also split the plot into facets by species:\n\n\nCode\n# Create facets by species\np + facet_wrap(~ species)"
-  },
-  {
-    "objectID": "lectures/L03/lecture-03.html#the-complete-ggplot2-code",
-    "href": "lectures/L03/lecture-03.html#the-complete-ggplot2-code",
-    "title": "Lecture 03: Exploring and visualising data",
-    "section": "The complete ggplot2 code",
-    "text": "The complete ggplot2 code\nHere’s the complete code for our final plot:\n\n\nCode\nggplot(penguins_clean, aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +\n  geom_point(size = 3, alpha = 0.7) +\n  scale_colour_manual(values = c(\"darkorange\", \"purple\", \"cyan4\")) +\n  labs(\n    title = \"Relationship Between Flipper Length and Body Mass\",\n    subtitle = \"Palmer Penguins Dataset\",\n    x = \"Flipper Length (mm)\",\n    y = \"Body Mass (g)\",\n    colour = \"Penguin Species\"\n  ) +\n  theme_minimal() +\n  theme(\n    legend.position = \"bottom\",\n    plot.title = element_text(face = \"bold\"),\n    axis.title = element_text(face = \"italic\")\n  )"
-  },
-  {
-    "objectID": "lectures/L03/lecture-03.html#resources-for-further-learning",
-    "href": "lectures/L03/lecture-03.html#resources-for-further-learning",
-    "title": "Lecture 03: Exploring and visualising data",
-    "section": "Resources for further learning",
-    "text": "Resources for further learning\n\nR Graphics Cookbook\nggplot2 documentation\nR for Data Science"
-  },
-  {
-    "objectID": "lectures/L03/lecture-03.html#core-reading",
-    "href": "lectures/L03/lecture-03.html#core-reading",
-    "title": "Lecture 03: Exploring and visualising data",
-    "section": "Core reading",
-    "text": "Core reading\n\nWickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.\nChang, W. (2018). R Graphics Cookbook. O’Reilly Media.\nWickham, H., & Grolemund, G. (2017). R for Data Science. O’Reilly Media."
-  },
-  {
-    "objectID": "lectures/L03/lecture-03.html#online-resources",
-    "href": "lectures/L03/lecture-03.html#online-resources",
-    "title": "Lecture 03: Exploring and visualising data",
-    "section": "Online resources",
-    "text": "Online resources\n\nggplot2 documentation\nR for Data Science - Data Visualization chapter\nThe R Graph Gallery\nCookbook for R - Graphs"
+    "section": "Further reading",
+    "text": "Further reading\n\nWickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.\nWickham, H., & Grolemund, G. (2017). R for Data Science. O’Reilly Media.\nggplot2 documentation\nThe R Graph Gallery"
   },
   {
     "objectID": "lectures/L04/lecture-04.html#learning-outcomes",
@@ -3180,7 +3117,7 @@
     "href": "lectures/L08/lecture-08.html#announcement",
     "title": "Topic 8 – A modern approach to hypothesis testing with infer",
     "section": "Announcement",
-    "text": "Announcement\n\nPractice Skills assessment this week, run in your respective labs. You must attend your lab to complete the assessment.\nA reminder that you are allowed to use cheat sheets for the assessment, but you must write or print them yourself\n\nmaximum 4 sides of A4 paper\nno electronic devices allowed\n\nPrinting services are available on campus. See here."
+    "text": "Announcement\n\nPractice Skills assessment this week, run in your respective labs. You must attend your lab to complete the assessment.\nA reminder that you are allowed to use cheat sheets for the assessment, but you must write or print them yourself\n\nmaximum 2 sides of A4 paper\nno electronic devices allowed\n\nPrinting services are available on campus. See here."
   },
   {
     "objectID": "lectures/L08/lecture-08.html#by-the-end-of-this-lecture-you-can",
