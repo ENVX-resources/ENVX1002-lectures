@@ -230,7 +230,8 @@ We will continue with **measures of central tendency** and **measures of spread*
 
 Scan the QR code and enter your estimate. We will use the class results for our Excel examples today.
 
-![Scan to submit your estimate](images/qr-google-sheets.png){fig-align="center" height=400}
+<!-- TODO: commit lectures/L02/images/qr-google-sheets.png (asset missing from repo) -->
+<!-- ![Scan to submit your estimate](images/qr-google-sheets.png){fig-align="center" height=400} -->
 
 
 # Measures of central tendency
