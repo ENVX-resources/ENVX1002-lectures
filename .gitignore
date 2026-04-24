@@ -1,54 +1,66 @@
-# History files
+# ── R ────────────────────────────────────────────────────
 .Rhistory
 .Rapp.history
-
-# Session Data files
 .RData
-
-# User-specific files
+.RDataTmp
 .Ruserdata
+.Renviron
 
-# Example code in package build process
+# R package build / check
 *-Ex.R
-
-# Output files from R CMD build
 /*.tar.gz
-
-# Output files from R CMD check
 /*.Rcheck/
 
-# RStudio files
+# RStudio
 .Rproj.user/
 
 # produced vignettes
 vignettes/*.html
 vignettes/*.pdf
 
-# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
+# OAuth2 token (httr)
 .httr-oauth
 
-# knitr and R markdown default cache directories
+# knitr / R markdown cache + temp outputs
 *_cache/
 /cache/
-
-# Output files created by quarto
-*_files/
-*_site/
-!_freeze/
-
-# playground
-*_archived/
-
-# Temporary files created by R markdown
 *.utf8.md
 *.knit.md
 
+# Posit / RStudio Connect
+rsconnect/
+
+# ── Quarto ───────────────────────────────────────────────
+*_files/
+*_site/
 /.quarto/
-
-.luarc.json
-
 **/*.quarto_ipynb
+!_freeze/
 
-/.luarc.json
+# ── Project-specific ─────────────────────────────────────
+*_archived/        # playground
+.luarc.json
+.positai           # Positron AI workspace
+
+# ── Secrets ──────────────────────────────────────────────
+.env
+.env.*
+*.pem
+
+# ── Editors ──────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── OS metadata ──────────────────────────────────────────
+# macOS
 .DS_Store
-.positai
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
