@@ -3215,28 +3215,28 @@
     "href": "lectures/L09/lecture-09.html#about-me",
     "title": "Topic 9 – Describing relationships",
     "section": "About me",
-    "text": "About me\n\n\n\n\nResearch topics: spatial modelling and mapping, precision agriculture, winter grains\nTimeline at USYD\n\nBSc (Hons) in Agricultural Science\nPhD in Digital Agriculture\nPostdoc in Spatial Modelling\nAssociate Lecturer in Agricultural Data Science\n\n\n\n\n\n\n\nFaba beans at Trangie"
+    "text": "About me\n\n\n\n\nLecturer in Agricultural Data Science\nResearch topics: spatial modelling and mapping, precision agriculture, soil contamination\nHow did I get here?\n\nBSc (Hons) in Environmental Biology - Thesis on satellite detection of phytoplankton off Australian coast\nPhD in Agriculture - Thesis on soil contamination mapping and spatial modelling\nVarious postdocs - Teaching, Wagyu metabolomics, soil constraints, soil carbon\n\n\n\n\n\n\n\nLiana standing in a cotton field like a professional"
   },
   {
     "objectID": "lectures/L09/lecture-09.html#learning-outcomes",
     "href": "lectures/L09/lecture-09.html#learning-outcomes",
     "title": "Topic 9 – Describing relationships",
     "section": "Learning Outcomes",
-    "text": "Learning Outcomes\n\nLO1. Demonstrate proficiency in utilizing R and Excel to effectively explore and describe data sets in the life sciences.\nLO2. Evaluate and interpret different types of data in the natural sciences by visualising probability distributions and calculating probabilities using RStudio and Excel.\nLO3. Apply parametric and non-parametric statistical inference methods to experimental data using RStudio and effectively interpret and communicate the results in the context of the data.\nLO4. Apply both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.\nLO5. Articulate statistical and modelling results clearly and convincingly in both written reports and oral presentations, working effectively as an individual and collaboratively in a team, showcasing the ability to convey complex information to varied audiences."
+    "text": "Learning Outcomes\nBy the end of this course, students wil be able to:\n\nLO1. Implement basic reproducible research practices—including consistent data organization, documented code, and version-controlled workflows—so that their statistical analyses and results can be readily replicated and validated by others.\nLO2. Demonstrate proficiency in utilizing R and Excel to effectively explore and describe life science datasets.\nLO3. Apply parametric and non-parametric statistical inference methods to experimental and observational data using RStudio and effectively interpret and communicate the results in the context of the data.\nLO4. Put into practice both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.\nLO5. Articulate statistical and modelling results clearly and convincingly in both written reports and oral presentations, working effectively as an individual and collaboratively in a team, showcasing the ability to convey complex information to varied audiences."
   },
   {
     "objectID": "lectures/L09/lecture-09.html#module-overview",
     "href": "lectures/L09/lecture-09.html#module-overview",
     "title": "Topic 9 – Describing relationships",
     "section": "Module overview",
-    "text": "Module overview\n\nWeek 9. Describing Relationships\n\nCorrelation (calculation, interpretation)\nRegression (model structure, model fitting\nWhat/when/why/how\n\nWeek 10. Simple Linear Regression\n\nCan we use the model?(assumptions, hypothesis testing)\nHow good is the model?(interpretation, model fit)\n\nWeek 11. Multiple Linear Regression\n\nMultiple Linear Regression (MLR) modelling\nAssumptions, interpretation and the principle of parsimony\n\nWeek 12. Nonlinear Regression\n\nCommon nonlinear functions\nTransformations"
+    "text": "Module overview\n\nWeek 9. Describing Relationships\n\nCorrelation (calculation, interpretation)\nRegression (model structure, model fitting)\nWhat/when/why/how\n\nWeek 10. Simple Linear Regression\n\nCan we use the model? (assumptions, hypothesis testing)\nHow good is the model? (interpretation, model fit)\n\nWeek 11. Multiple Linear Regression\n\nMultiple Linear Regression (MLR) modelling\nAssumptions, interpretation and the principle of parsimony\n\nWeek 12. Nonlinear Regression\n\nCommon nonlinear functions\nTransformations"
   },
   {
     "objectID": "lectures/L09/lecture-09.html#module-overview-1",
     "href": "lectures/L09/lecture-09.html#module-overview-1",
     "title": "Topic 9 – Describing relationships",
     "section": "Module overview",
-    "text": "Module overview\n\nWeek 9. Describing Relationships\n\nCorrelation (calculation, interpretation)\nRegression (model structure, model fitting\nWhat/when/why/how"
+    "text": "Module overview\n\nWeek 9. Describing Relationships\n\nCorrelation (calculation, interpretation)\nRegression (model structure, model fitting)\nWhat/when/why/how"
   },
   {
     "objectID": "lectures/L09/lecture-09.html#example---galtons-data",
@@ -3253,18 +3253,25 @@
     "text": "Example - Galton’s Data\nWe can visually inspect the relationship between the two variables using a scatterplot:\n\n\nCode\nlibrary(ggplot2)\nggplot(Galton, aes(x = parent, y = child)) +\n    geom_point(alpha = .2, size = 3)\n\n\n\n… but this is not a very good way to assess the strength of the relationship between the two variables.\nIs the relationship:\n\nLinear?\nPositive or negative?\nWeak, moderate or strong?"
   },
   {
-    "objectID": "lectures/L09/lecture-09.html#correlation-1",
-    "href": "lectures/L09/lecture-09.html#correlation-1",
+    "objectID": "lectures/L09/lecture-09.html#correlation-coefficient",
+    "href": "lectures/L09/lecture-09.html#correlation-coefficient",
     "title": "Topic 9 – Describing relationships",
-    "section": "Correlation",
-    "text": "Correlation\nThe correlation coefficient is a number between -1 and 1 that describes the relationship between two continuous variables.\n\nDirection:\n\nPositive – both variables increase together\nNegative – one variable increases as the other decreases\n\nStrength:\n\n-1 → perfect negative relationship\n0 → no relationship\n1 → perfect positive relationship\nCommon terms: weak (~0.1–0.3), moderate (~0.4–0.6) or strong (~0.7–1.0) – useful but subjective!"
+    "section": "Correlation Coefficient",
+    "text": "Correlation Coefficient\nThe correlation coefficient is a number between -1 and 1 that describes the relationship between two continuous variables.\n\nDirection:\n\nPositive – both variables increase together\nNegative – one variable increases as the other decreases\n\nStrength:\n\n-1 → perfect negative relationship\n0 → no relationship\n1 → perfect positive relationship\nCommon terms: weak (~0.1–0.3), moderate (~0.4–0.6) or strong (~0.7–1.0) – useful but subjective!"
   },
   {
-    "objectID": "lectures/L09/lecture-09.html#correlation-2",
-    "href": "lectures/L09/lecture-09.html#correlation-2",
+    "objectID": "lectures/L09/lecture-09.html#pearsons-correlation-coefficient",
+    "href": "lectures/L09/lecture-09.html#pearsons-correlation-coefficient",
     "title": "Topic 9 – Describing relationships",
-    "section": "Correlation",
-    "text": "Correlation\n\n\nPearson’s Correlation (r) Formula:\n\\[ r = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum_{i=1}^n (x_i - \\bar{x})^2 \\sum_{i=1}^n (y_i - \\bar{y})^2}} \\]\nCovariance divided by the product of the standard deviations.\n\nKarl Pearson developed the correlation coefficient in 1800s (based on the work by Francis Galton)\n\n\n\n\nPearson’s r is:\n\nThe most commonly used correlation coefficient\nFor normally distributed data only (parametric)\nFor linear relationships only (i.e. a straight line)"
+    "section": "Pearson’s Correlation Coefficient",
+    "text": "Pearson’s Correlation Coefficient\n\nKarl Pearson developed the correlation coefficient in 1800s (based on the work by Francis Galton)"
+  },
+  {
+    "objectID": "lectures/L09/lecture-09.html#pearsons-correlation-coefficient-1",
+    "href": "lectures/L09/lecture-09.html#pearsons-correlation-coefficient-1",
+    "title": "Topic 9 – Describing relationships",
+    "section": "Pearson’s Correlation Coefficient",
+    "text": "Pearson’s Correlation Coefficient\nPearson’s Correlation (r) Formula:\n\\[ r = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum_{i=1}^n (x_i - \\bar{x})^2 \\sum_{i=1}^n (y_i - \\bar{y})^2}} \\]\nCovariance divided by the product of the standard deviations.\nPearson’s r is:\n\nThe most commonly used correlation coefficient\nFor normally distributed data only (parametric)\nFor linear relationships only (i.e. a straight line)"
   },
   {
     "objectID": "lectures/L09/lecture-09.html#luckily-we-have-excel-and-r",
@@ -3274,11 +3281,25 @@
     "text": "Luckily we have Excel and R\n\nExcel: =CORREL() formula, or use the Analysis Toolpak\nR: cor() function\n\nBy default this calculates Pearson’s correlation coefficient\nCan also calculate other types of correlation (cor(x, y, method = \"spearman\"))"
   },
   {
-    "objectID": "lectures/L09/lecture-09.html#example---galtons-data-2",
-    "href": "lectures/L09/lecture-09.html#example---galtons-data-2",
+    "objectID": "lectures/L09/lecture-09.html#scatterplots-give-us-a-visual-understanding",
+    "href": "lectures/L09/lecture-09.html#scatterplots-give-us-a-visual-understanding",
     "title": "Topic 9 – Describing relationships",
-    "section": "Example - Galton’s Data",
-    "text": "Example - Galton’s Data\n\n\n\n\n\nGalton’s Results\n\n\n\n\n\nCode\nlibrary(ggplot2)\nggplot(Galton, aes(x = parent, y = child)) +\n    geom_point(alpha = .2, size = 3)\n\n\n\n\n\n\n\n\n\n\n\n\nCode\ncor(Galton$parent, Galton$child)\n\n\n[1] 0.4587624\n\n\nIs the relationship:\n\nLinear? Seems to be\nPositive or negative? Positive\nWeak, moderate or strong? Moderate\n\nIn words: “There is a moderate positive linear relationship between the height of parents and the height of their children.”"
+    "section": "Scatterplots give us a visual understanding",
+    "text": "Scatterplots give us a visual understanding\n\n\nCode\n# Generate synthetic data\nset.seed(123)\nrainfall &lt;- rnorm(100, mean = 50, sd = 10)\nplant_growth &lt;- rainfall + rnorm(100, mean = 0, sd = 5)\n\n# Calculate correlation coefficient\ncorrelation_coef &lt;- cor(rainfall, plant_growth)\n\n# Plot data using ggplot2\nlibrary(ggplot2)\np1 &lt;- ggplot(data = data.frame(rainfall, plant_growth), aes(x = rainfall, y = plant_growth)) +\n    geom_point() +\n    geom_smooth(method = \"lm\", se = FALSE) +\n    labs(\n        title = \"Positive correlation\",\n        x = \"Rainfall\", y = \"Crop Yield\",\n        subtitle = paste(\"Pearson's r: \", round(correlation_coef, 2))\n    )\n\n# Generate synthetic data\nset.seed(123)\ninsulin &lt;- rnorm(100, mean = 50, sd = 10)\nblood_glucose &lt;- 100 - insulin + rnorm(100, mean = 0, sd = 5)\n\n# Calculate correlation coefficient\ncorrelation_coef &lt;- cor(insulin, blood_glucose)\n\n# Plot data using ggplot2\np2 &lt;- ggplot(data = data.frame(insulin, blood_glucose), aes(x = insulin, y = blood_glucose)) +\n    geom_point() +\n    geom_smooth(method = \"lm\", se = FALSE) +\n    labs(\n        title = \"Negative correlation\",\n        x = \"Insulin\", y = \"Blood Glucose\",\n        subtitle = paste(\"Pearson's r: \", round(correlation_coef, 2))\n    )\nlibrary(patchwork)\n\n# Set the seed for reproducibility\nset.seed(1249)\n\n# Generate the data\nx &lt;- rnorm(50, mean = 50, sd = 10)\ny &lt;- rnorm(50, mean = 100, sd = 20)\ndf1 &lt;- data.frame(x, y) # combine the two variables into a dataframe\ncorrelation_coef &lt;- cor(x, y) # calculate the correlation coefficient\n\n# Scatter plot\np3 &lt;- ggplot(df1, aes(x, y)) +\n    geom_point() +\n    geom_smooth(method = \"lm\", se = FALSE) +\n    labs(\n        title = \"Weak/no correlation\",\n        x = \"Shoe Size\", y = \"IQ\",\n        subtitle = paste(\"Pearson's r: \", round(correlation_coef, 2))\n    )\n\np1 + p3 + p2\n\n\n\n(Note: not real data)\nA weak or nonexistent relationship is one where the correlation coefficient is close to 0.\nA moderate relationship falls closer to 0.5.\nA strong relationship is one where the correlation coefficient is close to -1 or 1.\nThe exact values are subjective and vary between fields of study."
+  },
+  {
+    "objectID": "lectures/L09/lecture-09.html#example---galtons-original-plots",
+    "href": "lectures/L09/lecture-09.html#example---galtons-original-plots",
+    "title": "Topic 9 – Describing relationships",
+    "section": "Example - Galton’s original plots",
+    "text": "Example - Galton’s original plots\n\nGalton’s Results"
+  },
+  {
+    "objectID": "lectures/L09/lecture-09.html#example---galtons-data-in-r",
+    "href": "lectures/L09/lecture-09.html#example---galtons-data-in-r",
+    "title": "Topic 9 – Describing relationships",
+    "section": "Example - Galton’s data in R",
+    "text": "Example - Galton’s data in R\n\nCode\nlibrary(ggplot2)\n\nggplot(Galton, aes(x = parent, y = child)) +\n  geom_point(alpha = .2, size = 3)\ncor(Galton$parent, Galton$child)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[1] 0.4587624\n\n\n\n\nIs the relationship:\n\nLinear? Seems to be\nPositive or negative? Positive\nWeak, moderate or strong? Moderate\n\nIn words: “There is a moderate positive linear relationship between the height of parents and the height of their children.”"
   },
   {
     "objectID": "lectures/L09/lecture-09.html#anscombes-quartet",
@@ -3341,7 +3362,7 @@
     "href": "lectures/L09/lecture-09.html#why-regression",
     "title": "Topic 9 – Describing relationships",
     "section": "Why regression?",
-    "text": "Why regression?\nDescribe the relationship between two variables\nWhat is the relationship between a response variable \\(Y\\) and a predictor variable \\(x\\)?\nCommon Terms: \\(Y\\) = response, independent variable, target, outcome etc. \\(x\\) = predictor, dependent variable, feature, input etc.\nExplain the relationship between two variables\nHow much variation in \\(Y\\) can be explained by a relationship with \\(x\\)?\nPredict the value of a response variable\nWhat is the value of \\(Y\\) for a given value of \\(x\\)?\nOften we can easily measure/obtain \\(x\\) but not \\(Y\\), so we need to predict \\(Y\\) from \\(x\\)."
+    "text": "Why regression?\n\nDescribe the relationship between two variables\nWhat is the relationship between a response variable \\(Y\\) and a predictor variable \\(x\\)?\nCommon Terms:\n\\(Y\\) = response, independent variable, target, outcome etc.\n\\(x\\) = predictor, dependent variable, feature, input etc.\n\n\n\nExplain the relationship between two variables\nHow much variation in \\(Y\\) can be explained by a relationship with \\(x\\)?\n\n\n\nPredict the value of a response variable\nWhat is the value of \\(Y\\) for a given value of \\(x\\)?\nOften we can easily measure/obtain \\(x\\) but not \\(Y\\), so we need to predict \\(Y\\) from \\(x\\)."
   },
   {
     "objectID": "lectures/L09/lecture-09.html#a-gateway-to-the-world-of-modelling",
@@ -3467,7 +3488,7 @@
     "href": "lectures/L09/lecture-09.html#simple-linear-regression-1",
     "title": "Topic 9 – Describing relationships",
     "section": "Simple linear regression",
-    "text": "Simple linear regression\nWe fit the model in one simple line of code: fit &lt;- lm(child ~ parent, data = Galton)\n\n\nCode\nfit &lt;- lm(child ~ parent, data = Galton)\n\n\n\nAnd then we can use summary() to get a summary of the model:\n\n\nCode\nsummary(fit)\n\n\n\nCall:\nlm(formula = child ~ parent, data = Galton)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-7.8050 -1.3661  0.0487  1.6339  5.9264 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 23.94153    2.81088   8.517   &lt;2e-16 ***\nparent       0.64629    0.04114  15.711   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.239 on 926 degrees of freedom\nMultiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 \nF-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16"
+    "text": "Simple linear regression\nWe fit the model in one simple line of code: fit &lt;- lm(child ~ parent, data = Galton)\n\n\nCode\nfit &lt;- lm(child ~ parent, data = Galton)\n\n\n\nAnd then we can use summary() function to get a summary of the model:\n\n\nCode\nsummary(fit)\n\n\n\nCall:\nlm(formula = child ~ parent, data = Galton)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-7.8050 -1.3661  0.0487  1.6339  5.9264 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 23.94153    2.81088   8.517   &lt;2e-16 ***\nparent       0.64629    0.04114  15.711   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.239 on 926 degrees of freedom\nMultiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 \nF-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16"
   },
   {
     "objectID": "lectures/L09/lecture-09.html#summary",
