@@ -1,12 +1,9 @@
 ---
 title: "Lecture 02: Introduction to statistical programming"
 author: Januar Harianto
-# format: revealjs
-# fontsize: 16px
 lightbox: true
 format:
-  ochre-revealjs:
-    slide-number: true
+  ochre-revealjs: default
   ochre-typst:
     fig-format: png
 ---

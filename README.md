@@ -10,7 +10,7 @@ The course runs through three modules across 12 weeks:
 2. Inference (L05--L08): hypothesis testing, two-sample tests, non-parametric tests, bootstrapping
 3. Modelling (L09--L12): correlation, simple and multiple linear regression, non-linear regression
 
-Each lecture lives in `lectures/L{01..12}/` with its QMD source and a PDF export.
+Each lecture lives in `lectures/L{01..12}/` as QMD source. Rendered HTML decks and PDF exports are published to GitHub Pages by CI on every push to `main`.
 
 ## Setup
 
@@ -20,11 +20,7 @@ You need R, Quarto, and a code editor (RStudio or VS Code). RStudio ships with Q
 git clone <this-repo>
 ```
 
-Then restore the R environment and render:
-
-```r
-renv::restore()
-```
+R packages are installed on first render (the qmds use `pacman::p_load(...)` at the top of each setup chunk). Then:
 
 ```bash
 quarto render
