@@ -188,9 +188,6 @@
       margin-right: 0; 
     }
   </style>
-  <script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
-  <script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
-  <link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -291,48 +288,6 @@ Weeks 9 – 12</p>
 </ul>
 </div>
 </section>
-<section id="schedule-at-a-glance" class="slide level2">
-<h2>Schedule at a glance…</h2>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a></a>sequenceDiagram</span>
-<span id="cb1-2"><a></a>  participant M as Mon</span>
-<span id="cb1-3"><a></a>  participant T as Tue</span>
-<span id="cb1-4"><a></a>  participant W as Wed</span>
-<span id="cb1-5"><a></a>  participant Th as Thu</span>
-<span id="cb1-6"><a></a>  participant F as Fri</span>
-<span id="cb1-7"><a></a>  participant S as Sat</span>
-<span id="cb1-8"><a></a>  participant Su as Sun</span>
-<span id="cb1-9"><a></a></span>
-<span id="cb1-10"><a></a>  Note over M,T: Lectures (hybrid) - ABS LT 1130</span>
-<span id="cb1-11"><a></a>  Note over T,Th: Lab Sessions - Biomedical Building</span>
-<span id="cb1-12"><a></a>  Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">sequenceDiagram
-  participant M as Mon
-  participant T as Tue
-  participant W as Wed
-  participant Th as Thu
-  participant F as Fri
-  participant S as Sat
-  participant Su as Sun
-
-  Note over M,T: Lectures (hybrid) - ABS LT 1130
-  Note over T,Th: Lab Sessions - Biomedical Building
-  Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)
-
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</section>
 <section id="resources" class="slide level2">
 <h2>Resources</h2>
 <ul>
@@ -406,14 +361,14 @@ Weeks 9 – 12</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co"># calculate this year's year number</span></span>
-<span id="cb2-2"><a></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb2-3"><a></a>year <span class="ot">&lt;-</span> <span class="fu">year</span>(<span class="fu">Sys.Date</span>())</span>
-<span id="cb2-4"><a></a>address <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
-<span id="cb2-5"><a></a>    <span class="st">"https://www.sydney.edu.au/units/ENVX1002/"</span>,</span>
-<span id="cb2-6"><a></a>    year,</span>
-<span id="cb2-7"><a></a>    <span class="st">"-S1C-ND-CC"</span></span>
-<span id="cb2-8"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># calculate this year's year number</span></span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-3"><a></a>year <span class="ot">&lt;-</span> <span class="fu">year</span>(<span class="fu">Sys.Date</span>())</span>
+<span id="cb1-4"><a></a>address <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb1-5"><a></a>    <span class="st">"https://www.sydney.edu.au/units/ENVX1002/"</span>,</span>
+<span id="cb1-6"><a></a>    year,</span>
+<span id="cb1-7"><a></a>    <span class="st">"-S1C-ND-CC"</span></span>
+<span id="cb1-8"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>The most up to date (and slightly more comprehensive) information for <strong>2026</strong> is <a href="https://www.sydney.edu.au/units/ENVX1002/2026-S1C-ND-CC">here</a>. In a nutshell:</p>
@@ -425,19 +380,19 @@ Weeks 9 – 12</p>
 
     <script>
       // Create table-specific functions using external factory
-      const tableFns_r0jnxa9d63pdjo8rajnb = TinyTable.createTableFunctions("tinytable_r0jnxa9d63pdjo8rajnb");
+      const tableFns_tx288wy5751j8eo88wt1 = TinyTable.createTableFunctions("tinytable_tx288wy5751j8eo88wt1");
       // tinytable span after
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: '5', j: 1 }, { i: '5', j: 2 }, { i: '5', j: 3 } ], css_id: 'tinytable_css_ws0cigl4u3zd5xj4ekgq',}, 
-          { positions: [ { i: '0', j: 1 }, { i: '0', j: 2 }, { i: '0', j: 3 } ], css_id: 'tinytable_css_txn7figduept26o7xtdv',}, 
+          { positions: [ { i: '5', j: 1 }, { i: '5', j: 2 }, { i: '5', j: 3 } ], css_id: 'tinytable_css_luwl2tf3e8d2k7eamipy',}, 
+          { positions: [ { i: '0', j: 1 }, { i: '0', j: 2 }, { i: '0', j: 3 } ], css_id: 'tinytable_css_80lwmt8p6dplji17qryb',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  tableFns_r0jnxa9d63pdjo8rajnb.styleCell(cell.i, cell.j, group.css_id);
+                  tableFns_tx288wy5751j8eo88wt1.styleCell(cell.i, cell.j, group.css_id);
               });
           });
       });
@@ -446,11 +401,11 @@ Weeks 9 – 12</p>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.css">
     <style>
     /* tinytable css entries after */
-    #tinytable_r0jnxa9d63pdjo8rajnb td.tinytable_css_ws0cigl4u3zd5xj4ekgq, #tinytable_r0jnxa9d63pdjo8rajnb th.tinytable_css_ws0cigl4u3zd5xj4ekgq {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%;  }
-    #tinytable_r0jnxa9d63pdjo8rajnb td.tinytable_css_txn7figduept26o7xtdv, #tinytable_r0jnxa9d63pdjo8rajnb th.tinytable_css_txn7figduept26o7xtdv {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%;  }
+    #tinytable_tx288wy5751j8eo88wt1 td.tinytable_css_luwl2tf3e8d2k7eamipy, #tinytable_tx288wy5751j8eo88wt1 th.tinytable_css_luwl2tf3e8d2k7eamipy {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%;  }
+    #tinytable_tx288wy5751j8eo88wt1 td.tinytable_css_80lwmt8p6dplji17qryb, #tinytable_tx288wy5751j8eo88wt1 th.tinytable_css_80lwmt8p6dplji17qryb {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%;  }
     </style>
     <div class="container">
-      <table class="tinytable" id="tinytable_r0jnxa9d63pdjo8rajnb" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="tinytable" id="tinytable_tx288wy5751j8eo88wt1" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         
         <thead>
               <tr>
@@ -598,35 +553,35 @@ Weeks 9 – 12</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Click to see the code for this animation</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># Load required packages</span></span>
-<span id="cb3-2"><a></a><span class="fu">library</span>(gapminder) <span class="co"># Dataset of country statistics over time</span></span>
-<span id="cb3-3"><a></a><span class="fu">library</span>(gganimate) <span class="co"># For creating animations in ggplot</span></span>
-<span id="cb3-4"><a></a><span class="fu">library</span>(tidyverse) <span class="co"># Collection of data science packages</span></span>
-<span id="cb3-5"><a></a></span>
-<span id="cb3-6"><a></a><span class="co"># Create an animated plot showing how life expectancy relates to GDP</span></span>
-<span id="cb3-7"><a></a><span class="co"># across different continents over time</span></span>
-<span id="cb3-8"><a></a><span class="fu">ggplot</span>(</span>
-<span id="cb3-9"><a></a>    gapminder,</span>
-<span id="cb3-10"><a></a>    <span class="fu">aes</span>(gdpPercap, lifeExp, <span class="co"># GDP per capita vs life expectancy</span></span>
-<span id="cb3-11"><a></a>        <span class="at">size =</span> pop, <span class="co"># Point size represents population</span></span>
-<span id="cb3-12"><a></a>        <span class="at">colour =</span> country</span>
-<span id="cb3-13"><a></a>    )</span>
-<span id="cb3-14"><a></a>) <span class="sc">+</span> <span class="co"># Each country gets its own color</span></span>
-<span id="cb3-15"><a></a>    <span class="fu">geom_point</span>(</span>
-<span id="cb3-16"><a></a>        <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="co"># Semi-transparent points</span></span>
-<span id="cb3-17"><a></a>        <span class="at">show.legend =</span> <span class="cn">FALSE</span></span>
-<span id="cb3-18"><a></a>    ) <span class="sc">+</span> <span class="co"># Hide legend for cleaner look</span></span>
-<span id="cb3-19"><a></a>    <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> country_colors) <span class="sc">+</span></span>
-<span id="cb3-20"><a></a>    <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">12</span>)) <span class="sc">+</span> <span class="co"># Set min/max point sizes</span></span>
-<span id="cb3-21"><a></a>    <span class="fu">scale_x_log10</span>() <span class="sc">+</span> <span class="co"># Log scale for GDP (wide range)</span></span>
-<span id="cb3-22"><a></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>continent) <span class="sc">+</span> <span class="co"># Separate plot for each continent</span></span>
-<span id="cb3-23"><a></a>    <span class="fu">labs</span>(</span>
-<span id="cb3-24"><a></a>        <span class="at">title =</span> <span class="st">"Year: {frame_time}"</span>,</span>
-<span id="cb3-25"><a></a>        <span class="at">x =</span> <span class="st">"GDP per capita"</span>,</span>
-<span id="cb3-26"><a></a>        <span class="at">y =</span> <span class="st">"Life expectancy"</span></span>
-<span id="cb3-27"><a></a>    ) <span class="sc">+</span></span>
-<span id="cb3-28"><a></a>    <span class="fu">transition_time</span>(year) <span class="sc">+</span> <span class="co"># Animate through years</span></span>
-<span id="cb3-29"><a></a>    <span class="fu">ease_aes</span>(<span class="st">"linear"</span>) <span class="co"># Smooth transitions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co"># Load required packages</span></span>
+<span id="cb2-2"><a></a><span class="fu">library</span>(gapminder) <span class="co"># Dataset of country statistics over time</span></span>
+<span id="cb2-3"><a></a><span class="fu">library</span>(gganimate) <span class="co"># For creating animations in ggplot</span></span>
+<span id="cb2-4"><a></a><span class="fu">library</span>(tidyverse) <span class="co"># Collection of data science packages</span></span>
+<span id="cb2-5"><a></a></span>
+<span id="cb2-6"><a></a><span class="co"># Create an animated plot showing how life expectancy relates to GDP</span></span>
+<span id="cb2-7"><a></a><span class="co"># across different continents over time</span></span>
+<span id="cb2-8"><a></a><span class="fu">ggplot</span>(</span>
+<span id="cb2-9"><a></a>    gapminder,</span>
+<span id="cb2-10"><a></a>    <span class="fu">aes</span>(gdpPercap, lifeExp, <span class="co"># GDP per capita vs life expectancy</span></span>
+<span id="cb2-11"><a></a>        <span class="at">size =</span> pop, <span class="co"># Point size represents population</span></span>
+<span id="cb2-12"><a></a>        <span class="at">colour =</span> country</span>
+<span id="cb2-13"><a></a>    )</span>
+<span id="cb2-14"><a></a>) <span class="sc">+</span> <span class="co"># Each country gets its own color</span></span>
+<span id="cb2-15"><a></a>    <span class="fu">geom_point</span>(</span>
+<span id="cb2-16"><a></a>        <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="co"># Semi-transparent points</span></span>
+<span id="cb2-17"><a></a>        <span class="at">show.legend =</span> <span class="cn">FALSE</span></span>
+<span id="cb2-18"><a></a>    ) <span class="sc">+</span> <span class="co"># Hide legend for cleaner look</span></span>
+<span id="cb2-19"><a></a>    <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> country_colors) <span class="sc">+</span></span>
+<span id="cb2-20"><a></a>    <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">12</span>)) <span class="sc">+</span> <span class="co"># Set min/max point sizes</span></span>
+<span id="cb2-21"><a></a>    <span class="fu">scale_x_log10</span>() <span class="sc">+</span> <span class="co"># Log scale for GDP (wide range)</span></span>
+<span id="cb2-22"><a></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>continent) <span class="sc">+</span> <span class="co"># Separate plot for each continent</span></span>
+<span id="cb2-23"><a></a>    <span class="fu">labs</span>(</span>
+<span id="cb2-24"><a></a>        <span class="at">title =</span> <span class="st">"Year: {frame_time}"</span>,</span>
+<span id="cb2-25"><a></a>        <span class="at">x =</span> <span class="st">"GDP per capita"</span>,</span>
+<span id="cb2-26"><a></a>        <span class="at">y =</span> <span class="st">"Life expectancy"</span></span>
+<span id="cb2-27"><a></a>    ) <span class="sc">+</span></span>
+<span id="cb2-28"><a></a>    <span class="fu">transition_time</span>(year) <span class="sc">+</span> <span class="co"># Animate through years</span></span>
+<span id="cb2-29"><a></a>    <span class="fu">ease_aes</span>(<span class="st">"linear"</span>) <span class="co"># Smooth transitions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 
@@ -644,13 +599,13 @@ Weeks 9 – 12</p>
 <li>Free and open source, available on the <a href="https://github.com/ENVX-resources">ENVX resources</a> GitHub repository – re-use and modify as you wish (but follow <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>)</li>
 </ul>
 <div class="fragment">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a></a><span class="fu">## Quarto</span></span>
-<span id="cb4-2"><a></a></span>
-<span id="cb4-3"><a></a><span class="ss">- </span>Marjority of our resources are built using <span class="co">[</span><span class="ot">**Quarto**</span><span class="co">](https://quarto.org/)</span> -- a markdown-based document format that **you will learn to use** in this unit</span>
-<span id="cb4-4"><a></a><span class="ss">  - </span>Lecture slides</span>
-<span id="cb4-5"><a></a><span class="ss">  - </span>Lab exercises</span>
-<span id="cb4-6"><a></a><span class="ss">- </span>Quarto  makes everything **reproducible** - what does it mean?</span>
-<span id="cb4-7"><a></a><span class="ss">- </span>Free and open source, available on the <span class="co">[</span><span class="ot">ENVX resources</span><span class="co">](https://github.com/ENVX-resources)</span> GitHub repository -- re-use and modify as you wish (but follow <span class="co">[</span><span class="ot">CC BY 4.0</span><span class="co">](https://creativecommons.org/licenses/by/4.0/)</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a></a><span class="fu">## Quarto</span></span>
+<span id="cb3-2"><a></a></span>
+<span id="cb3-3"><a></a><span class="ss">- </span>Marjority of our resources are built using <span class="co">[</span><span class="ot">**Quarto**</span><span class="co">](https://quarto.org/)</span> -- a markdown-based document format that **you will learn to use** in this unit</span>
+<span id="cb3-4"><a></a><span class="ss">  - </span>Lecture slides</span>
+<span id="cb3-5"><a></a><span class="ss">  - </span>Lab exercises</span>
+<span id="cb3-6"><a></a><span class="ss">- </span>Quarto  makes everything **reproducible** - what does it mean?</span>
+<span id="cb3-7"><a></a><span class="ss">- </span>Free and open source, available on the <span class="co">[</span><span class="ot">ENVX resources</span><span class="co">](https://github.com/ENVX-resources)</span> GitHub repository -- re-use and modify as you wish (but follow <span class="co">[</span><span class="ot">CC BY 4.0</span><span class="co">](https://creativecommons.org/licenses/by/4.0/)</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="r-rstudio-quarto" class="slide level2">

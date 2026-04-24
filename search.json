@@ -843,13 +843,6 @@
     "text": "Timetable\n\nLectures (hybrid)\n\nMonday 12pm–1pm, ABS Lecture Theatre 1130\nTuesday 9am–11am, ABS Lecture Theatre 1130\n\n\n\nComputer Labs\n\n2-hour in-person lab session with tutors and demonstrators\nBiomedical Building C81, 1 Central Ave, Eveleigh\nSee timetable for your allocated time"
   },
   {
-    "objectID": "lectures/L01/lecture-01a.html#schedule-at-a-glance",
-    "href": "lectures/L01/lecture-01a.html#schedule-at-a-glance",
-    "title": "Lecture 01a – Welcome to ENVX1002",
-    "section": "Schedule at a glance…",
-    "text": "Schedule at a glance…\n\n\nCode\nsequenceDiagram\n  participant M as Mon\n  participant T as Tue\n  participant W as Wed\n  participant Th as Thu\n  participant F as Fri\n  participant S as Sat\n  participant Su as Sun\n\n  Note over M,T: Lectures (hybrid) - ABS LT 1130\n  Note over T,Th: Lab Sessions - Biomedical Building\n  Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)\n\n\n\n\n\nsequenceDiagram\n  participant M as Mon\n  participant T as Tue\n  participant W as Wed\n  participant Th as Thu\n  participant F as Fri\n  participant S as Sat\n  participant Su as Sun\n\n  Note over M,T: Lectures (hybrid) - ABS LT 1130\n  Note over T,Th: Lab Sessions - Biomedical Building\n  Th-&gt;&gt;+Su: Self-revision, pick ONE day (encouraged)"
-  },
-  {
     "objectID": "lectures/L01/lecture-01a.html#resources",
     "href": "lectures/L01/lecture-01a.html#resources",
     "title": "Lecture 01a – Welcome to ENVX1002",
