@@ -37,13 +37,7 @@ jobs:
             # lectures/_metadata.yml) which renv::dependencies() cannot discover.
             soft_extras <- c("see", "patchwork", "qqplotr", "ragg", "systemfonts")
             pkgs <- unique(c(pkgs, soft_extras))
-            github_map <- c(
-              renderthis = "gadenbuie/renderthis"
-            )
-            refs <- vapply(sort(pkgs), function(p) {
-              if (p %in% names(github_map)) paste0("github::", github_map[[p]])
-              else paste0("any::", p)
-            }, character(1))
+            refs <- paste0("any::", sort(pkgs))
             writeLines(refs, "r-packages.txt")
             cat("Detected", length(refs), "packages:\n")
             cat(paste(" -", refs), sep = "\n")'
@@ -70,7 +64,11 @@ jobs:
           restore-keys: typst-packages-v1-
 
       - name: Render site
-        run: quarto render
+        env:
+          # Verbose Quarto logs so any future render hang is diagnosable in
+          # one run rather than across days. See quarto-cli#12977.
+          QUARTO_LOG_LEVEL: DEBUG
+        run: quarto render --verbose
 
       - name: Publish to GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2

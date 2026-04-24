@@ -97,25 +97,6 @@ The following are optional (but highly recommended):
 - See timetable for your allocated time
 :::
 
-## Schedule at a glance...
-
-
-```{mermaid}
-sequenceDiagram
-  participant M as Mon
-  participant T as Tue
-  participant W as Wed
-  participant Th as Thu
-  participant F as Fri
-  participant S as Sat
-  participant Su as Sun
-
-  Note over M,T: Lectures (hybrid) - ABS LT 1130
-  Note over T,Th: Lab Sessions - Biomedical Building
-  Th->>+Su: Self-revision, pick ONE day (encouraged)
-
-```
-
 ## Resources
 
 - [Canvas](https://canvas.sydney.edu.au/courses/71839) (of course)
