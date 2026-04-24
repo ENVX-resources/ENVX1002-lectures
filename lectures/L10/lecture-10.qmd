@@ -5,7 +5,6 @@ format:
   ochre-revealjs: default
   ochre-typst:
     fig-format: png
-scrollable: true
 ---
 
 ## Module overview
