@@ -69,8 +69,22 @@ jobs:
           key: typst-packages-v1-${{ hashFiles('_extensions/**/*.typ', '_quarto.yml') }}
           restore-keys: typst-packages-v1-
 
+      - name: Install Chrome Headless Shell
+        # Quarto rasterises mermaid/dot diagrams to PNG via Chrome for non-HTML
+        # outputs (typst PDF here). On ubuntu-24.04 the default Chrome's
+        # user-namespace sandbox is blocked by an AppArmor profile, causing
+        # silent indefinite hangs in the Chrome zygote. Headless Shell is a
+        # standalone sandbox-free binary built for this; it's Quarto's own
+        # recommendation as of 2026-04-14.
+        # See https://quarto.org/docs/blog/posts/2026-04-14-chrome-headless-shell/
+        run: quarto install chrome-headless-shell --no-prompt
+
       - name: Render site
-        run: quarto render
+        env:
+          # Verbose Quarto logs so any future render hang is diagnosable in
+          # one run rather than across days. See quarto-cli#12977.
+          QUARTO_LOG_LEVEL: DEBUG
+        run: quarto render --verbose
 
       - name: Publish to GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2
