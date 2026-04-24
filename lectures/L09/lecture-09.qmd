@@ -1,6 +1,6 @@
 ---
 title: Topic 9 -- Describing relationships
-author: Si Yang Han
+author: Liana Pozza
 format:
   ochre-revealjs: default
   ochre-typst:
@@ -10,27 +10,38 @@ format:
 ## About me
 
 ::: {layout-ncol=2}
-- Research topics: spatial modelling and mapping, precision agriculture, winter grains
-- Timeline at USYD
-  - BSc (Hons) in Agricultural Science
-  - PhD in Digital Agriculture
-  - Postdoc in Spatial Modelling
-  - Associate Lecturer in Agricultural Data Science
+::: {.column width="60%"}
+- Lecturer in Agricultural Data Science
+- Research topics: spatial modelling and mapping, precision agriculture, soil contamination
+- How did I get here?
+  - BSc (Hons) in Environmental Biology - Thesis on satellite detection of phytoplankton off Australian coast
+  - PhD in Agriculture - Thesis on soil contamination mapping and spatial modelling
+  - Various postdocs - Teaching, Wagyu metabolomics, soil constraints, soil carbon
+  
+<!---
+Make clear usefulness of transferrable skills - machine learning, R, modelling and mapping skills 
+--->  
+:::
 
-![Faba beans at Trangie](images/hello_world.jpeg)
+::: {.column width="40%"}
+
+![Liana standing in a cotton field like a professional](images/20220308_134808_cropped.jpg)
+:::
 :::
 
 ## Learning Outcomes
 
-- LO1. Demonstrate proficiency in utilizing R and Excel to effectively explore and describe data sets in the life sciences.
+By the end of this course, students wil be able to: 
 
-- [LO2. Evaluate and interpret different types of data in the natural sciences by visualising probability distributions and calculating probabilities using RStudio and Excel.]{style="color: #D0D3D4;"}
+- LO1. Implement basic reproducible research practices—including consistent data organization, documented code, and version-controlled workflows—so that their statistical analyses and results can be readily replicated and validated by others.
 
-- [LO3. Apply parametric and non-parametric statistical inference methods to experimental data using RStudio and effectively interpret and communicate the results in the context of the data.]{style="color:#D0D3D4;"}
+- [LO2. Demonstrate proficiency in utilizing R and Excel to effectively explore and describe life science datasets.]{style="color: #D0D3D4;"}
 
-- LO4. Apply both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.
+- [LO3. Apply parametric and non-parametric statistical inference methods to experimental and observational data using RStudio and effectively interpret and communicate the results in the context of the data.]{style="color:#D0D3D4;"}
 
-- [LO5. Articulate statistical and modelling results clearly and convincingly]{style="color:black;"} [in both written reports and oral presentations, working effectively as an individual and collaboratively in a team, showcasing the ability to convey complex information to varied audiences.]{style="color:#D0D3D4;"}
+- LO4. Put into practice both linear and non-linear models to describe relationships between variables using RStudio and Excel, demonstrating creativity in developing models that effectively represent complex data patterns.
+
+- [LO5. Articulate statistical and modelling results clearly and convincingly in both written reports and oral presentations, working effectively as an individual and collaboratively in a team, showcasing the ability to convey complex information to varied audiences.]{style="color:#D0D3D4;"}
 
 <!---
 therefore, want students how to fit a regression model and be able to interpret 
@@ -43,12 +54,12 @@ therefore, want students how to fit a regression model and be able to interpret
 
 - **Week 9. Describing Relationships**
     + Correlation (calculation, interpretation)
-    + Regression (model structure, model fitting
+    + Regression (model structure, model fitting)
     + What/when/why/how
 
 - [Week 10. Simple Linear Regression]{style="color: #D0D3D4;"}
-    + [Can we use the model?(assumptions, hypothesis testing)]{style="color: #D0D3D4;"}
-    + [How good is the model?(interpretation, model fit)]{style="color: #D0D3D4;"}
+    + [Can we use the model? (assumptions, hypothesis testing)]{style="color: #D0D3D4;"}
+    + [How good is the model? (interpretation, model fit)]{style="color: #D0D3D4;"}
     
 - [Week 11. Multiple Linear Regression]{style="color: #D0D3D4;"}
     + [Multiple Linear Regression (MLR) modelling]{style="color: #D0D3D4;"}
@@ -62,7 +73,7 @@ therefore, want students how to fit a regression model and be able to interpret
 
 - **Week 9. Describing Relationships**
     + Correlation (calculation, interpretation)
-    + Regression (model structure, model fitting
+    + Regression (model structure, model fitting)
     + What/when/why/how
 
 ## Example - Galton's Data
@@ -98,7 +109,7 @@ Is the relationship:
 
 # Correlation
 
-## Correlation {auto-animate="true"}
+## Correlation Coefficient {auto-animate="true"}
 
 The **correlation coefficient** is a number between -1 and 1 that describes the relationship between two **continuous** variables.
 
@@ -111,24 +122,20 @@ The **correlation coefficient** is a number between -1 and 1 that describes the 
   - 1 &rarr; perfect positive relationship
   - Common terms: *weak* (~0.1--0.3), *moderate* (~0.4--0.6) or *strong* (~0.7--1.0) -- useful but subjective!
 
-## Correlation
+## Pearson's Correlation Coefficient
 
-:::{.columns}
-:::{.column width="50%"}
+> Karl Pearson developed the **correlation coefficient** in 1800s (based on the work by Francis Galton)
+
+![](images/pearson.jpg){out.width="50%"}
+
+
+## Pearson's Correlation Coefficient
 
 Pearson's Correlation (*r*) Formula:
 
 $$ r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2 \sum_{i=1}^n (y_i - \bar{y})^2}} $$
 
 Covariance divided by the product of the standard deviations.
-
-> Karl Pearson developed the **correlation coefficient** in 1800s (based on the work by Francis Galton)
-
-:::
-:::{.column width="50%"}
-![](images/pearson.jpg){out.width="50%"}
-:::
-:::
 
 Pearson's *r* is:
 
@@ -143,7 +150,7 @@ Pearson's *r* is:
   - By default this calculates Pearson's correlation coefficient
   - Can also calculate other types of correlation (`cor(x, y, method = "spearman")`)
 
----
+## Scatterplots give us a visual understanding
 
 ```{r, warning=FALSE, message=FALSE}
 #| code-fold: true
@@ -217,26 +224,32 @@ A **strong** relationship is one where the correlation coefficient is close to -
 
 The exact values are subjective and vary between fields of study.
 
-## Example - Galton's Data
+## Example - Galton's original plots
 
-::: {.columns}
-::: {.column width="30%"}
 ![Galton's Results](images/galton_corr.jpg)
-:::
-::: {.column width="60%"}
 
+## Example - Galton's data in R
+
+::: {layout-ncol=2}
+::: {.column width="60%"}
 ```{r, warning=FALSE, message=FALSE}
 #| code-fold: true
+
 library(ggplot2)
+
 ggplot(Galton, aes(x = parent, y = child)) +
-    geom_point(alpha = .2, size = 3)
+  geom_point(alpha = .2, size = 3)
 
 ```
-::: 
 :::
+
+::: {.column width="40%"}
 ```{r}
 cor(Galton$parent, Galton$child)
 ```
+
+:::
+:::
 
 Is the relationship:
 
@@ -423,20 +436,38 @@ If we have a hypothesis about the relationship between two variables, we can use
 
 ## Why regression?
 
+:::{.fragment}
+
 ### Describe the relationship between two variables
 What is the relationship between a response variable $Y$ and a predictor variable $x$?
 
 Common Terms:
+
 $Y$ = response, independent variable, target, outcome etc.
+
 $x$ = predictor, dependent variable, feature, input etc.
+
+:::
+
+<br>
+
+:::{.fragment}
 
 ### Explain the relationship between two variables
 How much variation in $Y$ can be explained by a relationship with $x$?
+
+:::
+
+<br>
+
+:::{.fragment}
 
 ### Predict the value of a response variable
 What is the value of $Y$ for a given value of $x$?
 
 Often we can easily measure/obtain $x$ but not $Y$, so we need to *predict* $Y$ from $x$.
+
+:::
 
 ## A gateway to the world of modelling
 
@@ -654,7 +685,7 @@ The line is fitted again and again until the squared error stabilises. A compute
 
 > The goal is to fit the line of best fit between a numerical response and a numerical predictor.
 
-## Simple linear regression model {auto-animate="true"}
+## Simple linear regression model
 
 We want to relate the response $Y$ to a predictor $x$ for $i$ number of observations: 
 
@@ -672,6 +703,8 @@ $$\epsilon_i \sim N(0, \sigma^2)$$
 :::{.callout-note}
 $\epsilon_i$ is generally associated with the **residual** ($observed - predicted$). **True error** occurs during data collection (e.g. faulty instruments, selection bias, etc.) and often immeasurable.
 :::
+
+
 
 ## Different wordings
 
@@ -765,7 +798,7 @@ p1 + geom_vline(xintercept = xbar, linetype = "dashed", color = "slateblue") +
 
 # Example: back to Galton's data
 
-What can we understand about the relationship between `child height` and `parent height`?
+What can we understand about the relationship between *child height* and *parent height*?
 
 > Let's do this in R - much easier
 
@@ -832,7 +865,7 @@ fit <- lm(child ~ parent, data = Galton)
 
 . . .
 
-And then we can use `summary()` to get a summary of the model:
+And then we can use `summary()` function to get a summary of the model:
 
 ```{r}
 summary(fit)
