@@ -439,13 +439,16 @@ If we have a hypothesis about the relationship between two variables, we can use
 :::{.fragment}
 
 ### Describe the relationship between two variables
+
 What is the relationship between a response variable $Y$ and a predictor variable $x$?
 
 Common Terms:
 
-$Y$ = response, independent variable, target, outcome etc.
+$Y$ = response, dependent variable, target, outcome etc.
 
-$x$ = predictor, dependent variable, feature, input etc.
+$x$ = predictor, independent variable, feature, input etc.
+
+Our response is the dependent variable as it changes as a result of changes in the predictor variable. 
 
 :::
 
