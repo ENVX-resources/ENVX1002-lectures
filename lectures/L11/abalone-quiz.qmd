@@ -5,6 +5,7 @@ format:
   ochre-revealjs: default
   ochre-typst:
     fig-format: png
+prefer-html: true
 ---
 
 ```{r setup, include=FALSE}
