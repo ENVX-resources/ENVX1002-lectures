@@ -25,33 +25,10 @@ jobs:
           r-version: 'release'
           use-public-rspm: true
 
-      - name: Discover R package dependencies
-        id: deps
-        run: |
-          Rscript -e '
-            install.packages(c("renv", "knitr", "rmarkdown"))
-            pkgs <- unique(renv::dependencies(quiet = TRUE)$Package)
-            pkgs <- setdiff(pkgs, c("R", rownames(installed.packages(priority = "base"))))
-            # Suggests-tier packages loaded at runtime (e.g. by performance::check_model)
-            # and packages referenced only as YAML strings (e.g. dev: "ragg_png" in
-            # lectures/_metadata.yml) which renv::dependencies() cannot discover.
-            soft_extras <- c("see", "patchwork", "qqplotr", "ragg", "systemfonts")
-            pkgs <- unique(c(pkgs, soft_extras))
-            refs <- paste0("any::", sort(pkgs))
-            writeLines(refs, "r-packages.txt")
-            cat("Detected", length(refs), "packages:\n")
-            cat(paste(" -", refs), sep = "\n")'
-          {
-            echo "packages<<EOF"
-            cat r-packages.txt
-            echo EOF
-          } >> "$GITHUB_OUTPUT"
-
       - name: Install R packages
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          packages: ${{ steps.deps.outputs.packages }}
-          cache-version: 1
+          cache-version: 2
           install-quarto: 'false'
 
       - name: Cache Typst packages
