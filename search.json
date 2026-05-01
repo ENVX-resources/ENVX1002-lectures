@@ -487,14 +487,14 @@
     "href": "lectures/L11/lecture-11.html#visualisation-not-easy",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Visualisation: not easy",
-    "text": "Visualisation: not easy\nAre the plots useful?\n3D plot\n\n\nCode\nlibrary(plotly)\nplot_ly(data = airquality, \n  x = ~Temp, y = ~Ozone, z = ~Solar.R,\n  type = \"scatter3d\", mode = \"markers\", opacity = 0.5)"
+    "text": "Visualisation: not easy\nAre the plots useful?\n3D plot\n\n\nCode\nlibrary(plotly)\nplot_ly(data = airquality,\n  x = ~Temp, y = ~Ozone, z = ~Solar.R,\n  type = \"scatter3d\", mode = \"markers\", opacity = 0.5)"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#visualisation-not-easy-1",
     "href": "lectures/L11/lecture-11.html#visualisation-not-easy-1",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Visualisation: not easy",
-    "text": "Visualisation: not easy\nAre the plots useful?\n4D plot\n\n\nCode\nlibrary(plotly)\nplot_ly(data = airquality, \n  x = ~Temp, y = ~Ozone, z = ~Solar.R, color = ~Wind,\n  type = \"scatter3d\", mode = \"markers\", opacity = 0.5)"
+    "text": "Visualisation: not easy\nAre the plots useful?\n4D plot\n\n\nCode\nlibrary(plotly)\nplot_ly(data = airquality,\n  x = ~Temp, y = ~Ozone, z = ~Solar.R, color = ~Wind,\n  type = \"scatter3d\", mode = \"markers\", opacity = 0.5)"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#partial-regression-coefficients",
@@ -1577,7 +1577,7 @@
     "href": "lectures/L03/lecture-03.html#getting-to-know-your-data",
     "title": "Lecture 03: Exploring and visualising data",
     "section": "Getting to know your data",
-    "text": "Getting to know your data\nA few functions that give you an immediate overview:\n\nstr(df)\n\n'data.frame':   5 obs. of  3 variables:\n $ species: chr  \"A\" \"B\" \"C\" \"A\" ...\n $ height : num  1.65 1.7 1.75 1.8 1.85\n $ weight : num  60 65 70 75 80\n\nsummary(df)\n\n   species              height         weight  \n Length:5           Min.   :1.65   Min.   :60  \n Class :character   1st Qu.:1.70   1st Qu.:65  \n Mode  :character   Median :1.75   Median :70  \n                    Mean   :1.75   Mean   :70  \n                    3rd Qu.:1.80   3rd Qu.:75  \n                    Max.   :1.85   Max.   :80  \n\nunique(df$species)\n\n[1] \"A\" \"B\" \"C\"\n\n\nsummary() is useful, but it does not always reveal the full picture."
+    "text": "Getting to know your data\nA few functions that give you an immediate overview:\n\nstr(df)\n\n'data.frame':   5 obs. of  3 variables:\n $ species: chr  \"A\" \"B\" \"C\" \"A\" ...\n $ height : num  1.65 1.7 1.75 1.8 1.85\n $ weight : num  60 65 70 75 80\n\nsummary(df)\n\n      species      height         weight  \n Length   :5   Min.   :1.65   Min.   :60  \n N.unique :3   1st Qu.:1.70   1st Qu.:65  \n N.blank  :0   Median :1.75   Median :70  \n Min.nchar:1   Mean   :1.75   Mean   :70  \n Max.nchar:1   3rd Qu.:1.80   3rd Qu.:75  \n               Max.   :1.85   Max.   :80  \n\nunique(df$species)\n\n[1] \"A\" \"B\" \"C\"\n\n\nsummary() is useful, but it does not always reveal the full picture."
   },
   {
     "objectID": "lectures/L03/lecture-03.html#visualising-missing-data",
@@ -1591,7 +1591,7 @@
     "href": "lectures/L03/lecture-03.html#seeing-vs-reading",
     "title": "Lecture 03: Exploring and visualising data",
     "section": "Seeing vs reading",
-    "text": "Seeing vs reading\nCompare the vis_miss() output to the raw data below. Which one makes the missing values easier to spot?\n\n\nairquality$Ozone\n\n  [1]  41  36  12  18  NA  28  23  19   8  NA   7  16  11  14  18  14  34   6\n [19]  30  11   1  11   4  32  NA  NA  NA  23  45 115  37  NA  NA  NA  NA  NA\n [37]  NA  29  NA  71  39  NA  NA  23  NA  NA  21  37  20  12  13  NA  NA  NA\n [55]  NA  NA  NA  NA  NA  NA  NA 135  49  32  NA  64  40  77  97  97  85  NA\n [73]  10  27  NA   7  48  35  61  79  63  16  NA  NA  80 108  20  52  82  50\n [91]  64  59  39   9  16  78  35  66 122  89 110  NA  NA  44  28  65  NA  22\n[109]  59  23  31  44  21   9  NA  45 168  73  NA  76 118  84  85  96  78  73\n[127]  91  47  32  20  23  21  24  44  21  28   9  13  46  18  13  24  16  13\n[145]  23  36   7  14  30  NA  14  18  20\n\nsummary(airquality$Ozone)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n   1.00   18.00   31.50   42.13   63.25  168.00      37"
+    "text": "Seeing vs reading\nCompare the vis_miss() output to the raw data below. Which one makes the missing values easier to spot?\n\n\nairquality$Ozone\n\n  [1]  41  36  12  18  NA  28  23  19   8  NA   7  16  11  14  18  14  34   6\n [19]  30  11   1  11   4  32  NA  NA  NA  23  45 115  37  NA  NA  NA  NA  NA\n [37]  NA  29  NA  71  39  NA  NA  23  NA  NA  21  37  20  12  13  NA  NA  NA\n [55]  NA  NA  NA  NA  NA  NA  NA 135  49  32  NA  64  40  77  97  97  85  NA\n [73]  10  27  NA   7  48  35  61  79  63  16  NA  NA  80 108  20  52  82  50\n [91]  64  59  39   9  16  78  35  66 122  89 110  NA  NA  44  28  65  NA  22\n[109]  59  23  31  44  21   9  NA  45 168  73  NA  76 118  84  85  96  78  73\n[127]  91  47  32  20  23  21  24  44  21  28   9  13  46  18  13  24  16  13\n[145]  23  36   7  14  30  NA  14  18  20\n\nsummary(airquality$Ozone)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.     NAs \n   1.00   18.00   31.50   42.13   63.25  168.00      37"
   },
   {
     "objectID": "lectures/L03/lecture-03.html#histograms-the-shape-of-continuous-data",
@@ -2802,7 +2802,7 @@
     "href": "lectures/L07/lecture-07.html#performing-the-test",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Performing the test",
-    "text": "Performing the test\nIn R\n\nwilcox.test(x = df$weight_after, y = df$weight,  # data must be x - y\n  alternative = \"greater\",  # because we are testing for an increase\n  paired = TRUE)            # because the data is paired\n\n\n    Wilcoxon signed rank test with continuity correction\n\ndata:  df$weight_after and df$weight\nV = 10, p-value = 0.04449\nalternative hypothesis: true location shift is greater than 0\n\n\nwhere V is the sum of the signed ranks.\n\nThe results indicate that there is a significant increase in weight gain after the diet (V = 10, p &lt; 0.05)."
+    "text": "Performing the test\nIn R\n\nwilcox.test(x = df$weight_after, y = df$weight,  # data must be x - y\n  alternative = \"greater\",  # because we are testing for an increase\n  paired = TRUE)            # because the data is paired\n\n\n    Wilcoxon signed rank exact test\n\ndata:  df$weight_after and df$weight\nV = 10, p-value = 0.0625\nalternative hypothesis: true location shift is greater than 0\n\n\nwhere V is the sum of the signed ranks.\n\nThe results indicate that there is a significant increase in weight gain after the diet (V = 10, p &lt; 0.05)."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#beetle-consumption-in-lizards",
@@ -2830,7 +2830,7 @@
     "href": "lectures/L07/lecture-07.html#run-the-test",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Run the test",
-    "text": "Run the test\nThe Wilcoxon signed-rank test for one sample can be performed as follows:\n\nbeetle %&gt;%\n  filter(SIZE == \"small\") %&gt;%  # filter only the smaller size class\n  pull(BEETLES) %&gt;%            # convert to a vector using pull()\n  wilcox.test(mu = 100)        # wilcox.text(x, mu)\n\n\n    Wilcoxon signed rank test with continuity correction\n\ndata:  .\nV = 92, p-value = 0.09755\nalternative hypothesis: true location is not equal to 100\n\n\n\nResults indicate that the average number of beetles consumed by the smaller size class lizard is not significantly different from 100 (V = 92, p = 0.1).\n\n\n\n\n\n\n\n\nImportant\n\n\nWe not easily able to make a conclusion about effect size (confidence intervals and mean) from non-parametric tests as the information is lost when the data is transformed into ranks."
+    "text": "Run the test\nThe Wilcoxon signed-rank test for one sample can be performed as follows:\n\nbeetle %&gt;%\n  filter(SIZE == \"small\") %&gt;%  # filter only the smaller size class\n  pull(BEETLES) %&gt;%            # convert to a vector using pull()\n  wilcox.test(mu = 100)        # wilcox.text(x, mu)\n\n\n    Wilcoxon signed rank exact test\n\ndata:  .\nV = 92, p-value = 0.09647\nalternative hypothesis: true location is not equal to 100\n\n\n\nResults indicate that the average number of beetles consumed by the smaller size class lizard is not significantly different from 100 (V = 92, p = 0.1).\n\n\n\n\n\n\n\n\nImportant\n\n\nWe not easily able to make a conclusion about effect size (confidence intervals and mean) from non-parametric tests as the information is lost when the data is transformed into ranks."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#about",
@@ -2865,7 +2865,7 @@
     "href": "lectures/L07/lecture-07.html#test-statistic",
     "title": "Topic 7 – Non-parametric tests",
     "section": "Test statistic",
-    "text": "Test statistic\nThe same function wilcox.test() can be used to perform the Mann-Whitney U test.\n\nwilcox.test(BEETLES ~ SIZE, data = beetle)\n\n\n    Wilcoxon rank sum test with continuity correction\n\ndata:  BEETLES by SIZE\nW = 329, p-value = 0.07494\nalternative hypothesis: true location shift is not equal to 0\n\n\n\nW is the sum of the ranks of the smaller group.\nThe “true location shift” is the median of the larger group minus the median of the smaller group.\n\n\nThe results indicate that the number of beetles consumed by the larger and smaller size classes of lizards is not significantly different (W = 329, p = 0.07)."
+    "text": "Test statistic\nThe same function wilcox.test() can be used to perform the Mann-Whitney U test.\n\nwilcox.test(BEETLES ~ SIZE, data = beetle)\n\n\n    Wilcoxon rank sum exact test\n\ndata:  BEETLES by SIZE\nW = 329, p-value = 0.07403\nalternative hypothesis: true location shift is not equal to 0\n\n\n\nW is the sum of the ranks of the smaller group.\nThe “true location shift” is the median of the larger group minus the median of the smaller group.\n\n\nThe results indicate that the number of beetles consumed by the larger and smaller size classes of lizards is not significantly different (W = 329, p = 0.07)."
   },
   {
     "objectID": "lectures/L07/lecture-07.html#transform-or-non-parametric",
@@ -3355,7 +3355,7 @@
     "href": "lectures/L09/lecture-09.html#why-regression",
     "title": "Topic 9 – Describing relationships",
     "section": "Why regression?",
-    "text": "Why regression?\n\nDescribe the relationship between two variables\nWhat is the relationship between a response variable \\(Y\\) and a predictor variable \\(x\\)?\nCommon Terms:\n\\(Y\\) = response, independent variable, target, outcome etc.\n\\(x\\) = predictor, dependent variable, feature, input etc.\n\n\n\nExplain the relationship between two variables\nHow much variation in \\(Y\\) can be explained by a relationship with \\(x\\)?\n\n\n\nPredict the value of a response variable\nWhat is the value of \\(Y\\) for a given value of \\(x\\)?\nOften we can easily measure/obtain \\(x\\) but not \\(Y\\), so we need to predict \\(Y\\) from \\(x\\)."
+    "text": "Why regression?\n\nDescribe the relationship between two variables\nWhat is the relationship between a response variable \\(Y\\) and a predictor variable \\(x\\)?\nCommon Terms:\n\\(Y\\) = response, dependent variable, target, outcome etc.\n\\(x\\) = predictor, independent variable, feature, input etc.\nOur response is the dependent variable as it changes as a result of changes in the predictor variable.\n\n\n\nExplain the relationship between two variables\nHow much variation in \\(Y\\) can be explained by a relationship with \\(x\\)?\n\n\n\nPredict the value of a response variable\nWhat is the value of \\(Y\\) for a given value of \\(x\\)?\nOften we can easily measure/obtain \\(x\\) but not \\(Y\\), so we need to predict \\(Y\\) from \\(x\\)."
   },
   {
     "objectID": "lectures/L09/lecture-09.html#a-gateway-to-the-world-of-modelling",
