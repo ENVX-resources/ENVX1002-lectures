@@ -271,8 +271,9 @@ Are the plots useful?
 ### 3D plot
 
 ```{r}
+#| eval: !expr knitr::pandoc_to() != "typst"
 library(plotly)
-plot_ly(data = airquality, 
+plot_ly(data = airquality,
   x = ~Temp, y = ~Ozone, z = ~Solar.R,
   type = "scatter3d", mode = "markers", opacity = 0.5)
 ```
@@ -284,8 +285,9 @@ Are the plots useful?
 ### 4D plot
 
 ```{r}
+#| eval: !expr knitr::pandoc_to() != "typst"
 library(plotly)
-plot_ly(data = airquality, 
+plot_ly(data = airquality,
   x = ~Temp, y = ~Ozone, z = ~Solar.R, color = ~Wind,
   type = "scatter3d", mode = "markers", opacity = 0.5)
 ```
