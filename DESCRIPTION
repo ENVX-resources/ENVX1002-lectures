@@ -1,0 +1,55 @@
+Package: ENVX1002lectures
+Title: ENVX1002 Lecture Slides
+Version: 1.0.0
+Description: Quarto-based lecture materials for ENVX1002 (Environmental Data Analysis).
+License: CC-BY-4.0
+Encoding: UTF-8
+Depends:
+    R (>= 4.5.0)
+Imports:
+    broom,
+    car,
+    caret,
+    corrplot,
+    cowplot,
+    datasauRus,
+    dplyr,
+    e1071,
+    equatiomatic,
+    gapminder,
+    gganimate,
+    ggfortify,
+    ggplot2,
+    ggpubr,
+    gridExtra,
+    gt,
+    HistData,
+    infer,
+    kableExtra,
+    knitr,
+    lubridate,
+    modeest,
+    moments,
+    naniar,
+    nlraa,
+    nlstools,
+    pacman,
+    palmerpenguins,
+    patchwork,
+    performance,
+    plotly,
+    psych,
+    qqplotr,
+    ragg,
+    readxl,
+    remotes,
+    rstatix,
+    see,
+    sjPlot,
+    systemfonts,
+    tinytable,
+    tidyr,
+    tidyverse,
+    vcd
+Remotes:
+    datalorax/equatiomatic
