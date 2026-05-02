@@ -9,7 +9,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.26">
 
-  <meta name="author" content="Si Yang Han">
+  <meta name="author" content="Liana Pozza">
   <title>Topic 10 – Simple Linear Regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -200,7 +200,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Si Yang Han 
+Liana Pozza 
 </div>
         <p class="quarto-title-affiliation">
             The University of Sydney
@@ -226,13 +226,13 @@ Si Yang Han
 <li><span style="color: #D0D3D4;">Week 9. Describing Relationships</span>
 <ul>
 <li><span style="color: #D0D3D4;">Correlation (calculation, interpretation)</span></li>
-<li><span style="color: #D0D3D4;">Regression (model structure, model fitting</span></li>
+<li><span style="color: #D0D3D4;">Regression (model structure, model fitting)</span></li>
 <li><span style="color: #D0D3D4;">What/when/why/how</span></li>
 </ul></li>
 <li><strong>Week 10. Simple Linear Regression</strong>
 <ul>
-<li>Can we use the model?(assumptions, hypothesis testing)</li>
-<li>How good is the model?(interpretation, model fit)</li>
+<li>Can we use the model? (assumptions, hypothesis testing)</li>
+<li>How good is the model? (interpretation, model fit)</li>
 </ul></li>
 <li><span style="color: #D0D3D4;">Week 11. Multiple Linear Regression</span>
 <ul>
@@ -383,9 +383,7 @@ Coefficients:
 <section>
 <section id="assumptions" class="title-slide slide level1 center">
 <h1>Assumptions</h1>
-<blockquote>
 <p>The data <strong>must</strong> meet certain criteria for linear regression, which we often call <em>assumptions</em>.</p>
-</blockquote>
 </section>
 <section id="assumptions---line" class="slide level2">
 <h2>Assumptions - LINE</h2>
@@ -628,14 +626,9 @@ Coefficients:
 </details>
 
 </div>
-<img data-src="lecture-10_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section></section>
-<section>
-<section id="assumption-equal-variances" class="title-slide slide level1 center">
-<h1>Assumption: Equal Variances</h1>
-
-</section>
-<section id="equal-variances" class="slide level2">
-<h2>Equal variances</h2>
+<img data-src="lecture-10_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
+<section id="assumption-equal-variances" class="slide level2">
+<h2>Assumption: Equal Variances</h2>
 <ul>
 <li>Look at the <strong>scale-location plot</strong>.</li>
 <li>If variances are equal, the points should be randomly scattered around the horizontal axis.</li>
@@ -649,7 +642,7 @@ Coefficients:
 
 </div>
 <img data-src="lecture-10_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
-<section id="equal-variances-1" class="slide level2">
+<section id="equal-variances" class="slide level2">
 <h2>Equal variances</h2>
 <ul>
 <li>If variances are not equal we <em>may</em> see:
@@ -679,10 +672,8 @@ Coefficients:
 <li>The Residuals vs Leverage plot shows the relationship between the residuals and the leverage of each point.</li>
 <li><strong>Cook’s distance</strong> is a measure of how much the model would change if a point was removed.</li>
 </ul>
-</section>
-<section class="slide level2">
-
 <p>In general, points with <strong>high leverage</strong> and <strong>high Cook’s distance</strong> are considered outliers.</p>
+<h3 id="residuals-vs-leverage-plot">Residuals vs Leverage plot</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -721,19 +712,34 @@ Coefficients:
 </section>
 <section id="what-can-we-do-if-the-assumptions-arent-met" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">What can we do if the assumptions aren’t met?</h2>
-<h3 id="it-depends">It depends…</h3>
-<p>…which assumption is not met and the type of data i.e.&nbsp;circumstances.</p>
+<div class="fragment">
+<p>It depends on which assumption is not met and the type of data i.e.&nbsp;circumstances.</p>
+</div>
+<div class="fragment">
 <ul>
-<li><p>If data is <strong>non-linear</strong>, try a transformation of the response variable <span class="math inline">\(y\)</span>, from light to extreme:</p>
+<li>If data is <strong>non-linear</strong>, try a transformation of the response variable <span class="math inline">\(y\)</span>, from light to extreme:
 <ul>
 <li>root: <span class="math inline">\(\sqrt{y}\)</span> or <span class="math inline">\(\sqrt{y+1}\)</span> if <span class="math inline">\(y\)</span> contains zeros</li>
 <li>log: <span class="math inline">\(\log(y)\)</span> or <span class="math inline">\(\log(y+1)\)</span> if <span class="math inline">\(y\)</span> contains zeros</li>
 <li>inverse: <span class="math inline">\(\frac{1}{y}\)</span> or <span class="math inline">\(\frac{1}{y+1}\)</span> if <span class="math inline">\(y\)</span> contains zeros</li>
 </ul></li>
-<li><p>If residuals are <strong>not normally distributed</strong>, try a transformation of the response variable <span class="math inline">\(y\)</span> first, otherwise transform the predictor variable <span class="math inline">\(x\)</span>. Both can be done at the same time.</p></li>
-<li><p>If <strong>equal variances</strong> assumption is not met, same as above.</p></li>
-<li><p>If <strong>outliers</strong> are present, try removing them, or transforming the response variable <span class="math inline">\(y\)</span>.</p></li>
 </ul>
+</div>
+<div class="fragment">
+<ul>
+<li>If residuals are <strong>not normally distributed</strong>, try a transformation of the response variable <span class="math inline">\(y\)</span> first, otherwise transform the predictor variable <span class="math inline">\(x\)</span>. Both can be done at the same time.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>If <strong>equal variances</strong> assumption is not met, same as above.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>If <strong>outliers</strong> are present, try removing them, or transforming the response variable <span class="math inline">\(y\)</span>.</li>
+</ul>
+</div>
 </section>
 <section id="what-if-transformation-doesnt-work" class="slide level2">
 <h2>What if transformation doesn’t work?</h2>
@@ -752,9 +758,7 @@ Coefficients:
 <section>
 <section id="model-assessment-and-interpretation" class="title-slide slide level1 center">
 <h1>Model Assessment and Interpretation</h1>
-<blockquote>
-<p>Hypothesis? How good is the model? What can we understand about the relationship between <code>child</code> and <code>parent</code>?</p>
-</blockquote>
+<p>How good is the model? What can we understand about the relationship between <strong>child</strong> and <strong>parent</strong>?</p>
 </section>
 <section id="interpreting-the-output" class="slide level2">
 <h2>Interpreting the output</h2>
@@ -1021,18 +1025,18 @@ Coefficients:
 </section>
 <section id="reporting" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Reporting</h2>
-<blockquote>
-<p>Refresher on earlier steps</p>
-</blockquote>
-<p>Galton collected data on the average height of both parents and their children. There wasa moderate, positive, linear relationship (<span class="math inline">\(r\)</span> = 0.46) between parent and child height.</p>
-<blockquote>
-<p>Can we rely on our model results? Assumptions and hypothesis?</p>
-</blockquote>
+<p><strong>Refresher on earlier steps:</strong></p>
+<p>Galton collected data on the average height of both parents and their children. There was a moderate, positive, linear relationship (<span class="math inline">\(r\)</span> = 0.46) between parent and child height.</p>
+<div class="fragment">
+<p><br></p>
+<p><strong>Can we rely on our model results? Assumptions and hypothesis?</strong></p>
 <p>We fitted a linear model to predict child height from parent height, and model assumptions were met. The model was statistically significant (R<sup>2</sup> = 0.21, F(1, 926) = 246.84, p &lt; .001), hence the null hypothesis was rejected in favour of the linear model. The effect of parent height is statistically significant and positive (<span class="math inline">\(\beta\)</span> = 0.65, t(926) = 15.71, p &lt; .001).</p>
-<blockquote>
-<p>Equation? Inference?</p>
-</blockquote>
+</div>
+<div class="fragment">
+<p><br></p>
+<p><strong>Equation? Inference?</strong></p>
 <p>For every one-inch increase in parent height, child height is predicted to increase by 0.65 inches ($ = 23.94 + 0.65 parent$). The average height of both parents explains 21.05% of the variance in child height – there is an effect but there are clearly more factors at play.</p>
+</div>
 </section>
 <section id="fun-fact" class="slide level2">
 <h2>Fun fact</h2>
@@ -1040,19 +1044,31 @@ Coefficients:
 <li>Galton’s key finding was that children of tall parents are not as tall, children of short parents are not as short.</li>
 </ul>
 <p><span class="math display">\[ \widehat{child} = 23.94153 + 0.64629 \cdot parent\]</span></p>
+<div class="fragment">
 <ul>
-<li><p>e.g.&nbsp;if average parent height is 60 inches (152 cm), how tall will the child be? <span class="math inline">\(23.94153 + 0.64629 \cdot 60 = 62.7\)</span> inches (159 cm).</p></li>
-<li><p>e.g.&nbsp;if average parent height is 75 inches (191 cm), how tall will the child be? <span class="math inline">\(23.94153 + 0.64629 \cdot 75 = 72.4\)</span> inches (184 cm).</p></li>
+<li>e.g.&nbsp;if average parent height is 60 inches (152 cm), how tall will the child be?</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; <span class="math inline">\(23.94153 + 0.64629 \cdot 60 = 62.7\)</span> inches (159 cm).</p>
+</div>
+<div class="fragment">
+<ul>
+<li>e.g.&nbsp;if average parent height is 75 inches (191 cm), how tall will the child be?</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; <span class="math inline">\(23.94153 + 0.64629 \cdot 75 = 72.4\)</span> inches (184 cm).</p>
+</div>
+<div class="fragment">
+<ul>
 <li><p>The height of children appeared to <strong>regress</strong> towards the population mean, i.e.&nbsp;the concept of <strong>regression to the mean</strong></p></li>
 <li><p>Hence the <a href="https://sites.ualberta.ca/~dwiens/stat575/misc%20resources/regression%20to%20the%20mean.pdf">Galton</a> is credited with coining the term <strong>regression</strong> (and also correlation, percentile, median, etc.)</p></li>
 </ul>
+</div>
 </section></section>
 <section>
 <section id="lets-practice" class="title-slide slide level1 center">
 <h1>Let’s practice</h1>
-<p>Can we predict the weight of an alligator from its length? <a href="https://canvas.sydney.edu.au/courses/46921/pages/week-10-lectures-linear-functions?module_item_id=1752336">Download data ⬇</a></p>
+<p>Can we predict the weight of an alligator from its length? <a href="https://canvas.sydney.edu.au/courses/46921/pages/week-10-lectures-linear-functions?module_item_id=1752336" style="color: #1c1c84;">Download data ⬇</a></p>
 
-<img data-src="images/alligator.jpg" style="width:30.0%" class="r-stretch"><p>Photo by <a href="https://unsplash.com/@eyedealstuff?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Shelly Collins</a></p>
+<img data-src="images/alligator.jpg" style="width:30.0%" class="r-stretch"><p>Photo by <a href="https://unsplash.com/@eyedealstuff?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" style="color: #1c1c84;">Shelly Collins</a></p>
 </section>
 <section id="explore" class="slide level2">
 <h2>Explore</h2>
@@ -1227,9 +1243,12 @@ F-statistic:   553 on 1 and 23 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="percent-change-with-ln-transformation" class="slide level2">
 <h2>Percent change with <span class="math inline">\(ln\)</span> transformation</h2>
 <p>Interpreting as a percent change can be more meaningful - it can be done with any log transformation (substitute <span class="math inline">\(e\)</span> below for 10 or any other base), but the <strong>quick approximation only works with natural log transformations</strong>.</p>
+<div class="fragment">
 <p>If <span class="math inline">\(y\)</span> has been transformed with a natural log (<code>log(y)</code>), for a one-unit increase in <span class="math inline">\(x\)</span> the <strong>percent change in <span class="math inline">\(y\)</span></strong> (not <code>log(y)</code>) is calculated with:</p>
 <p><span class="math display">\[\Delta y \% = 100 \cdot (e^{\beta_1}-1)\]</span></p>
-<p>If <span class="math inline">\(\beta_1\)</span> is small (i.e.&nbsp;<span class="math inline">\(-0.25 &lt; \beta_1 &lt; 0.25\)</span>), then: <span class="math inline">\(e^{\beta_1} \approx 1 + \beta_1\)</span>. So <span class="math inline">\(\Delta y \% \approx 100 \cdot \beta_1\)</span>.</p>
+<p>If <span class="math inline">\(\beta_1\)</span> is small (i.e.&nbsp;<span class="math inline">\(-0.25 &lt; \beta_1 &lt; 0.25\)</span>), &nbsp;&nbsp; then: <span class="math inline">\(e^{\beta_1} \approx 1 + \beta_1\)</span> , &nbsp;&nbsp; So <span class="math inline">\(\Delta y \% \approx 100 \cdot \beta_1\)</span>.</p>
+</div>
+<div class="fragment">
 <div class="columns">
 <div class="column" style="width:50%;">
 <table class="caption-top">
@@ -1290,6 +1309,11 @@ F-statistic:   553 on 1 and 23 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li><strong>Both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> transformed</strong>: a 1% increase in x is <em>approximately</em> a <span class="math inline">\(\beta_1\)</span>% change in y.</li>
 </ul>
 </div></div>
+</div>
+<div class="fragment">
+<p>In our example, y was transformed, so we would say:</p>
+<p>“for every 1 cm increase in <code>Length</code>, <code>Weight</code> increases by <em>approximately</em> 3.54% (exactly 3.60%).”</p>
+</div>
 </section>
 <section id="summary" class="slide level2 scrollable">
 <h2>Summary</h2>
@@ -1305,7 +1329,7 @@ F-statistic:   553 on 1 and 23 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section></section>
 <section id="thanks" class="title-slide slide level1 center">
 <h1>Thanks!</h1>
-<p>This presentation is based on the <a href="https://github.com/usyd-soles-edu/soles-revealjs">SOLES Quarto reveal.js template</a> and is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+<p>This presentation is based on the <a href="https://github.com/usyd-soles-edu/soles-revealjs" style="color: #1c1c84;">SOLES Quarto reveal.js template</a> and is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" style="color: #1c1c84;">Creative Commons Attribution 4.0 International License</a>.</p>
 <!-- Links -->
 
 

@@ -3495,7 +3495,7 @@
     "href": "lectures/L10/lecture-10.html#module-overview",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Module overview",
-    "text": "Module overview\n\n\n\n\nWeek 9. Describing Relationships\n\nCorrelation (calculation, interpretation)\nRegression (model structure, model fitting\nWhat/when/why/how\n\nWeek 10. Simple Linear Regression\n\nCan we use the model?(assumptions, hypothesis testing)\nHow good is the model?(interpretation, model fit)\n\nWeek 11. Multiple Linear Regression\n\nMultiple Linear Regression (MLR) modelling\nAssumptions, interpretation and the principle of parsimony\n\nWeek 12. Nonlinear Regression\n\nCommon nonlinear functions\nTransformations"
+    "text": "Module overview\n\n\n\n\nWeek 9. Describing Relationships\n\nCorrelation (calculation, interpretation)\nRegression (model structure, model fitting)\nWhat/when/why/how\n\nWeek 10. Simple Linear Regression\n\nCan we use the model? (assumptions, hypothesis testing)\nHow good is the model? (interpretation, model fit)\n\nWeek 11. Multiple Linear Regression\n\nMultiple Linear Regression (MLR) modelling\nAssumptions, interpretation and the principle of parsimony\n\nWeek 12. Nonlinear Regression\n\nCommon nonlinear functions\nTransformations"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#last-week",
@@ -3624,15 +3624,15 @@
     "text": "Examples\n\n\nCode\nset.seed(915)\nx &lt;- rnorm(100)\ny &lt;- 2 + 5 * x + rchisq(100, df = 2)\ndf &lt;- data.frame(x, y)\nfit_eg &lt;- lm(y ~ x, data = df)\npar(mfrow = c(1, 2))\nplot(fit_eg, which = 2)\nhist(rstandard(fit_eg))"
   },
   {
-    "objectID": "lectures/L10/lecture-10.html#equal-variances",
-    "href": "lectures/L10/lecture-10.html#equal-variances",
+    "objectID": "lectures/L10/lecture-10.html#assumption-equal-variances",
+    "href": "lectures/L10/lecture-10.html#assumption-equal-variances",
     "title": "Topic 10 – Simple Linear Regression",
-    "section": "Equal variances",
-    "text": "Equal variances\n\nLook at the scale-location plot.\nIf variances are equal, the points should be randomly scattered around the horizontal axis.\nThe red line should be more or less horizontal.\n\n\n\nCode\nplot(fit, which = 3)"
+    "section": "Assumption: Equal Variances",
+    "text": "Assumption: Equal Variances\n\nLook at the scale-location plot.\nIf variances are equal, the points should be randomly scattered around the horizontal axis.\nThe red line should be more or less horizontal.\n\n\n\nCode\nplot(fit, which = 3)"
   },
   {
-    "objectID": "lectures/L10/lecture-10.html#equal-variances-1",
-    "href": "lectures/L10/lecture-10.html#equal-variances-1",
+    "objectID": "lectures/L10/lecture-10.html#equal-variances",
+    "href": "lectures/L10/lecture-10.html#equal-variances",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Equal variances",
     "text": "Equal variances\n\nIf variances are not equal we may see:\n\nA funnel shape, where the points are more spread out at the ends than in the middle. Sometimes also called “fanning”.\nPatterns in the scale-location plot, such as a curve or a wave, indicating that the variance is changing.\n\nLook at the red line for a general trend, but don’t depend on it too much.\n\n\n\nCode\nset.seed(915)\nx &lt;- rnorm(100)\ny &lt;- 2 + 5 * x^2 + rchisq(100, df = 2)\ndf &lt;- data.frame(x, y)\nfit_eg &lt;- lm(y ~ x, data = df)\nplot(fit_eg, which = 3)"
@@ -3642,14 +3642,14 @@
     "href": "lectures/L10/lecture-10.html#outliers",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Outliers",
-    "text": "Outliers\n\nLeverage is a measure of how far away the predictor variable is from the mean of the predictor variable.\nThe Residuals vs Leverage plot shows the relationship between the residuals and the leverage of each point.\nCook’s distance is a measure of how much the model would change if a point was removed."
+    "text": "Outliers\n\nLeverage is a measure of how far away the predictor variable is from the mean of the predictor variable.\nThe Residuals vs Leverage plot shows the relationship between the residuals and the leverage of each point.\nCook’s distance is a measure of how much the model would change if a point was removed.\n\nIn general, points with high leverage and high Cook’s distance are considered outliers.\nResiduals vs Leverage plot\n\n\nCode\nplot(fit, which = 5)"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#what-can-we-do-if-the-assumptions-arent-met",
     "href": "lectures/L10/lecture-10.html#what-can-we-do-if-the-assumptions-arent-met",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "What can we do if the assumptions aren’t met?",
-    "text": "What can we do if the assumptions aren’t met?\nIt depends…\n…which assumption is not met and the type of data i.e. circumstances.\n\nIf data is non-linear, try a transformation of the response variable \\(y\\), from light to extreme:\n\nroot: \\(\\sqrt{y}\\) or \\(\\sqrt{y+1}\\) if \\(y\\) contains zeros\nlog: \\(\\log(y)\\) or \\(\\log(y+1)\\) if \\(y\\) contains zeros\ninverse: \\(\\frac{1}{y}\\) or \\(\\frac{1}{y+1}\\) if \\(y\\) contains zeros\n\nIf residuals are not normally distributed, try a transformation of the response variable \\(y\\) first, otherwise transform the predictor variable \\(x\\). Both can be done at the same time.\nIf equal variances assumption is not met, same as above.\nIf outliers are present, try removing them, or transforming the response variable \\(y\\)."
+    "text": "What can we do if the assumptions aren’t met?\n\nIt depends on which assumption is not met and the type of data i.e. circumstances.\n\n\n\nIf data is non-linear, try a transformation of the response variable \\(y\\), from light to extreme:\n\nroot: \\(\\sqrt{y}\\) or \\(\\sqrt{y+1}\\) if \\(y\\) contains zeros\nlog: \\(\\log(y)\\) or \\(\\log(y+1)\\) if \\(y\\) contains zeros\ninverse: \\(\\frac{1}{y}\\) or \\(\\frac{1}{y+1}\\) if \\(y\\) contains zeros\n\n\n\n\n\nIf residuals are not normally distributed, try a transformation of the response variable \\(y\\) first, otherwise transform the predictor variable \\(x\\). Both can be done at the same time.\n\n\n\n\nIf equal variances assumption is not met, same as above.\n\n\n\n\nIf outliers are present, try removing them, or transforming the response variable \\(y\\)."
   },
   {
     "objectID": "lectures/L10/lecture-10.html#what-if-transformation-doesnt-work",
@@ -3733,14 +3733,14 @@
     "href": "lectures/L10/lecture-10.html#reporting",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Reporting",
-    "text": "Reporting\n\nRefresher on earlier steps\n\nGalton collected data on the average height of both parents and their children. There wasa moderate, positive, linear relationship (\\(r\\) = 0.46) between parent and child height.\n\nCan we rely on our model results? Assumptions and hypothesis?\n\nWe fitted a linear model to predict child height from parent height, and model assumptions were met. The model was statistically significant (R2 = 0.21, F(1, 926) = 246.84, p &lt; .001), hence the null hypothesis was rejected in favour of the linear model. The effect of parent height is statistically significant and positive (\\(\\beta\\) = 0.65, t(926) = 15.71, p &lt; .001).\n\nEquation? Inference?\n\nFor every one-inch increase in parent height, child height is predicted to increase by 0.65 inches ($ = 23.94 + 0.65 parent$). The average height of both parents explains 21.05% of the variance in child height – there is an effect but there are clearly more factors at play."
+    "text": "Reporting\nRefresher on earlier steps:\nGalton collected data on the average height of both parents and their children. There was a moderate, positive, linear relationship (\\(r\\) = 0.46) between parent and child height.\n\n\nCan we rely on our model results? Assumptions and hypothesis?\nWe fitted a linear model to predict child height from parent height, and model assumptions were met. The model was statistically significant (R2 = 0.21, F(1, 926) = 246.84, p &lt; .001), hence the null hypothesis was rejected in favour of the linear model. The effect of parent height is statistically significant and positive (\\(\\beta\\) = 0.65, t(926) = 15.71, p &lt; .001).\n\n\n\nEquation? Inference?\nFor every one-inch increase in parent height, child height is predicted to increase by 0.65 inches ($ = 23.94 + 0.65 parent$). The average height of both parents explains 21.05% of the variance in child height – there is an effect but there are clearly more factors at play."
   },
   {
     "objectID": "lectures/L10/lecture-10.html#fun-fact",
     "href": "lectures/L10/lecture-10.html#fun-fact",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Fun fact",
-    "text": "Fun fact\n\nGalton’s key finding was that children of tall parents are not as tall, children of short parents are not as short.\n\n\\[ \\widehat{child} = 23.94153 + 0.64629 \\cdot parent\\]\n\ne.g. if average parent height is 60 inches (152 cm), how tall will the child be? \\(23.94153 + 0.64629 \\cdot 60 = 62.7\\) inches (159 cm).\ne.g. if average parent height is 75 inches (191 cm), how tall will the child be? \\(23.94153 + 0.64629 \\cdot 75 = 72.4\\) inches (184 cm).\nThe height of children appeared to regress towards the population mean, i.e. the concept of regression to the mean\nHence the Galton is credited with coining the term regression (and also correlation, percentile, median, etc.)"
+    "text": "Fun fact\n\nGalton’s key finding was that children of tall parents are not as tall, children of short parents are not as short.\n\n\\[ \\widehat{child} = 23.94153 + 0.64629 \\cdot parent\\]\n\n\ne.g. if average parent height is 60 inches (152 cm), how tall will the child be?\n\n     \\(23.94153 + 0.64629 \\cdot 60 = 62.7\\) inches (159 cm).\n\n\n\ne.g. if average parent height is 75 inches (191 cm), how tall will the child be?\n\n     \\(23.94153 + 0.64629 \\cdot 75 = 72.4\\) inches (184 cm).\n\n\n\nThe height of children appeared to regress towards the population mean, i.e. the concept of regression to the mean\nHence the Galton is credited with coining the term regression (and also correlation, percentile, median, etc.)"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#explore",
@@ -3796,7 +3796,7 @@
     "href": "lectures/L10/lecture-10.html#percent-change-with-ln-transformation",
     "title": "Topic 10 – Simple Linear Regression",
     "section": "Percent change with \\(ln\\) transformation",
-    "text": "Percent change with \\(ln\\) transformation\nInterpreting as a percent change can be more meaningful - it can be done with any log transformation (substitute \\(e\\) below for 10 or any other base), but the quick approximation only works with natural log transformations.\nIf \\(y\\) has been transformed with a natural log (log(y)), for a one-unit increase in \\(x\\) the percent change in \\(y\\) (not log(y)) is calculated with:\n\\[\\Delta y \\% = 100 \\cdot (e^{\\beta_1}-1)\\]\nIf \\(\\beta_1\\) is small (i.e. \\(-0.25 &lt; \\beta_1 &lt; 0.25\\)), then: \\(e^{\\beta_1} \\approx 1 + \\beta_1\\). So \\(\\Delta y \\% \\approx 100 \\cdot \\beta_1\\).\n\n\n\n\n\n\n\n\n\n\nβ\nExact \\((e^{\\beta} - 1)\\)%\nApproximate \\(100 \\cdot \\beta\\)\n\n\n\n\n-0.25\n-22.13\n-25\n\n\n-0.1\n-9.52\n-10\n\n\n0.01\n1.01\n1\n\n\n0.1\n10.52\n10\n\n\n0.25\n28.41\n25\n\n\n0.5\n64.87\n50\n\n\n2\n638.91\n200\n\n\n\n\n\n\\(y\\) transformed: a one-unit increase in \\(x\\) is approximately a \\(\\beta_1\\)% change in \\(y\\).\n\\(x\\) transformed: a 1% increase in \\(x\\) is approximately a \\(0.01 \\cdot \\beta_1\\) change in \\(y\\).\nBoth \\(x\\) and \\(y\\) transformed: a 1% increase in x is approximately a \\(\\beta_1\\)% change in y."
+    "text": "Percent change with \\(ln\\) transformation\nInterpreting as a percent change can be more meaningful - it can be done with any log transformation (substitute \\(e\\) below for 10 or any other base), but the quick approximation only works with natural log transformations.\n\nIf \\(y\\) has been transformed with a natural log (log(y)), for a one-unit increase in \\(x\\) the percent change in \\(y\\) (not log(y)) is calculated with:\n\\[\\Delta y \\% = 100 \\cdot (e^{\\beta_1}-1)\\]\nIf \\(\\beta_1\\) is small (i.e. \\(-0.25 &lt; \\beta_1 &lt; 0.25\\)),    then: \\(e^{\\beta_1} \\approx 1 + \\beta_1\\) ,    So \\(\\Delta y \\% \\approx 100 \\cdot \\beta_1\\).\n\n\n\n\n\n\n\n\n\n\n\n\nβ\nExact \\((e^{\\beta} - 1)\\)%\nApproximate \\(100 \\cdot \\beta\\)\n\n\n\n\n-0.25\n-22.13\n-25\n\n\n-0.1\n-9.52\n-10\n\n\n0.01\n1.01\n1\n\n\n0.1\n10.52\n10\n\n\n0.25\n28.41\n25\n\n\n0.5\n64.87\n50\n\n\n2\n638.91\n200\n\n\n\n\n\n\\(y\\) transformed: a one-unit increase in \\(x\\) is approximately a \\(\\beta_1\\)% change in \\(y\\).\n\\(x\\) transformed: a 1% increase in \\(x\\) is approximately a \\(0.01 \\cdot \\beta_1\\) change in \\(y\\).\nBoth \\(x\\) and \\(y\\) transformed: a 1% increase in x is approximately a \\(\\beta_1\\)% change in y.\n\n\n\n\nIn our example, y was transformed, so we would say:\n“for every 1 cm increase in Length, Weight increases by approximately 3.54% (exactly 3.60%).”"
   },
   {
     "objectID": "lectures/L10/lecture-10.html#summary",
