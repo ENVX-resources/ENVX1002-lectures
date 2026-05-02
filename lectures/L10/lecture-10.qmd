@@ -1,6 +1,6 @@
 ---
 title: Topic 10 -- Simple Linear Regression
-author: Si Yang Han
+author: Liana Pozza
 format:
   ochre-revealjs: default
   ochre-typst:
@@ -35,12 +35,12 @@ ggplot2::theme_set(cowplot::theme_half_open())
 
 - [Week 9. Describing Relationships]{style="color: #D0D3D4;"}
     + [Correlation (calculation, interpretation)]{style="color: #D0D3D4;"}
-    + [Regression (model structure, model fitting]{style="color: #D0D3D4;"}
+    + [Regression (model structure, model fitting)]{style="color: #D0D3D4;"}
     + [What/when/why/how]{style="color: #D0D3D4;"}
 
 - **Week 10. Simple Linear Regression**
-    + Can we use the model?(assumptions, hypothesis testing)
-    + How good is the model?(interpretation, model fit)
+    + Can we use the model? (assumptions, hypothesis testing)
+    + How good is the model? (interpretation, model fit)
     
 - [Week 11. Multiple Linear Regression]{style="color: #D0D3D4;"}
     + [Multiple Linear Regression (MLR) modelling]{style="color: #D0D3D4;"}
@@ -176,7 +176,7 @@ Do we trust our model? How good is the model? How can we interpret the results?
 
 # Assumptions
 
-> The data **must** meet certain criteria for linear regression, which we often call *assumptions*.
+The data **must** meet certain criteria for linear regression, which we often call *assumptions*.
 
 ## Assumptions - LINE
 
@@ -374,9 +374,7 @@ plot(fit_eg, which = 2)
 hist(rstandard(fit_eg))
 ```
 
-# Assumption: Equal Variances
-
-## Equal variances
+## Assumption: Equal Variances
 
 - Look at the **scale-location plot**.
 - If variances are equal, the points should be randomly scattered around the horizontal axis.
@@ -409,9 +407,9 @@ plot(fit_eg, which = 3)
 - The Residuals vs Leverage plot shows the relationship between the residuals and the leverage of each point.
 - **Cook's distance** is a measure of how much the model would change if a point was removed.
 
----
-
 In general, points with **high leverage** and **high Cook's distance** are considered outliers.
+
+### Residuals vs Leverage plot
 
 ```{r}
 plot(fit, which = 5)
@@ -448,18 +446,27 @@ e.g. this is of a perfect line with one extreme outlier -- the line of best fit 
 
 ## What can we do if the assumptions aren't met? {auto-animate="true"} 
 
-### It depends...
+. . .
 
-...which assumption is not met and the type of data i.e. circumstances.
+It depends on which assumption is not met and the type of data i.e. circumstances.
+
+. . . 
 
 - If data is **non-linear**, try a transformation of the response variable $y$, from light to extreme:
   - root: $\sqrt{y}$ or $\sqrt{y+1}$ if $y$ contains zeros
   - log: $\log(y)$ or $\log(y+1)$ if $y$ contains zeros
   - inverse: $\frac{1}{y}$ or $\frac{1}{y+1}$ if $y$ contains zeros
 
+. . . 
+
 - If residuals are **not normally distributed**, try a transformation of the response variable $y$ first, otherwise transform the predictor variable $x$. Both can be done at the same time.
 
+. . . 
+
 - If **equal variances** assumption is not met, same as above.
+
+. . . 
+
 - If **outliers** are present, try removing them, or transforming the response variable $y$.
 
 ## What if transformation doesn't work?
@@ -482,7 +489,7 @@ Now what?
 
 # Model Assessment and Interpretation
 
-> Hypothesis? How good is the model? What can we understand about the relationship between `child` and `parent`?
+How good is the model? What can we understand about the relationship between **child** and **parent**?
 
 ## Interpreting the output
 
@@ -753,15 +760,23 @@ If the model is **not significant**, then the null model (i.e. mean) is better. 
 
 ## Reporting {auto-animate="true"}
 
-> Refresher on earlier steps
+**Refresher on earlier steps:**
 
-Galton collected data on the average height of both parents and their children. There wasa moderate, positive, linear relationship ($r$ = 0.46) between parent and child height.
+Galton collected data on the average height of both parents and their children. There was a moderate, positive, linear relationship ($r$ = 0.46) between parent and child height.
 
-> Can we rely on our model results? Assumptions and hypothesis?
+. . .
+
+<br>
+
+**Can we rely on our model results? Assumptions and hypothesis?**
 
 We fitted a linear model to predict child height from parent height, and model assumptions were met. The model was statistically significant (R^2^ = 0.21, F(1, 926) = 246.84, p < .001), hence the null hypothesis was rejected in favour of the linear model. The effect of parent height is statistically significant and positive ($\beta$ = 0.65, t(926) = 15.71, p < .001).
 
-> Equation? Inference?
+. . .
+
+<br>
+
+**Equation? Inference?**
 
 For every one-inch increase in parent height, child height is predicted to increase by 0.65 inches ($ \widehat{child} = 23.94 + 0.65 \cdot parent$). The average height of both parents explains 21.05% of the variance in child height -- there is an effect but there are clearly more factors at play.
 
@@ -771,19 +786,31 @@ For every one-inch increase in parent height, child height is predicted to incre
 
 $$ \widehat{child} = 23.94153 + 0.64629 \cdot parent$$
 
-  - e.g. if average parent height is 60 inches (152 cm), how tall will the child be? $23.94153 + 0.64629 \cdot 60 = 62.7$ inches (159 cm).
-  - e.g. if average parent  height is 75 inches (191 cm), how tall will the child be? $23.94153 + 0.64629 \cdot 75 = 72.4$ inches (184 cm).
+. . . 
 
-- The height of children appeared to **regress** towards the population mean, i.e. the concept of **regression to the mean**
-- Hence the [Galton](https://sites.ualberta.ca/~dwiens/stat575/misc%20resources/regression%20to%20the%20mean.pdf) is credited with coining the term **regression** (and also correlation, percentile, median, etc.)
+  - e.g. if average parent height is 60 inches (152 cm), how tall will the child be?
+  
+  &nbsp;&nbsp;&nbsp;&nbsp; $23.94153 + 0.64629 \cdot 60 = 62.7$ inches (159 cm).
+  
+. . . 
+  
+  - e.g. if average parent  height is 75 inches (191 cm), how tall will the child be?
+  
+  &nbsp;&nbsp;&nbsp;&nbsp; $23.94153 + 0.64629 \cdot 75 = 72.4$ inches (184 cm).
+  
+. . . 
+
+  - The height of children appeared to **regress** towards the population mean, i.e. the       concept of **regression to the mean**
+
+  - Hence the [Galton](https://sites.ualberta.ca/~dwiens/stat575/misc%20resources/regression%20to%20the%20mean.pdf) is credited with coining the term **regression** (and also  correlation, percentile, median, etc.)
 
 # Let's practice
 Can we predict the weight of an alligator from its length?
-[Download data ⬇](https://canvas.sydney.edu.au/courses/46921/pages/week-10-lectures-linear-functions?module_item_id=1752336)
+[Download data ⬇](https://canvas.sydney.edu.au/courses/46921/pages/week-10-lectures-linear-functions?module_item_id=1752336){style="color: #1c1c84;"}
 
 ![](images/alligator.jpg){width=30%}
 
-Photo by <a href="https://unsplash.com/@eyedealstuff?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Shelly Collins</a>
+Photo by [Shelly Collins](https://unsplash.com/@eyedealstuff?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText){style="color: #1c1c84;"}
 
 ## Explore
 
@@ -895,11 +922,15 @@ summary(fit)
 
 Interpreting as a percent change can be more meaningful - it can be done with any log transformation (substitute $e$ below for 10 or any other base), but the **quick approximation only works with natural log transformations**. 
 
+. . . 
+
 If $y$ has been transformed with a natural log (`log(y)`), for a one-unit increase in $x$ the **percent change in $y$** (not `log(y)`) is calculated with:
 
 $$\Delta y \% = 100 \cdot (e^{\beta_1}-1)$$
 
-If $\beta_1$ is small (i.e. $-0.25 < \beta_1 < 0.25$), then: $e^{\beta_1} \approx 1 + \beta_1$. So $\Delta y \% \approx 100 \cdot \beta_1$.
+If $\beta_1$ is small (i.e. $-0.25 < \beta_1 < 0.25$), &nbsp;&nbsp; then: $e^{\beta_1} \approx 1 + \beta_1$ , &nbsp;&nbsp; So $\Delta y \% \approx 100 \cdot \beta_1$.
+
+. . . 
 
 :::{.columns}
 :::{.column width="50%"}
@@ -924,6 +955,12 @@ If $\beta_1$ is small (i.e. $-0.25 < \beta_1 < 0.25$), then: $e^{\beta_1} \appro
 :::
 :::
 
+. . .
+
+In our example, y was transformed, so we would say: 
+
+"for every 1 cm increase in `Length`, `Weight` increases by *approximately* 3.54% (exactly 3.60%)."
+
 ## Summary
 ### Workflow
 
@@ -934,14 +971,14 @@ If $\beta_1$ is small (i.e. $-0.25 < \beta_1 < 0.25$), then: $e^{\beta_1} \appro
 3.  **Fit model**
 
 4.  **Check assumptions**: Remember - it's about the residuals! If assumptions fail, try transforming and return to Step 3. If assumptions *still* fail, consider another model and return to Step 3.
-  
+
 5.  **Assess model fit**: Hypothesis test, significance, F-statistic, p-value. R^2^, how much model variation was explained by the model.
   
 6.  **Interpret output**: 'For every one-unit increase in x, y increases by $\beta_1$ units...' and any additional research/insight.
 
 # Thanks!
 
-This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
+This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs){style="color: #1c1c84;"} and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by]{style="color: #1c1c84;"}.
 
 <!-- Links -->
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
