@@ -361,28 +361,21 @@
     "href": "lectures/L11/lecture-11.html#module-overview",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Module overview",
-    "text": "Module overview\n\n\n\n\nWeek 9. Describing Relationships\n\nCorrelation (calculation, interpretation)\nRegression (model structure, model fitting\nWhat/when/why/how\n\nWeek 10. Simple Linear Regression\n\nCan we use the model?(assumptions, hypothesis testing)\nHow good is the model?(interpretation, model fit)\n\nWeek 11. Multiple Linear Regression\n\nMultiple Linear Regression (MLR) modelling\nAssumptions, interpretation and the principle of parsimony\n\nWeek 12. Nonlinear Regression\n\nCommon nonlinear functions\nTransformations"
+    "text": "Module overview\n\n\n\n\nWeek 9. Describing Relationships\n\nCorrelation (calculation, interpretation)\nRegression (model structure, model fitting)\nWhat/when/why/how\n\nWeek 10. Simple Linear Regression\n\nCan we use the model? (assumptions, hypothesis testing)\nHow good is the model? (interpretation, model fit)\n\nWeek 11. Multiple Linear Regression\n\nMultiple Linear Regression (MLR) modelling\nAssumptions, interpretation and the principle of parsimony\n\nWeek 12. Nonlinear Regression\n\nCommon nonlinear functions\nTransformations"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#last-week-simple-linear-regression",
     "href": "lectures/L11/lecture-11.html#last-week-simple-linear-regression",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Last week: simple linear regression",
-    "text": "Last week: simple linear regression\n\\[ Y_i = \\beta_0 + \\beta_1 x_i + \\epsilon_i \\]\nIdeal for predicting a continuous response variable from a single predictor variable: “How does \\(y\\) change as \\(x\\) changes?”\n\nIdentify/quantify relationships between variables\nPredict future values\n\n\nWhat if we have more than one predictor?\nWhat is the model and how do we interpret the results?"
+    "text": "Last week: simple linear regression\n\\[ Y_i = \\beta_0 + \\beta_1 x_i + \\epsilon_i \\]\nIdeal for predicting a continuous response variable from a single predictor variable: “How does \\(y\\) change as \\(x\\) changes?”\n\nIdentify/quantify relationships between variables\nPredict future values\n\n\n\nWhat if we have more than one predictor?\nWhat is the model and how do we interpret the results?"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#history",
     "href": "lectures/L11/lecture-11.html#history",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "History",
-    "text": "History\n\n\n \nFrancis Galton and Karl Pearson\n\n\nFirst suggested by Francis Galton in 1886 while studying genetic variations in sweet peas over several generations\nKarl Pearson developed the mathematical formula for multiple linear regression model later (early 1900s)\n\n\n\n“The somewhat complicated mathematics of multiple correlation, with its repeated appeals to the geometrical notions of hyperspace, remained a closed chamber to him.”\n\n– Pearson (1930), on Galton’s work with MLR"
-  },
-  {
-    "objectID": "lectures/L11/lecture-11.html#steps-for-regression",
-    "href": "lectures/L11/lecture-11.html#steps-for-regression",
-    "title": "Topic 11 – Multiple Linear Regression",
-    "section": "Steps for Regression",
-    "text": "Steps for Regression\n\nUnderstand the variables\nExplore data\nFit model\nCheck assumptions\nAssess fit of model/s (parsimony)\nInterpret output"
+    "text": "History\n\n\n \nFrancis Galton and Karl Pearson\n\n\nFirst suggested by Francis Galton in 1886 while studying genetic variations in sweet peas over several generations\nKarl Pearson developed the mathematical formula for multiple linear regression model later (early 1900s)\n\n\n\n“The somewhat complicated mathematics of multiple correlation, with its repeated appeals to the geometrical notions of hyperspace, remained a closed chamber to him.”\n\n– Pearson (1930), on Galton’s work with MLR\nRegression workflow\n\nUnderstand the variables: Which is the response variable? Is there a reason to believe a causal relationship?\nExplore data: How many observations? Summary statistics? Scatterplot and correlation?\nFit model\nCheck assumptions: Remember - it’s about the residuals! If assumptions fail, try transforming and refit the model. If assumptions still fail, consider another model.\nAssess model fit: Hypothesis test, significance, F-statistic, p-value. R2, how much model variation was explained by the model. Parsimony\nInterpret output: ‘For every one-unit increase in x, y increases by \\(\\beta_1\\) units…’ and any additional research/insight. different for MLR"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#example-air-quality-in-new-york-1973",
@@ -466,7 +459,14 @@
     "href": "lectures/L11/lecture-11.html#principle-of-parsimony",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Principle of parsimony",
-    "text": "Principle of parsimony\n\nAlso known as Occam’s razor;\n\n\nEntia non sunt multiplicanda praeter necessitatem. “Entities should not be multiplied without necessity.”\n\n\nOxford definition;\n\n\nThe most acceptable explanation of an occurrence, phenomenon, or event is the simplest, involving the fewest entities, assumptions, or changes.\n\n\nSimple is best; i.e. if a simple (one variable) model and a complex (many variables) model predict similarly well, the simple model is preferred.\n\n\nA parsimonius model:\n\nHas only useful predictors\nNo redundant predictors"
+    "text": "Principle of parsimony\n\nAlso known as Occam’s razor;\n\n\nEntia non sunt multiplicanda praeter necessitatem. “Entities should not be multiplied without necessity.”\n\n\nOxford definition;\n\n\nThe most acceptable explanation of an occurrence, phenomenon, or event is the simplest, involving the fewest entities, assumptions, or changes."
+  },
+  {
+    "objectID": "lectures/L11/lecture-11.html#parsimony-in-regression-modeling",
+    "href": "lectures/L11/lecture-11.html#parsimony-in-regression-modeling",
+    "title": "Topic 11 – Multiple Linear Regression",
+    "section": "Parsimony in regression modeling",
+    "text": "Parsimony in regression modeling\n\nSimple is best; i.e. if a simple (one variable) model and a complex (many variables) model predict similarly well, the simple model is preferred.\n\n\nA parsimonius model:\n\nHas only useful predictors\nNo redundant predictors"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#the-problem-with-using-too-many-predictors",
@@ -480,35 +480,49 @@
     "href": "lectures/L11/lecture-11.html#the-multiple-linear-regression-model",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "The multiple linear regression model",
-    "text": "The multiple linear regression model\nAn extension of simple linear regression to include more than one predictor variable: “How does \\(y\\) change as \\(x_1\\), \\(x_2\\), …, \\(x_k\\) change?”\n\\[ Y_i = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + ... + \\beta_k x_k + \\epsilon_i \\]\n\nTherefore, estimating the model involves estimating the values of \\(\\beta_0\\), \\(\\beta_1\\), \\(\\beta_2\\), …, \\(\\beta_k\\).\n\n\\(\\beta_0\\) is the intercept\n\\(\\beta_1\\) to \\(\\beta_k\\) are the partial regression coefficients\n\\(\\epsilon\\) is the error (residual) term\n\n\n\nFit MLR model to Air Quality data\nThe variables Month and Day are not useful predictors, so we will exclude them from the model.\n\n\nCode\nfit_multi &lt;- lm(formula = Ozone ~ Solar.R + Wind + Temp, data = airquality)\n# fit_multi &lt;- lm(formula = Ozone ~ .-Month -Day, data = airquality) # all variables excluding Month and Day"
+    "text": "The multiple linear regression model\nAn extension of simple linear regression to include more than one predictor variable: “How does \\(y\\) change as \\(x_1\\), \\(x_2\\), …, \\(x_k\\) change?”\n\\[ Y_i = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + ... + \\beta_k x_k + \\epsilon_i \\]\n\nTherefore, estimating the model involves estimating the values of \\(\\beta_0\\), \\(\\beta_1\\), \\(\\beta_2\\), …, \\(\\beta_k\\).\n\n\\(\\beta_0\\) is the intercept\n\\(\\beta_1\\) to \\(\\beta_k\\) are the partial regression coefficients\n\\(\\epsilon\\) is the error (residual) term"
   },
   {
-    "objectID": "lectures/L11/lecture-11.html#visualisation-not-easy",
-    "href": "lectures/L11/lecture-11.html#visualisation-not-easy",
+    "objectID": "lectures/L11/lecture-11.html#fit-mlr-model-to-air-quality-data",
+    "href": "lectures/L11/lecture-11.html#fit-mlr-model-to-air-quality-data",
     "title": "Topic 11 – Multiple Linear Regression",
-    "section": "Visualisation: not easy",
-    "text": "Visualisation: not easy\nAre the plots useful?\n3D plot\n\n\nCode\nlibrary(plotly)\nplot_ly(data = airquality,\n  x = ~Temp, y = ~Ozone, z = ~Solar.R,\n  type = \"scatter3d\", mode = \"markers\", opacity = 0.5)"
+    "section": "Fit MLR model to Air Quality data",
+    "text": "Fit MLR model to Air Quality data\nThe variables Month and Day are not useful predictors, so we will exclude them from the model.\n\n\nCode\nfit_multi &lt;- lm(formula = Ozone ~ Solar.R + Wind + Temp, data = airquality)\n# fit_multi &lt;- lm(formula = Ozone ~ .-Month -Day, data = airquality) # all variables excluding Month and Day"
   },
   {
-    "objectID": "lectures/L11/lecture-11.html#visualisation-not-easy-1",
-    "href": "lectures/L11/lecture-11.html#visualisation-not-easy-1",
+    "objectID": "lectures/L11/lecture-11.html#visualisation-is-not-easy-are-the-plots-useful",
+    "href": "lectures/L11/lecture-11.html#visualisation-is-not-easy-are-the-plots-useful",
     "title": "Topic 11 – Multiple Linear Regression",
-    "section": "Visualisation: not easy",
-    "text": "Visualisation: not easy\nAre the plots useful?\n4D plot\n\n\nCode\nlibrary(plotly)\nplot_ly(data = airquality,\n  x = ~Temp, y = ~Ozone, z = ~Solar.R, color = ~Wind,\n  type = \"scatter3d\", mode = \"markers\", opacity = 0.5)"
+    "section": "Visualisation is not easy: are the plots useful?",
+    "text": "Visualisation is not easy: are the plots useful?\n3D plot\n\n\nCode\nlibrary(plotly)\nplot_ly(data = airquality,\n  x = ~Temp, y = ~Ozone, z = ~Solar.R,\n  type = \"scatter3d\", mode = \"markers\", opacity = 0.5)"
+  },
+  {
+    "objectID": "lectures/L11/lecture-11.html#visualisation-is-not-easy-are-the-plots-useful-1",
+    "href": "lectures/L11/lecture-11.html#visualisation-is-not-easy-are-the-plots-useful-1",
+    "title": "Topic 11 – Multiple Linear Regression",
+    "section": "Visualisation is not easy: are the plots useful?",
+    "text": "Visualisation is not easy: are the plots useful?\n4D plot\n\n\nCode\nlibrary(plotly)\nplot_ly(data = airquality,\n  x = ~Temp, y = ~Ozone, z = ~Solar.R, color = ~Wind,\n  type = \"scatter3d\", mode = \"markers\", opacity = 0.5)"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#partial-regression-coefficients",
     "href": "lectures/L11/lecture-11.html#partial-regression-coefficients",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Partial regression coefficients",
-    "text": "Partial regression coefficients\nGiven the multiple linear model: \\[ Y_i = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + ... + \\beta_k x_k + \\epsilon_i \\]\nThe partial regression coefficient for a predictor \\(x_i\\) is the amount by which the response variable \\(Y\\) changes when \\(x_k\\) is increased by one unit, while all other predictors are held constant.\n\\[ \\beta_k = \\frac{\\Delta Y}{\\Delta x_k} \\]\n\n\n\nCode\nequatiomatic::extract_eq(fit_multi)\n\n\n\\[\n\\operatorname{Ozone} = \\alpha + \\beta_{1}(\\operatorname{Solar.R}) + \\beta_{2}(\\operatorname{Wind}) + \\beta_{3}(\\operatorname{Temp}) + \\epsilon\n\\]\n\n\n\nWith Wind and Solar.R held constant, how does Temp affect Ozone?"
+    "text": "Partial regression coefficients\nGiven the multiple linear model: \\[ Y_i = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + ... + \\beta_k x_k + \\epsilon_i \\]\nThe partial regression coefficient for a predictor \\(x_i\\) is the amount by which the response variable \\(Y\\) changes when \\(x_k\\) is increased by one unit, while all other predictors are held constant.\n\\[ \\beta_k = \\frac{\\Delta Y}{\\Delta x_k} \\]"
+  },
+  {
+    "objectID": "lectures/L11/lecture-11.html#partial-regression-coefficients-air-quality-example",
+    "href": "lectures/L11/lecture-11.html#partial-regression-coefficients-air-quality-example",
+    "title": "Topic 11 – Multiple Linear Regression",
+    "section": "Partial regression coefficients: Air quality example",
+    "text": "Partial regression coefficients: Air quality example\n\n\nCode\nequatiomatic::extract_eq(fit_multi)\n\n\n\\[\n\\operatorname{Ozone} = \\alpha + \\beta_{1}(\\operatorname{Solar.R}) + \\beta_{2}(\\operatorname{Wind}) + \\beta_{3}(\\operatorname{Temp}) + \\epsilon\n\\]\n\n\n\nWith Wind and Solar.R held constant, how does Temp affect Ozone?"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#partial-regression-coefficients-visualisation",
     "href": "lectures/L11/lecture-11.html#partial-regression-coefficients-visualisation",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Partial regression coefficients: visualisation",
-    "text": "Partial regression coefficients: visualisation\n\n\nCode\nsjPlot::plot_model(fit_multi,\n  type = \"pred\", \n  terms = c(\"Temp\", \"Solar.R\", \"Wind\"), \n  ci.lvl = NA)\n\n\n\n\nWith Wind and Solar.R held constant, how does Temp affect Ozone?\n\n\n\n\n\n\n\nNote\n\n\nNot necessary to do this - lecture content only."
+    "text": "Partial regression coefficients: visualisation\n\n\nCode\nsjPlot::plot_model(fit_multi,\n  type = \"pred\", \n  terms = c(\"Temp\", \"Solar.R\", \"Wind\"), \n  ci.lvl = NA)\n\n\n\n\nWith Wind and Solar.R held constant, how does Temp affect Ozone?"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#interpreting-the-partial-regression-coefficients",
@@ -529,28 +543,42 @@
     "href": "lectures/L11/lecture-11.html#assumptions---cline",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Assumptions - CLINE",
-    "text": "Assumptions - CLINE\nAs with Simple Linear Regression, we need to check the assumptions of the model (LINE):\n\nLinearity: the relationships between the response and the predictors are all linear.\nIndependence: the observations are independent of each other.\nNormality: the residuals are normally distributed.\nEqual variance: the variance of the residuals is constant.\n\nWith one extra assumption!\n\nCollinearity: there is no perfect linearity between predictors\n\nTwo predictors that have a perfect linear relationship (i.e. \\(r\\) = 1 or -1) breaks the assumption of collinearity. High (but not perfect) collinearity (e.g. strong/very strong \\(r\\)) does not break the assumption but can lead to unstable estimates and large standard errors.\n\nThe largest correlation between the predictors is between Temp and Wind (\\(r\\) = -0.5). This is not a problem."
+    "text": "Assumptions - CLINE\nAs with Simple Linear Regression, we need to check the assumptions of the model (LINE):\n\nLinearity: the relationships between the response and the predictors are all linear.\nIndependence: the observations are independent of each other.\nNormality: the residuals are normally distributed.\nEqual variance: the variance of the residuals is constant.\n\nWith one extra assumption!\n\nCollinearity: there is no perfect linearity between predictors"
   },
   {
-    "objectID": "lectures/L11/lecture-11.html#assumptions-of-mlr",
-    "href": "lectures/L11/lecture-11.html#assumptions-of-mlr",
+    "objectID": "lectures/L11/lecture-11.html#collinearity-assumption",
+    "href": "lectures/L11/lecture-11.html#collinearity-assumption",
     "title": "Topic 11 – Multiple Linear Regression",
-    "section": "Assumptions of MLR",
-    "text": "Assumptions of MLR\n\n\nCode\npar(mfrow = c(2, 2)) # set up a 2 x 2 grid for plots\nplot(fit_multi)"
+    "section": "Collinearity assumption",
+    "text": "Collinearity assumption\nTwo predictors that have a perfect linear relationship (i.e. \\(r\\) = 1 or -1) breaks the assumption of collinearity.\nHigh (but not perfect) collinearity (e.g. strong/very strong \\(r\\)) does not break the assumption but can lead to unstable estimates and large standard errors.\n\nThe largest correlation between the predictors is between Temp and Wind (\\(r\\) = -0.5). This is not a problem."
+  },
+  {
+    "objectID": "lectures/L11/lecture-11.html#lets-check-our-assumptions-for-the-air-quality-model",
+    "href": "lectures/L11/lecture-11.html#lets-check-our-assumptions-for-the-air-quality-model",
+    "title": "Topic 11 – Multiple Linear Regression",
+    "section": "Let’s check our assumptions for the Air quality model",
+    "text": "Let’s check our assumptions for the Air quality model\n\n\nCode\npar(mfrow = c(2, 2)) # set up a 2 x 2 grid for plots\nplot(fit_multi)\n\n\n\n\nSome evidence of non-linearity in the diagnostic plots. We need to transform and re-check assumptions."
   },
   {
     "objectID": "lectures/L11/lecture-11.html#transformation-using-log",
     "href": "lectures/L11/lecture-11.html#transformation-using-log",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Transformation using log()",
-    "text": "Transformation using log()\nSome evidence of non-linearity in the diagnostic plots. Transform and re-check assumptions.\n\n\n\nCode\nfit_multi_log &lt;- lm(formula = log(Ozone) ~ Solar.R + Wind + Temp, data = airquality)\npar(mfrow = c(2, 2)) # set up a 2 x 2 grid for plots\nplot(fit_multi_log)"
+    "text": "Transformation using log()\n\n\nCode\nfit_multi_log &lt;- lm(formula = log(Ozone) ~ Solar.R + Wind + Temp, data = airquality)\npar(mfrow = c(2, 2)) # set up a 2 x 2 grid for plots\nplot(fit_multi_log)\n\n\n\n\nThe assumptions are met, let’s move onto interpretation."
   },
   {
     "objectID": "lectures/L11/lecture-11.html#results-mlr-vs-slr",
     "href": "lectures/L11/lecture-11.html#results-mlr-vs-slr",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Results – MLR vs SLR",
-    "text": "Results – MLR vs SLR\n\n\n\n\nCode\nsummary(fit_multi_log)\n\n\n\nCall:\nlm(formula = log(Ozone) ~ Solar.R + Wind + Temp, data = airquality)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-2.06193 -0.29970 -0.00231  0.30756  1.23578 \n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.2621323  0.5535669  -0.474 0.636798    \nSolar.R      0.0025152  0.0005567   4.518 1.62e-05 ***\nWind        -0.0615625  0.0157130  -3.918 0.000158 ***\nTemp         0.0491711  0.0060875   8.077 1.07e-12 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.5086 on 107 degrees of freedom\n  (42 observations deleted due to missingness)\nMultiple R-squared:  0.6644,    Adjusted R-squared:  0.655 \nF-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16\n\n\n\n\n\nCode\nsummary(fit)\n\n\n\nCall:\nlm(formula = Ozone ~ Temp, data = airquality)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-40.729 -17.409  -0.587  11.306 118.271 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -146.9955    18.2872  -8.038 9.37e-13 ***\nTemp           2.4287     0.2331  10.418  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 23.71 on 114 degrees of freedom\n  (37 observations deleted due to missingness)\nMultiple R-squared:  0.4877,    Adjusted R-squared:  0.4832 \nF-statistic: 108.5 on 1 and 114 DF,  p-value: &lt; 2.2e-16\n\n\n\n\nAll three predictors are statistically significant (p &lt; .001).\nThe MLR model explains 66% of variance (adjusted R2 = 0.66), whereas the SLR explains 48% of variance (multiple R2 = 0.48).\nThus the MLR is the better model."
+    "text": "Results – MLR vs SLR\n\n\n\n\nCode\nsummary(fit_multi_log)\n\n\n\nCall:\nlm(formula = log(Ozone) ~ Solar.R + Wind + Temp, data = airquality)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-2.06193 -0.29970 -0.00231  0.30756  1.23578 \n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.2621323  0.5535669  -0.474 0.636798    \nSolar.R      0.0025152  0.0005567   4.518 1.62e-05 ***\nWind        -0.0615625  0.0157130  -3.918 0.000158 ***\nTemp         0.0491711  0.0060875   8.077 1.07e-12 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.5086 on 107 degrees of freedom\n  (42 observations deleted due to missingness)\nMultiple R-squared:  0.6644,    Adjusted R-squared:  0.655 \nF-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16\n\n\n\n\n\nCode\nsummary(fit)\n\n\n\nCall:\nlm(formula = Ozone ~ Temp, data = airquality)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-40.729 -17.409  -0.587  11.306 118.271 \n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -146.9955    18.2872  -8.038 9.37e-13 ***\nTemp           2.4287     0.2331  10.418  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 23.71 on 114 degrees of freedom\n  (37 observations deleted due to missingness)\nMultiple R-squared:  0.4877,    Adjusted R-squared:  0.4832 \nF-statistic: 108.5 on 1 and 114 DF,  p-value: &lt; 2.2e-16"
+  },
+  {
+    "objectID": "lectures/L11/lecture-11.html#results-mlr-vs-slr-1",
+    "href": "lectures/L11/lecture-11.html#results-mlr-vs-slr-1",
+    "title": "Topic 11 – Multiple Linear Regression",
+    "section": "Results – MLR vs SLR",
+    "text": "Results – MLR vs SLR\n\nAll three predictors are statistically significant (p &lt; .001).\nThe MLR model explains 66% of variation in log(Ozone) (adjusted R2 = 0.66), whereas the SLR explains 48% of variation in log(Ozone) (multiple R2 = 0.48).\nThus the MLR is the better model."
   },
   {
     "objectID": "lectures/L11/lecture-11.html#hypothesis-testing",
@@ -564,35 +592,42 @@
     "href": "lectures/L11/lecture-11.html#interpreting-coefficients",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Interpreting coefficients",
-    "text": "Interpreting coefficients\nCall:\nlm(formula = log(Ozone) ~ Solar.R + Wind + Temp, data = airquality)\n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.2621323  0.5535669  -0.474 0.636798    \nSolar.R      0.0025152  0.0005567   4.518 1.62e-05 ***\nWind        -0.0615625  0.0157130  -3.918 0.000158 ***\nTemp         0.0491711  0.0060875   8.077 1.07e-12 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\nAll three predictors are statistically significant (p &lt; .001). Holding all other variables constant:\n\nFor every 1 unit increase in Solar.R, log(Ozone) increases by a mean value of 0.0025,\nFor every 1 unit increase in Wind, log(Ozone) decreases by a mean value of 0.062,\nFor every 1 degree increase in Temp, log(Ozone) increases by a mean value of 0.049.\n\nOR\n\nFor every 1 unit increase in Solar.R, Ozone increases by approximately a mean value of 0.25%,\nFor every 1 unit increase in Wind, Ozone decreases by approximately a mean value of 6.2%,\nFor every 1 degree increase in Temp, Ozone increases by approximately a mean value of 4.9%."
+    "text": "Interpreting coefficients\nCall:\nlm(formula = log(Ozone) ~ Solar.R + Wind + Temp, data = airquality)\n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.2621323  0.5535669  -0.474 0.636798    \nSolar.R      0.0025152  0.0005567   4.518 1.62e-05 ***\nWind        -0.0615625  0.0157130  -3.918 0.000158 ***\nTemp         0.0491711  0.0060875   8.077 1.07e-12 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\nAll three predictors are statistically significant (p &lt; .001). Holding all other variables constant:\n\nFor every 1 unit increase in Solar.R, log(Ozone) increases by a mean value of 0.0025,\nFor every 1 unit increase in Wind, log(Ozone) decreases by a mean value of 0.062,\nFor every 1 degree increase in Temp, log(Ozone) increases by a mean value of 0.049."
+  },
+  {
+    "objectID": "lectures/L11/lecture-11.html#interpreting-coefficients---backtransformed-approximation",
+    "href": "lectures/L11/lecture-11.html#interpreting-coefficients---backtransformed-approximation",
+    "title": "Topic 11 – Multiple Linear Regression",
+    "section": "Interpreting coefficients - backtransformed approximation",
+    "text": "Interpreting coefficients - backtransformed approximation\nCall:\nlm(formula = log(Ozone) ~ Solar.R + Wind + Temp, data = airquality)\n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) -0.2621323  0.5535669  -0.474 0.636798    \nSolar.R      0.0025152  0.0005567   4.518 1.62e-05 ***\nWind        -0.0615625  0.0157130  -3.918 0.000158 ***\nTemp         0.0491711  0.0060875   8.077 1.07e-12 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nFor every 1 unit increase in Solar.R, Ozone increases by approximately a mean value of 0.25%,\nFor every 1 unit increase in Wind, Ozone decreases by approximately a mean value of 6.2%,\nFor every 1 degree increase in Temp, Ozone increases by approximately a mean value of 4.9%."
   },
   {
     "objectID": "lectures/L11/lecture-11.html#model-fit",
     "href": "lectures/L11/lecture-11.html#model-fit",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Model fit",
-    "text": "Model fit\nCall:\nlm(formula = log(Ozone) ~ Solar.R + Wind + Temp, data = airquality)\n\nResidual standard error: 0.5086 on 107 degrees of freedom\n  (42 observations deleted due to missingness)\nMultiple R-squared:  0.6644,    Adjusted R-squared:  0.655 \nF-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16\nOn average, the model predicts log(Ozone) within 0.51 ppb (residual standard error) of the true value. Not bad?\n\n\n\nCode\nexp(0.51) #backtransform\n\n\n[1] 1.665291\n\n\n\nOn average, the model predicts Ozone within 1.67 ppb of the true value.\nDegrees of freedom (107) = number of observations (111) - number of parameters in the model (3 predictors and 1 intercept)\n\n\n\nIf there are &gt;1 predictors, use the adjusted R-Squared as it penalises the model for having more predictors that are not useful.\n\nThe MLR model explains 66% of variance (adjusted R2 = 0.66)"
+    "text": "Model fit\nCall:\nlm(formula = log(Ozone) ~ Solar.R + Wind + Temp, data = airquality)\n\nResidual standard error: 0.5086 on 107 degrees of freedom\n  (42 observations deleted due to missingness)\nMultiple R-squared:  0.6644,    Adjusted R-squared:  0.655 \nF-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16\nOn average, the model predicts log(Ozone) within 0.51 ppb (residual standard error) of the true value. Not bad?\n\n\n\nCode\nexp(0.51) #backtransform\n\n\n[1] 1.665291\n\n\n\nOn average, the model predicts Ozone within 1.67 ppb of the true value.\n\n\n\n\nDegrees of freedom (107) = number of observations (111) - number of parameters in the model (3 predictors and 1 intercept)\n\n\n\n\nThe MLR model explains 66% of variation in log(Ozone) (adjusted R2 = 0.66)"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#the-r2-value",
     "href": "lectures/L11/lecture-11.html#the-r2-value",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "The R2 value",
-    "text": "The R2 value\nThe R-squared value is the proportion of variance explained by the model.\n\\[ R^2 = \\frac{SS_{reg}}{SS_{tot}} = 1 - \\frac{SS_{res}}{SS_{tot}} \\]\nThe adjusted R-squared value is the proportion of variance explained by the model, adjusted for the number of predictors.\n\\[ R^2_{adj} = 1 - \\frac{SS_{res}}{SS_{tot}} \\frac{n-1}{n-p-1} \\]\nwhere \\(n\\) is the number of observations and \\(p\\) is the number of predictors."
+    "text": "The R2 value\nThe R-squared value is the proportion of variance explained by the model.\n\\[ R^2 = \\frac{SS_{reg}}{SS_{tot}} = 1 - \\frac{SS_{res}}{SS_{tot}} \\]\n\nThe adjusted R-squared value is the proportion of variance explained by the model, adjusted for the number of predictors.\n\\[ R^2_{adj} = 1 - \\frac{SS_{res}}{SS_{tot}} \\frac{n-1}{n-p-1} \\]\nwhere \\(n\\) is the number of observations and \\(p\\) is the number of predictors."
   },
   {
-    "objectID": "lectures/L11/lecture-11.html#f-stat",
-    "href": "lectures/L11/lecture-11.html#f-stat",
+    "objectID": "lectures/L11/lecture-11.html#f-statistic",
+    "href": "lectures/L11/lecture-11.html#f-statistic",
     "title": "Topic 11 – Multiple Linear Regression",
-    "section": "F-stat",
-    "text": "F-stat\nCall:\nlm(formula = log(Ozone) ~ Solar.R + Wind + Temp, data = airquality)\n\nMultiple R-squared:  0.6644,    Adjusted R-squared:  0.655 \nF-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16\n\nThe F-statistic tests the null hypothesis that all the regression coefficients are equal to zero, i.e. \\(H_0: \\beta_1 = \\beta_2 = ... = \\beta_k = 0\\).\nAs a ratio, it tells us how much better the model is than the null model (i.e. a model with no predictors, the mean).\nIf the p-value is less than our specified critical value (e.g. 0.05), we reject the null hypothesis and conclude that the current model is better than the null model."
+    "section": "F-statistic",
+    "text": "F-statistic\nCall:\nlm(formula = log(Ozone) ~ Solar.R + Wind + Temp, data = airquality)\n\nMultiple R-squared:  0.6644,    Adjusted R-squared:  0.655 \nF-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16\n\nThe F-statistic tests the null hypothesis that all the regression coefficients are equal to zero, i.e. \\(H_0: \\beta_1 = \\beta_2 = ... = \\beta_k = 0\\).\n\n\n\nAs a ratio, it tells us how much better the model is than the null model (i.e. a model with no predictors, the mean).\n\n\n\n\nIf the p-value is less than our specified critical value (e.g. 0.05), we reject the null hypothesis and conclude that the current model is better than the null model."
   },
   {
     "objectID": "lectures/L11/lecture-11.html#reporting",
     "href": "lectures/L11/lecture-11.html#reporting",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Reporting",
-    "text": "Reporting\nA quick (but not complete) summary:\n\nNew York air quality data was collected in 1973 by the New York State Department of Conservation and the National Weather Service (meteorological data). There were 111 observations of 6 variables.\nThere were non-linear relationships between Ozone (the response) and Temp, Wind and Solar.R (the predictors), hence a natural log transformation was applied to Ozone.\nMultiple linear regression was conducted on these variables, and model assumptions (CLINE) were met.\nSolar radiation, wind speed and temperature are significant predictors of Ozone concentration (p &lt; 0.001) with the model accounting for 66% of the variation in log(Ozone). The model explained more variance than a one-predictor model and was found to be significantly better than the null model."
+    "text": "Reporting\nA quick (but not complete) summary:\n\n\nNew York air quality data was collected in 1973 by the New York State Department of Conservation and the National Weather Service (meteorological data). There were 111 observations of 6 variables.\n\n\n\n\nThere were non-linear relationships between Ozone (the response) and Temp, Wind and Solar.R (the predictors), hence a natural log transformation was applied to Ozone.\n\n\n\n\nMultiple linear regression was conducted on these variables, and model assumptions (CLINE) were met.\n\n\n\n\nSolar radiation, wind speed and temperature are significant predictors of Ozone concentration (p &lt; 0.001) with the model accounting for 66% of the variation in log(Ozone). The model explained more variation than a single-predictor model and was found to be significantly better than the null model."
   },
   {
     "objectID": "lectures/L11/lecture-11.html#context",
@@ -641,7 +676,7 @@
     "href": "lectures/L11/lecture-11.html#summary",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "Summary",
-    "text": "Summary\n\n\nMultiple Linear Regression\n\nMore than one predictor\nFit y to multiple x – multiple dimensions (hyperplane)\nPrinciple: minimise sum of squared residuals\nAssumptions: CLINE (collinearity)\nAdjusted R-squared\n\n\nSimple Linear Regression\n\nOne predictor, fit a straight line\nFit straight line between y and x\nPrinciple: minimise sum of squared residuals\nAssumptions: LINE\nMultiple R-squared"
+    "text": "Summary\n\n\nSimple Linear Regression\n\nOne predictor, fit a straight line\nFit straight line between y and x\nPrinciple: minimise sum of squared residuals\nAssumptions: LINE\nMultiple R-squared\n\n\nMultiple Linear Regression\n\nMore than one predictor\nFit y to multiple x – multiple dimensions (hyperplane)\nPrinciple: minimise sum of squared residuals\nAssumptions: CLINE (collinearity)\nAdjusted R-squared"
   },
   {
     "objectID": "lectures/L11/abalone-quiz.html#introduction",

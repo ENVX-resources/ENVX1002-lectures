@@ -9,7 +9,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.26">
 
-  <meta name="author" content="Si Yang Han">
+  <meta name="author" content="Liana Pozza">
   <title>Topic 11 – Multiple Linear Regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -209,7 +209,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Si Yang Han 
+Liana Pozza 
 </div>
         <p class="quarto-title-affiliation">
             The University of Sydney
@@ -235,13 +235,13 @@ Si Yang Han
 <li><span style="color: #D0D3D4;">Week 9. Describing Relationships</span>
 <ul>
 <li><span style="color: #D0D3D4;">Correlation (calculation, interpretation)</span></li>
-<li><span style="color: #D0D3D4;">Regression (model structure, model fitting</span></li>
+<li><span style="color: #D0D3D4;">Regression (model structure, model fitting)</span></li>
 <li><span style="color: #D0D3D4;">What/when/why/how</span></li>
 </ul></li>
 <li><span style="color: #D0D3D4;">Week 10. Simple Linear Regression</span>
 <ul>
-<li><span style="color: #D0D3D4;">Can we use the model?(assumptions, hypothesis testing)</span></li>
-<li><span style="color: #D0D3D4;">How good is the model?(interpretation, model fit)</span></li>
+<li><span style="color: #D0D3D4;">Can we use the model? (assumptions, hypothesis testing)</span></li>
+<li><span style="color: #D0D3D4;">How good is the model? (interpretation, model fit)</span></li>
 </ul></li>
 <li><strong>Week 11. Multiple Linear Regression</strong>
 <ul>
@@ -263,6 +263,7 @@ Si Yang Han
 <li>Identify/quantify relationships between variables</li>
 <li>Predict future values</li>
 </ul>
+<p><br></p>
 <div class="fragment">
 <h3 id="what-if-we-have-more-than-one-predictor">What if we have more than one predictor?</h3>
 <p>What is the model and how do we interpret the results?</p>
@@ -271,11 +272,9 @@ Si Yang Han
 <section>
 <section id="multiple-linear-regression" class="title-slide slide level1 center">
 <h1>Multiple linear regression</h1>
-<blockquote>
 <p>Nearly identical to simple linear regression, just more predictors!</p>
-</blockquote>
 </section>
-<section id="history" class="slide level2">
+<section id="history" class="slide level2 scrollable">
 <h2>History</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -291,16 +290,14 @@ Si Yang Han
 <p><em>“The somewhat complicated mathematics of multiple correlation, with its repeated appeals to the geometrical notions of hyperspace, remained a closed chamber to him.”</em></p>
 </blockquote>
 <p>– Pearson (1930), on Galton’s work with MLR</p>
-</section>
-<section id="steps-for-regression" class="slide level2 scrollable">
-<h2>Steps for Regression</h2>
+<h3 id="regression-workflow">Regression workflow</h3>
 <ol type="1">
-<li>Understand the variables</li>
-<li>Explore data</li>
-<li>Fit model</li>
-<li>Check assumptions</li>
-<li>Assess fit of model/s (parsimony)</li>
-<li>Interpret output</li>
+<li><p><strong>Understand the variables</strong>: Which is the response variable? Is there a reason to believe a causal relationship?</p></li>
+<li><p><strong>Explore data</strong>: How many observations? Summary statistics? Scatterplot and correlation?</p></li>
+<li><p><strong>Fit model</strong></p></li>
+<li><p><strong>Check assumptions</strong>: Remember - it’s about the residuals! If assumptions fail, try transforming and refit the model. If assumptions still fail, consider another model.</p></li>
+<li><p><strong>Assess model fit</strong>: Hypothesis test, significance, F-statistic, p-value. R<sup>2</sup>, how much model variation was explained by the model. <strong>Parsimony</strong></p></li>
+<li><p><strong>Interpret output</strong>: ‘For every one-unit increase in x, y increases by <span class="math inline">\(\beta_1\)</span> units…’ and any additional research/insight. <strong>different for MLR</strong></p></li>
 </ol>
 </section>
 <section id="example-air-quality-in-new-york-1973" class="slide level2">
@@ -515,6 +512,9 @@ F-statistic: 108.5 on 1 and 114 DF,  p-value: &lt; 2.2e-16</code></pre>
 <blockquote>
 <p>The most acceptable explanation of an occurrence, phenomenon, or event is the simplest, involving the fewest entities, assumptions, or changes.</p>
 </blockquote>
+</section>
+<section id="parsimony-in-regression-modeling" class="slide level2">
+<h2>Parsimony in regression modeling</h2>
 <ul>
 <li>Simple is best; i.e.&nbsp;if a simple (one variable) model and a complex (many variables) model predict similarly well, the simple model is preferred.</li>
 </ul>
@@ -547,40 +547,38 @@ F-statistic: 108.5 on 1 and 114 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li><span class="math inline">\(\epsilon\)</span> is the error (residual) term</li>
 </ul>
 </div>
-<div class="fragment">
-<h3 id="fit-mlr-model-to-air-quality-data">Fit MLR model to Air Quality data</h3>
+</section>
+<section id="fit-mlr-model-to-air-quality-data" class="slide level2">
+<h2>Fit MLR model to Air Quality data</h2>
 <p>The variables <code>Month</code> and <code>Day</code> are not useful predictors, so we will exclude them from the model.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb15-1" class="hljs-ln-code"><a></a>fit_multi <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> Ozone <span class="sc">~</span> Solar.R <span class="sc">+</span> Wind <span class="sc">+</span> Temp, <span class="at">data =</span> airquality)</span>
-<span id="cb15-2" class="hljs-ln-code"><a></a><span class="co"># fit_multi &lt;- lm(formula = Ozone ~ .-Month -Day, data = airquality) # all variables excluding Month and Day</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>fit_multi <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> Ozone <span class="sc">~</span> Solar.R <span class="sc">+</span> Wind <span class="sc">+</span> Temp, <span class="at">data =</span> airquality)</span>
+<span id="cb15-2"><a></a><span class="co"># fit_multi &lt;- lm(formula = Ozone ~ .-Month -Day, data = airquality) # all variables excluding Month and Day</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</div>
 </section>
-<section id="visualisation-not-easy" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Visualisation: not easy</h2>
-<p>Are the plots useful?</p>
-<h3 id="d-plot">3D plot</h3>
+<section id="visualisation-is-not-easy-are-the-plots-useful" class="slide level2">
+<h2>Visualisation is not easy: are the plots useful?</h2>
+<p>3D plot</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb16-1" class="hljs-ln-code"><a></a><span class="fu">library</span>(plotly)</span>
-<span id="cb16-2" class="hljs-ln-code"><a></a><span class="fu">plot_ly</span>(<span class="at">data =</span> airquality,</span>
-<span id="cb16-3" class="hljs-ln-code"><a></a>  <span class="at">x =</span> <span class="sc">~</span>Temp, <span class="at">y =</span> <span class="sc">~</span>Ozone, <span class="at">z =</span> <span class="sc">~</span>Solar.R,</span>
-<span id="cb16-4" class="hljs-ln-code"><a></a>  <span class="at">type =</span> <span class="st">"scatter3d"</span>, <span class="at">mode =</span> <span class="st">"markers"</span>, <span class="at">opacity =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">library</span>(plotly)</span>
+<span id="cb16-2"><a></a><span class="fu">plot_ly</span>(<span class="at">data =</span> airquality,</span>
+<span id="cb16-3"><a></a>  <span class="at">x =</span> <span class="sc">~</span>Temp, <span class="at">y =</span> <span class="sc">~</span>Ozone, <span class="at">z =</span> <span class="sc">~</span>Solar.R,</span>
+<span id="cb16-4"><a></a>  <span class="at">type =</span> <span class="st">"scatter3d"</span>, <span class="at">mode =</span> <span class="st">"markers"</span>, <span class="at">opacity =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div class="plotly html-widget html-fill-item" id="htmlwidget-5e2203b4dfcdf5358656" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-5e2203b4dfcdf5358656">{"x":{"visdat":{"e52c920429a":["function () ","plotlyVisDat"]},"cur_data":"e52c920429a","attrs":{"e52c920429a":{"x":{},"y":{},"z":{},"mode":"markers","opacity":0.5,"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"Temp"},"yaxis":{"title":"Ozone"},"zaxis":{"title":"Solar.R"}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[67,72,74,62,65,59,61,69,66,68,58,64,66,57,68,62,59,73,61,61,67,81,79,76,82,90,87,82,77,72,65,73,76,84,85,81,83,83,88,92,92,89,73,81,80,81,82,84,87,85,74,86,85,82,86,88,86,83,81,81,81,82,89,90,90,86,82,80,77,79,76,78,78,77,72,79,81,86,97,94,96,94,91,92,93,93,87,84,80,78,75,73,81,76,77,71,71,78,67,76,68,82,64,71,81,69,63,70,75,76,68],"y":[41,36,12,18,23,19,8,16,11,14,18,14,34,6,30,11,1,11,4,32,23,45,115,37,29,71,39,23,21,37,20,12,13,135,49,32,64,40,77,97,97,85,10,27,7,48,35,61,79,63,16,80,108,20,52,82,50,64,59,39,9,16,122,89,110,44,28,65,22,59,23,31,44,21,9,45,168,73,76,118,84,85,96,78,73,91,47,32,20,23,21,24,44,21,28,9,13,46,18,13,24,16,13,23,36,7,14,30,14,18,20],"z":[190,118,149,313,299,99,19,256,290,274,65,334,307,78,322,44,8,320,25,92,13,252,223,279,127,291,323,148,191,284,37,120,137,269,248,236,175,314,276,267,272,175,264,175,48,260,274,285,187,220,7,294,223,81,82,213,275,253,254,83,24,77,255,229,207,192,273,157,71,51,115,244,190,259,36,212,238,215,203,225,237,188,167,197,183,189,95,92,252,220,230,259,236,259,238,24,112,237,224,27,238,201,238,14,139,49,20,193,191,131,223],"mode":"markers","opacity":0.5,"type":"scatter3d","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-1469daaee12f34eec84f" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-1469daaee12f34eec84f">{"x":{"visdat":{"149522c7f770":["function () ","plotlyVisDat"]},"cur_data":"149522c7f770","attrs":{"149522c7f770":{"x":{},"y":{},"z":{},"mode":"markers","opacity":0.5,"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"Temp"},"yaxis":{"title":"Ozone"},"zaxis":{"title":"Solar.R"}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[67,72,74,62,65,59,61,69,66,68,58,64,66,57,68,62,59,73,61,61,67,81,79,76,82,90,87,82,77,72,65,73,76,84,85,81,83,83,88,92,92,89,73,81,80,81,82,84,87,85,74,86,85,82,86,88,86,83,81,81,81,82,89,90,90,86,82,80,77,79,76,78,78,77,72,79,81,86,97,94,96,94,91,92,93,93,87,84,80,78,75,73,81,76,77,71,71,78,67,76,68,82,64,71,81,69,63,70,75,76,68],"y":[41,36,12,18,23,19,8,16,11,14,18,14,34,6,30,11,1,11,4,32,23,45,115,37,29,71,39,23,21,37,20,12,13,135,49,32,64,40,77,97,97,85,10,27,7,48,35,61,79,63,16,80,108,20,52,82,50,64,59,39,9,16,122,89,110,44,28,65,22,59,23,31,44,21,9,45,168,73,76,118,84,85,96,78,73,91,47,32,20,23,21,24,44,21,28,9,13,46,18,13,24,16,13,23,36,7,14,30,14,18,20],"z":[190,118,149,313,299,99,19,256,290,274,65,334,307,78,322,44,8,320,25,92,13,252,223,279,127,291,323,148,191,284,37,120,137,269,248,236,175,314,276,267,272,175,264,175,48,260,274,285,187,220,7,294,223,81,82,213,275,253,254,83,24,77,255,229,207,192,273,157,71,51,115,244,190,259,36,212,238,215,203,225,237,188,167,197,183,189,95,92,252,220,230,259,236,259,238,24,112,237,224,27,238,201,238,14,139,49,20,193,191,131,223],"mode":"markers","opacity":0.5,"type":"scatter3d","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
-<section id="visualisation-not-easy-1" class="slide level2">
-<h2>Visualisation: not easy</h2>
-<p>Are the plots useful?</p>
-<h3 id="d-plot-1">4D plot</h3>
+<section id="visualisation-is-not-easy-are-the-plots-useful-1" class="slide level2">
+<h2>Visualisation is not easy: are the plots useful?</h2>
+<p>4D plot</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -590,8 +588,8 @@ F-statistic: 108.5 on 1 and 114 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span id="cb17-4"><a></a>  <span class="at">type =</span> <span class="st">"scatter3d"</span>, <span class="at">mode =</span> <span class="st">"markers"</span>, <span class="at">opacity =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div class="plotly html-widget html-fill-item" id="htmlwidget-d8c6776f1419da10898a" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-d8c6776f1419da10898a">{"x":{"visdat":{"e52c4c1336ef":["function () ","plotlyVisDat"]},"cur_data":"e52c4c1336ef","attrs":{"e52c4c1336ef":{"x":{},"y":{},"z":{},"mode":"markers","opacity":0.5,"color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"Temp"},"yaxis":{"title":"Ozone"},"zaxis":{"title":"Solar.R"}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[67,72,74,62,65,59,61,69,66,68,58,64,66,57,68,62,59,73,61,61,67,81,79,76,82,90,87,82,77,72,65,73,76,84,85,81,83,83,88,92,92,89,73,81,80,81,82,84,87,85,74,86,85,82,86,88,86,83,81,81,81,82,89,90,90,86,82,80,77,79,76,78,78,77,72,79,81,86,97,94,96,94,91,92,93,93,87,84,80,78,75,73,81,76,77,71,71,78,67,76,68,82,64,71,81,69,63,70,75,76,68],"y":[41,36,12,18,23,19,8,16,11,14,18,14,34,6,30,11,1,11,4,32,23,45,115,37,29,71,39,23,21,37,20,12,13,135,49,32,64,40,77,97,97,85,10,27,7,48,35,61,79,63,16,80,108,20,52,82,50,64,59,39,9,16,122,89,110,44,28,65,22,59,23,31,44,21,9,45,168,73,76,118,84,85,96,78,73,91,47,32,20,23,21,24,44,21,28,9,13,46,18,13,24,16,13,23,36,7,14,30,14,18,20],"z":[190,118,149,313,299,99,19,256,290,274,65,334,307,78,322,44,8,320,25,92,13,252,223,279,127,291,323,148,191,284,37,120,137,269,248,236,175,314,276,267,272,175,264,175,48,260,274,285,187,220,7,294,223,81,82,213,275,253,254,83,24,77,255,229,207,192,273,157,71,51,115,244,190,259,36,212,238,215,203,225,237,188,167,197,183,189,95,92,252,220,230,259,236,259,238,24,112,237,224,27,238,201,238,14,139,49,20,193,191,131,223],"mode":"markers","opacity":0.5,"type":"scatter3d","marker":{"colorbar":{"title":"Wind","ticklen":2},"cmin":2.2999999999999998,"cmax":20.699999999999999,"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":false,"color":[7.4000000000000004,8,12.6,11.5,8.5999999999999996,13.800000000000001,20.100000000000001,9.6999999999999993,9.1999999999999993,10.9,13.199999999999999,11.5,12,18.399999999999999,11.5,9.6999999999999993,9.6999999999999993,16.600000000000001,9.6999999999999993,12,12,14.9,5.7000000000000002,7.4000000000000004,9.6999999999999993,13.800000000000001,11.5,8,14.9,20.699999999999999,9.1999999999999993,11.5,10.300000000000001,4.0999999999999996,9.1999999999999993,9.1999999999999993,4.5999999999999996,10.9,5.0999999999999996,6.2999999999999998,5.7000000000000002,7.4000000000000004,14.300000000000001,14.9,14.300000000000001,6.9000000000000004,10.300000000000001,6.2999999999999998,5.0999999999999996,11.5,6.9000000000000004,8.5999999999999996,8,8.5999999999999996,12,7.4000000000000004,7.4000000000000004,7.4000000000000004,9.1999999999999993,6.9000000000000004,13.800000000000001,7.4000000000000004,4,10.300000000000001,8,11.5,11.5,9.6999999999999993,10.300000000000001,6.2999999999999998,7.4000000000000004,10.9,10.300000000000001,15.5,14.300000000000001,9.6999999999999993,3.3999999999999999,8,9.6999999999999993,2.2999999999999998,6.2999999999999998,6.2999999999999998,6.9000000000000004,5.0999999999999996,2.7999999999999998,4.5999999999999996,7.4000000000000004,15.5,10.9,10.300000000000001,10.9,9.6999999999999993,14.9,15.5,6.2999999999999998,10.9,11.5,6.9000000000000004,13.800000000000001,10.300000000000001,10.300000000000001,8,12.6,9.1999999999999993,10.300000000000001,10.300000000000001,16.600000000000001,6.9000000000000004,14.300000000000001,8,11.5],"line":{"colorbar":{"title":"","ticklen":2},"cmin":2.2999999999999998,"cmax":20.699999999999999,"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":false,"color":[7.4000000000000004,8,12.6,11.5,8.5999999999999996,13.800000000000001,20.100000000000001,9.6999999999999993,9.1999999999999993,10.9,13.199999999999999,11.5,12,18.399999999999999,11.5,9.6999999999999993,9.6999999999999993,16.600000000000001,9.6999999999999993,12,12,14.9,5.7000000000000002,7.4000000000000004,9.6999999999999993,13.800000000000001,11.5,8,14.9,20.699999999999999,9.1999999999999993,11.5,10.300000000000001,4.0999999999999996,9.1999999999999993,9.1999999999999993,4.5999999999999996,10.9,5.0999999999999996,6.2999999999999998,5.7000000000000002,7.4000000000000004,14.300000000000001,14.9,14.300000000000001,6.9000000000000004,10.300000000000001,6.2999999999999998,5.0999999999999996,11.5,6.9000000000000004,8.5999999999999996,8,8.5999999999999996,12,7.4000000000000004,7.4000000000000004,7.4000000000000004,9.1999999999999993,6.9000000000000004,13.800000000000001,7.4000000000000004,4,10.300000000000001,8,11.5,11.5,9.6999999999999993,10.300000000000001,6.2999999999999998,7.4000000000000004,10.9,10.300000000000001,15.5,14.300000000000001,9.6999999999999993,3.3999999999999999,8,9.6999999999999993,2.2999999999999998,6.2999999999999998,6.2999999999999998,6.9000000000000004,5.0999999999999996,2.7999999999999998,4.5999999999999996,7.4000000000000004,15.5,10.9,10.300000000000001,10.9,9.6999999999999993,14.9,15.5,6.2999999999999998,10.9,11.5,6.9000000000000004,13.800000000000001,10.300000000000001,10.300000000000001,8,12.6,9.1999999999999993,10.300000000000001,10.300000000000001,16.600000000000001,6.9000000000000004,14.300000000000001,8,11.5]}},"frame":null},{"x":[57,97],"y":[1,168],"type":"scatter3d","mode":"markers","opacity":0,"hoverinfo":"none","showlegend":false,"marker":{"colorbar":{"title":"Wind","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"cmin":2.2999999999999998,"cmax":20.699999999999999,"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":true,"color":[2.2999999999999998,20.699999999999999],"line":{"color":"rgba(255,127,14,1)"}},"z":[7,334],"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-16bad2982c4a4ab25422" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-16bad2982c4a4ab25422">{"x":{"visdat":{"14955117e05f":["function () ","plotlyVisDat"]},"cur_data":"14955117e05f","attrs":{"14955117e05f":{"x":{},"y":{},"z":{},"mode":"markers","opacity":0.5,"color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"Temp"},"yaxis":{"title":"Ozone"},"zaxis":{"title":"Solar.R"}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[67,72,74,62,65,59,61,69,66,68,58,64,66,57,68,62,59,73,61,61,67,81,79,76,82,90,87,82,77,72,65,73,76,84,85,81,83,83,88,92,92,89,73,81,80,81,82,84,87,85,74,86,85,82,86,88,86,83,81,81,81,82,89,90,90,86,82,80,77,79,76,78,78,77,72,79,81,86,97,94,96,94,91,92,93,93,87,84,80,78,75,73,81,76,77,71,71,78,67,76,68,82,64,71,81,69,63,70,75,76,68],"y":[41,36,12,18,23,19,8,16,11,14,18,14,34,6,30,11,1,11,4,32,23,45,115,37,29,71,39,23,21,37,20,12,13,135,49,32,64,40,77,97,97,85,10,27,7,48,35,61,79,63,16,80,108,20,52,82,50,64,59,39,9,16,122,89,110,44,28,65,22,59,23,31,44,21,9,45,168,73,76,118,84,85,96,78,73,91,47,32,20,23,21,24,44,21,28,9,13,46,18,13,24,16,13,23,36,7,14,30,14,18,20],"z":[190,118,149,313,299,99,19,256,290,274,65,334,307,78,322,44,8,320,25,92,13,252,223,279,127,291,323,148,191,284,37,120,137,269,248,236,175,314,276,267,272,175,264,175,48,260,274,285,187,220,7,294,223,81,82,213,275,253,254,83,24,77,255,229,207,192,273,157,71,51,115,244,190,259,36,212,238,215,203,225,237,188,167,197,183,189,95,92,252,220,230,259,236,259,238,24,112,237,224,27,238,201,238,14,139,49,20,193,191,131,223],"mode":"markers","opacity":0.5,"type":"scatter3d","marker":{"colorbar":{"title":"Wind","ticklen":2},"cmin":2.2999999999999998,"cmax":20.699999999999999,"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":false,"color":[7.4000000000000004,8,12.6,11.5,8.5999999999999996,13.800000000000001,20.100000000000001,9.6999999999999993,9.1999999999999993,10.9,13.199999999999999,11.5,12,18.399999999999999,11.5,9.6999999999999993,9.6999999999999993,16.600000000000001,9.6999999999999993,12,12,14.9,5.7000000000000002,7.4000000000000004,9.6999999999999993,13.800000000000001,11.5,8,14.9,20.699999999999999,9.1999999999999993,11.5,10.300000000000001,4.0999999999999996,9.1999999999999993,9.1999999999999993,4.5999999999999996,10.9,5.0999999999999996,6.2999999999999998,5.7000000000000002,7.4000000000000004,14.300000000000001,14.9,14.300000000000001,6.9000000000000004,10.300000000000001,6.2999999999999998,5.0999999999999996,11.5,6.9000000000000004,8.5999999999999996,8,8.5999999999999996,12,7.4000000000000004,7.4000000000000004,7.4000000000000004,9.1999999999999993,6.9000000000000004,13.800000000000001,7.4000000000000004,4,10.300000000000001,8,11.5,11.5,9.6999999999999993,10.300000000000001,6.2999999999999998,7.4000000000000004,10.9,10.300000000000001,15.5,14.300000000000001,9.6999999999999993,3.3999999999999999,8,9.6999999999999993,2.2999999999999998,6.2999999999999998,6.2999999999999998,6.9000000000000004,5.0999999999999996,2.7999999999999998,4.5999999999999996,7.4000000000000004,15.5,10.9,10.300000000000001,10.9,9.6999999999999993,14.9,15.5,6.2999999999999998,10.9,11.5,6.9000000000000004,13.800000000000001,10.300000000000001,10.300000000000001,8,12.6,9.1999999999999993,10.300000000000001,10.300000000000001,16.600000000000001,6.9000000000000004,14.300000000000001,8,11.5],"line":{"colorbar":{"title":"","ticklen":2},"cmin":2.2999999999999998,"cmax":20.699999999999999,"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":false,"color":[7.4000000000000004,8,12.6,11.5,8.5999999999999996,13.800000000000001,20.100000000000001,9.6999999999999993,9.1999999999999993,10.9,13.199999999999999,11.5,12,18.399999999999999,11.5,9.6999999999999993,9.6999999999999993,16.600000000000001,9.6999999999999993,12,12,14.9,5.7000000000000002,7.4000000000000004,9.6999999999999993,13.800000000000001,11.5,8,14.9,20.699999999999999,9.1999999999999993,11.5,10.300000000000001,4.0999999999999996,9.1999999999999993,9.1999999999999993,4.5999999999999996,10.9,5.0999999999999996,6.2999999999999998,5.7000000000000002,7.4000000000000004,14.300000000000001,14.9,14.300000000000001,6.9000000000000004,10.300000000000001,6.2999999999999998,5.0999999999999996,11.5,6.9000000000000004,8.5999999999999996,8,8.5999999999999996,12,7.4000000000000004,7.4000000000000004,7.4000000000000004,9.1999999999999993,6.9000000000000004,13.800000000000001,7.4000000000000004,4,10.300000000000001,8,11.5,11.5,9.6999999999999993,10.300000000000001,6.2999999999999998,7.4000000000000004,10.9,10.300000000000001,15.5,14.300000000000001,9.6999999999999993,3.3999999999999999,8,9.6999999999999993,2.2999999999999998,6.2999999999999998,6.2999999999999998,6.9000000000000004,5.0999999999999996,2.7999999999999998,4.5999999999999996,7.4000000000000004,15.5,10.9,10.300000000000001,10.9,9.6999999999999993,14.9,15.5,6.2999999999999998,10.9,11.5,6.9000000000000004,13.800000000000001,10.300000000000001,10.300000000000001,8,12.6,9.1999999999999993,10.300000000000001,10.300000000000001,16.600000000000001,6.9000000000000004,14.300000000000001,8,11.5]}},"frame":null},{"x":[57,97],"y":[1,168],"type":"scatter3d","mode":"markers","opacity":0,"hoverinfo":"none","showlegend":false,"marker":{"colorbar":{"title":"Wind","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"cmin":2.2999999999999998,"cmax":20.699999999999999,"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":true,"color":[2.2999999999999998,20.699999999999999],"line":{"color":"rgba(255,127,14,1)"}},"z":[7,334],"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -600,11 +598,13 @@ F-statistic: 108.5 on 1 and 114 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Given the multiple linear model: <span class="math display">\[ Y_i = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_k x_k + \epsilon_i \]</span></p>
 <p>The partial regression coefficient for a predictor <span class="math inline">\(x_i\)</span> is the amount by which the response variable <span class="math inline">\(Y\)</span> changes when <span class="math inline">\(x_k\)</span> is increased by one unit, <strong>while all other predictors are held constant</strong>.</p>
 <p><span class="math display">\[ \beta_k = \frac{\Delta Y}{\Delta x_k} \]</span></p>
-<div class="fragment">
+</section>
+<section id="partial-regression-coefficients-air-quality-example" class="slide level2">
+<h2>Partial regression coefficients: Air quality example</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb18-1" class="hljs-ln-code"><a></a>equatiomatic<span class="sc">::</span><span class="fu">extract_eq</span>(fit_multi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>equatiomatic<span class="sc">::</span><span class="fu">extract_eq</span>(fit_multi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <p><span class="math display">\[
@@ -615,7 +615,6 @@ F-statistic: 108.5 on 1 and 114 DF,  p-value: &lt; 2.2e-16</code></pre>
 <blockquote>
 <p><em>With <code>Wind</code> and <code>Solar.R</code> held constant, how does <code>Temp</code> affect <code>Ozone</code>?</em></p>
 </blockquote>
-</div>
 </section>
 <section id="partial-regression-coefficients-visualisation" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Partial regression coefficients: visualisation</h2>
@@ -632,19 +631,6 @@ F-statistic: 108.5 on 1 and 114 DF,  p-value: &lt; 2.2e-16</code></pre>
 <img data-src="lecture-11_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"><blockquote>
 <p><em>With <code>Wind</code> and <code>Solar.R</code> held constant, how does <code>Temp</code> affect <code>Ozone</code>?</em></p>
 </blockquote>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>Not necessary to do this - lecture content only.</p>
-</div>
-</div>
-</div>
 </section>
 <section id="interpreting-the-partial-regression-coefficients" class="slide level2">
 <h2>Interpreting the partial regression coefficients</h2>
@@ -709,13 +695,17 @@ Coefficients:
 <ul>
 <li><strong>Collinearity</strong>: there is no perfect linearity between predictors</li>
 </ul>
-<p>Two predictors that have a <em>perfect</em> linear relationship (i.e.&nbsp;<span class="math inline">\(r\)</span> = 1 or -1) breaks the assumption of collinearity. High (but not perfect) collinearity (e.g.&nbsp;strong/very strong <span class="math inline">\(r\)</span>) does not break the assumption but can lead to unstable estimates and large standard errors.</p>
+</section>
+<section id="collinearity-assumption" class="slide level2">
+<h2>Collinearity assumption</h2>
+<p>Two predictors that have a <em>perfect</em> linear relationship (i.e.&nbsp;<span class="math inline">\(r\)</span> = 1 or -1) breaks the assumption of collinearity.</p>
+<p>High (but not perfect) collinearity (e.g.&nbsp;strong/very strong <span class="math inline">\(r\)</span>) does not break the assumption but can lead to unstable estimates and large standard errors.</p>
 <blockquote>
 <p>The largest correlation between the predictors is between Temp and Wind (<span class="math inline">\(r\)</span> = -0.5). This is not a problem.</p>
 </blockquote>
 </section>
-<section id="assumptions-of-mlr" class="slide level2">
-<h2>Assumptions of MLR</h2>
+<section id="lets-check-our-assumptions-for-the-air-quality-model" class="slide level2">
+<h2>Let’s check our assumptions for the Air quality model</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -724,11 +714,12 @@ Coefficients:
 </details>
 
 </div>
-<img data-src="lecture-11_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"></section>
+<img data-src="lecture-11_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"><div class="fragment">
+<p>Some evidence of non-linearity in the diagnostic plots. We need to transform and re-check assumptions.</p>
+</div>
+</section>
 <section id="transformation-using-log" class="slide level2">
 <h2>Transformation using <code>log()</code></h2>
-<p>Some evidence of non-linearity in the diagnostic plots. Transform and re-check assumptions.</p>
-<div class="fragment">
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -736,14 +727,10 @@ Coefficients:
 <span id="cb23-2"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># set up a 2 x 2 grid for plots</span></span>
 <span id="cb23-3"><a></a><span class="fu">plot</span>(fit_multi_log)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="lecture-11_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></p>
-</figure>
+
 </div>
-</div>
-</div>
+<img data-src="lecture-11_files/figure-revealjs/unnamed-chunk-20-1.png" width="960" class="r-stretch"><div class="fragment">
+<p>The assumptions are met, let’s move onto interpretation.</p>
 </div>
 </section>
 <section id="results-mlr-vs-slr" class="slide level2" data-auto-animate="true">
@@ -808,9 +795,12 @@ F-statistic: 108.5 on 1 and 114 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </div></div>
+</section>
+<section id="results-mlr-vs-slr-1" class="slide level2">
+<h2>Results – MLR vs SLR</h2>
 <ul>
 <li>All three predictors are statistically significant (p &lt; .001).</li>
-<li>The MLR model explains 66% of variance (adjusted R<sup>2</sup> = 0.66), whereas the SLR explains 48% of variance (multiple R<sup>2</sup> = 0.48).</li>
+<li>The MLR model explains 66% of variation in log(Ozone) (adjusted R<sup>2</sup> = 0.66), whereas the SLR explains 48% of variation in log(Ozone) (multiple R<sup>2</sup> = 0.48).</li>
 <li>Thus the MLR is the better model.</li>
 </ul>
 </section>
@@ -845,7 +835,20 @@ F-statistic: 108.5 on 1 and 114 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>For every 1 unit increase in <code>Wind</code>, <code>log(Ozone)</code> decreases by a mean value of 0.062,</li>
 <li>For every 1 degree increase in <code>Temp</code>, <code>log(Ozone)</code> increases by a mean value of 0.049.</li>
 </ul>
-<p>OR</p>
+</section>
+<section id="interpreting-coefficients---backtransformed-approximation" class="slide level2">
+<h2>Interpreting coefficients - backtransformed approximation</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>Call<span class="sc">:</span></span>
+<span id="cb29-2"><a></a><span class="fu">lm</span>(<span class="at">formula =</span> <span class="fu">log</span>(Ozone) <span class="sc">~</span> Solar.R <span class="sc">+</span> Wind <span class="sc">+</span> Temp, <span class="at">data =</span> airquality)</span>
+<span id="cb29-3"><a></a></span>
+<span id="cb29-4"><a></a>Coefficients<span class="sc">:</span></span>
+<span id="cb29-5"><a></a>              Estimate Std. Error t value <span class="fu">Pr</span>(<span class="sc">&gt;</span><span class="er">|</span>t<span class="sc">|</span>)    </span>
+<span id="cb29-6"><a></a>(Intercept) <span class="sc">-</span><span class="fl">0.2621323</span>  <span class="fl">0.5535669</span>  <span class="sc">-</span><span class="fl">0.474</span> <span class="fl">0.636798</span>    </span>
+<span id="cb29-7"><a></a>Solar.R      <span class="fl">0.0025152</span>  <span class="fl">0.0005567</span>   <span class="fl">4.518</span> <span class="fl">1.62e-05</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb29-8"><a></a>Wind        <span class="sc">-</span><span class="fl">0.0615625</span>  <span class="fl">0.0157130</span>  <span class="sc">-</span><span class="fl">3.918</span> <span class="fl">0.000158</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb29-9"><a></a>Temp         <span class="fl">0.0491711</span>  <span class="fl">0.0060875</span>   <span class="fl">8.077</span> <span class="fl">1.07e-12</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb29-10"><a></a><span class="sc">---</span></span>
+<span id="cb29-11"><a></a>Signif. codes<span class="sc">:</span>  <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>For every 1 unit increase in <code>Solar.R</code>, <code>Ozone</code> increases by <em>approximately</em> a mean value of 0.25%,</li>
 <li>For every 1 unit increase in <code>Wind</code>, <code>Ozone</code> decreases by <em>approximately</em> a mean value of 6.2%,</li>
@@ -854,19 +857,19 @@ F-statistic: 108.5 on 1 and 114 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="model-fit" class="slide level2">
 <h2>Model fit</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>Call<span class="sc">:</span></span>
-<span id="cb29-2"><a></a><span class="fu">lm</span>(<span class="at">formula =</span> <span class="fu">log</span>(Ozone) <span class="sc">~</span> Solar.R <span class="sc">+</span> Wind <span class="sc">+</span> Temp, <span class="at">data =</span> airquality)</span>
-<span id="cb29-3"><a></a></span>
-<span id="cb29-4"><a></a>Residual standard error<span class="sc">:</span> <span class="fl">0.5086</span> on <span class="dv">107</span> degrees of freedom</span>
-<span id="cb29-5"><a></a>  (<span class="dv">42</span> observations deleted due to missingness)</span>
-<span id="cb29-6"><a></a>Multiple R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.6644</span>,    Adjusted R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.655</span> </span>
-<span id="cb29-7"><a></a>F<span class="sc">-</span>statistic<span class="sc">:</span> <span class="fl">70.62</span> on <span class="dv">3</span> and <span class="dv">107</span> DF,  p<span class="sc">-</span>value<span class="sc">:</span> <span class="er">&lt;</span> <span class="fl">2.2e-16</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>Call<span class="sc">:</span></span>
+<span id="cb30-2"><a></a><span class="fu">lm</span>(<span class="at">formula =</span> <span class="fu">log</span>(Ozone) <span class="sc">~</span> Solar.R <span class="sc">+</span> Wind <span class="sc">+</span> Temp, <span class="at">data =</span> airquality)</span>
+<span id="cb30-3"><a></a></span>
+<span id="cb30-4"><a></a>Residual standard error<span class="sc">:</span> <span class="fl">0.5086</span> on <span class="dv">107</span> degrees of freedom</span>
+<span id="cb30-5"><a></a>  (<span class="dv">42</span> observations deleted due to missingness)</span>
+<span id="cb30-6"><a></a>Multiple R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.6644</span>,    Adjusted R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.655</span> </span>
+<span id="cb30-7"><a></a>F<span class="sc">-</span>statistic<span class="sc">:</span> <span class="fl">70.62</span> on <span class="dv">3</span> and <span class="dv">107</span> DF,  p<span class="sc">-</span>value<span class="sc">:</span> <span class="er">&lt;</span> <span class="fl">2.2e-16</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>On average, the model predicts <code>log(Ozone)</code> within 0.51 ppb (<strong>residual standard error</strong>) of the true value. <em>Not bad?</em></p>
 <div class="fragment">
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="fu">exp</span>(<span class="fl">0.51</span>) <span class="co">#backtransform</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">exp</span>(<span class="fl">0.51</span>) <span class="co">#backtransform</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.665291</code></pre>
@@ -874,13 +877,16 @@ F-statistic: 108.5 on 1 and 114 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <ul>
 <li>On average, the model predicts <code>Ozone</code> within 1.67 ppb of the true value.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
 <li>Degrees of freedom (107) = number of observations (111) - number of parameters in the model (3 predictors and 1 intercept)</li>
 </ul>
 </div>
 <div class="fragment">
-<p>If there are &gt;1 predictors, use the <strong>adjusted R-Squared</strong> as it penalises the model for having more predictors that are not useful.</p>
 <ul>
-<li>The MLR model explains 66% of variance (adjusted R<sup>2</sup> = 0.66)</li>
+<li>The MLR model explains 66% of variation in log(Ozone) (<strong>adjusted</strong> R<sup>2</sup> = 0.66)</li>
 </ul>
 </div>
 </section>
@@ -888,40 +894,62 @@ F-statistic: 108.5 on 1 and 114 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h2>The R<sup>2</sup> value</h2>
 <p>The R-squared value is the proportion of variance explained by the model.</p>
 <p><span class="math display">\[ R^2 = \frac{SS_{reg}}{SS_{tot}} = 1 - \frac{SS_{res}}{SS_{tot}} \]</span></p>
-<p>The adjusted R-squared value is the proportion of variance explained by the model, adjusted for the number of predictors.</p>
+<div class="fragment">
+<p>The adjusted R-squared value is the proportion of variance explained by the model, <strong>adjusted for the number of predictors</strong>.</p>
 <p><span class="math display">\[ R^2_{adj} = 1 - \frac{SS_{res}}{SS_{tot}} \frac{n-1}{n-p-1} \]</span></p>
 <p>where <span class="math inline">\(n\)</span> is the number of observations and <span class="math inline">\(p\)</span> is the number of predictors.</p>
+</div>
 </section>
-<section id="f-stat" class="slide level2">
-<h2>F-stat</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>Call<span class="sc">:</span></span>
-<span id="cb32-2"><a></a><span class="fu">lm</span>(<span class="at">formula =</span> <span class="fu">log</span>(Ozone) <span class="sc">~</span> Solar.R <span class="sc">+</span> Wind <span class="sc">+</span> Temp, <span class="at">data =</span> airquality)</span>
-<span id="cb32-3"><a></a></span>
-<span id="cb32-4"><a></a>Multiple R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.6644</span>,    Adjusted R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.655</span> </span>
-<span id="cb32-5"><a></a>F<span class="sc">-</span>statistic<span class="sc">:</span> <span class="fl">70.62</span> on <span class="dv">3</span> and <span class="dv">107</span> DF,  p<span class="sc">-</span>value<span class="sc">:</span> <span class="er">&lt;</span> <span class="fl">2.2e-16</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="f-statistic" class="slide level2">
+<h2>F-statistic</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>Call<span class="sc">:</span></span>
+<span id="cb33-2"><a></a><span class="fu">lm</span>(<span class="at">formula =</span> <span class="fu">log</span>(Ozone) <span class="sc">~</span> Solar.R <span class="sc">+</span> Wind <span class="sc">+</span> Temp, <span class="at">data =</span> airquality)</span>
+<span id="cb33-3"><a></a></span>
+<span id="cb33-4"><a></a>Multiple R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.6644</span>,    Adjusted R<span class="sc">-</span>squared<span class="sc">:</span>  <span class="fl">0.655</span> </span>
+<span id="cb33-5"><a></a>F<span class="sc">-</span>statistic<span class="sc">:</span> <span class="fl">70.62</span> on <span class="dv">3</span> and <span class="dv">107</span> DF,  p<span class="sc">-</span>value<span class="sc">:</span> <span class="er">&lt;</span> <span class="fl">2.2e-16</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>The F-statistic tests the null hypothesis that all the regression coefficients are equal to zero, i.e.&nbsp;<span class="math inline">\(H_0: \beta_1 = \beta_2 = ... = \beta_k = 0\)</span>.</li>
+</ul>
+<div class="fragment">
+<ul>
 <li>As a ratio, it tells us how much better the model is than the null model (i.e.&nbsp;a model with no predictors, the mean).</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
 <li>If the p-value is less than our specified critical value (e.g.&nbsp;0.05), we reject the null hypothesis and conclude that the current model is better than the null model.</li>
 </ul>
+</div>
 </section>
 <section id="reporting" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Reporting</h2>
 <p>A quick (but not complete) summary:</p>
+<div class="fragment">
 <ul>
-<li><p>New York air quality data was collected in 1973 by the New York State Department of Conservation and the National Weather Service (meteorological data). There were 111 observations of 6 variables.</p></li>
-<li><p>There were non-linear relationships between <code>Ozone</code> (the response) and <code>Temp</code>, <code>Wind</code> and <code>Solar.R</code> (the predictors), hence a natural log transformation was applied to <code>Ozone</code>.</p></li>
-<li><p>Multiple linear regression was conducted on these variables, and model assumptions (CLINE) were met.</p></li>
-<li><p>Solar radiation, wind speed and temperature are <strong>significant predictors</strong> of Ozone concentration (<strong>p &lt; 0.001</strong>) with the model accounting for <strong>66% of the variation</strong> in log(Ozone). The model explained more variance than a one-predictor model and was found to be significantly better than the null model.</p></li>
+<li>New York air quality data was collected in 1973 by the New York State Department of Conservation and the National Weather Service (meteorological data). There were 111 observations of 6 variables.</li>
 </ul>
+</div>
+<div class="fragment">
+<ul>
+<li>There were non-linear relationships between <code>Ozone</code> (the response) and <code>Temp</code>, <code>Wind</code> and <code>Solar.R</code> (the predictors), hence a natural log transformation was applied to <code>Ozone</code>.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Multiple linear regression was conducted on these variables, and model assumptions (CLINE) were met.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Solar radiation, wind speed and temperature are <strong>significant predictors</strong> of Ozone concentration (<strong>p &lt; 0.001</strong>) with the model accounting for <strong>66% of the variation</strong> in log(Ozone). The model explained more variation than a single-predictor model and was found to be significantly better than the null model.</li>
+</ul>
+</div>
 </section></section>
 <section>
 <section id="abalone-quiz" class="title-slide slide level1 center">
 <h1>Abalone Quiz</h1>
 
-<img data-src="images/abalone.jpg" class="r-stretch"><blockquote>
-<p>Pop quiz! (No marks, just check your understanding.)</p>
-</blockquote>
+<img data-src="images/abalone.jpg" class="r-stretch"><p>Pop quiz! (No marks, just check your understanding.)</p>
 </section>
 <section id="context" class="slide level2">
 <h2>Context</h2>
@@ -930,14 +958,14 @@ F-statistic: 108.5 on 1 and 114 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>abalone <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/abalone.csv"</span>)</span>
-<span id="cb33-2"><a></a></span>
-<span id="cb33-3"><a></a><span class="fu">set.seed</span>(<span class="dv">1113</span>)          <span class="co"># reproducible randomness</span></span>
-<span id="cb33-4"><a></a>abalone <span class="ot">&lt;-</span> abalone <span class="sc">%&gt;%</span> </span>
-<span id="cb33-5"><a></a>  <span class="fu">select</span>(<span class="sc">-</span>sex) <span class="sc">%&gt;%</span>      <span class="co"># remove `sex` because it is categorical</span></span>
-<span id="cb33-6"><a></a>  <span class="fu">sample_n</span>(<span class="dv">100</span>)         <span class="co"># sample 100 observations for cleaner curve</span></span>
-<span id="cb33-7"><a></a>  </span>
-<span id="cb33-8"><a></a><span class="fu">str</span>(abalone)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>abalone <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/abalone.csv"</span>)</span>
+<span id="cb34-2"><a></a></span>
+<span id="cb34-3"><a></a><span class="fu">set.seed</span>(<span class="dv">1113</span>)          <span class="co"># reproducible randomness</span></span>
+<span id="cb34-4"><a></a>abalone <span class="ot">&lt;-</span> abalone <span class="sc">%&gt;%</span> </span>
+<span id="cb34-5"><a></a>  <span class="fu">select</span>(<span class="sc">-</span>sex) <span class="sc">%&gt;%</span>      <span class="co"># remove `sex` because it is categorical</span></span>
+<span id="cb34-6"><a></a>  <span class="fu">sample_n</span>(<span class="dv">100</span>)         <span class="co"># sample 100 observations for cleaner curve</span></span>
+<span id="cb34-7"><a></a>  </span>
+<span id="cb34-8"><a></a><span class="fu">str</span>(abalone)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   100 obs. of  8 variables:
@@ -958,7 +986,7 @@ F-statistic: 108.5 on 1 and 114 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(abalone)     <span class="co"># visualise relationships</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(abalone)     <span class="co"># visualise relationships</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
@@ -969,8 +997,8 @@ F-statistic: 108.5 on 1 and 114 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(rings) <span class="sc">~</span> ., <span class="at">data =</span> abalone)</span>
-<span id="cb36-2"><a></a><span class="fu">summary</span>(fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(rings) <span class="sc">~</span> ., <span class="at">data =</span> abalone)</span>
+<span id="cb37-2"><a></a><span class="fu">summary</span>(fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1006,36 +1034,36 @@ F-statistic: 21.32 on 7 and 92 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">library</span>(broom)</span>
-<span id="cb38-2"><a></a></span>
-<span id="cb38-3"><a></a>full7 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(rings) <span class="sc">~</span> ., <span class="at">data =</span> abalone)</span>
-<span id="cb38-4"><a></a>part6 <span class="ot">&lt;-</span> <span class="fu">update</span>(full7, . <span class="sc">~</span> . <span class="sc">-</span> whole)</span>
-<span id="cb38-5"><a></a>part5 <span class="ot">&lt;-</span> <span class="fu">update</span>(part6, . <span class="sc">~</span> . <span class="sc">-</span> viscera)</span>
-<span id="cb38-6"><a></a>part4 <span class="ot">&lt;-</span> <span class="fu">update</span>(part5, . <span class="sc">~</span> . <span class="sc">-</span> length)</span>
-<span id="cb38-7"><a></a>part3 <span class="ot">&lt;-</span> <span class="fu">update</span>(part4, . <span class="sc">~</span> . <span class="sc">-</span> height)</span>
-<span id="cb38-8"><a></a>part2 <span class="ot">&lt;-</span> <span class="fu">update</span>(part3, . <span class="sc">~</span> . <span class="sc">-</span> diameter)</span>
-<span id="cb38-9"><a></a>part1 <span class="ot">&lt;-</span> <span class="fu">update</span>(part2, . <span class="sc">~</span> . <span class="sc">-</span> shucked)</span>
-<span id="cb38-10"><a></a></span>
-<span id="cb38-11"><a></a>formulas <span class="ot">&lt;-</span> <span class="fu">c</span>(part1<span class="sc">$</span>call<span class="sc">$</span>formula, </span>
-<span id="cb38-12"><a></a>              part2<span class="sc">$</span>call<span class="sc">$</span>formula, </span>
-<span id="cb38-13"><a></a>              part3<span class="sc">$</span>call<span class="sc">$</span>formula, </span>
-<span id="cb38-14"><a></a>              part4<span class="sc">$</span>call<span class="sc">$</span>formula, </span>
-<span id="cb38-15"><a></a>              part5<span class="sc">$</span>call<span class="sc">$</span>formula, </span>
-<span id="cb38-16"><a></a>              part6<span class="sc">$</span>call<span class="sc">$</span>formula, </span>
-<span id="cb38-17"><a></a>              full7<span class="sc">$</span>call<span class="sc">$</span>formula)</span>
-<span id="cb38-18"><a></a></span>
-<span id="cb38-19"><a></a>rs <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="fu">glance</span>(part1),</span>
-<span id="cb38-20"><a></a>                <span class="fu">glance</span>(part2),</span>
-<span id="cb38-21"><a></a>                <span class="fu">glance</span>(part3),</span>
-<span id="cb38-22"><a></a>                <span class="fu">glance</span>(part4),</span>
-<span id="cb38-23"><a></a>                <span class="fu">glance</span>(part5),</span>
-<span id="cb38-24"><a></a>                <span class="fu">glance</span>(part6),</span>
-<span id="cb38-25"><a></a>                <span class="fu">glance</span>(full7)) <span class="sc">%&gt;%</span></span>
-<span id="cb38-26"><a></a>  <span class="fu">mutate</span>(<span class="at">Model =</span> formulas, <span class="at">n =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb38-27"><a></a>  <span class="fu">select</span>(Model, n, r.squared, adj.r.squared) <span class="sc">%&gt;%</span></span>
-<span id="cb38-28"><a></a>  <span class="fu">mutate_if</span>(is.numeric, round, <span class="dv">3</span>)</span>
-<span id="cb38-29"><a></a></span>
-<span id="cb38-30"><a></a>knitr<span class="sc">::</span><span class="fu">kable</span>(rs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="fu">library</span>(broom)</span>
+<span id="cb39-2"><a></a></span>
+<span id="cb39-3"><a></a>full7 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(rings) <span class="sc">~</span> ., <span class="at">data =</span> abalone)</span>
+<span id="cb39-4"><a></a>part6 <span class="ot">&lt;-</span> <span class="fu">update</span>(full7, . <span class="sc">~</span> . <span class="sc">-</span> whole)</span>
+<span id="cb39-5"><a></a>part5 <span class="ot">&lt;-</span> <span class="fu">update</span>(part6, . <span class="sc">~</span> . <span class="sc">-</span> viscera)</span>
+<span id="cb39-6"><a></a>part4 <span class="ot">&lt;-</span> <span class="fu">update</span>(part5, . <span class="sc">~</span> . <span class="sc">-</span> length)</span>
+<span id="cb39-7"><a></a>part3 <span class="ot">&lt;-</span> <span class="fu">update</span>(part4, . <span class="sc">~</span> . <span class="sc">-</span> height)</span>
+<span id="cb39-8"><a></a>part2 <span class="ot">&lt;-</span> <span class="fu">update</span>(part3, . <span class="sc">~</span> . <span class="sc">-</span> diameter)</span>
+<span id="cb39-9"><a></a>part1 <span class="ot">&lt;-</span> <span class="fu">update</span>(part2, . <span class="sc">~</span> . <span class="sc">-</span> shucked)</span>
+<span id="cb39-10"><a></a></span>
+<span id="cb39-11"><a></a>formulas <span class="ot">&lt;-</span> <span class="fu">c</span>(part1<span class="sc">$</span>call<span class="sc">$</span>formula, </span>
+<span id="cb39-12"><a></a>              part2<span class="sc">$</span>call<span class="sc">$</span>formula, </span>
+<span id="cb39-13"><a></a>              part3<span class="sc">$</span>call<span class="sc">$</span>formula, </span>
+<span id="cb39-14"><a></a>              part4<span class="sc">$</span>call<span class="sc">$</span>formula, </span>
+<span id="cb39-15"><a></a>              part5<span class="sc">$</span>call<span class="sc">$</span>formula, </span>
+<span id="cb39-16"><a></a>              part6<span class="sc">$</span>call<span class="sc">$</span>formula, </span>
+<span id="cb39-17"><a></a>              full7<span class="sc">$</span>call<span class="sc">$</span>formula)</span>
+<span id="cb39-18"><a></a></span>
+<span id="cb39-19"><a></a>rs <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="fu">glance</span>(part1),</span>
+<span id="cb39-20"><a></a>                <span class="fu">glance</span>(part2),</span>
+<span id="cb39-21"><a></a>                <span class="fu">glance</span>(part3),</span>
+<span id="cb39-22"><a></a>                <span class="fu">glance</span>(part4),</span>
+<span id="cb39-23"><a></a>                <span class="fu">glance</span>(part5),</span>
+<span id="cb39-24"><a></a>                <span class="fu">glance</span>(part6),</span>
+<span id="cb39-25"><a></a>                <span class="fu">glance</span>(full7)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-26"><a></a>  <span class="fu">mutate</span>(<span class="at">Model =</span> formulas, <span class="at">n =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb39-27"><a></a>  <span class="fu">select</span>(Model, n, r.squared, adj.r.squared) <span class="sc">%&gt;%</span></span>
+<span id="cb39-28"><a></a>  <span class="fu">mutate_if</span>(is.numeric, round, <span class="dv">3</span>)</span>
+<span id="cb39-29"><a></a></span>
+<span id="cb39-30"><a></a>knitr<span class="sc">::</span><span class="fu">kable</span>(rs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top">
@@ -1103,21 +1131,19 @@ F-statistic: 21.32 on 7 and 92 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="reduced-model" class="slide level2">
 <h2>Reduced model</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>Coefficients<span class="sc">:</span></span>
-<span id="cb39-2"><a></a>            Estimate Std. Error t value <span class="fu">Pr</span>(<span class="sc">&gt;</span><span class="er">|</span>t<span class="sc">|</span>)    </span>
-<span id="cb39-3"><a></a>(Intercept)   <span class="fl">1.4122</span>     <span class="fl">0.1594</span>   <span class="fl">8.859</span> <span class="fl">4.19e-14</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb39-4"><a></a>diameter      <span class="fl">2.0346</span>     <span class="fl">0.6034</span>   <span class="fl">3.372</span>  <span class="fl">0.00108</span> <span class="sc">**</span> </span>
-<span id="cb39-5"><a></a>shucked      <span class="sc">-</span><span class="fl">1.3339</span>     <span class="fl">0.2152</span>  <span class="sc">-</span><span class="fl">6.200</span> <span class="fl">1.42e-08</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb39-6"><a></a>shell         <span class="fl">2.0486</span>     <span class="fl">0.3672</span>   <span class="fl">5.579</span> <span class="fl">2.23e-07</span> <span class="sc">**</span><span class="er">*</span></span>
-<span id="cb39-7"><a></a><span class="sc">---</span></span>
-<span id="cb39-8"><a></a>Signif. codes<span class="sc">:</span>  <span class="dv">0</span> ‘<span class="sc">**</span><span class="er">*</span>’ <span class="fl">0.001</span> ‘<span class="sc">**</span>’ <span class="fl">0.01</span> ‘<span class="sc">*</span>’ <span class="fl">0.05</span> ‘.’ <span class="fl">0.1</span> ‘ ’ <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>Coefficients<span class="sc">:</span></span>
+<span id="cb40-2"><a></a>            Estimate Std. Error t value <span class="fu">Pr</span>(<span class="sc">&gt;</span><span class="er">|</span>t<span class="sc">|</span>)    </span>
+<span id="cb40-3"><a></a>(Intercept)   <span class="fl">1.4122</span>     <span class="fl">0.1594</span>   <span class="fl">8.859</span> <span class="fl">4.19e-14</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb40-4"><a></a>diameter      <span class="fl">2.0346</span>     <span class="fl">0.6034</span>   <span class="fl">3.372</span>  <span class="fl">0.00108</span> <span class="sc">**</span> </span>
+<span id="cb40-5"><a></a>shucked      <span class="sc">-</span><span class="fl">1.3339</span>     <span class="fl">0.2152</span>  <span class="sc">-</span><span class="fl">6.200</span> <span class="fl">1.42e-08</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb40-6"><a></a>shell         <span class="fl">2.0486</span>     <span class="fl">0.3672</span>   <span class="fl">5.579</span> <span class="fl">2.23e-07</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb40-7"><a></a><span class="sc">---</span></span>
+<span id="cb40-8"><a></a>Signif. codes<span class="sc">:</span>  <span class="dv">0</span> ‘<span class="sc">**</span><span class="er">*</span>’ <span class="fl">0.001</span> ‘<span class="sc">**</span>’ <span class="fl">0.01</span> ‘<span class="sc">*</span>’ <span class="fl">0.05</span> ‘.’ <span class="fl">0.1</span> ‘ ’ <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section></section>
 <section>
 <section id="how-did-you-do" class="title-slide slide level1 center">
 <h1>How did you do?</h1>
-<blockquote>
 <p>Read exam questions carefully and use the process of elimination.</p>
-</blockquote>
 </section>
 <section id="model-and-variable-selection" class="slide level2">
 <h2>Model and variable selection</h2>
@@ -1135,15 +1161,6 @@ F-statistic: 21.32 on 7 and 92 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h2>Summary</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>Multiple Linear Regression</strong></p>
-<ul>
-<li>More than one predictor</li>
-<li>Fit y to multiple x – multiple dimensions (hyperplane)</li>
-<li>Principle: minimise sum of squared residuals</li>
-<li>Assumptions: CLINE (collinearity)</li>
-<li>Adjusted R-squared</li>
-</ul>
-</div><div class="column" style="width:50%;">
 <p><strong>Simple Linear Regression</strong></p>
 <ul>
 <li>One predictor, fit a straight line</li>
@@ -1152,11 +1169,20 @@ F-statistic: 21.32 on 7 and 92 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>Assumptions: LINE</li>
 <li>Multiple R-squared</li>
 </ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Multiple Linear Regression</strong></p>
+<ul>
+<li>More than one predictor</li>
+<li>Fit y to multiple x – multiple dimensions (hyperplane)</li>
+<li>Principle: minimise sum of squared residuals</li>
+<li>Assumptions: CLINE (collinearity)</li>
+<li>Adjusted R-squared</li>
+</ul>
 </div></div>
 </section></section>
 <section id="thanks" class="title-slide slide level1 center">
 <h1>Thanks!</h1>
-<p>This presentation is based on the <a href="https://github.com/usyd-soles-edu/soles-revealjs">SOLES Quarto reveal.js template</a> and is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+<p>This presentation is based on the <a href="https://github.com/usyd-soles-edu/soles-revealjs" style="color: #1c1c84;">SOLES Quarto reveal.js template</a> and is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" style="color: #1c1c84;">Creative Commons Attribution 4.0 International License</a>.</p>
 <!-- Links -->
 
 
