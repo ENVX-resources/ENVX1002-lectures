@@ -1,6 +1,6 @@
 ---
 title: Topic 11 -- Multiple Linear Regression
-author: Si Yang Han
+author: Liana Pozza
 format:
   ochre-revealjs: default
   ochre-typst:
@@ -31,12 +31,12 @@ library(dplyr)
 
 - [Week 9. Describing Relationships]{style="color: #D0D3D4;"}
     + [Correlation (calculation, interpretation)]{style="color: #D0D3D4;"}
-    + [Regression (model structure, model fitting]{style="color: #D0D3D4;"}
+    + [Regression (model structure, model fitting)]{style="color: #D0D3D4;"}
     + [What/when/why/how]{style="color: #D0D3D4;"}
 
 - [Week 10. Simple Linear Regression]{style="color: #D0D3D4;"}
-    + [Can we use the model?(assumptions, hypothesis testing)]{style="color: #D0D3D4;"}
-    + [How good is the model?(interpretation, model fit)]{style="color: #D0D3D4;"}
+    + [Can we use the model? (assumptions, hypothesis testing)]{style="color: #D0D3D4;"}
+    + [How good is the model? (interpretation, model fit)]{style="color: #D0D3D4;"}
     
 - **Week 11. Multiple Linear Regression**
     + Multiple Linear Regression (MLR) modelling
@@ -55,6 +55,8 @@ Ideal for predicting a continuous response variable from a single predictor vari
 * Identify/quantify relationships between variables
 * Predict future values
 
+<br>
+
 . . .
 
 ### What if we have more than one predictor?
@@ -63,7 +65,7 @@ What is the model and how do we interpret the results?
 
 # Multiple linear regression
 
-> Nearly identical to simple linear regression, just more predictors!
+Nearly identical to simple linear regression, just more predictors!
 
 ## History
 
@@ -87,14 +89,20 @@ What is the model and how do we interpret the results?
 
 -- Pearson (1930), on Galton's work with MLR
 
-## Steps for Regression
+### Regression workflow
 
-1.  Understand the variables
-2.  Explore data
-3.  Fit model
-4.  Check assumptions
-5.  Assess fit of model/s (parsimony)
-6.  Interpret output
+1.  **Understand the variables**: Which is the response variable? Is there a reason to believe a causal relationship?
+
+2.  **Explore data**: How many observations? Summary statistics? Scatterplot and correlation?
+
+3.  **Fit model**
+
+4.  **Check assumptions**: Remember - it's about the residuals! If assumptions fail, try transforming and refit the model. If assumptions still fail, consider another model.
+
+5.  **Assess model fit**: Hypothesis test, significance, F-statistic, p-value. R^2^, how much model variation was explained by the model. **Parsimony**
+  
+6.  **Interpret output**: 'For every one-unit increase in x, y increases by $\beta_1$ units...' and any additional research/insight. **different for MLR**
+
 
 ## Example: Air Quality in New York (1973)
 
@@ -222,6 +230,8 @@ summary(fit)
 
 > The most acceptable explanation of an occurrence, phenomenon, or event is the simplest, involving the fewest entities, assumptions, or changes.
 
+## Parsimony in regression modeling
+
 - Simple is best; i.e. if a simple (one variable) model and a complex (many variables) model predict similarly well, the simple model is preferred.
 
 . . .
@@ -241,7 +251,8 @@ summary(fit)
 
 ## The multiple linear regression model {auto-animate="true"}
 
-An extension of simple linear regression to include **more than one** predictor variable: *"How does $y$ change as $x_1$, $x_2$, ..., $x_k$ change?"*
+An extension of simple linear regression to include **more than one** predictor variable: 
+*"How does $y$ change as $x_1$, $x_2$, ..., $x_k$ change?"*
 
 $$ Y_i = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_k x_k + \epsilon_i $$
 
@@ -253,8 +264,8 @@ Therefore, estimating the model involves *estimating the values of* $\beta_0$, $
 - $\epsilon$ is the error (residual) term
 :::
 
-:::{.fragment}
-### Fit MLR model to Air Quality data
+
+## Fit MLR model to Air Quality data
 
 The variables `Month` and `Day` are not useful predictors, so we will exclude them from the model.
 
@@ -262,13 +273,11 @@ The variables `Month` and `Day` are not useful predictors, so we will exclude th
 fit_multi <- lm(formula = Ozone ~ Solar.R + Wind + Temp, data = airquality)
 # fit_multi <- lm(formula = Ozone ~ .-Month -Day, data = airquality) # all variables excluding Month and Day
 ```
-:::
 
-## Visualisation: not easy {auto-animate="true"}
 
-Are the plots useful?
+## Visualisation is not easy: are the plots useful?
 
-### 3D plot
+3D plot
 
 ```{r}
 #| eval: !expr knitr::pandoc_to() != "typst"
@@ -278,11 +287,9 @@ plot_ly(data = airquality,
   type = "scatter3d", mode = "markers", opacity = 0.5)
 ```
 
-## Visualisation: not easy
+## Visualisation is not easy: are the plots useful?
 
-Are the plots useful?
-
-### 4D plot
+4D plot
 
 ```{r}
 #| eval: !expr knitr::pandoc_to() != "typst"
@@ -302,7 +309,7 @@ The partial regression coefficient for a predictor $x_i$ is the amount by which 
 
 $$ \beta_k = \frac{\Delta Y}{\Delta x_k} $$
 
-. . .
+## Partial regression coefficients: Air quality example
 
 
 ```{r}
@@ -322,9 +329,6 @@ sjPlot::plot_model(fit_multi,
 
 > *With `Wind` and `Solar.R` held constant, how does `Temp` affect `Ozone`?*
 
-:::{.callout-note}
-Not necessary to do this - lecture content only.
-:::
 
 ## Interpreting the partial regression coefficients
 
@@ -372,28 +376,36 @@ With one extra assumption!
 
 - **Collinearity**: there is no perfect linearity between predictors
 
-Two predictors that have a *perfect* linear relationship (i.e. $r$ = 1 or -1) breaks the assumption of collinearity. High (but not perfect) collinearity (e.g. strong/very strong $r$) does not break the assumption but can lead to unstable estimates and large standard errors.
+## Collinearity assumption
+
+Two predictors that have a *perfect* linear relationship (i.e. $r$ = 1 or -1) breaks the assumption of collinearity. 
+
+High (but not perfect) collinearity (e.g. strong/very strong $r$) does not break the assumption but can lead to unstable estimates and large standard errors.
 
 > The largest correlation between the predictors is between Temp and Wind ($r$ = -0.5). This is not a problem.
 
-## Assumptions of MLR 
+## Let's check our assumptions for the Air quality model
 
 ```{r}
 par(mfrow = c(2, 2)) # set up a 2 x 2 grid for plots
 plot(fit_multi)
 ```
 
-## Transformation using `log()`
-
-Some evidence of non-linearity in the diagnostic plots. Transform and re-check assumptions.
-
 . . .
+
+Some evidence of non-linearity in the diagnostic plots. We need to transform and re-check assumptions.
+
+## Transformation using `log()`
 
 ```{r}
 fit_multi_log <- lm(formula = log(Ozone) ~ Solar.R + Wind + Temp, data = airquality)
 par(mfrow = c(2, 2)) # set up a 2 x 2 grid for plots
 plot(fit_multi_log)
 ```
+
+. . .
+
+The assumptions are met, let's move onto interpretation. 
 
 ## Results -- MLR vs SLR {auto-animate="true"} 
 
@@ -411,8 +423,10 @@ summary(fit)
 :::
 ::::
 
+## Results -- MLR vs SLR
+
 - All three predictors are statistically significant (p < .001).
-- The MLR model explains 66% of variance (adjusted R^2^ = 0.66), whereas the SLR explains 48% of variance (multiple R^2^ = 0.48).
+- The MLR model explains 66% of variation in log(Ozone) (adjusted R^2^ = 0.66), whereas the SLR explains 48% of variation in log(Ozone) (multiple R^2^ = 0.48).
 - Thus the MLR is the better model.
 
 ## Hypothesis Testing
@@ -452,11 +466,26 @@ All three predictors are statistically significant (p < .001). **Holding all oth
 - For every 1 unit increase in `Wind`, `log(Ozone)` decreases by a mean value of 0.062, 
 - For every 1 degree increase in `Temp`, `log(Ozone)` increases by a mean value of 0.049.
 
-OR
+## Interpreting coefficients - backtransformed approximation
 
+```r
+Call:
+lm(formula = log(Ozone) ~ Solar.R + Wind + Temp, data = airquality)
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -0.2621323  0.5535669  -0.474 0.636798    
+Solar.R      0.0025152  0.0005567   4.518 1.62e-05 ***
+Wind        -0.0615625  0.0157130  -3.918 0.000158 ***
+Temp         0.0491711  0.0060875   8.077 1.07e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+```
 - For every 1 unit increase in `Solar.R`, `Ozone` increases by *approximately* a mean value of 0.25%,
 - For every 1 unit increase in `Wind`, `Ozone` decreases by *approximately* a mean value of 6.2%,
 - For every 1 degree increase in `Temp`, `Ozone` increases by *approximately* a mean value of 4.9%.
+
 
 ## Model fit
 
@@ -480,13 +509,14 @@ exp(0.51) #backtransform
 ```
 
 - On average, the model predicts `Ozone` within `r round(exp(0.51),2)` ppb of the true value.
+
+. . .
+
 - Degrees of freedom (107) = number of observations (111) - number of parameters in the model (3 predictors and 1 intercept)
 
 . . .
 
-If there are >1 predictors, use the **adjusted R-Squared** as it penalises the model for having more predictors that are not useful.
-
-- The MLR model explains 66% of variance (adjusted R^2^ = 0.66)
+- The MLR model explains 66% of variation in log(Ozone) (**adjusted** R^2^ = 0.66)
 
 ## The R^2^ value
 
@@ -494,13 +524,15 @@ The R-squared value is the proportion of variance explained by the model.
 
 $$ R^2 = \frac{SS_{reg}}{SS_{tot}} = 1 - \frac{SS_{res}}{SS_{tot}} $$
 
-The adjusted R-squared value is the proportion of variance explained by the model, adjusted for the number of predictors.
+. . .
+
+The adjusted R-squared value is the proportion of variance explained by the model, **adjusted for the number of predictors**.
 
 $$ R^2_{adj} = 1 - \frac{SS_{res}}{SS_{tot}} \frac{n-1}{n-p-1} $$
 
 where $n$ is the number of observations and $p$ is the number of predictors.
 
-## F-stat
+## F-statistic
 
 ```r
 Call:
@@ -511,26 +543,40 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: < 2.2e-16
 ```
 
 - The F-statistic tests the null hypothesis that all the regression coefficients are equal to zero, i.e. $H_0: \beta_1 = \beta_2 = ... = \beta_k = 0$.
+
+. . .
+
 - As a ratio, it tells us how much better the model is than the null model (i.e. a model with no predictors, the mean).
+
+. . .
+
 - If the p-value is less than our specified critical value (e.g. 0.05), we reject the null hypothesis and conclude that the current model is better than the null model.
 
 ## Reporting {auto-animate="true"}
 
 A quick (but not complete) summary:
 
+. . .
+
 - New York air quality data was collected in 1973 by the New York State Department of Conservation and the National Weather Service (meteorological data). There were 111 observations of 6 variables.
+
+. . .
 
 - There were non-linear relationships between `Ozone` (the response) and `Temp`, `Wind` and `Solar.R` (the predictors), hence a natural log transformation was applied to `Ozone`.
 
+. . .
+
 - Multiple linear regression was conducted on these variables, and model assumptions (CLINE) were met.
 
-- Solar radiation, wind speed and temperature are **significant predictors** of Ozone concentration (**p < 0.001**) with the model accounting for **66% of the variation** in log(Ozone). The model explained more variance than a one-predictor model and was found to be significantly better than the null model.
+. . .
+
+- Solar radiation, wind speed and temperature are **significant predictors** of Ozone concentration (**p < 0.001**) with the model accounting for **66% of the variation** in log(Ozone). The model explained more variation than a single-predictor model and was found to be significantly better than the null model.
 
 # Abalone Quiz
 
 ![](images/abalone.jpg)
 
-> Pop quiz! (No marks, just check your understanding.)
+Pop quiz! (No marks, just check your understanding.)
 
 ## Context
 
@@ -620,7 +666,7 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 ```
 # How did you do?
 
-> Read exam questions carefully and use the process of elimination.
+Read exam questions carefully and use the process of elimination.
 
 ## Model and variable selection
 
@@ -635,18 +681,6 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 :::: {.columns}
 ::: {.column width="50%"}
 
-**Multiple Linear Regression**
-
-- More than one predictor
-- Fit y to multiple x -- multiple dimensions (hyperplane)
-- Principle: minimise sum of squared residuals
-- Assumptions: CLINE (collinearity)
-- Adjusted R-squared
-
-:::
-
-::: {.column width="50%"}
-
 **Simple Linear Regression**
 
 - One predictor, fit a straight line
@@ -656,11 +690,24 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 - Multiple R-squared
 
 :::
+
+
+::: {.column width="50%"}
+
+**Multiple Linear Regression**
+
+- More than one predictor
+- Fit y to multiple x -- multiple dimensions (hyperplane)
+- Principle: minimise sum of squared residuals
+- Assumptions: CLINE (collinearity)
+- Adjusted R-squared
+
+:::
 ::::
 
 # Thanks!
 
-This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
+This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs){style="color: #1c1c84;"} and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by]{style="color: #1c1c84;"}.
 
 <!-- Links -->
 [cc-by]: http://creativecommons.org/licenses/by/4.0/

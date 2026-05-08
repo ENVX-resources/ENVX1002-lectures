@@ -806,7 +806,7 @@ $$ \widehat{child} = 23.94153 + 0.64629 \cdot parent$$
 
 # Let's practice
 Can we predict the weight of an alligator from its length?
-[Download data ⬇](https://canvas.sydney.edu.au/courses/46921/pages/week-10-lectures-linear-functions?module_item_id=1752336){style="color: #1c1c84;"}
+(Data is available in Canvas Week 10 Lecture page)
 
 ![](images/alligator.jpg){width=30%}
 

@@ -21,9 +21,11 @@ library(dplyr)
 
 ![](images/abalone.jpg)
 
-> Pop quiz! (No marks, just check your understanding. It's...tricky.)
+Pop quiz! (No marks, just check your understanding. It's...tricky.)
 
-> This dataset records abalone from the coast of Tasmania, Australia (Nash, 1995) and was accessed from the [UCI Machine Learning Repository]<https://archive.ics.uci.edu/dataset/1/abalone>.
+<br>
+
+This dataset records abalone from the coast of Tasmania, Australia (Nash, 1995) and was accessed from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/1/abalone){style="color: #1c1c84;"}.
 
 ## Introduction
 
@@ -334,7 +336,7 @@ d) SOS
 
 # Good work!
 
-This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
+This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs){style="color: #1c1c84;"} and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by]{style="color: #1c1c84;"}.
 
 <!-- Links -->
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
