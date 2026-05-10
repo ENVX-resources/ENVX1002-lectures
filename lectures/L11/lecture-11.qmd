@@ -89,7 +89,7 @@ Nearly identical to simple linear regression, just more predictors!
 
 -- Pearson (1930), on Galton's work with MLR
 
-### Regression workflow
+## Regression workflow
 
 1.  **Understand the variables**: Which is the response variable? Is there a reason to believe a causal relationship?
 
