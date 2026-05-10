@@ -375,7 +375,14 @@
     "href": "lectures/L11/lecture-11.html#history",
     "title": "Topic 11 – Multiple Linear Regression",
     "section": "History",
-    "text": "History\n\n\n \nFrancis Galton and Karl Pearson\n\n\nFirst suggested by Francis Galton in 1886 while studying genetic variations in sweet peas over several generations\nKarl Pearson developed the mathematical formula for multiple linear regression model later (early 1900s)\n\n\n\n“The somewhat complicated mathematics of multiple correlation, with its repeated appeals to the geometrical notions of hyperspace, remained a closed chamber to him.”\n\n– Pearson (1930), on Galton’s work with MLR\nRegression workflow\n\nUnderstand the variables: Which is the response variable? Is there a reason to believe a causal relationship?\nExplore data: How many observations? Summary statistics? Scatterplot and correlation?\nFit model\nCheck assumptions: Remember - it’s about the residuals! If assumptions fail, try transforming and refit the model. If assumptions still fail, consider another model.\nAssess model fit: Hypothesis test, significance, F-statistic, p-value. R2, how much model variation was explained by the model. Parsimony\nInterpret output: ‘For every one-unit increase in x, y increases by \\(\\beta_1\\) units…’ and any additional research/insight. different for MLR"
+    "text": "History\n\n\n \nFrancis Galton and Karl Pearson\n\n\nFirst suggested by Francis Galton in 1886 while studying genetic variations in sweet peas over several generations\nKarl Pearson developed the mathematical formula for multiple linear regression model later (early 1900s)\n\n\n\n“The somewhat complicated mathematics of multiple correlation, with its repeated appeals to the geometrical notions of hyperspace, remained a closed chamber to him.”\n\n– Pearson (1930), on Galton’s work with MLR"
+  },
+  {
+    "objectID": "lectures/L11/lecture-11.html#regression-workflow",
+    "href": "lectures/L11/lecture-11.html#regression-workflow",
+    "title": "Topic 11 – Multiple Linear Regression",
+    "section": "Regression workflow",
+    "text": "Regression workflow\n\nUnderstand the variables: Which is the response variable? Is there a reason to believe a causal relationship?\nExplore data: How many observations? Summary statistics? Scatterplot and correlation?\nFit model\nCheck assumptions: Remember - it’s about the residuals! If assumptions fail, try transforming and refit the model. If assumptions still fail, consider another model.\nAssess model fit: Hypothesis test, significance, F-statistic, p-value. R2, how much model variation was explained by the model. Parsimony\nInterpret output: ‘For every one-unit increase in x, y increases by \\(\\beta_1\\) units…’ and any additional research/insight. different for MLR"
   },
   {
     "objectID": "lectures/L11/lecture-11.html#example-air-quality-in-new-york-1973",
