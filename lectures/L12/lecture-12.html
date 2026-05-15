@@ -9,7 +9,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.26">
 
-  <meta name="author" content="Si Yang Han">
+  <meta name="author" content="Liana Pozza">
   <title>Topic 12 – Nonlinear regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -200,7 +200,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Si Yang Han 
+Liana Pozza 
 </div>
         <p class="quarto-title-affiliation">
             The University of Sydney
@@ -226,7 +226,7 @@ Si Yang Han
 <li><span style="color: #D0D3D4;">Week 9. Describing Relationships</span>
 <ul>
 <li><span style="color: #D0D3D4;">Correlation (calculation, interpretation)</span></li>
-<li><span style="color: #D0D3D4;">Regression (model structure, model fitting</span></li>
+<li><span style="color: #D0D3D4;">Regression (model structure, model fitting)</span></li>
 <li><span style="color: #D0D3D4;">What/when/why/how</span></li>
 </ul></li>
 <li><span style="color: #D0D3D4;">Week 10. Simple Linear Regression</span>
@@ -251,24 +251,24 @@ Si Yang Han
 <h3 id="simple-linear-regression">Simple linear regression</h3>
 <p><span class="math display">\[ Y_i = \beta_0 + \beta_1 x_i + \epsilon_i \]</span></p>
 <p>Ideal for predicting a continuous response variable from a single predictor variable: <em>“How does <span class="math inline">\(y\)</span> change as <span class="math inline">\(x\)</span> changes, when the relationship is linear?”</em></p>
+<div class="fragment">
 <h3 id="multiple-linear-regression">Multiple linear regression</h3>
 <p><span class="math display">\[ Y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + ... + \beta_k x_{ki} + \epsilon_i \]</span></p>
 <p><em>“How does <span class="math inline">\(y\)</span> change as <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, …, <span class="math inline">\(x_k\)</span> change?”</em></p>
+</div>
 <div class="fragment">
 <h3 id="nonlinear-regression">Nonlinear regression</h3>
 <p><span class="math display">\[ Y_i = f(x_i, \beta) + \epsilon_i \]</span></p>
-</div>
-<div class="fragment">
-<p>where <span class="math inline">\(f(x_i, \beta)\)</span> is a nonlinear function of the parameters <span class="math inline">\(\beta\)</span>: “How do we model a change in <span class="math inline">\(y\)</span> with <span class="math inline">\(x\)</span> when the relationship is nonlinear?”</p>
+<p>where <span class="math inline">\(f(x_i, \beta)\)</span> is a nonlinear function of the parameters <span class="math inline">\(\beta\)</span>:</p>
+<p><em>“How do we model a change in <span class="math inline">\(y\)</span> with <span class="math inline">\(x\)</span> when the relationship is nonlinear?”</em></p>
 </div>
 </section>
 <section>
 <section id="nonlinear-regression-1" class="title-slide slide level1 center">
 <h1>Nonlinear regression</h1>
 <p><img data-src="images/gauss.jpg"> <img data-src="images/netwon.jpg"></p>
-<blockquote>
-<p>Carl Friedrich Gauss (1777-1855) and Isaac Newton (1642-1726) Gauss-Newton approach to nonlinear regression is most commonly used</p>
-</blockquote>
+<p>Carl Friedrich Gauss (1777-1855) and Isaac Newton (1642-1726)</p>
+<p>Gauss-Newton approach to nonlinear regression is most commonly used.</p>
 </section>
 <section id="nonlinear-relationships" class="slide level2">
 <h2>Nonlinear relationships</h2>
@@ -354,9 +354,19 @@ Si Yang Han
 <td style="text-align: center;">If <span class="math inline">\(\log_a b = n\)</span>, <span class="math inline">\(a\)</span> is the base, <span class="math inline">\(b\)</span> is the result, and <span class="math inline">\(n\)</span> is the logarithm (or the exponent in the equivalent exponential form).</td>
 </tr>
 <tr class="even">
+<td>&nbsp;</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
 <td><strong>Example</strong></td>
 <td style="text-align: center;"><span class="math inline">\(2^3 = 8\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\log_2 8 = 3\)</span></td>
+</tr>
+<tr class="even">
+<td>&nbsp;</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td><strong>Interpretation</strong></td>
@@ -364,14 +374,29 @@ Si Yang Han
 <td style="text-align: center;">The power to which you must raise <span class="math inline">\(2\)</span> to get <span class="math inline">\(8\)</span> is <span class="math inline">\(3\)</span>.</td>
 </tr>
 <tr class="even">
+<td>&nbsp;</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
 <td><strong>Inverse</strong></td>
 <td style="text-align: center;">The logarithm is the inverse operation of exponentiation.</td>
 <td style="text-align: center;">The exponentiation is the inverse operation of logarithm.</td>
+</tr>
+<tr class="even">
+<td>&nbsp;</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td><strong>Properties</strong></td>
 <td style="text-align: center;"><span class="math inline">\((a^n)^m = a^{n \cdot m}\)</span>, <span class="math inline">\(a^n \cdot a^m = a^{n+m}\)</span>, <span class="math inline">\(\frac{a^n}{a^m} = a^{n-m}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\log_a(b \cdot c) = \log_a b + \log_a c\)</span>, <span class="math inline">\(\log_a\left(\frac{b}{c}\right) = \log_a b - \log_a c\)</span>, <span class="math inline">\(\log_a(b^n) = n \cdot \log_a b\)</span></td>
+</tr>
+<tr class="even">
+<td>&nbsp;</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
@@ -480,9 +505,7 @@ Si Yang Han
 <section>
 <section id="transformations-1" class="title-slide slide level1 center">
 <h1>Transformations</h1>
-<blockquote>
 <p>How far can we go?</p>
-</blockquote>
 </section>
 <section id="transformations-exponential-decay" class="slide level2">
 <h2>Transformations: exponential decay</h2>
@@ -843,9 +866,7 @@ Si Yang Han
 <section>
 <section id="polynomial-regression" class="title-slide slide level1 center">
 <h1>Polynomial regression</h1>
-<blockquote>
 <p>A special case of multiple linear regression used to model nonlinear relationships.</p>
-</blockquote>
 </section>
 <section id="model" class="slide level2">
 <h2>Model</h2>
@@ -858,21 +879,20 @@ Si Yang Han
 <li>Can still be fit using <code>lm()</code>.</li>
 <li>The more complex, the less likely it follows a true biological relationship…</li>
 </ul>
-<div class="fragment">
-<p><br></p>
-<h3 id="adding-polynomial-terms">Adding polynomial terms</h3>
+</section>
+<section id="adding-polynomial-terms" class="slide level2">
+<h2>Adding polynomial terms</h2>
 <ul>
 <li>Linear: <span class="math inline">\(y = \beta_0 + \beta_1 x\)</span></li>
 <li>Quadratic: <span class="math inline">\(y = \beta_0 + \beta_1 x + \beta_2 x^2\)</span></li>
 <li>Cubic: <span class="math inline">\(y = \beta_0 + \beta_1 x + \beta_2 x^2 + \beta_3 x^3\)</span></li>
 <li>Each level increases the power of the predictor by 1.</li>
 </ul>
-</div>
 </section></section>
 <section>
 <section id="polynomial-fitting" class="title-slide slide level1 center">
 <h1>Polynomial fitting</h1>
-<p>Using the <code>asymptotic</code> data</p>
+<p>Using the <strong>asymptotic</strong> data</p>
 </section>
 <section id="the-data" class="slide level2">
 <h2>The data</h2>
@@ -922,8 +942,7 @@ Si Yang Han
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">ggplot</span>(asymptotic, <span class="fu">aes</span>(<span class="at">x =</span> predictor, <span class="at">y =</span> response)) <span class="sc">+</span></span>
 <span id="cb26-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb26-3"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Predictor"</span>, <span class="at">y =</span> <span class="st">"Response"</span>) <span class="sc">+</span></span>
-<span id="cb26-4"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">predict</span>(lin_fit)), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb26-5"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">predict</span>(poly2_fit)), <span class="at">color =</span> <span class="st">"slateblue"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-4"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">predict</span>(poly2_fit)), <span class="at">color =</span> <span class="st">"slateblue"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
@@ -943,31 +962,65 @@ Si Yang Han
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="fu">ggplot</span>(asymptotic, <span class="fu">aes</span>(<span class="at">x =</span> predictor, <span class="at">y =</span> response)) <span class="sc">+</span></span>
 <span id="cb28-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb28-3"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Predictor"</span>, <span class="at">y =</span> <span class="st">"Response"</span>) <span class="sc">+</span></span>
-<span id="cb28-4"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">predict</span>(lin_fit)), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb28-5"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">predict</span>(poly2_fit)), <span class="at">color =</span> <span class="st">"slateblue"</span>) <span class="sc">+</span></span>
-<span id="cb28-6"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">predict</span>(poly3_fit)), <span class="at">color =</span> <span class="st">"seagreen"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb28-4"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">predict</span>(poly3_fit)), <span class="at">color =</span> <span class="st">"seagreen"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
 <img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-29-1.png" width="960" class="r-stretch"></section>
 <section id="fitting-the-model-polydegree-10" class="slide level2">
 <h2>Fitting the model (<code>poly(degree = 10)</code>)</h2>
-<p><span class="math display">\[ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + ... + \beta_10 x_i^{10} + \epsilon_i \]</span></p>
+<p><span class="math display">\[ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + ... + \beta_{10} x_i^{10} + \epsilon_i \]</span></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>poly10_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(response <span class="sc">~</span> <span class="fu">poly</span>(predictor, <span class="dv">10</span>), asymptotic)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div class="cell">
 
+<img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-31-1.png" width="960" class="r-stretch"></section>
+<section id="lets-compare" class="slide level2">
+<h2>Let’s compare!</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-32-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="co"># 1) Compute R^2 values</span></span>
+<span id="cb30-2"><a></a>R2_lin    <span class="ot">&lt;-</span> <span class="fu">summary</span>(lin_fit)<span class="sc">$</span>r.squared</span>
+<span id="cb30-3"><a></a>R2_poly2  <span class="ot">&lt;-</span> <span class="fu">summary</span>(poly2_fit)<span class="sc">$</span>adj.r.squared</span>
+<span id="cb30-4"><a></a>R2_poly3  <span class="ot">&lt;-</span> <span class="fu">summary</span>(poly3_fit)<span class="sc">$</span>adj.r.squared</span>
+<span id="cb30-5"><a></a>R2_poly10 <span class="ot">&lt;-</span> <span class="fu">summary</span>(poly10_fit)<span class="sc">$</span>adj.r.squared</span>
+<span id="cb30-6"><a></a></span>
+<span id="cb30-7"><a></a><span class="co"># 2) Create a simple table (data frame)</span></span>
+<span id="cb30-8"><a></a>model_r2_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb30-9"><a></a>  <span class="at">Model =</span> <span class="fu">c</span>(<span class="st">"Linear"</span>, <span class="st">"Poly2"</span>, <span class="st">"Poly3"</span>, <span class="st">"Poly10"</span>),</span>
+<span id="cb30-10"><a></a>  <span class="at">R2_adj  =</span> <span class="fu">c</span>(R2_lin, R2_poly2, R2_poly3, R2_poly10)</span>
+<span id="cb30-11"><a></a>)</span>
+<span id="cb30-12"><a></a></span>
+<span id="cb30-13"><a></a><span class="co"># Display the table</span></span>
+<span id="cb30-14"><a></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb30-15"><a></a>  model_r2_table, </span>
+<span id="cb30-16"><a></a>  <span class="at">digits  =</span> <span class="dv">3</span>, </span>
+<span id="cb30-17"><a></a>  <span class="at">caption =</span> <span class="st">"Adjusted R^2^ for each model"</span></span>
+<span id="cb30-18"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <table class="caption-top">
-<caption>Comparison of R<sup>2</sup> of Polynomial Models</caption>
+<caption>Adjusted R<sup>2</sup> for each model</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Model</th>
-<th style="text-align: right;">R2</th>
+<th style="text-align: right;">R2_adj</th>
 </tr>
 </thead>
 <tbody>
@@ -991,7 +1044,8 @@ Si Yang Han
 </table>
 </div>
 </div>
-<img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-31-1.png" width="960" class="r-stretch"><div class="callout callout-note callout-titled callout-style-default">
+</div></div>
+<div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
@@ -1013,10 +1067,18 @@ Si Yang Han
 <li>Extra terms can lead to overfitting and are difficult to interpret:</li>
 <li>Parsimony: is the most complex term (highest power) significant? If not, use a lower power.</li>
 </ul>
+<p><strong>BUT:</strong></p>
+<ul>
+<li>Easy to fit: just add polynomial terms to the model.</li>
+<li>Simple to perform: use <code>lm()</code>.</li>
+</ul>
+</section>
+<section id="is-our-model-parsimonious" class="slide level2">
+<h2>Is our model parsimonious?</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="fu">summary</span>(poly10_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">summary</span>(poly10_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1048,11 +1110,6 @@ Multiple R-squared:  0.8897,    Adjusted R-squared:  0.8621
 F-statistic: 32.26 on 10 and 40 DF,  p-value: 4.846e-16</code></pre>
 </div>
 </div>
-<h3 id="still">Still:</h3>
-<ul>
-<li>Easy to fit: just add polynomial terms to the model.</li>
-<li>Simple to perform: use <code>lm()</code>.</li>
-</ul>
 </section></section>
 <section>
 <section id="nonlinear-fitting" class="title-slide slide level1 center">
@@ -1117,7 +1174,7 @@ F-statistic: 32.26 on 10 and 40 DF,  p-value: 4.846e-16</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="fu">nls</span>(formula, data, start)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">nls</span>(formula, data, start)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <ul>
@@ -1140,8 +1197,8 @@ F-statistic: 32.26 on 10 and 40 DF,  p-value: 4.846e-16</code></pre>
 <h1>Example: Fitting an exponential model</h1>
 
 </section>
-<section id="with-nls" class="slide level2">
-<h2>With <code>nls()</code></h2>
+<section id="the-exponential-model-equation" class="slide level2">
+<h2>The exponential model equation</h2>
 <p><span class="math inline">\(y=y_0e^{kx}\)</span></p>
 <p>where</p>
 <ul>
@@ -1153,52 +1210,52 @@ F-statistic: 32.26 on 10 and 40 DF,  p-value: 4.846e-16</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb33-2"><a></a>growth <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb33-3"><a></a>  <span class="at">predictor =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>, <span class="at">by =</span> <span class="fl">0.2</span>),</span>
-<span id="cb33-4"><a></a>  <span class="at">response =</span> <span class="fu">abs</span>(<span class="fu">exp</span>(<span class="fl">0.5</span><span class="sc">*</span>predictor) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(predictor), <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">5</span>)))</span>
-<span id="cb33-5"><a></a></span>
-<span id="cb33-6"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> growth, <span class="fu">aes</span>(<span class="at">x =</span> predictor, <span class="at">y =</span> response)) <span class="sc">+</span></span>
-<span id="cb33-7"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb33-8"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb33-9"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Predictor"</span>, <span class="at">y =</span> <span class="st">"Response"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-
-</div>
-<img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-34-1.png" width="960" class="r-stretch"></section>
-<section id="first-guess" class="slide level2">
-<h2>First guess</h2>
-<p>Based on the plot, we can estimate <span class="math inline">\(y_0 ~ 0\)</span> and <span class="math inline">\(k = 1\)</span>. Because of the equation, <span class="math inline">\(y=y_0e^{kx}\)</span>, <span class="math inline">\(y_0\)</span> cannot be 0!</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>fit_exponential <span class="ot">&lt;-</span> <span class="fu">nls</span>(response <span class="sc">~</span> y0<span class="sc">*</span><span class="fu">exp</span>(k<span class="sc">*</span>predictor), <span class="at">data =</span> growth, </span>
-<span id="cb34-2"><a></a>  <span class="at">start =</span> <span class="fu">list</span>(<span class="at">y0 =</span> <span class="fl">0.1</span>, <span class="at">k =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> growth, <span class="fu">aes</span>(<span class="at">x =</span> predictor, <span class="at">y =</span> response)) <span class="sc">+</span></span>
-<span id="cb35-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb35-3"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Predictor"</span>, <span class="at">y =</span> <span class="st">"Response"</span>) <span class="sc">+</span></span>
-<span id="cb35-4"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">predict</span>(fit_exponential)), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb34-2"><a></a>growth <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb34-3"><a></a>  <span class="at">predictor =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>, <span class="at">by =</span> <span class="fl">0.2</span>),</span>
+<span id="cb34-4"><a></a>  <span class="at">response =</span> <span class="fu">abs</span>(<span class="fu">exp</span>(<span class="fl">0.5</span><span class="sc">*</span>predictor) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(predictor), <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">5</span>)))</span>
+<span id="cb34-5"><a></a></span>
+<span id="cb34-6"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> growth, <span class="fu">aes</span>(<span class="at">x =</span> predictor, <span class="at">y =</span> response)) <span class="sc">+</span></span>
+<span id="cb34-7"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb34-8"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb34-9"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Predictor"</span>, <span class="at">y =</span> <span class="st">"Response"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
 <img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-36-1.png" width="960" class="r-stretch"></section>
+<section id="fitting-an-exponential-model-with-nls" class="slide level2">
+<h2>Fitting an exponential model with <code>nls()</code></h2>
+<p>Based on the plot, we can estimate <span class="math inline">\(y_0 ~ 0\)</span> and <span class="math inline">\(k = 1\)</span>. Because of the equation, <span class="math inline">\(y=y_0e^{kx}\)</span>, <span class="math inline">\(y_0\)</span> cannot be 0!</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>fit_exponential <span class="ot">&lt;-</span> <span class="fu">nls</span>(response <span class="sc">~</span> y0<span class="sc">*</span><span class="fu">exp</span>(k<span class="sc">*</span>predictor), <span class="at">data =</span> growth, </span>
+<span id="cb35-2"><a></a>  <span class="at">start =</span> <span class="fu">list</span>(<span class="at">y0 =</span> <span class="fl">0.1</span>, <span class="at">k =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> growth, <span class="fu">aes</span>(<span class="at">x =</span> predictor, <span class="at">y =</span> response)) <span class="sc">+</span></span>
+<span id="cb36-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb36-3"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Predictor"</span>, <span class="at">y =</span> <span class="st">"Response"</span>) <span class="sc">+</span></span>
+<span id="cb36-4"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">predict</span>(fit_exponential)), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-38-1.png" width="960" class="r-stretch"></section>
 <section id="check-assumptions" class="slide level2">
 <h2>Check assumptions</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">library</span>(nlstools)</span>
-<span id="cb36-2"><a></a>resids <span class="ot">&lt;-</span> <span class="fu">nlsResiduals</span>(fit_exponential)</span>
-<span id="cb36-3"><a></a><span class="fu">plot</span>(resids)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="fu">library</span>(nlstools)</span>
+<span id="cb37-2"><a></a>resids <span class="ot">&lt;-</span> <span class="fu">nlsResiduals</span>(fit_exponential)</span>
+<span id="cb37-3"><a></a><span class="fu">plot</span>(resids)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-37-1.png" width="960" class="r-stretch"><ul>
+<img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-39-1.png" width="960" class="r-stretch"><ul>
 <li>These plots determine if the residuals are normally distributed and have equal variance</li>
 <li><em>Normal QQ</em> looks good</li>
 <li><em>Residuals vs fitted</em> and <em>Standardized Residuals</em> even spread but slight fanning.</li>
@@ -1211,7 +1268,7 @@ F-statistic: 32.26 on 10 and 40 DF,  p-value: 4.846e-16</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="fu">summary</span>(fit_exponential)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">summary</span>(fit_exponential)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1227,7 +1284,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 4.409 on 49 degrees of freedom
 
 Number of iterations to convergence: 8 
-Achieved convergence tolerance: 1.194e-06</code></pre>
+Achieved convergence tolerance: 1.192e-06</code></pre>
 </div>
 </div>
 <ul>
@@ -1238,16 +1295,16 @@ Achieved convergence tolerance: 1.194e-06</code></pre>
 <p><span class="math display">\[ y = 1.17 \cdot e^{-0.484x} \]</span> The R-squared value is not reported for nonlinear models as the sum of squares is not partitioned into explained and unexplained components. You can use the <strong>residual standard error</strong> and plots instead to compare between models.</p>
 </section>
 <section id="a-really-bad-guess" class="slide level2">
-<h2>A really bad guess</h2>
+<h2>A really bad guess?</h2>
 <p>What if we don’t estimate our parameters very well? R will either give an error or get there eventually.</p>
 <p>Note the parameters and residual standard error are the same as the previous slide - but the <code>Number of iterations to convergence</code> is higher.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>fit_exponential <span class="ot">&lt;-</span> <span class="fu">nls</span>(response <span class="sc">~</span> y0<span class="sc">*</span><span class="fu">exp</span>(k<span class="sc">*</span>predictor), <span class="at">data =</span> growth, </span>
-<span id="cb39-2"><a></a>  <span class="at">start =</span> <span class="fu">list</span>(<span class="at">y0 =</span> <span class="dv">50</span>, <span class="at">k =</span> <span class="fl">1.5</span>)) <span class="co"># totally bogus numbers</span></span>
-<span id="cb39-3"><a></a></span>
-<span id="cb39-4"><a></a><span class="fu">summary</span>(fit_exponential)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>fit_exponential <span class="ot">&lt;-</span> <span class="fu">nls</span>(response <span class="sc">~</span> y0<span class="sc">*</span><span class="fu">exp</span>(k<span class="sc">*</span>predictor), <span class="at">data =</span> growth, </span>
+<span id="cb40-2"><a></a>  <span class="at">start =</span> <span class="fu">list</span>(<span class="at">y0 =</span> <span class="dv">50</span>, <span class="at">k =</span> <span class="fl">1.5</span>)) <span class="co"># totally bogus numbers</span></span>
+<span id="cb40-3"><a></a></span>
+<span id="cb40-4"><a></a><span class="fu">summary</span>(fit_exponential)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1263,7 +1320,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 4.409 on 49 degrees of freedom
 
 Number of iterations to convergence: 28 
-Achieved convergence tolerance: 1.975e-06</code></pre>
+Achieved convergence tolerance: 2.003e-06</code></pre>
 </div>
 </div>
 <div class="callout callout-tip callout-titled callout-style-default">
@@ -1280,8 +1337,8 @@ Achieved convergence tolerance: 1.975e-06</code></pre>
 </div>
 </div>
 </section>
-<section id="fitting-the-model-with-ssexpf" class="slide level2">
-<h2>Fitting the model with <code>SSexpf()</code></h2>
+<section id="fitting-the-exponential-model-with-ssexpf" class="slide level2">
+<h2>Fitting the exponential model with <code>SSexpf()</code></h2>
 <ul>
 <li><code>SSexpf()</code> is from the <code>nlraa</code> package.</li>
 <li>It has the same formula as above – different names for parameters (<span class="math inline">\(y_0\)</span> = <span class="math inline">\(a\)</span>, <span class="math inline">\(k\)</span> = <span class="math inline">\(c\)</span>) but we can re-define them to anything we want</li>
@@ -1290,9 +1347,9 @@ Achieved convergence tolerance: 1.975e-06</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="fu">library</span>(nlraa)</span>
-<span id="cb41-2"><a></a>fit_exponential_ss <span class="ot">&lt;-</span> <span class="fu">nls</span>(response <span class="sc">~</span> <span class="fu">SSexpf</span>(predictor, y0, k), <span class="at">data =</span> decay) </span>
-<span id="cb41-3"><a></a><span class="fu">summary</span>(fit_exponential_ss)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="fu">library</span>(nlraa)</span>
+<span id="cb42-2"><a></a>fit_exponential_ss <span class="ot">&lt;-</span> <span class="fu">nls</span>(response <span class="sc">~</span> <span class="fu">SSexpf</span>(predictor, y0, k), <span class="at">data =</span> decay) </span>
+<span id="cb42-3"><a></a><span class="fu">summary</span>(fit_exponential_ss)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1317,8 +1374,8 @@ Achieved convergence tolerance: 1.048e-06</code></pre>
 <h1>Example: Fitting an asymptotic model</h1>
 
 </section>
-<section id="the-equation" class="slide level2">
-<h2>The equation</h2>
+<section id="the-asymptotic-model-equation" class="slide level2">
+<h2>The Asymptotic model equation</h2>
 <ul>
 <li>There are multiple equations for asymptotic models, this is the equation that <code>SSasymp()</code> (base R) uses:</li>
 </ul>
@@ -1332,20 +1389,20 @@ Achieved convergence tolerance: 1.048e-06</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> asymptotic, <span class="fu">aes</span>(<span class="at">x =</span> predictor, <span class="at">y =</span> response)) <span class="sc">+</span></span>
-<span id="cb43-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb43-3"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">100</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb43-4"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb43-5"><a></a>  <span class="do">## plot the rate</span></span>
-<span id="cb43-6"><a></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> <span class="fl">2.5</span>, <span class="at">yend =</span> <span class="dv">100</span>), </span>
-<span id="cb43-7"><a></a>               <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">"cm"</span>)), </span>
-<span id="cb43-8"><a></a>               <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb43-9"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Predictor"</span>, <span class="at">y =</span> <span class="st">"Response"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> asymptotic, <span class="fu">aes</span>(<span class="at">x =</span> predictor, <span class="at">y =</span> response)) <span class="sc">+</span></span>
+<span id="cb44-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb44-3"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">100</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb44-4"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb44-5"><a></a>  <span class="do">## plot the rate</span></span>
+<span id="cb44-6"><a></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> <span class="fl">2.5</span>, <span class="at">yend =</span> <span class="dv">100</span>), </span>
+<span id="cb44-7"><a></a>               <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">"cm"</span>)), </span>
+<span id="cb44-8"><a></a>               <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb44-9"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Predictor"</span>, <span class="at">y =</span> <span class="st">"Response"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-41-1.png" style="width:50.0%"></p>
+<p><img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-43-1.png" style="width:50.0%"></p>
 </figure>
 </div>
 </div>
@@ -1353,48 +1410,48 @@ Achieved convergence tolerance: 1.048e-06</code></pre>
 <p>Some plausible estimates – <span class="math inline">\(R_0 = 0\)</span>, <span class="math inline">\(Asym = 100\)</span>, <span class="math inline">\(lrc = 0.8\)</span>.</p>
 </div>
 </section>
-<section id="fit-model" class="slide level2">
-<h2>Fit model</h2>
+<section id="fitting-an-asymptotic-model" class="slide level2">
+<h2>Fitting an asymptotic model</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="co"># fit_asymptotic &lt;- nls(response ~ Asym + (R0-Asym)*(exp(-exp(lrc)*predictor)), data = asymptotic, </span></span>
-<span id="cb44-2"><a></a><span class="co">#   start = list(R0 = 0, Asym = 100, lrc = 0.8))</span></span>
-<span id="cb44-3"><a></a></span>
-<span id="cb44-4"><a></a>fit_asymptotic <span class="ot">&lt;-</span> <span class="fu">nls</span>(response <span class="sc">~</span> <span class="fu">SSasymp</span>(predictor, Asym, R0, lrc), <span class="at">data =</span> asymptotic)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a><span class="co"># fit_asymptotic &lt;- nls(response ~ Asym + (R0-Asym)*(exp(-exp(lrc)*predictor)), data = asymptotic, </span></span>
+<span id="cb45-2"><a></a><span class="co">#   start = list(R0 = 0, Asym = 100, lrc = 0.8))</span></span>
+<span id="cb45-3"><a></a></span>
+<span id="cb45-4"><a></a>fit_asymptotic <span class="ot">&lt;-</span> <span class="fu">nls</span>(response <span class="sc">~</span> <span class="fu">SSasymp</span>(predictor, Asym, R0, lrc), <span class="at">data =</span> asymptotic)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> asymptotic, <span class="fu">aes</span>(<span class="at">x =</span> predictor, <span class="at">y =</span> response)) <span class="sc">+</span></span>
-<span id="cb45-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb45-3"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">100</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb45-4"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb45-5"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Predictor"</span>, <span class="at">y =</span> <span class="st">"Response"</span>) <span class="sc">+</span></span>
-<span id="cb45-6"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">predict</span>(fit_asymptotic)), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> asymptotic, <span class="fu">aes</span>(<span class="at">x =</span> predictor, <span class="at">y =</span> response)) <span class="sc">+</span></span>
+<span id="cb46-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb46-3"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">100</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb46-4"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb46-5"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Predictor"</span>, <span class="at">y =</span> <span class="st">"Response"</span>) <span class="sc">+</span></span>
+<span id="cb46-6"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">predict</span>(fit_asymptotic)), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-43-1.png" width="960" class="r-stretch"></section>
+<img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-45-1.png" width="960" class="r-stretch"></section>
 <section id="check-assumptions-1" class="slide level2">
 <h2>Check assumptions</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a><span class="fu">library</span>(nlstools)</span>
-<span id="cb46-2"><a></a>resids <span class="ot">&lt;-</span> <span class="fu">nlsResiduals</span>(fit_asymptotic)</span>
-<span id="cb46-3"><a></a><span class="fu">plot</span>(resids)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a><span class="fu">library</span>(nlstools)</span>
+<span id="cb47-2"><a></a>resids <span class="ot">&lt;-</span> <span class="fu">nlsResiduals</span>(fit_asymptotic)</span>
+<span id="cb47-3"><a></a><span class="fu">plot</span>(resids)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-44-1.png" width="960" class="r-stretch"></section>
+<img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-46-1.png" width="960" class="r-stretch"></section>
 <section id="interpretation-1" class="slide level2">
 <h2>Interpretation</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a><span class="fu">summary</span>(fit_asymptotic)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a><span class="fu">summary</span>(fit_asymptotic)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1411,7 +1468,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 10.21 on 48 degrees of freedom
 
 Number of iterations to convergence: 0 
-Achieved convergence tolerance: 3.376e-07</code></pre>
+Achieved convergence tolerance: 3.245e-07</code></pre>
 </div>
 </div>
 <ul>
@@ -1419,10 +1476,15 @@ Achieved convergence tolerance: 3.376e-07</code></pre>
 <li>If this were real data (e.g.&nbsp;population growth), the parameters themselves e.g.&nbsp;rate of change, are useful</li>
 <li>The parameterised model is:</li>
 </ul>
-<p><span class="math display">\[ y = 98.5 + (-14.5-98.5) \cdot e^{-e^{-0.463} \cdot x}  \]</span> # Example: fitting a logistic model</p>
+<p><span class="math display">\[ y = 98.5 + (-14.5-98.5) \cdot e^{-e^{-0.463} \cdot x}  \]</span></p>
+</section></section>
+<section>
+<section id="example-fitting-a-logistic-model" class="title-slide slide level1 center">
+<h1>Example: fitting a logistic model</h1>
+
 </section>
-<section id="the-equation-1" class="slide level2">
-<h2>The equation</h2>
+<section id="the-logistic-model-equation" class="slide level2">
+<h2>The Logistic model equation</h2>
 <p>There are multiple equations for logistic models, but they all have an ‘S’ or sigmoid shape. The equation that <code>SSlogis()</code> (base R) assumes <span class="math inline">\(y\)</span> is positive and uses:</p>
 <p><span class="math display">\[ y = \frac{Asym}{1+e^{\frac{xmid-x}{scal}}} \]</span> where</p>
 <ul>
@@ -1430,52 +1492,55 @@ Achieved convergence tolerance: 3.376e-07</code></pre>
 <li><span class="math inline">\(xmid\)</span> is the value of <span class="math inline">\(x\)</span> when <span class="math inline">\(y\)</span> is halfway between the lower and upper limits.</li>
 <li><span class="math inline">\(scal\)</span> is the rate of change: the rate at which <span class="math inline">\(y\)</span> approaches the upper limit.</li>
 </ul>
+</section>
+<section id="a-plot-of-the-logistic-model" class="slide level2">
+<h2>A plot of the logistic model</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> logistic, <span class="fu">aes</span>(<span class="at">x =</span> predictor, <span class="at">y =</span> response)) <span class="sc">+</span></span>
-<span id="cb49-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb49-3"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Predictor"</span>, <span class="at">y =</span> <span class="st">"Response"</span>) <span class="sc">+</span></span>
-<span id="cb49-4"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">300</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb49-5"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">5</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb49-6"><a></a>  <span class="co"># label the lines above</span></span>
-<span id="cb49-7"><a></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">300</span>, <span class="at">label =</span> <span class="st">"Asym"</span>, <span class="at">size =</span> <span class="dv">8</span>, <span class="at">vjust =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb49-8"><a></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">5</span>, <span class="at">y =</span> <span class="dv">100</span>, <span class="at">label =</span> <span class="st">"xmid"</span>, <span class="at">size =</span> <span class="dv">8</span>, <span class="at">hjust =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb49-9"><a></a>  <span class="do">## plot the rate</span></span>
-<span id="cb49-10"><a></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">2.5</span>, <span class="at">y =</span> <span class="dv">60</span>, <span class="at">xend =</span> <span class="dv">6</span>, <span class="at">yend =</span> <span class="dv">250</span>), </span>
-<span id="cb49-11"><a></a>               <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">"cm"</span>)), </span>
-<span id="cb49-12"><a></a>               <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb49-13"><a></a>  <span class="co"># label the rate</span></span>
-<span id="cb49-14"><a></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">4</span>, <span class="at">y =</span> <span class="dv">180</span>, <span class="at">label =</span> <span class="st">"scal"</span>, <span class="at">size =</span> <span class="dv">8</span>, <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">hjust =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> logistic, <span class="fu">aes</span>(<span class="at">x =</span> predictor, <span class="at">y =</span> response)) <span class="sc">+</span></span>
+<span id="cb50-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb50-3"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Predictor"</span>, <span class="at">y =</span> <span class="st">"Response"</span>) <span class="sc">+</span></span>
+<span id="cb50-4"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">300</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb50-5"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">5</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb50-6"><a></a>  <span class="co"># label the lines above</span></span>
+<span id="cb50-7"><a></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">300</span>, <span class="at">label =</span> <span class="st">"Asym"</span>, <span class="at">size =</span> <span class="dv">8</span>, <span class="at">vjust =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb50-8"><a></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">5</span>, <span class="at">y =</span> <span class="dv">100</span>, <span class="at">label =</span> <span class="st">"xmid"</span>, <span class="at">size =</span> <span class="dv">8</span>, <span class="at">hjust =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb50-9"><a></a>  <span class="do">## plot the rate</span></span>
+<span id="cb50-10"><a></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">2.5</span>, <span class="at">y =</span> <span class="dv">60</span>, <span class="at">xend =</span> <span class="dv">6</span>, <span class="at">yend =</span> <span class="dv">250</span>), </span>
+<span id="cb50-11"><a></a>               <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">"cm"</span>)), </span>
+<span id="cb50-12"><a></a>               <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb50-13"><a></a>  <span class="co"># label the rate</span></span>
+<span id="cb50-14"><a></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">4</span>, <span class="at">y =</span> <span class="dv">180</span>, <span class="at">label =</span> <span class="st">"scal"</span>, <span class="at">size =</span> <span class="dv">8</span>, <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">hjust =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-46-1.png" style="width:50.0%" class="r-stretch"><p>Some starting values would be <span class="math inline">\(Asym = 300\)</span>, <span class="math inline">\(xmid = 5\)</span>, <span class="math inline">\(scal = 1\)</span>.</p>
+<img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-48-1.png" style="width:50.0%" class="r-stretch"><p>Some starting values would be <span class="math inline">\(Asym = 300\)</span>, <span class="math inline">\(xmid = 5\)</span>, <span class="math inline">\(scal = 1\)</span>.</p>
 </section>
-<section id="fit-model-1" class="slide level2">
-<h2>Fit model</h2>
+<section id="fit-the-logistic-model" class="slide level2">
+<h2>Fit the logistic model</h2>
 <p>Estimating the parameters or using the self-starting function <code>SSlogis()</code> gives a near-identical result.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a><span class="co"># fit_logistic &lt;- nls(response ~ Asym/(1+exp((xmid-predictor)/scal)), data = logistic, </span></span>
-<span id="cb50-2"><a></a><span class="co">#    start = list(Asym = 300, xmid = 5, scal = 1))</span></span>
-<span id="cb50-3"><a></a></span>
-<span id="cb50-4"><a></a>fit_logistic <span class="ot">&lt;-</span> <span class="fu">nls</span>(response <span class="sc">~</span> <span class="fu">SSlogis</span>(predictor, Asym, xmid, scal), <span class="at">data =</span> logistic)</span>
-<span id="cb50-5"><a></a></span>
-<span id="cb50-6"><a></a>resids <span class="ot">&lt;-</span> <span class="fu">nlsResiduals</span>(fit_logistic)</span>
-<span id="cb50-7"><a></a><span class="fu">plot</span>(resids)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a><span class="co"># fit_logistic &lt;- nls(response ~ Asym/(1+exp((xmid-predictor)/scal)), data = logistic, </span></span>
+<span id="cb51-2"><a></a><span class="co">#    start = list(Asym = 300, xmid = 5, scal = 1))</span></span>
+<span id="cb51-3"><a></a></span>
+<span id="cb51-4"><a></a>fit_logistic <span class="ot">&lt;-</span> <span class="fu">nls</span>(response <span class="sc">~</span> <span class="fu">SSlogis</span>(predictor, Asym, xmid, scal), <span class="at">data =</span> logistic)</span>
+<span id="cb51-5"><a></a></span>
+<span id="cb51-6"><a></a>resids <span class="ot">&lt;-</span> <span class="fu">nlsResiduals</span>(fit_logistic)</span>
+<span id="cb51-7"><a></a><span class="fu">plot</span>(resids)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-47-1.png" width="960" class="r-stretch"></section>
+<img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-49-1.png" width="960" class="r-stretch"></section>
 <section id="interpretation-2" class="slide level2">
 <h2>Interpretation</h2>
 <p><code>SSlogis()</code> guessed the parameters on the first try.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a><span class="fu">summary</span>(fit_logistic)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a><span class="fu">summary</span>(fit_logistic)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1492,7 +1557,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 10.22 on 48 degrees of freedom
 
 Number of iterations to convergence: 1 
-Achieved convergence tolerance: 6.629e-07</code></pre>
+Achieved convergence tolerance: 6.632e-07</code></pre>
 </div>
 </div>
 <ul>
@@ -1512,31 +1577,31 @@ Achieved convergence tolerance: 6.629e-07</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb53-2"><a></a></span>
-<span id="cb53-3"><a></a><span class="co"># Create a new data frame with predictor values and model predictions</span></span>
-<span id="cb53-4"><a></a>predictions <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb53-5"><a></a>  <span class="at">predictor =</span> asymptotic<span class="sc">$</span>predictor,</span>
-<span id="cb53-6"><a></a>  <span class="at">Linear =</span> <span class="fu">predict</span>(lin_fit),</span>
-<span id="cb53-7"><a></a>  <span class="at">Poly_2 =</span> <span class="fu">predict</span>(poly2_fit),</span>
-<span id="cb53-8"><a></a>  <span class="at">Poly_3 =</span> <span class="fu">predict</span>(poly3_fit),</span>
-<span id="cb53-9"><a></a>  <span class="at">Poly_10 =</span> <span class="fu">predict</span>(poly10_fit)</span>
-<span id="cb53-10"><a></a>)</span>
-<span id="cb53-11"><a></a></span>
-<span id="cb53-12"><a></a><span class="co"># Reshape the data to long format</span></span>
-<span id="cb53-13"><a></a>predictions_long <span class="ot">&lt;-</span> predictions <span class="sc">%&gt;%</span></span>
-<span id="cb53-14"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>predictor, <span class="at">names_to =</span> <span class="st">"Model"</span>, <span class="at">values_to =</span> <span class="st">"response"</span>)</span>
-<span id="cb53-15"><a></a></span>
-<span id="cb53-16"><a></a><span class="co"># Plot the data</span></span>
-<span id="cb53-17"><a></a><span class="fu">ggplot</span>(predictions_long, <span class="fu">aes</span>(<span class="at">x =</span> predictor, <span class="at">y =</span> response, <span class="at">color =</span> Model)) <span class="sc">+</span></span>
-<span id="cb53-18"><a></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> asymptotic, <span class="fu">aes</span>(<span class="at">x =</span> predictor, <span class="at">y =</span> response), <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb53-19"><a></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb53-20"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Predictor"</span>, <span class="at">y =</span> <span class="st">"Response"</span>) <span class="sc">+</span></span>
-<span id="cb53-21"><a></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Spectral"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb54-2"><a></a></span>
+<span id="cb54-3"><a></a><span class="co"># Create a new data frame with predictor values and model predictions</span></span>
+<span id="cb54-4"><a></a>predictions <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb54-5"><a></a>  <span class="at">predictor =</span> asymptotic<span class="sc">$</span>predictor,</span>
+<span id="cb54-6"><a></a>  <span class="at">Linear =</span> <span class="fu">predict</span>(lin_fit),</span>
+<span id="cb54-7"><a></a>  <span class="at">Poly_2 =</span> <span class="fu">predict</span>(poly2_fit),</span>
+<span id="cb54-8"><a></a>  <span class="at">Poly_3 =</span> <span class="fu">predict</span>(poly3_fit),</span>
+<span id="cb54-9"><a></a>  <span class="at">Poly_10 =</span> <span class="fu">predict</span>(poly10_fit)</span>
+<span id="cb54-10"><a></a>)</span>
+<span id="cb54-11"><a></a></span>
+<span id="cb54-12"><a></a><span class="co"># Reshape the data to long format</span></span>
+<span id="cb54-13"><a></a>predictions_long <span class="ot">&lt;-</span> predictions <span class="sc">%&gt;%</span></span>
+<span id="cb54-14"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>predictor, <span class="at">names_to =</span> <span class="st">"Model"</span>, <span class="at">values_to =</span> <span class="st">"response"</span>)</span>
+<span id="cb54-15"><a></a></span>
+<span id="cb54-16"><a></a><span class="co"># Plot the data</span></span>
+<span id="cb54-17"><a></a><span class="fu">ggplot</span>(predictions_long, <span class="fu">aes</span>(<span class="at">x =</span> predictor, <span class="at">y =</span> response, <span class="at">color =</span> Model)) <span class="sc">+</span></span>
+<span id="cb54-18"><a></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> asymptotic, <span class="fu">aes</span>(<span class="at">x =</span> predictor, <span class="at">y =</span> response), <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb54-19"><a></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb54-20"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Predictor"</span>, <span class="at">y =</span> <span class="st">"Response"</span>) <span class="sc">+</span></span>
+<span id="cb54-21"><a></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Spectral"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-49-1.png" width="960" class="r-stretch"></section>
+<img data-src="lecture-12_files/figure-revealjs/unnamed-chunk-51-1.png" width="960" class="r-stretch"></section>
 <section id="prediction-quality" class="slide level2">
 <h2>Prediction quality</h2>
 <p>We can use prediction quality metrics to compare the fits.</p>
@@ -1559,15 +1624,15 @@ Achieved convergence tolerance: 6.629e-07</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a><span class="fu">library</span>(broom)</span>
-<span id="cb54-2"><a></a><span class="co"># collect all polynomial fits into a single tibble using glance</span></span>
-<span id="cb54-3"><a></a>poly_fits <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb54-4"><a></a>  <span class="at">model =</span> <span class="fu">c</span>(<span class="st">"linear"</span>, <span class="st">"poly2"</span>, <span class="st">"poly3"</span>, <span class="st">"poly10"</span>),</span>
-<span id="cb54-5"><a></a>  <span class="at">fit =</span> <span class="fu">list</span>(lin_fit, poly2_fit, poly3_fit, poly10_fit)) <span class="sc">%&gt;%</span></span>
-<span id="cb54-6"><a></a>  <span class="fu">mutate</span>(<span class="at">glance =</span> <span class="fu">map</span>(fit, glance)) <span class="sc">%&gt;%</span></span>
-<span id="cb54-7"><a></a>  <span class="fu">unnest</span>(glance) <span class="sc">%&gt;%</span></span>
-<span id="cb54-8"><a></a>  <span class="fu">select</span>(model, AIC, BIC)</span>
-<span id="cb54-9"><a></a>poly_fits</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a><span class="fu">library</span>(broom)</span>
+<span id="cb55-2"><a></a><span class="co"># collect all polynomial fits into a single tibble using glance</span></span>
+<span id="cb55-3"><a></a>poly_fits <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb55-4"><a></a>  <span class="at">model =</span> <span class="fu">c</span>(<span class="st">"linear"</span>, <span class="st">"poly2"</span>, <span class="st">"poly3"</span>, <span class="st">"poly10"</span>),</span>
+<span id="cb55-5"><a></a>  <span class="at">fit =</span> <span class="fu">list</span>(lin_fit, poly2_fit, poly3_fit, poly10_fit)) <span class="sc">%&gt;%</span></span>
+<span id="cb55-6"><a></a>  <span class="fu">mutate</span>(<span class="at">glance =</span> <span class="fu">map</span>(fit, glance)) <span class="sc">%&gt;%</span></span>
+<span id="cb55-7"><a></a>  <span class="fu">unnest</span>(glance) <span class="sc">%&gt;%</span></span>
+<span id="cb55-8"><a></a>  <span class="fu">select</span>(model, AIC, BIC)</span>
+<span id="cb55-9"><a></a>poly_fits</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
@@ -1588,23 +1653,23 @@ Achieved convergence tolerance: 6.629e-07</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a></a>predictions <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb56-2"><a></a>  <span class="at">observed =</span> asymptotic<span class="sc">$</span>response,</span>
-<span id="cb56-3"><a></a>  <span class="at">Linear =</span> <span class="fu">predict</span>(lin_fit),</span>
-<span id="cb56-4"><a></a>  <span class="at">Poly_2 =</span> <span class="fu">predict</span>(poly2_fit),</span>
-<span id="cb56-5"><a></a>  <span class="at">Poly_3 =</span> <span class="fu">predict</span>(poly3_fit),</span>
-<span id="cb56-6"><a></a>  <span class="at">Poly_10 =</span> <span class="fu">predict</span>(poly10_fit)</span>
-<span id="cb56-7"><a></a>)</span>
-<span id="cb56-8"><a></a></span>
-<span id="cb56-9"><a></a>errors <span class="ot">&lt;-</span> predictions <span class="sc">%&gt;%</span></span>
-<span id="cb56-10"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>observed, <span class="at">names_to =</span> <span class="st">"Model"</span>, <span class="at">values_to =</span> <span class="st">"Predicted"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb56-11"><a></a>  <span class="fu">group_by</span>(Model) <span class="sc">%&gt;%</span></span>
-<span id="cb56-12"><a></a>  <span class="fu">summarise</span>(</span>
-<span id="cb56-13"><a></a>    <span class="at">RMSE =</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((observed <span class="sc">-</span> Predicted)<span class="sc">^</span><span class="dv">2</span>)),</span>
-<span id="cb56-14"><a></a>    <span class="at">MAE =</span> <span class="fu">mean</span>(<span class="fu">abs</span>(observed <span class="sc">-</span> Predicted))</span>
-<span id="cb56-15"><a></a>)</span>
-<span id="cb56-16"><a></a></span>
-<span id="cb56-17"><a></a>knitr<span class="sc">::</span><span class="fu">kable</span>(errors, <span class="at">digits=</span><span class="dv">2</span>, <span class="at">caption =</span> <span class="st">"Comparison of RMSE and MAE for different models"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a></a>predictions <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb57-2"><a></a>  <span class="at">observed =</span> asymptotic<span class="sc">$</span>response,</span>
+<span id="cb57-3"><a></a>  <span class="at">Linear =</span> <span class="fu">predict</span>(lin_fit),</span>
+<span id="cb57-4"><a></a>  <span class="at">Poly_2 =</span> <span class="fu">predict</span>(poly2_fit),</span>
+<span id="cb57-5"><a></a>  <span class="at">Poly_3 =</span> <span class="fu">predict</span>(poly3_fit),</span>
+<span id="cb57-6"><a></a>  <span class="at">Poly_10 =</span> <span class="fu">predict</span>(poly10_fit)</span>
+<span id="cb57-7"><a></a>)</span>
+<span id="cb57-8"><a></a></span>
+<span id="cb57-9"><a></a>errors <span class="ot">&lt;-</span> predictions <span class="sc">%&gt;%</span></span>
+<span id="cb57-10"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>observed, <span class="at">names_to =</span> <span class="st">"Model"</span>, <span class="at">values_to =</span> <span class="st">"Predicted"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb57-11"><a></a>  <span class="fu">group_by</span>(Model) <span class="sc">%&gt;%</span></span>
+<span id="cb57-12"><a></a>  <span class="fu">summarise</span>(</span>
+<span id="cb57-13"><a></a>    <span class="at">RMSE =</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((observed <span class="sc">-</span> Predicted)<span class="sc">^</span><span class="dv">2</span>)),</span>
+<span id="cb57-14"><a></a>    <span class="at">MAE =</span> <span class="fu">mean</span>(<span class="fu">abs</span>(observed <span class="sc">-</span> Predicted))</span>
+<span id="cb57-15"><a></a>)</span>
+<span id="cb57-16"><a></a></span>
+<span id="cb57-17"><a></a>knitr<span class="sc">::</span><span class="fu">kable</span>(errors, <span class="at">digits=</span><span class="dv">2</span>, <span class="at">caption =</span> <span class="st">"Comparison of RMSE and MAE for different models"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top">
@@ -1700,7 +1765,7 @@ Achieved convergence tolerance: 6.629e-07</code></pre>
 </section></section>
 <section id="thanks" class="title-slide slide level1 center">
 <h1>Thanks!</h1>
-<p>This presentation is based on the <a href="https://github.com/usyd-soles-edu/soles-revealjs">SOLES Quarto reveal.js template</a> and is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+<p>This presentation is based on the <a href="https://github.com/usyd-soles-edu/soles-revealjs" style="color: #1c1c84;">SOLES Quarto reveal.js template</a> and is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" style="color: #1c1c84;">Creative Commons Attribution 4.0 International License</a>.</p>
 <!-- Links -->
 
 
