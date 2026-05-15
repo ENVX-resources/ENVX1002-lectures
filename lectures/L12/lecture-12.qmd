@@ -1,6 +1,6 @@
 ---
 title: Topic 12 -- Nonlinear regression
-author: Si Yang Han
+author: Liana Pozza
 format:
   ochre-revealjs: default
   ochre-typst:
@@ -28,7 +28,7 @@ ggplot2::theme_set(cowplot::theme_half_open())
 
 - [Week 9. Describing Relationships]{style="color: #D0D3D4;"}
     + [Correlation (calculation, interpretation)]{style="color: #D0D3D4;"}
-    + [Regression (model structure, model fitting]{style="color: #D0D3D4;"}
+    + [Regression (model structure, model fitting)]{style="color: #D0D3D4;"}
     + [What/when/why/how]{style="color: #D0D3D4;"}
 
 - [Week 10. Simple Linear Regression]{style="color: #D0D3D4;"}
@@ -51,6 +51,7 @@ $$ Y_i = \beta_0 + \beta_1 x_i + \epsilon_i $$
 
 Ideal for predicting a continuous response variable from a single predictor variable: *"How does $y$ change as $x$ changes, when the relationship is linear?"*
 
+:::{.fragment}
 
 ### Multiple linear regression 
 
@@ -58,14 +59,17 @@ $$ Y_i = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + ... + \beta_k x_{ki} + \eps
 
 *"How does $y$ change as $x_1$, $x_2$, ..., $x_k$ change?"*
 
-
-:::{.fragment}
-### Nonlinear regression
-$$ Y_i = f(x_i, \beta) + \epsilon_i $$
 :::
 
 :::{.fragment}
-where $f(x_i, \beta)$ is a nonlinear function of the parameters $\beta$: "How do we model a change in $y$ with $x$ when the relationship is nonlinear?"
+
+### Nonlinear regression
+$$ Y_i = f(x_i, \beta) + \epsilon_i $$
+
+where $f(x_i, \beta)$ is a nonlinear function of the parameters $\beta$: 
+
+*"How do we model a change in $y$ with $x$ when the relationship is nonlinear?"*
+
 :::
 
 # Nonlinear regression
@@ -73,8 +77,9 @@ where $f(x_i, \beta)$ is a nonlinear function of the parameters $\beta$: "How do
 ![](images/gauss.jpg)
 ![](images/netwon.jpg)
 
-> Carl Friedrich Gauss (1777-1855) and Isaac Newton (1642-1726)
-> Gauss-Newton approach to nonlinear regression is most commonly used
+Carl Friedrich Gauss (1777-1855) and Isaac Newton (1642-1726)
+
+Gauss-Newton approach to nonlinear regression is most commonly used.
 
 
 ## Nonlinear relationships
@@ -136,13 +141,20 @@ tibble(x = seq(0, 10, by = 0.2), y = x^2) %>%
 
 ## Exponents and logarithms
 
+
 |       | Exponents        | Logarithms       |
 |-------|:----------------:|:----------------:|
-| **Definition** | If $a^n = b$, $a$ is the base, $n$ is the exponent, and $b$ is the result. | If $\log_a b = n$, $a$ is the base, $b$ is the result, and $n$ is the logarithm (or the exponent in the equivalent exponential form). |
+| **Definition** | If $a^n = b$, $a$ is the base, $n$ is the exponent, and $b$ is the result. | If $\log_a b = n$, $a$ is the base, $b$ is the result, and $n$ is the logarithm (or the exponent in the equivalent exponential form). | 
+| &nbsp;  |   |
 | **Example** | $2^3 = 8$ | $\log_2 8 = 3$ |
+| &nbsp;  |   |
 | **Interpretation** | $2$ raised to the power of $3$ equals $8$. | The power to which you must raise $2$ to get $8$ is $3$. |
+| &nbsp;  |   |
 | **Inverse** | The logarithm is the inverse operation of exponentiation. | The exponentiation is the inverse operation of logarithm. |
+| &nbsp;  |   |
 | **Properties** | $(a^n)^m = a^{n \cdot m}$, $a^n \cdot a^m = a^{n+m}$, $\frac{a^n}{a^m} = a^{n-m}$ | $\log_a(b \cdot c) = \log_a b + \log_a c$, $\log_a\left(\frac{b}{c}\right) = \log_a b - \log_a c$, $\log_a(b^n) = n \cdot \log_a b$ |
+| &nbsp;  |   |
+
 
 
 :::{.callout-note}
@@ -239,7 +251,8 @@ ggplot(data = curvilinear, aes(x = predictor, y = response)) +
 Examples: food intake, drug dosage, exercise.
 
 # Transformations
-> How far can we go?
+
+How far can we go?
 
 ## Transformations: exponential decay
 
@@ -448,7 +461,8 @@ autoplot(lm(log(response) ~ predictor, data = curvilinear)) +
   - Logistic
 
 # Polynomial regression
-> A special case of multiple linear regression used to model nonlinear relationships.
+
+A special case of multiple linear regression used to model nonlinear relationships.
 
 ## Model
 
@@ -462,18 +476,15 @@ where $k$ is the degree of the polynomial.
 - Can still be fit using `lm()`.
 - The more complex, the less likely it follows a true biological relationship...
 
-. . .
 
-<br>
-
-### Adding polynomial terms
+## Adding polynomial terms
 - Linear: $y = \beta_0 + \beta_1 x$
 - Quadratic: $y = \beta_0 + \beta_1 x + \beta_2 x^2$
 - Cubic: $y = \beta_0 + \beta_1 x + \beta_2 x^2 + \beta_3 x^3$
 - Each level increases the power of the predictor by 1.
 
 # Polynomial fitting
-Using the `asymptotic` data
+Using the **asymptotic** data
 
 ## The data
 
@@ -516,7 +527,6 @@ poly2_fit <- lm(response ~ poly(predictor, 2), asymptotic)
 ggplot(asymptotic, aes(x = predictor, y = response)) +
   geom_point() +
   labs(x = "Predictor", y = "Response") +
-  geom_line(aes(y = predict(lin_fit)), color = "red") +
   geom_line(aes(y = predict(poly2_fit)), color = "slateblue", size = 2)
 ```
 
@@ -534,14 +544,12 @@ poly3_fit <- lm(response ~ poly(predictor, 3), asymptotic)
 ggplot(asymptotic, aes(x = predictor, y = response)) +
   geom_point() +
   labs(x = "Predictor", y = "Response") +
-  geom_line(aes(y = predict(lin_fit)), color = "red") +
-  geom_line(aes(y = predict(poly2_fit)), color = "slateblue") +
   geom_line(aes(y = predict(poly3_fit)), color = "seagreen", size = 2)
 ```
 
 ## Fitting the model (`poly(degree = 10)`)
 
-$$ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + ... + \beta_10 x_i^{10} + \epsilon_i $$
+$$ Y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + ... + \beta_{10} x_i^{10} + \epsilon_i $$
 
 ```{r}
 #| echo: true
@@ -553,11 +561,33 @@ poly10_fit <- lm(response ~ poly(predictor, 10), asymptotic)
 ggplot(asymptotic, aes(x = predictor, y = response)) +
   geom_point() +
   labs(x = "Predictor", y = "Response") +
+  geom_line(aes(y = predict(poly10_fit)), color = "firebrick", size = 2)
+
+```
+
+
+
+## Let's compare!
+
+:::{.columns}
+:::{.column width="50%"}
+
+```{r}
+#| echo: false
+ggplot(asymptotic, aes(x = predictor, y = response)) +
+  geom_point() +
+  labs(x = "Predictor", y = "Response") +
   geom_line(aes(y = predict(lin_fit)), color = "red") +
   geom_line(aes(y = predict(poly2_fit)), color = "slateblue") +
   geom_line(aes(y = predict(poly3_fit)), color = "seagreen") +
   geom_line(aes(y = predict(poly10_fit)), color = "firebrick", size = 2)
 
+```
+
+:::
+:::{.column width="50%"}
+
+```{r}
 # 1) Compute R^2 values
 R2_lin    <- summary(lin_fit)$r.squared
 R2_poly2  <- summary(poly2_fit)$adj.r.squared
@@ -567,16 +597,19 @@ R2_poly10 <- summary(poly10_fit)$adj.r.squared
 # 2) Create a simple table (data frame)
 model_r2_table <- data.frame(
   Model = c("Linear", "Poly2", "Poly3", "Poly10"),
-  R2    = c(R2_lin, R2_poly2, R2_poly3, R2_poly10)
+  R2_adj  = c(R2_lin, R2_poly2, R2_poly3, R2_poly10)
 )
 
 # Display the table
 knitr::kable(
   model_r2_table, 
   digits  = 3, 
-  caption = "Comparison of R^2^ of Polynomial Models"
+  caption = "Adjusted R^2^ for each model"
 )
 ```
+
+:::
+:::
 
 :::{.callout-note}
 We use adjusted R^2^ for polynomials - extra terms, extra complexity, so extra penalty.
@@ -589,15 +622,18 @@ We use adjusted R^2^ for polynomials - extra terms, extra complexity, so extra p
 - Extra terms can lead to overfitting and are difficult to interpret:
 - Parsimony: is the most complex term (highest power) significant? If not, use a lower power.
 
+**BUT:**
+
+- Easy to fit: just add polynomial terms to the model.
+- Simple to perform: use `lm()`.
+
+
+## Is our model parsimonious?
+
 ```{r}
 summary(poly10_fit)
 ```
 
-
-### Still:
-
-- Easy to fit: just add polynomial terms to the model.
-- Simple to perform: use `lm()`.
 
 
 # Nonlinear fitting
@@ -691,7 +727,7 @@ Self-starting functions: `SSexpf()`, `SSasymp()`, `SSlogis()`, etc.
 
 # Example: Fitting an exponential model
 
-## With `nls()`
+## The exponential model equation
 
 $y=y_0e^{kx}$
 
@@ -716,7 +752,7 @@ ggplot(data = growth, aes(x = predictor, y = response)) +
   labs(x = "Predictor", y = "Response")
 ```
 
-## First guess
+## Fitting an exponential model with `nls()`
 
 Based on the plot, we can estimate $y_0 ~ 0$ and $k = 1$. Because of the equation, $y=y_0e^{kx}$, $y_0$ cannot be 0!
 
@@ -762,7 +798,7 @@ summary(fit_exponential)
 $$ y = 1.17 \cdot e^{-0.484x} $$
 The R-squared value is not reported for nonlinear models as the sum of squares is not partitioned into explained and unexplained components. You can use the **residual standard error** and plots instead to compare between models.
 
-## A really bad guess
+## A really bad guess?
 
 What if we don't estimate our parameters very well? R will either give an error or get there eventually.
 
@@ -780,7 +816,7 @@ summary(fit_exponential)
 If an error pops up, try different starting values - the **rate of change** is most likely the problem.
 :::
 
-## Fitting the model with `SSexpf()`
+## Fitting the exponential model with `SSexpf()`
 
 - `SSexpf()` is from the `nlraa` package.
 - It has the same formula as above -- different names for parameters ($y_0$ = $a$, $k$ = $c$) but we can re-define them to anything we want
@@ -793,9 +829,10 @@ fit_exponential_ss <- nls(response ~ SSexpf(predictor, y0, k), data = decay)
 summary(fit_exponential_ss)
 ```
 
+
 # Example: Fitting an asymptotic model
 
-## The equation
+## The Asymptotic model equation
 
 - There are multiple equations for asymptotic models, this is the equation that `SSasymp()` (base R) uses:
 
@@ -822,7 +859,7 @@ ggplot(data = asymptotic, aes(x = predictor, y = response)) +
 
 Some plausible estimates -- $R_0 = 0$, $Asym = 100$, $lrc = 0.8$.
 
-## Fit model
+## Fitting an asymptotic model
 
 ```{r}
 #| echo: true
@@ -863,9 +900,10 @@ summary(fit_asymptotic)
 - The parameterised model is:
 
 $$ y = 98.5 + (-14.5-98.5) \cdot e^{-e^{-0.463} \cdot x}  $$
+
 # Example: fitting a logistic model
 
-## The equation
+## The Logistic model equation
 
 There are multiple equations for logistic models, but they all have an 'S' or sigmoid shape. The equation that `SSlogis()` (base R) assumes $y$ is positive and uses:
 
@@ -875,6 +913,8 @@ where
 - $Asym$ is the upper limit: the maximum value of $y$.
 - $xmid$ is the value of $x$ when $y$ is halfway between the lower and upper limits.
 - $scal$ is the rate of change: the rate at which $y$ approaches the upper limit.
+
+## A plot of the logistic model
 
 ```{r, out.width="50%"}
 #| code-fold: true
@@ -896,7 +936,7 @@ ggplot(data = logistic, aes(x = predictor, y = response)) +
 
 Some starting values would be $Asym = 300$, $xmid = 5$, $scal = 1$.
 
-## Fit model
+## Fit the logistic model
 
 Estimating the parameters or using the self-starting function `SSlogis()` gives a near-identical result.
 
@@ -1053,7 +1093,7 @@ Both the RMSE and MAE measure error on the same scale as the response variable. 
  
 # Thanks!
 
-This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
+This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs){style="color: #1c1c84;"} and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by]{style="color: #1c1c84;"}.
 
 
 <!-- Links -->
